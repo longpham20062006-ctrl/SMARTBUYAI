@@ -1,0 +1,14 @@
+# SMARTBUY AI - Virtual Try-On Server Dependencies
+# Phù hợp với Python 3.10 trên Windows / WSL2 với NVIDIA GeForce RTX 3060 12GB
+
+fastapi>=0.115.0
+uvicorn>=0.30.0
+python-multipart>=0.0.9
+pydantic>=2.7.0
+pillow>=10.3.0
+requests>=2.32.0
+numpy>=1.26.0
+python-dotenv>=1.0.1
+
+# PyTorch với CUDA 12.4 (Khuyến nghị cài đặt qua wheel chính thức):
+# pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124

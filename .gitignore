@@ -1,0 +1,65 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies & Build Outputs
+node_modules
+dist
+dist-ssr
+*.local
+
+# Environment variables & API keys
+.env
+.env.*
+!.env.example
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Archive files & Large downloads
+*.rar
+*.zip
+*.7z
+*.tar.gz
+*.tar
+ai-server.rar
+
+# Python & AI Server Virtual Environment & Caches
+ai-server/.venv/
+.venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# AI Server Model Checkpoints & Large Weights (>100MB)
+ai-server/checkpoints/
+*.pth
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+*.onnx
+
+# AI Server Temporary User Photos & Generated Outputs (Privacy & Cleanliness)
+ai-server/temp/*
+!ai-server/temp/.gitkeep
+ai-server/outputs/*
+!ai-server/outputs/.gitkeep
+ai-server/test_garments/
+ai-server/test_result.png

@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-main: #FAFAF8;
+    --bg-subtle: #F2F3F5;
+    --bg-surface: #FFFFFF;
+    --text-primary: #18181B;
+    --text-secondary: #71717A;
+    --color-primary: #18181B;
+    --color-primary-hover: #303036;
+    --color-accent: #8B5CF6;
+    --color-accent-hover: #7C3AED;
+    --color-accent-light: #F3E8FF;
+    --color-border: #E4E4E7;
+    --color-success: #16A34A;
+    --color-error: #DC2626;
+    --color-warning: #D97706;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #FAFAF8;
+    color: #18181B;
+    font-family: 'Be Vietnam Pro', Inter, system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #F3E8FF;
+    color: #7C3AED;
+  }
+
+  /* Custom sleek scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F2F3F5;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D4D4D8;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8B5CF6;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-editorial {
+    font-family: 'Be Vietnam Pro', Inter, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  .font-display {
+    font-family: 'Space Grotesk', 'Be Vietnam Pro', sans-serif;
+    letter-spacing: -0.03em;
+  }
+
+  /* Glass header Premium */
+  .glass-header {
+    background-color: rgba(250, 250, 248, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  /* Streetwear marquee */
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    display: flex;
+    width: 200%;
+    animation: marquee 30s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-drawer-in {
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

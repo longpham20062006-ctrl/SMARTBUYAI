@@ -1,0 +1,266 @@
+PROMPT MASTER — SMARTBUY AI FASHION
+ANTIGRAVITY IDE | FRONTEND FIRST | PREMIUM UI/UX | SKILL-DRIVEN DEVELOPMENT
+
+VAI TRÒ
+Bạn là một nhóm chuyên gia trong một AI Agent gồm Creative Director, Senior UI/UX Designer, Design System Architect, Senior React/TypeScript Frontend Engineer và Frontend QA Engineer. Nhiệm vụ của bạn là trực tiếp phân tích, thiết kế và TRIỂN KHAI frontend website thương mại điện tử thời trang SMARTBUY AI ở chất lượng đủ chỉn chu để trình diễn như một sản phẩm thật.
+
+THỨ TỰ ƯU TIÊN KHÔNG ĐƯỢC ĐẢO NGƯỢC
+P0 — Chất lượng thị giác và trải nghiệm người dùng: thẩm mỹ có chủ đích, bố cục tinh tế, hình ảnh thời trang chất lượng, typography, spacing, micro-interaction, trải nghiệm nhất quán trên MỌI trang.
+P1 — Độ hoàn thiện: đầy đủ trang, nội dung, responsive, trạng thái và hành vi tương tác; không chỉ làm một landing page hoặc vài màn hình đẹp.
+P2 — Luồng nghiệp vụ frontend mô phỏng đúng, dữ liệu thống nhất và có thể trình diễn xuyên suốt.
+P3 — Kiến trúc sạch, TypeScript nghiêm túc, component tái sử dụng, dễ mở rộng và kết nối backend về sau.
+P4 — Hiệu ứng nâng cao chỉ khi giúp trải nghiệm tốt hơn; không đánh đổi tính thẩm mỹ/hiệu năng lấy 3D hoặc animation phô trương.
+
+Tuyệt đối không giải quyết bài toán bằng một giao diện sơ sài gồm header, một banner gradient, vài card mặc định và footer. Không dùng một template chung lặp đi lặp lại cho mọi trang. Độ tinh tế phải thể hiện ở từng khoảng cách, hình ảnh, trạng thái nút và luồng người dùng.
+
+1. BỐI CẢNH VÀ RANH GIỚI
+- Thương hiệu: SMARTBUY AI. Slogan: “Mặc theo cách của bạn”. Bán thời trang nam, nữ, unisex, quần áo và phụ kiện có dữ liệu phù hợp.
+- Ngôn ngữ UI: tiếng Việt tự nhiên, đầy đủ dấu; định dạng giá VND (ví dụ 399.000 ₫), giờ Việt Nam.
+- Kế thừa và chuyển hóa đúng các nhóm chức năng FR-01 đến FR-16 và màn hình UI-01 đến UI-15 theo tài liệu SmartBuy AI hiện có, nhưng mọi mô tả sản phẩm phải thuộc ngành THỜI TRANG: chất liệu, phom dáng, màu, size, bảng số đo, cách bảo quản, phong cách và dịp mặc. Không sót trường CPU/RAM/SSD/laptop/điện thoại.
+- CHỈ LÀM FRONTEND. Không tạo backend, API server, SQL, PostgreSQL, FastAPI, NestJS, Express, Firebase/Supabase, JWT thật, thanh toán thật hay tích hợp AI API thật. Vite dev server chỉ phục vụ frontend; dữ liệu và nghiệp vụ demo chạy trong trình duyệt.
+- Tạo service interface và mock adapter để dễ thay bằng API sau; không tạo backend “dự phòng”. Gắn nhãn mô phỏng cho đăng nhập/đặt hàng/tư vấn khi cần; tuyệt đối không tuyên bố đã có hệ thống sản xuất thật.
+- Nếu dự án đã có mã nguồn: đọc package.json, lockfile, src, router, assets, style, tài liệu và các cấu hình trước khi thay đổi. Tận dụng phần tốt; không xóa project, reset dữ liệu, đổi framework hoặc làm lại từ đầu tùy tiện. Nếu chưa có project mới khởi tạo React + Vite + TypeScript.
+- Chỉ thay đổi file thuộc phạm vi dự án đang được mở. Không thao tác ở C:\Windows, thư mục gốc ổ D hay thư mục dự án khác. Không xóa hàng loạt, không chạy lệnh nguy hiểm, không sửa backend có sẵn.
+
+2. SỬ DỤNG AGENT SKILLS ĐÚNG MỤC ĐÍCH — KHÔNG DÙNG TRÀN LAN
+Trước khi làm, hãy kiểm tra danh sách Skill thực sự được Antigravity nhận diện (project/global), đọc SKILL.md tương ứng và kiểm tra cách gọi chính xác. Chỉ dùng Skill đã cài; nếu không tìm thấy, nói rõ và thực hiện theo quy tắc chuyên môn tương ứng, KHÔNG giả vờ đã chạy Skill hoặc tự bịa output của Skill.
+
+Phân công Skill theo ngữ cảnh:
+- frontend-design (Anthropic): chủ trì creative direction, bố cục editorial, tính khác biệt, typography, tránh giao diện đại trà. Dùng khi phác thảo layout trang và cải thiện thẩm mỹ.
+- ui-ux-pro-max: nghiên cứu design system, bảng màu, font, pattern UX và bố cục hợp ngành thời trang. Dùng khi chốt hệ thống thiết kế, không yêu cầu tạo ngẫu nhiên nhiều theme cùng lúc.
+- prototype: chỉ dùng lúc cần so sánh 2–3 concept thực sự khác nhau, chọn 1 hướng nhất quán để triển khai; không kéo dài giai đoạn lập kế hoạch.
+- animate: dùng sau khi bố cục tĩnh đã đẹp; tinh chỉnh hover, reveal, chuyển ảnh và drawer; không thêm motion chỉ để phô diễn.
+- web-design-guidelines: đánh giá usability, accessibility, responsive, semantic HTML, focus và các lỗi UI.
+- vercel-react-best-practices: dùng khi triển khai/kiểm tra React, component boundaries, render và performance.
+- webapp-testing: dùng ở bước kiểm thử hành trình bằng browser khi tool/môi trường hỗ trợ.
+
+Quy trình phối hợp: (1) frontend-design + ui-ux-pro-max chốt concept và tokens → (2) prototype khi cần chọn giữa các concept → (3) React implementation → (4) animate hoàn thiện → (5) web-design-guidelines + react-best-practices audit → (6) webapp-testing kiểm chứng. Một nhiệm vụ chỉ gọi các Skill liên quan; tránh gọi mọi Skill cho mỗi file hoặc lệnh. Thiết kế và quyết định cuối cùng phải nhất quán, không chắp vá đầu ra khác phong cách.
+
+3. ART DIRECTION: WEBSITE THỜI TRANG CAO CẤP NHƯNG GẦN GŨI
+Định hướng chính: MODERN FASHION EDITORIAL + CONTEMPORARY E-COMMERCE. Gợi cảm giác tạp chí thời trang, studio ảnh sản phẩm và cửa hàng tuyển chọn. Đẹp, có hơi thở thời trang, sáng sủa, giàu tương phản, không tối om; màu sắc bắt mắt có kiểm soát, không lòe loẹt. Thiết kế phải làm người dùng muốn xem tiếp và mua sắm, không trông như dashboard SaaS đổi tên thành shop.
+
+Trước khi code nhiều, xác định ngắn gọn: đối tượng khách hàng, concept hình ảnh, palette, typography, grid, cách trình bày ProductCard, một chi tiết nhận diện độc đáo và nguyên tắc motion. Nếu cần trình bày tối đa 2–3 concept, chọn 1 concept mạnh nhất rồi TRIỂN KHAI, không chờ người dùng duyệt mọi chi tiết nhỏ.
+
+Gợi ý palette xuất phát (có thể tinh chỉnh sau khi nhìn mockup):
+- Ivory nền chính #F7F5F0, Paper/White #FFFFFF, Charcoal chữ chính #1A1A1A.
+- Secondary text #62665F, Forest Green CTA #285A49, Sage section #E8EEE8.
+- Nhấn Terracotta #AD7058 hoặc Champagne #D6C3A8 với tần suất vừa phải.
+- Border #DADDD6, màu lỗi/cảnh báo rõ ràng và tương phản đủ đọc.
+Không buộc mọi section chỉ có hai màu: tạo nhịp màu bằng ảnh thời trang, mảng nền theo bộ sưu tập và sắc nhấn. Không dùng gradient tím-xanh, neon, glassmorphism dày, icon emoji, đổ bóng nặng hoặc card bo tròn đồng loạt.
+
+Typography:
+- Ưu tiên Be Vietnam Pro/Manrope hoặc font hiện đại hỗ trợ đầy đủ tiếng Việt; tối đa hai họ font. Font editorial khác chỉ được dùng khi dấu tiếng Việt hiển thị đẹp.
+- Hero display lớn có tỷ lệ đẹp; tiêu đề section biểu cảm nhưng dễ đọc; body khoảng 16px; chữ phụ không bé đến khó nhìn.
+- Thiết kế hierarchy rõ H1/H2/H3, line-height và letter-spacing riêng desktop/mobile; tránh cắt dấu tiếng Việt.
+- Mỗi section có nhịp: hình ảnh lớn – chữ tinh gọn – khoảng trắng có dụng ý – CTA rõ. Không trống trải quá mức; mật độ thông tin đủ để shop hữu ích.
+
+Hình ảnh:
+- Đây là phần quan trọng ngang với code. Dùng ảnh thời trang đúng chủ đề, được phép sử dụng, bố cục/crop hợp lý, ánh sáng và tông màu tương đối đồng nhất; nhiều sản phẩm có ảnh phụ khác góc.
+- Không dùng 1 ảnh lặp lại cho áo, quần, váy. Không dùng emoji, khối gradient hay ô xám như ảnh thành phẩm.
+- Ưu tiên lưu asset hợp lệ về public/assets; ghi nguồn/giấy phép trong ASSET_CREDITS.md. Không hardcode URL ảnh ngẫu nhiên gây 404 hoặc không ổn định.
+- Ảnh sản phẩm nên 3:4; hero/editorial dùng tỷ lệ có chủ đích; preload ảnh ở màn đầu, lazy-load ảnh dưới màn.
+- Nếu không thể tải/generate asset đạt yêu cầu, sử dụng nguồn hợp lệ sẵn có, nêu phần còn thiếu thay vì báo giao diện đã hoàn thiện.
+
+4. DESIGN SYSTEM — BẮT BUỘC XÂY TRƯỚC KHI PHỦ CÁC TRANG
+Tạo tokens tại src/styles hoặc theme: color (semantic), type scale, spacing 4/8pt, border, radius, shadow, z-index, motion duration/easing, breakpoint, container và focus ring. Có thể dùng Tailwind và shadcn/ui nhưng phải tùy biến rõ rệt; không để nguyên bộ component mặc định làm cảm giác trang demo.
+
+- Container khoảng 1280–1360px; grid 12 cột desktop, tỷ lệ biến đổi theo mobile.
+- Radius nút khoảng 8–10px, card 10–16px tùy ngữ cảnh, dùng border/bóng nhẹ; không mọi thứ đều là pill hoặc card.
+- Button chính/phụ/ghost/link/icon có hover, pressed, loading, disabled, focus; kích thước vùng bấm tối thiểu 44px.
+- Form input/select/textarea, accordion, tab, filter chip, swatch màu, size pill, radio, checkbox, toast, modal, drawer, menu, breadcrumb, table, tooltip, skeleton, empty state và error state dùng chung ngôn ngữ thiết kế.
+- Ưu tiên icon Lucide thống nhất nét/size. Dùng microcopy tiếng Việt chính xác, ngắn, tự nhiên, không lorem ipsum, không label kỹ thuật lộ ra cho khách.
+- Chất lượng UI phải thể hiện được cả khi chưa có motion. Trước khi thêm animation, chụp/quan sát trang tĩnh và chỉnh cho đẹp trước.
+
+5. GIAO DIỆN KHÁCH HÀNG — THIẾT KẾ CHI TIẾT THEO TỪNG MÀN HÌNH
+
+5.1. Header, điều hướng và Footer
+- Header desktop tinh gọn, sticky hợp lý: logo SMARTBUY AI, Nam, Nữ, Unisex, Bộ sưu tập, Tư vấn AI; search, tài khoản và giỏ hàng có badge số lượng thật.
+- Mega menu/dropdown trình bày như fashion shop: nhóm danh mục rõ, có hình ảnh nhỏ hợp lệ nếu hữu ích; hover không bị mất menu, điều khiển được bằng bàn phím và click.
+- Search có gợi ý, icon rõ, Escape, Enter, xóa từ khóa, hiển thị trạng thái không tìm thấy.
+- Mobile header cân đối, drawer menu, tìm kiếm và giỏ không chen chúc. Không dính hàng loạt banner/bar sticky.
+- Footer có cấu trúc cột, điều hướng hữu ích, size guide, chính sách có nội dung, bản sắc thương hiệu. Không bịa địa chỉ, hotline, đánh giá, lượt mua hay cam kết vận chuyển.
+
+5.2. Trang chủ — phải gây ấn tượng từ giây đầu nhưng không chỉ đẹp ở hero
+Thiết kế một home page giàu nhịp điệu editorial, gồm:
+A. Hero full/near full width: ảnh fashion campaign chất lượng cao hoặc bố cục collage đẹp; tiêu đề “Mặc theo cách của bạn”, tagline có nội dung, CTA “Khám phá bộ sưu tập” và “Tìm phong cách cùng AI”. Layout desktop có thể bất đối xứng 40/60 hoặc chữ chồng lớp có kiểm soát; mobile thiết kế riêng, không thu nhỏ máy móc.
+B. Dải điều hướng danh mục trực quan: Nam, Nữ, Unisex hoặc Áo, Quần, Váy/Đầm, Áo khoác; ảnh rõ và hiệu ứng hover tinh tế.
+C. New Arrivals: 8 sản phẩm chất lượng với ProductCard giàu chi tiết và giá/swatch hợp lệ; CTA xem tất cả.
+D. Editorial story/Lookbook: một section phá grid tiêu chuẩn, ảnh người mẫu lớn, copy ngắn, số thứ tự hoặc nhãn biên tập tinh tế; dẫn tới collection thật.
+E. Bộ sưu tập tuyển chọn: Tối giản, Công sở, Cuối tuần; khác nhau về ảnh, nền, khối hình, không chỉ 3 card giống hệt.
+F. Trending/Best of style: tuyển chọn từ catalog; không giả số lượng bán hoặc đánh giá. Có thể dùng “Được tuyển chọn” thay vì “Bán chạy nhất” thiếu dữ liệu.
+G. AI Stylist introduction: khu tư vấn phong cách thân thiện, ô nhập câu gợi ý hoạt động; thiết kế phù hợp thương hiệu, không giao diện robot/neon.
+H. Size guide/cách chọn đồ hữu ích + footer.
+Nhịp cuộn: section lớn xen section nhỏ, ảnh tĩnh xen lưới, có mảng màu nhấn và khoảng trắng đủ; không 8 section liên tiếp đều cùng khung card.
+
+5.3. Trang danh sách /products và bộ sưu tập
+- Breadcrumb + heading đẹp + lời giới thiệu ngắn; số kết quả; desktop grid sản phẩm 4 cột, tablet 2–3, mobile 2 cột khi đủ rộng; tinh chỉnh khoảng hở.
+- Sidebar lọc rõ ràng (hoặc sticky filter toolbar theo thiết kế), mobile filter drawer có Áp dụng/Xóa.
+- Bộ lọc: danh mục, Nam/Nữ/Unisex, khoảng giá, màu, size, chất liệu, phom, phong cách, dịp mặc, thương hiệu, còn hàng. Kết hợp điều kiện trên CÙNG biến thể khi liên quan màu-size-giá-tồn.
+- Sort mới nhất, giá tăng/giảm, A–Z; chip bộ lọc đang dùng và xóa từng/all; đồng bộ query params và lịch sử Back/Refresh.
+- ProductCard: ảnh đẹp 3:4, ảnh thứ hai khi hover/focus, tên 2 dòng, chất liệu/kiểu dáng gọn khi hữu ích, giá đúng biến thể, swatch có tên, badge có căn cứ; yêu thích/so sánh/xem nhanh nếu có hành vi thật.
+- Empty state có minh họa phù hợp và cách xóa lọc, không để khoảng trắng trống hoặc mỗi chữ “No products”.
+
+5.4. Chi tiết sản phẩm /products/:slug
+- Desktop bố cục gallery lớn 55–62% / thông tin 38–45%, ảnh phụ/thumbnails, zoom; panel thông tin có thể sticky trong giới hạn phù hợp.
+- Tên, mô tả ngắn, giá, nhãn tồn, chọn màu, chọn size, bảng kích cỡ theo nhóm, số lượng, CTA “Thêm vào giỏ” / “Mua ngay”, hướng dẫn chất liệu/chăm sóc. Không tự chọn size hoặc tự chọn biến thể không hợp lệ.
+- Khi thay màu cập nhật ảnh/giá/size/tồn đúng; size hết hàng disabled và có chú thích. Không mua khi chưa chọn đủ biến thể.
+- Nội dung bên dưới có accordion/chia tab rõ, sản phẩm liên quan đúng nhóm, AI hỏi về sản phẩm này; mobile gallery vuốt được và sticky CTA không che nội dung.
+- Thiết kế chi tiết sản phẩm phải đạt chất lượng gần trang chủ, không là trang form mặc định.
+
+5.5. Giỏ hàng /cart và cart drawer
+- Giao diện gọn, dễ quét: ảnh đúng biến thể, màu/size, giá, tăng giảm số lượng, xóa, subtotal. Bảng tóm tắt rõ và CTA sang checkout.
+- Giỏ trống có ảnh/biểu tượng tinh tế, câu chữ phù hợp và CTA quay lại mua sắm.
+- Cart drawer mở mượt, giữ focus và đóng đúng; trạng thái thay đổi giá/tồn phải nêu rõ. Không hiển thị phí vận chuyển được bịa.
+
+5.6. Checkout /checkout và trang thành công
+- Thiết kế checkout nhiều bước như một ecommerce thật: thông tin nhận hàng → kiểm tra đơn → đặt đơn mô phỏng thành công; stepper và Order Summary tinh tế.
+- Form có nhãn/lỗi từng trường, không mất thông tin khi quay bước, loading/disabled. Chỉ demo, không có thẻ ngân hàng, QR trả tiền hay lời khẳng định đã thu tiền.
+- Màn thành công có mã đơn demo, chi tiết tóm tắt, CTA xem đơn/tiếp tục khám phá; visual nhất quán.
+
+5.7. Login/Register/Account/Orders
+- Login/Register: ảnh fashion bên cạnh form trên desktop, mobile chuyển thành form đẹp, thoáng; trường nhập đầy đủ, mật khẩu ẩn/hiện, validation rõ, chuyển tab/route hợp lý. Có nhãn “Chế độ demo”.
+- Account: sidebar/tabs rõ, tổng quan, thông tin cá nhân, chỉnh sửa, trạng thái lưu; không trông như form HTML thô.
+- Orders: bảng/card lịch sử có bộ lọc, trạng thái, ảnh sản phẩm, chi tiết/timeline; user chỉ thấy dữ liệu của tài khoản demo hiện tại.
+
+5.8. AI Stylist /ai-stylist và /compare
+- AI Stylist frontend mô phỏng: giao diện chat thời trang đẹp, gợi ý câu hỏi, vùng kết quả sản phẩm, chip tiêu chí chỉnh được, khả năng chuyển sang lọc thông thường, trạng thái chờ/trống/lỗi. Ghi rõ không gọi AI thật.
+- So sánh 2–4 sản phẩm: bảng đẹp, sticky label nếu cần, ảnh/giá/size/màu/chất liệu/phom, “Chỉ xem khác biệt”, mobile cuộn vùng bảng thay vì tràn toàn trang.
+- Size guide trang riêng, dễ hiểu và gắn loại hàng phù hợp.
+
+6. GIAO DIỆN ADMIN — KHÔNG ĐƯỢC LÀM SƠ SÀI
+Admin vẫn cùng design language SMARTBUY AI nhưng ưu tiên hiệu quả nghiệp vụ: sidebar cân đối, topbar, breadcrumb, icon nhất quán, bảng dữ liệu thoáng, filter, search, action menu, dialog xác nhận và form nhiều section.
+- Dashboard: KPI từ dữ liệu demo thật, biểu đồ đơn theo thời gian, đơn mới, cảnh báo tồn thấp, responsive.
+- Products: bảng ảnh/tên/SKU/giá/tồn/trạng thái, tìm kiếm, filter, thêm/sửa sản phẩm; form nhóm thông tin, upload ảnh local có lưu bền, biến thể màu-size, bảng size.
+- Categories và Brands: bảng, tạo/sửa/ẩn, validate và giải thích khi mục đang có sản phẩm.
+- Inventory: tồn theo biến thể, điều chỉnh với lý do, lịch sử biến động.
+- Orders: trạng thái PENDING → CONFIRMED → PROCESSING → COMPLETED hoặc CANCELLED theo quy tắc; chi tiết đơn, xác nhận và hoàn kho demo đúng một lần.
+- Users: thông tin, trạng thái, khóa/mở tài khoản demo; không lộ password.
+Mọi trang quản trị phải có loading/empty/error/success, validation rõ và kích thước bảng/overlay thích nghi mobile; không dùng các trang “Coming soon”.
+
+7. CÁC ROUTE BẮT BUỘC
+/ ; /products ; /products/:slug ; /collections ; /collections/:slug ; /ai-stylist ; /compare ; /size-guide ; /login ; /register ; /account ; /cart ; /checkout ; /orders ; /orders/:id ; /admin ; /admin/products ; /admin/products/new ; /admin/products/:id/edit ; /admin/categories ; /admin/brands ; /admin/inventory ; /admin/orders ; /admin/orders/:id ; /admin/users ; /403 ; * (404).
+Mọi route phải có giao diện hoàn chỉnh, truy cập bằng điều hướng và refresh trực tiếp được trong môi trường SPA. Nếu thiết kế thêm trang nội dung/chính sách, mọi link phải có đích và nội dung tương ứng, không dùng href="#" giả chức năng.
+
+8. KIẾN TRÚC FRONTEND — CODE CHUẨN, RÕ RÀNG, KHÔNG DỒN FILE
+Stack mặc định: React + Vite + TypeScript strict, React Router, Tailwind CSS, shadcn/ui được tùy biến, Lucide Icons, TanStack Query (cho mock services bất đồng bộ), React Hook Form + Zod, Context/reducer hoặc 1 store nhẹ phù hợp. Có thể dùng CSS transitions hoặc Motion cho hiệu ứng; chỉ thêm GSAP/Three.js khi thực sự có lợi và không gây phình bundle. Dùng Vitest/Testing Library/Playwright khi môi trường cho phép.
+
+Kiến trúc: FEATURE-BASED + REUSABLE COMPONENTS + SERVICE/REPOSITORY SEPARATION. Đề xuất:
+
+SMARTBUY-AI/
+  public/
+    assets/{campaign,products,collections,icons,fonts}/
+  src/
+    app/{router,providers,guards}/
+    components/
+      ui/{button,input,dialog,drawer,select,tabs,toast,...}/
+      layout/{SiteHeader,SiteFooter,StoreLayout,AdminLayout}/
+      common/{SearchBar,ProductCard,ProductGrid,ColorSwatch,SizeSelector,...}/
+    features/
+      home/{components,pages}/
+      catalog/{components,hooks,pages}/
+      collections/{components,pages}/
+      compare/{components,pages}/
+      ai-stylist/{components,services,pages}/
+      auth/{components,pages}/
+      account/{components,pages}/
+      cart/{components,hooks,pages}/
+      checkout/{components,pages}/
+      orders/{components,pages}/
+      admin/{dashboard,products,categories,brands,inventory,orders,users}/
+    services/{contracts,adapters}/
+    mocks/{seed,repository,services}/
+    hooks/
+    lib/{formatters,validators,storage,constants}/
+    types/
+    styles/{tokens,globals,typography,motion}/
+  tests/{unit,integration,e2e}/
+  docs/{DESIGN_SYSTEM,FRONTEND_ACCEPTANCE,API_CONTRACT}/
+  README.md
+  ASSET_CREDITS.md
+
+Đây là sơ đồ mục tiêu; điều chỉnh theo repo hiện có, không tạo thư mục rỗng chỉ để đủ sơ đồ. Mỗi feature được phép có components/hooks/types/services bên trong khi cần. Dùng import alias, naming thống nhất, type/interface đúng, module rõ trách nhiệm và export chủ động.
+
+Quy tắc:
+- App.tsx chỉ lắp router/providers, không chứa toàn bộ trang và logic. Một component không kiêm cả fetch, validate, mutation, UI phức tạp và layout trang nếu có thể tách hợp lý.
+- Shared UI components không cài cứng nghiệp vụ kho/đặt đơn; feature components gọi service/hook đã định nghĩa.
+- Không nhân bản ProductCard, buttons, styles hay logic format giá ở nhiều nơi; tránh vừa Tailwind vừa CSS rải rác vô nguyên tắc.
+- Không over-engineering thành hàng trăm file rỗng, không cài thư viện trùng chức năng, không thay đổi stack theo sở thích nhất thời.
+- Đặt tên rõ nghĩa; TypeScript strict; hạn chế any; không tắt lint/typecheck để che lỗi; xử lý exception và cleanup listener/effect.
+
+9. DATA DEMO VÀ CHỨC NĂNG PHẢI THẬT TRONG PHẠM VI FRONTEND
+- Tạo khoảng 30–36 sản phẩm thời trang có nội dung và ảnh phù hợp, phân bổ Nam/Nữ/Unisex, nhiều danh mục, nhiều màu, size, giá, SKU/tồn hợp lý. Giá được ghi rõ là dữ liệu demo nếu cần.
+- Dùng Product, Variant, Image, Collection, Category, Brand, SizeGuide, UserDemo, Cart, CartItem, Order, OrderItem, StockMovement và Conversation có type ổn định.
+- CHỈ MỘT nguồn dữ liệu nghiệp vụ chung (mock repository/store); các trang không tự import mảng seed rồi sửa hoặc lưu localStorage riêng. Có persistence sau refresh, schemaVersion, reset demo có xác nhận; ảnh local upload lưu bền bằng IndexedDB/giải pháp tương đương.
+- Toàn bộ search, filter, sort, compare, size/color, giỏ, checkout, lịch sử đơn, admin CRUD và dashboard cùng đọc từ nguồn này; admin sửa sản phẩm/giá/tồn thì trang khách phản ánh thay đổi.
+- Giỏ theo variant_id; nhập số lượng hợp lệ, không vượt tồn; đặt đơn mô phỏng chống click đúp, snapshot giá/biến thể và trừ tồn một lần; hủy hoàn kho đúng một lần.
+- Demo login/register có phân tách guest/user/admin và route guard UX, không tuyên bố bảo mật thật, không dùng thông tin cá nhân thật. Không lưu hay log mật khẩu dạng rõ; nêu giới hạn demo.
+- AI Stylist chỉ parser/rule-based từ catalog: hiểu vài tiêu chí cơ bản về ngân sách, màu, size, loại đồ, phong cách và dịp mặc; lý do gợi ý dựa dữ liệu. Khi không hiểu, hỏi thêm hoặc chuyển người dùng sang filter thường. Không giả làm GPT/Gemini API.
+- Luồng chính phải có hành vi thật, không dùng nút bấm chỉ bật toast thành công nhưng dữ liệu không thay đổi.
+
+10. ANIMATION VÀ 3D — TINH TẾ, KHÔNG PHẢI MỤC TIÊU CHÍNH
+- Ưu tiên chất lượng ảnh, crop, typography, composition và khoảng trắng hơn các hiệu ứng nặng.
+- Motion có chủ đích: hero entrance nhẹ, hover ảnh chuyển góc, underline menu, filter chips, mở/đóng drawer, toast, chuyển trang, xuất hiện section khi cuộn. Duration thường 150–450ms, easing nhất quán, không lạm dụng mọi nơi.
+- Không làm con trỏ đuổi theo nút, scroll hijacking, loading giả lâu, parallax rung, animation che nội dung, carousel tự chuyển liên tục hoặc loading spinner vô tận.
+- 3D hoàn toàn KHÔNG BẮT BUỘC. Chỉ sử dụng nếu có asset hợp lệ, chạy mượt, đẹp hơn hero editorial 2D và có ảnh poster dự phòng; không tạo áo bằng vài hình hộp hay đặt quả cầu xoay vô nghĩa. Không mất thời gian lớn vào 3D trong khi trang catalog/checkout vẫn xấu.
+- Tôn trọng prefers-reduced-motion và thiết bị yếu; trải nghiệm mua sắm phải hoạt động khi tắt animation/WebGL.
+
+11. RESPONSIVE, ACCESSIBILITY VÀ HIỆU NĂNG
+- Thiết kế/kiểm tra tại 360, 390, 768, 1024, 1280, 1440px và màn desktop chiều cao thấp. Mobile phải là một thiết kế hoàn chỉnh, không chỉ shrink desktop.
+- Không tràn ngang; header/search/cart/compare/chat/sticky buy không che nhau; modal/drawer dùng được với bàn phím, Escape, focus đúng; support safe-area khi cần.
+- Semantics HTML5, H1/H2/H3 hợp lý, label, alt text, focus indicator, keyboard navigation; contrast chữ thường mục tiêu >=4.5:1, vùng chạm >=44px.
+- Tất cả list/form/trang dữ liệu có skeleton hoặc loading hợp lý, empty, error, retry và success. Không dùng alert() mặc định thay thông báo UI được thiết kế.
+- Route-level lazy load; ảnh được tối ưu kích thước/định dạng; tránh tải admin/chart/3D ở trang khách khi không cần. Không để asset 404, link chết hoặc console error chặn thao tác.
+- Build được; ưu tiên Core Web Vitals tốt, đo thật nếu có công cụ, không bịa số Lighthouse/FPS.
+
+12. QUY TRÌNH LÀM VIỆC BẮT BUỘC — THỰC HIỆN, KHÔNG CHỈ NÊU KẾ HOẠCH
+GIAI ĐOẠN 1 — Audit dự án và lập design brief:
+Đọc mã nguồn; kiểm tra Skill đã cài; liệt kê công nghệ và các route hiện có. Đề xuất ngắn 1 concept mạnh nhất gồm style reference mô tả, mood, palette, font, hero, ProductCard và cấu trúc module. Xác định gì giữ nguyên, gì nâng cấp. KHÔNG tự động xóa/thay hết project.
+
+GIAI ĐOẠN 2 — Dựng nền tảng thiết kế thật đẹp:
+Tạo tokens, global styles, component primitives, navigation/header/footer, mock data repository và router; sau đó hoàn thiện Home, ProductCard, Catalog và Product Detail. Đây là vòng phê duyệt chất lượng nội bộ: mở browser, quan sát, tự sửa typography/crop/spacing/hierarchy/CTA cho đến khi các trang này nhìn như sản phẩm thật.
+
+GIAI ĐOẠN 3 — Phủ đầy đủ hành trình mua sắm:
+Bộ sưu tập, tìm kiếm/filter/sort, chọn biến thể, Quick View, Compare, Cart, Checkout, Login/Register, Account và Orders. Mỗi trang có UX rõ, dữ liệu thực trong mock store và xử lý lỗi; kiểm tra ngay sau khi xong.
+
+GIAI ĐOẠN 4 — AI Stylist demo + Admin hoàn chỉnh:
+Dựng chat tư vấn mô phỏng, bộ lọc tiêu chí, kết quả từ catalog; các trang admin dashboard, quản lý catalog/biến thể, danh mục, thương hiệu, kho, đơn và tài khoản. Admin phải hoàn thiện đến mức tương đương phần khách về tính nhất quán và usability.
+
+GIAI ĐOẠN 5 — POLISH PASS chuyên sâu (bắt buộc):
+Không thêm tính năng mới để né công đoạn này. Đi từng trang và sửa: alignment, spacing, line-height, ảnh/crop, tỷ lệ khối, độ tương phản, CTA, chiều cao card, trạng thái hover/focus/disabled/loading/error, nội dung tiếng Việt, responsive 360–1440px và motion. Dùng Skill phù hợp để audit. Chạy test/build rồi sửa lỗi phát hiện.
+
+Nếu phiên Agent bị giới hạn, báo tiến độ thật và file/module chưa hoàn tất; tiếp tục ở phiên sau theo checkpoint. Không tuyên bố hoàn thành website khi mới có landing page hoặc các route trống. Không triển khai backend trong bất kỳ giai đoạn nào.
+
+13. CHECKLIST NGHIỆM THU GIAO DIỆN VÀ LUỒNG
+ĐÁNH GIÁ RIÊNG từng màn hình theo các tiêu chí: (1) bố cục/hierarchy; (2) chất lượng hình ảnh; (3) typography; (4) khoảng cách/cân đối; (5) màu sắc/tương phản; (6) hành vi trạng thái; (7) mobile; (8) tính nhất quán thương hiệu. Nếu thấy còn cảm giác template rẻ tiền, trống trải, cứng, các card giống hệt, hero đẹp còn trang con sơ sài thì phải chỉnh tiếp.
+
+Luồng chức năng cần chạy được:
+- Home → menu danh mục → search/filter/sort → sản phẩm → đổi màu/size → thêm giỏ → checkout demo → lịch sử đơn.
+- User A → logout → User B: không lộ nhầm hồ sơ/giỏ/đơn của nhau trong phiên demo.
+- Admin thêm/sửa/ẩn sản phẩm, giá, ảnh, kho: catalog và dashboard đồng bộ sau refresh.
+- So sánh 2–4 món, size guide, AI Stylist demo và fallback khi không có kết quả.
+- Đổi filter và refresh/Back vẫn giữ URL/state; size hết hàng không thể mua; giỏ thay đổi tồn/giá cần xử lý.
+- Form sai hiển thị validation, danh sách rỗng có empty state, ảnh lỗi có fallback, route 403/404 hoàn chỉnh.
+- Build và preview chạy; mở trực tiếp route sâu; kiểm tra console/asset 404; test mobile bằng browser nếu có.
+
+Không được ghi “đã kiểm tra” khi chưa kiểm tra. Nếu không có browser/screenshot, ghi rõ chưa thể xác minh trực quan; cung cấp danh sách bước kiểm thử thủ công. Không che lỗi bằng placeholder, TODO trống hoặc lời hứa “sẽ bổ sung sau”.
+
+14. TIÊU CHUẨN BÀN GIAO
+- Source frontend đầy đủ, asset hợp lệ, package.json + lockfile, scripts chạy thật; không phụ thuộc backend để demo.
+- README tiếng Việt hướng dẫn npm install, npm run dev, build/preview, danh sách demo accounts và luồng dùng thử (chỉ tài liệu hóa lệnh thực sự có trong package.json).
+- docs/DESIGN_SYSTEM.md: art direction, tokens, typography, component và nguyên tắc responsive/motion.
+- docs/FRONTEND_ACCEPTANCE.md: bảng route, chức năng, trạng thái nghiệm thu, kết quả kiểm thử, điểm chưa kiểm chứng.
+- docs/API_CONTRACT.md: type và hợp đồng mock-service sẵn cho backend về sau, KHÔNG triển khai server.
+- ASSET_CREDITS.md: nguồn/giấy phép ảnh, font và tài nguyên.
+- Báo cáo cuối: đã làm gì; những trang nào chạy được; Skill nào thực sự dùng để làm gì; cách khởi động; kết quả typecheck/lint/test/build nếu đã chạy; hạn chế còn lại.
+- Kết thúc ở frontend. Chỉ bắt đầu backend khi người dùng ra yêu cầu mới.
+
+15. CÁC ĐIỀU CẤM CUỐI CÙNG
+- Không sản xuất giao diện cũ, khô cứng, bố cục quá đơn giản hoặc giống một website demo sinh tự động.
+- Không chỉ chăm chút hero rồi bỏ qua trang sản phẩm, cart, checkout, account, admin.
+- Không dùng hiệu ứng 3D vô nghĩa; không để animation quyết định cấu trúc UI.
+- Không tự nhận đã dùng Skill nếu Skill chưa được cài/đọc/áp dụng thực tế.
+- Không dùng dữ liệu sai ngành hàng; không fake reviews, thương hiệu nổi tiếng, bán chạy, ưu đãi, vận chuyển hoặc chứng nhận.
+- Không bắt đầu backend, không phá vỡ dữ liệu/mã nguồn cũ, không tự ý cài hàng loạt thư viện thừa.
+- Không hoàn tất bằng mockup hoặc kế hoạch: phải chỉnh sửa source thật, có frontend chạy được, có luồng mô phỏng và báo cáo xác minh trung thực.
+
+BẮT ĐẦU NGAY: Audit project và Skill đang có → chốt art direction + kiến trúc ngắn gọn → triển khai trực tiếp từng mốc → kiểm tra trực quan và polish đến khi website đạt chất lượng UI/UX chuyên nghiệp ở cả desktop lẫn mobile. Trong mọi quyết định, ưu tiên một website THỜI TRANG thực sự đẹp, sử dụng được và có cấu trúc code bền vững.
