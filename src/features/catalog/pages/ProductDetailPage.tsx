@@ -245,7 +245,7 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
             {/* Chọn Màu Sắc */}
             {selectedColor && product.colors.length > 0 && (
               <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs">
+                <div className="flex justify-between items-center text-xs mb-7">
                   <span className="text-[#71717A]">
                     Phối màu: <strong className="text-[#18181B]">{selectedColor.name}</strong>
                   </span>

@@ -62,9 +62,15 @@ def scan():
                     break
 
         if has_subdirs_with_images:
-            # Ảnh rơi vãi ở thư mục cha
+            # Ảnh rơi vãi ở thư mục cha danh mục chưa xếp vào folder mẫu
             for f in img_files:
-                loose_images.append(f"{rel_dir}/{f}")
+                loose_images.append({
+                    "path": f"{rel_dir}/{f}",
+                    "webPath": f"/images/san-pham/{rel_dir}/{f}",
+                    "fileName": f,
+                    "parentDir": rel_dir
+                })
+            continue
 
         # Xác định giới tính từ đường dẫn
         gender = 'nam'

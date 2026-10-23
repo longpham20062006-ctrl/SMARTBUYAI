@@ -164,6 +164,30 @@ def analyze():
             'defaultName': 'Phụ Kiện Thời Trang Gen Z',
             'material': 'Hợp kim titan mạ bạc 925 chống xỉn',
             'fit': 'Freesize'
+        },
+        'quan-dai': {
+            'prefix': 'PANTS',
+            'seasons': ['he', 'xuan-thu', 'dong'],
+            'basePrice': 289000,
+            'defaultName': 'Quần Dài Nam Ống Suông Form Rộng',
+            'material': 'Kaki Cotton co giãn nhẹ hoặc vải Tuyết Mưa cao cấp',
+            'fit': 'Straight Leg / Wide Leg'
+        },
+        'quan-short': {
+            'prefix': 'SHORTS',
+            'seasons': ['he', 'xuan-thu'],
+            'basePrice': 169000,
+            'defaultName': 'Quần Short Nam Năng Động Dạo Phố',
+            'material': 'Vải Kaki hoặc Dù gió thể thao nhanh khô',
+            'fit': 'Regular Fit trên gối'
+        },
+        'quan-jeans': {
+            'prefix': 'JEANS',
+            'seasons': ['he', 'xuan-thu', 'dong'],
+            'basePrice': 349000,
+            'defaultName': 'Quần Jeans Nam Denim Cao Cấp',
+            'material': '100% Cotton Denim 13oz bền chắc đứng phom',
+            'fit': 'Baggy / Straight Fit'
         }
     }
 

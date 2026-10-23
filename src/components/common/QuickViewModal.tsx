@@ -136,7 +136,7 @@ const QuickViewContent: React.FC<QuickViewContentProps> = ({
 
           {/* Màu sắc */}
           <div className="mt-4 space-y-2">
-            <div className="text-xs font-semibold text-brand-secondary">
+            <div className="text-xs font-semibold text-brand-secondary mb-7">
               Màu sắc: <span className="text-brand-primary font-bold">{selectedColor.name}</span>
             </div>
             <ColorSwatch

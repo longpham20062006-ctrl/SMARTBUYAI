@@ -3,16 +3,713 @@
   "title": "SMARTBUY AI — Báo Cáo Phân Tích Mẫu Sản Phẩm Theo Folder Thực Tế V3",
   "engine": "Folder-Based Product Variants Engine V3 (1 Folder = 1 Product)",
   "summary": {
-    "totalModelFolders": 86,
-    "totalConfirmedProducts": 86,
-    "totalMergedProducts": 86,
-    "confirmedMergedGroupsCount": 86,
-    "totalScannedImages": 220,
-    "multiColorProductsCount": 47,
-    "multiAngleGalleryProductsCount": 37,
-    "pendingReviewCount": 5
+    "totalModelFolders": 126,
+    "totalConfirmedProducts": 126,
+    "totalMergedProducts": 126,
+    "confirmedMergedGroupsCount": 126,
+    "totalScannedImages": 297,
+    "multiColorProductsCount": 67,
+    "multiAngleGalleryProductsCount": 48,
+    "pendingReviewCount": 7
   },
   "confirmedMergedGroups": [
+    {
+      "groupId": "GRP-JACKET-001",
+      "parentProductId": "JACKET-001",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_1",
+      "modelFolder": "ao_khoac_1",
+      "productName": "Áo Khoác Phong Cách Streetwear #1",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792777427960_348043404565674403_5540743654312280467_379aeaa6581794d0d5cd88423eb5955c.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792777427960_348043404565674403_5540743654312280467_379aeaa6581794d0d5cd88423eb5955c.jpg",
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792777428008_348043404565674403_5540743654312280467_424990bfb8168808e02162c9b2a84089.jpg",
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792777427985_348043404565674403_5540743654312280467_0ac80f106c7c2ed06a20f53eee7a2ec1.jpg",
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792777427997_348043404565674403_5540743654312280467_210bd213bbfee6c4a13590ffa18fab44.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792777427960_348043404565674403_5540743654312280467_379aeaa6581794d0d5cd88423eb5955c.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792777427960_348043404565674403_5540743654312280467_379aeaa6581794d0d5cd88423eb5955c.jpg",
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792777428008_348043404565674403_5540743654312280467_424990bfb8168808e02162c9b2a84089.jpg"
+          ]
+        },
+        {
+          "color": "Xanh Dương",
+          "colorId": "xanh-duong",
+          "hex": "#2563EB",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792777427985_348043404565674403_5540743654312280467_0ac80f106c7c2ed06a20f53eee7a2ec1.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792777427985_348043404565674403_5540743654312280467_0ac80f106c7c2ed06a20f53eee7a2ec1.jpg"
+          ]
+        },
+        {
+          "color": "Nâu Cà Phê",
+          "colorId": "nau",
+          "hex": "#78350F",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792777427997_348043404565674403_5540743654312280467_210bd213bbfee6c4a13590ffa18fab44.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792777427997_348043404565674403_5540743654312280467_210bd213bbfee6c4a13590ffa18fab44.jpg"
+          ]
+        }
+      ],
+      "totalColors": 3,
+      "totalImages": 4,
+      "totalVariants": 15,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_1): 3 màu, 4 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-002",
+      "parentProductId": "JACKET-002",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_2",
+      "modelFolder": "ao_khoac_2",
+      "productName": "Áo Khoác Phong Cách Streetwear #2",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_2/1792777428018_348043404565674403_5540743654312280467_4a0369de5c88f660d8c3910670458b60.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_2/1792777428018_348043404565674403_5540743654312280467_4a0369de5c88f660d8c3910670458b60.jpg",
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_2/1792777428026_348043404565674403_5540743654312280467_2324b266f1a44125b7526d1c5b087322.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_2/1792777428018_348043404565674403_5540743654312280467_4a0369de5c88f660d8c3910670458b60.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_2/1792777428018_348043404565674403_5540743654312280467_4a0369de5c88f660d8c3910670458b60.jpg"
+          ]
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_2/1792777428026_348043404565674403_5540743654312280467_2324b266f1a44125b7526d1c5b087322.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_2/1792777428026_348043404565674403_5540743654312280467_2324b266f1a44125b7526d1c5b087322.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_2): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-003",
+      "parentProductId": "JACKET-003",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_3",
+      "modelFolder": "ao_khoac_3",
+      "productName": "Áo Khoác Phong Cách Streetwear #3",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_3/1792777428034_348043404565674403_5540743654312280467_411416dee9d0a43d572db90064ffc99a.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_3/1792777428034_348043404565674403_5540743654312280467_411416dee9d0a43d572db90064ffc99a.jpg",
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_3/1792777428042_348043404565674403_5540743654312280467_719345a46d48787297a2fe4df52a2a2a.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_3/1792777428034_348043404565674403_5540743654312280467_411416dee9d0a43d572db90064ffc99a.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_3/1792777428034_348043404565674403_5540743654312280467_411416dee9d0a43d572db90064ffc99a.jpg"
+          ]
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_3/1792777428042_348043404565674403_5540743654312280467_719345a46d48787297a2fe4df52a2a2a.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_3/1792777428042_348043404565674403_5540743654312280467_719345a46d48787297a2fe4df52a2a2a.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_3): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-004",
+      "parentProductId": "JACKET-004",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_4",
+      "modelFolder": "ao_khoac_4",
+      "productName": "Áo Khoác Phong Cách Streetwear #4",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_4/1792777428054_348043404565674403_5540743654312280467_ab3540497437d42fcadde6d30940fc01.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_4/1792777428054_348043404565674403_5540743654312280467_ab3540497437d42fcadde6d30940fc01.jpg",
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_4/1792777428059_348043404565674403_5540743654312280467_7dc9cb7aed88b79525d4fa9e7c50ad7e.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_4/1792777428054_348043404565674403_5540743654312280467_ab3540497437d42fcadde6d30940fc01.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_4/1792777428054_348043404565674403_5540743654312280467_ab3540497437d42fcadde6d30940fc01.jpg"
+          ]
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_4/1792777428059_348043404565674403_5540743654312280467_7dc9cb7aed88b79525d4fa9e7c50ad7e.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_4/1792777428059_348043404565674403_5540743654312280467_7dc9cb7aed88b79525d4fa9e7c50ad7e.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_4): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-005",
+      "parentProductId": "JACKET-005",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_5",
+      "modelFolder": "ao_khoac_5",
+      "productName": "Áo Khoác Phong Cách Streetwear #5",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_5/1792777428064_348043404565674403_5540743654312280467_06d8dc4d48e101949aa8ba582da81263.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_5/1792777428064_348043404565674403_5540743654312280467_06d8dc4d48e101949aa8ba582da81263.jpg",
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_5/1792777428069_348043404565674403_5540743654312280467_20872c7c38d049904a6c4d91360b0dac.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_5/1792777428064_348043404565674403_5540743654312280467_06d8dc4d48e101949aa8ba582da81263.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_5/1792777428064_348043404565674403_5540743654312280467_06d8dc4d48e101949aa8ba582da81263.jpg"
+          ]
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_5/1792777428069_348043404565674403_5540743654312280467_20872c7c38d049904a6c4d91360b0dac.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_5/1792777428069_348043404565674403_5540743654312280467_20872c7c38d049904a6c4d91360b0dac.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_5): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-006",
+      "parentProductId": "JACKET-006",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_6",
+      "modelFolder": "ao_khoac_6",
+      "productName": "Áo Khoác Phong Cách Streetwear #6",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_6/1792777428073_348043404565674403_5540743654312280467_350464ee06fe93c124d760bf1948a361.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_6/1792777428073_348043404565674403_5540743654312280467_350464ee06fe93c124d760bf1948a361.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xanh Dương",
+          "colorId": "xanh-duong",
+          "hex": "#2563EB",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_6/1792777428073_348043404565674403_5540743654312280467_350464ee06fe93c124d760bf1948a361.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_6/1792777428073_348043404565674403_5540743654312280467_350464ee06fe93c124d760bf1948a361.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_6): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-007",
+      "parentProductId": "JACKET-007",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_7",
+      "modelFolder": "ao_khoac_7",
+      "productName": "Áo Khoác Phong Cách Streetwear #7",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_7/1792777428078_348043404565674403_5540743654312280467_d4206aea696ea07fde462516e3d25ac2.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_7/1792777428078_348043404565674403_5540743654312280467_d4206aea696ea07fde462516e3d25ac2.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_7/1792777428078_348043404565674403_5540743654312280467_d4206aea696ea07fde462516e3d25ac2.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_7/1792777428078_348043404565674403_5540743654312280467_d4206aea696ea07fde462516e3d25ac2.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_7): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-008",
+      "parentProductId": "JACKET-008",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_8",
+      "modelFolder": "ao_khoac_8",
+      "productName": "Áo Khoác Phong Cách Streetwear #8",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_8/1792777428082_348043404565674403_5540743654312280467_c8d49eb142fce3b7580f250a3ca3c191.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_8/1792777428082_348043404565674403_5540743654312280467_c8d49eb142fce3b7580f250a3ca3c191.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_8/1792777428082_348043404565674403_5540743654312280467_c8d49eb142fce3b7580f250a3ca3c191.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_8/1792777428082_348043404565674403_5540743654312280467_c8d49eb142fce3b7580f250a3ca3c191.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_8): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-009",
+      "parentProductId": "JACKET-009",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_9",
+      "modelFolder": "ao_khoac_9",
+      "productName": "Áo Khoác Phong Cách Streetwear #9",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_9/1792777428087_348043404565674403_5540743654312280467_0525907adbc824835b7840d159930bef.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_9/1792777428087_348043404565674403_5540743654312280467_0525907adbc824835b7840d159930bef.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_9/1792777428087_348043404565674403_5540743654312280467_0525907adbc824835b7840d159930bef.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_9/1792777428087_348043404565674403_5540743654312280467_0525907adbc824835b7840d159930bef.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_9): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-010",
+      "parentProductId": "JACKET-010",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_10",
+      "modelFolder": "ao_khoac_10",
+      "productName": "Áo Khoác Phong Cách Streetwear #10",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_10/1792777428091_348043404565674403_5540743654312280467_9bdc7e5b92b511aa1866aae5116f9b8b.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_10/1792777428091_348043404565674403_5540743654312280467_9bdc7e5b92b511aa1866aae5116f9b8b.jpg",
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_10/1792777428095_348043404565674403_5540743654312280467_e41ad9416fc4e20bcf57dc13bb16c286.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_10/1792777428091_348043404565674403_5540743654312280467_9bdc7e5b92b511aa1866aae5116f9b8b.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_10/1792777428091_348043404565674403_5540743654312280467_9bdc7e5b92b511aa1866aae5116f9b8b.jpg",
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_10/1792777428095_348043404565674403_5540743654312280467_e41ad9416fc4e20bcf57dc13bb16c286.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 2,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_10): 1 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-011",
+      "parentProductId": "JACKET-011",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_11",
+      "modelFolder": "ao_khoac_11",
+      "productName": "Áo Khoác Phong Cách Streetwear #11",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_11/1792777428100_348043404565674403_5540743654312280467_d7aa690b2ac18889a8e34da46f46e631.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_11/1792777428100_348043404565674403_5540743654312280467_d7aa690b2ac18889a8e34da46f46e631.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_11/1792777428100_348043404565674403_5540743654312280467_d7aa690b2ac18889a8e34da46f46e631.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_11/1792777428100_348043404565674403_5540743654312280467_d7aa690b2ac18889a8e34da46f46e631.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_11): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-012",
+      "parentProductId": "JACKET-012",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_12",
+      "modelFolder": "ao_khoac_12",
+      "productName": "Áo Khoác Phong Cách Streetwear #12",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_12/1792777428108_348043404565674403_5540743654312280467_4a3ed5b8ebcd08a416cce8033d9a1891.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_12/1792777428108_348043404565674403_5540743654312280467_4a3ed5b8ebcd08a416cce8033d9a1891.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_12/1792777428108_348043404565674403_5540743654312280467_4a3ed5b8ebcd08a416cce8033d9a1891.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_12/1792777428108_348043404565674403_5540743654312280467_4a3ed5b8ebcd08a416cce8033d9a1891.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_12): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-013",
+      "parentProductId": "JACKET-013",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_13",
+      "modelFolder": "ao_khoac_13",
+      "productName": "Áo Khoác Phong Cách Streetwear #13",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_13/1792777428104_348043404565674403_5540743654312280467_d2b99a21638f224d36b9d89e0da3d500.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_13/1792777428104_348043404565674403_5540743654312280467_d2b99a21638f224d36b9d89e0da3d500.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_13/1792777428104_348043404565674403_5540743654312280467_d2b99a21638f224d36b9d89e0da3d500.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_13/1792777428104_348043404565674403_5540743654312280467_d2b99a21638f224d36b9d89e0da3d500.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_13): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-014",
+      "parentProductId": "JACKET-014",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_14",
+      "modelFolder": "ao_khoac_14",
+      "productName": "Áo Khoác Phong Cách Streetwear #14",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_14/1792777428112_348043404565674403_5540743654312280467_444836569361785f6c6c7ee0c6e05966.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_14/1792777428112_348043404565674403_5540743654312280467_444836569361785f6c6c7ee0c6e05966.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_14/1792777428112_348043404565674403_5540743654312280467_444836569361785f6c6c7ee0c6e05966.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_14/1792777428112_348043404565674403_5540743654312280467_444836569361785f6c6c7ee0c6e05966.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_14): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-015",
+      "parentProductId": "JACKET-015",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_15",
+      "modelFolder": "ao_khoac_15",
+      "productName": "Áo Khoác Phong Cách Streetwear #15",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_15/1792777428117_348043404565674403_5540743654312280467_88006d57604cd80eb96cdbe01667cf41.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_15/1792777428117_348043404565674403_5540743654312280467_88006d57604cd80eb96cdbe01667cf41.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_15/1792777428117_348043404565674403_5540743654312280467_88006d57604cd80eb96cdbe01667cf41.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_15/1792777428117_348043404565674403_5540743654312280467_88006d57604cd80eb96cdbe01667cf41.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_15): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-016",
+      "parentProductId": "JACKET-016",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_16",
+      "modelFolder": "ao_khoac_16",
+      "productName": "Áo Khoác Phong Cách Streetwear #16",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_16/1792777428121_348043404565674403_5540743654312280467_685a6ca3a7ccda58b70ea6e2166fca67.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_16/1792777428121_348043404565674403_5540743654312280467_685a6ca3a7ccda58b70ea6e2166fca67.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_16/1792777428121_348043404565674403_5540743654312280467_685a6ca3a7ccda58b70ea6e2166fca67.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_16/1792777428121_348043404565674403_5540743654312280467_685a6ca3a7ccda58b70ea6e2166fca67.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_16): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-017",
+      "parentProductId": "JACKET-017",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_17",
+      "modelFolder": "ao_khoac_17",
+      "productName": "Áo Khoác Phong Cách Streetwear #17",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_17/1792777428125_348043404565674403_5540743654312280467_9be004e22004c008fc25267e62926056.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_17/1792777428125_348043404565674403_5540743654312280467_9be004e22004c008fc25267e62926056.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_17/1792777428125_348043404565674403_5540743654312280467_9be004e22004c008fc25267e62926056.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_17/1792777428125_348043404565674403_5540743654312280467_9be004e22004c008fc25267e62926056.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_17): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-018",
+      "parentProductId": "JACKET-018",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_18",
+      "modelFolder": "ao_khoac_18",
+      "productName": "Áo Khoác Phong Cách Streetwear #18",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_18/1792777428130_348043404565674403_5540743654312280467_d5d86cddbca579d23c3e9be6b3e75e31.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_18/1792777428130_348043404565674403_5540743654312280467_d5d86cddbca579d23c3e9be6b3e75e31.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_18/1792777428130_348043404565674403_5540743654312280467_d5d86cddbca579d23c3e9be6b3e75e31.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_18/1792777428130_348043404565674403_5540743654312280467_d5d86cddbca579d23c3e9be6b3e75e31.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_18): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-JACKET-019",
+      "parentProductId": "JACKET-019",
+      "folderKey": "quan-ao-nam/ao-khoac/ao_khoac_19",
+      "modelFolder": "ao_khoac_19",
+      "productName": "Áo Khoác Phong Cách Streetwear #19",
+      "category": "ao-khoac",
+      "gender": "nam",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_19/1792777428134_348043404565674403_5540743654312280467_91fa37e17d1451842e8e47cc042f359c.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_19/1792777428134_348043404565674403_5540743654312280467_91fa37e17d1451842e8e47cc042f359c.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_19/1792777428134_348043404565674403_5540743654312280467_91fa37e17d1451842e8e47cc042f359c.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_19/1792777428134_348043404565674403_5540743654312280467_91fa37e17d1451842e8e47cc042f359c.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao-khoac/ao_khoac_19): 1 màu, 1 ảnh"
+    },
     {
       "groupId": "GRP-HOODIE-001",
       "parentProductId": "HOODIE-001",
@@ -3895,6 +4592,933 @@
       "totalImages": 9,
       "totalVariants": 35,
       "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao/ao-thun/ao_thun_13): 7 màu, 9 ảnh"
+    },
+    {
+      "groupId": "GRP-PANTS-001",
+      "parentProductId": "PANTS-001",
+      "folderKey": "quan-ao-nam/quan/quan-dai/quan_dai_1",
+      "modelFolder": "quan_dai_1",
+      "productName": "Quần Dài Nam Ống Suông Form Rộng #1",
+      "category": "quan-dai",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_1/1792798442711_348043404565674403_5540743654312280467_0f92c753aa63d6ff448116521c10c6ce.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_1/1792798442711_348043404565674403_5540743654312280467_0f92c753aa63d6ff448116521c10c6ce.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_1/1792798442724_348043404565674403_5540743654312280467_92b7c7f659d5047d7d3ae6824a42766c.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_1/1792798442711_348043404565674403_5540743654312280467_0f92c753aa63d6ff448116521c10c6ce.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_1/1792798442711_348043404565674403_5540743654312280467_0f92c753aa63d6ff448116521c10c6ce.jpg",
+            "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_1/1792798442724_348043404565674403_5540743654312280467_92b7c7f659d5047d7d3ae6824a42766c.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 2,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-dai/quan_dai_1): 1 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-PANTS-002",
+      "parentProductId": "PANTS-002",
+      "folderKey": "quan-ao-nam/quan/quan-dai/quan_dai_2",
+      "modelFolder": "quan_dai_2",
+      "productName": "Quần Dài Nam Ống Suông Form Rộng #2",
+      "category": "quan-dai",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_2/1792798442735_348043404565674403_5540743654312280467_a6151b24b3c637b0c604c97e3830f043.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_2/1792798442735_348043404565674403_5540743654312280467_a6151b24b3c637b0c604c97e3830f043.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_2/1792798442745_348043404565674403_5540743654312280467_44e17075c594b40094354e7179d8d0b3.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_2/1792798442735_348043404565674403_5540743654312280467_a6151b24b3c637b0c604c97e3830f043.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_2/1792798442735_348043404565674403_5540743654312280467_a6151b24b3c637b0c604c97e3830f043.jpg",
+            "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_2/1792798442745_348043404565674403_5540743654312280467_44e17075c594b40094354e7179d8d0b3.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 2,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-dai/quan_dai_2): 1 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-PANTS-003",
+      "parentProductId": "PANTS-003",
+      "folderKey": "quan-ao-nam/quan/quan-dai/quan_dai_3",
+      "modelFolder": "quan_dai_3",
+      "productName": "Quần Dài Nam Ống Suông Form Rộng #3",
+      "category": "quan-dai",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_3/1792798442754_348043404565674403_5540743654312280467_20b00c9dfdee4f790785ce4d7fe52c16.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_3/1792798442754_348043404565674403_5540743654312280467_20b00c9dfdee4f790785ce4d7fe52c16.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_3/1792798442762_348043404565674403_5540743654312280467_9af678509fbccc171557ed4bc8bbe03c.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_3/1792798442770_348043404565674403_5540743654312280467_bd58fff7a509e52acc9c9c494899746f.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xanh Dương",
+          "colorId": "xanh-duong",
+          "hex": "#2563EB",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_3/1792798442754_348043404565674403_5540743654312280467_20b00c9dfdee4f790785ce4d7fe52c16.jpg",
+          "galleryCount": 3,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_3/1792798442754_348043404565674403_5540743654312280467_20b00c9dfdee4f790785ce4d7fe52c16.jpg",
+            "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_3/1792798442762_348043404565674403_5540743654312280467_9af678509fbccc171557ed4bc8bbe03c.jpg",
+            "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_3/1792798442770_348043404565674403_5540743654312280467_bd58fff7a509e52acc9c9c494899746f.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 3,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-dai/quan_dai_3): 1 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-PANTS-004",
+      "parentProductId": "PANTS-004",
+      "folderKey": "quan-ao-nam/quan/quan-dai/quan_dai_4",
+      "modelFolder": "quan_dai_4",
+      "productName": "Quần Dài Nam Ống Suông Form Rộng #4",
+      "category": "quan-dai",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_4/1792798442778_348043404565674403_5540743654312280467_c4581f86ebf01295d73f114f3dcac660.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_4/1792798442778_348043404565674403_5540743654312280467_c4581f86ebf01295d73f114f3dcac660.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_4/1792798442784_348043404565674403_5540743654312280467_8417efa3a99e7d97d32be2472dbc3de6.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_4/1792798442778_348043404565674403_5540743654312280467_c4581f86ebf01295d73f114f3dcac660.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_4/1792798442778_348043404565674403_5540743654312280467_c4581f86ebf01295d73f114f3dcac660.jpg",
+            "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_4/1792798442784_348043404565674403_5540743654312280467_8417efa3a99e7d97d32be2472dbc3de6.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 2,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-dai/quan_dai_4): 1 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-PANTS-005",
+      "parentProductId": "PANTS-005",
+      "folderKey": "quan-ao-nam/quan/quan-dai/quan_dai_5",
+      "modelFolder": "quan_dai_5",
+      "productName": "Quần Dài Nam Ống Suông Form Rộng #5",
+      "category": "quan-dai",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_5/1792798442790_348043404565674403_5540743654312280467_e7942ab57ec5f1a91938bfb83e454565.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_5/1792798442790_348043404565674403_5540743654312280467_e7942ab57ec5f1a91938bfb83e454565.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_5/1792798442790_348043404565674403_5540743654312280467_e7942ab57ec5f1a91938bfb83e454565.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_5/1792798442790_348043404565674403_5540743654312280467_e7942ab57ec5f1a91938bfb83e454565.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-dai/quan_dai_5): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-001",
+      "parentProductId": "SHORTS-001",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_1",
+      "modelFolder": "quan_short_1",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #1",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_1/1792777849810_348043404565674403_5540743654312280467_d320372a8583d18826976ded99538a04.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_1/1792777849810_348043404565674403_5540743654312280467_d320372a8583d18826976ded99538a04.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_1/1792777849845_348043404565674403_5540743654312280467_911e1db2ee3feb760e19a55fe092c0f6.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_1/1792777849833_348043404565674403_5540743654312280467_e0d4380bc8eca4ed63d056b45432ba3f.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_1/1792777849810_348043404565674403_5540743654312280467_d320372a8583d18826976ded99538a04.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_1/1792777849810_348043404565674403_5540743654312280467_d320372a8583d18826976ded99538a04.jpg",
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_1/1792777849845_348043404565674403_5540743654312280467_911e1db2ee3feb760e19a55fe092c0f6.jpg"
+          ]
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_1/1792777849833_348043404565674403_5540743654312280467_e0d4380bc8eca4ed63d056b45432ba3f.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_1/1792777849833_348043404565674403_5540743654312280467_e0d4380bc8eca4ed63d056b45432ba3f.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 3,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_1): 2 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-002",
+      "parentProductId": "SHORTS-002",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_2",
+      "modelFolder": "quan_short_2",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #2",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_2/1792777849857_348043404565674403_5540743654312280467_f688df0f45ea0a7d87e09e5c2e5ca6bd.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_2/1792777849857_348043404565674403_5540743654312280467_f688df0f45ea0a7d87e09e5c2e5ca6bd.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_2/1792777849866_348043404565674403_5540743654312280467_2050cd7cc591ab5ef1909f156710db00.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_2/1792777849857_348043404565674403_5540743654312280467_f688df0f45ea0a7d87e09e5c2e5ca6bd.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_2/1792777849857_348043404565674403_5540743654312280467_f688df0f45ea0a7d87e09e5c2e5ca6bd.jpg"
+          ]
+        },
+        {
+          "color": "Màu Phối Độc Bản",
+          "colorId": "phoi-mau",
+          "hex": "#ad968d",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_2/1792777849866_348043404565674403_5540743654312280467_2050cd7cc591ab5ef1909f156710db00.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_2/1792777849866_348043404565674403_5540743654312280467_2050cd7cc591ab5ef1909f156710db00.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_2): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-003",
+      "parentProductId": "SHORTS-003",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_3",
+      "modelFolder": "quan_short_3",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #3",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_3/1792777849875_348043404565674403_5540743654312280467_781c64b38436e5d2c7c770d96d04a04c.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_3/1792777849875_348043404565674403_5540743654312280467_781c64b38436e5d2c7c770d96d04a04c.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_3/1792777849883_348043404565674403_5540743654312280467_00b6da8b73c5da46e8adbbd44977c38a.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_3/1792777849875_348043404565674403_5540743654312280467_781c64b38436e5d2c7c770d96d04a04c.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_3/1792777849875_348043404565674403_5540743654312280467_781c64b38436e5d2c7c770d96d04a04c.jpg",
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_3/1792777849883_348043404565674403_5540743654312280467_00b6da8b73c5da46e8adbbd44977c38a.jpg"
+          ]
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 2,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_3): 1 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-004",
+      "parentProductId": "SHORTS-004",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_4",
+      "modelFolder": "quan_short_4",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #4",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_4/1792777849906_348043404565674403_5540743654312280467_bac61640dd1b9eb5967376cc2bcdb6b5.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_4/1792777849906_348043404565674403_5540743654312280467_bac61640dd1b9eb5967376cc2bcdb6b5.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_4/1792777849911_348043404565674403_5540743654312280467_f4b5f7ff9492f3d5c5c483d48660ada5.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_4/1792777849916_348043404565674403_5540743654312280467_d3aa064d1b249a344da0cc0000e6900f.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_4/1792777849906_348043404565674403_5540743654312280467_bac61640dd1b9eb5967376cc2bcdb6b5.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_4/1792777849906_348043404565674403_5540743654312280467_bac61640dd1b9eb5967376cc2bcdb6b5.jpg",
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_4/1792777849911_348043404565674403_5540743654312280467_f4b5f7ff9492f3d5c5c483d48660ada5.jpg"
+          ]
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_4/1792777849916_348043404565674403_5540743654312280467_d3aa064d1b249a344da0cc0000e6900f.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_4/1792777849916_348043404565674403_5540743654312280467_d3aa064d1b249a344da0cc0000e6900f.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 3,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_4): 2 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-005",
+      "parentProductId": "SHORTS-005",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_5",
+      "modelFolder": "quan_short_5",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #5",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_5/1792777849892_348043404565674403_5540743654312280467_8454a30b248d6c92c7da92dd3640c325.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_5/1792777849892_348043404565674403_5540743654312280467_8454a30b248d6c92c7da92dd3640c325.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_5/1792777849899_348043404565674403_5540743654312280467_66f2277bdcbf891d625f44acbd4b46b4.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đỏ Đô",
+          "colorId": "do",
+          "hex": "#DC2626",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_5/1792777849892_348043404565674403_5540743654312280467_8454a30b248d6c92c7da92dd3640c325.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_5/1792777849892_348043404565674403_5540743654312280467_8454a30b248d6c92c7da92dd3640c325.jpg"
+          ]
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_5/1792777849899_348043404565674403_5540743654312280467_66f2277bdcbf891d625f44acbd4b46b4.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_5/1792777849899_348043404565674403_5540743654312280467_66f2277bdcbf891d625f44acbd4b46b4.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_5): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-006",
+      "parentProductId": "SHORTS-006",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_6",
+      "modelFolder": "quan_short_6",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #6",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_6/1792777849921_348043404565674403_5540743654312280467_819ce1feff13793e62b9407ac22de59c.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_6/1792777849921_348043404565674403_5540743654312280467_819ce1feff13793e62b9407ac22de59c.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_6/1792777849926_348043404565674403_5540743654312280467_760b958962a62acd2f580cf952523fcd.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_6/1792777849921_348043404565674403_5540743654312280467_819ce1feff13793e62b9407ac22de59c.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_6/1792777849921_348043404565674403_5540743654312280467_819ce1feff13793e62b9407ac22de59c.jpg"
+          ]
+        },
+        {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_6/1792777849926_348043404565674403_5540743654312280467_760b958962a62acd2f580cf952523fcd.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_6/1792777849926_348043404565674403_5540743654312280467_760b958962a62acd2f580cf952523fcd.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_6): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-007",
+      "parentProductId": "SHORTS-007",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_7",
+      "modelFolder": "quan_short_7",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #7",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_7/1792777849931_348043404565674403_5540743654312280467_7230582fa8bbe61840fadd933418565d.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_7/1792777849931_348043404565674403_5540743654312280467_7230582fa8bbe61840fadd933418565d.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_7/1792777849936_348043404565674403_5540743654312280467_d0de74c8aadb890bfadc8cd5f2984c03.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_7/1792777849940_348043404565674403_5540743654312280467_fbcd702d22453fbe177b2bc9f1aa52b2.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_7/1792777849931_348043404565674403_5540743654312280467_7230582fa8bbe61840fadd933418565d.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_7/1792777849931_348043404565674403_5540743654312280467_7230582fa8bbe61840fadd933418565d.jpg",
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_7/1792777849936_348043404565674403_5540743654312280467_d0de74c8aadb890bfadc8cd5f2984c03.jpg"
+          ]
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_7/1792777849940_348043404565674403_5540743654312280467_fbcd702d22453fbe177b2bc9f1aa52b2.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_7/1792777849940_348043404565674403_5540743654312280467_fbcd702d22453fbe177b2bc9f1aa52b2.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 3,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_7): 2 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-008",
+      "parentProductId": "SHORTS-008",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_8",
+      "modelFolder": "quan_short_8",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #8",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_8/1792777849944_348043404565674403_5540743654312280467_48ee94a889d988950b3784c2eba0c082.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_8/1792777849944_348043404565674403_5540743654312280467_48ee94a889d988950b3784c2eba0c082.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_8/1792777849949_348043404565674403_5540743654312280467_a7063ade1e64a9a11b74c363c6f5fb78.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_8/1792777849944_348043404565674403_5540743654312280467_48ee94a889d988950b3784c2eba0c082.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_8/1792777849944_348043404565674403_5540743654312280467_48ee94a889d988950b3784c2eba0c082.jpg"
+          ]
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_8/1792777849949_348043404565674403_5540743654312280467_a7063ade1e64a9a11b74c363c6f5fb78.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_8/1792777849949_348043404565674403_5540743654312280467_a7063ade1e64a9a11b74c363c6f5fb78.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_8): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-009",
+      "parentProductId": "SHORTS-009",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_9",
+      "modelFolder": "quan_short_9",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #9",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_9/1792777849953_348043404565674403_5540743654312280467_addeca88d9a6bd9aadfc0232ddc820a7.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_9/1792777849953_348043404565674403_5540743654312280467_addeca88d9a6bd9aadfc0232ddc820a7.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_9/1792777849958_348043404565674403_5540743654312280467_f8070b55775e7af6459f6777f2b9482d.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_9/1792777849962_348043404565674403_5540743654312280467_ad802385a5435fb8d6cf8eefc8f366a7.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_9/1792777849953_348043404565674403_5540743654312280467_addeca88d9a6bd9aadfc0232ddc820a7.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_9/1792777849953_348043404565674403_5540743654312280467_addeca88d9a6bd9aadfc0232ddc820a7.jpg",
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_9/1792777849958_348043404565674403_5540743654312280467_f8070b55775e7af6459f6777f2b9482d.jpg"
+          ]
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_9/1792777849962_348043404565674403_5540743654312280467_ad802385a5435fb8d6cf8eefc8f366a7.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_9/1792777849962_348043404565674403_5540743654312280467_ad802385a5435fb8d6cf8eefc8f366a7.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 3,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_9): 2 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-010",
+      "parentProductId": "SHORTS-010",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_10",
+      "modelFolder": "quan_short_10",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #10",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_10/1792777849966_348043404565674403_5540743654312280467_7e748882a8362a4d5509b2d2999b0bd9.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_10/1792777849966_348043404565674403_5540743654312280467_7e748882a8362a4d5509b2d2999b0bd9.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_10/1792777849970_348043404565674403_5540743654312280467_355e20c9565e49195220a6a42d71b1d2.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_10/1792777849966_348043404565674403_5540743654312280467_7e748882a8362a4d5509b2d2999b0bd9.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_10/1792777849966_348043404565674403_5540743654312280467_7e748882a8362a4d5509b2d2999b0bd9.jpg"
+          ]
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_10/1792777849970_348043404565674403_5540743654312280467_355e20c9565e49195220a6a42d71b1d2.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_10/1792777849970_348043404565674403_5540743654312280467_355e20c9565e49195220a6a42d71b1d2.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_10): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-011",
+      "parentProductId": "SHORTS-011",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_11",
+      "modelFolder": "quan_short_11",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #11",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_11/1792777849975_348043404565674403_5540743654312280467_3c20e7220069177492ed043825300c03.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_11/1792777849975_348043404565674403_5540743654312280467_3c20e7220069177492ed043825300c03.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_11/1792777849979_348043404565674403_5540743654312280467_48dda65be76d548b22c81452f3723a0b.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_11/1792777849975_348043404565674403_5540743654312280467_3c20e7220069177492ed043825300c03.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_11/1792777849975_348043404565674403_5540743654312280467_3c20e7220069177492ed043825300c03.jpg"
+          ]
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_11/1792777849979_348043404565674403_5540743654312280467_48dda65be76d548b22c81452f3723a0b.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_11/1792777849979_348043404565674403_5540743654312280467_48dda65be76d548b22c81452f3723a0b.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_11): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-012",
+      "parentProductId": "SHORTS-012",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_12",
+      "modelFolder": "quan_short_12",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #12",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_12/1792777849984_348043404565674403_5540743654312280467_eb3a21c10d701d1e65e216484f39d963.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_12/1792777849984_348043404565674403_5540743654312280467_eb3a21c10d701d1e65e216484f39d963.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_12/1792777849988_348043404565674403_5540743654312280467_f724535a332396c36cb1bba5c07abcdc.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_12/1792777849993_348043404565674403_5540743654312280467_994266ea4fc5bc00a26709e844929782.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Màu Phối Độc Bản",
+          "colorId": "phoi-mau",
+          "hex": "#57423a",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_12/1792777849984_348043404565674403_5540743654312280467_eb3a21c10d701d1e65e216484f39d963.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_12/1792777849984_348043404565674403_5540743654312280467_eb3a21c10d701d1e65e216484f39d963.jpg"
+          ]
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_12/1792777849988_348043404565674403_5540743654312280467_f724535a332396c36cb1bba5c07abcdc.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_12/1792777849988_348043404565674403_5540743654312280467_f724535a332396c36cb1bba5c07abcdc.jpg"
+          ]
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_12/1792777849993_348043404565674403_5540743654312280467_994266ea4fc5bc00a26709e844929782.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_12/1792777849993_348043404565674403_5540743654312280467_994266ea4fc5bc00a26709e844929782.jpg"
+          ]
+        }
+      ],
+      "totalColors": 3,
+      "totalImages": 3,
+      "totalVariants": 15,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_12): 3 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-013",
+      "parentProductId": "SHORTS-013",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_13",
+      "modelFolder": "quan_short_13",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #13",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_13/1792777849997_348043404565674403_5540743654312280467_1cf4184463f50fca489114cf8b517db6.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_13/1792777849997_348043404565674403_5540743654312280467_1cf4184463f50fca489114cf8b517db6.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_13/1792777850002_348043404565674403_5540743654312280467_6df7b867567a1f7b32f988f237cd3ede.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_13/1792777849997_348043404565674403_5540743654312280467_1cf4184463f50fca489114cf8b517db6.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_13/1792777849997_348043404565674403_5540743654312280467_1cf4184463f50fca489114cf8b517db6.jpg"
+          ]
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_13/1792777850002_348043404565674403_5540743654312280467_6df7b867567a1f7b32f988f237cd3ede.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_13/1792777850002_348043404565674403_5540743654312280467_6df7b867567a1f7b32f988f237cd3ede.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_13): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-014",
+      "parentProductId": "SHORTS-014",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_14",
+      "modelFolder": "quan_short_14",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #14",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_14/1792777850007_348043404565674403_5540743654312280467_02c2ab0933461a4c6a1c86112e0fdb6b.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_14/1792777850007_348043404565674403_5540743654312280467_02c2ab0933461a4c6a1c86112e0fdb6b.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_14/1792777850011_348043404565674403_5540743654312280467_fcca75d3b55006888c9334afff52639e.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_14/1792777850016_348043404565674403_5540743654312280467_1e6daf109b05ad94a8f83b3e43901e1c.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_14/1792777850007_348043404565674403_5540743654312280467_02c2ab0933461a4c6a1c86112e0fdb6b.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_14/1792777850007_348043404565674403_5540743654312280467_02c2ab0933461a4c6a1c86112e0fdb6b.jpg"
+          ]
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_14/1792777850011_348043404565674403_5540743654312280467_fcca75d3b55006888c9334afff52639e.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_14/1792777850011_348043404565674403_5540743654312280467_fcca75d3b55006888c9334afff52639e.jpg"
+          ]
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_14/1792777850016_348043404565674403_5540743654312280467_1e6daf109b05ad94a8f83b3e43901e1c.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_14/1792777850016_348043404565674403_5540743654312280467_1e6daf109b05ad94a8f83b3e43901e1c.jpg"
+          ]
+        }
+      ],
+      "totalColors": 3,
+      "totalImages": 3,
+      "totalVariants": 15,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_14): 3 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-015",
+      "parentProductId": "SHORTS-015",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_15",
+      "modelFolder": "quan_short_15",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #15",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_15/1792777850020_348043404565674403_5540743654312280467_b0808952cea4424c8dce0d0df4a3db29.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_15/1792777850020_348043404565674403_5540743654312280467_b0808952cea4424c8dce0d0df4a3db29.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_15/1792777850025_348043404565674403_5540743654312280467_2448c408b66909a9e4cb214100d5a5b2.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_15/1792777850020_348043404565674403_5540743654312280467_b0808952cea4424c8dce0d0df4a3db29.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_15/1792777850020_348043404565674403_5540743654312280467_b0808952cea4424c8dce0d0df4a3db29.jpg"
+          ]
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_15/1792777850025_348043404565674403_5540743654312280467_2448c408b66909a9e4cb214100d5a5b2.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_15/1792777850025_348043404565674403_5540743654312280467_2448c408b66909a9e4cb214100d5a5b2.jpg"
+          ]
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_15): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-SHORTS-016",
+      "parentProductId": "SHORTS-016",
+      "folderKey": "quan-ao-nam/quan/quan-short/quan_short_16",
+      "modelFolder": "quan_short_16",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #16",
+      "category": "quan-short",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850029_348043404565674403_5540743654312280467_bfd9b7073411b90c279982f2613a6f97.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850029_348043404565674403_5540743654312280467_bfd9b7073411b90c279982f2613a6f97.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850034_348043404565674403_5540743654312280467_66d3cf6874cc561677b6e7343068cc28.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850038_348043404565674403_5540743654312280467_517ef76d4475dbe60de3907b6e8fc6a7.jpg",
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850042_348043404565674403_5540743654312280467_a922f8923441b297b03e658a9775d937.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850029_348043404565674403_5540743654312280467_bfd9b7073411b90c279982f2613a6f97.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850029_348043404565674403_5540743654312280467_bfd9b7073411b90c279982f2613a6f97.jpg"
+          ]
+        },
+        {
+          "color": "Xanh Rêu",
+          "colorId": "xanh-reu",
+          "hex": "#365314",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850034_348043404565674403_5540743654312280467_66d3cf6874cc561677b6e7343068cc28.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850034_348043404565674403_5540743654312280467_66d3cf6874cc561677b6e7343068cc28.jpg"
+          ]
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850038_348043404565674403_5540743654312280467_517ef76d4475dbe60de3907b6e8fc6a7.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850038_348043404565674403_5540743654312280467_517ef76d4475dbe60de3907b6e8fc6a7.jpg"
+          ]
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850042_348043404565674403_5540743654312280467_a922f8923441b297b03e658a9775d937.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_16/1792777850042_348043404565674403_5540743654312280467_a922f8923441b297b03e658a9775d937.jpg"
+          ]
+        }
+      ],
+      "totalColors": 4,
+      "totalImages": 4,
+      "totalVariants": 20,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/quan/quan-short/quan_short_16): 4 màu, 4 ảnh"
     }
   ],
   "duplicateCandidates": [
@@ -3946,6 +5570,26 @@
       "unmergedFilesCount": 1,
       "sampleFiles": [
         "/images/san-pham/quan-ao-nam/ao/ao-thun/ao_thun_11/1792737335945_348043404565674403_5540743654312280467_34349e19b7199f9f57626e33d442ce07.jpg"
+      ]
+    },
+    {
+      "folder": "quan-ao-nam/quan/quan-short/quan_short_2",
+      "productId": "SHORTS-002",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #2",
+      "status": "Cần xác nhận màu phối độc bản",
+      "unmergedFilesCount": 1,
+      "sampleFiles": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_2/1792777849857_348043404565674403_5540743654312280467_f688df0f45ea0a7d87e09e5c2e5ca6bd.jpg"
+      ]
+    },
+    {
+      "folder": "quan-ao-nam/quan/quan-short/quan_short_12",
+      "productId": "SHORTS-012",
+      "productName": "Quần Short Nam Năng Động Dạo Phố #12",
+      "status": "Cần xác nhận màu phối độc bản",
+      "unmergedFilesCount": 1,
+      "sampleFiles": [
+        "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_12/1792777849984_348043404565674403_5540743654312280467_eb3a21c10d701d1e65e216484f39d963.jpg"
       ]
     }
   ]

@@ -71,12 +71,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <div
-      className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-[#E4E4E7] hover:border-[#DDD6FE] hover:shadow-card-hover transition-all duration-300 relative"
+      className={`group flex flex-col h-full bg-white rounded-2xl border border-[#E4E4E7] hover:border-[#DDD6FE] hover:shadow-card-hover transition-all duration-300 relative ${
+        isHovered ? 'z-20' : 'z-0'
+      }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Container ảnh tỷ lệ chuẩn 3:4 */}
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#F2F3F5]">
+      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-t-2xl bg-[#F2F3F5]">
         {!imageLoaded && (
           <div className="absolute inset-0 bg-[#F2F3F5] animate-pulse" />
         )}
@@ -185,7 +187,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </div>
 
       {/* Thông tin sản phẩm */}
-      <div className="p-3.5 flex flex-col flex-1 justify-between gap-2.5 bg-white">
+      <div className="p-3.5 flex flex-col flex-1 justify-between gap-2.5 bg-white rounded-b-2xl">
         <div>
           {/* Thương hiệu & Phong cách */}
           <div className="flex items-center justify-between text-[10px] uppercase font-bold tracking-wider text-[#71717A] mb-1">
@@ -217,7 +219,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div>
           {/* Swatches màu & Tên màu được chọn */}
           <div className="mb-2">
-            <div className="flex items-center justify-between text-[11px] text-[#71717A] mb-1.5">
+            <div className="flex items-center justify-between text-[11px] text-[#71717A] mb-7">
               <span className="font-medium truncate max-w-[150px]">
                 Màu: <strong className="text-[#18181B]">{selectedColor.name}</strong>
               </span>
