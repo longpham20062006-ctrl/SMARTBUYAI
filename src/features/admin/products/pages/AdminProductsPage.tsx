@@ -23,6 +23,7 @@ export const AdminProductsPage: React.FC = () => {
 
   const [search, setSearch] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('ALL');
+  const [filterNeedsReview, setFilterNeedsReview] = useState(false);
   const [productToDelete, setProductToDelete] = useState<{ id: string; name: string } | null>(null);
 
   const filtered = products.filter((p) => {
@@ -31,7 +32,8 @@ export const AdminProductsPage: React.FC = () => {
       p.brand.toLowerCase().includes(search.toLowerCase()) ||
       p.variants.some((v) => v.sku.toLowerCase().includes(search.toLowerCase()));
     const matchCat = categoryFilter === 'ALL' || p.categorySlug === categoryFilter;
-    return matchSearch && matchCat;
+    const matchReview = !filterNeedsReview || p.needsReview === true;
+    return matchSearch && matchCat && matchReview;
   });
 
   const handleToggleActive = (productId: string) => {
@@ -92,18 +94,32 @@ export const AdminProductsPage: React.FC = () => {
           />
         </div>
 
-        <div className="flex items-center gap-2 w-full sm:w-auto">
-          <span className="text-xs text-brand-secondary">Danh mục:</span>
-          <select
-            value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}
-            className="text-xs bg-brand-paper border border-brand-border rounded-brand px-3 py-2 text-brand-charcoal focus:outline-none"
+        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+          <button
+            type="button"
+            onClick={() => setFilterNeedsReview(!filterNeedsReview)}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+              filterNeedsReview
+                ? 'bg-[#8B5CF6] text-white border-[#8B5CF6] shadow-xs'
+                : 'bg-white text-[#71717A] border-[#E4E4E7] hover:text-[#18181B] hover:border-[#8B5CF6]'
+            }`}
           >
-            <option value="ALL">Tất cả danh mục</option>
-            {MockRepo.getCategories().map((c) => (
-              <option key={c.id} value={c.slug}>{c.name}</option>
-            ))}
-          </select>
+            📸 Ảnh thật mới import ({products.filter((p) => p.needsReview).length})
+          </button>
+
+          <div className="flex items-center gap-1.5">
+            <span className="text-xs text-brand-secondary">Danh mục:</span>
+            <select
+              value={categoryFilter}
+              onChange={(e) => setCategoryFilter(e.target.value)}
+              className="text-xs bg-brand-paper border border-brand-border rounded-brand px-3 py-1.5 text-brand-charcoal focus:outline-none"
+            >
+              <option value="ALL">Tất cả danh mục</option>
+              {MockRepo.getCategories().map((c) => (
+                <option key={c.id} value={c.slug}>{c.name}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
 
@@ -135,15 +151,22 @@ export const AdminProductsPage: React.FC = () => {
                         className="w-12 aspect-[3/4] rounded-brand-sm object-cover bg-brand-sand shrink-0 border border-brand-border/30"
                       />
                       <div className="space-y-0.5 min-w-0">
-                        <Link
-                          to={`/products/${product.slug}`}
-                          target="_blank"
-                          className="font-semibold text-brand-charcoal hover:text-brand-forest line-clamp-1 inline-flex items-center gap-1"
-                          title="Xem trên trang khách"
-                        >
-                          <span>{product.name}</span>
-                          <ExternalLink className="w-3 h-3 text-brand-muted" />
-                        </Link>
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <Link
+                            to={`/products/${product.slug}`}
+                            target="_blank"
+                            className="font-semibold text-brand-charcoal hover:text-brand-forest line-clamp-1 inline-flex items-center gap-1"
+                            title="Xem trên trang khách"
+                          >
+                            <span>{product.name}</span>
+                            <ExternalLink className="w-3 h-3 text-brand-muted shrink-0" />
+                          </Link>
+                          {product.needsReview && (
+                            <span className="text-[10px] font-bold px-1.5 py-0.5 bg-[#F3E8FF] text-[#7C3AED] rounded border border-[#DDD6FE] shrink-0">
+                              📸 Ảnh thật
+                            </span>
+                          )}
+                        </div>
                         <div className="text-[11px] text-brand-muted">
                           {product.material.split(' ')[0]} • {product.variants.length} biến thể
                         </div>

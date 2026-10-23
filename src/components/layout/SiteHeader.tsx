@@ -32,29 +32,15 @@ export const SiteHeader: React.FC = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
-  const lastScrollYRef = useRef(0);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const totalCartCount = cart.items.reduce((s, i) => s + i.quantity, 0);
 
-  // Smart scrolling header detection
+  // Smooth compacting header detection
   useEffect(() => {
     const handleScroll = () => {
-      const currentY = window.scrollY;
-      setIsScrolled(currentY > 30);
-
-      if (currentY > 120) {
-        if (currentY > lastScrollYRef.current + 8) {
-          setIsHidden(true); // scrolling down
-        } else if (currentY < lastScrollYRef.current - 8) {
-          setIsHidden(false); // scrolling up
-        }
-      } else {
-        setIsHidden(false);
-      }
-      lastScrollYRef.current = currentY;
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -98,13 +84,17 @@ export const SiteHeader: React.FC = () => {
     <>
       <header
         className={cn(
-          'sticky top-0 z-40 w-full border-b border-[#E4E4E7] bg-[#FAFAF8]/95 backdrop-blur-md transition-all duration-300',
-          isHidden ? '-translate-y-full' : 'translate-y-0',
+          'sticky top-0 z-40 w-full border-b border-[#E4E4E7] bg-white transition-all duration-200',
           isScrolled ? 'shadow-subtle' : ''
         )}
       >
         {/* Top announcement bar */}
-        <div className="bg-[#18181B] text-white text-[11px] py-1.5 px-4 font-medium border-b border-[#27272A]">
+        <div
+          className={cn(
+            'bg-[#18181B] text-white text-[11px] px-4 font-medium border-b border-[#27272A] transition-all duration-200 overflow-hidden',
+            isScrolled ? 'max-h-0 py-0 opacity-0 border-transparent' : 'max-h-10 py-1.5 opacity-100'
+          )}
+        >
           <div className="max-w-container mx-auto w-full flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="bg-[#8B5CF6] text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded-sm tracking-wider">

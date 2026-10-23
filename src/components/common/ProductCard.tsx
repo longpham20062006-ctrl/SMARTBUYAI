@@ -193,6 +193,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           >
             {product.name}
           </Link>
+
+          {/* Đánh giá & Số lượng đã bán kiểu Shopee / TikTok Shop */}
+          <div className="flex items-center gap-1.5 text-[10px] text-[#71717A] mt-1">
+            <span className="flex items-center text-amber-500 font-bold">
+              ★ {product.rating || '4.9'}
+            </span>
+            <span>•</span>
+            <span className="text-[#71717A]">
+              {product.soldCount ? `Đã bán ${product.soldCount}` : `Đã bán ${((product.reviewCount || 50) * 2)}`}
+            </span>
+          </div>
         </div>
 
         <div>

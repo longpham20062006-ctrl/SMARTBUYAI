@@ -1,5 +1,6 @@
 import { Product, ProductVariant, ColorOption, SizeCode } from '@/types';
 import { ALL_GENZ_PRODUCTS } from './allGenzProducts';
+import { IMPORTED_PRODUCTS } from './importedProducts';
 
 function createVariants(
   productId: string,
@@ -1504,8 +1505,9 @@ const EVEN_MORE_GENZ_ITEMS: Product[] = [
   },
 ];
 
-// Combine all into the final comprehensive 135+ product catalogue
+// Combine all into the final comprehensive product catalogue (ưu tiên toàn bộ sản phẩm ảnh thật từ folder)
 export const FINAL_GENZ_CATALOGUE: Product[] = [
+  ...IMPORTED_PRODUCTS,
   ...ALL_GENZ_PRODUCTS,
   ...EXTENDED_GENZ_ITEMS,
   ...MORE_ITEMS_TO_135,

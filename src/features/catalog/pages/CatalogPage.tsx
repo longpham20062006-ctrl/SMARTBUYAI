@@ -1043,7 +1043,7 @@ export const CatalogPage: React.FC = () => {
       </div>
 
       {/* 5.2: QUICK FILTER PILLS BAR CÓ CUỘN NGANG VÀ MŨI TÊN ĐIỀU HƯỚNG */}
-      <div className="border-b border-[#E4E4E7] bg-white/95 sticky top-16 sm:top-20 z-20 backdrop-blur-md shadow-subtle">
+      <div className="border-b border-[#E4E4E7] bg-white sticky top-16 z-30 shadow-subtle">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
           <div className="relative flex items-center">
             {/* Scroll Left Button */}

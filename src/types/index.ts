@@ -106,6 +106,9 @@ export interface Product {
   sizeMeasurements?: SizeMeasurement[];
   rating: number; // Điểm đánh giá (4.7 - 5.0)
   reviewCount: number;
+  soldCount?: string | number; // Số lượng đã bán kiểu Shopee / TikTok Shop
+  discountPercent?: number;
+  needsReview?: boolean;
   badge?: 'Mới' | 'Tuyển chọn' | 'Bán chạy' | 'Hữu cơ' | 'NEW' | 'DROP' | 'TRENDING' | 'UNISEX' | 'HOT' | 'SALE' | string;
   isFeatured?: boolean;
   isNewArrival?: boolean;

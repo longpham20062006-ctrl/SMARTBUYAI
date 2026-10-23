@@ -187,7 +187,7 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
           </div>
 
           {/* Thông tin sản phẩm bên phải (5 cột) - Sticky */}
-          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24 bg-white p-6 sm:p-8 rounded-2xl border border-[#E4E4E7] shadow-card">
+          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-20 bg-white p-6 sm:p-8 rounded-2xl border border-[#E4E4E7] shadow-card">
             <div>
               <div className="flex items-center justify-between text-xs text-[#71717A] mb-2">
                 <span className="font-bold uppercase tracking-wider text-[#18181B] bg-[#F2F3F5] px-2.5 py-0.5 rounded border border-[#E4E4E7]">
@@ -200,6 +200,26 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                 {product.name}
               </h1>
 
+              {/* Rating & Sold count kiểu Shopee / TikTok Shop */}
+              <div className="flex items-center gap-3 mt-2 text-xs">
+                <div className="flex items-center text-amber-500 font-bold">
+                  <span>★ {product.rating || '4.9'}</span>
+                  <span className="text-[#71717A] font-normal ml-1">({product.reviewCount || 120} đánh giá)</span>
+                </div>
+                <span className="text-[#E4E4E7]">|</span>
+                <div className="text-[#71717A]">
+                  Đã bán <strong className="text-[#18181B] font-bold">{product.soldCount || '1.5k'}</strong>
+                </div>
+                {product.badge && (
+                  <>
+                    <span className="text-[#E4E4E7]">|</span>
+                    <span className="bg-[#F3E8FF] text-[#7C3AED] px-2 py-0.5 rounded font-bold text-[10px] uppercase">
+                      {product.badge}
+                    </span>
+                  </>
+                )}
+              </div>
+
               {/* Giá sinh viên */}
               <div className="flex items-baseline gap-3 mt-3">
                 <span className="text-3xl font-black text-[#18181B]">
@@ -210,9 +230,11 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                     {formatPrice(originalPrice)}
                   </span>
                 )}
-                <span className="text-[11px] text-[#7C3AED] bg-[#F3E8FF] px-2 py-0.5 rounded font-bold border border-[#DDD6FE]">
-                  STUDENT DEAL
-                </span>
+                {originalPrice && originalPrice > currentPrice && (
+                  <span className="text-[11px] text-[#DC2626] bg-[#FEF2F2] px-2 py-0.5 rounded font-bold border border-[#FEE2E2]">
+                    GIẢM {Math.round(((originalPrice - currentPrice) / originalPrice) * 100)}%
+                  </span>
+                )}
               </div>
 
               <p className="text-xs sm:text-sm text-[#71717A] mt-3 leading-relaxed border-t border-b border-[#E4E4E7] py-3">
