@@ -18,7 +18,7 @@ import {
 import { GENZ_BRANDS, GENZ_CATEGORIES, GENZ_COLLECTIONS } from './genzCategories';
 import { FINAL_GENZ_CATALOGUE } from './genzCatalogBuilder';
 
-const SCHEMA_VERSION = 'v3.0-tiktok-shopee-imported';
+const SCHEMA_VERSION = 'v3.1-variant-seasons-merged';
 const STORAGE_KEYS = {
   SCHEMA: 'sb_schema_version',
   PRODUCTS: 'sb_products',

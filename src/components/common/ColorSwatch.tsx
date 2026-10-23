@@ -33,7 +33,11 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
             key={color.slug}
             type="button"
             title={color.name}
-            onClick={() => onSelectColor?.(color)}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onSelectColor?.(color);
+            }}
             className={cn(
               'group relative rounded-full p-0.5 transition-all duration-150 focus:outline-none cursor-pointer',
               isSelected ? 'ring-2 ring-brand-forest ring-offset-2' : 'hover:scale-110'

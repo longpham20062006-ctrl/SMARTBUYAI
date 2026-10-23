@@ -1,15 +1,8 @@
 {
-  "version": "3.0.0",
-  "description": "SMARTBUY AI Real Image Products Manifest",
-  "generatedAt": "2026-10-23T15:24:03.818Z",
+  "version": "3.1.0-variant-merged",
+  "description": "SMARTBUY AI Real Image Products Manifest (Variants & Seasons Merged)",
+  "generatedAt": "2026-10-23T15:45:27.789Z",
   "totalImages": 222,
-  "totalProducts": 222,
-  "folders": [
-    "quan-ao-nam/ao/ao-hoodie",
-    "quan-ao-nam/ao/ao-len",
-    "quan-ao-nam/ao/ao-polo",
-    "quan-ao-nam/ao/ao-so-mi",
-    "quan-ao-nam/ao/ao-thun",
-    "quan-ao-nam/ao/ao-thun-dai-tay"
-  ]
+  "totalProducts": 63,
+  "confirmedGroups": 63
 }

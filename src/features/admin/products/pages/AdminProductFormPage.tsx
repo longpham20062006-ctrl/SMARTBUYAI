@@ -42,6 +42,7 @@ export const AdminProductFormPage: React.FC = () => {
   const [occasionInput, setOccasionInput] = useState(existingProduct?.occasion?.join(', ') || 'Đi chơi, Đi học, Dạo phố');
   const [careInput, setCareInput] = useState(existingProduct?.careInstructions?.join(', ') || 'Giặt máy chế độ nhẹ, Lộn trái khi phơi');
   const [badge, setBadge] = useState<string>(existingProduct?.badge || 'NEW');
+  const [seasons, setSeasons] = useState<string[]>(existingProduct?.seasons || ['he', 'xuan-thu']);
 
   // Images
   const [images, setImages] = useState<string[]>(existingProduct?.images || [
@@ -197,6 +198,8 @@ export const AdminProductFormPage: React.FC = () => {
       rating: existingProduct?.rating || 4.9,
       reviewCount: existingProduct?.reviewCount || 1,
       badge: badge ? (badge as any) : undefined,
+      season: seasons[0] === 'he' ? 'summer' : seasons[0] === 'dong' ? 'winter' : 'spring-autumn',
+      seasons: seasons.length > 0 ? seasons : ['he', 'xuan-thu'],
       isActive: existingProduct ? existingProduct.isActive : true,
       createdAt: existingProduct?.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -332,6 +335,43 @@ export const AdminProductFormPage: React.FC = () => {
                 <option value="Hữu cơ">Hữu cơ (Organic)</option>
               </select>
             </div>
+          </div>
+
+          {/* Mùa thời trang (Hỗ trợ đa mùa) */}
+          <div className="space-y-1.5 p-3.5 bg-brand-sand/30 rounded-xl border border-brand-border/40">
+            <label className="block text-xs font-bold uppercase tracking-wider text-brand-charcoal">
+              Mùa thời trang phù hợp (Có thể chọn nhiều mùa)
+            </label>
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              {[
+                { id: 'he', label: '☀️ Mùa hè (Summer)' },
+                { id: 'dong', label: '❄️ Mùa đông (Winter)' },
+                { id: 'xuan-thu', label: '🍂 Xuân – Thu (Spring/Autumn)' },
+              ].map((s) => {
+                const isSelected = seasons.includes(s.id);
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => {
+                      setSeasons((prev) =>
+                        prev.includes(s.id) ? prev.filter((x) => x !== s.id) : [...prev, s.id]
+                      );
+                    }}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#8B5CF6] text-white border-[#8B5CF6] shadow-xs'
+                        : 'bg-white text-[#71717A] border-[#E4E4E7] hover:border-[#8B5CF6]'
+                    }`}
+                  >
+                    {isSelected ? '✓ ' : ''}{s.label}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="text-[11px] text-[#71717A] mt-1">
+              Sản phẩm sẽ xuất hiện trong các bộ lọc mùa tương ứng mà không bị nhân đôi thẻ card.
+            </p>
           </div>
 
           <Input

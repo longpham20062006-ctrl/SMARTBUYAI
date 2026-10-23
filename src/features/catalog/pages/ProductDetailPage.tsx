@@ -203,7 +203,7 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
               {/* Rating & Sold count kiểu Shopee / TikTok Shop */}
               <div className="flex items-center gap-3 mt-2 text-xs">
                 <div className="flex items-center text-amber-500 font-bold">
-                  <span>★ {product.rating || '4.9'}</span>
+                  <span>★ {product.rating ? Number(product.rating).toFixed(1) : '4.9'}</span>
                   <span className="text-[#71717A] font-normal ml-1">({product.reviewCount || 120} đánh giá)</span>
                 </div>
                 <span className="text-[#E4E4E7]">|</span>
@@ -255,6 +255,14 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                   selectedColor={selectedColor}
                   onSelectColor={(c) => {
                     setSelectedColor(c);
+                    // Đồng bộ đổi ảnh thư viện gallery sang màu tương ứng
+                    const colorImg = c.image || product.variants.find((v) => v.color.slug === c.slug)?.image;
+                    if (colorImg) {
+                      const imgIdx = product.images.findIndex((img) => img === colorImg);
+                      if (imgIdx !== -1) {
+                        setActiveImageIndex(imgIdx);
+                      }
+                    }
                     const validSizes = product.variants
                       .filter((v) => v.color.slug === c.slug && v.stock > 0)
                       .map((v) => v.size);
@@ -338,7 +346,10 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
               {/* Nút Thử đồ bằng AI */}
               <button
                 type="button"
-                onClick={() => navigate(`/virtual-try-on?productId=${product.id}&slug=${product.slug}`)}
+                onClick={() => {
+                  const chosenImg = selectedColor?.image || activeVariant?.image || product.images[activeImageIndex] || product.images[0];
+                  navigate(`/virtual-try-on?productId=${product.id}&slug=${product.slug}&color=${selectedColor.slug}&image=${encodeURIComponent(chosenImg)}`);
+                }}
                 className="w-full h-11 bg-gradient-to-r from-[#F3E8FF] to-[#FAF5FF] hover:from-[#8B5CF6] hover:to-[#7C3AED] text-[#7C3AED] hover:text-white border border-[#DDD6FE] hover:border-transparent font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-subtle group"
               >
                 <Sparkles className="w-4 h-4 text-[#8B5CF6] group-hover:text-white transition-colors animate-pulse" />

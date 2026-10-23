@@ -53,9 +53,12 @@ export interface Collection {
 }
 
 export interface ColorOption {
+  id?: string;
   name: string;
   hex: string;
   slug: string;
+  image?: string;
+  images?: string[];
 }
 
 export type SizeCode = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'FreeSize' | 'Tiêu chuẩn' | string;
@@ -64,6 +67,7 @@ export interface ProductVariant {
   id: string;
   sku: string;
   color: ColorOption;
+  colorId?: string;
   size: SizeCode;
   price: number;
   originalPrice?: number;
@@ -98,6 +102,7 @@ export interface Product {
   style: string; // ví dụ: "Tối giản", "Công sở", "Dạo phố", "Smart Casual"
   occasion: string[]; // ví dụ: ["Đi làm", "Hẹn hò", "Dự tiệc", "Hằng ngày"]
   season?: 'summer' | 'winter' | 'spring-autumn' | 'all' | string; // Bốn mùa thời trang
+  seasons?: string[]; // Mảng các mùa: ['he', 'xuan-thu', 'dong']
   careInstructions: string[]; // ví dụ: ["Giặt máy chế độ nhẹ 30°C", "Ủi hơi nước nhiệt độ trung bình"]
   images: string[]; // Tối thiểu 2-4 ảnh thời trang 3:4 chân thực
   colors: ColorOption[];
@@ -109,6 +114,8 @@ export interface Product {
   soldCount?: string | number; // Số lượng đã bán kiểu Shopee / TikTok Shop
   discountPercent?: number;
   needsReview?: boolean;
+  duplicateGroup?: string;
+  mergeStatus?: 'pending' | 'merged' | 'rejected';
   badge?: 'Mới' | 'Tuyển chọn' | 'Bán chạy' | 'Hữu cơ' | 'NEW' | 'DROP' | 'TRENDING' | 'UNISEX' | 'HOT' | 'SALE' | string;
   isFeatured?: boolean;
   isNewArrival?: boolean;

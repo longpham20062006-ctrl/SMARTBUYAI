@@ -129,21 +129,24 @@ export const productService = {
       list = list.filter((p) => filters.materials!.some((m) => p.material.toLowerCase().includes(m.toLowerCase())));
     }
 
-    // Seasons (Bốn mùa)
+    // Seasons (Bốn mùa thời trang)
     if (filters.season && filters.season !== 'all') {
       const s = filters.season.toLowerCase();
+      const matchTag = s === 'summer' ? 'he' : s === 'winter' ? 'dong' : s === 'spring-autumn' ? 'xuan-thu' : s;
       list = list.filter((p) => {
-        if (p.season && p.season.toLowerCase().includes(s)) return true;
-        if (s === 'he' || s === 'summer') {
-          return ['ao-thun', 'ao-croptop-tank', 'so-mi-polo', 'chan-vay'].includes(p.categorySlug);
+        // 1. Ưu tiên kiểm tra mảng seasons đa mùa
+        if (p.seasons && Array.isArray(p.seasons)) {
+          return p.seasons.includes(matchTag) || p.seasons.includes(s);
         }
-        if (s === 'dong' || s === 'winter') {
-          return ['hoodie-sweater', 'ao-khoac', 'quan-cargo-parachute'].includes(p.categorySlug);
+        // 2. Kiểm tra thuộc tính season
+        if (p.season) {
+          const pSeason = p.season.toLowerCase();
+          if (pSeason === 'all') return true;
+          if (matchTag === 'he' && (pSeason === 'he' || pSeason === 'summer')) return true;
+          if (matchTag === 'dong' && (pSeason === 'dong' || pSeason === 'winter')) return true;
+          if (matchTag === 'xuan-thu' && (pSeason === 'xuan-thu' || pSeason === 'spring-autumn')) return true;
         }
-        if (s === 'xuan-thu' || s === 'spring-autumn') {
-          return ['quan-jeans', 'so-mi-polo', 'ao-thun'].includes(p.categorySlug);
-        }
-        return true;
+        return false;
       });
     }
 
@@ -177,7 +180,17 @@ export const productService = {
         break;
     }
 
-    return list;
+    // Đảm bảo nguyên tắc: Mỗi Product ID chỉ xuất hiện duy nhất 1 lần trong danh sách
+    const seenIds = new Set<string>();
+    const deduplicatedList: Product[] = [];
+    for (const p of list) {
+      if (!seenIds.has(p.id)) {
+        seenIds.add(p.id);
+        deduplicatedList.push(p);
+      }
+    }
+
+    return deduplicatedList;
   },
 
   getBySlug: (slug: string): Product | undefined => {

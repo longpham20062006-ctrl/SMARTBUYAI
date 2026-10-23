@@ -24,19 +24,29 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const [isLiked, setIsLiked] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [isSwitchingColor, setIsSwitchingColor] = useState(false);
   const { toast } = useToast();
 
-  const primaryImage = product.images[0] || 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80';
-  const secondaryImage = product.images[1] || primaryImage;
+  const matchedVariant = product.variants.find((v) => v.color.slug === selectedColor.slug);
+  const colorImage = selectedColor.image || matchedVariant?.image;
+  const primaryImage = colorImage || product.images[0] || 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80';
+  const secondaryImage = selectedColor.images?.[1] || product.images[1] || primaryImage;
   const currentImage = imgError
     ? 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80'
     : isHovered
     ? secondaryImage
     : primaryImage;
 
-  const matchedVariant = product.variants.find((v) => v.color.slug === selectedColor.slug);
   const currentPrice = matchedVariant?.price || product.price;
   const originalPrice = matchedVariant?.originalPrice || product.originalPrice;
+
+  const handleSelectColor = (color: ColorOption) => {
+    if (color.slug !== selectedColor.slug) {
+      setIsSwitchingColor(true);
+      setSelectedColor(color);
+      setTimeout(() => setIsSwitchingColor(false), 200);
+    }
+  };
 
   const handleLike = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -82,8 +92,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               setImgError(true);
               setImageLoaded(true);
             }}
-            className={`w-full h-full object-cover object-center transition-all duration-500 ease-out group-hover:scale-105 ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
+            className={`w-full h-full object-cover object-center transition-all duration-200 ease-out group-hover:scale-105 ${
+              imageLoaded && !isSwitchingColor ? 'opacity-100 scale-100' : 'opacity-80 scale-[0.99]'
             }`}
           />
         </Link>
@@ -143,7 +153,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
 
           <Link
-            to={`/virtual-try-on?productId=${product.id}&slug=${product.slug}`}
+            to={`/virtual-try-on?productId=${product.id}&slug=${product.slug}&color=${selectedColor.slug}&image=${encodeURIComponent(primaryImage)}`}
             title="✨ Thử đồ bằng AI"
             className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-xs text-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white flex items-center justify-center shadow-subtle hover:scale-110 active:scale-95 transition-all cursor-pointer"
             aria-label="Thử đồ bằng AI"
@@ -164,7 +174,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </button>
           )}
           <Link
-            to={`/virtual-try-on?productId=${product.id}&slug=${product.slug}`}
+            to={`/virtual-try-on?productId=${product.id}&slug=${product.slug}&color=${selectedColor.slug}&image=${encodeURIComponent(primaryImage)}`}
             onClick={(e) => e.stopPropagation()}
             className={`flex items-center justify-center gap-1 py-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white text-[11px] font-semibold uppercase tracking-wider rounded-xl shadow-subtle cursor-pointer active:scale-98 transition-all ${
               !onQuickView ? 'col-span-2' : ''
@@ -197,7 +207,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {/* Đánh giá & Số lượng đã bán kiểu Shopee / TikTok Shop */}
           <div className="flex items-center gap-1.5 text-[10px] text-[#71717A] mt-1">
             <span className="flex items-center text-amber-500 font-bold">
-              ★ {product.rating || '4.9'}
+              ★ {product.rating ? Number(product.rating).toFixed(1) : '4.9'}
             </span>
             <span>•</span>
             <span className="text-[#71717A]">
@@ -207,12 +217,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         <div>
-          {/* Swatches màu */}
+          {/* Swatches màu & Tên màu được chọn */}
           <div className="mb-2">
+            <div className="flex items-center justify-between text-[11px] text-[#71717A] mb-1.5">
+              <span className="font-medium truncate max-w-[150px]">
+                Màu: <strong className="text-[#18181B]">{selectedColor.name}</strong>
+              </span>
+              {product.colors.length > 1 && (
+                <span className="text-[10px] text-[#8B5CF6] font-semibold shrink-0">
+                  {product.colors.length} màu
+                </span>
+              )}
+            </div>
             <ColorSwatch
               colors={product.colors}
               selectedColor={selectedColor}
-              onSelectColor={setSelectedColor}
+              onSelectColor={handleSelectColor}
               size="sm"
             />
           </div>
