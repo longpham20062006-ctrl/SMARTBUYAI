@@ -51,12 +51,44 @@ export const productService = {
 
     // Gender
     if (filters.gender && filters.gender !== 'all') {
-      list = list.filter((p) => p.gender === filters.gender || p.gender === 'unisex');
+      const targetGender = filters.gender.toLowerCase();
+      if (targetGender === 'unisex') {
+        list = list.filter((p) => p.gender === 'unisex');
+      } else {
+        list = list.filter((p) => {
+          if (p.gender === targetGender) return true;
+          if (p.gender === 'unisex') {
+            // Guard: when browsing Men's fashion, strictly exclude female-specific items
+            if (targetGender === 'nam') {
+              const femaleCategories = ['chan-vay', 'chan-vay-dam', 'ao-croptop-tank', 'dam'];
+              if (femaleCategories.includes(p.categorySlug)) return false;
+            }
+            return true;
+          }
+          return false;
+        });
+      }
     }
 
     // Category
     if (filters.categorySlug && filters.categorySlug !== 'all') {
-      list = list.filter((p) => p.categorySlug === filters.categorySlug);
+      const cat = filters.categorySlug.toLowerCase();
+      list = list.filter((p) => {
+        if (p.categorySlug === cat) return true;
+        if (
+          (cat === 'chan-vay' || cat === 'chan-vay-dam') &&
+          (p.categorySlug === 'chan-vay' || p.categorySlug === 'chan-vay-dam')
+        ) {
+          return true;
+        }
+        if (
+          (cat === 'quan-cargo-parachute' || cat === 'quan-cargo-ong-rong') &&
+          (p.categorySlug === 'quan-cargo-parachute' || p.categorySlug === 'quan-cargo-ong-rong')
+        ) {
+          return true;
+        }
+        return false;
+      });
     }
 
     // Brand

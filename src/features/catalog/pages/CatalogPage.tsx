@@ -21,12 +21,15 @@ import {
   RefreshCw,
   Loader2,
   ChevronRight,
+  ChevronLeft,
+  ChevronDown,
+  Minimize2,
+  Maximize2,
   ExternalLink,
 } from 'lucide-react';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 
 const AVAILABLE_SIZES: SizeCode[] = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'FreeSize'];
-
 const FIT_OPTIONS = ['Oversized', 'Boxy Fit', 'Baggy', 'Relaxed Fit', 'Baby Tee / Crop', 'Ống rộng (Wide Leg)'];
 const STYLE_OPTIONS = ['Streetwear', 'Korean Casual', 'Y2K', 'Minimalist', 'Vintage', 'Cyber / Gorpcore'];
 
@@ -44,21 +47,23 @@ interface QuickFilterPill {
   filter: QuickFilter;
 }
 
-// Quick filter pills definition
+// 5.1: Đơn giản hóa tên danh mục tiếng Việt ngắn gọn theo Master Prompt Section 5.1
 const QUICK_FILTER_PILLS: QuickFilterPill[] = [
-  { id: 'all', label: 'Tất cả Drops', filter: {} },
-  { id: 'summer', label: '☀️ Mùa Hè', filter: { season: 'he' } },
-  { id: 'winter', label: '❄️ Mùa Đông', filter: { season: 'dong' } },
-  { id: 'ao-thun', label: 'Áo thun Graphic', filter: { category: 'ao-thun' } },
-  { id: 'hoodie', label: 'Hoodie & Sweater', filter: { category: 'hoodie-sweater' } },
-  { id: 'so-mi-polo', label: 'Sơ mi & Polo', filter: { category: 'so-mi-polo' } },
-  { id: 'ao-khoac', label: 'Áo khoác Streetwear', filter: { category: 'ao-khoac' } },
-  { id: 'quan-jeans', label: 'Jeans Baggy', filter: { category: 'quan-jeans' } },
-  { id: 'cargo', label: 'Quần Cargo & Parachute', filter: { category: 'quan-cargo-ong-rong' } },
-  { id: 'chan-vay', label: 'Chân váy & Set nữ', filter: { category: 'chan-vay-dam' } },
-  { id: 'phu-kien', label: 'Phụ kiện & Nón', filter: { category: 'phu-kien' } },
-  { id: 'unisex', label: '⚡ Unisex Fit', filter: { gender: 'unisex' } },
-  { id: 'under-199k', label: '🔥 Dưới 199K', filter: { maxPrice: '199000' } },
+  { id: 'all', label: 'Tất cả', filter: {} },
+  { id: 'summer', label: 'Mùa hè', filter: { season: 'he' } },
+  { id: 'winter', label: 'Mùa đông', filter: { season: 'dong' } },
+  { id: 'spring-autumn', label: 'Xuân – Thu', filter: { season: 'xuan-thu' } },
+  { id: 'ao-thun', label: 'Áo thun', filter: { category: 'ao-thun' } },
+  { id: 'so-mi', label: 'Áo sơ mi', filter: { category: 'so-mi-polo' } },
+  { id: 'hoodie', label: 'Áo hoodie', filter: { category: 'hoodie-sweater' } },
+  { id: 'ao-len', label: 'Áo len', filter: { category: 'hoodie-sweater' } },
+  { id: 'ao-khoac', label: 'Áo khoác', filter: { category: 'ao-khoac' } },
+  { id: 'quan-jeans', label: 'Quần jeans', filter: { category: 'quan-jeans' } },
+  { id: 'quan-dai', label: 'Quần dài', filter: { category: 'quan-cargo-parachute' } },
+  { id: 'quan-ngan', label: 'Quần ngắn', filter: { category: 'quan-jeans' } },
+  { id: 'chan-vay', label: 'Chân váy', filter: { category: 'chan-vay' } },
+  { id: 'vay', label: 'Váy', filter: { category: 'chan-vay' } },
+  { id: 'phu-kien', label: 'Phụ kiện', filter: { category: 'phu-kien' } },
 ];
 
 const ITEMS_PER_PAGE = 15;
@@ -93,6 +98,50 @@ export const CatalogPage: React.FC = () => {
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [isMobileAIStylistOpen, setIsMobileAIStylistOpen] = useState(false);
 
+  // Desktop AI Stylist Collapsible state (allows product grid to expand to 4 cols)
+  const [isStylistCollapsed, setIsStylistCollapsed] = useState(false);
+
+  // Left Filter Accordion Open/Closed States
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
+    season: true,
+    gender: true,
+    category: true,
+    price: true,
+    size: false,
+    style: false,
+    fit: false,
+    brand: false,
+  });
+
+  const toggleSection = (section: string) => {
+    setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
+  };
+
+  // Quick filter horizontal scroll state & ref
+  const quickFilterScrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScrollability = () => {
+    if (!quickFilterScrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = quickFilterScrollRef.current;
+    setCanScrollLeft(scrollLeft > 5);
+    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
+  };
+
+  useEffect(() => {
+    checkScrollability();
+    window.addEventListener('resize', checkScrollability);
+    return () => window.removeEventListener('resize', checkScrollability);
+  }, []);
+
+  const handleScrollPills = (direction: 'left' | 'right') => {
+    if (!quickFilterScrollRef.current) return;
+    const amount = direction === 'left' ? -260 : 260;
+    quickFilterScrollRef.current.scrollBy({ left: amount, behavior: 'smooth' });
+    setTimeout(checkScrollability, 300);
+  };
+
   // AI Stylist Sidebar States
   const [stylistQuery, setStylistQuery] = useState('');
   const [isStylistLoading, setIsStylistLoading] = useState(false);
@@ -104,7 +153,7 @@ export const CatalogPage: React.FC = () => {
   const [isAutoLoading, setIsAutoLoading] = useState(false);
   const isInitialMount = useRef(true);
 
-  // PHẦN 10: SCROLL RESTORATION EFFECT
+  // Scroll restoration
   useEffect(() => {
     const savedScrollPos = sessionStorage.getItem('catalog_scroll_pos');
     if (savedScrollPos) {
@@ -121,7 +170,7 @@ export const CatalogPage: React.FC = () => {
     }
   }, []);
 
-  // Reset scroll to top when category or filters change fundamentally
+  // Reset scroll count when core filter params change
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -158,25 +207,66 @@ export const CatalogPage: React.FC = () => {
   };
 
   const clearAllFilters = () => {
-    setSearchParams(new URLSearchParams());
-    setVisibleCount(ITEMS_PER_PAGE);
-    setAutoLoadCount(0);
-  };
-
-  // Quick pill click handler
-  const handlePillClick = (pill: typeof QUICK_FILTER_PILLS[0]) => {
     const next = new URLSearchParams();
-    if (pill.filter.category) next.set('category', pill.filter.category);
-    if (pill.filter.season) next.set('season', pill.filter.season);
-    if (pill.filter.gender) next.set('gender', pill.filter.gender);
-    if (pill.filter.style) next.append('style', pill.filter.style);
-    if (pill.filter.maxPrice) next.set('maxPrice', pill.filter.maxPrice);
+    // If on a dedicated gender URL like /products?gender=nam, keep it or clear completely
     setSearchParams(next);
     setVisibleCount(ITEMS_PER_PAGE);
     setAutoLoadCount(0);
   };
 
-  // Filter options including 4 Seasons
+  // 5.3: Đồng bộ bộ lọc & Giữ nguyên giới tính hiện tại khi bấm quick filter
+  const handlePillClick = (pill: QuickFilterPill) => {
+    const next = new URLSearchParams(searchParams);
+
+    if (pill.id === 'all') {
+      next.delete('category');
+      next.delete('season');
+      next.delete('style');
+      next.delete('maxPrice');
+      setSearchParams(next);
+      setVisibleCount(ITEMS_PER_PAGE);
+      setAutoLoadCount(0);
+      return;
+    }
+
+    if (pill.filter.category) {
+      if (categoryParam === pill.filter.category) {
+        next.delete('category');
+      } else {
+        next.set('category', pill.filter.category);
+      }
+    }
+
+    if (pill.filter.season) {
+      if (seasonParam === pill.filter.season) {
+        next.delete('season');
+      } else {
+        next.set('season', pill.filter.season);
+      }
+    }
+
+    if (pill.filter.gender) {
+      if (genderParam === pill.filter.gender) {
+        next.delete('gender');
+      } else {
+        next.set('gender', pill.filter.gender);
+      }
+    }
+
+    if (pill.filter.maxPrice) {
+      if (maxPriceParam === Number(pill.filter.maxPrice)) {
+        next.delete('maxPrice');
+      } else {
+        next.set('maxPrice', pill.filter.maxPrice);
+      }
+    }
+
+    setSearchParams(next);
+    setVisibleCount(ITEMS_PER_PAGE);
+    setAutoLoadCount(0);
+  };
+
+  // Filter options
   const filterOptions: ProductFilterOptions = useMemo(
     () => ({
       gender: genderParam,
@@ -217,7 +307,7 @@ export const CatalogPage: React.FC = () => {
 
   const hasMore = visibleCount < allFilteredProducts.length;
 
-  // PHẦN 10.1: CHẾ ĐỘ TẢI HYBRID (AUTO LOAD KHI CUỘN + NÚT DỰ PHÒNG)
+  // Hybrid infinite scroll & sentinel observer
   useEffect(() => {
     if (!sentinelRef.current || !hasMore || autoLoadCount >= MAX_CONSECUTIVE_AUTOLOADS || isAutoLoading) {
       return;
@@ -249,7 +339,7 @@ export const CatalogPage: React.FC = () => {
     setIsAutoLoading(true);
     setTimeout(() => {
       setVisibleCount((prev) => Math.min(prev + ITEMS_PER_PAGE, allFilteredProducts.length));
-      setAutoLoadCount(0); // Resets counter to allow next auto-loads
+      setAutoLoadCount(0);
       setIsAutoLoading(false);
     }, 200);
   };
@@ -268,24 +358,51 @@ export const CatalogPage: React.FC = () => {
     selectedStyles.length +
     selectedFits.length;
 
-  // PHẦN 6: DYNAMIC BIG CATEGORY TITLE & DESCRIPTIONS
+  // 7.1: Tiêu đề danh mục lớn & Rõ ràng
   const categoryHeaderData = useMemo(() => {
+    if (genderParam === 'nam') {
+      if (categoryParam !== 'all') {
+        const cat = GENZ_CATEGORIES.find((c) => c.slug === categoryParam);
+        const catName = cat?.name || categoryParam;
+        return {
+          title: `${catName.toUpperCase()} NAM`,
+          breadcrumb: `${catName} Nam`,
+          categoryName: `${catName} Nam`,
+          description: `Tuyển chọn các thiết kế ${catName.toLowerCase()} chuẩn phom rộng phóng khoáng, chất liệu cao cấp dành cho phái mạnh.`,
+        };
+      }
+      return {
+        title: 'THỜI TRANG NAM',
+        breadcrumb: 'Thời trang Nam',
+        categoryName: 'Thời trang Nam',
+        description: 'Tập hợp các mẫu áo thun oversized, hoodie nỉ bông, jeans baggy và phụ kiện streetwear phóng khoáng dành cho các chàng trai.',
+      };
+    }
+
+    if (genderParam === 'nu') {
+      if (categoryParam !== 'all') {
+        const cat = GENZ_CATEGORIES.find((c) => c.slug === categoryParam);
+        const catName = cat?.name || categoryParam;
+        return {
+          title: `${catName.toUpperCase()} NỮ`,
+          breadcrumb: `${catName} Nữ`,
+          categoryName: `${catName} Nữ`,
+          description: `Tuyển chọn các thiết kế ${catName.toLowerCase()} chuẩn gu Y2K, tôn dáng và rạng rỡ cho các bạn nữ.`,
+        };
+      }
+      return {
+        title: 'THỜI TRANG NỮ',
+        breadcrumb: 'Thời trang Nữ',
+        categoryName: 'Thời trang Nữ',
+        description: 'Baby tee ôm dáng, chân váy xếp ly, áo khoác lửng và phụ kiện Y2K cá tính, tôn dáng và trẻ trung cho phái đẹp.',
+      };
+    }
+
     if (categoryParam !== 'all') {
       const cat = GENZ_CATEGORIES.find((c) => c.slug === categoryParam);
       const catName = cat?.name || categoryParam;
-      let title = `${catName.toUpperCase()} COLLECTION`;
-
-      if (categoryParam === 'hoodie-sweater') title = 'SWEATER & HOODIE COLLECTION';
-      if (categoryParam === 'quan-jeans') title = 'DENIM & JORTS COLLECTION';
-      if (categoryParam === 'quan-cargo-ong-rong') title = 'CARGO & PARACHUTE COLLECTION';
-      if (categoryParam === 'ao-thun') title = 'T-SHIRT & GRAPHIC TEE COLLECTION';
-      if (categoryParam === 'so-mi-polo') title = 'SHIRTS & POLO COLLECTION';
-      if (categoryParam === 'ao-khoac') title = 'OUTERWEAR & BOMBER COLLECTION';
-      if (categoryParam === 'chan-vay-dam') title = 'SKIRTS & Y2K DRESSES COLLECTION';
-      if (categoryParam === 'phu-kien') title = 'ACCESSORIES & JEWELRY COLLECTION';
-
       return {
-        title,
+        title: catName.toUpperCase(),
         breadcrumb: catName,
         categoryName: catName,
         description: `Tuyển tập các mẫu ${catName.toLowerCase()} chuẩn phom rộng phóng khoáng, chất liệu cao cấp và phối màu cực nghệ dành cho giới trẻ Gen Z.`,
@@ -294,7 +411,7 @@ export const CatalogPage: React.FC = () => {
 
     if (seasonParam === 'he') {
       return {
-        title: 'SUMMER STREETWEAR COLLECTION',
+        title: 'BỘ SƯU TẬP MÙA HÈ',
         breadcrumb: 'Mùa Hè',
         categoryName: 'Mùa Hè',
         description: 'Tập hợp các mẫu áo thun cotton 100% thoáng mát, baby tee, quần short, croptop và sơ mi cuban ngắn tay rực rỡ đón hè.',
@@ -302,7 +419,7 @@ export const CatalogPage: React.FC = () => {
     }
     if (seasonParam === 'dong') {
       return {
-        title: 'WINTER STREETWEAR COLLECTION',
+        title: 'BỘ SƯU TẬP MÙA ĐÔNG',
         breadcrumb: 'Mùa Đông',
         categoryName: 'Mùa Đông',
         description: 'Hoodie nỉ bông trùm đầu dày dặn, áo sweater dệt kim, áo phao và varsity jacket ấm áp bất chấp thời tiết.',
@@ -310,32 +427,16 @@ export const CatalogPage: React.FC = () => {
     }
     if (seasonParam === 'xuan-thu') {
       return {
-        title: 'SPRING & AUTUMN COLLECTION',
+        title: 'BỘ SƯU TẬP XUÂN - THU',
         breadcrumb: 'Xuân - Thu',
         categoryName: 'Xuân - Thu',
         description: 'Phối layer thời trang nhẹ nhàng với sơ mi oversize, áo khoác denim, cardigan mỏng và quần jeans baggy suông.',
       };
     }
 
-    if (genderParam === 'nam') {
-      return {
-        title: "MEN'S STREETWEAR COLLECTION",
-        breadcrumb: 'Thời trang Nam',
-        categoryName: 'Thời trang Nam',
-        description: 'Tập hợp các mẫu áo thun oversized, hoodie nỉ bông, jeans baggy và phụ kiện streetwear phóng khoáng dành cho các chàng trai.',
-      };
-    }
-    if (genderParam === 'nu') {
-      return {
-        title: "WOMEN'S Y2K & STREETWEAR",
-        breadcrumb: 'Thời trang Nữ',
-        categoryName: 'Thời trang Nữ',
-        description: 'Baby tee ôm dáng, chân váy xếp ly, áo khoác lửng và phụ kiện Y2K cá tính, tôn dáng và trẻ trung cho phái đẹp.',
-      };
-    }
     if (genderParam === 'unisex') {
       return {
-        title: 'UNISEX EVERYDAY FIT',
+        title: 'UNISEX FIT PHÓNG KHOÁNG',
         breadcrumb: 'Unisex Fit',
         categoryName: 'Unisex Fit',
         description: 'Thiết kế phi giới tính, phom rộng thoải mái (Oversized & Boxy) tự do thể hiện cá tính cho cả nam và nữ.',
@@ -343,14 +444,14 @@ export const CatalogPage: React.FC = () => {
     }
 
     return {
-      title: 'SMARTBUY STREETWEAR COLLECTION',
+      title: 'TẤT CẢ SẢN PHẨM SMARTBUY',
       breadcrumb: 'Tất cả Drops',
       categoryName: 'Streetwear',
       description: 'Khám phá hơn 130+ mẫu thiết kế Streetwear bốn mùa, Unisex, Y2K và Local Brand độc quyền với mức giá học sinh sinh viên từ 79.000₫ – 449.000₫.',
     };
   }, [categoryParam, seasonParam, genderParam]);
 
-  // PHẦN 8: AI STYLIST CONTEXTUAL PROMPTS (QUẦN ÁO 4 MÙA & PHỤ KIỆN)
+  // Contextual Prompts for AI Stylist
   const contextualPrompts = useMemo(() => {
     const name = categoryHeaderData.categoryName;
     if (seasonParam === 'he') {
@@ -369,20 +470,20 @@ export const CatalogPage: React.FC = () => {
         'Set đồ mùa đông hoàn chỉnh 3 món dưới 600k',
       ];
     }
-    if (categoryParam === 'hoodie-sweater') {
+    if (genderParam === 'nam') {
       return [
-        'Phối Sweater với quần Jeans Baggy đi học',
-        'Set Hoodie Streetwear đi chơi buổi tối',
-        'Sweater phối với phụ kiện nón hay túi gì đẹp?',
-        'Set đồ Sweater dưới 400k cho sinh viên',
+        'Phối đồ nam đi học phong cách Korean Casual',
+        'Phối áo hoodie với quần jeans baggy nam',
+        'Outfit nam mùa hè dưới 400.000đ',
+        'Chọn phụ kiện streetwear cho bạn nam',
       ];
     }
-    if (categoryParam === 'phu-kien') {
+    if (genderParam === 'nu') {
       return [
-        'Chọn vòng cổ bạc titan phối áo thun oversized',
-        'Túi tote canvas đi học phối đồ phong cách gì?',
-        'Nhẫn bạc titan Y2K và dây chuyền layer dưới 150k',
-        'Phối mũ beanie với outfit streetwear mùa đông',
+        'Phối đồ nữ đi chơi phong cách Y2K',
+        'Baby tee phối với chân váy chữ A',
+        'Outfit nữ đi cafe chụp ảnh sống ảo',
+        'Phụ kiện vòng cổ và túi xách nữ cá tính',
       ];
     }
     return [
@@ -391,7 +492,7 @@ export const CatalogPage: React.FC = () => {
       `${name} hợp với giày và phụ kiện gì?`,
       'Gợi ý trọn set đồ 3 món dưới 400k cho sinh viên',
     ];
-  }, [categoryParam, seasonParam, categoryHeaderData.categoryName]);
+  }, [categoryParam, seasonParam, genderParam, categoryHeaderData.categoryName]);
 
   // AI Stylist submit handler
   const handleConsultStylist = async (promptText: string) => {
@@ -427,263 +528,285 @@ export const CatalogPage: React.FC = () => {
     window.dispatchEvent(new CustomEvent('toggle_compare', { detail: product }));
   };
 
-  // CỘT TRÁI: BỘ LỌC NỘI DUNG (MỞ RỘNG BỐN MÙA & PHỤ KIỆN)
+  // Section header helper for accordion
+  const renderSectionHeader = (title: string, sectionKey: string, activeCount: number = 0) => (
+    <button
+      type="button"
+      onClick={() => toggleSection(sectionKey)}
+      className="w-full flex items-center justify-between py-2 text-[11px] font-bold uppercase tracking-wider text-[#18181B] hover:text-[#8B5CF6] transition-colors cursor-pointer"
+    >
+      <div className="flex items-center gap-1.5">
+        <span>{title}</span>
+        {activeCount > 0 && (
+          <span className="w-4 h-4 rounded-full bg-[#8B5CF6] text-white text-[9px] font-black flex items-center justify-center">
+            {activeCount}
+          </span>
+        )}
+      </div>
+      <ChevronDown
+        className={`w-3.5 h-3.5 text-[#71717A] transition-transform duration-200 ${
+          openSections[sectionKey] ? 'rotate-180 text-[#8B5CF6]' : ''
+        }`}
+      />
+    </button>
+  );
+
+  // 6: BỘ LỌC BÊN TRÁI THIẾT KẾ DẠNG ACCORDION GỌN VÀ THAO TÁC NHANH
   const renderFilterContent = () => (
-    <div className="space-y-6 text-xs font-sans">
-      {/* Bốn mùa thời trang */}
-      <div className="space-y-2">
-        <label className="text-[11px] font-bold uppercase tracking-wider text-[#18181B] block">
-          Thời trang bốn mùa
-        </label>
-        <div className="grid grid-cols-2 gap-1.5">
-          {[
-            { id: 'all', label: 'Tất cả mùa' },
-            { id: 'he', label: '☀️ Mùa Hè' },
-            { id: 'dong', label: '❄️ Mùa Đông' },
-            { id: 'xuan-thu', label: '🍂 Xuân - Thu' },
-          ].map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => updateParam('season', item.id)}
-              className={`px-3 py-2 rounded-lg text-xs font-semibold tracking-tight transition-all cursor-pointer ${
-                seasonParam === item.id
-                  ? 'bg-[#18181B] text-white shadow-subtle'
-                  : 'bg-white border border-[#E4E4E7] text-[#18181B] hover:border-[#8B5CF6] hover:bg-[#F3E8FF]/30'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
+    <div className="space-y-4 text-xs font-sans divide-y divide-[#E4E4E7]">
+      {/* 6.1 Mùa */}
+      <div className="pt-1">
+        {renderSectionHeader('Thời trang bốn mùa', 'season', seasonParam !== 'all' ? 1 : 0)}
+        {openSections.season && (
+          <div className="grid grid-cols-2 gap-1.5 pt-1.5 animate-fade-in">
+            {[
+              { id: 'all', label: 'Tất cả mùa' },
+              { id: 'he', label: '☀️ Mùa Hè' },
+              { id: 'dong', label: '❄️ Mùa Đông' },
+              { id: 'xuan-thu', label: '🍂 Xuân - Thu' },
+            ].map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => updateParam('season', item.id)}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold tracking-tight transition-all cursor-pointer ${
+                  seasonParam === item.id
+                    ? 'bg-[#18181B] text-white shadow-subtle'
+                    : 'bg-white border border-[#E4E4E7] text-[#18181B] hover:border-[#8B5CF6] hover:bg-[#F3E8FF]/30'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Giới tính */}
-      <div className="space-y-2 border-t border-[#E4E4E7] pt-4">
-        <label className="text-[11px] font-bold uppercase tracking-wider text-[#18181B] block">
-          Dành cho / Fit
-        </label>
-        <div className="grid grid-cols-2 gap-1.5">
-          {[
-            { id: 'all', label: 'Tất cả' },
-            { id: 'nam', label: 'Nam (Boys)' },
-            { id: 'nu', label: 'Nữ (Girls)' },
-            { id: 'unisex', label: '⚡ Unisex' },
-          ].map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => updateParam('gender', item.id)}
-              className={`px-3 py-2 rounded-lg text-xs font-semibold tracking-tight transition-all cursor-pointer ${
-                genderParam === item.id
-                  ? 'bg-[#18181B] text-white shadow-subtle'
-                  : 'bg-white border border-[#E4E4E7] text-[#18181B] hover:border-[#8B5CF6] hover:bg-[#F3E8FF]/30'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
+      {/* 6.2 Giới tính */}
+      <div className="pt-3">
+        {renderSectionHeader('Dành cho / Fit', 'gender', genderParam !== 'all' ? 1 : 0)}
+        {openSections.gender && (
+          <div className="grid grid-cols-2 gap-1.5 pt-1.5 animate-fade-in">
+            {[
+              { id: 'all', label: 'Tất cả' },
+              { id: 'nam', label: 'Nam' },
+              { id: 'nu', label: 'Nữ' },
+              { id: 'unisex', label: 'Unisex' },
+            ].map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => updateParam('gender', item.id)}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold tracking-tight transition-all cursor-pointer ${
+                  genderParam === item.id
+                    ? 'bg-[#18181B] text-white shadow-subtle'
+                    : 'bg-white border border-[#E4E4E7] text-[#18181B] hover:border-[#8B5CF6] hover:bg-[#F3E8FF]/30'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Danh mục Gen Z & Phụ kiện */}
-      <div className="space-y-2 border-t border-[#E4E4E7] pt-4">
-        <label className="text-[11px] font-bold uppercase tracking-wider text-[#18181B] block">
-          Danh mục Quần áo & Phụ kiện
-        </label>
-        <div className="space-y-1">
-          <button
-            type="button"
-            onClick={() => updateParam('category', 'all')}
-            className={`w-full text-left py-1.5 px-2.5 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${
-              categoryParam === 'all'
-                ? 'font-bold text-[#7C3AED] bg-[#F3E8FF] border-l-2 border-[#8B5CF6]'
-                : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F2F3F5]'
-            }`}
-          >
-            <span>Tất cả sản phẩm</span>
-            <span className="text-[11px] text-[#71717A]">130+</span>
-          </button>
-          {GENZ_CATEGORIES.map((cat) => (
+      {/* 6.3 Danh mục sản phẩm */}
+      <div className="pt-3">
+        {renderSectionHeader('Loại sản phẩm', 'category', categoryParam !== 'all' ? 1 : 0)}
+        {openSections.category && (
+          <div className="space-y-1 pt-1.5 max-h-56 overflow-y-auto scrollbar-thin pr-1 animate-fade-in">
             <button
-              key={cat.id}
               type="button"
-              onClick={() => updateParam('category', cat.slug)}
+              onClick={() => updateParam('category', 'all')}
               className={`w-full text-left py-1.5 px-2.5 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${
-                categoryParam === cat.slug
+                categoryParam === 'all'
                   ? 'font-bold text-[#7C3AED] bg-[#F3E8FF] border-l-2 border-[#8B5CF6]'
                   : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F2F3F5]'
               }`}
             >
-              <span>{cat.name}</span>
-              <span className="text-[11px] text-[#71717A]">({cat.itemCount})</span>
+              <span>Tất cả sản phẩm</span>
+              <span className="text-[11px] text-[#71717A]">130+</span>
             </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Khoảng giá Học sinh - Sinh viên */}
-      <div className="space-y-2 border-t border-[#E4E4E7] pt-4">
-        <label className="text-[11px] font-bold uppercase tracking-wider text-[#18181B] block">
-          Khoảng giá sinh viên
-        </label>
-        <div className="space-y-1.5">
-          {[
-            { label: 'Tất cả mức giá', min: undefined, max: undefined },
-            { label: 'Dưới 150.000₫ (Hạt dẻ)', min: undefined, max: 150000 },
-            { label: '150.000₫ – 250.000₫', min: 150000, max: 250000 },
-            { label: '250.000₫ – 350.000₫', min: 250000, max: 350000 },
-            { label: 'Trên 350.000₫ (Cao cấp)', min: 350000, max: undefined },
-          ].map((preset, idx) => {
-            const isSelected =
-              minPriceParam === preset.min && maxPriceParam === preset.max;
-            return (
+            {GENZ_CATEGORIES.map((cat) => (
               <button
-                key={idx}
+                key={cat.id}
                 type="button"
-                onClick={() => {
-                  const next = new URLSearchParams(searchParams);
-                  if (preset.min !== undefined) next.set('minPrice', String(preset.min));
-                  else next.delete('minPrice');
-                  if (preset.max !== undefined) next.set('maxPrice', String(preset.max));
-                  else next.delete('maxPrice');
-                  setSearchParams(next);
-                  setVisibleCount(ITEMS_PER_PAGE);
-                  setAutoLoadCount(0);
-                }}
-                className={`w-full text-left py-1 px-2 rounded-md transition-colors flex items-center justify-between cursor-pointer ${
-                  isSelected
-                    ? 'font-bold text-[#7C3AED] bg-[#F3E8FF]'
-                    : 'text-[#71717A] hover:text-[#18181B]'
+                onClick={() => updateParam('category', cat.slug)}
+                className={`w-full text-left py-1.5 px-2.5 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${
+                  categoryParam === cat.slug
+                    ? 'font-bold text-[#7C3AED] bg-[#F3E8FF] border-l-2 border-[#8B5CF6]'
+                    : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F2F3F5]'
                 }`}
               >
-                <span>{preset.label}</span>
-                {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6]" />}
+                <span>{cat.name}</span>
+                <span className="text-[11px] text-[#71717A]">({cat.itemCount})</span>
               </button>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Kích thước */}
-      <div className="space-y-2 border-t border-[#E4E4E7] pt-4">
-        <label className="text-[11px] font-bold uppercase tracking-wider text-[#18181B] block">
-          Kích thước (Size)
-        </label>
-        <div className="grid grid-cols-4 gap-1.5">
-          {AVAILABLE_SIZES.map((sz) => {
-            const isSelected = selectedSizes.includes(sz);
-            return (
-              <button
-                key={sz}
-                type="button"
-                onClick={() => toggleArrayParam('size', sz)}
-                className={`py-1.5 rounded text-xs font-semibold tracking-tight transition-all cursor-pointer ${
-                  isSelected
-                    ? 'bg-[#18181B] text-white shadow-subtle'
-                    : 'bg-white border border-[#E4E4E7] text-[#18181B] hover:border-[#8B5CF6]'
-                }`}
-              >
-                {sz}
-              </button>
-            );
-          })}
-        </div>
+      {/* 6.4 Mức giá */}
+      <div className="pt-3">
+        {renderSectionHeader('Khoảng giá', 'price', minPriceParam || maxPriceParam ? 1 : 0)}
+        {openSections.price && (
+          <div className="space-y-1.5 pt-1.5 animate-fade-in">
+            {[
+              { label: 'Tất cả mức giá', min: undefined, max: undefined },
+              { label: 'Dưới 150.000₫ (Hạt dẻ)', min: undefined, max: 150000 },
+              { label: '150.000₫ – 300.000₫ (Phổ biến)', min: 150000, max: 300000 },
+              { label: '300.000₫ – 500.000₫', min: 300000, max: 500000 },
+              { label: 'Trên 500.000₫ (Cao cấp)', min: 500000, max: undefined },
+            ].map((preset, idx) => {
+              const isSelected = minPriceParam === preset.min && maxPriceParam === preset.max;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => {
+                    const next = new URLSearchParams(searchParams);
+                    if (preset.min !== undefined) next.set('minPrice', String(preset.min));
+                    else next.delete('minPrice');
+                    if (preset.max !== undefined) next.set('maxPrice', String(preset.max));
+                    else next.delete('maxPrice');
+                    setSearchParams(next);
+                    setVisibleCount(ITEMS_PER_PAGE);
+                    setAutoLoadCount(0);
+                  }}
+                  className={`w-full text-left py-1 px-2 rounded-md transition-colors flex items-center justify-between cursor-pointer ${
+                    isSelected
+                      ? 'font-bold text-[#7C3AED] bg-[#F3E8FF]'
+                      : 'text-[#71717A] hover:text-[#18181B]'
+                  }`}
+                >
+                  <span>{preset.label}</span>
+                  {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6]" />}
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
 
-      {/* Phong cách */}
-      <div className="space-y-2 border-t border-[#E4E4E7] pt-4">
-        <label className="text-[11px] font-bold uppercase tracking-wider text-[#18181B] block">
-          Phong cách (Vibe)
-        </label>
-        <div className="flex flex-wrap gap-1.5">
-          {STYLE_OPTIONS.map((st) => {
-            const isSelected = selectedStyles.includes(st);
-            return (
-              <button
-                key={st}
-                type="button"
-                onClick={() => toggleArrayParam('style', st)}
-                className={`px-2.5 py-1 rounded-full text-[11px] font-medium transition-all cursor-pointer ${
-                  isSelected
-                    ? 'bg-[#8B5CF6] text-white'
-                    : 'bg-[#F2F3F5] text-[#71717A] hover:text-[#18181B]'
-                }`}
-              >
-                {st}
-              </button>
-            );
-          })}
-        </div>
+      {/* 6.5 Kích thước */}
+      <div className="pt-3">
+        {renderSectionHeader('Kích thước (Size)', 'size', selectedSizes.length)}
+        {openSections.size && (
+          <div className="grid grid-cols-4 gap-1.5 pt-1.5 animate-fade-in">
+            {AVAILABLE_SIZES.map((sz) => {
+              const isSelected = selectedSizes.includes(sz);
+              return (
+                <button
+                  key={sz}
+                  type="button"
+                  onClick={() => toggleArrayParam('size', sz)}
+                  className={`py-1.5 rounded text-xs font-semibold tracking-tight transition-all cursor-pointer ${
+                    isSelected
+                      ? 'bg-[#18181B] text-white shadow-subtle'
+                      : 'bg-white border border-[#E4E4E7] text-[#18181B] hover:border-[#8B5CF6]'
+                  }`}
+                >
+                  {sz}
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
 
-      {/* Phom dáng */}
-      <div className="space-y-2 border-t border-[#E4E4E7] pt-4">
-        <label className="text-[11px] font-bold uppercase tracking-wider text-[#18181B] block">
-          Phom dáng (Fit)
-        </label>
-        <div className="space-y-1">
-          {FIT_OPTIONS.map((fit) => {
-            const isSelected = selectedFits.includes(fit);
-            return (
-              <label
-                key={fit}
-                className="flex items-center gap-2 cursor-pointer text-[#71717A] hover:text-[#18181B] py-0.5"
-              >
-                <input
-                  type="checkbox"
-                  checked={isSelected}
-                  onChange={() => toggleArrayParam('fit', fit)}
-                  className="rounded border-[#E4E4E7] text-[#8B5CF6] focus:ring-[#8B5CF6]"
-                />
-                <span className={isSelected ? 'font-bold text-[#18181B]' : ''}>{fit}</span>
-              </label>
-            );
-          })}
-        </div>
+      {/* 6.6 Phong cách */}
+      <div className="pt-3">
+        {renderSectionHeader('Phong cách (Vibe)', 'style', selectedStyles.length)}
+        {openSections.style && (
+          <div className="flex flex-wrap gap-1.5 pt-1.5 animate-fade-in">
+            {STYLE_OPTIONS.map((st) => {
+              const isSelected = selectedStyles.includes(st);
+              return (
+                <button
+                  key={st}
+                  type="button"
+                  onClick={() => toggleArrayParam('style', st)}
+                  className={`px-2.5 py-1 rounded-full text-[11px] font-medium transition-all cursor-pointer ${
+                    isSelected
+                      ? 'bg-[#8B5CF6] text-white shadow-xs'
+                      : 'bg-[#F2F3F5] text-[#71717A] hover:text-[#18181B]'
+                  }`}
+                >
+                  {st}
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
 
-      {/* Local Brand đối tác */}
-      <div className="space-y-2 border-t border-[#E4E4E7] pt-4">
-        <label className="text-[11px] font-bold uppercase tracking-wider text-[#18181B] block">
-          Thương hiệu đối tác
-        </label>
-        <div className="space-y-1">
-          <button
-            type="button"
-            onClick={() => updateParam('brand', 'all')}
-            className={`w-full text-left py-1 px-2 rounded-md transition-colors cursor-pointer ${
-              brandParam === 'all'
-                ? 'font-bold text-[#7C3AED] bg-[#F3E8FF]'
-                : 'text-[#71717A] hover:text-[#18181B]'
-            }`}
-          >
-            Tất cả Local Brands
-          </button>
-          {GENZ_BRANDS.map((br) => (
+      {/* 6.7 Phom dáng */}
+      <div className="pt-3">
+        {renderSectionHeader('Phom dáng (Fit)', 'fit', selectedFits.length)}
+        {openSections.fit && (
+          <div className="space-y-1 pt-1.5 animate-fade-in">
+            {FIT_OPTIONS.map((fit) => {
+              const isSelected = selectedFits.includes(fit);
+              return (
+                <label
+                  key={fit}
+                  className="flex items-center gap-2 cursor-pointer text-[#71717A] hover:text-[#18181B] py-0.5"
+                >
+                  <input
+                    type="checkbox"
+                    checked={isSelected}
+                    onChange={() => toggleArrayParam('fit', fit)}
+                    className="rounded border-[#E4E4E7] text-[#8B5CF6] focus:ring-[#8B5CF6]"
+                  />
+                  <span className={isSelected ? 'font-bold text-[#18181B]' : ''}>{fit}</span>
+                </label>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* 6.8 Thương hiệu đối tác */}
+      <div className="pt-3">
+        {renderSectionHeader('Thương hiệu', 'brand', brandParam !== 'all' ? 1 : 0)}
+        {openSections.brand && (
+          <div className="space-y-1 pt-1.5 animate-fade-in">
             <button
-              key={br.id}
               type="button"
-              onClick={() => updateParam('brand', br.name)}
+              onClick={() => updateParam('brand', 'all')}
               className={`w-full text-left py-1 px-2 rounded-md transition-colors cursor-pointer ${
-                brandParam === br.name
+                brandParam === 'all'
                   ? 'font-bold text-[#7C3AED] bg-[#F3E8FF]'
                   : 'text-[#71717A] hover:text-[#18181B]'
               }`}
             >
-              {br.name}
+              Tất cả Local Brands
             </button>
-          ))}
-        </div>
+            {GENZ_BRANDS.map((br) => (
+              <button
+                key={br.id}
+                type="button"
+                onClick={() => updateParam('brand', br.name)}
+                className={`w-full text-left py-1 px-2 rounded-md transition-colors cursor-pointer ${
+                  brandParam === br.name
+                    ? 'font-bold text-[#7C3AED] bg-[#F3E8FF]'
+                    : 'text-[#71717A] hover:text-[#18181B]'
+                }`}
+              >
+                {br.name}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Nút xóa bộ lọc */}
-      <div className="pt-4 border-t border-[#E4E4E7]">
+      <div className="pt-4">
         <Button
           variant="outline"
           size="sm"
           onClick={clearAllFilters}
-          className="w-full text-xs font-semibold"
+          className="w-full text-xs font-semibold rounded-xl"
         >
           <RotateCcw className="w-3.5 h-3.5 mr-1.5" />
           Đặt lại bộ lọc
@@ -692,13 +815,13 @@ export const CatalogPage: React.FC = () => {
     </div>
   );
 
-  // CỘT PHẢI: AI STYLIST PANEL NỘI DUNG (HỖ TRỢ 4 MÙA & PHỤ KIỆN)
+  // 10: AI STYLIST PANEL THIẾT KẾ HIỆN ĐẠI
   const renderAIStylistPanel = () => (
-    <div className="bg-white rounded-2xl border border-[#E4E4E7] shadow-subtle p-5 flex flex-col h-full max-h-[calc(100vh-8.5rem)]">
+    <div className="bg-white rounded-2xl border border-[#E4E4E7] shadow-subtle p-4 flex flex-col h-full max-h-[calc(100vh-9.5rem)]">
       {/* Header AI Stylist */}
-      <div className="pb-4 border-b border-[#E4E4E7] flex items-center justify-between shrink-0">
+      <div className="pb-3 border-b border-[#E4E4E7] flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-[#F3E8FF] text-[#8B5CF6] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-xl bg-[#F3E8FF] text-[#8B5CF6] flex items-center justify-center shrink-0">
             <Sparkles className="w-4 h-4" />
           </div>
           <div>
@@ -706,7 +829,7 @@ export const CatalogPage: React.FC = () => {
               <span>AI STYLIST</span>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" title="Trực tuyến" />
             </h3>
-            <p className="text-[10px] text-[#71717A]">Trợ lý phối đồ bốn mùa</p>
+            <p className="text-[10px] text-[#71717A]">Trợ lý phối đồ dành riêng cho bạn</p>
           </div>
         </div>
 
@@ -723,21 +846,21 @@ export const CatalogPage: React.FC = () => {
       </div>
 
       {/* Message & Recommendation Content Area */}
-      <div className="flex-1 overflow-y-auto py-3.5 space-y-3.5 pr-1 scrollbar-thin">
+      <div className="flex-1 overflow-y-auto py-3 space-y-3 pr-1 scrollbar-thin">
         {/* Contextual Greeting */}
-        <div className="p-3.5 rounded-xl bg-[#FAFAF8] border border-[#E4E4E7] space-y-2">
+        <div className="p-3 rounded-xl bg-[#FAFAF8] border border-[#E4E4E7] space-y-1.5">
           <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#18181B]">
             <Bot className="w-3.5 h-3.5 text-[#8B5CF6]" />
-            <span>Tư vấn theo ngữ cảnh</span>
+            <span>Tư vấn theo phong cách</span>
           </div>
           <p className="text-[11px] text-[#71717A] leading-relaxed">
-            Bạn đang xem mục <strong className="text-[#8B5CF6]">{categoryHeaderData.breadcrumb}</strong>. Bạn muốn phối set bốn mùa đi học, đi chơi hay theo ngân sách sinh viên?
+            Bạn đang xem <strong className="text-[#8B5CF6]">{categoryHeaderData.breadcrumb}</strong>. Bạn muốn phối set đi học, đi chơi hay outfit theo ngân sách?
           </p>
         </div>
 
         {/* Suggestion Prompts */}
         {stylistMessages.length === 0 && (
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#71717A] block">
               Gợi ý câu hỏi nhanh:
             </span>
@@ -747,43 +870,42 @@ export const CatalogPage: React.FC = () => {
                   key={idx}
                   type="button"
                   onClick={() => handleConsultStylist(prompt)}
-                  className="w-full text-left p-2.5 rounded-xl bg-white border border-[#E4E4E7] hover:border-[#8B5CF6] hover:bg-[#F3E8FF]/30 text-xs text-[#18181B] font-medium transition-all flex items-center justify-between group cursor-pointer"
+                  className="w-full text-left p-2 rounded-xl bg-white border border-[#E4E4E7] hover:border-[#8B5CF6] hover:bg-[#F3E8FF]/30 text-xs text-[#18181B] font-medium transition-all flex items-center justify-between group cursor-pointer"
                 >
                   <span className="line-clamp-1">{prompt}</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-[#A1A1AA] group-hover:text-[#8B5CF6] shrink-0 ml-1 transition-colors" />
+                  <ChevronRight className="w-3.5 h-3.5 text-[#A1A1AA] group-hover:text-[#8B5CF6] shrink-0 ml-1" />
                 </button>
               ))}
             </div>
           </div>
         )}
 
-        {/* Active Chat Messages Stream */}
+        {/* Chat Messages */}
         {stylistMessages.map((msg) => (
-          <div key={msg.id} className="space-y-2.5">
+          <div key={msg.id} className="space-y-2 animate-fade-in">
             {msg.sender === 'user' ? (
               <div className="flex justify-end">
-                <div className="max-w-[85%] bg-[#18181B] text-white p-2.5 rounded-xl rounded-tr-none text-xs leading-relaxed">
+                <div className="bg-[#18181B] text-white text-xs py-2 px-3 rounded-2xl rounded-tr-xs max-w-[85%]">
                   {msg.text}
                 </div>
               </div>
             ) : (
-              <div className="space-y-2.5">
-                <div className="flex items-start gap-2">
-                  <div className="w-6 h-6 rounded-full bg-[#8B5CF6] text-white flex items-center justify-center shrink-0 mt-0.5">
+              <div className="space-y-2">
+                <div className="bg-[#F3E8FF]/60 border border-[#DDD6FE] text-[#18181B] text-xs p-3 rounded-2xl rounded-tl-xs leading-relaxed space-y-1.5">
+                  <div className="flex items-center gap-1.5 font-bold text-[#7C3AED] text-[11px]">
                     <Sparkles className="w-3 h-3" />
+                    <span>SMARTBUY AI STYLIST</span>
                   </div>
-                  <div className="bg-[#F3E8FF]/60 border border-[#DDD6FE] p-3 rounded-xl rounded-tl-none text-xs text-[#18181B] leading-relaxed whitespace-pre-line flex-1">
-                    {msg.text}
-                  </div>
+                  <p>{msg.text}</p>
                 </div>
 
-                {/* Recommended Products Carousel / Grid in Panel */}
+                {/* Recommended Products */}
                 {msg.recommendedProducts && msg.recommendedProducts.length > 0 && (
                   <div className="space-y-2 pt-1">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#71717A] px-1">
-                      Món đồ AI đề xuất cho outfit:
-                    </div>
-                    <div className="space-y-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#71717A]">
+                      Outfit đề xuất:
+                    </span>
+                    <div className="space-y-1.5">
                       {msg.recommendedProducts.map((p) => (
                         <div
                           key={p.id}
@@ -792,11 +914,13 @@ export const CatalogPage: React.FC = () => {
                           <img
                             src={p.images[0]}
                             alt={p.name}
-                            className="w-12 h-14 object-cover rounded-lg bg-[#F2F3F5] shrink-0"
+                            className="w-10 h-12 object-cover rounded-lg shrink-0"
                           />
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-xs font-bold text-[#18181B] truncate">{p.name}</h4>
-                            <div className="text-[11px] font-semibold text-[#8B5CF6] mt-0.5">
+                            <div className="text-[11px] font-semibold text-[#18181B] truncate">
+                              {p.name}
+                            </div>
+                            <div className="text-[10px] text-[#8B5CF6] font-bold">
                               {formatPrice(p.price)}
                             </div>
                           </div>
@@ -809,14 +933,14 @@ export const CatalogPage: React.FC = () => {
                             className="p-1.5 text-xs text-[#8B5CF6] hover:bg-[#F3E8FF] rounded-lg transition-colors shrink-0"
                             title="Xem chi tiết"
                           >
-                            <ExternalLink className="w-4 h-4" />
+                            <ExternalLink className="w-3.5 h-3.5" />
                           </Link>
                         </div>
                       ))}
                     </div>
 
-                    {/* Nút Thử outfit này bằng AI theo Section 10 */}
-                    <div className="pt-2">
+                    {/* Nút Thử outfit này bằng AI theo Master Prompt Section 10 */}
+                    <div className="pt-1.5">
                       <Button
                         variant="accent"
                         size="sm"
@@ -825,16 +949,16 @@ export const CatalogPage: React.FC = () => {
                             ['ao-thun', 'hoodie-sweater', 'so-mi-polo', 'ao-khoac'].includes(p.categorySlug)
                           );
                           const bottom = msg.recommendedProducts?.find((p) =>
-                            ['quan-jeans', 'quan-cargo-ong-rong', 'chan-vay-dam'].includes(p.categorySlug)
+                            ['quan-jeans', 'quan-cargo-parachute', 'chan-vay'].includes(p.categorySlug)
                           );
                           const accessory = msg.recommendedProducts?.find((p) => p.categorySlug === 'phu-kien');
                           const params = new URLSearchParams();
                           if (top) params.set('topId', top.id);
                           if (bottom) params.set('bottomId', bottom.id);
                           if (accessory) params.set('accId', accessory.id);
-                          navigate(`/virtual-try-on?${params.toString()}`);
+                          navigate(`/try-on?${params.toString()}`);
                         }}
-                        className="w-full h-9 text-xs font-bold bg-[#8B5CF6] hover:bg-[#7C3AED] text-white flex items-center justify-center gap-1.5 rounded-xl shadow-xs transition-all"
+                        className="w-full h-8 text-xs font-bold bg-[#8B5CF6] hover:bg-[#7C3AED] text-white flex items-center justify-center gap-1.5 rounded-xl shadow-xs transition-all"
                       >
                         <Sparkles className="w-3.5 h-3.5 text-white animate-pulse" />
                         <span>✨ Thử outfit này bằng AI</span>
@@ -850,8 +974,8 @@ export const CatalogPage: React.FC = () => {
         {/* Loading Indicator */}
         {isStylistLoading && (
           <div className="flex items-center gap-2 text-xs text-[#8B5CF6] p-3 rounded-xl bg-[#F3E8FF]/40 border border-[#DDD6FE]">
-            <Loader2 className="w-4 h-4 animate-spin" />
-            <span>AI đang phân tích và tìm outfit chuẩn gu...</span>
+            <Loader2 className="w-4 h-4 animate-spin shrink-0" />
+            <span>AI đang phối outfit chuẩn gu...</span>
           </div>
         )}
       </div>
@@ -862,7 +986,7 @@ export const CatalogPage: React.FC = () => {
           e.preventDefault();
           handleConsultStylist(stylistQuery);
         }}
-        className="pt-3 border-t border-[#E4E4E7] shrink-0 flex items-center gap-1.5"
+        className="pt-2.5 border-t border-[#E4E4E7] shrink-0 flex items-center gap-1.5"
       >
         <input
           type="text"
@@ -870,14 +994,14 @@ export const CatalogPage: React.FC = () => {
           onChange={(e) => setStylistQuery(e.target.value)}
           placeholder={`Hỏi phối ${categoryHeaderData.categoryName}...`}
           disabled={isStylistLoading}
-          className="flex-1 bg-[#F2F3F5] border border-[#E4E4E7] rounded-xl px-3 py-2 text-xs text-[#18181B] placeholder-[#A1A1AA] focus:outline-none focus:border-[#8B5CF6] focus:bg-white transition-colors"
+          className="flex-1 bg-[#F2F3F5] border border-[#E4E4E7] rounded-xl px-3 py-1.5 text-xs text-[#18181B] placeholder-[#A1A1AA] focus:outline-none focus:border-[#8B5CF6] focus:bg-white transition-colors"
         />
         <Button
           type="submit"
           variant="accent"
           size="sm"
           disabled={!stylistQuery.trim() || isStylistLoading}
-          className="h-9 px-3 rounded-xl shrink-0"
+          className="h-8 px-3 rounded-xl shrink-0"
         >
           <Send className="w-3.5 h-3.5" />
         </Button>
@@ -887,11 +1011,11 @@ export const CatalogPage: React.FC = () => {
 
   return (
     <div className="bg-[#FAFAF8] min-h-screen">
-      {/* PHẦN 6: EDITORIAL CENTERED PAGE HEADER (TIÊU ĐỀ DANH MỤC LỚN Ở GIỮA TRANG) */}
-      <div className="border-b border-[#E4E4E7] bg-white py-10 sm:py-14 text-center">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 7.1: EDITORIAL CENTERED PAGE HEADER */}
+      <div className="border-b border-[#E4E4E7] bg-white py-8 sm:py-12 text-center">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb nhỏ căn giữa */}
-          <div className="flex items-center justify-center gap-2 text-[11px] uppercase tracking-wider text-[#71717A] mb-3">
+          <div className="flex items-center justify-center gap-2 text-[11px] uppercase tracking-wider text-[#71717A] mb-2.5">
             <Link to="/" className="hover:text-[#18181B] transition-colors">
               Trang chủ
             </Link>
@@ -901,77 +1025,101 @@ export const CatalogPage: React.FC = () => {
             <span className="text-[#8B5CF6] font-bold">{categoryHeaderData.breadcrumb}</span>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F3E8FF] text-[#7C3AED] text-[10px] font-bold uppercase mb-3 border border-[#DDD6FE]">
+          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#F3E8FF] text-[#7C3AED] text-[10px] font-bold uppercase mb-2.5 border border-[#DDD6FE]">
             <Sparkles className="w-3 h-3 text-[#8B5CF6]" />
-            <span>GEN Z STREETWEAR & ACCESSORIES DROPS</span>
+            <span>GEN Z STREETWEAR & ACCESSORIES</span>
           </div>
 
           {/* Tiêu đề danh mục cực lớn căn giữa */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-[#18181B] uppercase font-sans max-w-4xl mx-auto transition-all duration-300">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#18181B] uppercase font-sans max-w-4xl mx-auto transition-all duration-300">
             {categoryHeaderData.title}
           </h1>
 
           {/* Mô tả ngắn căn giữa */}
-          <p className="text-xs sm:text-sm text-[#71717A] mt-3 max-w-2xl mx-auto text-center leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#71717A] mt-2.5 max-w-2xl mx-auto text-center leading-relaxed">
             {categoryHeaderData.description}
           </p>
+        </div>
+      </div>
 
-          <div className="mt-4 flex items-center justify-center gap-2">
-            <span className="text-xs text-[#18181B] bg-[#F2F3F5] px-4 py-1.5 rounded-full border border-[#E4E4E7] font-semibold">
-              Đang có <strong className="text-[#8B5CF6]">{allFilteredProducts.length}</strong> sản phẩm phù hợp
-            </span>
+      {/* 5.2: QUICK FILTER PILLS BAR CÓ CUỘN NGANG VÀ MŨI TÊN ĐIỀU HƯỚNG */}
+      <div className="border-b border-[#E4E4E7] bg-white/95 sticky top-16 sm:top-20 z-20 backdrop-blur-md shadow-subtle">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+          <div className="relative flex items-center">
+            {/* Scroll Left Button */}
+            {canScrollLeft && (
+              <button
+                type="button"
+                onClick={() => handleScrollPills('left')}
+                className="absolute left-0 z-10 w-7 h-7 rounded-full bg-white shadow-md border border-[#E4E4E7] text-[#18181B] hover:text-[#8B5CF6] hover:border-[#8B5CF6] hidden md:flex items-center justify-center transition-all cursor-pointer -translate-x-2"
+                aria-label="Cuộn sang trái"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+            )}
+
+            {/* Scrollable Pills Container */}
+            <div
+              ref={quickFilterScrollRef}
+              onScroll={checkScrollability}
+              className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 scroll-smooth px-1"
+            >
+              <span className="text-[11px] font-bold uppercase text-[#71717A] shrink-0 mr-1 hidden sm:inline">
+                Lọc nhanh:
+              </span>
+              {QUICK_FILTER_PILLS.map((pill) => {
+                const isActive =
+                  (pill.id === 'all' &&
+                    categoryParam === 'all' &&
+                    seasonParam === 'all' &&
+                    selectedStyles.length === 0 &&
+                    !maxPriceParam) ||
+                  (pill.filter.category && categoryParam === pill.filter.category) ||
+                  (pill.filter.season && seasonParam === pill.filter.season) ||
+                  (pill.filter.gender && genderParam === pill.filter.gender) ||
+                  (pill.filter.style && selectedStyles.includes(pill.filter.style)) ||
+                  (pill.filter.maxPrice && maxPriceParam === Number(pill.filter.maxPrice));
+
+                return (
+                  <button
+                    key={pill.id}
+                    onClick={() => handlePillClick(pill)}
+                    className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all cursor-pointer active:scale-95 ${
+                      isActive
+                        ? 'bg-[#8B5CF6] text-white shadow-subtle ring-1 ring-[#8B5CF6]'
+                        : 'bg-[#F2F3F5] border border-[#E4E4E7] text-[#18181B] hover:border-[#8B5CF6] hover:bg-[#F3E8FF]/40'
+                    }`}
+                  >
+                    {pill.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Scroll Right Button */}
+            {canScrollRight && (
+              <button
+                type="button"
+                onClick={() => handleScrollPills('right')}
+                className="absolute right-0 z-10 w-7 h-7 rounded-full bg-white shadow-md border border-[#E4E4E7] text-[#18181B] hover:text-[#8B5CF6] hover:border-[#8B5CF6] hidden md:flex items-center justify-center transition-all cursor-pointer translate-x-2"
+                aria-label="Cuộn sang phải"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            )}
           </div>
         </div>
       </div>
 
-      {/* QUICK FILTER PILLS BAR */}
-      <div className="border-b border-[#E4E4E7] bg-white/90 sticky top-20 z-20 backdrop-blur-md shadow-subtle">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
-            <span className="text-[11px] font-bold uppercase text-[#71717A] shrink-0 mr-1 hidden sm:inline">
-              Lọc nhanh:
-            </span>
-            {QUICK_FILTER_PILLS.map((pill) => {
-              const isActive =
-                (pill.id === 'all' &&
-                  categoryParam === 'all' &&
-                  genderParam === 'all' &&
-                  seasonParam === 'all' &&
-                  selectedStyles.length === 0 &&
-                  !maxPriceParam) ||
-                (pill.filter.category && categoryParam === pill.filter.category) ||
-                (pill.filter.season && seasonParam === pill.filter.season) ||
-                (pill.filter.gender && genderParam === pill.filter.gender) ||
-                (pill.filter.style && selectedStyles.includes(pill.filter.style)) ||
-                (pill.filter.maxPrice && maxPriceParam === Number(pill.filter.maxPrice));
-
-              return (
-                <button
-                  key={pill.id}
-                  onClick={() => handlePillClick(pill)}
-                  className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all cursor-pointer ${
-                    isActive
-                      ? 'bg-[#8B5CF6] text-white shadow-accent ring-1 ring-[#8B5CF6]'
-                      : 'bg-[#F2F3F5] border border-[#E4E4E7] text-[#18181B] hover:border-[#8B5CF6] hover:bg-[#F3E8FF]/40'
-                  }`}
-                >
-                  {pill.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* PHẦN 7: BỐ CỤC 3 KHU VỰC DESKTOP [BỘ LỌC (3/12) | SẢN PHẨM (6/12) | AI STYLIST (3/12)] */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Toolbar: Mobile trigger + Active chips + Sort */}
+      {/* 3: BỐ CỤC 3 VÙNG / 2 VÙNG LINH HOẠT [BỘ LỌC 240px | CATALOG TỰ CO GIÃN | AI STYLIST 290px] */}
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        {/* Toolbar: Mobile trigger + Active chips + Sort + AI Stylist toggle */}
         <div className="flex flex-wrap items-center justify-between pb-4 border-b border-[#E4E4E7] mb-6 gap-3">
           {/* Mobile buttons */}
           <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={() => setIsMobileFilterOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#18181B] text-white text-xs font-semibold cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#18181B] text-white text-xs font-semibold cursor-pointer active:scale-95 transition-all"
             >
               <SlidersHorizontal className="w-3.5 h-3.5 text-[#DDD6FE]" />
               <span>Bộ lọc {activeFilterCount > 0 && `(${activeFilterCount})`}</span>
@@ -979,33 +1127,54 @@ export const CatalogPage: React.FC = () => {
 
             <button
               onClick={() => setIsMobileAIStylistOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#F3E8FF] text-[#7C3AED] text-xs font-bold border border-[#DDD6FE] cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#F3E8FF] text-[#7C3AED] text-xs font-bold border border-[#DDD6FE] cursor-pointer active:scale-95 transition-all"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
               <span>AI Stylist</span>
             </button>
           </div>
 
-          {/* Desktop filter indicator */}
+          {/* Desktop Filter Summary */}
           <div className="hidden lg:flex items-center text-xs text-[#71717A] gap-2">
             <span className="w-2 h-2 rounded-full bg-[#8B5CF6]" />
-            <span>Layout 3 vùng: Bộ lọc • Danh sách sản phẩm • Tư vấn AI Stylist</span>
+            <span className="font-medium">
+              Hiển thị <strong className="text-[#18181B]">{displayedProducts.length}</strong> / <strong>{allFilteredProducts.length}</strong> sản phẩm phù hợp
+            </span>
           </div>
 
-          {/* Sort Select */}
-          <div className="flex items-center gap-2 ml-auto">
-            <span className="text-xs text-[#71717A] hidden sm:inline font-medium">SẮP XẾP:</span>
-            <select
-              value={sortParam}
-              onChange={(e) => updateParam('sort', e.target.value)}
-              className="text-xs font-semibold bg-white border border-[#E4E4E7] rounded-lg px-3 py-2 text-[#18181B] focus:outline-none focus:border-[#8B5CF6] cursor-pointer"
+          {/* Right Controls: Sort & AI Stylist Panel Toggle on Desktop */}
+          <div className="flex items-center gap-3 ml-auto">
+            {/* Desktop AI Stylist Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setIsStylistCollapsed(!isStylistCollapsed)}
+              className={`hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                !isStylistCollapsed
+                  ? 'bg-[#F3E8FF] text-[#7C3AED] border-[#DDD6FE] hover:bg-[#EDE9FE]'
+                  : 'bg-white text-[#71717A] border-[#E4E4E7] hover:text-[#18181B] hover:border-[#8B5CF6]'
+              }`}
+              title={isStylistCollapsed ? 'Mở rộng AI Stylist bên phải' : 'Thu gọn AI Stylist để xem sản phẩm rộng hơn'}
             >
-              <option value="newest">Mới nhất (Latest Drop)</option>
-              <option value="price-asc">Giá: Thấp → Cao (Sinh viên)</option>
-              <option value="price-desc">Giá: Cao → Thấp</option>
-              <option value="rating-desc">Đánh giá tốt nhất</option>
-              <option value="name-asc">Tên sản phẩm A → Z</option>
-            </select>
+              <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
+              <span>{isStylistCollapsed ? 'Mở AI Stylist' : 'Thu gọn AI'}</span>
+              {isStylistCollapsed ? <Maximize2 className="w-3 h-3 ml-0.5" /> : <Minimize2 className="w-3 h-3 ml-0.5" />}
+            </button>
+
+            {/* Sort Select */}
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs text-[#71717A] hidden sm:inline font-medium">SẮP XẾP:</span>
+              <select
+                value={sortParam}
+                onChange={(e) => updateParam('sort', e.target.value)}
+                className="text-xs font-semibold bg-white border border-[#E4E4E7] rounded-xl px-3 py-2 text-[#18181B] focus:outline-none focus:border-[#8B5CF6] cursor-pointer shadow-2xs"
+              >
+                <option value="newest">Mới nhất (Latest Drop)</option>
+                <option value="price-asc">Giá: Thấp → Cao (Sinh viên)</option>
+                <option value="price-desc">Giá: Cao → Thấp</option>
+                <option value="rating-desc">Đánh giá tốt nhất</option>
+                <option value="name-asc">Tên sản phẩm A → Z</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -1019,7 +1188,7 @@ export const CatalogPage: React.FC = () => {
                 Từ khóa: "{searchParam}"
                 <button
                   onClick={() => updateParam('q', null)}
-                  className="hover:text-[#DC2626] ml-1"
+                  className="hover:text-[#DC2626] ml-1 cursor-pointer"
                   aria-label="Xóa lọc từ khóa"
                 >
                   <X className="w-3 h-3" />
@@ -1032,7 +1201,7 @@ export const CatalogPage: React.FC = () => {
                 {seasonParam === 'he' ? 'Mùa Hè' : seasonParam === 'dong' ? 'Mùa Đông' : 'Xuân - Thu'}
                 <button
                   onClick={() => updateParam('season', null)}
-                  className="hover:text-[#DC2626] ml-1"
+                  className="hover:text-[#DC2626] ml-1 cursor-pointer"
                   aria-label="Xóa lọc mùa"
                 >
                   <X className="w-3 h-3" />
@@ -1045,7 +1214,7 @@ export const CatalogPage: React.FC = () => {
                 {genderParam.toUpperCase()}
                 <button
                   onClick={() => updateParam('gender', null)}
-                  className="hover:text-[#DDD6FE] ml-1"
+                  className="hover:text-[#DDD6FE] ml-1 cursor-pointer"
                   aria-label="Xóa lọc giới tính"
                 >
                   <X className="w-3 h-3" />
@@ -1058,7 +1227,7 @@ export const CatalogPage: React.FC = () => {
                 {GENZ_CATEGORIES.find((c) => c.slug === categoryParam)?.name || categoryParam}
                 <button
                   onClick={() => updateParam('category', null)}
-                  className="hover:text-[#DC2626] ml-1"
+                  className="hover:text-[#DC2626] ml-1 cursor-pointer"
                   aria-label="Xóa lọc danh mục"
                 >
                   <X className="w-3 h-3" />
@@ -1071,7 +1240,7 @@ export const CatalogPage: React.FC = () => {
                 Brand: {brandParam}
                 <button
                   onClick={() => updateParam('brand', null)}
-                  className="hover:text-[#DC2626] ml-1"
+                  className="hover:text-[#DC2626] ml-1 cursor-pointer"
                   aria-label="Xóa lọc thương hiệu"
                 >
                   <X className="w-3 h-3" />
@@ -1087,7 +1256,7 @@ export const CatalogPage: React.FC = () => {
                 {st}
                 <button
                   onClick={() => toggleArrayParam('style', st)}
-                  className="hover:text-[#DC2626] ml-1"
+                  className="hover:text-[#DC2626] ml-1 cursor-pointer"
                   aria-label={`Xóa lọc phong cách ${st}`}
                 >
                   <X className="w-3 h-3" />
@@ -1103,7 +1272,7 @@ export const CatalogPage: React.FC = () => {
                 Size {s}
                 <button
                   onClick={() => toggleArrayParam('size', s)}
-                  className="hover:text-[#DC2626] ml-1"
+                  className="hover:text-[#DC2626] ml-1 cursor-pointer"
                   aria-label={`Xóa lọc size ${s}`}
                 >
                   <X className="w-3 h-3" />
@@ -1120,11 +1289,11 @@ export const CatalogPage: React.FC = () => {
           </div>
         )}
 
-        {/* 3-COLUMN LAYOUT: Bộ lọc (3) | Sản phẩm (6) | AI Stylist (3) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-7 items-start">
-          {/* CỘT TRÁI — BỘ LỌC (20–22%, lg:col-span-3) */}
-          <div className="hidden lg:block lg:col-span-3 bg-white rounded-2xl p-5 border border-[#E4E4E7] shadow-subtle sticky top-28 max-h-[calc(100vh-8.5rem)] overflow-y-auto">
-            <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#E4E4E7]">
+        {/* 3-COLUMN DYNAMIC FLEX CONTAINER */}
+        <div className="flex flex-col lg:flex-row gap-6 xl:gap-8 items-start">
+          {/* CỘT TRÁI — BỘ LỌC (Khoảng 240px, sticky) */}
+          <aside className="hidden lg:block w-[240px] xl:w-[250px] shrink-0 bg-white rounded-2xl p-5 border border-[#E4E4E7] shadow-subtle sticky top-32 max-h-[calc(100vh-9rem)] overflow-y-auto scrollbar-thin">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#E4E4E7]">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#18181B] flex items-center gap-1.5">
                 <Flame className="w-3.5 h-3.5 text-[#8B5CF6]" />
                 <span>BỘ LỌC SẢN PHẨM</span>
@@ -1136,10 +1305,10 @@ export const CatalogPage: React.FC = () => {
               )}
             </div>
             {renderFilterContent()}
-          </div>
+          </aside>
 
-          {/* CỘT GIỮA — DANH SÁCH SẢN PHẨM (~54%, lg:col-span-6) */}
-          <div className="lg:col-span-6">
+          {/* CỘT GIỮA — DANH SÁCH SẢN PHẨM (chiếm toàn bộ phần còn lại) */}
+          <main className="flex-1 min-w-0">
             {allFilteredProducts.length === 0 ? (
               /* Empty State */
               <div className="text-center py-16 px-4 bg-white rounded-2xl border border-[#E4E4E7] space-y-4 shadow-subtle">
@@ -1151,18 +1320,24 @@ export const CatalogPage: React.FC = () => {
                     Không tìm thấy sản phẩm phù hợp
                   </h3>
                   <p className="text-xs text-[#71717A] mt-1 max-w-md mx-auto">
-                    Không có sản phẩm nào khớp với bộ lọc hiện tại. Thử nới rộng mức giá hoặc chọn danh mục khác.
+                    Không có sản phẩm nào khớp với bộ lọc hiện tại. Thử chọn danh mục khác hoặc xóa bộ lọc để xem toàn bộ 130+ sản phẩm.
                   </p>
                 </div>
-                <Button variant="accent" size="sm" onClick={clearAllFilters} className="text-xs font-bold">
+                <Button variant="accent" size="sm" onClick={clearAllFilters} className="text-xs font-bold rounded-xl">
                   <RotateCcw className="w-3.5 h-3.5 mr-1.5" />
                   XÓA BỘ LỌC VÀ XEM TẤT CẢ (130+)
                 </Button>
               </div>
             ) : (
               <>
-                {/* Responsive grid 2-3 cột */}
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-3.5 sm:gap-4">
+                {/* Responsive grid 2-3 cột (khi mở AI) hoặc 3-4 cột (khi thu gọn AI) */}
+                <div
+                  className={`grid gap-3.5 sm:gap-4 transition-all duration-300 ${
+                    isStylistCollapsed
+                      ? 'grid-cols-2 sm:grid-cols-3 xl:grid-cols-4'
+                      : 'grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3'
+                  }`}
+                >
                   {displayedProducts.map((product) => (
                     <div
                       key={product.id}
@@ -1182,7 +1357,13 @@ export const CatalogPage: React.FC = () => {
 
                 {/* Skeleton Cards during Auto-Loading */}
                 {isAutoLoading && (
-                  <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-3.5 sm:gap-4 mt-4">
+                  <div
+                    className={`grid gap-3.5 sm:gap-4 mt-4 ${
+                      isStylistCollapsed
+                        ? 'grid-cols-2 sm:grid-cols-3 xl:grid-cols-4'
+                        : 'grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3'
+                    }`}
+                  >
                     {[1, 2, 3].map((s) => (
                       <div
                         key={s}
@@ -1199,7 +1380,7 @@ export const CatalogPage: React.FC = () => {
                 {/* Sentinel Element for Intersection Observer Auto-Loading */}
                 <div ref={sentinelRef} className="h-4 w-full" />
 
-                {/* PHẦN 10.1: HYBRID PAGINATION & PROGRESS */}
+                {/* 13: HYBRID PAGINATION & PROGRESS */}
                 <div className="mt-8 pt-6 border-t border-[#E4E4E7] flex flex-col items-center gap-4">
                   <div className="w-full max-w-md space-y-2">
                     <div className="flex justify-between text-xs text-[#71717A]">
@@ -1227,7 +1408,7 @@ export const CatalogPage: React.FC = () => {
                         size="lg"
                         onClick={handleManualLoadMore}
                         disabled={isAutoLoading}
-                        className="px-8 py-3 text-xs font-bold tracking-wider uppercase hover:bg-[#F3E8FF] hover:border-[#8B5CF6] hover:text-[#7C3AED]"
+                        className="px-8 py-3 text-xs font-bold tracking-wider uppercase hover:bg-[#F3E8FF] hover:border-[#8B5CF6] hover:text-[#7C3AED] rounded-xl"
                       >
                         {isAutoLoading ? (
                           <>
@@ -1253,12 +1434,14 @@ export const CatalogPage: React.FC = () => {
                 </div>
               </>
             )}
-          </div>
+          </main>
 
-          {/* CỘT PHẢI — AI STYLIST (22–24%, lg:col-span-3) */}
-          <div className="hidden lg:block lg:col-span-3 sticky top-28">
-            {renderAIStylistPanel()}
-          </div>
+          {/* CỘT PHẢI — AI STYLIST (Khoảng 280–300px, sticky, có thể thu gọn) */}
+          {!isStylistCollapsed && (
+            <aside className="hidden lg:block w-[280px] xl:w-[300px] shrink-0 sticky top-32">
+              {renderAIStylistPanel()}
+            </aside>
+          )}
         </div>
       </div>
 
@@ -1266,7 +1449,7 @@ export const CatalogPage: React.FC = () => {
       <button
         type="button"
         onClick={() => setIsMobileAIStylistOpen(true)}
-        className="lg:hidden fixed bottom-6 right-6 z-30 flex items-center gap-2 px-4 py-3 bg-[#18181B] text-white rounded-full shadow-modal hover:bg-[#8B5CF6] transition-all cursor-pointer font-bold text-xs"
+        className="lg:hidden fixed bottom-6 right-6 z-30 flex items-center gap-2 px-4 py-3 bg-[#18181B] text-white rounded-full shadow-modal hover:bg-[#8B5CF6] active:scale-95 transition-all cursor-pointer font-bold text-xs"
         aria-label="Mở trợ lý AI Stylist"
       >
         <Sparkles className="w-4 h-4 text-[#DDD6FE]" />
@@ -1288,6 +1471,7 @@ export const CatalogPage: React.FC = () => {
                 clearAllFilters();
                 setIsMobileFilterOpen(false);
               }}
+              className="rounded-xl"
             >
               XÓA LỌC
             </Button>
@@ -1295,6 +1479,7 @@ export const CatalogPage: React.FC = () => {
               variant="accent"
               size="sm"
               onClick={() => setIsMobileFilterOpen(false)}
+              className="rounded-xl"
             >
               XEM KẾT QUẢ ({allFilteredProducts.length})
             </Button>

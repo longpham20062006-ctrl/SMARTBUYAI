@@ -1095,7 +1095,7 @@ const EVEN_MORE_GENZ_ITEMS: Product[] = [
     style: 'Sporty',
     occasion: ['Tập gym', 'Hằng ngày', 'Đi biển'],
     careInstructions: ['Giặt máy bình thường'],
-    images: ['https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80', 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80'],
+    images: ['https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&auto=format&fit=crop&q=80', 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80'],
     colors: [C_BLACK, C_WHITE, C_GRAY],
     sizes: CLOTHING_SIZES,
     variants: createVariants('m-44', [C_BLACK, C_WHITE, C_GRAY], CLOTHING_SIZES, 95000, 139000),
