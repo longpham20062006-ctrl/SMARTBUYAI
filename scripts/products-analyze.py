@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import re
 import colorsys
 import statistics
 from PIL import Image
@@ -11,13 +12,43 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 MANIFEST_PATH = os.path.join(ROOT_DIR, 'public', 'images', 'san-pham', 'manifest.json')
 REPORT_PATH = os.path.join(ROOT_DIR, 'src', 'mocks', 'duplicateReport.json')
 
-def extract_fabric_color(image_path):
+# Bảng từ khóa màu sắc trong tên file (ưu tiên 1)
+FILENAME_COLOR_MAP = [
+    (r'(^|[-_])(hong|pink)([-_]|\.|$)', {"colorName": "Hồng Pastel", "colorHex": "#F472B6", "slug": "hong-pastel"}),
+    (r'(^|[-_])(xanh-navy|navy)([-_]|\.|$)', {"colorName": "Xanh Navy", "colorHex": "#1E3A8A", "slug": "xanh-navy"}),
+    (r'(^|[-_])(xanh-duong|xanh-bien|blue)([-_]|\.|$)', {"colorName": "Xanh Dương", "colorHex": "#2563EB", "slug": "xanh-duong"}),
+    (r'(^|[-_])(xanh-reu|reu|olive|green)([-_]|\.|$)', {"colorName": "Xanh Rêu", "colorHex": "#365314", "slug": "xanh-reu"}),
+    (r'(^|[-_])(den|black)([-_]|\.|$)', {"colorName": "Đen", "colorHex": "#18181B", "slug": "den"}),
+    (r'(^|[-_])(trang|white)([-_]|\.|$)', {"colorName": "Trắng", "colorHex": "#F9FAFB", "slug": "trang"}),
+    (r'(^|[-_])(kem|be|beige|cream)([-_]|\.|$)', {"colorName": "Kem Be", "colorHex": "#E8DDC8", "slug": "kem"}),
+    (r'(^|[-_])(xam|ghi|grey|gray)([-_]|\.|$)', {"colorName": "Xám Khói", "colorHex": "#6B7280", "slug": "xam"}),
+    (r'(^|[-_])(nau|brown|coffee)([-_]|\.|$)', {"colorName": "Nâu Cà Phê", "colorHex": "#78350F", "slug": "nau"}),
+    (r'(^|[-_])(do|red|maroon)([-_]|\.|$)', {"colorName": "Đỏ Đô", "colorHex": "#DC2626", "slug": "do"}),
+    (r'(^|[-_])(vang|yellow)([-_]|\.|$)', {"colorName": "Vàng Chanh", "colorHex": "#EAB308", "slug": "vang"}),
+    (r'(^|[-_])(tim|purple)([-_]|\.|$)', {"colorName": "Tím Pastel", "colorHex": "#A855F7", "slug": "tim"})
+]
+
+def extract_fabric_color(image_path, file_name=""):
     """
-    Trích xuất màu vải chính xác từ ảnh:
-    - Cắt vùng trung tâm (25% - 75% chiều rộng và chiều cao) để loại trừ nền, móc treo, viền ảnh.
-    - Phân tích màu trong không gian HSV và RGB.
-    - Ánh xạ sang tên màu tiếng Việt và mã HEX chuẩn thời trang.
+    Trích xuất màu vải trung tâm chính xác:
+    - Bước 1: Ưu tiên tên file nếu có quy ước màu (ví dụ hong.jpg, den.jpg).
+    - Bước 2: Phân tích vùng vải trung tâm (loại bỏ phông nền, viền, người mẫu).
+    - Bước 3: Ánh xạ HSV/RGB sang màu thời trang chuẩn.
     """
+    # 1. Kiểm tra tên file trước
+    lower_name = file_name.lower()
+    for pattern, color_info in FILENAME_COLOR_MAP:
+        if re.search(pattern, lower_name):
+            return {
+                "colorName": color_info["colorName"],
+                "colorHex": color_info["colorHex"],
+                "slug": color_info["slug"],
+                "confidence": 0.98,
+                "needsColorReview": False,
+                "source": "filename"
+            }
+
+    # 2. Phân tích thị giác bằng Pillow
     try:
         with Image.open(image_path) as raw:
             im = raw.convert('RGB')
@@ -25,10 +56,11 @@ def extract_fabric_color(image_path):
             crop_box = (int(w * 0.25), int(h * 0.25), int(w * 0.75), int(h * 0.75))
             cropped = im.crop(crop_box)
             cropped.thumbnail((40, 40))
-            pixels = list(cropped.getdata())
-
+            
+            # Sử dụng getdata an toàn
+            pixels = [p[:3] for p in cropped.getdata()]
             if not pixels:
-                return {"colorName": "Đen", "colorHex": "#18181B", "slug": "den", "confidence": 0.5, "needsColorReview": True}
+                return {"colorName": "Đen", "colorHex": "#18181B", "slug": "den", "confidence": 0.5, "needsColorReview": True, "source": "fallback"}
 
             r_vals = [p[0] for p in pixels]
             g_vals = [p[1] for p in pixels]
@@ -42,34 +74,37 @@ def extract_fabric_color(image_path):
 
             # Phân loại màu vải chủ đạo
             if v_val < 0.28:
-                return {"colorName": "Đen", "colorHex": "#18181B", "slug": "den", "confidence": 0.95, "needsColorReview": False}
+                return {"colorName": "Đen", "colorHex": "#18181B", "slug": "den", "confidence": 0.95, "needsColorReview": False, "source": "cv"}
             elif v_val > 0.80 and s_val < 0.20:
-                return {"colorName": "Trắng", "colorHex": "#F9FAFB", "slug": "trang", "confidence": 0.95, "needsColorReview": False}
+                return {"colorName": "Trắng", "colorHex": "#F9FAFB", "slug": "trang", "confidence": 0.95, "needsColorReview": False, "source": "cv"}
             elif s_val < 0.18:
-                return {"colorName": "Xám Khói", "colorHex": "#6B7280", "slug": "xam", "confidence": 0.90, "needsColorReview": False}
+                return {"colorName": "Xám Khói", "colorHex": "#6B7280", "slug": "xam", "confidence": 0.90, "needsColorReview": False, "source": "cv"}
             elif 0.06 <= h_val <= 0.15 and v_val > 0.65 and s_val < 0.35:
-                return {"colorName": "Kem Be", "colorHex": "#E8DDC8", "slug": "kem", "confidence": 0.88, "needsColorReview": False}
+                return {"colorName": "Kem Be", "colorHex": "#E8DDC8", "slug": "kem", "confidence": 0.88, "needsColorReview": False, "source": "cv"}
             elif 0.05 <= h_val <= 0.12 and v_val <= 0.65:
-                return {"colorName": "Nâu Cà Phê", "colorHex": "#78350F", "slug": "nau", "confidence": 0.90, "needsColorReview": False}
+                return {"colorName": "Nâu Cà Phê", "colorHex": "#78350F", "slug": "nau", "confidence": 0.90, "needsColorReview": False, "source": "cv"}
             elif 0.52 <= h_val <= 0.72:
                 if v_val < 0.38:
-                    return {"colorName": "Xanh Navy", "colorHex": "#1E3A8A", "slug": "xanh-navy", "confidence": 0.92, "needsColorReview": False}
+                    return {"colorName": "Xanh Navy", "colorHex": "#1E3A8A", "slug": "xanh-navy", "confidence": 0.92, "needsColorReview": False, "source": "cv"}
                 else:
-                    return {"colorName": "Xanh Washed", "colorHex": "#3B82F6", "slug": "xanh-duong", "confidence": 0.90, "needsColorReview": False}
+                    return {"colorName": "Xanh Dương", "colorHex": "#2563EB", "slug": "xanh-duong", "confidence": 0.90, "needsColorReview": False, "source": "cv"}
             elif 0.22 <= h_val <= 0.48:
-                return {"colorName": "Xanh Rêu", "colorHex": "#365314", "slug": "xanh-reu", "confidence": 0.88, "needsColorReview": False}
+                return {"colorName": "Xanh Rêu", "colorHex": "#365314", "slug": "xanh-reu", "confidence": 0.88, "needsColorReview": False, "source": "cv"}
             elif (0.80 <= h_val <= 0.99) and v_val > 0.65 and s_val > 0.15:
-                return {"colorName": "Hồng Pastel", "colorHex": "#F472B6", "slug": "hong-pastel", "confidence": 0.95, "needsColorReview": False}
+                return {"colorName": "Hồng Pastel", "colorHex": "#F472B6", "slug": "hong-pastel", "confidence": 0.95, "needsColorReview": False, "source": "cv"}
             elif (h_val >= 0.95 or h_val <= 0.05) and s_val > 0.35:
-                return {"colorName": "Đỏ Đô", "colorHex": "#DC2626", "slug": "do", "confidence": 0.85, "needsColorReview": False}
+                return {"colorName": "Đỏ Đô", "colorHex": "#DC2626", "slug": "do", "confidence": 0.88, "needsColorReview": False, "source": "cv"}
             else:
                 hex_rep = '#{:02x}{:02x}{:02x}'.format(int(r_avg), int(g_avg), int(b_avg))
-                return {"colorName": "Màu Phối Độc Bản", "colorHex": hex_rep, "slug": "phoi-mau", "confidence": 0.75, "needsColorReview": True}
+                return {"colorName": "Màu Phối Độc Bản", "colorHex": hex_rep, "slug": "phoi-mau", "confidence": 0.75, "needsColorReview": True, "source": "cv"}
     except Exception as e:
-        return {"colorName": "Đen", "colorHex": "#18181B", "slug": "den", "confidence": 0.5, "needsColorReview": True}
+        return {"colorName": "Đen", "colorHex": "#18181B", "slug": "den", "confidence": 0.5, "needsColorReview": True, "source": "error"}
+
+def natural_sort_key(s):
+    return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
 
 def analyze():
-    print("=== [BƯỚC 2] PHÂN TÍCH THỊ GIÁC: NHẬN DIỆN MẪU ÁO & MÀU VẢI THẬT ===")
+    print("=== [BƯỚC 2] PHÂN TÍCH THỊ GIÁC: MỘT FOLDER MẪU = MỘT SẢN PHẨM ===")
     if not os.path.exists(MANIFEST_PATH):
         print(f"LỖI: Chưa có manifest tại {MANIFEST_PATH}. Vui lòng chạy npm run products:scan trước.")
         sys.exit(1)
@@ -77,264 +112,205 @@ def analyze():
     with open(MANIFEST_PATH, 'r', encoding='utf-8') as f:
         manifest = json.load(f)
 
-    images = manifest.get('images', [])
-    print(f"Tổng số ảnh cần phân tích: {len(images)}")
-
-    # Nhóm ảnh theo thư mục danh mục
-    folder_groups = {}
-    for img in images:
-        d = img['dirName']
-        if d not in folder_groups:
-            folder_groups[d] = []
-        folder_groups[d].append(img)
-
-    confirmed_groups = []
-    duplicate_candidates = []
-    unique_products_map = {}
+    model_folders = manifest.get('modelFolders', [])
+    print(f"Tổng số thư mục mẫu thiết kế: {len(model_folders)}")
 
     # Cấu hình danh mục và tag mùa chuẩn xác
     CAT_METAS = {
-        'quan-ao-nam/ao/ao-polo': {
-            'prefix': 'POLO',
-            'categorySlug': 'ao-polo',
-            'seasons': ['he', 'xuan-thu'],
-            'basePrice': 219000,
-            'defaultName': 'Áo Polo Nam Cổ Bẻ Cao Cấp',
-            'material': '100% Pique Cotton dệt mắt chim thoáng khí, cổ dệt bo hai kim',
-            'fit': 'Regular Boxy Fit'
-        },
-        'quan-ao-nam/ao/ao-thun': {
+        'ao-thun': {
             'prefix': 'TEE',
-            'categorySlug': 'ao-thun',
             'seasons': ['he', 'xuan-thu'],
             'basePrice': 179000,
             'defaultName': 'Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z',
             'material': '100% Cotton Compact 250gsm dày dặn, thấm hút 2 chiều',
             'fit': 'Oversized Streetwear'
         },
-        'quan-ao-nam/ao/ao-thun-dai-tay': {
-            'prefix': 'LONGSLEEVE',
-            'categorySlug': 'ao-thun',
-            'seasons': ['xuan-thu', 'dong'],
-            'basePrice': 199000,
-            'defaultName': 'Áo Thun Dài Tay Nam Thu Đông Phom Rộng',
-            'material': 'Vải Cotton dệt tổ ong Waffle giữ nhiệt thoáng khí',
-            'fit': 'Relaxed Fit'
+        'ao-polo': {
+            'prefix': 'POLO',
+            'seasons': ['he', 'xuan-thu'],
+            'basePrice': 219000,
+            'defaultName': 'Áo Polo Nam Cổ Bẻ Cao Cấp',
+            'material': '100% Pique Cotton dệt mắt chim thoáng khí, cổ dệt bo hai kim',
+            'fit': 'Regular Boxy Fit'
         },
-        'quan-ao-nam/ao/ao-so-mi': {
+        'so-mi-polo': {
             'prefix': 'SHIRT',
-            'categorySlug': 'so-mi-polo',
             'seasons': ['he', 'xuan-thu', 'dong'],
             'basePrice': 239000,
             'defaultName': 'Áo Sơ Mi Nam Tay Dài Phom Rộng Hàn Quốc',
             'material': 'Lụa Cotton chống nhăn pha sợi đũi cao cấp',
             'fit': 'Relaxed Drop-shoulder'
         },
-        'quan-ao-nam/ao/ao-hoodie': {
+        'hoodie-sweater': {
             'prefix': 'HOODIE',
-            'categorySlug': 'hoodie-sweater',
             'seasons': ['dong', 'xuan-thu'],
             'basePrice': 329000,
-            'defaultName': 'Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn',
-            'material': 'Nỉ bông Cotton 380gsm lót lông tuyết mềm mại',
+            'defaultName': 'Áo Hoodie / Len Dày Dặn Mùa Đông',
+            'material': 'Nỉ bông Cotton 380gsm hoặc sợi len lông cừu giữ nhiệt cao cấp',
             'fit': 'Oversized Boxy'
         },
-        'quan-ao-nam/ao/ao-len': {
-            'prefix': 'SWEATER',
-            'categorySlug': 'hoodie-sweater',
-            'seasons': ['dong'],
-            'basePrice': 289000,
-            'defaultName': 'Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông',
-            'material': 'Sợi len lông cừu pha Acrylic mềm mại giữ ấm vượt trội',
-            'fit': 'Relaxed Aesthetic'
+        'ao-khoac': {
+            'prefix': 'JACKET',
+            'seasons': ['dong', 'xuan-thu'],
+            'basePrice': 389000,
+            'defaultName': 'Áo Khoác Phong Cách Streetwear',
+            'material': 'Vải gió dù 2 lớp chống nước cản gió tốt',
+            'fit': 'Relaxed Bomber'
+        },
+        'phu-kien': {
+            'prefix': 'ACC',
+            'seasons': ['he', 'xuan-thu', 'dong'],
+            'basePrice': 89000,
+            'defaultName': 'Phụ Kiện Thời Trang Gen Z',
+            'material': 'Hợp kim titan mạ bạc 925 chống xỉn',
+            'fit': 'Freesize'
         }
     }
 
-    product_counter = 1
+    # Sắp xếp các thư mục mẫu theo thứ tự tự nhiên (ao_thun_1, ao_thun_2, ...)
+    sorted_folders = sorted(model_folders, key=lambda f: natural_sort_key(f['folderKey']))
 
-    for folder_key, files in folder_groups.items():
-        meta = CAT_METAS.get(folder_key)
-        if not meta:
-            continue
+    confirmed_groups = []
+    duplicate_candidates = []
+    category_counters = {}
 
-        prefix = meta['prefix']
-        cat_slug = meta['categorySlug']
+    for folder_data in sorted_folders:
+        folder_key = folder_data['folderKey']
+        model_name = folder_data['modelFolder']
+        cat_slug = folder_data['categorySlug']
+        gender = folder_data['gender']
+        prefix = folder_data.get('prefix', 'PROD')
+        images = folder_data.get('images', [])
+
+        meta = CAT_METAS.get(cat_slug, CAT_METAS['ao-thun'])
         seasons = meta['seasons']
         base_price = meta['basePrice']
 
-        # Phân tích màu sắc thực tế cho từng file trong thư mục
-        analyzed_files = []
-        for f in files:
-            color_res = extract_fabric_color(f['fullPath'])
-            f_copy = dict(f)
-            f_copy['detectedColor'] = color_res['colorName']
-            f_copy['detectedHex'] = color_res['colorHex']
-            f_copy['colorSlug'] = color_res['slug']
-            f_copy['confidence'] = color_res['confidence']
-            f_copy['needsColorReview'] = color_res['needsColorReview']
-            analyzed_files.append(f_copy)
+        # Đếm số thứ tự model theo prefix
+        idx = category_counters.get(prefix, 0) + 1
+        category_counters[prefix] = idx
+        prod_id = f"{prefix}-{str(idx).zfill(3)}"
 
-        # Gom nhóm theo thiết kế mẫu chuẩn
-        batches = []
-        if folder_key == 'quan-ao-nam/ao/ao-thun':
-            cluster_indices = [
-                # Model 1: Áo thun NICE typography (tất cả màu Hồng, Xanh dương, Kem, Trắng, Đen, Xám, Nâu + các góc ảnh re-upload/gallery)
-                [0, 1, 2, 3, 4, 5, 47, 48, 49, 50, 51, 52, 53, 54, 55],
-                [6, 7, 9, 10],
-                [8, 11, 12],
-                [13, 15, 17],
-                [14, 16, 18],
-                [19, 20, 21],
-                [22, 23],
-                [24, 25],
-                [26, 27, 29, 32],
-                [28, 30, 31, 33, 34],
-                [35, 36, 37, 38, 39],
-                [40, 41, 42, 44],
-                [43, 45, 46]
-            ]
-            batches = [[analyzed_files[idx] for idx in cl] for cl in cluster_indices]
+        # Tên sản phẩm đặc biệt cho ao_thun_1
+        if model_name == 'ao_thun_1':
+            prod_name = "Áo Thun NICE Typography Unisex Form Rộng"
+        elif 'defaultName' in meta:
+            prod_name = f"{meta['defaultName']} #{idx}"
         else:
-            visited = set()
-            for i in range(len(analyzed_files)):
-                if i in visited:
-                    continue
-                batch = [analyzed_files[i]]
-                visited.add(i)
-                h1 = int(analyzed_files[i]['dhash'], 16)
-                for j in range(i + 1, min(len(analyzed_files), i + 6)):
-                    if j not in visited:
-                        h2 = int(analyzed_files[j]['dhash'], 16)
-                        dist = bin(h1 ^ h2).count('1')
-                        if dist <= 12:
-                            batch.append(analyzed_files[j])
-                            visited.add(j)
-                batches.append(batch)
+            prod_name = f"Thiết kế {model_name.replace('_', ' ').title()}"
 
-        for model_idx, batch in enumerate(batches, start=1):
-            prod_id = f"{prefix}-{str(model_idx).zfill(3)}"
-            prod_name = f"{meta['defaultName']} Model #{model_idx}"
+        # Phân tích màu cho từng file trong folder mẫu
+        color_variants_dict = {}
+        for img_item in images:
+            color_res = extract_fabric_color(img_item['fullPath'], img_item['fileName'])
+            c_slug = color_res['slug']
+            c_name = color_res['colorName']
+            c_hex = color_res['colorHex']
 
-            # Phân tách theo màu (Case A và Case C)
-            color_variants_dict = {}
-            for img_item in batch:
-                c_slug = img_item['colorSlug']
-                c_name = img_item['detectedColor']
-                c_hex = img_item['detectedHex']
+            if c_slug not in color_variants_dict:
+                color_variants_dict[c_slug] = {
+                    "id": f"{prod_id}-{c_slug.upper()}",
+                    "colorName": c_name,
+                    "colorHex": c_hex,
+                    "slug": c_slug,
+                    "images": [img_item['webPath']],
+                    "isVerified": True
+                }
+            else:
+                # Case C: Cùng một mẫu, cùng màu nhưng nhiều góc ảnh -> đưa vào gallery images!
+                color_variants_dict[c_slug]["images"].append(img_item['webPath'])
 
-                if c_slug not in color_variants_dict:
-                    color_variants_dict[c_slug] = {
-                        "id": f"{prod_id}-{c_slug.upper()}",
-                        "colorName": c_name,
-                        "colorHex": c_hex,
-                        "slug": c_slug,
-                        "images": [img_item['webPath']],
-                        "isVerified": True
-                    }
-                else:
-                    # Case C: Cùng mẫu, cùng màu nhưng khác góc -> đưa vào gallery images của màu đó!
-                    color_variants_dict[c_slug]["images"].append(img_item['webPath'])
+        color_variants_list = list(color_variants_dict.values())
+        if not color_variants_list:
+            continue
 
-            color_variants_list = list(color_variants_dict.values())
-            
-            # Ảnh đại diện chính là ảnh đầu tiên của màu thứ nhất
-            primary_image = color_variants_list[0]["images"][0]
-            all_product_images = []
-            for cv in color_variants_list:
-                all_product_images.extend(cv["images"])
+        primary_image = color_variants_list[0]["images"][0]
+        all_product_images = []
+        for cv in color_variants_list:
+            all_product_images.extend(cv["images"])
 
-            # Tạo SKU Variants cho mỗi màu x kích cỡ (S, M, L, XL, XXL)
-            sizes = ['S', 'M', 'L', 'XL', 'XXL']
-            sku_variants = []
-            for cv in color_variants_list:
-                for s in sizes:
-                    sku_variants.append({
-                        "sku": f"{prod_id}-{cv['slug'].upper()}-{s}",
-                        "colorVariantId": cv["id"],
-                        "color": {
-                            "id": cv["slug"],
-                            "name": cv["colorName"],
-                            "hex": cv["colorHex"],
-                            "slug": cv["slug"],
-                            "image": cv["images"][0],
-                            "images": cv["images"]
-                        },
-                        "size": s,
-                        "price": base_price,
-                        "originalPrice": base_price + 60000,
-                        "stock": 20,
-                        "image": cv["images"][0],
-                        "isVerified": True
-                    })
-
-            product_record = {
-                "id": prod_id,
-                "name": prod_name,
-                "categorySlug": cat_slug,
-                "gender": "nam",
-                "seasons": seasons,
-                "basePrice": base_price,
-                "primaryImage": primary_image,
-                "allImages": all_product_images,
-                "colorVariants": color_variants_list,
-                "skuVariants": sku_variants,
-                "totalColors": len(color_variants_list),
-                "totalImages": len(all_product_images)
-            }
-
-            confirmed_groups.append({
-                "groupId": f"GRP-{prod_id}",
-                "parentProductId": prod_id,
-                "productName": prod_name,
-                "category": cat_slug,
-                "seasons": seasons,
-                "mergedColors": [
-                    {
-                        "color": cv["colorName"],
-                        "colorId": cv["slug"],
+        # SKU Variants (Màu x Size S, M, L, XL, XXL)
+        sizes = ['S', 'M', 'L', 'XL', 'XXL']
+        sku_variants = []
+        for cv in color_variants_list:
+            for s in sizes:
+                sku_variants.append({
+                    "sku": f"{prod_id}-{cv['slug'].upper()}-{s}",
+                    "colorVariantId": cv["id"],
+                    "color": {
+                        "id": cv["slug"],
+                        "name": cv["colorName"],
                         "hex": cv["colorHex"],
+                        "slug": cv["slug"],
                         "image": cv["images"][0],
-                        "galleryCount": len(cv["images"])
-                    }
-                    for cv in color_variants_list
-                ],
-                "totalVariants": len(sku_variants),
-                "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+                        "images": cv["images"]
+                    },
+                    "size": s,
+                    "price": base_price,
+                    "originalPrice": base_price + 60000,
+                    "stock": 25,
+                    "image": cv["images"][0],
+                    "isVerified": True
+                })
+
+        group_item = {
+            "groupId": f"GRP-{prod_id}",
+            "parentProductId": prod_id,
+            "folderKey": folder_key,
+            "modelFolder": model_name,
+            "productName": prod_name,
+            "category": cat_slug,
+            "gender": gender,
+            "seasons": seasons,
+            "primaryImage": primary_image,
+            "allImages": all_product_images,
+            "mergedColors": [
+                {
+                    "color": cv["colorName"],
+                    "colorId": cv["slug"],
+                    "hex": cv["colorHex"],
+                    "image": cv["images"][0],
+                    "galleryCount": len(cv["images"]),
+                    "gallery": cv["images"]
+                }
+                for cv in color_variants_list
+            ],
+            "totalColors": len(color_variants_list),
+            "totalImages": len(all_product_images),
+            "totalVariants": len(sku_variants),
+            "reason": f"Mỗi folder mẫu = 1 sản phẩm ({folder_key}): {len(color_variants_list)} màu, {len(all_product_images)} ảnh"
+        }
+
+        confirmed_groups.append(group_item)
+
+    # Báo cáo các folder cần admin kiểm tra (nếu có ảnh không rõ màu)
+    for g in confirmed_groups:
+        if any(c['colorId'] == 'phoi-mau' for c in g['mergedColors']):
+            duplicate_candidates.append({
+                "folder": g['folderKey'],
+                "productId": g['parentProductId'],
+                "productName": g['productName'],
+                "status": "Cần xác nhận màu phối độc bản",
+                "unmergedFilesCount": 1,
+                "sampleFiles": [g['primaryImage']]
             })
 
-            unique_products_map[prod_id] = product_record
-            model_idx += 1
-
-    # Tạo danh sách các ứng viên còn cần review (Case E)
-    duplicate_candidates = [
-        {
-            "folder": "quan-ao-nam/ao/ao-polo",
-            "unmergedFilesCount": 2,
-            "sampleFiles": [
-                "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367839_348043404565674403_5540743654312280467_4e37ef0701dc6dde95d5f8b9cd3c61e6.jpg",
-                "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367843_348043404565674403_5540743654312280467_ed03d4f2eceb7f10c91c304c1fe2d46d.jpg"
-            ],
-            "status": "Cần xác nhận gộp sản phẩm bổ sung"
-        },
-        {
-            "folder": "quan-ao-nam/ao/ao-len",
-            "unmergedFilesCount": 3,
-            "sampleFiles": [
-                "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824693_348043404565674403_5540743654312280467_3d0605dcc61680030b09b79a9f2deff3.jpg"
-            ],
-            "status": "Cần xác nhận gộp sản phẩm bổ sung"
-        }
-    ]
+    print(f"✓ Phân tích hoàn tất: Tạo thành công {len(confirmed_groups)} sản phẩm từ {len(sorted_folders)} folder mẫu.")
+    print(f"✓ Số mẫu có nhiều màu sắc: {sum(1 for g in confirmed_groups if g['totalColors'] > 1)}")
+    print(f"✓ Số mẫu có thư viện ảnh gallery (nhiều góc): {sum(1 for g in confirmed_groups if g['totalImages'] > g['totalColors'])}")
 
     report = {
-        "generatedAt": "2026-10-23T16:30:00Z",
-        "title": "SMARTBUY AI — Báo Cáo Phân Tích Mẫu Áo & Nhóm Biến Thể Màu Sắc V2",
-        "engine": "Product Variants Engine V2 (Computer Vision & Fabric Region Clustering)",
+        "generatedAt": "2026-10-24T00:25:00Z",
+        "title": "SMARTBUY AI — Báo Cáo Phân Tích Mẫu Sản Phẩm Theo Folder Thực Tế V3",
+        "engine": "Folder-Based Product Variants Engine V3 (1 Folder = 1 Product)",
         "summary": {
-            "totalScannedImages": len(images),
+            "totalModelFolders": len(sorted_folders),
+            "totalConfirmedProducts": len(confirmed_groups),
             "totalMergedProducts": len(confirmed_groups),
             "confirmedMergedGroupsCount": len(confirmed_groups),
-            "multiColorProductsCount": sum(1 for g in confirmed_groups if len(g['mergedColors']) > 1),
+            "totalScannedImages": len(manifest.get('images', [])),
+            "multiColorProductsCount": sum(1 for g in confirmed_groups if g['totalColors'] > 1),
+            "multiAngleGalleryProductsCount": sum(1 for g in confirmed_groups if g['totalImages'] > g['totalColors']),
             "pendingReviewCount": len(duplicate_candidates)
         },
         "confirmedMergedGroups": confirmed_groups,
@@ -344,10 +320,7 @@ def analyze():
     with open(REPORT_PATH, 'w', encoding='utf-8') as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
 
-    print(f"✓ Phân tích hoàn tất:")
-    print(f"  - Tổng số mẫu thiết kế xác nhận: {len(confirmed_groups)}")
-    print(f"  - Số mẫu có từ 2 màu trở lên: {sum(1 for g in confirmed_groups if len(g['mergedColors']) > 1)}")
-    print(f"  - Báo cáo đã lưu vào: {REPORT_PATH}")
+    print(f"✓ Báo cáo đã lưu vào: {REPORT_PATH}")
     return report
 
 if __name__ == '__main__':

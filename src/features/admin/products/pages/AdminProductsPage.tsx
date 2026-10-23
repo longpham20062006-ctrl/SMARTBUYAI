@@ -35,7 +35,7 @@ export const AdminProductsPage: React.FC = () => {
   const [productToDelete, setProductToDelete] = useState<{ id: string; name: string } | null>(null);
   const [showDuplicateModal, setShowDuplicateModal] = useState(false);
   const [activeReportTab, setActiveReportTab] = useState<'confirmed' | 'pending'>('confirmed');
-  const [pendingCandidates, setPendingCandidates] = useState(duplicateReportData.duplicateCandidates || []);
+  const [pendingCandidates, setPendingCandidates] = useState<any[]>(duplicateReportData.duplicateCandidates || []);
 
   const filtered = products.filter((p) => {
     const matchSearch =
@@ -488,7 +488,7 @@ export const AdminProductsPage: React.FC = () => {
                             Phát hiện ảnh bổ sung chưa gán vào mẫu chính. Bạn muốn gộp vào mẫu hay tạo sản phẩm riêng?
                           </p>
                           <div className="flex items-center gap-2 mt-2">
-                            {c.sampleFiles.map((img, i) => (
+                            {c.sampleFiles && c.sampleFiles.map((img: string, i: number) => (
                               <img
                                 key={i}
                                 src={img}

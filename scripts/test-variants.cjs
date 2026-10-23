@@ -107,7 +107,7 @@ runTest(7, "Đổi màu liên tục -> Ảnh cuối tương ứng đúng ảnh m
 // TEST 8: Reload website -> Không tạo lại sản phẩm trùng, không mất mapping
 runTest(8, "Tính bền vững và Idempotency: Reload không sinh sản phẩm trùng", () => {
   const repoTs = fs.readFileSync(path.resolve(__dirname, '../src/mocks/repository.ts'), 'utf8');
-  assert(repoTs.includes("SCHEMA_VERSION = 'v4.0-variants-engine-v2'"), "Schema version được nâng cấp chuẩn");
+  assert(repoTs.includes("SCHEMA_VERSION = 'v5.0-folder-models-engine'"), "Schema version được nâng cấp chuẩn");
 });
 
 // TEST 9: Chạy script import nhiều lần -> Tổng số Product ID không tăng

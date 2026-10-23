@@ -116,6 +116,11 @@ export interface Product {
   reviewCount: number;
   soldCount?: string | number; // Số lượng đã bán kiểu Shopee / TikTok Shop
   discountPercent?: number;
+  folderKey?: string;
+  modelFolder?: string;
+  defaultColorId?: string;
+  detailDescription?: string;
+  status?: 'active' | 'draft' | 'archived';
   needsReview?: boolean;
   duplicateGroup?: string;
   mergeStatus?: 'pending' | 'merged' | 'rejected';

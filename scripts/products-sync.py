@@ -13,7 +13,6 @@ REPO_TS_PATH = os.path.join(ROOT_DIR, 'src', 'mocks', 'repository.ts')
 
 def slugify(text):
     text = text.lower()
-    # Vietnamese conversion
     replacements = {
         'à': 'a', 'á': 'a', 'ạ': 'a', 'ả': 'a', 'ã': 'a', 'â': 'a', 'ầ': 'a', 'ấ': 'a', 'ậ': 'a', 'ẩ': 'a', 'ẫ': 'a',
         'ă': 'a', 'ằ': 'a', 'ắ': 'a', 'ặ': 'a', 'ẳ': 'a', 'ẵ': 'a',
@@ -30,8 +29,10 @@ def slugify(text):
     text = re.sub(r'[^a-z0-9]+', '-', text).strip('-')
     return text
 
-def sync():
+def sync(dry_run=False):
     print("=== [BƯỚC 3] ĐỒNG BỘ NGUỒN DỮ LIỆU SẢN PHẨM & BIẾN THỂ (PRODUCTS:SYNC) ===")
+    if dry_run:
+        print(">>> CHẾ ĐỘ DRY-RUN: Chỉ phân tích và kiểm tra, KHÔNG ghi đè dữ liệu.")
 
     if not os.path.exists(REPORT_PATH):
         print(f"LỖI: Không tìm thấy báo cáo tại {REPORT_PATH}. Vui lòng chạy npm run products:analyze trước.")
@@ -41,12 +42,11 @@ def sync():
         report = json.load(f)
 
     confirmed_groups = report.get('confirmedMergedGroups', [])
-    print(f"Số nhóm thiết kế được đồng bộ: {len(confirmed_groups)}")
+    print(f"Số nhóm thiết kế từ folder mẫu: {len(confirmed_groups)}")
 
     final_products = []
     sizes = ['S', 'M', 'L', 'XL', 'XXL']
 
-    # Danh mục tên sản phẩm thương mại điện tử chuyên nghiệp
     DESIGN_NAMES = {
         'POLO': [
             'Áo Polo Nam Cổ Bẻ Thêu Chữ Bdumf Phối Cổ Tương Phản',
@@ -72,14 +72,7 @@ def sync():
             'Áo Thun Washed Xử Lý Giặt Axit Bụi Bặm Cá Tính',
             'Áo Thun Thêu Chữ Thập Minimalist Unisex Thoáng Mát',
             'Áo Thun Nam Họa Tiết Graffiti Nghệ Thuật Đường Phố',
-            'Áo Thun Cotton Compact Không Nhăn Mặc Đi Học Đi Chơi',
-            'Áo Thun Unisex In Tranh Sơn Dầu Trừu Tượng Tinh Tế',
-            'Áo Thun Boxy Crop Nam Tôn Dáng Chân Dài',
-            'Áo Thun Tay Lỡ Phối Rồng Phượng Nghệ Thuật Phương Đông',
-            'Áo Thun Cotton Supima Dệt Mịn Mặc Cả Ngày Thoải Mái',
-            'Áo Thun Form Rộng In Chữ Bản Lớn Thần Thái Gen Z',
-            'Áo Thun Raglan Phối Cánh Tay Khác Màu Thể Thao',
-            'Áo Thun In Họa Tiết Ngôi Sao Punk Rock Cá Tính'
+            'Áo Thun Cotton Compact Không Nhăn Mặc Đi Học Đi Chơi'
         ],
         'LONGSLEEVE': [
             'Áo Thun Dài Tay Cổ Tròn Dệt Tổ Ong Waffle Knit Giữ Nhiệt',
@@ -89,14 +82,7 @@ def sync():
             'Áo Longsleeve Streetwear Nỉ Da Cá Nhẹ Nhàng Thoáng Khí',
             'Áo Thun Dài Tay Cổ Tim Cài Cúc Henley Retro Vintage',
             'Áo Thun Dài Tay In Graphic Mặt Lưng Oversize Phóng Khoáng',
-            'Áo Longsleeve Dệt Gân Ribbed Co Giãn Tự Nhiên',
-            'Áo Thun Dài Tay Phong Cách Trượt Ván Skateboarding Bụi Bặm',
-            'Áo Thun Giữ Nhiệt Cao Cấp Siêu Nhẹ Co Giãn 4 Chiều',
-            'Áo Longsleeve Phối Túi Hộp Ngực Tiện Lợi Đa Năng',
-            'Áo Thun Dài Tay Cổ Bẻ Khóa Kéo Zip Thanh Lịch',
-            'Áo Longsleeve Phom Rộng Dáng Xuông Hàn Quốc Tối Giản',
-            'Áo Thun Dài Tay Họa Tiết Tie-dye Nhuộm Loang Nghệ Thuật',
-            'Áo Longsleeve Cotton Chải Kỹ Mịn Màng Chống Nhăn'
+            'Áo Longsleeve Dệt Gân Ribbed Co Giãn Tự Nhiên'
         ],
         'SHIRT': [
             'Áo Sơ Mi Dài Tay Lụa Chống Nhăn Công Sở & Dạo Phố',
@@ -128,10 +114,7 @@ def sync():
             'Áo Len Dệt Kẻ Sọc Ngang Đậm Chất Nghệ Sĩ Retro Cổ Điển',
             'Áo Len Gile Không Tay Cổ Chữ V Phối Sơ Mi Học Đường',
             'Áo Len Nửa Khóa Kéo Half-Zip Khí Chất Nam Thần Hàn Quốc',
-            'Áo Len Họa Tiết Bông Tuyết Bắc Âu Lễ Hội Ấm Áp',
-            'Áo Len Cổ Bẻ Polo Dệt Kim Tay Dài Thời Thượng',
-            'Áo Sweater Nỉ Len Phối Tay Da Bắt Mắt Dành Cho Sinh Viên',
-            'Áo Len Form Rộng Thêu Họa Tiết Cây Thông Vintage Mùa Đông'
+            'Áo Len Họa Tiết Bông Tuyết Bắc Âu Lễ Hội Ấm Áp'
         ]
     }
 
@@ -141,31 +124,42 @@ def sync():
         pid = group['parentProductId']
         prefix = pid.split('-')[0]
         cat_slug = group['category']
+        gender = group.get('gender', 'nam')
         seasons = group['seasons']
+        folder_key = group.get('folderKey', '')
+        model_folder = group.get('modelFolder', '')
         
         counter = category_counters.get(prefix, 0)
         names_list = DESIGN_NAMES.get(prefix, [])
-        prod_name = names_list[counter % len(names_list)] if names_list else f"Thiết kế {prefix} Model #{counter + 1}"
+        if model_folder == 'ao_thun_1':
+            prod_name = "Áo Thun NICE Typography Unisex Form Rộng"
+        elif names_list:
+            prod_name = names_list[counter % len(names_list)]
+        else:
+            prod_name = group.get('productName', f"Thiết kế {prefix} #{counter + 1}")
         category_counters[prefix] = counter + 1
 
         slug = f"{slugify(prod_name)}-{pid.lower()}"
 
-        # 3-tier colors mapping
+        # 3-tier colors mapping với đầy đủ gallery ảnh thực tế
         colors_list = []
         all_images = []
         for c in group['mergedColors']:
+            gallery_imgs = c.get('gallery', [c['image']])
             c_item = {
                 "id": c['colorId'],
                 "name": c['color'],
                 "hex": c['hex'],
                 "slug": c['colorId'],
                 "image": c['image'],
-                "images": [c['image']]
+                "images": gallery_imgs
             }
             colors_list.append(c_item)
-            all_images.append(c['image'])
+            all_images.extend(gallery_imgs)
 
-        # Biến thể SKUs theo từng màu x kích cỡ
+        # Tránh trùng lặp ảnh trong all_images
+        all_images = list(dict.fromkeys(all_images))
+
         base_price = 219000 if prefix == 'POLO' else 179000 if prefix == 'TEE' else 329000 if prefix == 'HOODIE' else 289000 if prefix == 'SWEATER' else 239000
         variants = []
         sku_variants = []
@@ -197,16 +191,19 @@ def sync():
 
         product_obj = {
             "id": pid,
+            "folderKey": folder_key,
+            "modelFolder": model_folder,
             "name": prod_name,
             "slug": slug,
             "categorySlug": cat_slug,
-            "gender": "nam",
+            "gender": gender,
             "brand": "SMARTBUY AI",
             "price": base_price,
             "originalPrice": base_price + 70000,
-            "shortDescription": f"Mẫu {prod_name.lower()} chuẩn phom rộng phóng khoáng, chất liệu mềm mại thoáng khí, 100% ảnh thật từ phòng chụp.",
+            "shortDescription": f"Mẫu {prod_name.lower()} chuẩn phom rộng phóng khoáng, chất liệu mềm mại thoáng khí, 100% ảnh thật từ folder {folder_key}.",
             "description": f"""🔥 THÔNG TIN SẢN PHẨM:
 - Tên thiết kế: {prod_name}
+- Thư mục nguồn: {folder_key}
 - Mã Parent SKU: {pid}
 - Thương hiệu: SMARTBUY AI (Chính hãng)
 - Form dáng: Oversized / Regular Fit chuẩn Gen Z
@@ -241,6 +238,7 @@ def sync():
                 }
                 for c in colors_list
             ],
+            "defaultColorId": colors_list[0]['id'] if colors_list else 'den',
             "sizes": sizes,
             "variants": variants,
             "skuVariants": sku_variants,
@@ -260,8 +258,15 @@ def sync():
         }
         final_products.append(product_obj)
 
+    if dry_run:
+        print(f"[DRY-RUN] Sẽ tạo {len(final_products)} sản phẩm từ {len(confirmed_groups)} folder mẫu.")
+        for p in final_products[:5]:
+            print(f"  - {p['id']}: {p['name']} ({len(p['colors'])} màu, {len(p['images'])} ảnh, folder: {p['folderKey']})")
+        print("[DRY-RUN] Kết thúc kiểm tra. Không có thay đổi nào được ghi vào đĩa.")
+        return
+
     # 1. Ghi file src/mocks/importedProducts.ts
-    imported_ts = f"""// Tự động sinh từ Product Variants Engine V2 (quét và trích xuất từ 222 ảnh thật)
+    imported_ts = f"""// Tự động sinh từ Folder-Based Product Variants Engine V3 (1 folder mẫu = 1 sản phẩm)
 import {{ Product }} from '@/types';
 
 export const IMPORTED_PRODUCTS: Product[] = {json.dumps(final_products, ensure_ascii=False, indent=2)};
@@ -271,7 +276,6 @@ export const IMPORTED_PRODUCTS: Product[] = {json.dumps(final_products, ensure_a
     print(f"✓ Đã lưu {len(final_products)} sản phẩm hợp nhất vào {IMPORTED_TS_PATH}")
 
     # 2. Đồng bộ FINAL_GENZ_CATALOGUE trong src/mocks/genzCatalogBuilder.ts
-    # Đảm bảo chỉ dùng các sản phẩm thật IMPORTED_PRODUCTS, loại bỏ các mục Unsplash trùng lặp!
     with open(BUILDER_TS_PATH, 'r', encoding='utf-8') as f:
         builder_content = f.read()
 
@@ -290,13 +294,14 @@ export const IMPORTED_PRODUCTS: Product[] = {json.dumps(final_products, ensure_a
     with open(REPO_TS_PATH, 'r', encoding='utf-8') as f:
         repo_content = f.read()
 
-    new_version_str = "const SCHEMA_VERSION = 'v4.0-variants-engine-v2';"
+    new_version_str = "const SCHEMA_VERSION = 'v5.0-folder-models-engine';"
     updated_repo = re.sub(r"const SCHEMA_VERSION = ['\"][^'\"]+['\"];", new_version_str, repo_content)
     with open(REPO_TS_PATH, 'w', encoding='utf-8') as f:
         f.write(updated_repo)
-    print(f"✓ Đã cập nhật SCHEMA_VERSION thành 'v4.0-variants-engine-v2' trong {REPO_TS_PATH}")
+    print(f"✓ Đã cập nhật SCHEMA_VERSION thành 'v5.0-folder-models-engine' trong {REPO_TS_PATH}")
 
     print("=== ĐỒNG BỘ THÀNH CÔNG ===")
 
 if __name__ == '__main__':
-    sync()
+    is_dry = '--dry-run' in sys.argv
+    sync(dry_run=is_dry)
