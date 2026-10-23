@@ -1507,10 +1507,7 @@ const EVEN_MORE_GENZ_ITEMS: Product[] = [
 
 // Combine all into the final comprehensive product catalogue (ưu tiên toàn bộ sản phẩm ảnh thật từ folder)
 export const FINAL_GENZ_CATALOGUE: Product[] = [
+  // Toàn bộ mẫu thiết kế chính xác từ kho ảnh thật 100% của SMARTBUY AI
   ...IMPORTED_PRODUCTS,
-  ...ALL_GENZ_PRODUCTS,
-  ...EXTENDED_GENZ_ITEMS,
-  ...MORE_ITEMS_TO_135,
-  ...EVEN_MORE_GENZ_ITEMS,
 ];
 

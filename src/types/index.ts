@@ -73,6 +73,7 @@ export interface ProductVariant {
   originalPrice?: number;
   stock: number;
   image?: string;
+  isVerified?: boolean;
 }
 
 export interface SizeMeasurement {
@@ -106,8 +107,10 @@ export interface Product {
   careInstructions: string[]; // ví dụ: ["Giặt máy chế độ nhẹ 30°C", "Ủi hơi nước nhiệt độ trung bình"]
   images: string[]; // Tối thiểu 2-4 ảnh thời trang 3:4 chân thực
   colors: ColorOption[];
+  colorVariants?: any[];
   sizes: SizeCode[];
   variants: ProductVariant[];
+  skuVariants?: any[];
   sizeMeasurements?: SizeMeasurement[];
   rating: number; // Điểm đánh giá (4.7 - 5.0)
   reviewCount: number;
