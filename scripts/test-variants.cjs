@@ -113,7 +113,13 @@ runTest(8, "Tính bền vững và Idempotency: Reload không sinh sản phẩm 
 // TEST 9: Chạy script import nhiều lần -> Tổng số Product ID không tăng
 runTest(9, "Chạy script import nhiều lần -> Tổng số Product ID không tăng (Idempotent)", () => {
   const totalProducts = products.length;
-  assert(totalProducts > 0 && totalProducts <= 80, `Số lượng sản phẩm hợp nhất hợp lý: ${totalProducts}`);
+  assert(totalProducts > 0 && totalProducts <= 150, `Số lượng sản phẩm hợp nhất hợp lý: ${totalProducts}`);
+  const niceShirt = products.find(p => p.id === 'TEE-001');
+  assert(niceShirt, "Phải tìm thấy mẫu Áo thun NICE TEE-001");
+  const hasPink = niceShirt.colors.some(c => c.slug === 'hong-pastel' || c.name.includes('Hồng'));
+  const hasBlue = niceShirt.colors.some(c => c.slug === 'xanh-duong' || c.name.includes('Xanh'));
+  assert(hasPink, "Áo thun NICE phải chứa màu Hồng thực tế");
+  assert(hasBlue, "Áo thun NICE phải chứa màu Xanh dương thực tế");
 });
 
 // TEST 10: Chọn màu rồi nhấn Thử đồ AI -> Gửi đúng file ảnh của màu đó

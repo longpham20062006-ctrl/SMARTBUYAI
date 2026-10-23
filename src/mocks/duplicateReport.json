@@ -4,9 +4,9 @@
   "engine": "Product Variants Engine V2 (Computer Vision & Fabric Region Clustering)",
   "summary": {
     "totalScannedImages": 222,
-    "totalMergedProducts": 74,
-    "confirmedMergedGroupsCount": 74,
-    "multiColorProductsCount": 64,
+    "totalMergedProducts": 123,
+    "confirmedMergedGroupsCount": 123,
+    "multiColorProductsCount": 29,
     "pendingReviewCount": 2
   },
   "confirmedMergedGroups": [
@@ -26,23 +26,9 @@
           "hex": "#18181B",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146076_348043404565674403_5540743654312280467_a02ae46e3d9a651cf26099b281a34465.jpg",
           "galleryCount": 1
-        },
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146102_348043404565674403_5540743654312280467_34bd279e894596bdd2c1242c3c180907.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146115_348043404565674403_5540743654312280467_7eb75502e0a4af521c9f922021ab2047.jpg",
-          "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -56,28 +42,21 @@
       ],
       "mergedColors": [
         {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146102_348043404565674403_5540743654312280467_34bd279e894596bdd2c1242c3c180907.jpg",
+          "galleryCount": 1
+        },
+        {
           "color": "Trắng",
           "colorId": "trang",
           "hex": "#F9FAFB",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146125_348043404565674403_5540743654312280467_74ca6ff78f203f6fa2723a6506685498.jpg",
           "galleryCount": 1
-        },
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146134_348043404565674403_5540743654312280467_b9353468b2630c7f12707d953344033c.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Kem Be",
-          "colorId": "kem",
-          "hex": "#E8DDC8",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146142_348043404565674403_5540743654312280467_aa85ec2b1e874f4fda2a890c38f96e49.jpg",
-          "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 10,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -91,21 +70,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146150_348043404565674403_5540743654312280467_02130b61c28ef6b14afd646121d73d6c.jpg",
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146115_348043404565674403_5540743654312280467_7eb75502e0a4af521c9f922021ab2047.jpg",
           "galleryCount": 1
-        },
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146157_348043404565674403_5540743654312280467_f08c509953cd51b2a1ffe180d4e327a7.jpg",
-          "galleryCount": 2
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -119,21 +91,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146168_348043404565674403_5540743654312280467_152491624efd3b152cadfed9a3afe0a0.jpg",
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146134_348043404565674403_5540743654312280467_b9353468b2630c7f12707d953344033c.jpg",
           "galleryCount": 2
-        },
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146174_348043404565674403_5540743654312280467_63bde63d97f30bee9498e48eca2ec77f.jpg",
-          "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -147,19 +112,124 @@
       ],
       "mergedColors": [
         {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146142_348043404565674403_5540743654312280467_aa85ec2b1e874f4fda2a890c38f96e49.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-HOODIE-006",
+      "parentProductId": "HOODIE-006",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #6",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146157_348043404565674403_5540743654312280467_f08c509953cd51b2a1ffe180d4e327a7.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-HOODIE-007",
+      "parentProductId": "HOODIE-007",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #7",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146163_348043404565674403_5540743654312280467_1eef1c739fe9bed0ec969e47773f6f75.jpg",
+          "galleryCount": 2
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-HOODIE-008",
+      "parentProductId": "HOODIE-008",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #8",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đỏ Đô",
+          "colorId": "do",
+          "hex": "#DC2626",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146174_348043404565674403_5540743654312280467_63bde63d97f30bee9498e48eca2ec77f.jpg",
+          "galleryCount": 1
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146179_348043404565674403_5540743654312280467_7fa98f398e3afd19fd6f3a5a9b497c65.jpg",
+          "galleryCount": 1
+        },
+        {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146183_348043404565674403_5540743654312280467_b830864b38c7bf1bf8861d3ec574ae00.jpg",
           "galleryCount": 1
-        },
+        }
+      ],
+      "totalVariants": 15,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-HOODIE-009",
+      "parentProductId": "HOODIE-009",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #9",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "mergedColors": [
         {
           "color": "Trắng",
           "colorId": "trang",
           "hex": "#F9FAFB",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146188_348043404565674403_5540743654312280467_605b25b2a06263295f34e912d46ec849.jpg",
           "galleryCount": 1
-        },
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-HOODIE-010",
+      "parentProductId": "HOODIE-010",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #10",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "mergedColors": [
         {
           "color": "Đen",
           "colorId": "den",
@@ -168,13 +238,13 @@
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-HOODIE-006",
-      "parentProductId": "HOODIE-006",
-      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #6",
+      "groupId": "GRP-HOODIE-011",
+      "parentProductId": "HOODIE-011",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #11",
       "category": "hoodie-sweater",
       "seasons": [
         "dong",
@@ -193,16 +263,16 @@
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146201_348043404565674403_5540743654312280467_5f5b1bc54c18d6285336b26a0148381d.jpg",
-          "galleryCount": 2
+          "galleryCount": 1
         }
       ],
       "totalVariants": 10,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-HOODIE-007",
-      "parentProductId": "HOODIE-007",
-      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #7",
+      "groupId": "GRP-HOODIE-012",
+      "parentProductId": "HOODIE-012",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #12",
       "category": "hoodie-sweater",
       "seasons": [
         "dong",
@@ -213,8 +283,8 @@
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146210_348043404565674403_5540743654312280467_0b010ebb6b6bfc3b35401d50f2ced0a0.jpg",
-          "galleryCount": 2
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146205_348043404565674403_5540743654312280467_f5a565d73f72700dc4cfc8e9f9224cbe.jpg",
+          "galleryCount": 1
         },
         {
           "color": "Nâu Cà Phê",
@@ -228,9 +298,51 @@
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-HOODIE-008",
-      "parentProductId": "HOODIE-008",
-      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #8",
+      "groupId": "GRP-HOODIE-013",
+      "parentProductId": "HOODIE-013",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #13",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146210_348043404565674403_5540743654312280467_0b010ebb6b6bfc3b35401d50f2ced0a0.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-HOODIE-014",
+      "parentProductId": "HOODIE-014",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #14",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146219_348043404565674403_5540743654312280467_0e577aafa0a3bf4e17dff7d2a6cf3ed7.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-HOODIE-015",
+      "parentProductId": "HOODIE-015",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #15",
       "category": "hoodie-sweater",
       "seasons": [
         "dong",
@@ -242,16 +354,58 @@
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146223_348043404565674403_5540743654312280467_6c60204fe04fe7fcee1d6660431c5a23.jpg",
-          "galleryCount": 3
+          "galleryCount": 1
         }
       ],
       "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-HOODIE-009",
-      "parentProductId": "HOODIE-009",
-      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #9",
+      "groupId": "GRP-HOODIE-016",
+      "parentProductId": "HOODIE-016",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #16",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146228_348043404565674403_5540743654312280467_be284efd2f5ee784da157481827681a8.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-HOODIE-017",
+      "parentProductId": "HOODIE-017",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #17",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146232_348043404565674403_5540743654312280467_848ee6f39a9ad155ded9c3f5872ee431.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-HOODIE-018",
+      "parentProductId": "HOODIE-018",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #18",
       "category": "hoodie-sweater",
       "seasons": [
         "dong",
@@ -264,16 +418,51 @@
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146237_348043404565674403_5540743654312280467_b5f005078b1254219056855e953bf162.jpg",
           "galleryCount": 1
-        },
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-HOODIE-019",
+      "parentProductId": "HOODIE-019",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #19",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "mergedColors": [
         {
           "color": "Đen",
           "colorId": "den",
           "hex": "#18181B",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146241_348043404565674403_5540743654312280467_518c6a1c174cfad2e6f1a457ab3efce3.jpg",
-          "galleryCount": 2
+          "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-HOODIE-020",
+      "parentProductId": "HOODIE-020",
+      "productName": "Áo Hoodie Nam Nỉ Bông Có Mũ Dày Dặn Model #20",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-hoodie/1792767146246_348043404565674403_5540743654312280467_9b63dca70c59cb0a0e62c422225ac757.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -290,17 +479,10 @@
           "colorId": "den",
           "hex": "#18181B",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824693_348043404565674403_5540743654312280467_3d0605dcc61680030b09b79a9f2deff3.jpg",
-          "galleryCount": 2
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824714_348043404565674403_5540743654312280467_2812d258084dcf35963e4b206122958d.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -313,21 +495,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824737_348043404565674403_5540743654312280467_51adf5b2fd502dbb957cf730ce2e6108.jpg",
-          "galleryCount": 2
-        },
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824754_348043404565674403_5540743654312280467_49d1dae43f29abb9cd068b84ba26eded.jpg",
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824714_348043404565674403_5540743654312280467_2812d258084dcf35963e4b206122958d.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -340,21 +515,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824762_348043404565674403_5540743654312280467_c60785ccf42510c168e35fc9a6db891f.jpg",
-          "galleryCount": 2
-        },
-        {
           "color": "Đen",
           "colorId": "den",
           "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824769_348043404565674403_5540743654312280467_c932657cf9c6265df70881c61d5c02a8.jpg",
-          "galleryCount": 1
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824726_348043404565674403_5540743654312280467_be6310f2ac47c19aaafd92624f48b17b.jpg",
+          "galleryCount": 2
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -367,21 +535,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824782_348043404565674403_5540743654312280467_53c357e04a4179f5140aa626ffcfd4f9.jpg",
-          "galleryCount": 2
-        },
-        {
-          "color": "Kem Be",
-          "colorId": "kem",
-          "hex": "#E8DDC8",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824793_348043404565674403_5540743654312280467_9321cb178e205a73b724233b1c2aeb33.jpg",
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824746_348043404565674403_5540743654312280467_08e3a16ec7afdbaf7322d197bdf3d137.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -397,18 +558,11 @@
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824798_348043404565674403_5540743654312280467_716d62747bca0f592f2b78ef25b44444.jpg",
-          "galleryCount": 2
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824808_348043404565674403_5540743654312280467_963c0d6d12508889e6b1bb16cb13bd95.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824754_348043404565674403_5540743654312280467_49d1dae43f29abb9cd068b84ba26eded.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -421,21 +575,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824813_348043404565674403_5540743654312280467_55f7ff61df77e653ecd48441728617fe.jpg",
-          "galleryCount": 2
-        },
-        {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824822_348043404565674403_5540743654312280467_6e933377160b495ce7c8c225ee8e5b89.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824762_348043404565674403_5540743654312280467_c60785ccf42510c168e35fc9a6db891f.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -448,21 +595,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824826_348043404565674403_5540743654312280467_5e39c6989738ce9aba17ba8f746a5684.jpg",
-          "galleryCount": 2
-        },
-        {
-          "color": "Nâu Cà Phê",
-          "colorId": "nau",
-          "hex": "#78350F",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824830_348043404565674403_5540743654312280467_d711c825476b9aa940b8cc3a6ae89ddb.jpg",
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824769_348043404565674403_5540743654312280467_c932657cf9c6265df70881c61d5c02a8.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -478,25 +618,11 @@
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824839_348043404565674403_5540743654312280467_e07ed3e13a36f4248b7a40c5e8f5583e.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824843_348043404565674403_5540743654312280467_af50e1c2713d29d1edd63916ff5039b2.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824848_348043404565674403_5540743654312280467_bff140b7f43d57b5a462f7a996abb9b5.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824775_348043404565674403_5540743654312280467_c59731b7ddb9af6ba1c5fb34c537a8c2.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -509,21 +635,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824852_348043404565674403_5540743654312280467_b279a17f2528d09f20a89c299bad5cca.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824856_348043404565674403_5540743654312280467_5589bc97e832a216aaddbc6866771fe6.jpg",
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824782_348043404565674403_5540743654312280467_53c357e04a4179f5140aa626ffcfd4f9.jpg",
           "galleryCount": 2
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -536,28 +655,21 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824865_348043404565674403_5540743654312280467_d0d7c3ce365c8c8bd5b78c61c01f8b45.jpg",
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824793_348043404565674403_5540743654312280467_9321cb178e205a73b724233b1c2aeb33.jpg",
           "galleryCount": 1
         },
         {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824869_348043404565674403_5540743654312280467_400c6b356acd8937f45a4aae158a0a25.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824874_348043404565674403_5540743654312280467_0cf54ba221eac9f7b6b6536a59307496.jpg",
-          "galleryCount": 1
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824798_348043404565674403_5540743654312280467_716d62747bca0f592f2b78ef25b44444.jpg",
+          "galleryCount": 2
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 10,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -570,28 +682,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824878_348043404565674403_5540743654312280467_a1afb70396b5a841e26be89ed8cfebfd.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824882_348043404565674403_5540743654312280467_89de9b2c0435cc0ea84bf011a34609ca.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Màu Phối Độc Bản",
-          "colorId": "phoi-mau",
-          "hex": "#dbbe88",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824886_348043404565674403_5540743654312280467_0d2bbd47e6bcada58c4c2d49770e862b.jpg",
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824808_348043404565674403_5540743654312280467_963c0d6d12508889e6b1bb16cb13bd95.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -604,28 +702,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824891_348043404565674403_5540743654312280467_0325f06daf9754c2569fa6873b25175c.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824895_348043404565674403_5540743654312280467_1de0dcfbd96e9088a624b0654432092b.jpg",
-          "galleryCount": 1
-        },
-        {
           "color": "Đen",
           "colorId": "den",
           "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824900_348043404565674403_5540743654312280467_227077b2ea92b9f3145f2cf0557a3111.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824813_348043404565674403_5540743654312280467_55f7ff61df77e653ecd48441728617fe.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -638,27 +722,314 @@
       ],
       "mergedColors": [
         {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824905_348043404565674403_5540743654312280467_1b18ed47af6e2ee2d90e863829e028d0.jpg",
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824817_348043404565674403_5540743654312280467_28d4e3d999e45200ed8cbdbbba842baf.jpg",
           "galleryCount": 1
-        },
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824909_348043404565674403_5540743654312280467_b566e4ded7c9eaa6cfd61fc8a4f3a1ee.jpg",
-          "galleryCount": 2
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
       "groupId": "GRP-SWEATER-014",
       "parentProductId": "SWEATER-014",
       "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #14",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824822_348043404565674403_5540743654312280467_6e933377160b495ce7c8c225ee8e5b89.jpg",
+          "galleryCount": 2
+        },
+        {
+          "color": "Nâu Cà Phê",
+          "colorId": "nau",
+          "hex": "#78350F",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824830_348043404565674403_5540743654312280467_d711c825476b9aa940b8cc3a6ae89ddb.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 10,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-015",
+      "parentProductId": "SWEATER-015",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #15",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824835_348043404565674403_5540743654312280467_773a979b66e3bd4cde33da746f315058.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-016",
+      "parentProductId": "SWEATER-016",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #16",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824839_348043404565674403_5540743654312280467_e07ed3e13a36f4248b7a40c5e8f5583e.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-017",
+      "parentProductId": "SWEATER-017",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #17",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824843_348043404565674403_5540743654312280467_af50e1c2713d29d1edd63916ff5039b2.jpg",
+          "galleryCount": 3
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-018",
+      "parentProductId": "SWEATER-018",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #18",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824848_348043404565674403_5540743654312280467_bff140b7f43d57b5a462f7a996abb9b5.jpg",
+          "galleryCount": 2
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-019",
+      "parentProductId": "SWEATER-019",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #19",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824856_348043404565674403_5540743654312280467_5589bc97e832a216aaddbc6866771fe6.jpg",
+          "galleryCount": 1
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824869_348043404565674403_5540743654312280467_400c6b356acd8937f45a4aae158a0a25.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 10,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-020",
+      "parentProductId": "SWEATER-020",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #20",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824874_348043404565674403_5540743654312280467_0cf54ba221eac9f7b6b6536a59307496.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-021",
+      "parentProductId": "SWEATER-021",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #21",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824878_348043404565674403_5540743654312280467_a1afb70396b5a841e26be89ed8cfebfd.jpg",
+          "galleryCount": 2
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-022",
+      "parentProductId": "SWEATER-022",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #22",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824882_348043404565674403_5540743654312280467_89de9b2c0435cc0ea84bf011a34609ca.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-023",
+      "parentProductId": "SWEATER-023",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #23",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Màu Phối Độc Bản",
+          "colorId": "phoi-mau",
+          "hex": "#dbbe88",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824886_348043404565674403_5540743654312280467_0d2bbd47e6bcada58c4c2d49770e862b.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-024",
+      "parentProductId": "SWEATER-024",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #24",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824895_348043404565674403_5540743654312280467_1de0dcfbd96e9088a624b0654432092b.jpg",
+          "galleryCount": 2
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-025",
+      "parentProductId": "SWEATER-025",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #25",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824900_348043404565674403_5540743654312280467_227077b2ea92b9f3145f2cf0557a3111.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-026",
+      "parentProductId": "SWEATER-026",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #26",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824909_348043404565674403_5540743654312280467_b566e4ded7c9eaa6cfd61fc8a4f3a1ee.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-027",
+      "parentProductId": "SWEATER-027",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #27",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824913_348043404565674403_5540743654312280467_bf095ccf71f41b50139d23e43be23ed8.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-028",
+      "parentProductId": "SWEATER-028",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #28",
       "category": "hoodie-sweater",
       "seasons": [
         "dong"
@@ -676,9 +1047,9 @@
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-SWEATER-015",
-      "parentProductId": "SWEATER-015",
-      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #15",
+      "groupId": "GRP-SWEATER-029",
+      "parentProductId": "SWEATER-029",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #29",
       "category": "hoodie-sweater",
       "seasons": [
         "dong"
@@ -690,7 +1061,20 @@
           "hex": "#18181B",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-len/1792766824931_348043404565674403_5540743654312280467_2824548732f9bbf9d927754156a1b0e3.jpg",
           "galleryCount": 2
-        },
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SWEATER-030",
+      "parentProductId": "SWEATER-030",
+      "productName": "Áo Len Nam Dệt Kim Cổ Tròn Mùa Đông Model #30",
+      "category": "hoodie-sweater",
+      "seasons": [
+        "dong"
+      ],
+      "mergedColors": [
         {
           "color": "Màu Phối Độc Bản",
           "colorId": "phoi-mau",
@@ -706,7 +1090,7 @@
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 10,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -727,11 +1111,11 @@
           "galleryCount": 1
         },
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367706_348043404565674403_5540743654312280467_82539ad9a435d8b268da2f13ebe1d090.jpg",
-          "galleryCount": 2
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367730_348043404565674403_5540743654312280467_288886d5dbb292d921c8fffe93be1583.jpg",
+          "galleryCount": 1
         }
       ],
       "totalVariants": 10,
@@ -748,11 +1132,11 @@
       ],
       "mergedColors": [
         {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367730_348043404565674403_5540743654312280467_288886d5dbb292d921c8fffe93be1583.jpg",
-          "galleryCount": 3
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367706_348043404565674403_5540743654312280467_82539ad9a435d8b268da2f13ebe1d090.jpg",
+          "galleryCount": 1
         }
       ],
       "totalVariants": 5,
@@ -769,19 +1153,89 @@
       ],
       "mergedColors": [
         {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367718_348043404565674403_5540743654312280467_47288078bcdd82ee0cd2aac8a9443d0c.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-POLO-004",
+      "parentProductId": "POLO-004",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #4",
+      "category": "ao-polo",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367740_348043404565674403_5540743654312280467_d096975742c4c7ab8c709c4e9fd34ab5.jpg",
+          "galleryCount": 2
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-POLO-005",
+      "parentProductId": "POLO-005",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #5",
+      "category": "ao-polo",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
           "color": "Nâu Cà Phê",
           "colorId": "nau",
           "hex": "#78350F",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367757_348043404565674403_5540743654312280467_3af3e9346fadcbef8b17e8f673d99081.jpg",
           "galleryCount": 1
-        },
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-POLO-006",
+      "parentProductId": "POLO-006",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #6",
+      "category": "ao-polo",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
         {
           "color": "Đen",
           "colorId": "den",
           "hex": "#18181B",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367765_348043404565674403_5540743654312280467_98e0e24431c310bbf58e7a98a5fbd406.jpg",
           "galleryCount": 1
-        },
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-POLO-007",
+      "parentProductId": "POLO-007",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #7",
+      "category": "ao-polo",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
         {
           "color": "Xám Khói",
           "colorId": "xam",
@@ -790,13 +1244,13 @@
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-POLO-004",
-      "parentProductId": "POLO-004",
-      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #4",
+      "groupId": "GRP-POLO-008",
+      "parentProductId": "POLO-008",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #8",
       "category": "ao-polo",
       "seasons": [
         "he",
@@ -811,13 +1265,6 @@
           "galleryCount": 1
         },
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367783_348043404565674403_5540743654312280467_f8b66be28eaf6809038238b9a23d43a1.jpg",
-          "galleryCount": 1
-        },
-        {
           "color": "Trắng",
           "colorId": "trang",
           "hex": "#F9FAFB",
@@ -825,13 +1272,34 @@
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 10,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-POLO-005",
-      "parentProductId": "POLO-005",
-      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #5",
+      "groupId": "GRP-POLO-009",
+      "parentProductId": "POLO-009",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #9",
+      "category": "ao-polo",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367783_348043404565674403_5540743654312280467_f8b66be28eaf6809038238b9a23d43a1.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-POLO-010",
+      "parentProductId": "POLO-010",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #10",
       "category": "ao-polo",
       "seasons": [
         "he",
@@ -844,22 +1312,57 @@
           "hex": "#F9FAFB",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367793_348043404565674403_5540743654312280467_237bf57df556930db0f7c6200c670674.jpg",
           "galleryCount": 1
-        },
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-POLO-011",
+      "parentProductId": "POLO-011",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #11",
+      "category": "ao-polo",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
         {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367798_348043404565674403_5540743654312280467_c92b182e399299d294ad98e197384b3d.jpg",
-          "galleryCount": 2
+          "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-POLO-006",
-      "parentProductId": "POLO-006",
-      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #6",
+      "groupId": "GRP-POLO-012",
+      "parentProductId": "POLO-012",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #12",
+      "category": "ao-polo",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367803_348043404565674403_5540743654312280467_ea8ec474ef934af8046775272b787e44.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-POLO-013",
+      "parentProductId": "POLO-013",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #13",
       "category": "ao-polo",
       "seasons": [
         "he",
@@ -878,16 +1381,37 @@
           "colorId": "den",
           "hex": "#18181B",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367812_348043404565674403_5540743654312280467_d4dd6fa0a3294bed4970ab82e3bd787e.jpg",
-          "galleryCount": 2
+          "galleryCount": 1
         }
       ],
       "totalVariants": 10,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-POLO-007",
-      "parentProductId": "POLO-007",
-      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #7",
+      "groupId": "GRP-POLO-014",
+      "parentProductId": "POLO-014",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #14",
+      "category": "ao-polo",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367816_348043404565674403_5540743654312280467_c223f5dffede277f23f3fbc9ba5ca5ac.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-POLO-015",
+      "parentProductId": "POLO-015",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #15",
       "category": "ao-polo",
       "seasons": [
         "he",
@@ -899,8 +1423,43 @@
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367821_348043404565674403_5540743654312280467_059a291a172dd02c643ef24eaea0a28f.jpg",
-          "galleryCount": 2
-        },
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-POLO-016",
+      "parentProductId": "POLO-016",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #16",
+      "category": "ao-polo",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367825_348043404565674403_5540743654312280467_3c1a44d81f189f0ff44b9651fc0f8419.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-POLO-017",
+      "parentProductId": "POLO-017",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #17",
+      "category": "ao-polo",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
         {
           "color": "Đen",
           "colorId": "den",
@@ -909,13 +1468,13 @@
           "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-POLO-008",
-      "parentProductId": "POLO-008",
-      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #8",
+      "groupId": "GRP-POLO-018",
+      "parentProductId": "POLO-018",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #18",
       "category": "ao-polo",
       "seasons": [
         "he",
@@ -927,8 +1486,22 @@
           "colorId": "trang",
           "hex": "#F9FAFB",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367834_348043404565674403_5540743654312280467_c17f19fc4e72e26b51ea04c109e17660.jpg",
-          "galleryCount": 2
-        },
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-POLO-019",
+      "parentProductId": "POLO-019",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #19",
+      "category": "ao-polo",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
         {
           "color": "Đen",
           "colorId": "den",
@@ -944,7 +1517,28 @@
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 10,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-POLO-020",
+      "parentProductId": "POLO-020",
+      "productName": "Áo Polo Nam Cổ Bẻ Cao Cấp Model #20",
+      "category": "ao-polo",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-polo/1792766367848_348043404565674403_5540743654312280467_4245d796a110c5819f30cd01bed13c08.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -963,17 +1557,10 @@
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023900_348043404565674403_5540743654312280467_a83f7a86822c1b02e08776c1da134542.jpg",
-          "galleryCount": 2
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023936_348043404565674403_5540743654312280467_5bde08c820dda5cc0ece5e695a5fd828.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -991,18 +1578,11 @@
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023947_348043404565674403_5540743654312280467_666bce0cf48acf8f3d413155aba32199.jpg",
-          "galleryCount": 2
-        },
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023956_348043404565674403_5540743654312280467_97bb803eb6ae99b7bf9169efdf9ae9a8.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023924_348043404565674403_5540743654312280467_220661f7ff9226cbde89e9196293a826.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -1017,17 +1597,17 @@
       ],
       "mergedColors": [
         {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023936_348043404565674403_5540743654312280467_5bde08c820dda5cc0ece5e695a5fd828.jpg",
+          "galleryCount": 1
+        },
+        {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023973_348043404565674403_5540743654312280467_497d25326f3c16d97fb8953d7dc94242.jpg",
-          "galleryCount": 2
-        },
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023980_348043404565674403_5540743654312280467_f182db8873b6d4e3a3357d11e0f26727.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023947_348043404565674403_5540743654312280467_666bce0cf48acf8f3d413155aba32199.jpg",
           "galleryCount": 1
         }
       ],
@@ -1049,18 +1629,11 @@
           "color": "Đen",
           "colorId": "den",
           "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023993_348043404565674403_5540743654312280467_4efcb3967d2e43da8395b5631e4dff84.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023956_348043404565674403_5540743654312280467_97bb803eb6ae99b7bf9169efdf9ae9a8.jpg",
           "galleryCount": 1
-        },
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023998_348043404565674403_5540743654312280467_42d4fb1cd32f3ccc81a7e95d6189b4ef.jpg",
-          "galleryCount": 2
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -1078,25 +1651,11 @@
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766024008_348043404565674403_5540743654312280467_37a4e012fcd2815f7696b3637a7e5ed9.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766024012_348043404565674403_5540743654312280467_9842a37c5a08172d8f6b0fb596aa4930.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766024017_348043404565674403_5540743654312280467_19783bbb10783cad65549214d776ad17.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023965_348043404565674403_5540743654312280467_1e0e624f7ab0a17a94e80f6ff0288066.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -1111,28 +1670,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766024022_348043404565674403_5540743654312280467_b1ad5ad233036230228c8773132b9dae.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766024027_348043404565674403_5540743654312280467_5c39129a7e1ffe8f4ceb878770757e49.jpg",
-          "galleryCount": 1
-        },
-        {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766024031_348043404565674403_5540743654312280467_0e4ca5214d85b46557854d457582ceea.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023973_348043404565674403_5540743654312280467_497d25326f3c16d97fb8953d7dc94242.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -1150,8 +1695,169 @@
           "color": "Đen",
           "colorId": "den",
           "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766024036_348043404565674403_5540743654312280467_081e59c0e0f3a22388a9432eabf0b743.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023980_348043404565674403_5540743654312280467_f182db8873b6d4e3a3357d11e0f26727.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SHIRT-008",
+      "parentProductId": "SHIRT-008",
+      "productName": "Áo Sơ Mi Nam Tay Dài Phom Rộng Hàn Quốc Model #8",
+      "category": "so-mi-polo",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023987_348043404565674403_5540743654312280467_94d8031f5274ca1343cc30ff99c48e12.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SHIRT-009",
+      "parentProductId": "SHIRT-009",
+      "productName": "Áo Sơ Mi Nam Tay Dài Phom Rộng Hàn Quốc Model #9",
+      "category": "so-mi-polo",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023993_348043404565674403_5540743654312280467_4efcb3967d2e43da8395b5631e4dff84.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SHIRT-010",
+      "parentProductId": "SHIRT-010",
+      "productName": "Áo Sơ Mi Nam Tay Dài Phom Rộng Hàn Quốc Model #10",
+      "category": "so-mi-polo",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766023998_348043404565674403_5540743654312280467_42d4fb1cd32f3ccc81a7e95d6189b4ef.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SHIRT-011",
+      "parentProductId": "SHIRT-011",
+      "productName": "Áo Sơ Mi Nam Tay Dài Phom Rộng Hàn Quốc Model #11",
+      "category": "so-mi-polo",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766024003_348043404565674403_5540743654312280467_59daf9d47889581c925c080ac8c97efc.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SHIRT-012",
+      "parentProductId": "SHIRT-012",
+      "productName": "Áo Sơ Mi Nam Tay Dài Phom Rộng Hàn Quốc Model #12",
+      "category": "so-mi-polo",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766024008_348043404565674403_5540743654312280467_37a4e012fcd2815f7696b3637a7e5ed9.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SHIRT-013",
+      "parentProductId": "SHIRT-013",
+      "productName": "Áo Sơ Mi Nam Tay Dài Phom Rộng Hàn Quốc Model #13",
+      "category": "so-mi-polo",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766024012_348043404565674403_5540743654312280467_9842a37c5a08172d8f6b0fb596aa4930.jpg",
           "galleryCount": 2
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766024031_348043404565674403_5540743654312280467_0e4ca5214d85b46557854d457582ceea.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 10,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-SHIRT-014",
+      "parentProductId": "SHIRT-014",
+      "productName": "Áo Sơ Mi Nam Tay Dài Phom Rộng Hàn Quốc Model #14",
+      "category": "so-mi-polo",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-so-mi/1792766024017_348043404565674403_5540743654312280467_19783bbb10783cad65549214d776ad17.jpg",
+          "galleryCount": 4
         }
       ],
       "totalVariants": 5,
@@ -1168,9 +1874,9 @@
       ],
       "mergedColors": [
         {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
+          "color": "Hồng Pastel",
+          "colorId": "hong-pastel",
+          "hex": "#F472B6",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335737_348043404565674403_5540743654312280467_8699343f93f182c9d37f7d0bcffddafd.jpg",
           "galleryCount": 2
         },
@@ -1179,51 +1885,51 @@
           "colorId": "kem",
           "hex": "#E8DDC8",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335766_348043404565674403_5540743654312280467_0a6775c9c63784dfa7ef3098d98a9439.jpg",
-          "galleryCount": 1
-        }
-      ],
-      "totalVariants": 10,
-      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
-    },
-    {
-      "groupId": "GRP-TEE-002",
-      "parentProductId": "TEE-002",
-      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #2",
-      "category": "ao-thun",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "mergedColors": [
+          "galleryCount": 2
+        },
+        {
+          "color": "Đỏ Đô",
+          "colorId": "do",
+          "hex": "#DC2626",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335777_348043404565674403_5540743654312280467_83370a1a36336dacdfdbdadcc75ba73c.jpg",
+          "galleryCount": 2
+        },
         {
           "color": "Xanh Washed",
           "colorId": "xanh-duong",
           "hex": "#3B82F6",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335786_348043404565674403_5540743654312280467_a04c57d2b6fc1234022aafc4240448cd.jpg",
-          "galleryCount": 1
+          "galleryCount": 2
         },
         {
           "color": "Đen",
           "colorId": "den",
           "hex": "#18181B",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335795_348043404565674403_5540743654312280467_409095ed7e8ab8d39103a35dc04029a9.jpg",
-          "galleryCount": 1
+          "galleryCount": 4
         },
         {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335803_348043404565674403_5540743654312280467_ca51e2976b301899caf8cbe01ff4fdf2.jpg",
+          "galleryCount": 2
+        },
+        {
+          "color": "Nâu Cà Phê",
+          "colorId": "nau",
+          "hex": "#78350F",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737336003_348043404565674403_5540743654312280467_71090f0a7ecfadbb212ead3bd975e7d5.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 35,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-TEE-003",
-      "parentProductId": "TEE-003",
-      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #3",
+      "groupId": "GRP-TEE-002",
+      "parentProductId": "TEE-002",
+      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #2",
       "category": "ao-thun",
       "seasons": [
         "he",
@@ -1238,14 +1944,35 @@
           "galleryCount": 2
         },
         {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335828_348043404565674403_5540743654312280467_3e3f48f72760ef3f1a5503e241f7cd2e.jpg",
+          "galleryCount": 2
+        }
+      ],
+      "totalVariants": 10,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-TEE-003",
+      "parentProductId": "TEE-003",
+      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #3",
+      "category": "ao-thun",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
           "color": "Trắng",
           "colorId": "trang",
           "hex": "#F9FAFB",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335823_348043404565674403_5540743654312280467_ee4c1cbc871a84ac8d2f7a888d970b90.jpg",
-          "galleryCount": 1
+          "galleryCount": 3
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -1259,18 +1986,18 @@
       ],
       "mergedColors": [
         {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335847_348043404565674403_5540743654312280467_c48aebde8aaf3a25f814333c62684c3d.jpg",
+          "galleryCount": 1
+        },
+        {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335828_348043404565674403_5540743654312280467_3e3f48f72760ef3f1a5503e241f7cd2e.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335855_348043404565674403_5540743654312280467_3467ff1da9621f68c71cb992d26cbf1e.jpg",
           "galleryCount": 2
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335838_348043404565674403_5540743654312280467_50b4533e075efe574090375e9c0a7323.jpg",
-          "galleryCount": 1
         }
       ],
       "totalVariants": 10,
@@ -1287,28 +2014,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335842_348043404565674403_5540743654312280467_eadcb70188dfd4f2fe8d75dea5b4399a.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335847_348043404565674403_5540743654312280467_c48aebde8aaf3a25f814333c62684c3d.jpg",
-          "galleryCount": 1
-        },
-        {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335851_348043404565674403_5540743654312280467_a4da77aa6abd1097e0f8f54026fc62e3.jpg",
-          "galleryCount": 1
+          "galleryCount": 3
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -1322,14 +2035,21 @@
       ],
       "mergedColors": [
         {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335855_348043404565674403_5540743654312280467_3467ff1da9621f68c71cb992d26cbf1e.jpg",
-          "galleryCount": 3
+          "color": "Hồng Pastel",
+          "colorId": "hong-pastel",
+          "hex": "#F472B6",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335872_348043404565674403_5540743654312280467_cf242f6e9edef0b2c1cb2f206c5362b5.jpg",
+          "galleryCount": 1
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335877_348043404565674403_5540743654312280467_4d50d1da6af065146e971c0389955677.jpg",
+          "galleryCount": 2
         }
       ],
-      "totalVariants": 5,
+      "totalVariants": 10,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -1346,48 +2066,6 @@
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335868_348043404565674403_5540743654312280467_186e18b44598cf5e6597e5f964cbd326.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Hồng Pastel",
-          "colorId": "hong-pastel",
-          "hex": "#F472B6",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335872_348043404565674403_5540743654312280467_cf242f6e9edef0b2c1cb2f206c5362b5.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335877_348043404565674403_5540743654312280467_4d50d1da6af065146e971c0389955677.jpg",
-          "galleryCount": 1
-        }
-      ],
-      "totalVariants": 15,
-      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
-    },
-    {
-      "groupId": "GRP-TEE-008",
-      "parentProductId": "TEE-008",
-      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #8",
-      "category": "ao-thun",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335881_348043404565674403_5540743654312280467_7e0b2ca01277ba91743725a5f0dd4158.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335886_348043404565674403_5540743654312280467_18604e4c4b75db8ddea061fd1917f9d7.jpg",
           "galleryCount": 1
         },
@@ -1399,13 +2077,13 @@
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 10,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-TEE-009",
-      "parentProductId": "TEE-009",
-      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #9",
+      "groupId": "GRP-TEE-008",
+      "parentProductId": "TEE-008",
+      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #8",
       "category": "ao-thun",
       "seasons": [
         "he",
@@ -1425,16 +2103,51 @@
           "hex": "#F9FAFB",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335899_348043404565674403_5540743654312280467_a39657d3a89feca779eca9cc5f432dfa.jpg",
           "galleryCount": 1
-        },
+        }
+      ],
+      "totalVariants": 10,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-TEE-009",
+      "parentProductId": "TEE-009",
+      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #9",
+      "category": "ao-thun",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
         {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335905_348043404565674403_5540743654312280467_c27f909e9838ec689495ccac6401a2c6.jpg",
           "galleryCount": 1
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335909_348043404565674403_5540743654312280467_b324e7a451fffa78ff9c91f5fa52118d.jpg",
+          "galleryCount": 1
+        },
+        {
+          "color": "Nâu Cà Phê",
+          "colorId": "nau",
+          "hex": "#78350F",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335918_348043404565674403_5540743654312280467_afc72f75b23e5affa9d08d3df78282b7.jpg",
+          "galleryCount": 1
+        },
+        {
+          "color": "Xanh Rêu",
+          "colorId": "xanh-reu",
+          "hex": "#365314",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335932_348043404565674403_5540743654312280467_73f11f7c5485b7e8cc96481fc151c2fd.jpg",
+          "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 20,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -1448,40 +2161,12 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335909_348043404565674403_5540743654312280467_b324e7a451fffa78ff9c91f5fa52118d.jpg",
-          "galleryCount": 1
-        },
-        {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335914_348043404565674403_5540743654312280467_1b8457b1ac49352d4481049bcc93b9c5.jpg",
-          "galleryCount": 1
+          "galleryCount": 2
         },
-        {
-          "color": "Nâu Cà Phê",
-          "colorId": "nau",
-          "hex": "#78350F",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335918_348043404565674403_5540743654312280467_afc72f75b23e5affa9d08d3df78282b7.jpg",
-          "galleryCount": 1
-        }
-      ],
-      "totalVariants": 15,
-      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
-    },
-    {
-      "groupId": "GRP-TEE-011",
-      "parentProductId": "TEE-011",
-      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #11",
-      "category": "ao-thun",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "mergedColors": [
         {
           "color": "Màu Phối Độc Bản",
           "colorId": "phoi-mau",
@@ -1489,34 +2174,6 @@
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335923_348043404565674403_5540743654312280467_3fec65410627fcf9a0fc343572ffd2b3.jpg",
           "galleryCount": 1
         },
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335927_348043404565674403_5540743654312280467_ffa5bcf5d5ee1929f0bfbb9b734caf58.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Xanh Rêu",
-          "colorId": "xanh-reu",
-          "hex": "#365314",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335932_348043404565674403_5540743654312280467_73f11f7c5485b7e8cc96481fc151c2fd.jpg",
-          "galleryCount": 1
-        }
-      ],
-      "totalVariants": 15,
-      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
-    },
-    {
-      "groupId": "GRP-TEE-012",
-      "parentProductId": "TEE-012",
-      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #12",
-      "category": "ao-thun",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "mergedColors": [
         {
           "color": "Kem Be",
           "colorId": "kem",
@@ -1530,16 +2187,93 @@
           "hex": "#F9FAFB",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335941_348043404565674403_5540743654312280467_ab3f5fd5c08d89522f82734ee6dea546.jpg",
           "galleryCount": 1
-        },
+        }
+      ],
+      "totalVariants": 20,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-TEE-011",
+      "parentProductId": "TEE-011",
+      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #11",
+      "category": "ao-thun",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
         {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335945_348043404565674403_5540743654312280467_34349e19b7199f9f57626e33d442ce07.jpg",
+          "galleryCount": 2
+        },
+        {
+          "color": "Màu Phối Độc Bản",
+          "colorId": "phoi-mau",
+          "hex": "#d5a8a4",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335954_348043404565674403_5540743654312280467_ea2e1226280766447734055f324a10f2.jpg",
+          "galleryCount": 1
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335958_348043404565674403_5540743654312280467_035bbb7b0eb5e1c1d66f4e61187d7c66.jpg",
+          "galleryCount": 1
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335963_348043404565674403_5540743654312280467_dc08aa6e96a52fb40da4c6ff9a90c8e7.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 20,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-TEE-012",
+      "parentProductId": "TEE-012",
+      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #12",
+      "category": "ao-thun",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xanh Washed",
+          "colorId": "xanh-duong",
+          "hex": "#3B82F6",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335967_348043404565674403_5540743654312280467_63a2cffb92c88090d284bba12c67da2b.jpg",
+          "galleryCount": 1
+        },
+        {
+          "color": "Nâu Cà Phê",
+          "colorId": "nau",
+          "hex": "#78350F",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335971_348043404565674403_5540743654312280467_e4f2658f964b5bf1da3a4928755fc6bd.jpg",
+          "galleryCount": 1
+        },
+        {
+          "color": "Xanh Rêu",
+          "colorId": "xanh-reu",
+          "hex": "#365314",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335976_348043404565674403_5540743654312280467_4bad41a4222269bcfc34afb16de8a9c5.jpg",
+          "galleryCount": 1
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335985_348043404565674403_5540743654312280467_52ea213d6865e4b4ea7a2298099753f7.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 20,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -1556,210 +2290,14 @@
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335949_348043404565674403_5540743654312280467_959dd624cd15e13ed5221d60fa0f32f8.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Màu Phối Độc Bản",
-          "colorId": "phoi-mau",
-          "hex": "#d5a8a4",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335954_348043404565674403_5540743654312280467_ea2e1226280766447734055f324a10f2.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335958_348043404565674403_5540743654312280467_035bbb7b0eb5e1c1d66f4e61187d7c66.jpg",
-          "galleryCount": 1
-        }
-      ],
-      "totalVariants": 15,
-      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
-    },
-    {
-      "groupId": "GRP-TEE-014",
-      "parentProductId": "TEE-014",
-      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #14",
-      "category": "ao-thun",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335963_348043404565674403_5540743654312280467_dc08aa6e96a52fb40da4c6ff9a90c8e7.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Xanh Washed",
-          "colorId": "xanh-duong",
-          "hex": "#3B82F6",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335967_348043404565674403_5540743654312280467_63a2cffb92c88090d284bba12c67da2b.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Nâu Cà Phê",
-          "colorId": "nau",
-          "hex": "#78350F",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335971_348043404565674403_5540743654312280467_e4f2658f964b5bf1da3a4928755fc6bd.jpg",
-          "galleryCount": 1
-        }
-      ],
-      "totalVariants": 15,
-      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
-    },
-    {
-      "groupId": "GRP-TEE-015",
-      "parentProductId": "TEE-015",
-      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #15",
-      "category": "ao-thun",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xanh Rêu",
-          "colorId": "xanh-reu",
-          "hex": "#365314",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335976_348043404565674403_5540743654312280467_4bad41a4222269bcfc34afb16de8a9c5.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335980_348043404565674403_5540743654312280467_71889ebd2a840e000055713161983790.jpg",
           "galleryCount": 2
-        }
-      ],
-      "totalVariants": 10,
-      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
-    },
-    {
-      "groupId": "GRP-TEE-016",
-      "parentProductId": "TEE-016",
-      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #16",
-      "category": "ao-thun",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335990_348043404565674403_5540743654312280467_343c8c20d69cb0e3f0a7048d91f80ff6.jpg",
-          "galleryCount": 1
         },
         {
           "color": "Nâu Cà Phê",
           "colorId": "nau",
           "hex": "#78350F",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335994_348043404565674403_5540743654312280467_bfecff6c22d76cb39f327bf9fc07f0c9.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737335999_348043404565674403_5540743654312280467_1ea6793b26f62ff3c9b3158f2ff3d709.jpg",
-          "galleryCount": 1
-        }
-      ],
-      "totalVariants": 15,
-      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
-    },
-    {
-      "groupId": "GRP-TEE-017",
-      "parentProductId": "TEE-017",
-      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #17",
-      "category": "ao-thun",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "mergedColors": [
-        {
-          "color": "Nâu Cà Phê",
-          "colorId": "nau",
-          "hex": "#78350F",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737336003_348043404565674403_5540743654312280467_71090f0a7ecfadbb212ead3bd975e7d5.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737336008_348043404565674403_5540743654312280467_83748c50fb756c307eabae3700ca5152.jpg",
-          "galleryCount": 2
-        }
-      ],
-      "totalVariants": 10,
-      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
-    },
-    {
-      "groupId": "GRP-TEE-018",
-      "parentProductId": "TEE-018",
-      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #18",
-      "category": "ao-thun",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "mergedColors": [
-        {
-          "color": "Kem Be",
-          "colorId": "kem",
-          "hex": "#E8DDC8",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737353937_348043404565674403_5540743654312280467_0fcbc2fb33a1df41f465e3d04ef4ab85.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737353950_348043404565674403_5540743654312280467_4851a78a733551f81cb3e6d1c9c8d59a.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Xanh Washed",
-          "colorId": "xanh-duong",
-          "hex": "#3B82F6",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737353961_348043404565674403_5540743654312280467_7dbe4c1c2e6d9005e9036a115661c62a.jpg",
-          "galleryCount": 1
-        }
-      ],
-      "totalVariants": 15,
-      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
-    },
-    {
-      "groupId": "GRP-TEE-019",
-      "parentProductId": "TEE-019",
-      "productName": "Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z Model #19",
-      "category": "ao-thun",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737353971_348043404565674403_5540743654312280467_84c6661a52c98af3d8a6c1c9d72a5bd1.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun/1792737353980_348043404565674403_5540743654312280467_b34a898b354e900ffc3dcd21997a2d93.jpg",
           "galleryCount": 1
         }
       ],
@@ -1781,7 +2319,7 @@
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626555_348043404565674403_5540743654312280467_2c51f758b67f716782477a5902ac2e9e.jpg",
-          "galleryCount": 3
+          "galleryCount": 6
         }
       ],
       "totalVariants": 5,
@@ -1801,7 +2339,7 @@
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626600_348043404565674403_5540743654312280467_f01d9979c4bcbb0739d6eb227f225ee7.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626627_348043404565674403_5540743654312280467_f9441c8e35e947e4410ad3f2bca1242f.jpg",
           "galleryCount": 3
         }
       ],
@@ -1812,27 +2350,6 @@
       "groupId": "GRP-LONGSLEEVE-003",
       "parentProductId": "LONGSLEEVE-003",
       "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #3",
-      "category": "ao-thun",
-      "seasons": [
-        "xuan-thu",
-        "dong"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626627_348043404565674403_5540743654312280467_f9441c8e35e947e4410ad3f2bca1242f.jpg",
-          "galleryCount": 3
-        }
-      ],
-      "totalVariants": 5,
-      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
-    },
-    {
-      "groupId": "GRP-LONGSLEEVE-004",
-      "parentProductId": "LONGSLEEVE-004",
-      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #4",
       "category": "ao-thun",
       "seasons": [
         "xuan-thu",
@@ -1858,9 +2375,9 @@
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
-      "groupId": "GRP-LONGSLEEVE-005",
-      "parentProductId": "LONGSLEEVE-005",
-      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #5",
+      "groupId": "GRP-LONGSLEEVE-004",
+      "parentProductId": "LONGSLEEVE-004",
+      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #4",
       "category": "ao-thun",
       "seasons": [
         "xuan-thu",
@@ -1873,23 +2390,37 @@
           "hex": "#524249",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626663_348043404565674403_5540743654312280467_2979342eafa74c90003b4aaeab01f755.jpg",
           "galleryCount": 1
-        },
-        {
-          "color": "Hồng Pastel",
-          "colorId": "hong-pastel",
-          "hex": "#F472B6",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626668_348043404565674403_5540743654312280467_8d12da963d10d6082863f05bbe57cfaf.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626672_348043404565674403_5540743654312280467_facdd8fbff22103d8a022c962b091b4c.jpg",
-          "galleryCount": 1
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-LONGSLEEVE-005",
+      "parentProductId": "LONGSLEEVE-005",
+      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #5",
+      "category": "ao-thun",
+      "seasons": [
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đỏ Đô",
+          "colorId": "do",
+          "hex": "#DC2626",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626668_348043404565674403_5540743654312280467_8d12da963d10d6082863f05bbe57cfaf.jpg",
+          "galleryCount": 2
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626676_348043404565674403_5540743654312280467_4c72e03b30bdd75c63361a62750e2c84.jpg",
+          "galleryCount": 2
+        }
+      ],
+      "totalVariants": 10,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -1903,28 +2434,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626676_348043404565674403_5540743654312280467_4c72e03b30bdd75c63361a62750e2c84.jpg",
-          "galleryCount": 1
-        },
-        {
-          "color": "Hồng Pastel",
-          "colorId": "hong-pastel",
-          "hex": "#F472B6",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626680_348043404565674403_5540743654312280467_a7d6a275400c0993fefbc0ec615a8f87.jpg",
-          "galleryCount": 1
-        },
-        {
           "color": "Trắng",
           "colorId": "trang",
           "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626684_348043404565674403_5540743654312280467_e9db5953b3357a47b1d43b517c53a9f4.jpg",
-          "galleryCount": 1
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626672_348043404565674403_5540743654312280467_facdd8fbff22103d8a022c962b091b4c.jpg",
+          "galleryCount": 2
         }
       ],
-      "totalVariants": 15,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -1938,21 +2455,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626689_348043404565674403_5540743654312280467_fc5fd748f2594c6f6fca8aa7e9e13bff.jpg",
-          "galleryCount": 1
-        },
-        {
           "color": "Trắng",
           "colorId": "trang",
           "hex": "#F9FAFB",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626693_348043404565674403_5540743654312280467_e97c50b301d7e28388e734df8ed7064c.jpg",
-          "galleryCount": 2
+          "galleryCount": 5
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -1966,11 +2476,11 @@
       ],
       "mergedColors": [
         {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626702_348043404565674403_5540743654312280467_13a286d1883d7c6d5016c43ee688d505.jpg",
-          "galleryCount": 3
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626715_348043404565674403_5540743654312280467_ecf475b7fc322585889c7094b0b5d3a1.jpg",
+          "galleryCount": 1
         }
       ],
       "totalVariants": 5,
@@ -1987,21 +2497,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626715_348043404565674403_5540743654312280467_ecf475b7fc322585889c7094b0b5d3a1.jpg",
-          "galleryCount": 1
-        },
-        {
           "color": "Trắng",
           "colorId": "trang",
           "hex": "#F9FAFB",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626719_348043404565674403_5540743654312280467_cddbfff8ac5c58352b77a0db1cd9ce78.jpg",
-          "galleryCount": 2
+          "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -2015,17 +2518,17 @@
       ],
       "mergedColors": [
         {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626723_348043404565674403_5540743654312280467_0b029c8b219de67d4de9307e11e650f4.jpg",
+          "galleryCount": 1
+        },
+        {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626728_348043404565674403_5540743654312280467_4b231d3bb8a0fddb6c6e3b8c026ed472.jpg",
-          "galleryCount": 2
-        },
-        {
-          "color": "Hồng Pastel",
-          "colorId": "hong-pastel",
-          "hex": "#F472B6",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626732_348043404565674403_5540743654312280467_bb526f1b413fa426721b1db54f40873d.jpg",
           "galleryCount": 1
         }
       ],
@@ -2043,21 +2546,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626741_348043404565674403_5540743654312280467_0062fe436b53e34049de34f354d79a71.jpg",
+          "color": "Đỏ Đô",
+          "colorId": "do",
+          "hex": "#DC2626",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626732_348043404565674403_5540743654312280467_bb526f1b413fa426721b1db54f40873d.jpg",
           "galleryCount": 1
-        },
-        {
-          "color": "Nâu Cà Phê",
-          "colorId": "nau",
-          "hex": "#78350F",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626745_348043404565674403_5540743654312280467_ae47ac5d51ca1903600a7b433e5219a3.jpg",
-          "galleryCount": 2
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -2071,21 +2567,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626754_348043404565674403_5540743654312280467_26c8446713ee9a8ed65f40fa80446c53.jpg",
-          "galleryCount": 2
-        },
-        {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626763_348043404565674403_5540743654312280467_c31fe26e1db9b1d7ee2784d085743e2a.jpg",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626737_348043404565674403_5540743654312280467_7009b31406f6f4d659825e0bcf67d731.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -2099,21 +2588,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626767_348043404565674403_5540743654312280467_5c9668e4f36c55cdb77fdc6a14cf1055.jpg",
-          "galleryCount": 2
-        },
-        {
-          "color": "Hồng Pastel",
-          "colorId": "hong-pastel",
-          "hex": "#F472B6",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626776_348043404565674403_5540743654312280467_b5f7ad7e901d92a251579e4c79773c95.jpg",
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626741_348043404565674403_5540743654312280467_0062fe436b53e34049de34f354d79a71.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -2127,21 +2609,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626781_348043404565674403_5540743654312280467_f4bf73f79fbf3cdb90ed414d3db1e756.jpg",
+          "color": "Nâu Cà Phê",
+          "colorId": "nau",
+          "hex": "#78350F",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626745_348043404565674403_5540743654312280467_ae47ac5d51ca1903600a7b433e5219a3.jpg",
           "galleryCount": 1
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626785_348043404565674403_5540743654312280467_24a020787e1d3b2e24f5e932d9514c03.jpg",
-          "galleryCount": 2
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -2155,21 +2630,14 @@
       ],
       "mergedColors": [
         {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626794_348043404565674403_5540743654312280467_28a2c85799e10f86e20cda7b598c0794.jpg",
-          "galleryCount": 2
-        },
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626803_348043404565674403_5540743654312280467_a00b29d0261bb4451d8d741e47bd6681.jpg",
+          "color": "Nâu Cà Phê",
+          "colorId": "nau",
+          "hex": "#78350F",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626750_348043404565674403_5540743654312280467_50442094bcfd6bcf184db1fbe5993be2.jpg",
           "galleryCount": 1
         }
       ],
-      "totalVariants": 10,
+      "totalVariants": 5,
       "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
     },
     {
@@ -2183,11 +2651,235 @@
       ],
       "mergedColors": [
         {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626754_348043404565674403_5540743654312280467_26c8446713ee9a8ed65f40fa80446c53.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-LONGSLEEVE-017",
+      "parentProductId": "LONGSLEEVE-017",
+      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #17",
+      "category": "ao-thun",
+      "seasons": [
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626759_348043404565674403_5540743654312280467_fe2eea8b989fb91a509b62937e5c215a.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-LONGSLEEVE-018",
+      "parentProductId": "LONGSLEEVE-018",
+      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #18",
+      "category": "ao-thun",
+      "seasons": [
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626763_348043404565674403_5540743654312280467_c31fe26e1db9b1d7ee2784d085743e2a.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-LONGSLEEVE-019",
+      "parentProductId": "LONGSLEEVE-019",
+      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #19",
+      "category": "ao-thun",
+      "seasons": [
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626767_348043404565674403_5540743654312280467_5c9668e4f36c55cdb77fdc6a14cf1055.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-LONGSLEEVE-020",
+      "parentProductId": "LONGSLEEVE-020",
+      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #20",
+      "category": "ao-thun",
+      "seasons": [
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626772_348043404565674403_5540743654312280467_87eb7cd47dab4fde81139092b9191a2c.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-LONGSLEEVE-021",
+      "parentProductId": "LONGSLEEVE-021",
+      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #21",
+      "category": "ao-thun",
+      "seasons": [
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Hồng Pastel",
+          "colorId": "hong-pastel",
+          "hex": "#F472B6",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626776_348043404565674403_5540743654312280467_b5f7ad7e901d92a251579e4c79773c95.jpg",
+          "galleryCount": 1
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626781_348043404565674403_5540743654312280467_f4bf73f79fbf3cdb90ed414d3db1e756.jpg",
+          "galleryCount": 1
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626785_348043404565674403_5540743654312280467_24a020787e1d3b2e24f5e932d9514c03.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 15,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-LONGSLEEVE-022",
+      "parentProductId": "LONGSLEEVE-022",
+      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #22",
+      "category": "ao-thun",
+      "seasons": [
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626789_348043404565674403_5540743654312280467_57b6f934880884ca844fdedf6bb838a0.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-LONGSLEEVE-023",
+      "parentProductId": "LONGSLEEVE-023",
+      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #23",
+      "category": "ao-thun",
+      "seasons": [
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626794_348043404565674403_5540743654312280467_28a2c85799e10f86e20cda7b598c0794.jpg",
+          "galleryCount": 2
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-LONGSLEEVE-024",
+      "parentProductId": "LONGSLEEVE-024",
+      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #24",
+      "category": "ao-thun",
+      "seasons": [
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626803_348043404565674403_5540743654312280467_a00b29d0261bb4451d8d741e47bd6681.jpg",
+          "galleryCount": 1
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-LONGSLEEVE-025",
+      "parentProductId": "LONGSLEEVE-025",
+      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #25",
+      "category": "ao-thun",
+      "seasons": [
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
           "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626807_348043404565674403_5540743654312280467_78d20a7edb79de2237c54ff8a949d9ad.jpg",
-          "galleryCount": 3
+          "galleryCount": 2
+        }
+      ],
+      "totalVariants": 5,
+      "reason": "Phân tích Computer Vision & Color Clustering: Cùng mẫu thiết kế, đa màu sắc và góc chụp"
+    },
+    {
+      "groupId": "GRP-LONGSLEEVE-026",
+      "parentProductId": "LONGSLEEVE-026",
+      "productName": "Áo Thun Dài Tay Nam Thu Đông Phom Rộng Model #26",
+      "category": "ao-thun",
+      "seasons": [
+        "xuan-thu",
+        "dong"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/ao/ao-thun-dai-tay/1792765626817_348043404565674403_5540743654312280467_0f7beadb7c8dbfe4c5a0157178d0bb91.jpg",
+          "galleryCount": 1
         }
       ],
       "totalVariants": 5,

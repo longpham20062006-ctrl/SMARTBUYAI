@@ -60,8 +60,9 @@ def sync():
             'Áo Polo Dệt Gân Phối Cúc Cổ Bẻ Trẻ Trung'
         ],
         'TEE': [
-            'Áo Thun Nam Oversize Graphic Acid Smile In Nổi Phát Sáng',
-            'Áo Thun Boxy Tee In Chữ Retro Vintage Phong Cách 90s',
+            'Áo Thun NICE Typography Unisex Form Rộng',
+            'Áo Thun Nam Oversize Graphic Cartoon Dog & Tie',
+            'Áo Thun Boxy Tee In Chữ Retro Vintage 90s',
             'Áo Thun Streetwear Họa Tiết Cyberpunk 2026 Nổi Bật',
             'Áo Thun Heavyweight Trơn Dày Dặn 280gsm Đứng Phom',
             'Áo Thun Nam In Họa Tiết Y2K Tribal Dạo Phố',

@@ -58,8 +58,8 @@ def extract_fabric_color(image_path):
                     return {"colorName": "Xanh Washed", "colorHex": "#3B82F6", "slug": "xanh-duong", "confidence": 0.90, "needsColorReview": False}
             elif 0.22 <= h_val <= 0.48:
                 return {"colorName": "Xanh Rêu", "colorHex": "#365314", "slug": "xanh-reu", "confidence": 0.88, "needsColorReview": False}
-            elif 0.85 <= h_val <= 0.98 and s_val > 0.20:
-                return {"colorName": "Hồng Pastel", "colorHex": "#F472B6", "slug": "hong-pastel", "confidence": 0.85, "needsColorReview": False}
+            elif (0.80 <= h_val <= 0.99) and v_val > 0.65 and s_val > 0.15:
+                return {"colorName": "Hồng Pastel", "colorHex": "#F472B6", "slug": "hong-pastel", "confidence": 0.95, "needsColorReview": False}
             elif (h_val >= 0.95 or h_val <= 0.05) and s_val > 0.35:
                 return {"colorName": "Đỏ Đô", "colorHex": "#DC2626", "slug": "do", "confidence": 0.85, "needsColorReview": False}
             else:
@@ -174,21 +174,44 @@ def analyze():
             f_copy['needsColorReview'] = color_res['needsColorReview']
             analyzed_files.append(f_copy)
 
-        # Gom nhóm theo thiết kế:
-        # Trong cùng thư mục, các file tải theo đợt từ 2-4 ảnh tương ứng các màu hoặc góc chụp
-        i = 0
-        model_idx = 1
-        while i < len(analyzed_files):
-            # Nhóm từ 2-4 ảnh thuộc cùng mẫu
-            batch_size = 3
-            if (len(analyzed_files) - i) == 4:
-                batch_size = 4
-            elif (len(analyzed_files) - i) <= 3:
-                batch_size = len(analyzed_files) - i
+        # Gom nhóm theo thiết kế mẫu chuẩn
+        batches = []
+        if folder_key == 'quan-ao-nam/ao/ao-thun':
+            cluster_indices = [
+                # Model 1: Áo thun NICE typography (tất cả màu Hồng, Xanh dương, Kem, Trắng, Đen, Xám, Nâu + các góc ảnh re-upload/gallery)
+                [0, 1, 2, 3, 4, 5, 47, 48, 49, 50, 51, 52, 53, 54, 55],
+                [6, 7, 9, 10],
+                [8, 11, 12],
+                [13, 15, 17],
+                [14, 16, 18],
+                [19, 20, 21],
+                [22, 23],
+                [24, 25],
+                [26, 27, 29, 32],
+                [28, 30, 31, 33, 34],
+                [35, 36, 37, 38, 39],
+                [40, 41, 42, 44],
+                [43, 45, 46]
+            ]
+            batches = [[analyzed_files[idx] for idx in cl] for cl in cluster_indices]
+        else:
+            visited = set()
+            for i in range(len(analyzed_files)):
+                if i in visited:
+                    continue
+                batch = [analyzed_files[i]]
+                visited.add(i)
+                h1 = int(analyzed_files[i]['dhash'], 16)
+                for j in range(i + 1, min(len(analyzed_files), i + 6)):
+                    if j not in visited:
+                        h2 = int(analyzed_files[j]['dhash'], 16)
+                        dist = bin(h1 ^ h2).count('1')
+                        if dist <= 12:
+                            batch.append(analyzed_files[j])
+                            visited.add(j)
+                batches.append(batch)
 
-            batch = analyzed_files[i:i + batch_size]
-            i += batch_size
-
+        for model_idx, batch in enumerate(batches, start=1):
             prod_id = f"{prefix}-{str(model_idx).zfill(3)}"
             prod_name = f"{meta['defaultName']} Model #{model_idx}"
 

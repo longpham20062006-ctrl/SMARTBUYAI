@@ -33,10 +33,18 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
             key={color.slug}
             type="button"
             title={color.name}
+            aria-label={`Chọn màu ${color.name}`}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               onSelectColor?.(color);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                e.stopPropagation();
+                onSelectColor?.(color);
+              }
             }}
             className={cn(
               'group relative rounded-full p-0.5 transition-all duration-150 focus:outline-none cursor-pointer',

@@ -33,8 +33,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const secondaryImage = selectedColor.images?.[1] || product.images[1] || primaryImage;
   const currentImage = imgError
     ? 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80'
-    : isHovered
-    ? secondaryImage
     : primaryImage;
 
   const currentPrice = matchedVariant?.price || product.price;
