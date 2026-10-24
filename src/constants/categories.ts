@@ -1,6 +1,6 @@
 import { Category, Product } from '@/types';
 
-export type ParentCategoryGroup = 'ao' | 'ao-khoac' | 'quan' | 'chan-vay-dam' | 'phu-kien' | 'khac';
+export type ParentCategoryGroup = 'ao' | 'ao-khoac' | 'quan' | 'do-bo' | 'chan-vay-dam' | 'phu-kien' | 'khac';
 
 export interface CategoryMetadata {
   id: string;
@@ -153,6 +153,21 @@ export const CATEGORY_DEFINITIONS: Record<string, CategoryMetadata> = {
     order: 10,
   },
 
+  // Cấp 2: ĐỒ BỘ (public/images/san-pham/quan-ao-nam/do-bo/) - Set đồ thể thao và dạo phố
+  'do-bo': {
+    id: 'c-do-bo',
+    slug: 'do-bo',
+    name: 'Đồ bộ',
+    englishName: 'Sets & Tracksuits',
+    folderName: 'do-bo',
+    parentGroup: 'do-bo',
+    parentGroupName: 'Đồ bộ',
+    gender: ['nam', 'nu', 'unisex'],
+    image: '/images/san-pham/quan-ao-nam/do-bo/do_bo_1/1792815868582_348043404565674403_5540743654312280467_220b72458c928eec2908c6a704d6b993.jpg',
+    description: 'Set trang phục thể thao và dạo phố đồng điệu gồm áo và quần, tiện lợi và năng động.',
+    order: 11,
+  },
+
   // Cấp 2: VÁY & ĐẦM (dành cho thời trang nữ khi có ảnh)
   'chan-vay': {
     id: 'c-chan-vay',
@@ -299,8 +314,8 @@ export function getActiveGroupedCategories(
     groupMap[groupKey]!.totalCount += cat.itemCount;
   });
 
-  // Thứ tự hiển thị chuẩn: Áo -> Áo khoác -> Quần -> Váy & Đầm -> Phụ kiện -> Khác
-  const groupOrder: ParentCategoryGroup[] = ['ao', 'ao-khoac', 'quan', 'chan-vay-dam', 'phu-kien', 'khac'];
+  // Thứ tự hiển thị chuẩn: Áo -> Áo khoác -> Quần -> Đồ bộ -> Váy & Đầm -> Phụ kiện -> Khác
+  const groupOrder: ParentCategoryGroup[] = ['ao', 'ao-khoac', 'quan', 'do-bo', 'chan-vay-dam', 'phu-kien', 'khac'];
 
   return groupOrder
     .filter((gk) => groupMap[gk] && groupMap[gk]!.categories.length > 0)

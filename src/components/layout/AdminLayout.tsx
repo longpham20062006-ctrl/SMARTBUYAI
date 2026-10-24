@@ -17,6 +17,7 @@ import {
   Settings,
   LogOut,
   ExternalLink,
+  DollarSign,
 } from 'lucide-react';
 import { MockRepo } from '@/mocks/repository';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
@@ -41,6 +42,7 @@ export const AdminLayout: React.FC = () => {
   const navMenuItems = [
     { to: '/admin', label: 'Home', icon: Home, end: true },
     { to: '/admin/products', label: 'Catalog', icon: Package },
+    { to: '/admin/pricing', label: 'Bảng giá Nam', icon: DollarSign },
     { to: '/admin/categories', label: 'Danh mục', icon: FolderTree },
     { to: '/admin/brands', label: 'Thương hiệu', icon: Tag },
     { to: '/admin/orders', label: 'Đơn hàng', icon: ClipboardList },

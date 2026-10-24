@@ -8,7 +8,7 @@ console.log("Kiểm thử 12 kịch bản bắt buộc theo Master Prompt Part 2
 console.log("================================================================================\n");
 
 let passedCount = 0;
-let totalTests = 23;
+let totalTests = 28;
 
 function runTest(testNum, testName, testFn) {
   try {
@@ -107,7 +107,7 @@ runTest(7, "Đổi màu liên tục -> Ảnh cuối tương ứng đúng ảnh m
 // TEST 8: Reload website -> Không tạo lại sản phẩm trùng, không mất mapping
 runTest(8, "Tính bền vững và Idempotency: Reload không sinh sản phẩm trùng", () => {
   const repoTs = fs.readFileSync(path.resolve(__dirname, '../src/mocks/repository.ts'), 'utf8');
-  assert(repoTs.includes("SCHEMA_VERSION = 'v5.0-folder-models-engine'"), "Schema version được nâng cấp chuẩn");
+  assert(repoTs.includes("SCHEMA_VERSION = 'v6.0-men-catalog-v4'"), "Schema version được nâng cấp chuẩn");
 });
 
 // TEST 9: Chạy script import nhiều lần -> Tổng số Product ID không tăng
@@ -169,9 +169,9 @@ runTest(13, "Danh mục theo thư mục thực tế -> Không có danh mục gh�
 });
 
 // TEST 14: Đếm mẫu thực tế theo Product ID, không đếm ảnh hay biến thể
-runTest(14, "Đếm mẫu sản phẩm theo Product ID -> Chính xác 126 mẫu thực tế", () => {
+runTest(14, "Đếm mẫu sản phẩm theo Product ID -> Chính xác 130 mẫu thực tế", () => {
   const allIds = new Set(products.map(p => p.id));
-  assert.strictEqual(allIds.size, 126, "Phải có đúng 126 mẫu sản phẩm đại diện cho 126 thư mục mẫu");
+  assert.strictEqual(allIds.size, 130, "Phải có đúng 130 mẫu sản phẩm đại diện cho 130 thư mục mẫu");
   // Phân bổ danh mục
   const counts = {};
   products.forEach(p => {
@@ -186,6 +186,7 @@ runTest(14, "Đếm mẫu sản phẩm theo Product ID -> Chính xác 126 mẫu 
   assert.strictEqual(counts['ao-khoac'], 19, "Áo khoác phải có đúng 19 mẫu");
   assert.strictEqual(counts['quan-short'], 16, "Quần short phải có đúng 16 mẫu");
   assert.strictEqual(counts['quan-dai'], 5, "Quần dài phải có đúng 5 mẫu");
+  assert.strictEqual(counts['do-bo'], 4, "Đồ bộ phải có đúng 4 mẫu");
 });
 
 // TEST 15: Kiểm tra trạng thái xác minh màu sắc (verificationStatus)
@@ -243,11 +244,12 @@ runTest(17, "Kiểm thử lọc độc lập 6 loại áo nam -> Trả về đú
   assert(thunDaiTayList.every(p => p.modelFolder.startsWith('ao_thun_dai_tay_')), "100% mẫu Áo thun dài tay phải lấy từ folder ao-thun-dai-tay");
 });
 
-// TEST 18: Kiểm thử cấu trúc 3 nhóm chính Men's Catalog V3: Áo (86 mẫu), Áo khoác (19 mẫu), Quần (21 mẫu)
-runTest(18, "Kiểm thử 3 nhóm chính: Áo (86 mẫu), Áo khoác (19 mẫu), Quần (21 mẫu)", () => {
+// TEST 18: Kiểm thử cấu trúc các nhóm chính Men's Catalog V4: Áo (86), Áo khoác (19), Quần (21), Đồ bộ (4)
+runTest(18, "Kiểm thử các nhóm chính: Áo (86 mẫu), Áo khoác (19 mẫu), Quần (21 mẫu), Đồ bộ (4 mẫu)", () => {
   const shirtCategories = ['ao-hoodie', 'ao-len', 'ao-polo', 'ao-so-mi', 'ao-thun', 'ao-thun-dai-tay'];
   const jacketCategories = ['ao-khoac'];
   const pantCategories = ['quan-short', 'quan-dai'];
+  const doBoCategories = ['do-bo'];
 
   const shirtProducts = products.filter(p => shirtCategories.includes(p.categorySlug));
   assert.strictEqual(shirtProducts.length, 86, "Tổng nhóm Áo Nam phải có 86 mẫu (10+17+10+12+13+24)");
@@ -258,26 +260,30 @@ runTest(18, "Kiểm thử 3 nhóm chính: Áo (86 mẫu), Áo khoác (19 mẫu),
   const pantProducts = products.filter(p => pantCategories.includes(p.categorySlug));
   assert.strictEqual(pantProducts.length, 21, "Tổng nhóm Quần Nam phải có 21 mẫu (16+5)");
 
-  assert.strictEqual(shirtProducts.length + jacketProducts.length + pantProducts.length, 126, "Tổng số sản phẩm chuẩn xác 126 mẫu");
+  const doBoProducts = products.filter(p => doBoCategories.includes(p.categorySlug));
+  assert.strictEqual(doBoProducts.length, 4, "Nhóm Đồ bộ phải có đúng 4 mẫu");
+
+  assert.strictEqual(shirtProducts.length + jacketProducts.length + pantProducts.length + doBoProducts.length, 130, "Tổng số sản phẩm chuẩn xác 130 mẫu");
 });
 
 // TEST 19: Bộ lọc giới tính Nam/Nữ/Unisex hoạt động đúng theo dữ liệu thực tế
 runTest(19, "Bộ lọc giới tính: Không sao chép áo Nam sang Nữ/Unisex nếu không có folder", () => {
   // Dữ liệu chỉ có sản phẩm thật trong quan-ao-nam
   const maleProducts = products.filter(p => p.gender === 'nam' || p.gender === 'unisex');
-  assert.strictEqual(maleProducts.length, 126, "Tất cả 126 sản phẩm đều phục vụ thời trang Nam/Unisex");
+  assert.strictEqual(maleProducts.length, 130, "Tất cả 130 sản phẩm đều phục vụ thời trang Nam/Unisex");
   
   // Các danh mục nữ chưa có ảnh (như chan-vay, dam) không có sản phẩm
   const femaleExclusive = products.filter(p => p.categorySlug === 'chan-vay' || p.categorySlug === 'dam');
   assert.strictEqual(femaleExclusive.length, 0, "Không được tự tạo sản phẩm ảo cho chân váy hoặc đầm nữ");
 });
 
-// TEST 20: Segmented Tabs cho Men's Collection (Tất cả: 126, Áo: 86, Áo khoác: 19, Quần: 21)
-runTest(20, "Segmented Tabs Men's Collection -> 4 nhóm [Tất cả: 126, Áo: 86, Áo khoác: 19, Quần: 21] hoạt động chính xác", () => {
+// TEST 20: Segmented Tabs cho Men's Collection (Tất cả: 130, Áo: 86, Áo khoác: 19, Quần: 21, Đồ bộ: 4, Đồ đôi: 3)
+runTest(20, "Segmented Tabs Men's Collection -> 6 nhóm [Tất cả: 130, Áo: 86, Áo khoác: 19, Quần: 21, Đồ bộ: 4, Đồ đôi: 3]", () => {
   const categoriesTs = fs.readFileSync(path.resolve(__dirname, '../src/constants/categories.ts'), 'utf8');
   assert(categoriesTs.includes("parentGroup: 'ao'"), "Phải định nghĩa nhóm parentGroup 'ao'");
   assert(categoriesTs.includes("parentGroup: 'ao-khoac'"), "Phải định nghĩa nhóm parentGroup 'ao-khoac'");
   assert(categoriesTs.includes("parentGroup: 'quan'"), "Phải định nghĩa nhóm parentGroup 'quan'");
+  assert(categoriesTs.includes("parentGroup: 'do-bo'"), "Phải định nghĩa nhóm parentGroup 'do-bo'");
 
   // Giả lập logic lọc parent group trong productService
   const shirtGroup = products.filter(p => {
@@ -292,6 +298,11 @@ runTest(20, "Segmented Tabs Men's Collection -> 4 nhóm [Tất cả: 126, Áo: 8
     return ['quan-short', 'quan-dai'].includes(p.categorySlug);
   });
   assert.strictEqual(pantGroup.length, 21, "Lọc nhóm 'quan' phải trả về đúng 21 mẫu quần");
+
+  const doBoGroup = products.filter(p => p.categorySlug === 'do-bo');
+  assert.strictEqual(doBoGroup.length, 4, "Lọc nhóm 'do-bo' phải trả về đúng 4 mẫu đồ bộ");
+
+  assert.strictEqual(products.length, 130, "Tổng số mẫu Nam phải là 130 mẫu chuẩn xác");
 });
 
 // TEST 21: Bộ lọc màu sắc thực tế (Verified Colors Filter)
@@ -320,6 +331,84 @@ runTest(22, "Ảnh Quần dài chưa phân loại trực tiếp trong quan-dai -
 runTest(23, "Xử lý nhóm Jeans trống -> Không sinh sản phẩm giả, không hiển thị trong danh mục có hàng", () => {
   const jeansProducts = products.filter(p => p.categorySlug === 'quan-jeans');
   assert.strictEqual(jeansProducts.length, 0, "Nhóm jeans chưa có ảnh trong archive không được tạo sản phẩm giả");
+});
+
+// TEST 24: Nhóm Đồ bộ Nam (do-bo) bán theo set nguyên bộ
+runTest(24, "Đồ bộ Nam (do-bo) -> 4 folder mẫu do_bo_1 -> do_bo_4, bán theo set có isSetItem = true", () => {
+  const doBoList = products.filter(p => p.categorySlug === 'do-bo');
+  assert.strictEqual(doBoList.length, 4, "Phải có đúng 4 mẫu đồ bộ");
+  doBoList.forEach(p => {
+    assert(p.isSetItem, `Mẫu đồ bộ ${p.id} phải có isSetItem: true`);
+    assert(p.id.startsWith('SET-'), `Mẫu đồ bộ phải có tiền tố SET-, nhận được ${p.id}`);
+    assert(p.price >= 329000 && p.price <= 649000, `Giá đồ bộ ${p.price} phải trong khoảng 329k-649k`);
+  });
+});
+
+// TEST 25: Định giá riêng biệt cho 130 mẫu - KHÔNG trùng giá đồng loạt trong cùng danh mục
+runTest(25, "Định giá riêng biệt cho 130 mẫu -> Không dùng giá danh mục cố định, mỗi mẫu có giá riêng", () => {
+  const categories = [
+    'ao-thun', 'ao-thun-dai-tay', 'ao-polo', 'ao-so-mi',
+    'ao-hoodie', 'ao-len', 'ao-khoac', 'quan-dai', 'quan-short', 'do-bo'
+  ];
+
+  categories.forEach(cat => {
+    const prods = products.filter(p => p.categorySlug === cat);
+    const prices = prods.map(p => p.price);
+    const uniquePrices = new Set(prices);
+    assert.strictEqual(
+      uniquePrices.size,
+      prods.length,
+      `Danh mục ${cat} phải có 100% giá phân biệt giữa các mẫu (Tìm thấy ${uniquePrices.size}/${prods.length})`
+    );
+  });
+});
+
+// TEST 26: Hệ thống Pricing Registry & CSV Export
+runTest(26, "Hệ thống Bảng giá Quản trị -> pricingRegistry.json & CSV export đầy đủ 130 bản ghi", () => {
+  const pricingRegistryPath = path.resolve(__dirname, '../src/mocks/pricingRegistry.json');
+  const csvPath = path.resolve(__dirname, '../public/data/men-catalog-pricing.csv');
+
+  assert(fs.existsSync(pricingRegistryPath), "Phải tồn tại pricingRegistry.json");
+  assert(fs.existsSync(csvPath), "Phải tồn tại men-catalog-pricing.csv");
+
+  const registry = JSON.parse(fs.readFileSync(pricingRegistryPath, 'utf8'));
+  assert.strictEqual(registry.length, 130, "pricingRegistry phải có đủ 130 bản ghi");
+
+  registry.forEach(r => {
+    assert(r.productId && r.currentPrice && r.suggestedPrice && r.approvedPrice, "Bản ghi giá phải có đầy đủ trường");
+    assert(r.approvedPrice === r.currentPrice, "Giá duyệt phải khớp với giá hiện hành");
+    assert(r.profitMargin > 0, "Biên lợi nhuận phải lớn hơn 0");
+  });
+
+  const csvContent = fs.readFileSync(csvPath, 'utf8');
+  const csvLines = csvContent.trim().split('\n');
+  assert.strictEqual(csvLines.length, 131, "CSV phải gồm 1 dòng header + 130 dòng dữ liệu");
+});
+
+// TEST 27: Tính năng Đồ đôi / Couple Outfits tách biệt hoàn toàn với Đồ bộ
+runTest(27, "Đồ đôi (CoupleSet) -> Tách biệt với Đồ bộ, liên kết sản phẩm thật cho 2 người", () => {
+  const coupleSetsPath = path.resolve(__dirname, '../src/mocks/coupleSets.ts');
+  assert(fs.existsSync(coupleSetsPath), "Phải tồn tại file coupleSets.ts");
+
+  const coupleContent = fs.readFileSync(coupleSetsPath, 'utf8');
+  assert(coupleContent.includes("id: 'COUPLE-001'"), "Phải có COUPLE-001");
+  assert(coupleContent.includes("id: 'COUPLE-002'"), "Phải có COUPLE-002");
+  assert(coupleContent.includes("id: 'COUPLE-003'"), "Phải có COUPLE-003");
+
+  // Kiểm tra Đồ đôi không được lẫn vào danh mục đồ bộ thông thường
+  const doBoProducts = products.filter(p => p.categorySlug === 'do-bo');
+  assert(!doBoProducts.some(p => p.id.startsWith('COUPLE-')), "Đồ bộ nam không được chứa mã COUPLE-");
+});
+
+// TEST 28: Không có giảm giá ảo - originalPrice khớp currentPrice trừ khi có khuyến mãi thật
+runTest(28, "Không có giảm giá ảo -> originalPrice khớp currentPrice trừ khi có khuyến mãi được duyệt", () => {
+  products.forEach(p => {
+    if (!p.discountPercent || p.discountPercent === 0) {
+      assert.strictEqual(p.originalPrice, p.price, `Sản phẩm ${p.id} không giảm giá thì originalPrice phải bằng price`);
+    } else {
+      assert(p.originalPrice > p.price, `Sản phẩm ${p.id} giảm giá thì originalPrice phải lớn hơn price`);
+    }
+  });
 });
 
 console.log("\n================================================================================");

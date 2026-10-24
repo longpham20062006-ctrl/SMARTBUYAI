@@ -99,7 +99,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </Link>
 
         {/* Badge góc trên bên trái */}
-        {product.badge && (
+        {product.isSetItem || product.categorySlug === 'do-bo' ? (
+          <div className="absolute top-2.5 left-2.5 pointer-events-none z-10">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-emerald-600 text-white shadow-subtle">
+              SET NGUYÊN BỘ
+            </span>
+          </div>
+        ) : product.badge ? (
           <div className="absolute top-2.5 left-2.5 pointer-events-none z-10">
             <span
               className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider shadow-subtle ${
@@ -115,7 +121,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               {product.badge === 'Mới' ? 'NEW' : product.badge === 'Tuyển chọn' ? 'TRENDING' : product.badge}
             </span>
           </div>
-        )}
+        ) : null}
 
         {/* Action icons góc trên bên phải */}
         <div className="absolute top-2.5 right-2.5 flex flex-col gap-1.5 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200 z-10">

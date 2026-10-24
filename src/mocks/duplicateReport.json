@@ -3,14 +3,14 @@
   "title": "SMARTBUY AI — Báo Cáo Phân Tích Mẫu Sản Phẩm Theo Folder Thực Tế V3",
   "engine": "Folder-Based Product Variants Engine V3 (1 Folder = 1 Product)",
   "summary": {
-    "totalModelFolders": 126,
-    "totalConfirmedProducts": 126,
-    "totalMergedProducts": 126,
-    "confirmedMergedGroupsCount": 126,
-    "totalScannedImages": 297,
+    "totalModelFolders": 130,
+    "totalConfirmedProducts": 130,
+    "totalMergedProducts": 130,
+    "confirmedMergedGroupsCount": 130,
+    "totalScannedImages": 306,
     "looseImagesCount": 1,
-    "multiColorProductsCount": 75,
-    "multiAngleGalleryProductsCount": 33,
+    "multiColorProductsCount": 79,
+    "multiAngleGalleryProductsCount": 34,
     "pendingReviewCount": 8
   },
   "confirmedMergedGroups": [
@@ -5361,6 +5361,208 @@
       "totalImages": 9,
       "totalVariants": 35,
       "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/ao/ao-thun/ao_thun_13): 7 màu, 9 ảnh"
+    },
+    {
+      "groupId": "GRP-SET-001",
+      "parentProductId": "SET-001",
+      "folderKey": "quan-ao-nam/do-bo/do_bo_1",
+      "modelFolder": "do_bo_1",
+      "productName": "Set Đồ Bộ Nam Năng Động Dạo Phố #1",
+      "category": "do-bo",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/do-bo/do_bo_1/1792815868582_348043404565674403_5540743654312280467_220b72458c928eec2908c6a704d6b993.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/do-bo/do_bo_1/1792815868582_348043404565674403_5540743654312280467_220b72458c928eec2908c6a704d6b993.jpg",
+        "/images/san-pham/quan-ao-nam/do-bo/do_bo_1/1792815868601_348043404565674403_5540743654312280467_f3f25bb02005a20a95bdd38b3ed66ba9.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/quan-ao-nam/do-bo/do_bo_1/1792815868582_348043404565674403_5540743654312280467_220b72458c928eec2908c6a704d6b993.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/do-bo/do_bo_1/1792815868582_348043404565674403_5540743654312280467_220b72458c928eec2908c6a704d6b993.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": false
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/do-bo/do_bo_1/1792815868601_348043404565674403_5540743654312280467_f3f25bb02005a20a95bdd38b3ed66ba9.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/do-bo/do_bo_1/1792815868601_348043404565674403_5540743654312280467_f3f25bb02005a20a95bdd38b3ed66ba9.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": false
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/do-bo/do_bo_1): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-SET-002",
+      "parentProductId": "SET-002",
+      "folderKey": "quan-ao-nam/do-bo/do_bo_2",
+      "modelFolder": "do_bo_2",
+      "productName": "Set Đồ Bộ Nam Năng Động Dạo Phố #2",
+      "category": "do-bo",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/do-bo/do_bo_2/1792815868614_348043404565674403_5540743654312280467_603a61528c068476f81f241fd3279d01.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/do-bo/do_bo_2/1792815868614_348043404565674403_5540743654312280467_603a61528c068476f81f241fd3279d01.jpg",
+        "/images/san-pham/quan-ao-nam/do-bo/do_bo_2/1792815868625_348043404565674403_5540743654312280467_d84424d0ff2b41b8529feda85ef5800d.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/quan-ao-nam/do-bo/do_bo_2/1792815868614_348043404565674403_5540743654312280467_603a61528c068476f81f241fd3279d01.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/do-bo/do_bo_2/1792815868614_348043404565674403_5540743654312280467_603a61528c068476f81f241fd3279d01.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": false
+        },
+        {
+          "color": "Nâu Cà Phê",
+          "colorId": "nau",
+          "hex": "#78350F",
+          "image": "/images/san-pham/quan-ao-nam/do-bo/do_bo_2/1792815868625_348043404565674403_5540743654312280467_d84424d0ff2b41b8529feda85ef5800d.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/do-bo/do_bo_2/1792815868625_348043404565674403_5540743654312280467_d84424d0ff2b41b8529feda85ef5800d.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": false
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/do-bo/do_bo_2): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-SET-003",
+      "parentProductId": "SET-003",
+      "folderKey": "quan-ao-nam/do-bo/do_bo_3",
+      "modelFolder": "do_bo_3",
+      "productName": "Set Đồ Bộ Nam Năng Động Dạo Phố #3",
+      "category": "do-bo",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/do-bo/do_bo_3/1792815868634_348043404565674403_5540743654312280467_1c333f3e51221771f0aa222770134239.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/do-bo/do_bo_3/1792815868634_348043404565674403_5540743654312280467_1c333f3e51221771f0aa222770134239.jpg",
+        "/images/san-pham/quan-ao-nam/do-bo/do_bo_3/1792815868644_348043404565674403_5540743654312280467_b7889f99763ea81669e4f898628ec6f7.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/do-bo/do_bo_3/1792815868634_348043404565674403_5540743654312280467_1c333f3e51221771f0aa222770134239.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/do-bo/do_bo_3/1792815868634_348043404565674403_5540743654312280467_1c333f3e51221771f0aa222770134239.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": false
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/do-bo/do_bo_3/1792815868644_348043404565674403_5540743654312280467_b7889f99763ea81669e4f898628ec6f7.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/do-bo/do_bo_3/1792815868644_348043404565674403_5540743654312280467_b7889f99763ea81669e4f898628ec6f7.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": false
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/do-bo/do_bo_3): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-SET-004",
+      "parentProductId": "SET-004",
+      "folderKey": "quan-ao-nam/do-bo/do_bo_4",
+      "modelFolder": "do_bo_4",
+      "productName": "Set Đồ Bộ Nam Năng Động Dạo Phố #4",
+      "category": "do-bo",
+      "gender": "nam",
+      "seasons": [
+        "he",
+        "xuan-thu"
+      ],
+      "primaryImage": "/images/san-pham/quan-ao-nam/do-bo/do_bo_4/1792815868652_348043404565674403_5540743654312280467_b72418f1adf0970656b8b10aef34da73.jpg",
+      "allImages": [
+        "/images/san-pham/quan-ao-nam/do-bo/do_bo_4/1792815868652_348043404565674403_5540743654312280467_b72418f1adf0970656b8b10aef34da73.jpg",
+        "/images/san-pham/quan-ao-nam/do-bo/do_bo_4/1792815868660_348043404565674403_5540743654312280467_5feba3e9c2a892c5a6651faf44814a6c.jpg",
+        "/images/san-pham/quan-ao-nam/do-bo/do_bo_4/1792815868667_348043404565674403_5540743654312280467_6031f1656ff7473085af902112656248.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nam/do-bo/do_bo_4/1792815868652_348043404565674403_5540743654312280467_b72418f1adf0970656b8b10aef34da73.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/do-bo/do_bo_4/1792815868652_348043404565674403_5540743654312280467_b72418f1adf0970656b8b10aef34da73.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": false
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nam/do-bo/do_bo_4/1792815868660_348043404565674403_5540743654312280467_5feba3e9c2a892c5a6651faf44814a6c.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/quan-ao-nam/do-bo/do_bo_4/1792815868660_348043404565674403_5540743654312280467_5feba3e9c2a892c5a6651faf44814a6c.jpg",
+            "/images/san-pham/quan-ao-nam/do-bo/do_bo_4/1792815868667_348043404565674403_5540743654312280467_6031f1656ff7473085af902112656248.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": false
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 3,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nam/do-bo/do_bo_4): 2 màu, 3 ảnh"
     },
     {
       "groupId": "GRP-PANTS-001",

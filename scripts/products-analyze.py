@@ -320,6 +320,14 @@ def analyze():
             'material': 'Kaki Cotton co giãn nhẹ hoặc vải Tuyết Mưa cao cấp',
             'fit': 'Straight Leg / Wide Leg'
         },
+        'do-bo': {
+            'prefix': 'SET',
+            'seasons': ['he', 'xuan-thu'],
+            'basePrice': 389000,
+            'defaultName': 'Set Đồ Bộ Nam Năng Động Dạo Phố',
+            'material': 'Cotton Compact dệt 2 chiều hoặc Dù gió thể thao cao cấp',
+            'fit': 'Regular / Relaxed Set'
+        },
         'quan-jeans': {
             'prefix': 'JEANS',
             'seasons': ['he', 'xuan-thu', 'dong'],

@@ -120,6 +120,10 @@ def scan():
             cat_slug = 'quan-short'
             cat_name = 'Quần short'
             prefix = 'SHORTS'
+        elif 'do-bo' in parts:
+            cat_slug = 'do-bo'
+            cat_name = 'Đồ bộ'
+            prefix = 'SET'
         elif 'chan-vay' in parts:
             cat_slug = 'chan-vay'
             cat_name = 'Chân váy'

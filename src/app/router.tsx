@@ -33,6 +33,7 @@ import { AdminInventoryPage } from '@/features/admin/inventory/pages/AdminInvent
 import { AdminOrdersPage } from '@/features/admin/orders/pages/AdminOrdersPage';
 import { AdminOrderDetailPage } from '@/features/admin/orders/pages/AdminOrderDetailPage';
 import { AdminUsersPage } from '@/features/admin/users/pages/AdminUsersPage';
+import { AdminPricingPage } from '@/features/admin/pricing/pages/AdminPricingPage';
 
 export const router = createBrowserRouter([
   // 1. Cửa hàng khách hàng (Store Layout)
@@ -77,6 +78,7 @@ export const router = createBrowserRouter([
       { path: 'orders', element: <AdminOrdersPage /> },
       { path: 'orders/:id', element: <AdminOrderDetailPage /> },
       { path: 'users', element: <AdminUsersPage /> },
+      { path: 'pricing', element: <AdminPricingPage /> },
     ],
   },
 ]);

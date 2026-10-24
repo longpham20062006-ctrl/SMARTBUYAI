@@ -3,6 +3,8 @@ import { useSearchParams, Link, useNavigate } from 'react-router-dom';
 import { productService, ProductFilterOptions } from '@/services/productService';
 import { stylistService } from '@/services/stylistService';
 import { ProductCard } from '@/components/common/ProductCard';
+import { CoupleSetCard } from '@/components/common/CoupleSetCard';
+import { COUPLE_SETS } from '@/mocks/coupleSets';
 import { Button } from '@/components/ui/button';
 import { Drawer } from '@/components/ui/drawer';
 import { Product, SizeCode, AIStylistMessage } from '@/types';
@@ -11,6 +13,7 @@ import { getActiveCategories, getActiveGroupedCategories, CATEGORY_DEFINITIONS }
 import { formatPrice } from '@/lib/utils';
 import {
   SlidersHorizontal,
+  Heart,
   X,
   RotateCcw,
   ShoppingBag,
@@ -313,16 +316,19 @@ export const CatalogPage: React.FC = () => {
     }).length;
   }, [allCatalogProducts, genderParam, seasonParam]);
 
-  // Nhóm Cấp 2 đang hoạt động (Tất cả, Áo, Áo khoác, Quần)
-  const currentActiveGroup = useMemo<'all' | 'ao' | 'ao-khoac' | 'quan' | 'khac'>(() => {
+  // Nhóm Cấp 2 đang hoạt động (Tất cả, Áo, Áo khoác, Quần, Đồ bộ, Đồ đôi)
+  const currentActiveGroup = useMemo<'all' | 'ao' | 'ao-khoac' | 'quan' | 'do-bo' | 'do-doi' | 'khac'>(() => {
     if (categoryParam === 'all') return 'all';
     if (categoryParam === 'ao') return 'ao';
     if (categoryParam === 'ao-khoac') return 'ao-khoac';
     if (categoryParam === 'quan') return 'quan';
+    if (categoryParam === 'do-bo') return 'do-bo';
+    if (categoryParam === 'do-doi') return 'do-doi';
     const meta = CATEGORY_DEFINITIONS[categoryParam];
     if (meta?.parentGroup === 'ao') return 'ao';
     if (meta?.parentGroup === 'ao-khoac') return 'ao-khoac';
     if (meta?.parentGroup === 'quan') return 'quan';
+    if (meta?.parentGroup === 'do-bo') return 'do-bo';
     return 'all';
   }, [categoryParam]);
 
@@ -349,6 +355,16 @@ export const CatalogPage: React.FC = () => {
       return meta?.parentGroup === 'quan';
     }).length;
   }, [allCatalogProducts, genderParam]);
+
+  const doBoCount = useMemo(() => {
+    return allCatalogProducts.filter((p) => {
+      if (genderParam !== 'all' && p.gender !== genderParam && p.gender !== 'unisex') return false;
+      const meta = CATEGORY_DEFINITIONS[p.categorySlug];
+      return meta?.parentGroup === 'do-bo' || p.categorySlug === 'do-bo';
+    }).length;
+  }, [allCatalogProducts, genderParam]);
+
+  const coupleCount = COUPLE_SETS.length;
 
   // Danh sách màu sắc thực tế được xác minh từ các sản phẩm đang hiển thị
   const availableColors = useMemo(() => {
@@ -397,7 +413,19 @@ export const CatalogPage: React.FC = () => {
       ];
     }
 
-    // Default "Tất cả": 4 chip mùa + 3 nhóm chính
+    if (currentActiveGroup === 'do-bo') {
+      return [
+        { id: 'do-bo-all', label: `Tất cả đồ bộ (${doBoCount})`, filter: { category: 'do-bo' } },
+      ];
+    }
+
+    if (currentActiveGroup === 'do-doi') {
+      return [
+        { id: 'do-doi-all', label: `Tất cả đồ đôi (${coupleCount})`, filter: { category: 'do-doi' } },
+      ];
+    }
+
+    // Default "Tất cả": 4 chip mùa + 5 nhóm chính
     return [
       { id: 'all', label: 'Tất cả sản phẩm', filter: {} },
       { id: 'summer', label: '☀️ Mùa hè', filter: { season: 'he' } },
@@ -406,8 +434,10 @@ export const CatalogPage: React.FC = () => {
       { id: 'ao-group', label: `👕 Áo Nam (${shirtCount})`, filter: { category: 'ao' } },
       { id: 'ao-khoac-group', label: `🧥 Áo khoác Nam (${jacketCount})`, filter: { category: 'ao-khoac' } },
       { id: 'quan-group', label: `👖 Quần Nam (${pantCount})`, filter: { category: 'quan' } },
+      { id: 'do-bo-group', label: `🥋 Đồ bộ Nam (${doBoCount})`, filter: { category: 'do-bo' } },
+      { id: 'do-doi-group', label: `👩‍❤️‍👨 Đồ đôi / Couple (${coupleCount})`, filter: { category: 'do-doi' } },
     ];
-  }, [currentActiveGroup, activeCategories, shirtCount, jacketCount, pantCount]);
+  }, [currentActiveGroup, activeCategories, shirtCount, jacketCount, pantCount, doBoCount, coupleCount]);
 
   // Paginated products
   const displayedProducts = useMemo(() => {
@@ -501,6 +531,22 @@ export const CatalogPage: React.FC = () => {
           breadcrumb: 'Quần',
           categoryName: 'Quần Nam',
           description: `Tuyển chọn ${pantCount} thiết kế quần short và quần dài năng động, tôn dáng dành cho phái mạnh.`,
+        };
+      }
+      if (categoryParam === 'do-bo') {
+        return {
+          title: 'ĐỒ BỘ NAM (SET NGUYÊN BỘ)',
+          breadcrumb: 'Đồ bộ',
+          categoryName: 'Đồ bộ Nam',
+          description: `Tuyển chọn ${doBoCount} thiết kế set đồ bộ nam phối sẵn nguyên bộ chuẩn phong cách năng động.`,
+        };
+      }
+      if (categoryParam === 'do-doi') {
+        return {
+          title: 'ĐỒ ĐÔI GEN Z (COUPLE OUTFITS)',
+          breadcrumb: 'Đồ đôi',
+          categoryName: 'Đồ đôi Couple',
+          description: `Bộ sưu tập ${coupleCount} set đồ đôi dành cho Chàng & Nàng được phối chuẩn gu với tùy chọn màu/size độc lập.`,
         };
       }
       const catName = CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam;
@@ -1265,14 +1311,14 @@ export const CatalogPage: React.FC = () => {
             {categoryHeaderData.description}
           </p>
 
-          {/* Thanh chọn nhóm chính (Cấp 2): Segmented Tabs [Tất cả | Áo | Áo khoác | Quần] */}
+          {/* Thanh chọn nhóm chính (Cấp 2): Segmented Tabs [Tất cả | Áo | Áo khoác | Quần | Đồ bộ | Đồ đôi] */}
           {genderParam === 'nam' && (
             <div className="mt-6 flex items-center justify-center">
-              <div className="inline-flex p-1 rounded-2xl bg-[#F2F3F5] border border-[#E4E4E7] gap-1 shadow-2xs">
+              <div className="inline-flex p-1 rounded-2xl bg-[#F2F3F5] border border-[#E4E4E7] gap-1 shadow-2xs overflow-x-auto max-w-full">
                 <button
                   type="button"
                   onClick={() => updateParam('category', 'all')}
-                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 ${
                     currentActiveGroup === 'all'
                       ? 'bg-[#18181B] text-white shadow-subtle'
                       : 'text-[#71717A] hover:text-[#18181B] hover:bg-white/60'
@@ -1283,7 +1329,7 @@ export const CatalogPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => updateParam('category', 'ao')}
-                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 ${
                     currentActiveGroup === 'ao'
                       ? 'bg-[#18181B] text-white shadow-subtle'
                       : 'text-[#71717A] hover:text-[#18181B] hover:bg-white/60'
@@ -1294,7 +1340,7 @@ export const CatalogPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => updateParam('category', 'ao-khoac')}
-                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 ${
                     currentActiveGroup === 'ao-khoac'
                       ? 'bg-[#18181B] text-white shadow-subtle'
                       : 'text-[#71717A] hover:text-[#18181B] hover:bg-white/60'
@@ -1305,13 +1351,35 @@ export const CatalogPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => updateParam('category', 'quan')}
-                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 ${
                     currentActiveGroup === 'quan'
                       ? 'bg-[#18181B] text-white shadow-subtle'
                       : 'text-[#71717A] hover:text-[#18181B] hover:bg-white/60'
                   }`}
                 >
                   Quần ({pantCount})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => updateParam('category', 'do-bo')}
+                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 ${
+                    currentActiveGroup === 'do-bo'
+                      ? 'bg-[#18181B] text-white shadow-subtle'
+                      : 'text-[#71717A] hover:text-[#18181B] hover:bg-white/60'
+                  }`}
+                >
+                  Đồ bộ ({doBoCount})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => updateParam('category', 'do-doi')}
+                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 ${
+                    currentActiveGroup === 'do-doi'
+                      ? 'bg-pink-600 text-white shadow-subtle'
+                      : 'text-pink-600 hover:text-pink-700 hover:bg-pink-50'
+                  }`}
+                >
+                  Đồ đôi ({coupleCount})
                 </button>
               </div>
             </div>
@@ -1606,7 +1674,29 @@ export const CatalogPage: React.FC = () => {
 
           {/* CỘT GIỮA — DANH SÁCH SẢN PHẨM (chiếm toàn bộ phần còn lại) */}
           <main className="flex-1 min-w-0">
-            {allFilteredProducts.length === 0 ? (
+            {categoryParam === 'do-doi' ? (
+              <div className="space-y-6">
+                <div className="bg-pink-50/70 border border-pink-200 rounded-2xl p-4 sm:p-5 flex items-center justify-between">
+                  <div>
+                    <h2 className="text-base font-extrabold text-[#18181B] flex items-center gap-2">
+                      <span>👩‍❤️‍👨 BỘ SƯU TẬP ĐỒ ĐÔI GEN Z (COUPLE OUTFITS)</span>
+                      <span className="px-2 py-0.5 rounded-full bg-pink-500 text-white text-[10px] font-bold">
+                        {COUPLE_SETS.length} Set đã xác minh
+                      </span>
+                    </h2>
+                    <p className="text-xs text-[#71717A] mt-1">
+                      Mỗi set gồm 2 sản phẩm thiết kế đồng điệu cho Chàng & Nàng. Bạn có thể chọn màu và size độc lập cho từng người kèm giá ưu đãi combo!
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                  {COUPLE_SETS.map((cs) => (
+                    <CoupleSetCard key={cs.id} coupleSet={cs} />
+                  ))}
+                </div>
+              </div>
+            ) : allFilteredProducts.length === 0 ? (
               /* Empty State */
               <div className="text-center py-16 px-4 bg-white rounded-2xl border border-[#E4E4E7] space-y-4 shadow-subtle">
                 <div className="w-16 h-16 rounded-full bg-[#F2F3F5] mx-auto flex items-center justify-center text-[#71717A]">

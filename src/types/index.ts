@@ -96,6 +96,12 @@ export interface Product {
   brand: string;
   price: number;
   originalPrice?: number;
+  costPrice?: number;
+  suggestedPrice?: number;
+  approvedPrice?: number;
+  profitMargin?: number;
+  isSetItem?: boolean;
+  setDetails?: any;
   shortDescription: string;
   description: string;
   material: string; // ví dụ: "100% Cotton hữu cơ Supima", "Vải Lanh Linen tự nhiên thoáng khí"
@@ -269,3 +275,41 @@ export interface StockMovement {
   createdAt: string;
   createdBy: string;
 }
+
+// Bảng giá độc lập cho từng sản phẩm
+export interface ProductPriceRecord {
+  productId: string;
+  productName: string;
+  categorySlug: string;
+  currentPrice: number;
+  costPrice: number;
+  suggestedPrice: number;
+  approvedPrice: number;
+  originalPrice: number;
+  profitMargin: number;
+  status: 'approved' | 'pending';
+  updatedAt: string;
+}
+
+// Tính năng Đồ đôi / Couple Outfits
+export interface CoupleSet {
+  id: string;
+  name: string;
+  slug: string;
+  maleProductId: string;
+  femaleProductId: string;
+  maleProductName: string;
+  femaleProductName: string;
+  maleProduct?: Product;
+  femaleProduct?: Product;
+  selectedMaleVariant?: ProductVariant;
+  selectedFemaleVariant?: ProductVariant;
+  bundlePrice: number;
+  originalPrice: number;
+  discountPercent?: number;
+  status: 'active' | 'draft' | 'archived';
+  images: string[];
+  verified: boolean;
+  description: string;
+}
+

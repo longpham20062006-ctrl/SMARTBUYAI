@@ -18,7 +18,7 @@ import {
 import { GENZ_BRANDS, GENZ_CATEGORIES, GENZ_COLLECTIONS } from './genzCategories';
 import { FINAL_GENZ_CATALOGUE } from './genzCatalogBuilder';
 
-const SCHEMA_VERSION = 'v5.0-folder-models-engine';
+const SCHEMA_VERSION = 'v6.0-men-catalog-v4';
 const STORAGE_KEYS = {
   SCHEMA: 'sb_schema_version',
   PRODUCTS: 'sb_products',
@@ -221,6 +221,20 @@ export const MockRepo = {
   },
 
   addToCart: (item: Omit<CartItem, 'maxStock'>): { success: boolean; message?: string } => {
+    // Xử lý riêng cho Set Đồ Đôi (CoupleSet)
+    if (item.productId.startsWith('COUPLE-')) {
+      const cart = MockRepo.getCart();
+      const existingIndex = cart.items.findIndex((i) => i.id === item.id);
+      if (existingIndex >= 0) {
+        cart.items[existingIndex].quantity += item.quantity;
+      } else {
+        cart.items.push({ ...item, maxStock: 20 });
+      }
+      setStored(STORAGE_KEYS.CART, cart);
+      notifyChange('cart');
+      return { success: true };
+    }
+
     const products = MockRepo.getProducts();
     const product = products.find((p) => p.id === item.productId);
     if (!product) return { success: false, message: 'Sản phẩm không tồn tại' };
@@ -297,16 +311,25 @@ export const MockRepo = {
   createOrder: (orderData: Omit<Order, 'id' | 'orderNumber' | 'createdAt' | 'updatedAt' | 'orderStatus' | 'statusHistory'>): { success: boolean; order?: Order; message?: string } => {
     const products = MockRepo.getProducts();
 
-    // 1. Kiểm tra tồn kho toàn bộ giỏ hàng
+    // 1. Kiểm tra tồn kho & xác minh giá từ nguồn dữ liệu chuẩn (không tin giá tự gửi)
     for (const item of orderData.items) {
+      if (item.productId.startsWith('COUPLE-')) {
+        continue;
+      }
       const product = products.find((p) => p.id === item.productId);
-      const variant = product?.variants.find((v) => v.id === item.variantId);
+      if (!product) {
+        return { success: false, message: `Sản phẩm ${item.productName} không còn tồn tại trên hệ thống.` };
+      }
+      const variant = product.variants.find((v) => v.id === item.variantId);
       if (!variant || variant.stock < item.quantity) {
         return {
           success: false,
           message: `Sản phẩm ${item.productName} (${item.colorName} - Size ${item.size}) không đủ tồn kho để đặt đơn.`,
         };
       }
+      // Bảo đảm giá khớp giá niêm yết hiện hành của sản phẩm
+      item.price = product.price;
+      item.subtotal = item.price * item.quantity;
     }
 
     // 2. Trừ tồn kho một lần duy nhất
