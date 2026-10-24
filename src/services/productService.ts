@@ -1,5 +1,6 @@
 import { MockRepo } from '@/mocks/repository';
 import { Product } from '@/types';
+import { CATEGORY_DEFINITIONS } from '@/constants/categories';
 
 export interface ProductFilterOptions {
   gender?: string; // 'nam' | 'nu' | 'unisex' | 'all'
@@ -70,23 +71,14 @@ export const productService = {
       }
     }
 
-    // Category
+    // Category & Parent Group matching
     if (filters.categorySlug && filters.categorySlug !== 'all') {
       const cat = filters.categorySlug.toLowerCase();
       list = list.filter((p) => {
         if (p.categorySlug === cat) return true;
-        if (
-          (cat === 'chan-vay' || cat === 'chan-vay-dam') &&
-          (p.categorySlug === 'chan-vay' || p.categorySlug === 'chan-vay-dam')
-        ) {
-          return true;
-        }
-        if (
-          (cat === 'quan-cargo-parachute' || cat === 'quan-cargo-ong-rong') &&
-          (p.categorySlug === 'quan-cargo-parachute' || p.categorySlug === 'quan-cargo-ong-rong')
-        ) {
-          return true;
-        }
+        // Check if cat is a parent group (e.g. 'ao' -> matches all ao categories)
+        const meta = CATEGORY_DEFINITIONS[p.categorySlug];
+        if (meta && meta.parentGroup === cat) return true;
         return false;
       });
     }

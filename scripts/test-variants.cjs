@@ -8,7 +8,7 @@ console.log("Kiểm thử 12 kịch bản bắt buộc theo Master Prompt Part 2
 console.log("================================================================================\n");
 
 let passedCount = 0;
-let totalTests = 16;
+let totalTests = 19;
 
 function runTest(testNum, testName, testFn) {
   try {
@@ -214,6 +214,58 @@ runTest(16, "Mọi biến thể màu đều trỏ tới ảnh thật trên đĩa
     });
   });
   assert(checkedImagesCount >= 250, `Phải kiểm tra ít nhất 250 biến thể màu thực tế (đã kiểm tra: ${checkedImagesCount})`);
+});
+
+// TEST 17: Kiểm thử lọc độc lập từng loại áo (6 loại áo nam)
+runTest(17, "Kiểm thử lọc độc lập 6 loại áo nam -> Trả về đúng 100% sản phẩm từ folder tương ứng", () => {
+  const hoodieList = products.filter(p => p.categorySlug === 'ao-hoodie');
+  assert.strictEqual(hoodieList.length, 10, "Hoodie phải có đúng 10 sản phẩm");
+  assert(hoodieList.every(p => p.modelFolder.startsWith('ao_hoodie_')), "100% mẫu Hoodie phải lấy từ folder ao-hoodie");
+
+  const lenList = products.filter(p => p.categorySlug === 'ao-len');
+  assert.strictEqual(lenList.length, 17, "Áo len phải có đúng 17 sản phẩm");
+  assert(lenList.every(p => p.modelFolder.startsWith('ao_len_')), "100% mẫu Áo len phải lấy từ folder ao-len");
+
+  const poloList = products.filter(p => p.categorySlug === 'ao-polo');
+  assert.strictEqual(poloList.length, 10, "Polo phải có đúng 10 sản phẩm");
+  assert(poloList.every(p => p.modelFolder.startsWith('ao_polo_')), "100% mẫu Polo phải lấy từ folder ao-polo");
+
+  const somiList = products.filter(p => p.categorySlug === 'ao-so-mi');
+  assert.strictEqual(somiList.length, 12, "Sơ mi phải có đúng 12 sản phẩm");
+  assert(somiList.every(p => p.modelFolder.startsWith('ao_somi_')), "100% mẫu Sơ mi phải lấy từ folder ao-so-mi");
+
+  const thunList = products.filter(p => p.categorySlug === 'ao-thun');
+  assert.strictEqual(thunList.length, 13, "Áo thun phải có đúng 13 sản phẩm");
+  assert(thunList.every(p => p.modelFolder.startsWith('ao_thun_') && !p.modelFolder.startsWith('ao_thun_dai_tay_')), "100% mẫu Áo thun phải lấy từ folder ao-thun");
+
+  const thunDaiTayList = products.filter(p => p.categorySlug === 'ao-thun-dai-tay');
+  assert.strictEqual(thunDaiTayList.length, 24, "Áo thun dài tay phải có đúng 24 sản phẩm");
+  assert(thunDaiTayList.every(p => p.modelFolder.startsWith('ao_thun_dai_tay_')), "100% mẫu Áo thun dài tay phải lấy từ folder ao-thun-dai-tay");
+});
+
+// TEST 18: Kiểm thử cấu trúc 3 cấp và phân nhóm lớn (Áo: 105, Quần: 21)
+runTest(18, "Kiểm thử cấu trúc 3 cấp: Nhóm Áo (105 mẫu), Nhóm Quần (21 mẫu)", () => {
+  const shirtCategories = ['ao-hoodie', 'ao-len', 'ao-polo', 'ao-so-mi', 'ao-thun', 'ao-thun-dai-tay', 'ao-khoac'];
+  const pantCategories = ['quan-short', 'quan-dai'];
+
+  const shirtProducts = products.filter(p => shirtCategories.includes(p.categorySlug));
+  assert.strictEqual(shirtProducts.length, 105, "Tổng nhóm Áo Nam phải có 105 mẫu (10+17+10+12+13+24+19)");
+
+  const pantProducts = products.filter(p => pantCategories.includes(p.categorySlug));
+  assert.strictEqual(pantProducts.length, 21, "Tổng nhóm Quần Nam phải có 21 mẫu (16+5)");
+
+  assert.strictEqual(shirtProducts.length + pantProducts.length, 126, "Tổng số sản phẩm chuẩn xác 126 mẫu");
+});
+
+// TEST 19: Bộ lọc giới tính Nam/Nữ/Unisex hoạt động đúng theo dữ liệu thực tế
+runTest(19, "Bộ lọc giới tính: Không sao chép áo Nam sang Nữ/Unisex nếu không có folder", () => {
+  // Dữ liệu chỉ có sản phẩm thật trong quan-ao-nam
+  const maleProducts = products.filter(p => p.gender === 'nam' || p.gender === 'unisex');
+  assert.strictEqual(maleProducts.length, 126, "Tất cả 126 sản phẩm đều phục vụ thời trang Nam/Unisex");
+  
+  // Các danh mục nữ chưa có ảnh (như chan-vay, dam) không có sản phẩm
+  const femaleExclusive = products.filter(p => p.categorySlug === 'chan-vay' || p.categorySlug === 'dam');
+  assert.strictEqual(femaleExclusive.length, 0, "Không được tự tạo sản phẩm ảo cho chân váy hoặc đầm nữ");
 });
 
 console.log("\n================================================================================");

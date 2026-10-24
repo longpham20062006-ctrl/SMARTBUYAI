@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Drawer } from '@/components/ui/drawer';
 import { Product, SizeCode, AIStylistMessage } from '@/types';
 import { GENZ_CATEGORIES, GENZ_BRANDS } from '@/mocks/genzCategories';
-import { getActiveCategories, CATEGORY_DEFINITIONS } from '@/constants/categories';
+import { getActiveCategories, getActiveGroupedCategories, CATEGORY_DEFINITIONS } from '@/constants/categories';
 import { formatPrice } from '@/lib/utils';
 import {
   SlidersHorizontal,
@@ -287,6 +287,11 @@ export const CatalogPage: React.FC = () => {
 
   const activeCategories = useMemo(
     () => getActiveCategories(allCatalogProducts, { gender: genderParam, season: seasonParam }),
+    [allCatalogProducts, genderParam, seasonParam]
+  );
+
+  const groupedCategories = useMemo(
+    () => getActiveGroupedCategories(allCatalogProducts, { gender: genderParam, season: seasonParam }),
     [allCatalogProducts, genderParam, seasonParam]
   );
 
@@ -629,11 +634,11 @@ export const CatalogPage: React.FC = () => {
         )}
       </div>
 
-      {/* 6.3 Danh mục sản phẩm */}
+      {/* 6.3 Danh mục sản phẩm theo 3 cấp */}
       <div className="pt-3">
         {renderSectionHeader('Loại sản phẩm', 'category', categoryParam !== 'all' ? 1 : 0)}
         {openSections.category && (
-          <div className="space-y-1 pt-1.5 max-h-56 overflow-y-auto scrollbar-thin pr-1 animate-fade-in">
+          <div className="space-y-2.5 pt-1.5 max-h-72 overflow-y-auto scrollbar-thin pr-1 animate-fade-in">
             <button
               type="button"
               onClick={() => updateParam('category', 'all')}
@@ -643,23 +648,40 @@ export const CatalogPage: React.FC = () => {
                   : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F2F3F5]'
               }`}
             >
-              <span>Tất cả sản phẩm</span>
+              <span className="font-semibold">Tất cả sản phẩm</span>
               <span className="text-[11px] text-[#71717A]">({totalScopedProductsCount})</span>
             </button>
-            {activeCategories.map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => updateParam('category', cat.slug)}
-                className={`w-full text-left py-1.5 px-2.5 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${
-                  categoryParam === cat.slug
-                    ? 'font-bold text-[#7C3AED] bg-[#F3E8FF] border-l-2 border-[#8B5CF6]'
-                    : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F2F3F5]'
-                }`}
-              >
-                <span>{cat.name}</span>
-                <span className="text-[11px] text-[#71717A]">({cat.itemCount})</span>
-              </button>
+
+            {groupedCategories.map((group) => (
+              <div key={group.groupKey} className="space-y-1">
+                {/* Tiêu đề Cấp 2: Nhóm Lớn (Áo, Quần, ...) */}
+                <div className="flex items-center justify-between px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-[#18181B] bg-[#F2F3F5] rounded-md">
+                  <span>{group.groupName}</span>
+                  <span className="text-[10px] text-[#71717A] font-semibold">({group.totalCount})</span>
+                </div>
+
+                {/* Danh sách Cấp 3: Loại sản phẩm (Hoodie, Áo len, Polo, Sơ mi, Áo thun, ...) */}
+                <div className="space-y-0.5 pl-1.5">
+                  {group.categories.map((cat) => (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      onClick={() => updateParam('category', cat.slug)}
+                      className={`w-full text-left py-1 px-2 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${
+                        categoryParam === cat.slug
+                          ? 'font-bold text-[#7C3AED] bg-[#F3E8FF] border-l-2 border-[#8B5CF6]'
+                          : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F2F3F5]'
+                      }`}
+                    >
+                      <span className="flex items-center gap-1.5 text-xs">
+                        <span className="text-[10px] text-[#A1A1AA]">•</span>
+                        <span>{cat.name}</span>
+                      </span>
+                      <span className="text-[11px] text-[#71717A]">({cat.itemCount})</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         )}
