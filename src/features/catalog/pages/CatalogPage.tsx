@@ -313,13 +313,15 @@ export const CatalogPage: React.FC = () => {
     }).length;
   }, [allCatalogProducts, genderParam, seasonParam]);
 
-  // Nhóm Cấp 2 đang hoạt động (Tất cả, Áo, Quần)
-  const currentActiveGroup = useMemo<'all' | 'ao' | 'quan' | 'khac'>(() => {
+  // Nhóm Cấp 2 đang hoạt động (Tất cả, Áo, Áo khoác, Quần)
+  const currentActiveGroup = useMemo<'all' | 'ao' | 'ao-khoac' | 'quan' | 'khac'>(() => {
     if (categoryParam === 'all') return 'all';
     if (categoryParam === 'ao') return 'ao';
+    if (categoryParam === 'ao-khoac') return 'ao-khoac';
     if (categoryParam === 'quan') return 'quan';
     const meta = CATEGORY_DEFINITIONS[categoryParam];
     if (meta?.parentGroup === 'ao') return 'ao';
+    if (meta?.parentGroup === 'ao-khoac') return 'ao-khoac';
     if (meta?.parentGroup === 'quan') return 'quan';
     return 'all';
   }, [categoryParam]);
@@ -329,6 +331,14 @@ export const CatalogPage: React.FC = () => {
       if (genderParam !== 'all' && p.gender !== genderParam && p.gender !== 'unisex') return false;
       const meta = CATEGORY_DEFINITIONS[p.categorySlug];
       return meta?.parentGroup === 'ao';
+    }).length;
+  }, [allCatalogProducts, genderParam]);
+
+  const jacketCount = useMemo(() => {
+    return allCatalogProducts.filter((p) => {
+      if (genderParam !== 'all' && p.gender !== genderParam && p.gender !== 'unisex') return false;
+      const meta = CATEGORY_DEFINITIONS[p.categorySlug];
+      return meta?.parentGroup === 'ao-khoac';
     }).length;
   }, [allCatalogProducts, genderParam]);
 
@@ -369,6 +379,12 @@ export const CatalogPage: React.FC = () => {
       ];
     }
 
+    if (currentActiveGroup === 'ao-khoac') {
+      return [
+        { id: 'ao-khoac-all', label: `Tất cả áo khoác (${jacketCount})`, filter: { category: 'ao-khoac' } },
+      ];
+    }
+
     if (currentActiveGroup === 'quan') {
       const pantCats = activeCategories.filter((c) => CATEGORY_DEFINITIONS[c.slug]?.parentGroup === 'quan');
       return [
@@ -381,16 +397,17 @@ export const CatalogPage: React.FC = () => {
       ];
     }
 
-    // Default "Tất cả": 4 chip mùa + 2 nhóm chính
+    // Default "Tất cả": 4 chip mùa + 3 nhóm chính
     return [
       { id: 'all', label: 'Tất cả sản phẩm', filter: {} },
       { id: 'summer', label: '☀️ Mùa hè', filter: { season: 'he' } },
       { id: 'winter', label: '❄️ Mùa đông', filter: { season: 'dong' } },
       { id: 'spring-autumn', label: '🍂 Xuân – Thu', filter: { season: 'xuan-thu' } },
       { id: 'ao-group', label: `👕 Áo Nam (${shirtCount})`, filter: { category: 'ao' } },
+      { id: 'ao-khoac-group', label: `🧥 Áo khoác Nam (${jacketCount})`, filter: { category: 'ao-khoac' } },
       { id: 'quan-group', label: `👖 Quần Nam (${pantCount})`, filter: { category: 'quan' } },
     ];
-  }, [currentActiveGroup, activeCategories, shirtCount, pantCount]);
+  }, [currentActiveGroup, activeCategories, shirtCount, jacketCount, pantCount]);
 
   // Paginated products
   const displayedProducts = useMemo(() => {
@@ -459,7 +476,7 @@ export const CatalogPage: React.FC = () => {
           title: "MEN'S COLLECTION",
           breadcrumb: 'Thời trang Nam',
           categoryName: 'Thời trang Nam',
-          description: 'Khám phá phong cách thời trang dành cho bạn.',
+          description: 'Khám phá phong cách phù hợp với bạn.',
         };
       }
       if (categoryParam === 'ao') {
@@ -467,7 +484,15 @@ export const CatalogPage: React.FC = () => {
           title: 'ÁO NAM',
           breadcrumb: 'Áo',
           categoryName: 'Áo Nam',
-          description: `Tuyển chọn ${shirtCount} thiết kế áo thun, polo, sơ mi, hoodie và áo len thời thượng chuẩn phom rộng phóng khoáng.`,
+          description: `Tuyển chọn ${shirtCount} thiết kế áo thun, áo thun dài tay, polo, sơ mi, hoodie và áo len thời thượng chuẩn phom rộng phóng khoáng.`,
+        };
+      }
+      if (categoryParam === 'ao-khoac') {
+        return {
+          title: 'ÁO KHOÁC NAM',
+          breadcrumb: 'Áo khoác',
+          categoryName: 'Áo khoác Nam',
+          description: `Tuyển chọn ${jacketCount} thiết kế áo khoác gió dù, bomber dạo phố chuẩn phong cách streetwear.`,
         };
       }
       if (categoryParam === 'quan') {
@@ -1201,19 +1226,28 @@ export const CatalogPage: React.FC = () => {
                     categoryParam === currentActiveGroup ? 'font-bold text-[#8B5CF6]' : ''
                   }`}
                 >
-                  {currentActiveGroup === 'ao' ? 'Áo' : currentActiveGroup === 'quan' ? 'Quần' : currentActiveGroup}
+                  {currentActiveGroup === 'ao'
+                    ? 'Áo'
+                    : currentActiveGroup === 'ao-khoac'
+                    ? 'Áo khoác'
+                    : currentActiveGroup === 'quan'
+                    ? 'Quần'
+                    : currentActiveGroup}
                 </button>
               </>
             )}
 
-            {categoryParam !== 'all' && categoryParam !== 'ao' && categoryParam !== 'quan' && (
-              <>
-                <span>/</span>
-                <span className="text-[#8B5CF6] font-bold">
-                  {CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam}
-                </span>
-              </>
-            )}
+            {categoryParam !== 'all' &&
+              categoryParam !== 'ao' &&
+              categoryParam !== 'ao-khoac' &&
+              categoryParam !== 'quan' && (
+                <>
+                  <span>/</span>
+                  <span className="text-[#8B5CF6] font-bold">
+                    {CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam}
+                  </span>
+                </>
+              )}
           </nav>
 
           <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#F3E8FF] text-[#7C3AED] text-[10px] font-bold uppercase mb-2 border border-[#DDD6FE]">
@@ -1231,14 +1265,14 @@ export const CatalogPage: React.FC = () => {
             {categoryHeaderData.description}
           </p>
 
-          {/* Thanh chọn nhóm chính (Cấp 2): Segmented Tabs [Tất cả | Áo | Quần] */}
+          {/* Thanh chọn nhóm chính (Cấp 2): Segmented Tabs [Tất cả | Áo | Áo khoác | Quần] */}
           {genderParam === 'nam' && (
             <div className="mt-6 flex items-center justify-center">
               <div className="inline-flex p-1 rounded-2xl bg-[#F2F3F5] border border-[#E4E4E7] gap-1 shadow-2xs">
                 <button
                   type="button"
                   onClick={() => updateParam('category', 'all')}
-                  className={`px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                     currentActiveGroup === 'all'
                       ? 'bg-[#18181B] text-white shadow-subtle'
                       : 'text-[#71717A] hover:text-[#18181B] hover:bg-white/60'
@@ -1249,7 +1283,7 @@ export const CatalogPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => updateParam('category', 'ao')}
-                  className={`px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                     currentActiveGroup === 'ao'
                       ? 'bg-[#18181B] text-white shadow-subtle'
                       : 'text-[#71717A] hover:text-[#18181B] hover:bg-white/60'
@@ -1259,8 +1293,19 @@ export const CatalogPage: React.FC = () => {
                 </button>
                 <button
                   type="button"
+                  onClick={() => updateParam('category', 'ao-khoac')}
+                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    currentActiveGroup === 'ao-khoac'
+                      ? 'bg-[#18181B] text-white shadow-subtle'
+                      : 'text-[#71717A] hover:text-[#18181B] hover:bg-white/60'
+                  }`}
+                >
+                  Áo khoác ({jacketCount})
+                </button>
+                <button
+                  type="button"
                   onClick={() => updateParam('category', 'quan')}
-                  className={`px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  className={`px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                     currentActiveGroup === 'quan'
                       ? 'bg-[#18181B] text-white shadow-subtle'
                       : 'text-[#71717A] hover:text-[#18181B] hover:bg-white/60'

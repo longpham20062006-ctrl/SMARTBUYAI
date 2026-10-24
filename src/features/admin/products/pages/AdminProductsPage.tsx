@@ -34,7 +34,7 @@ export const AdminProductsPage: React.FC = () => {
   const [filterNeedsReview, setFilterNeedsReview] = useState(false);
   const [productToDelete, setProductToDelete] = useState<{ id: string; name: string } | null>(null);
   const [showDuplicateModal, setShowDuplicateModal] = useState(false);
-  const [activeReportTab, setActiveReportTab] = useState<'confirmed' | 'pending'>('confirmed');
+  const [activeReportTab, setActiveReportTab] = useState<'confirmed' | 'pending' | 'unclassified'>('confirmed');
   const [pendingCandidates, setPendingCandidates] = useState<any[]>(duplicateReportData.duplicateCandidates || []);
 
   const filtered = products.filter((p) => {
@@ -416,6 +416,17 @@ export const AdminProductsPage: React.FC = () => {
               >
                 ⚠️ Chờ admin kiểm tra ({pendingCandidates.length} ứng viên)
               </button>
+              <button
+                type="button"
+                onClick={() => setActiveReportTab('unclassified')}
+                className={`py-3 px-4 text-xs font-bold border-b-2 cursor-pointer transition-colors ${
+                  activeReportTab === 'unclassified'
+                    ? 'border-[#8B5CF6] text-[#7C3AED]'
+                    : 'border-transparent text-[#71717A] hover:text-[#18181B]'
+                }`}
+              >
+                📷 Ảnh chưa phân loại (1 ảnh Quần dài)
+              </button>
             </div>
 
             {/* Modal Content */}
@@ -520,6 +531,60 @@ export const AdminProductsPage: React.FC = () => {
                       </div>
                     ))
                   )}
+                </div>
+              )}
+
+              {activeReportTab === 'unclassified' && (
+                <div className="space-y-4">
+                  <div className="p-3 bg-amber-50 text-amber-900 rounded-xl border border-amber-200 text-xs flex items-center gap-2">
+                    <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+                    <span>
+                      Phát hiện <strong>1 ảnh JPG lẻ</strong> nằm trực tiếp trong thư mục <code>quan-ao-nam/quan/quan-dai/</code> chưa xếp vào 5 folder mẫu. Ảnh này được ghi nhận an toàn dưới dạng <strong>Ảnh chưa phân loại — Quần dài</strong> và KHÔNG xuất bản công khai cho khách hàng khi chưa có mẫu hợp lệ.
+                    </span>
+                  </div>
+
+                  <div className="bg-white rounded-xl border border-[#E4E4E7] p-4 flex flex-col sm:flex-row items-center gap-4 shadow-2xs">
+                    <img
+                      src="/images/san-pham/quan-ao-nam/quan/quan-dai/1792798442795_348043404565674403_5540743654312280467_a80592e298195e259619ac4731c03dd9.jpg"
+                      alt="Ảnh chưa phân loại — Quần dài"
+                      className="w-24 h-32 object-cover rounded-lg border border-[#E4E4E7] shadow-xs shrink-0 bg-neutral-100"
+                    />
+                    <div className="flex-1 space-y-1.5 text-xs">
+                      <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-bold text-[10px]">
+                        ẢNH CHƯA PHÂN LOẠI — QUẦN DÀI
+                      </div>
+                      <h4 className="font-bold text-sm text-[#18181B]">File: 1792798442795_...a80592e298195e259619ac4731c03dd9.jpg</h4>
+                      <p className="text-[#71717A] text-xs">
+                        Vị trí gốc: <code>public/images/san-pham/quan-ao-nam/quan/quan-dai/</code>
+                      </p>
+                      <p className="text-[#71717A] text-[11px] leading-relaxed">
+                        Quy tắc hệ thống: <strong>Giữ nguyên file gốc, không xóa, không gán bừa vào quan_dai_1 đến quan_dai_5. Chỉ quản trị viên mới có thể gán vào mẫu hoặc tạo mẫu mới.</strong>
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col gap-2 shrink-0">
+                      <Button
+                        size="sm"
+                        variant="primary"
+                        onClick={() => {
+                          success('Đã chọn hành động', 'Gán vào một trong 5 mẫu Quần dài hiện có');
+                        }}
+                        className="text-xs"
+                      >
+                        Gán vào mẫu có sẵn
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          info('Đã chuẩn bị mẫu', 'Khởi tạo mẫu Quần dài quan_dai_6 cho ảnh này');
+                        }}
+                        className="text-xs"
+                      >
+                        Tạo mẫu mới
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

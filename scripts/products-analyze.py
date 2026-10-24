@@ -488,12 +488,14 @@ def analyze():
             "totalMergedProducts": len(confirmed_groups),
             "confirmedMergedGroupsCount": len(confirmed_groups),
             "totalScannedImages": len(manifest.get('images', [])),
+            "looseImagesCount": manifest.get('looseImagesCount', 0),
             "multiColorProductsCount": sum(1 for g in confirmed_groups if g['totalColors'] > 1),
             "multiAngleGalleryProductsCount": sum(1 for g in confirmed_groups if g['totalImages'] > g['totalColors']),
             "pendingReviewCount": len(duplicate_candidates)
         },
         "confirmedMergedGroups": confirmed_groups,
-        "duplicateCandidates": duplicate_candidates
+        "duplicateCandidates": duplicate_candidates,
+        "looseImages": manifest.get('looseImages', [])
     }
 
     with open(REPORT_PATH, 'w', encoding='utf-8') as f:

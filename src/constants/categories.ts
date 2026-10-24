@@ -1,6 +1,6 @@
 import { Category, Product } from '@/types';
 
-export type ParentCategoryGroup = 'ao' | 'quan' | 'chan-vay-dam' | 'phu-kien' | 'khac';
+export type ParentCategoryGroup = 'ao' | 'ao-khoac' | 'quan' | 'chan-vay-dam' | 'phu-kien' | 'khac';
 
 export interface CategoryMetadata {
   id: string;
@@ -18,7 +18,7 @@ export interface CategoryMetadata {
 
 // Bảng cấu hình ánh xạ danh mục chuẩn 3 cấp từ thư mục thực tế
 export const CATEGORY_DEFINITIONS: Record<string, CategoryMetadata> = {
-  // Cấp 2: ÁO (public/images/san-pham/quan-ao-nam/ao/ và ao-khoac/)
+  // Cấp 2: ÁO (public/images/san-pham/quan-ao-nam/ao/) - Gồm 6 loại riêng biệt
   'ao-hoodie': {
     id: 'c-ao-hoodie',
     slug: 'ao-hoodie',
@@ -97,14 +97,16 @@ export const CATEGORY_DEFINITIONS: Record<string, CategoryMetadata> = {
     description: 'Áo thun tay dài cổ tròn giữ nhiệt, phom dáng rộng thoải mái mùa thu đông.',
     order: 6,
   },
+
+  // Cấp 2: ÁO KHOÁC (public/images/san-pham/quan-ao-nam/ao-khoac/) - Nhánh độc lập ngoài ao/
   'ao-khoac': {
     id: 'c-ao-khoac',
     slug: 'ao-khoac',
     name: 'Áo khoác',
     englishName: 'Jackets',
     folderName: 'ao-khoac',
-    parentGroup: 'ao',
-    parentGroupName: 'Áo',
+    parentGroup: 'ao-khoac',
+    parentGroupName: 'Áo khoác',
     gender: ['nam', 'nu', 'unisex'],
     image: '/images/san-pham/quan-ao-nam/ao-khoac/ao_khoac_1/1792798150493_348043404565674403_5540743654312280467_60fcf14a1a09d6ea8e932ef6e9b81180.jpg',
     description: 'Áo khoác gió dù 2 lớp cản gió chống nước nhẹ, thiết kế bomber dạo phố.',
@@ -297,8 +299,8 @@ export function getActiveGroupedCategories(
     groupMap[groupKey]!.totalCount += cat.itemCount;
   });
 
-  // Thứ tự hiển thị chuẩn: Áo -> Quần -> Váy & Đầm -> Phụ kiện -> Khác
-  const groupOrder: ParentCategoryGroup[] = ['ao', 'quan', 'chan-vay-dam', 'phu-kien', 'khac'];
+  // Thứ tự hiển thị chuẩn: Áo -> Áo khoác -> Quần -> Váy & Đầm -> Phụ kiện -> Khác
+  const groupOrder: ParentCategoryGroup[] = ['ao', 'ao-khoac', 'quan', 'chan-vay-dam', 'phu-kien', 'khac'];
 
   return groupOrder
     .filter((gk) => groupMap[gk] && groupMap[gk]!.categories.length > 0)

@@ -8,6 +8,7 @@
     "totalMergedProducts": 126,
     "confirmedMergedGroupsCount": 126,
     "totalScannedImages": 297,
+    "looseImagesCount": 1,
     "multiColorProductsCount": 75,
     "multiAngleGalleryProductsCount": 33,
     "pendingReviewCount": 8
@@ -6537,6 +6538,14 @@
       "sampleFiles": [
         "/images/san-pham/quan-ao-nam/quan/quan-short/quan_short_12/1792777849984_348043404565674403_5540743654312280467_eb3a21c10d701d1e65e216484f39d963.jpg"
       ]
+    }
+  ],
+  "looseImages": [
+    {
+      "path": "quan-ao-nam/quan/quan-dai/1792798442795_348043404565674403_5540743654312280467_a80592e298195e259619ac4731c03dd9.jpg",
+      "webPath": "/images/san-pham/quan-ao-nam/quan/quan-dai/1792798442795_348043404565674403_5540743654312280467_a80592e298195e259619ac4731c03dd9.jpg",
+      "fileName": "1792798442795_348043404565674403_5540743654312280467_a80592e298195e259619ac4731c03dd9.jpg",
+      "parentDir": "quan-ao-nam/quan/quan-dai"
     }
   ]
 }

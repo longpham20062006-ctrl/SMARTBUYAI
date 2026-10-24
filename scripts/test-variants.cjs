@@ -8,7 +8,7 @@ console.log("Kiểm thử 12 kịch bản bắt buộc theo Master Prompt Part 2
 console.log("================================================================================\n");
 
 let passedCount = 0;
-let totalTests = 21;
+let totalTests = 23;
 
 function runTest(testNum, testName, testFn) {
   try {
@@ -243,18 +243,22 @@ runTest(17, "Kiểm thử lọc độc lập 6 loại áo nam -> Trả về đú
   assert(thunDaiTayList.every(p => p.modelFolder.startsWith('ao_thun_dai_tay_')), "100% mẫu Áo thun dài tay phải lấy từ folder ao-thun-dai-tay");
 });
 
-// TEST 18: Kiểm thử cấu trúc 3 cấp và phân nhóm lớn (Áo: 105, Quần: 21)
-runTest(18, "Kiểm thử cấu trúc 3 cấp: Nhóm Áo (105 mẫu), Nhóm Quần (21 mẫu)", () => {
-  const shirtCategories = ['ao-hoodie', 'ao-len', 'ao-polo', 'ao-so-mi', 'ao-thun', 'ao-thun-dai-tay', 'ao-khoac'];
+// TEST 18: Kiểm thử cấu trúc 3 nhóm chính Men's Catalog V3: Áo (86 mẫu), Áo khoác (19 mẫu), Quần (21 mẫu)
+runTest(18, "Kiểm thử 3 nhóm chính: Áo (86 mẫu), Áo khoác (19 mẫu), Quần (21 mẫu)", () => {
+  const shirtCategories = ['ao-hoodie', 'ao-len', 'ao-polo', 'ao-so-mi', 'ao-thun', 'ao-thun-dai-tay'];
+  const jacketCategories = ['ao-khoac'];
   const pantCategories = ['quan-short', 'quan-dai'];
 
   const shirtProducts = products.filter(p => shirtCategories.includes(p.categorySlug));
-  assert.strictEqual(shirtProducts.length, 105, "Tổng nhóm Áo Nam phải có 105 mẫu (10+17+10+12+13+24+19)");
+  assert.strictEqual(shirtProducts.length, 86, "Tổng nhóm Áo Nam phải có 86 mẫu (10+17+10+12+13+24)");
+
+  const jacketProducts = products.filter(p => jacketCategories.includes(p.categorySlug));
+  assert.strictEqual(jacketProducts.length, 19, "Nhóm Áo khoác độc lập phải có đúng 19 mẫu");
 
   const pantProducts = products.filter(p => pantCategories.includes(p.categorySlug));
   assert.strictEqual(pantProducts.length, 21, "Tổng nhóm Quần Nam phải có 21 mẫu (16+5)");
 
-  assert.strictEqual(shirtProducts.length + pantProducts.length, 126, "Tổng số sản phẩm chuẩn xác 126 mẫu");
+  assert.strictEqual(shirtProducts.length + jacketProducts.length + pantProducts.length, 126, "Tổng số sản phẩm chuẩn xác 126 mẫu");
 });
 
 // TEST 19: Bộ lọc giới tính Nam/Nữ/Unisex hoạt động đúng theo dữ liệu thực tế
@@ -268,17 +272,21 @@ runTest(19, "Bộ lọc giới tính: Không sao chép áo Nam sang Nữ/Unisex 
   assert.strictEqual(femaleExclusive.length, 0, "Không được tự tạo sản phẩm ảo cho chân váy hoặc đầm nữ");
 });
 
-// TEST 20: Segmented Tabs cho Men's Collection (Tất cả: 126, Áo: 105, Quần: 21)
-runTest(20, "Segmented Tabs Men's Collection -> Lọc nhóm lớn Áo (105) và Quần (21) hoạt động chính xác", () => {
+// TEST 20: Segmented Tabs cho Men's Collection (Tất cả: 126, Áo: 86, Áo khoác: 19, Quần: 21)
+runTest(20, "Segmented Tabs Men's Collection -> 4 nhóm [Tất cả: 126, Áo: 86, Áo khoác: 19, Quần: 21] hoạt động chính xác", () => {
   const categoriesTs = fs.readFileSync(path.resolve(__dirname, '../src/constants/categories.ts'), 'utf8');
   assert(categoriesTs.includes("parentGroup: 'ao'"), "Phải định nghĩa nhóm parentGroup 'ao'");
+  assert(categoriesTs.includes("parentGroup: 'ao-khoac'"), "Phải định nghĩa nhóm parentGroup 'ao-khoac'");
   assert(categoriesTs.includes("parentGroup: 'quan'"), "Phải định nghĩa nhóm parentGroup 'quan'");
 
   // Giả lập logic lọc parent group trong productService
   const shirtGroup = products.filter(p => {
-    return ['ao-hoodie', 'ao-len', 'ao-polo', 'ao-so-mi', 'ao-thun', 'ao-thun-dai-tay', 'ao-khoac'].includes(p.categorySlug);
+    return ['ao-hoodie', 'ao-len', 'ao-polo', 'ao-so-mi', 'ao-thun', 'ao-thun-dai-tay'].includes(p.categorySlug);
   });
-  assert.strictEqual(shirtGroup.length, 105, "Lọc nhóm 'ao' phải trả về đúng 105 mẫu áo");
+  assert.strictEqual(shirtGroup.length, 86, "Lọc nhóm 'ao' phải trả về đúng 86 mẫu áo");
+
+  const jacketGroup = products.filter(p => p.categorySlug === 'ao-khoac');
+  assert.strictEqual(jacketGroup.length, 19, "Lọc nhóm 'ao-khoac' phải trả về đúng 19 mẫu áo khoác");
 
   const pantGroup = products.filter(p => {
     return ['quan-short', 'quan-dai'].includes(p.categorySlug);
@@ -297,6 +305,21 @@ runTest(21, "Bộ lọc màu sắc thực tế -> Chỉ lọc theo các màu có
 
   const whiteProducts = products.filter(p => p.colors.some(c => c.slug === 'trang'));
   assert(whiteProducts.length > 0, "Phải có sản phẩm chứa màu trắng");
+});
+
+// TEST 22: Xử lý ảnh Quần dài chưa phân loại nằm trực tiếp trong quan-dai/
+runTest(22, "Ảnh Quần dài chưa phân loại trực tiếp trong quan-dai -> Đã ghi nhận an toàn 1 ảnh lẻ", () => {
+  assert(manifest.looseImagesCount === 1, "Phải ghi nhận đúng 1 ảnh lẻ chưa xếp vào folder mẫu");
+  assert(manifest.looseImages && manifest.looseImages.length === 1, "Phải có thông tin chi tiết về ảnh lẻ");
+  const loose = manifest.looseImages[0];
+  assert(loose.path.includes('quan/quan-dai'), "Ảnh lẻ phải nằm trực tiếp trong thư mục quan-dai");
+  assert(!products.some(p => p.images.includes(loose.webPath) && p.id.startsWith('PANTS-00')), "Ảnh lẻ không được gán bừa vào 5 mẫu quần dài hợp lệ");
+});
+
+// TEST 23: Xử lý nhóm Jeans trống
+runTest(23, "Xử lý nhóm Jeans trống -> Không sinh sản phẩm giả, không hiển thị trong danh mục có hàng", () => {
+  const jeansProducts = products.filter(p => p.categorySlug === 'quan-jeans');
+  assert.strictEqual(jeansProducts.length, 0, "Nhóm jeans chưa có ảnh trong archive không được tạo sản phẩm giả");
 });
 
 console.log("\n================================================================================");
