@@ -189,31 +189,29 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Thông tin sản phẩm */}
       <div className="p-3.5 flex flex-col flex-1 justify-between gap-2.5 bg-white rounded-b-2xl">
         <div>
-          {/* Thương hiệu & Phong cách */}
-          <div className="flex items-center justify-between text-[10px] uppercase font-bold tracking-wider text-[#71717A] mb-1">
-            <span className="truncate max-w-[130px]">{product.brand}</span>
-            <span className="text-[#A1A1AA] font-normal">{product.style}</span>
-          </div>
-
           {/* Tên sản phẩm cố định 2 dòng */}
           <Link
             to={`/products/${product.slug}`}
-            className="block text-xs sm:text-sm font-semibold text-[#18181B] hover:text-[#8B5CF6] transition-colors line-clamp-2 leading-snug min-h-[2.5rem]"
+            className="block text-xs sm:text-sm font-bold text-[#18181B] hover:text-[#8B5CF6] transition-colors line-clamp-2 leading-snug min-h-[2.5rem]"
             title={product.name}
           >
             {product.name}
           </Link>
 
-          {/* Đánh giá & Số lượng đã bán kiểu Shopee / TikTok Shop */}
-          <div className="flex items-center gap-1.5 text-[10px] text-[#71717A] mt-1">
-            <span className="flex items-center text-amber-500 font-bold">
-              ★ {product.rating ? Number(product.rating).toFixed(1) : '4.9'}
-            </span>
-            <span>•</span>
-            <span className="text-[#71717A]">
-              {product.soldCount ? `Đã bán ${product.soldCount}` : `Đã bán ${((product.reviewCount || 50) * 2)}`}
-            </span>
-          </div>
+          {/* Thông tin Size có sẵn */}
+          {product.sizes && product.sizes.length > 0 && (
+            <div className="flex items-center gap-1 mt-1.5 flex-wrap">
+              <span className="text-[10px] text-[#A1A1AA] uppercase font-medium">Size:</span>
+              {product.sizes.slice(0, 5).map((s) => (
+                <span
+                  key={s}
+                  className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#F2F3F5] text-[#52525B]"
+                >
+                  {s}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
         <div>

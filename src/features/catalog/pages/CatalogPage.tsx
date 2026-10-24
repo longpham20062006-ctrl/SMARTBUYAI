@@ -73,6 +73,7 @@ export const CatalogPage: React.FC = () => {
   const minPriceParam = searchParams.get('minPrice') ? Number(searchParams.get('minPrice')) : undefined;
   const maxPriceParam = searchParams.get('maxPrice') ? Number(searchParams.get('maxPrice')) : undefined;
   const selectedSizes = searchParams.getAll('size');
+  const selectedColors = searchParams.getAll('color');
   const selectedStyles = searchParams.getAll('style');
   const selectedFits = searchParams.getAll('fit');
 
@@ -85,11 +86,12 @@ export const CatalogPage: React.FC = () => {
 
   // Left Filter Accordion Open/Closed States
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
-    season: true,
-    gender: true,
     category: true,
+    season: true,
     price: true,
-    size: false,
+    color: true,
+    size: true,
+    gender: false,
     style: false,
     fit: false,
     brand: false,
@@ -260,6 +262,7 @@ export const CatalogPage: React.FC = () => {
       inStockOnly: inStockParam,
       minPrice: minPriceParam,
       maxPrice: maxPriceParam,
+      colors: selectedColors.length > 0 ? selectedColors : undefined,
       sizes: selectedSizes.length > 0 ? selectedSizes : undefined,
       styles: selectedStyles.length > 0 ? selectedStyles : undefined,
       fits: selectedFits.length > 0 ? selectedFits : undefined,
@@ -274,6 +277,7 @@ export const CatalogPage: React.FC = () => {
       inStockParam,
       minPriceParam,
       maxPriceParam,
+      selectedColors,
       selectedSizes,
       selectedStyles,
       selectedFits,
@@ -309,23 +313,84 @@ export const CatalogPage: React.FC = () => {
     }).length;
   }, [allCatalogProducts, genderParam, seasonParam]);
 
-  // Đồng bộ hoàn toàn Quick Filter Pills với activeCategories
+  // Nhóm Cấp 2 đang hoạt động (Tất cả, Áo, Quần)
+  const currentActiveGroup = useMemo<'all' | 'ao' | 'quan' | 'khac'>(() => {
+    if (categoryParam === 'all') return 'all';
+    if (categoryParam === 'ao') return 'ao';
+    if (categoryParam === 'quan') return 'quan';
+    const meta = CATEGORY_DEFINITIONS[categoryParam];
+    if (meta?.parentGroup === 'ao') return 'ao';
+    if (meta?.parentGroup === 'quan') return 'quan';
+    return 'all';
+  }, [categoryParam]);
+
+  const shirtCount = useMemo(() => {
+    return allCatalogProducts.filter((p) => {
+      if (genderParam !== 'all' && p.gender !== genderParam && p.gender !== 'unisex') return false;
+      const meta = CATEGORY_DEFINITIONS[p.categorySlug];
+      return meta?.parentGroup === 'ao';
+    }).length;
+  }, [allCatalogProducts, genderParam]);
+
+  const pantCount = useMemo(() => {
+    return allCatalogProducts.filter((p) => {
+      if (genderParam !== 'all' && p.gender !== genderParam && p.gender !== 'unisex') return false;
+      const meta = CATEGORY_DEFINITIONS[p.categorySlug];
+      return meta?.parentGroup === 'quan';
+    }).length;
+  }, [allCatalogProducts, genderParam]);
+
+  // Danh sách màu sắc thực tế được xác minh từ các sản phẩm đang hiển thị
+  const availableColors = useMemo(() => {
+    const map = new Map<string, { slug: string; name: string; hex: string; count: number }>();
+    allCatalogProducts.forEach((p) => {
+      if (genderParam !== 'all' && p.gender !== genderParam && p.gender !== 'unisex') return;
+      p.colors.forEach((c) => {
+        if (!map.has(c.slug)) {
+          map.set(c.slug, { slug: c.slug, name: c.name, hex: c.hex, count: 0 });
+        }
+        map.get(c.slug)!.count++;
+      });
+    });
+    return Array.from(map.values()).sort((a, b) => b.count - a.count);
+  }, [allCatalogProducts, genderParam]);
+
+  // Dynamic quick filter pills theo nhóm Cấp 2 đang chọn
   const quickFilterPills: QuickFilterPill[] = useMemo(() => {
-    const basePills: QuickFilterPill[] = [
-      { id: 'all', label: 'Tất cả', filter: {} },
-      { id: 'summer', label: 'Mùa hè', filter: { season: 'he' } },
-      { id: 'winter', label: 'Mùa đông', filter: { season: 'dong' } },
-      { id: 'spring-autumn', label: 'Xuân – Thu', filter: { season: 'xuan-thu' } },
+    if (currentActiveGroup === 'ao') {
+      const shirtCats = activeCategories.filter((c) => CATEGORY_DEFINITIONS[c.slug]?.parentGroup === 'ao');
+      return [
+        { id: 'ao-all', label: `Tất cả áo (${shirtCount})`, filter: { category: 'ao' } },
+        ...shirtCats.map((c) => ({
+          id: c.slug,
+          label: `${c.name} (${c.itemCount})`,
+          filter: { category: c.slug },
+        })),
+      ];
+    }
+
+    if (currentActiveGroup === 'quan') {
+      const pantCats = activeCategories.filter((c) => CATEGORY_DEFINITIONS[c.slug]?.parentGroup === 'quan');
+      return [
+        { id: 'quan-all', label: `Tất cả quần (${pantCount})`, filter: { category: 'quan' } },
+        ...pantCats.map((c) => ({
+          id: c.slug,
+          label: `${c.name} (${c.itemCount})`,
+          filter: { category: c.slug },
+        })),
+      ];
+    }
+
+    // Default "Tất cả": 4 chip mùa + 2 nhóm chính
+    return [
+      { id: 'all', label: 'Tất cả sản phẩm', filter: {} },
+      { id: 'summer', label: '☀️ Mùa hè', filter: { season: 'he' } },
+      { id: 'winter', label: '❄️ Mùa đông', filter: { season: 'dong' } },
+      { id: 'spring-autumn', label: '🍂 Xuân – Thu', filter: { season: 'xuan-thu' } },
+      { id: 'ao-group', label: `👕 Áo Nam (${shirtCount})`, filter: { category: 'ao' } },
+      { id: 'quan-group', label: `👖 Quần Nam (${pantCount})`, filter: { category: 'quan' } },
     ];
-
-    const categoryPills: QuickFilterPill[] = activeCategories.map((cat) => ({
-      id: cat.slug,
-      label: cat.name,
-      filter: { category: cat.slug },
-    }));
-
-    return [...basePills, ...categoryPills];
-  }, [activeCategories]);
+  }, [currentActiveGroup, activeCategories, shirtCount, pantCount]);
 
   // Paginated products
   const displayedProducts = useMemo(() => {
@@ -381,6 +446,7 @@ export const CatalogPage: React.FC = () => {
     (inStockParam ? 1 : 0) +
     (minPriceParam ? 1 : 0) +
     (maxPriceParam ? 1 : 0) +
+    selectedColors.length +
     selectedSizes.length +
     selectedStyles.length +
     selectedFits.length;
@@ -388,20 +454,37 @@ export const CatalogPage: React.FC = () => {
   // 7.1: Tiêu đề danh mục lớn & Rõ ràng
   const categoryHeaderData = useMemo(() => {
     if (genderParam === 'nam') {
-      if (categoryParam !== 'all') {
-        const catName = CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam;
+      if (categoryParam === 'all') {
         return {
-          title: `${catName.toUpperCase()} NAM`,
-          breadcrumb: `${catName} Nam`,
-          categoryName: `${catName} Nam`,
-          description: `Tuyển chọn các thiết kế ${catName.toLowerCase()} chuẩn phom rộng phóng khoáng, chất liệu cao cấp dành cho phái mạnh.`,
+          title: "MEN'S COLLECTION",
+          breadcrumb: 'Thời trang Nam',
+          categoryName: 'Thời trang Nam',
+          description: 'Khám phá phong cách thời trang dành cho bạn.',
         };
       }
+      if (categoryParam === 'ao') {
+        return {
+          title: 'ÁO NAM',
+          breadcrumb: 'Áo',
+          categoryName: 'Áo Nam',
+          description: `Tuyển chọn ${shirtCount} thiết kế áo thun, polo, sơ mi, hoodie và áo len thời thượng chuẩn phom rộng phóng khoáng.`,
+        };
+      }
+      if (categoryParam === 'quan') {
+        return {
+          title: 'QUẦN NAM',
+          breadcrumb: 'Quần',
+          categoryName: 'Quần Nam',
+          description: `Tuyển chọn ${pantCount} thiết kế quần short và quần dài năng động, tôn dáng dành cho phái mạnh.`,
+        };
+      }
+      const catName = CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam;
+      const count = allCatalogProducts.filter((p) => p.categorySlug === categoryParam).length;
       return {
-        title: 'THỜI TRANG NAM',
-        breadcrumb: 'Thời trang Nam',
-        categoryName: 'Thời trang Nam',
-        description: 'Tập hợp các mẫu áo thun oversized, hoodie nỉ bông, jeans baggy và phụ kiện streetwear phóng khoáng dành cho các chàng trai.',
+        title: `${catName.toUpperCase()} NAM`,
+        breadcrumb: catName,
+        categoryName: `${catName} Nam`,
+        description: `Tuyển chọn ${count} thiết kế ${catName.toLowerCase()} chuẩn phom rộng phóng khoáng, chất liệu cao cấp dành cho phái mạnh.`,
       };
     }
 
@@ -755,6 +838,39 @@ export const CatalogPage: React.FC = () => {
         )}
       </div>
 
+      {/* 6.6 Màu sắc được xác minh từ folder thực tế */}
+      {availableColors.length > 0 && (
+        <div className="pt-3">
+          {renderSectionHeader('Màu sắc', 'color', selectedColors.length)}
+          {openSections.color && (
+            <div className="flex flex-wrap gap-1.5 pt-2 animate-fade-in max-h-48 overflow-y-auto scrollbar-thin pr-1">
+              {availableColors.map((c) => {
+                const isSelected = selectedColors.includes(c.slug);
+                return (
+                  <button
+                    key={c.slug}
+                    type="button"
+                    onClick={() => toggleArrayParam('color', c.slug)}
+                    className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium border transition-all cursor-pointer ${
+                      isSelected
+                        ? 'border-[#8B5CF6] bg-[#F3E8FF] text-[#7C3AED] font-bold shadow-xs ring-1 ring-[#8B5CF6]'
+                        : 'border-[#E4E4E7] bg-white text-[#18181B] hover:border-[#8B5CF6]'
+                    }`}
+                  >
+                    <span
+                      className="w-2.5 h-2.5 rounded-full border border-black/15 shrink-0"
+                      style={{ backgroundColor: c.hex }}
+                    />
+                    <span>{c.name}</span>
+                    <span className="text-[10px] text-[#A1A1AA]">({c.count})</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* 6.6 Phong cách */}
       <div className="pt-3">
         {renderSectionHeader('Phong cách (Vibe)', 'style', selectedStyles.length)}
@@ -1053,22 +1169,56 @@ export const CatalogPage: React.FC = () => {
   return (
     <div className="bg-[#FAFAF8] min-h-screen">
       {/* 7.1: EDITORIAL CENTERED PAGE HEADER */}
-      <div className="border-b border-[#E4E4E7] bg-white py-8 sm:py-12 text-center">
+      <div className="border-b border-[#E4E4E7] bg-white py-8 sm:py-10 text-center">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb nhỏ căn giữa */}
-          <div className="flex items-center justify-center gap-2 text-[11px] uppercase tracking-wider text-[#71717A] mb-2.5">
-            <Link to="/" className="hover:text-[#18181B] transition-colors">
+          {/* Breadcrumb nhỏ tương tác */}
+          <nav aria-label="Breadcrumb" className="flex items-center justify-center gap-2 text-[11px] uppercase tracking-wider text-[#71717A] mb-3">
+            <Link to="/" className="hover:text-[#8B5CF6] transition-colors">
               Trang chủ
             </Link>
             <span>/</span>
-            <span className="text-[#71717A]">Catalog</span>
-            <span>/</span>
-            <span className="text-[#8B5CF6] font-bold">{categoryHeaderData.breadcrumb}</span>
-          </div>
+            {genderParam === 'nam' ? (
+              <button
+                type="button"
+                onClick={() => updateParam('category', 'all')}
+                className={`hover:text-[#8B5CF6] transition-colors cursor-pointer ${
+                  categoryParam === 'all' ? 'font-bold text-[#8B5CF6]' : ''
+                }`}
+              >
+                Nam
+              </button>
+            ) : (
+              <span className="text-[#71717A]">Catalog</span>
+            )}
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#F3E8FF] text-[#7C3AED] text-[10px] font-bold uppercase mb-2.5 border border-[#DDD6FE]">
+            {genderParam === 'nam' && currentActiveGroup !== 'all' && (
+              <>
+                <span>/</span>
+                <button
+                  type="button"
+                  onClick={() => updateParam('category', currentActiveGroup)}
+                  className={`hover:text-[#8B5CF6] transition-colors cursor-pointer ${
+                    categoryParam === currentActiveGroup ? 'font-bold text-[#8B5CF6]' : ''
+                  }`}
+                >
+                  {currentActiveGroup === 'ao' ? 'Áo' : currentActiveGroup === 'quan' ? 'Quần' : currentActiveGroup}
+                </button>
+              </>
+            )}
+
+            {categoryParam !== 'all' && categoryParam !== 'ao' && categoryParam !== 'quan' && (
+              <>
+                <span>/</span>
+                <span className="text-[#8B5CF6] font-bold">
+                  {CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam}
+                </span>
+              </>
+            )}
+          </nav>
+
+          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#F3E8FF] text-[#7C3AED] text-[10px] font-bold uppercase mb-2 border border-[#DDD6FE]">
             <Sparkles className="w-3 h-3 text-[#8B5CF6]" />
-            <span>GEN Z STREETWEAR & ACCESSORIES</span>
+            <span>GEN Z MEN'S ESSENTIALS</span>
           </div>
 
           {/* Tiêu đề danh mục cực lớn căn giữa */}
@@ -1077,9 +1227,50 @@ export const CatalogPage: React.FC = () => {
           </h1>
 
           {/* Mô tả ngắn căn giữa */}
-          <p className="text-xs sm:text-sm text-[#71717A] mt-2.5 max-w-2xl mx-auto text-center leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#71717A] mt-2 max-w-2xl mx-auto text-center leading-relaxed">
             {categoryHeaderData.description}
           </p>
+
+          {/* Thanh chọn nhóm chính (Cấp 2): Segmented Tabs [Tất cả | Áo | Quần] */}
+          {genderParam === 'nam' && (
+            <div className="mt-6 flex items-center justify-center">
+              <div className="inline-flex p-1 rounded-2xl bg-[#F2F3F5] border border-[#E4E4E7] gap-1 shadow-2xs">
+                <button
+                  type="button"
+                  onClick={() => updateParam('category', 'all')}
+                  className={`px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    currentActiveGroup === 'all'
+                      ? 'bg-[#18181B] text-white shadow-subtle'
+                      : 'text-[#71717A] hover:text-[#18181B] hover:bg-white/60'
+                  }`}
+                >
+                  Tất cả ({totalScopedProductsCount})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => updateParam('category', 'ao')}
+                  className={`px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    currentActiveGroup === 'ao'
+                      ? 'bg-[#18181B] text-white shadow-subtle'
+                      : 'text-[#71717A] hover:text-[#18181B] hover:bg-white/60'
+                  }`}
+                >
+                  Áo ({shirtCount})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => updateParam('category', 'quan')}
+                  className={`px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    currentActiveGroup === 'quan'
+                      ? 'bg-[#18181B] text-white shadow-subtle'
+                      : 'text-[#71717A] hover:text-[#18181B] hover:bg-white/60'
+                  }`}
+                >
+                  Quần ({pantCount})
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -1106,13 +1297,14 @@ export const CatalogPage: React.FC = () => {
               className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 scroll-smooth px-1"
             >
               <span className="text-[11px] font-bold uppercase text-[#71717A] shrink-0 mr-1 hidden sm:inline">
-                Lọc nhanh:
+                {currentActiveGroup === 'ao' ? 'Loại áo:' : currentActiveGroup === 'quan' ? 'Loại quần:' : 'Lọc nhanh:'}
               </span>
               {quickFilterPills.map((pill) => {
                 const isActive =
                   (pill.id === 'all' &&
                     categoryParam === 'all' &&
                     seasonParam === 'all' &&
+                    selectedColors.length === 0 &&
                     selectedStyles.length === 0 &&
                     !maxPriceParam) ||
                   (pill.filter.category && categoryParam === pill.filter.category) ||
@@ -1265,7 +1457,7 @@ export const CatalogPage: React.FC = () => {
 
             {categoryParam !== 'all' && (
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#F3E8FF] text-[#7C3AED] font-semibold border border-[#DDD6FE]">
-                {CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam}
+                {categoryParam === 'ao' ? 'Tất cả Áo' : categoryParam === 'quan' ? 'Tất cả Quần' : CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam}
                 <button
                   onClick={() => updateParam('category', null)}
                   className="hover:text-[#DC2626] ml-1 cursor-pointer"
@@ -1275,6 +1467,25 @@ export const CatalogPage: React.FC = () => {
                 </button>
               </span>
             )}
+
+            {selectedColors.map((colSlug) => {
+              const colName = availableColors.find((c) => c.slug === colSlug)?.name || colSlug;
+              return (
+                <span
+                  key={colSlug}
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#F3E8FF] text-[#7C3AED] font-semibold border border-[#DDD6FE]"
+                >
+                  Màu: {colName}
+                  <button
+                    onClick={() => toggleArrayParam('color', colSlug)}
+                    className="hover:text-[#DC2626] ml-1 cursor-pointer"
+                    aria-label="Xóa lọc màu"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              );
+            })}
 
             {brandParam !== 'all' && (
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white text-[#18181B] font-semibold border border-[#E4E4E7]">

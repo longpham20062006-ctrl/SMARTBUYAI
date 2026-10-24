@@ -8,7 +8,7 @@ console.log("Kiểm thử 12 kịch bản bắt buộc theo Master Prompt Part 2
 console.log("================================================================================\n");
 
 let passedCount = 0;
-let totalTests = 19;
+let totalTests = 21;
 
 function runTest(testNum, testName, testFn) {
   try {
@@ -266,6 +266,37 @@ runTest(19, "Bộ lọc giới tính: Không sao chép áo Nam sang Nữ/Unisex 
   // Các danh mục nữ chưa có ảnh (như chan-vay, dam) không có sản phẩm
   const femaleExclusive = products.filter(p => p.categorySlug === 'chan-vay' || p.categorySlug === 'dam');
   assert.strictEqual(femaleExclusive.length, 0, "Không được tự tạo sản phẩm ảo cho chân váy hoặc đầm nữ");
+});
+
+// TEST 20: Segmented Tabs cho Men's Collection (Tất cả: 126, Áo: 105, Quần: 21)
+runTest(20, "Segmented Tabs Men's Collection -> Lọc nhóm lớn Áo (105) và Quần (21) hoạt động chính xác", () => {
+  const categoriesTs = fs.readFileSync(path.resolve(__dirname, '../src/constants/categories.ts'), 'utf8');
+  assert(categoriesTs.includes("parentGroup: 'ao'"), "Phải định nghĩa nhóm parentGroup 'ao'");
+  assert(categoriesTs.includes("parentGroup: 'quan'"), "Phải định nghĩa nhóm parentGroup 'quan'");
+
+  // Giả lập logic lọc parent group trong productService
+  const shirtGroup = products.filter(p => {
+    return ['ao-hoodie', 'ao-len', 'ao-polo', 'ao-so-mi', 'ao-thun', 'ao-thun-dai-tay', 'ao-khoac'].includes(p.categorySlug);
+  });
+  assert.strictEqual(shirtGroup.length, 105, "Lọc nhóm 'ao' phải trả về đúng 105 mẫu áo");
+
+  const pantGroup = products.filter(p => {
+    return ['quan-short', 'quan-dai'].includes(p.categorySlug);
+  });
+  assert.strictEqual(pantGroup.length, 21, "Lọc nhóm 'quan' phải trả về đúng 21 mẫu quần");
+});
+
+// TEST 21: Bộ lọc màu sắc thực tế (Verified Colors Filter)
+runTest(21, "Bộ lọc màu sắc thực tế -> Chỉ lọc theo các màu có thật từ folder ảnh, không tạo màu giả", () => {
+  const blackProducts = products.filter(p => p.colors.some(c => c.slug === 'den'));
+  assert(blackProducts.length > 0, "Phải có sản phẩm chứa màu đen");
+  blackProducts.forEach(p => {
+    const blackColor = p.colors.find(c => c.slug === 'den');
+    assert(blackColor && blackColor.image, "Mỗi sản phẩm màu đen phải có ảnh thực tế");
+  });
+
+  const whiteProducts = products.filter(p => p.colors.some(c => c.slug === 'trang'));
+  assert(whiteProducts.length > 0, "Phải có sản phẩm chứa màu trắng");
 });
 
 console.log("\n================================================================================");
