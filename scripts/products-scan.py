@@ -86,22 +86,22 @@ def scan():
 
         if 'ao-polo' in parts:
             cat_slug = 'ao-polo'
-            cat_name = 'Áo polo'
+            cat_name = 'Polo'
             prefix = 'POLO'
         elif 'ao-so-mi' in parts:
-            cat_slug = 'so-mi-polo'
-            cat_name = 'Áo sơ mi'
+            cat_slug = 'ao-so-mi'
+            cat_name = 'Sơ mi'
             prefix = 'SHIRT'
         elif 'ao-hoodie' in parts:
-            cat_slug = 'hoodie-sweater'
-            cat_name = 'Áo hoodie'
+            cat_slug = 'ao-hoodie'
+            cat_name = 'Hoodie'
             prefix = 'HOODIE'
         elif 'ao-len' in parts:
-            cat_slug = 'hoodie-sweater'
+            cat_slug = 'ao-len'
             cat_name = 'Áo len'
             prefix = 'SWEATER'
         elif 'ao-thun-dai-tay' in parts:
-            cat_slug = 'ao-thun'
+            cat_slug = 'ao-thun-dai-tay'
             cat_name = 'Áo thun dài tay'
             prefix = 'LONGSLEEVE'
         elif 'ao-khoac' in parts:

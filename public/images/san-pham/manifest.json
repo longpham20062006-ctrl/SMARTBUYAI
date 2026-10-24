@@ -20,8 +20,8 @@
       "folderKey": "quan-ao-nam/ao/ao-hoodie/ao_hoodie_1",
       "modelFolder": "ao_hoodie_1",
       "categoryRel": "quan-ao-nam/ao/ao-hoodie",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE",
       "gender": "nam",
       "images": [
@@ -42,8 +42,8 @@
           "sha256": "622e8ef0369b280c5e50a9e26a580b3e9bae4e6323bc4a9f628c35b8ca482ee8",
           "dhash": "5b1723332b1296ce",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -63,8 +63,8 @@
           "sha256": "e2af516a9d2349a544db5cc619eedb1345f0e1ece6fa23448bfb742f7dc9e452",
           "dhash": "c165d8dcb4d47849",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -84,8 +84,8 @@
           "sha256": "c226ddd1dfdf9a5ea9a7d89ac7cdb468ae31a6cbc792181245fcf8f6624e4c14",
           "dhash": "8b69744c54547868",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -105,8 +105,8 @@
           "sha256": "83ae10d1d6011226e69ebf494245cf486e568f9cf9a20e61a4205992e2290fea",
           "dhash": "b1755c5c14546869",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         }
       ]
@@ -115,8 +115,8 @@
       "folderKey": "quan-ao-nam/ao/ao-hoodie/ao_hoodie_10",
       "modelFolder": "ao_hoodie_10",
       "categoryRel": "quan-ao-nam/ao/ao-hoodie",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE",
       "gender": "nam",
       "images": [
@@ -137,8 +137,8 @@
           "sha256": "405c8764a4afa275086c8450b9dd0d83fe50b1fa23c5976d3a68bc80278dc503",
           "dhash": "0f133130392b0702",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -158,8 +158,8 @@
           "sha256": "4806f3d47ee89494a4a4eed6cc5d9e5b150fa1b34a157897df37a5fab051103d",
           "dhash": "1333393223231716",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         }
       ]
@@ -168,8 +168,8 @@
       "folderKey": "quan-ao-nam/ao/ao-hoodie/ao_hoodie_2",
       "modelFolder": "ao_hoodie_2",
       "categoryRel": "quan-ao-nam/ao/ao-hoodie",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE",
       "gender": "nam",
       "images": [
@@ -190,8 +190,8 @@
           "sha256": "ed6fb220db18d4d7b99b03f2b54d472bfdc7990f4dd8bc4b376dc87a9b233d7e",
           "dhash": "d4e94b0b863336ec",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -211,8 +211,8 @@
           "sha256": "090c125a5e133032575aa14bd218a86d4a6ae2a485a904409cab6ab3f1361b57",
           "dhash": "cce5cb0b0e321244",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -232,8 +232,8 @@
           "sha256": "83871a955d703cbf905ebfe7603d5d8d8f901c8381367ab03a1ab481631c2877",
           "dhash": "cdedcb0aa63632c8",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -253,8 +253,8 @@
           "sha256": "6af6e5498b7a3c03431ed3bb72a536c768688f229cf9daa05911d3084511acc6",
           "dhash": "e49d313c39939387",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         }
       ]
@@ -263,8 +263,8 @@
       "folderKey": "quan-ao-nam/ao/ao-hoodie/ao_hoodie_3",
       "modelFolder": "ao_hoodie_3",
       "categoryRel": "quan-ao-nam/ao/ao-hoodie",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE",
       "gender": "nam",
       "images": [
@@ -285,8 +285,8 @@
           "sha256": "a6266766dc7d78f86653a50d1c78207ac018c2b38c6f377f9174b2229fe8dd2e",
           "dhash": "1e39232339213514",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -306,8 +306,8 @@
           "sha256": "7c70ac3d5e70736b07b080b405107519d602bc280bb345056152f535a86d88e3",
           "dhash": "1629373335111594",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         }
       ]
@@ -316,8 +316,8 @@
       "folderKey": "quan-ao-nam/ao/ao-hoodie/ao_hoodie_4",
       "modelFolder": "ao_hoodie_4",
       "categoryRel": "quan-ao-nam/ao/ao-hoodie",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE",
       "gender": "nam",
       "images": [
@@ -338,8 +338,8 @@
           "sha256": "b9b80fc5706eed7302f1d20bbf155dd7b63a651170276f85ab2cec4ed596c54b",
           "dhash": "735b1333332b9e9f",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -359,8 +359,8 @@
           "sha256": "cf6da3f9fd3d7cbf30e983c9d09761bb7cae23311c4649d59ec45ecf63334f4f",
           "dhash": "735b1333332b9e9f",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -380,8 +380,8 @@
           "sha256": "d69ca45579d97734c757d0aa27e74cb25dfe85657d2726136877d40cad7a1cb4",
           "dhash": "735b1333332b9e9f",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         }
       ]
@@ -390,8 +390,8 @@
       "folderKey": "quan-ao-nam/ao/ao-hoodie/ao_hoodie_5",
       "modelFolder": "ao_hoodie_5",
       "categoryRel": "quan-ao-nam/ao/ao-hoodie",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE",
       "gender": "nam",
       "images": [
@@ -412,8 +412,8 @@
           "sha256": "c76671744c5389601371d256ed20db25b47396c4e436b9eae1d2b7af5e772dfa",
           "dhash": "ced2e3ba9a92d471",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -433,8 +433,8 @@
           "sha256": "2ba34b43b94ed6666d9adf298a807060fe4f5694b4e168260a2803d42e369f5e",
           "dhash": "8317233331231606",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         }
       ]
@@ -443,8 +443,8 @@
       "folderKey": "quan-ao-nam/ao/ao-hoodie/ao_hoodie_6",
       "modelFolder": "ao_hoodie_6",
       "categoryRel": "quan-ao-nam/ao/ao-hoodie",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE",
       "gender": "nam",
       "images": [
@@ -465,8 +465,8 @@
           "sha256": "f6776b7106373ec25b20024f0225bfbfdb31fc5050e82dcaaebf46c57409a7d3",
           "dhash": "8c0f3b0b1f8e8e4d",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -486,8 +486,8 @@
           "sha256": "79a60ed8d4edef14f587ebb0444cf6958f1408a3b3f21df23ddb23b104459bb4",
           "dhash": "8e0f0b0b03868e4d",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         }
       ]
@@ -496,8 +496,8 @@
       "folderKey": "quan-ao-nam/ao/ao-hoodie/ao_hoodie_7",
       "modelFolder": "ao_hoodie_7",
       "categoryRel": "quan-ao-nam/ao/ao-hoodie",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE",
       "gender": "nam",
       "images": [
@@ -518,8 +518,8 @@
           "sha256": "87068b6d3b3c887d34582bfcdf967d074bdd6588d82abc139273b2d6abaaecab",
           "dhash": "8686a79e9af87931",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -539,8 +539,8 @@
           "sha256": "363b51af735984e1c7fce809ae500e528ea66cf1975195954f99b54c876220b1",
           "dhash": "79797161612b1706",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -560,8 +560,8 @@
           "sha256": "cc3083b7d2321dafba926e6c0acd742fc964eab5f6b62e8eb152ecd9410235ec",
           "dhash": "86878e9e9ef86864",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -581,8 +581,8 @@
           "sha256": "771a2342c9a626b7f8cc8064142a3236aeab8475cabe1a412dd38176af45c9e5",
           "dhash": "8c8c9d9989606444",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         }
       ]
@@ -591,8 +591,8 @@
       "folderKey": "quan-ao-nam/ao/ao-hoodie/ao_hoodie_8",
       "modelFolder": "ao_hoodie_8",
       "categoryRel": "quan-ao-nam/ao/ao-hoodie",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE",
       "gender": "nam",
       "images": [
@@ -613,8 +613,8 @@
           "sha256": "e0aa228c1730360f03bdc03d68bd428490f69ab3d449fd3414cf9f8387344860",
           "dhash": "5a786074d4706965",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -634,8 +634,8 @@
           "sha256": "d0c6ccf18074b0b94604a79d1086544e9c176a58f82b82f446eb104f0774da23",
           "dhash": "4b68ecdcd4c4e9e1",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         }
       ]
@@ -644,8 +644,8 @@
       "folderKey": "quan-ao-nam/ao/ao-hoodie/ao_hoodie_9",
       "modelFolder": "ao_hoodie_9",
       "categoryRel": "quan-ao-nam/ao/ao-hoodie",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE",
       "gender": "nam",
       "images": [
@@ -666,8 +666,8 @@
           "sha256": "357ef04b6210d7bbd2c7bca8e7541082049bd3d9510877c6fddc8f8398405c98",
           "dhash": "2cf0f0d0d84c7861",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         },
         {
@@ -687,8 +687,8 @@
           "sha256": "f5d3b1c7bab6d655b9d5f1064e3a18228d9a68c2001eaacb9a242f196b4fb9ab",
           "dhash": "9cfce4c6dcd46961",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
-          "categoryName": "Áo hoodie",
+          "categorySlug": "ao-hoodie",
+          "categoryName": "Hoodie",
           "prefix": "HOODIE"
         }
       ]
@@ -697,7 +697,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_1",
       "modelFolder": "ao_len_1",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -719,7 +719,7 @@
           "sha256": "b64171abf5e8b805b9e9d7f4d5b035956682284fe4e4e76e4703e6240e35cdcc",
           "dhash": "930b139b81174aab",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -740,7 +740,7 @@
           "sha256": "a6869096a8c6003c52ccc3dc86064ae9d9b27308201e0ae4335fd1909335f3db",
           "dhash": "4b4974fae66474a1",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -750,7 +750,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_10",
       "modelFolder": "ao_len_10",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -772,7 +772,7 @@
           "sha256": "32c2763a23de3698d4c5109efc8a02d30201e3be544c8776d22abe4ea6f1bfcb",
           "dhash": "17330727232b179e",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -793,7 +793,7 @@
           "sha256": "166b5fc3ca11916d808ca29bf0666a73210249e70235a029ceb835b56661a64d",
           "dhash": "272361633337268c",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -803,7 +803,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_11",
       "modelFolder": "ao_len_11",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -825,7 +825,7 @@
           "sha256": "be98e9c8d860b66d4db8b09f2204223aa0feacbf430167f23486b1012c58e13b",
           "dhash": "0706636b2326060c",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -835,7 +835,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_12",
       "modelFolder": "ao_len_12",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -857,7 +857,7 @@
           "sha256": "70c9d4bedaef1c5f2fc9847e5bed06dfbdaa7b1f3ba3d5baee0e0ec622f2356c",
           "dhash": "06332b070723168c",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -878,7 +878,7 @@
           "sha256": "6714f6a44f0c568e9744b3822355763951cf5288a7261815fa1ac119ced2664d",
           "dhash": "071323232727864d",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -899,7 +899,7 @@
           "sha256": "e5c9656c3aae13f6261d7f545eca28f6b7cc1893059b8b9271f788dcb3f024a0",
           "dhash": "261767653537260c",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -909,7 +909,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_13",
       "modelFolder": "ao_len_13",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -931,7 +931,7 @@
           "sha256": "fa08c3cb8469a9fa495c5670c2dcc20eb80f8c0b1b575fd011d2b6c18a8805cf",
           "dhash": "edabb666c85b1796",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -952,7 +952,7 @@
           "sha256": "7c34d1a403442d1f6e8904ff590297c59c157df863c75b589849a06c57ced11b",
           "dhash": "d9db836e46618686",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -973,7 +973,7 @@
           "sha256": "1e37d00c84fb00192e3ac290fd53624d1d197e832ab4cb7ed2c1daaf01c00e3d",
           "dhash": "b6b24246e6e668b7",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -994,7 +994,7 @@
           "sha256": "a2df321a2ade55117e0db700842d954b47db563ebd038ed47bb8742feec7095b",
           "dhash": "eda9b666c85b1796",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1004,7 +1004,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_14",
       "modelFolder": "ao_len_14",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -1026,7 +1026,7 @@
           "sha256": "906cb00ca83850ee070779cf27c8e81c4f322111d29112dc263528008bdba3de",
           "dhash": "4bac72d0d4646c30",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1047,7 +1047,7 @@
           "sha256": "fb9efccdd2230ece9bd470e56d041281ab6335b1c5bf44fe4262010ba0808c92",
           "dhash": "4787132d0d9b0746",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1068,7 +1068,7 @@
           "sha256": "67f28ba1278b27a165dd68d657877d6636ad1441fedb772fc3af09570205a6a2",
           "dhash": "4fac72d0d464a870",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1078,7 +1078,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_15",
       "modelFolder": "ao_len_15",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -1100,7 +1100,7 @@
           "sha256": "6c38d882b9eb909018116a1ea999ca4199b94e9aa12ff80f208f2856dcba13ec",
           "dhash": "0e19199b93830e4c",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1121,7 +1121,7 @@
           "sha256": "1f264c725e2336c640603d84a32521d10d869924e66b8dc0289f800100478867",
           "dhash": "26272b232b9b9e4c",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1131,7 +1131,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_16",
       "modelFolder": "ao_len_16",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -1153,7 +1153,7 @@
           "sha256": "4c7811f514941ba793661bd850c8f9694dd5b41a5e270bcb82fae4073fa82f63",
           "dhash": "0f5365633333278e",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1174,7 +1174,7 @@
           "sha256": "f2eb35aa64d9343a460a4ae5401a1892ff13b6de578ef6c6c7a90e64a5a1a5c1",
           "dhash": "071365676727078e",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1195,7 +1195,7 @@
           "sha256": "8a247eba138c24ad0d7d34c14b05bbe84489faee21cde345500d6dfa0f354a2d",
           "dhash": "0f5b67633333279e",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1205,7 +1205,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_17",
       "modelFolder": "ao_len_17",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -1227,7 +1227,7 @@
           "sha256": "2eaf230b19e17d621923adfe7d3f807d30aaf63993355de9e1eab4038c23a1ca",
           "dhash": "262131054e67770f",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1248,7 +1248,7 @@
           "sha256": "9dafaee213ca15b075fc022fdc98d1d201d13e419524fd67b9a65f13b9217c85",
           "dhash": "7068d7cecc9d8851",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1269,7 +1269,7 @@
           "sha256": "258da251a3c9292db7480bf84067a42b93b1d8a67bdc3ee7c145396d3b51ae7c",
           "dhash": "266131054e67770e",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1290,7 +1290,7 @@
           "sha256": "81315fb88b3d9d8f526c0ab6327d4f91573da05e4f90de87724937cc9cdd49ae",
           "dhash": "706cc7cecc9d8831",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1300,7 +1300,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_2",
       "modelFolder": "ao_len_2",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -1322,7 +1322,7 @@
           "sha256": "aaeecd2cd4956af386679b35f535728c837743ddb2764b466733990c5470c2ff",
           "dhash": "4196161796960f23",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1343,7 +1343,7 @@
           "sha256": "afcb9ca262fded1df8e10d780cfcb81d0cee81cf16d2250653d700ffe0c91f21",
           "dhash": "4196161396964d23",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1353,7 +1353,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_3",
       "modelFolder": "ao_len_3",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -1375,7 +1375,7 @@
           "sha256": "2b93868637b877a2b77e75c6ce1d70b83e8df7504755e128e4e9f11bd1fef147",
           "dhash": "c7cc6d44c5c42e1e",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1396,7 +1396,7 @@
           "sha256": "829436928809667bed1c9554ba27d02207ed1a1b34ad3c96bb4e699a42571bc9",
           "dhash": "6356c6c686a45012",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1406,7 +1406,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_4",
       "modelFolder": "ao_len_4",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -1428,7 +1428,7 @@
           "sha256": "790db61c08e41c4fe6f4acd36af246627666eef26d9ac91b4c8de52f82ef1fe5",
           "dhash": "b0471f1317969e48",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1449,7 +1449,7 @@
           "sha256": "1993927dec9e75d11104fe5b841880b9f5948317dff9934e61a0004d61dc3c3d",
           "dhash": "0055472b2b168e41",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1459,7 +1459,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_5",
       "modelFolder": "ao_len_5",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -1481,7 +1481,7 @@
           "sha256": "3c4ee5b7aef54741117827b1a50eb17700246bd26f544b49702d523a3d05996a",
           "dhash": "1794b22c68480823",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1502,7 +1502,7 @@
           "sha256": "2fa8a950b034faebe9f804532bbd28e7823123a28c620eae2e3ca34a31fe0f38",
           "dhash": "41d4aca8ba586923",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1523,7 +1523,7 @@
           "sha256": "8fa4bd2ff321cdd0067249ce9a326ac9aead892962ba437670f98eac7000d0ac",
           "dhash": "0594aca89a1a3823",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1533,7 +1533,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_6",
       "modelFolder": "ao_len_6",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -1555,7 +1555,7 @@
           "sha256": "45987e049b6d17ec88e138c7fee5c779ee5919903c7e08a9161aa6e4b888f1f3",
           "dhash": "5c49b1a9e8c9db7a",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1576,7 +1576,7 @@
           "sha256": "d8120112a04623a3d4b8090645eacdadd35a7055ef8eb5995934a13aede27d96",
           "dhash": "3c6db1a4aac9c96a",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1597,7 +1597,7 @@
           "sha256": "56ba799eaaab72ccaf3de64f886096f5f0b4efd09046d85379aac92ab9ccc635",
           "dhash": "2c6dd1a0e8c9f96a",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1618,7 +1618,7 @@
           "sha256": "6cc22d837639b7835469778410ed043eaab5da19fbd6cccb1d9359f38e115cfb",
           "dhash": "65647a60f26224a1",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1639,7 +1639,7 @@
           "sha256": "899ffc07a9ef5392043467c6af8195303a83d6278b014893f22b0e8c4469ca10",
           "dhash": "9393131d8d9983ea",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1649,7 +1649,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_7",
       "modelFolder": "ao_len_7",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -1671,7 +1671,7 @@
           "sha256": "9628423141dc45f20923101e2c49d514ef7686fbad5aa5e85e13720cb1c110cc",
           "dhash": "e56dcb62483307a4",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1692,7 +1692,7 @@
           "sha256": "cdb6f00c49c6a59fb603f49cf5cfc9ada0c7f9d653f7afca99eeea4a1768833a",
           "dhash": "e8e14b5a52318724",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1713,7 +1713,7 @@
           "sha256": "06b3b1e7259e25aa98185b475fda251dfff0a3cff9bdc35fc97bc56b7efac61c",
           "dhash": "c8c9cb525631a324",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1734,7 +1734,7 @@
           "sha256": "bb0678e22440e5f7d0b17338119d44d9c8f2b0f21d879e05eed895662e1abac1",
           "dhash": "c8d9cb5a5231a324",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1744,7 +1744,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_8",
       "modelFolder": "ao_len_8",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -1766,7 +1766,7 @@
           "sha256": "ed38b7f33cea06e626c3a157aeb8cbdfcc84e16c95145c7a0f9ca8a739d1ef23",
           "dhash": "8c27232f23868e4d",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1787,7 +1787,7 @@
           "sha256": "2c8b97f6b08f74ef0e9e77f3c531b5265cd519add332c57ba1c58919a62d3f2c",
           "dhash": "8c1f1b370796964c",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1797,7 +1797,7 @@
       "folderKey": "quan-ao-nam/ao/ao-len/ao_len_9",
       "modelFolder": "ao_len_9",
       "categoryRel": "quan-ao-nam/ao/ao-len",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER",
       "gender": "nam",
@@ -1819,7 +1819,7 @@
           "sha256": "3110439e477f66566250adc6e97f59cd59c6b95c5fbde6df8101e473dd55572d",
           "dhash": "073b2b232333178e",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         },
@@ -1840,7 +1840,7 @@
           "sha256": "15d8afabc139d522939692b9094ca105a7a3c8e4726816717965b62e8a3f4125",
           "dhash": "264b59672727278c",
           "gender": "nam",
-          "categorySlug": "hoodie-sweater",
+          "categorySlug": "ao-len",
           "categoryName": "Áo len",
           "prefix": "SWEATER"
         }
@@ -1851,7 +1851,7 @@
       "modelFolder": "ao_polo_1",
       "categoryRel": "quan-ao-nam/ao/ao-polo",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO",
       "gender": "nam",
       "images": [
@@ -1873,7 +1873,7 @@
           "dhash": "396961715511134f",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -1894,7 +1894,7 @@
           "dhash": "66861783336767cf",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         }
       ]
@@ -1904,7 +1904,7 @@
       "modelFolder": "ao_polo_10",
       "categoryRel": "quan-ao-nam/ao/ao-polo",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO",
       "gender": "nam",
       "images": [
@@ -1926,7 +1926,7 @@
           "dhash": "3b3b3b236933334e",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -1947,7 +1947,7 @@
           "dhash": "332f2f2f5133334e",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -1968,7 +1968,7 @@
           "dhash": "1333391939894d54",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         }
       ]
@@ -1978,7 +1978,7 @@
       "modelFolder": "ao_polo_2",
       "categoryRel": "quan-ao-nam/ao/ao-polo",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO",
       "gender": "nam",
       "images": [
@@ -2000,7 +2000,7 @@
           "dhash": "2f232b1333333331",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         }
       ]
@@ -2010,7 +2010,7 @@
       "modelFolder": "ao_polo_3",
       "categoryRel": "quan-ao-nam/ao/ao-polo",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO",
       "gender": "nam",
       "images": [
@@ -2032,7 +2032,7 @@
           "dhash": "aeaceaaa8acccc8c",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         }
       ]
@@ -2042,7 +2042,7 @@
       "modelFolder": "ao_polo_4",
       "categoryRel": "quan-ao-nam/ao/ao-polo",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO",
       "gender": "nam",
       "images": [
@@ -2064,7 +2064,7 @@
           "dhash": "0c3c0c29ab9313cd",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -2085,7 +2085,7 @@
           "dhash": "1c6c4c2d2899cbf0",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -2106,7 +2106,7 @@
           "dhash": "6ee4cdc9db646c80",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         }
       ]
@@ -2116,7 +2116,7 @@
       "modelFolder": "ao_polo_5",
       "categoryRel": "quan-ao-nam/ao/ao-polo",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO",
       "gender": "nam",
       "images": [
@@ -2138,7 +2138,7 @@
           "dhash": "985c60b2d7464c47",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -2159,7 +2159,7 @@
           "dhash": "8606139f8b331b47",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -2180,7 +2180,7 @@
           "dhash": "997c60e0f46c6c47",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -2201,7 +2201,7 @@
           "dhash": "9978c4e0e4ccec29",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         }
       ]
@@ -2211,7 +2211,7 @@
       "modelFolder": "ao_polo_6",
       "categoryRel": "quan-ao-nam/ao/ao-polo",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO",
       "gender": "nam",
       "images": [
@@ -2233,7 +2233,7 @@
           "dhash": "353645252989d761",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -2254,7 +2254,7 @@
           "dhash": "e6c6c5c3d3e43806",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -2275,7 +2275,7 @@
           "dhash": "3634343c2c8fc761",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -2296,7 +2296,7 @@
           "dhash": "36241c3c2c87c761",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         }
       ]
@@ -2306,7 +2306,7 @@
       "modelFolder": "ao_polo_7",
       "categoryRel": "quan-ao-nam/ao/ao-polo",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO",
       "gender": "nam",
       "images": [
@@ -2328,7 +2328,7 @@
           "dhash": "fc663436049ce133",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         }
       ]
@@ -2338,7 +2338,7 @@
       "modelFolder": "ao_polo_8",
       "categoryRel": "quan-ao-nam/ao/ao-polo",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO",
       "gender": "nam",
       "images": [
@@ -2360,7 +2360,7 @@
           "dhash": "2c6c6c29291b97c0",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         }
       ]
@@ -2370,7 +2370,7 @@
       "modelFolder": "ao_polo_9",
       "categoryRel": "quan-ao-nam/ao/ao-polo",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO",
       "gender": "nam",
       "images": [
@@ -2392,7 +2392,7 @@
           "dhash": "985c62b2d7464c47",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -2413,7 +2413,7 @@
           "dhash": "860603b313331b47",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         },
         {
@@ -2434,7 +2434,7 @@
           "dhash": "78c4d0cecccc450b",
           "gender": "nam",
           "categorySlug": "ao-polo",
-          "categoryName": "Áo polo",
+          "categoryName": "Polo",
           "prefix": "POLO"
         }
       ]
@@ -2443,8 +2443,8 @@
       "folderKey": "quan-ao-nam/ao/ao-so-mi/ao_somi_1",
       "modelFolder": "ao_somi_1",
       "categoryRel": "quan-ao-nam/ao/ao-so-mi",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT",
       "gender": "nam",
       "images": [
@@ -2465,8 +2465,8 @@
           "sha256": "afc7b5ede125f45778f242a59aae32f38b9e47000d2ec96d72fb888fc4ff2bb1",
           "dhash": "168e9696270f8e69",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         },
         {
@@ -2486,8 +2486,8 @@
           "sha256": "3325bfe704ea4b91b99ee57b3389f4f251b63f9293480f3ff46606be65340362",
           "dhash": "2f27333331131505",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         }
       ]
@@ -2496,8 +2496,8 @@
       "folderKey": "quan-ao-nam/ao/ao-so-mi/ao_somi_10",
       "modelFolder": "ao_somi_10",
       "categoryRel": "quan-ao-nam/ao/ao-so-mi",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT",
       "gender": "nam",
       "images": [
@@ -2518,8 +2518,8 @@
           "sha256": "afbab1b9eb2b2ca0dfbc1929015c34a590fd813e34a25b59d62d6a423cb48041",
           "dhash": "3e187b4b1b258373",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         }
       ]
@@ -2528,8 +2528,8 @@
       "folderKey": "quan-ao-nam/ao/ao-so-mi/ao_somi_11",
       "modelFolder": "ao_somi_11",
       "categoryRel": "quan-ao-nam/ao/ao-so-mi",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT",
       "gender": "nam",
       "images": [
@@ -2550,8 +2550,8 @@
           "sha256": "37cb701278b500baf70d808b923197e3b7f0f3dd627e9f1b2cdc9857ebc74ff9",
           "dhash": "3e185b4b3b258773",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         }
       ]
@@ -2560,8 +2560,8 @@
       "folderKey": "quan-ao-nam/ao/ao-so-mi/ao_somi_12",
       "modelFolder": "ao_somi_12",
       "categoryRel": "quan-ao-nam/ao/ao-so-mi",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT",
       "gender": "nam",
       "images": [
@@ -2582,8 +2582,8 @@
           "sha256": "00ef8bdaaaedd87dc385afee05baa71e574302d1af524d1e1e6d221618a439a5",
           "dhash": "ccc4b5b79bc505f3",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         }
       ]
@@ -2592,8 +2592,8 @@
       "folderKey": "quan-ao-nam/ao/ao-so-mi/ao_somi_13",
       "modelFolder": "ao_somi_13",
       "categoryRel": "quan-ao-nam/ao/ao-so-mi",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT",
       "gender": "nam",
       "images": [
@@ -2614,8 +2614,8 @@
           "sha256": "3c4c2c7744288d024a1ecc8713fa8a6bdc4fe02e2adf0bae495c28ba75b7dc54",
           "dhash": "3e185b4b4b258773",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         }
       ]
@@ -2624,8 +2624,8 @@
       "folderKey": "quan-ao-nam/ao/ao-so-mi/ao_somi_2",
       "modelFolder": "ao_somi_2",
       "categoryRel": "quan-ao-nam/ao/ao-so-mi",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT",
       "gender": "nam",
       "images": [
@@ -2646,8 +2646,8 @@
           "sha256": "bf906c7ebb59c21d185bc7a85ce568baf015e7e0e94125d47227adfbacfc15ce",
           "dhash": "e9b4b436bc9cd859",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         },
         {
@@ -2667,8 +2667,8 @@
           "sha256": "c9c2c86e0c1340fda6719e4d9f917d5313376e2edfbf7751dece0e2259f7d35e",
           "dhash": "75b4b62ebc9448c9",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         }
       ]
@@ -2677,8 +2677,8 @@
       "folderKey": "quan-ao-nam/ao/ao-so-mi/ao_somi_3",
       "modelFolder": "ao_somi_3",
       "categoryRel": "quan-ao-nam/ao/ao-so-mi",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT",
       "gender": "nam",
       "images": [
@@ -2699,8 +2699,8 @@
           "sha256": "d751a7b8fdfdcdbfea93097ecd95bc4bed04e7bab16f865390215d04db6e80a8",
           "dhash": "61e591a5b5ac2821",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         },
         {
@@ -2720,8 +2720,8 @@
           "sha256": "b0d739b2ae27595149b61fffaaca3d3f111e2a4300d558a13752b803891ae42a",
           "dhash": "ccccb4b49c8caccc",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         }
       ]
@@ -2730,8 +2730,8 @@
       "folderKey": "quan-ao-nam/ao/ao-so-mi/ao_somi_4",
       "modelFolder": "ao_somi_4",
       "categoryRel": "quan-ao-nam/ao/ao-so-mi",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT",
       "gender": "nam",
       "images": [
@@ -2752,8 +2752,8 @@
           "sha256": "776048e3239bcf45708a73acf7c332bdc882b0fd46d6c7c3561583c9114ee551",
           "dhash": "27f1e3636353359d",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         },
         {
@@ -2773,8 +2773,8 @@
           "sha256": "d6a6ab3ee4ff48289540c2b84bec80661aa959f82f8a09777f78d534b22e48ec",
           "dhash": "173733333333964c",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         },
         {
@@ -2794,8 +2794,8 @@
           "sha256": "d2abd71c1a52e95718b20cacb48f2aaf6f3813a9ed6369b40023275741c8450e",
           "dhash": "f0f2f67676b2b1e8",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         }
       ]
@@ -2804,8 +2804,8 @@
       "folderKey": "quan-ao-nam/ao/ao-so-mi/ao_somi_6",
       "modelFolder": "ao_somi_6",
       "categoryRel": "quan-ao-nam/ao/ao-so-mi",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT",
       "gender": "nam",
       "images": [
@@ -2826,8 +2826,8 @@
           "sha256": "2d6953d487cd12d2fa99f947a5699b051173004235a7dbb3ca997764a800f5d9",
           "dhash": "b2f373f0e090a123",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         },
         {
@@ -2847,8 +2847,8 @@
           "sha256": "e54bd700470a2e1d6bb0096552b4872bbe25631f06923aafe35ea488fbf51c89",
           "dhash": "b2e36ddcdccce829",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         }
       ]
@@ -2857,8 +2857,8 @@
       "folderKey": "quan-ao-nam/ao/ao-so-mi/ao_somi_7",
       "modelFolder": "ao_somi_7",
       "categoryRel": "quan-ao-nam/ao/ao-so-mi",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT",
       "gender": "nam",
       "images": [
@@ -2879,8 +2879,8 @@
           "sha256": "957f2983b7cd27d0e1c4c97296c4bf198843d986ad6fdc8f6b753e6500ae3950",
           "dhash": "cec4c5bb9b8d01f3",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         }
       ]
@@ -2889,8 +2889,8 @@
       "folderKey": "quan-ao-nam/ao/ao-so-mi/ao_somi_8",
       "modelFolder": "ao_somi_8",
       "categoryRel": "quan-ao-nam/ao/ao-so-mi",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT",
       "gender": "nam",
       "images": [
@@ -2911,8 +2911,8 @@
           "sha256": "3f79dada61250d9a514ff8246f4cf9ef9370e836f80ac48d02ecba0d402714f7",
           "dhash": "3f181b430b258773",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         }
       ]
@@ -2921,8 +2921,8 @@
       "folderKey": "quan-ao-nam/ao/ao-so-mi/ao_somi_9",
       "modelFolder": "ao_somi_9",
       "categoryRel": "quan-ao-nam/ao/ao-so-mi",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT",
       "gender": "nam",
       "images": [
@@ -2943,8 +2943,8 @@
           "sha256": "2ce24bb5ecaf01d8a0ecacf4baee5b4c6e0bb4a9f7abd5b46347ecaafb937ac8",
           "dhash": "0ecce4ecacb6ec9c",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         },
         {
@@ -2964,8 +2964,8 @@
           "sha256": "124b132502000bb4cbb41e45c4d2807f338c16dc2d8f97b44bc6fcb4da169f8d",
           "dhash": "0ed8f6f696320e0c",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         },
         {
@@ -2985,8 +2985,8 @@
           "sha256": "c1f6c18aa50d2e7f5191e3a26a2071fdb71b5a459f7c712143fc916eeb6e88ff",
           "dhash": "cec4c5b3bb8d01f3",
           "gender": "nam",
-          "categorySlug": "so-mi-polo",
-          "categoryName": "Áo sơ mi",
+          "categorySlug": "ao-so-mi",
+          "categoryName": "Sơ mi",
           "prefix": "SHIRT"
         }
       ]
@@ -4314,7 +4314,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_1",
       "modelFolder": "ao_thun_dai_tay_1",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -4336,7 +4336,7 @@
           "sha256": "94ea2825aef9132e4d437ca9fd4245510579809acc63951f13888ded6eb89988",
           "dhash": "69f0f0868cdcd8a9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -4346,7 +4346,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_10",
       "modelFolder": "ao_thun_dai_tay_10",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -4368,7 +4368,7 @@
           "sha256": "c93dcb3d84d035195c7ae7fd9f2c4a7287a88721ccf49067fd88db623a47da99",
           "dhash": "b187c7ca249119c6",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4389,7 +4389,7 @@
           "sha256": "bb3201d8a44523a770861af8604bbd6cd393179c3039a340c082b97ea14d2624",
           "dhash": "b987864e24111bc6",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4410,7 +4410,7 @@
           "sha256": "8ad62119a0ce8483e94ecd91a8d7406b731bfb1e47b76c587e6bcd095462f40c",
           "dhash": "b987c6cee4913dc5",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4431,7 +4431,7 @@
           "sha256": "c0f5a86087c40cad7d5d202141b389137503a0d1910624c1a291ffb95cca937a",
           "dhash": "b9a7f27834211bda",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -4441,7 +4441,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_11",
       "modelFolder": "ao_thun_dai_tay_11",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -4463,7 +4463,7 @@
           "sha256": "05ad98b311bd40b6cbca941713a5e9aace11929912f7de1f47458fb70e85b75e",
           "dhash": "585c839b9b99987c",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4484,7 +4484,7 @@
           "sha256": "b66f4bce724dc6b36caaac7c92385ab3d1cb0b2b0da8f790d9101d7f402c1494",
           "dhash": "b8706afab4b49a5c",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4505,7 +4505,7 @@
           "sha256": "98a19c0c863dfe5b39fb0cbff7f82e2ed09bf5bfc06bab6943e416e79d67dc32",
           "dhash": "589991919b999c78",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -4515,7 +4515,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_12",
       "modelFolder": "ao_thun_dai_tay_12",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -4537,7 +4537,7 @@
           "sha256": "d0e743d9352fa3fbf4918581defb0918104b657bb1968d414eeb47addcba55d0",
           "dhash": "5858839b9b999878",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4558,7 +4558,7 @@
           "sha256": "0baa25793fa913594c4ef10c634adc326d34aacd49d13104f4c6d1b7cbd5de87",
           "dhash": "b8706afab4b49a5c",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4579,7 +4579,7 @@
           "sha256": "1effe4d4281fcc2533180e8413ae5f9a33d86e4a526931177781ad9ba869f60f",
           "dhash": "589991939b999c78",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -4589,7 +4589,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_13",
       "modelFolder": "ao_thun_dai_tay_13",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -4611,7 +4611,7 @@
           "sha256": "480d126c8c7f6cfc87dc174456f66303ff63c4afa445112b785949420f697976",
           "dhash": "ba7274d4d4c6f13b",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4632,7 +4632,7 @@
           "sha256": "0b2b3508bdc6583363a59697aa0912fafc04b2291d9bec79fd41a96037c09199",
           "dhash": "ba7674d4d4d6d13b",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4653,7 +4653,7 @@
           "sha256": "5078b0da9c17824f1acb1f9d8dde078369d37fe069c4b9df4993e459dfc9c1e8",
           "dhash": "ba7674d4d4d4f11b",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4674,7 +4674,7 @@
           "sha256": "eab3cbd30e5ccb38b756ed2c162d59ec7e51316da9c3c3772ccfac2ec8a5da6a",
           "dhash": "ba7274d4d4d6f11b",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4695,7 +4695,7 @@
           "sha256": "155f50e78cdcdd6422c4844c8c6e8ae2ddbd62f13dac1329db39d5cc8cd00199",
           "dhash": "ba7274d4d4d6f13b",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -4705,7 +4705,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_14",
       "modelFolder": "ao_thun_dai_tay_14",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -4727,7 +4727,7 @@
           "sha256": "225ad9fbc3bacbb27c206ce0ec975321505d3865d85288c5cd432dcaa0ef8728",
           "dhash": "e486162b3b36169f",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4748,7 +4748,7 @@
           "sha256": "eb60b081396369a79655f9ae93fbee5c319ae91535da2dd3a6fd881873f8b867",
           "dhash": "9691c9d9d8d9596b",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -4758,7 +4758,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_15",
       "modelFolder": "ao_thun_dai_tay_15",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -4780,7 +4780,7 @@
           "sha256": "45e40d5a21cdfd729935d667d8c973b0739803229e24bd2d1526a67f5707c50d",
           "dhash": "3b576627e7d6d5c9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4801,7 +4801,7 @@
           "sha256": "ed88369d6da03cfc46c19a531a8617edb0c32ea0be0cdd5a82d08e0fc16f20c4",
           "dhash": "3b133727a397c6c9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4822,7 +4822,7 @@
           "sha256": "13817fdb2a623cfc5ae844c04f7b2b7d709bcb03bf893c6f0a39424915265b00",
           "dhash": "16132d232397c6c1",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -4832,7 +4832,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_16",
       "modelFolder": "ao_thun_dai_tay_16",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -4854,7 +4854,7 @@
           "sha256": "29120022b1848182f11f853d04cc4f38a8ecd94f5cadb614c456dc7851dd70da",
           "dhash": "647969490f8a4eac",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4875,7 +4875,7 @@
           "sha256": "f081cd03440d2138505fc839392c7c85908f88d48a20fe11c69fc08e9deca28f",
           "dhash": "16061633339b9786",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -4885,7 +4885,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_17",
       "modelFolder": "ao_thun_dai_tay_17",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -4907,7 +4907,7 @@
           "sha256": "31d4ba5e3cb2e6168978ca6628897660ec9b70d8864ffa205659cae4d16b77fc",
           "dhash": "1f0b2f16968d6c24",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -4928,7 +4928,7 @@
           "sha256": "aba8d3a188dc012bebb32e0d3eeaa7b86da699024bc9fa8c2195232bd870ffc7",
           "dhash": "489e332f3b17174b",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -4938,7 +4938,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_18",
       "modelFolder": "ao_thun_dai_tay_18",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -4960,7 +4960,7 @@
           "sha256": "35e043ec5fa63fa00b177bb41b05c8f2ae76b0a94e7f5670a077c2cf73fd37ae",
           "dhash": "3b7b2b2baba99899",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -4970,7 +4970,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_19",
       "modelFolder": "ao_thun_dai_tay_19",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -4992,7 +4992,7 @@
           "sha256": "3c1b9710e0381be76dae0d12e94b3a2e2fc2d691d688c3891a6734949f512cf8",
           "dhash": "49090d2cae9bcead",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -5013,7 +5013,7 @@
           "sha256": "bfc191831e18a433cb329cbb47b1fe4e90bd88e7de511afab79cb9f9e7089a8e",
           "dhash": "9d696363aab61797",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5023,7 +5023,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_2",
       "modelFolder": "ao_thun_dai_tay_2",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5045,7 +5045,7 @@
           "sha256": "0975471df98cb88fc3075617fe3da46afe0718a34f087716abfc22cf0240066a",
           "dhash": "69f0f0869cdcd8e9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5055,7 +5055,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_20",
       "modelFolder": "ao_thun_dai_tay_20",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5077,7 +5077,7 @@
           "sha256": "acec15f0f82ed4fa5fa5e0224ab99de4100f832676b51c92ef123931ea7dfadf",
           "dhash": "4d69692849626230",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5087,7 +5087,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_21",
       "modelFolder": "ao_thun_dai_tay_21",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5109,7 +5109,7 @@
           "sha256": "4c7126c675ae090e7b07c5d260cdd117b73242197b0f322f15a5ad13e79be9f2",
           "dhash": "41616869c8c8a286",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5119,7 +5119,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_22",
       "modelFolder": "ao_thun_dai_tay_22",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5141,7 +5141,7 @@
           "sha256": "b3204bd93ea174b5d5357214fda21cf3fb47cbb5de08c3570919792ed47dbc5c",
           "dhash": "3d4d493a83452303",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -5162,7 +5162,7 @@
           "sha256": "251c90a80d8cca14f11efb73892543b228cfb1e91a8bc2bf7dcaf5876ff308ac",
           "dhash": "3d4d493a83452313",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -5183,7 +5183,7 @@
           "sha256": "e1ff9bac5a89013319061337c000538cbddee381b87874d1a44f59eaf0082a83",
           "dhash": "4d1d3c3ac1452303",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -5204,7 +5204,7 @@
           "sha256": "252416bfbffb83ee6c04f8ed9683ba8d72880c7781e8f4a623d8ecbd765cccf7",
           "dhash": "4c1c3c3a01452313",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5214,7 +5214,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_23",
       "modelFolder": "ao_thun_dai_tay_23",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5236,7 +5236,7 @@
           "sha256": "9d1bbee421bc315f41adb7d0f570a4fc528d1fc5220af275c4d1dfcf17368dc0",
           "dhash": "851d23b3898247e9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -5257,7 +5257,7 @@
           "sha256": "03c3ab4e17c6a35eb6ec4f262a96553adf562579b01dd717d0a0f5c03ea6a6f7",
           "dhash": "910d2525899747e9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -5278,7 +5278,7 @@
           "sha256": "0a8f2ac66278c5a522c7c4407c648c7b44f4e27d458034af5ef7e66579a8435e",
           "dhash": "e4645adae66824a1",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5288,7 +5288,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_24",
       "modelFolder": "ao_thun_dai_tay_24",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5310,7 +5310,7 @@
           "sha256": "91e3ece9394255d2783a6c97dcda93a69c93b6f0fffe79d0b0a6f2ad02270db3",
           "dhash": "8d477393d0540d0d",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -5331,7 +5331,7 @@
           "sha256": "2a30d58122af3fb91790ad0c8fa74e59c201193d230309a3e641c5aee09cabc2",
           "dhash": "0dcdd3d0d4544d4d",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         },
@@ -5352,7 +5352,7 @@
           "sha256": "1974b1d2ac733af177be03fe3625a67f925d49da62b1c41fe089082dbfe91cae",
           "dhash": "0d4df3d1d05c7121",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5362,7 +5362,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_3",
       "modelFolder": "ao_thun_dai_tay_3",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5384,7 +5384,7 @@
           "sha256": "28852f65b0e4d25a3354c9a048f103030ed08b406b62727659344e0333a994e1",
           "dhash": "69f0f09694ccd8e9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5394,7 +5394,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_4",
       "modelFolder": "ao_thun_dai_tay_4",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5416,7 +5416,7 @@
           "sha256": "98f2d0745ca777adc61b4721412dd1000ecd6a82254e5781a3561e9de136cf87",
           "dhash": "69f0e09694dcd8a9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5426,7 +5426,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_5",
       "modelFolder": "ao_thun_dai_tay_5",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5448,7 +5448,7 @@
           "sha256": "3b0623dd30492f673d2b2ece3f27e00bd1639b8052fdc4888531bfb2ee533c58",
           "dhash": "69f0f48e8cdcd8a9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5458,7 +5458,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_6",
       "modelFolder": "ao_thun_dai_tay_6",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5480,7 +5480,7 @@
           "sha256": "0a0a834915a56eff70e5ba00bae49085b4da086aab4285308f0da1b0abd087db",
           "dhash": "69f0e08c94d4d8e9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5490,7 +5490,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_7",
       "modelFolder": "ao_thun_dai_tay_7",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5512,7 +5512,7 @@
           "sha256": "168e926c0d2ea5aff771cbecccaae96bd46eeec639f5f1240c96d53f9b43ed5b",
           "dhash": "69f0cc968c9cd8e9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5522,7 +5522,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_8",
       "modelFolder": "ao_thun_dai_tay_8",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5544,7 +5544,7 @@
           "sha256": "5392ab94f2e124f4c6ac1ea8245f0f0311eced35ebf7163f03df8484187c560d",
           "dhash": "69f0e0b294ccd8e9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -5554,7 +5554,7 @@
       "folderKey": "quan-ao-nam/ao/ao-thun-dai-tay/ao_thun_dai_tay_9",
       "modelFolder": "ao_thun_dai_tay_9",
       "categoryRel": "quan-ao-nam/ao/ao-thun-dai-tay",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE",
       "gender": "nam",
@@ -5576,7 +5576,7 @@
           "sha256": "5b46d7d21ffc6332d2d4d9a5f723719fdd7b784a9103d57507c345a5c56cb3e1",
           "dhash": "69f0e0969cccd8e9",
           "gender": "nam",
-          "categorySlug": "ao-thun",
+          "categorySlug": "ao-thun-dai-tay",
           "categoryName": "Áo thun dài tay",
           "prefix": "LONGSLEEVE"
         }
@@ -7658,8 +7658,8 @@
       "sha256": "622e8ef0369b280c5e50a9e26a580b3e9bae4e6323bc4a9f628c35b8ca482ee8",
       "dhash": "5b1723332b1296ce",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7679,8 +7679,8 @@
       "sha256": "e2af516a9d2349a544db5cc619eedb1345f0e1ece6fa23448bfb742f7dc9e452",
       "dhash": "c165d8dcb4d47849",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7700,8 +7700,8 @@
       "sha256": "c226ddd1dfdf9a5ea9a7d89ac7cdb468ae31a6cbc792181245fcf8f6624e4c14",
       "dhash": "8b69744c54547868",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7721,8 +7721,8 @@
       "sha256": "83ae10d1d6011226e69ebf494245cf486e568f9cf9a20e61a4205992e2290fea",
       "dhash": "b1755c5c14546869",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7742,8 +7742,8 @@
       "sha256": "405c8764a4afa275086c8450b9dd0d83fe50b1fa23c5976d3a68bc80278dc503",
       "dhash": "0f133130392b0702",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7763,8 +7763,8 @@
       "sha256": "4806f3d47ee89494a4a4eed6cc5d9e5b150fa1b34a157897df37a5fab051103d",
       "dhash": "1333393223231716",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7784,8 +7784,8 @@
       "sha256": "ed6fb220db18d4d7b99b03f2b54d472bfdc7990f4dd8bc4b376dc87a9b233d7e",
       "dhash": "d4e94b0b863336ec",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7805,8 +7805,8 @@
       "sha256": "090c125a5e133032575aa14bd218a86d4a6ae2a485a904409cab6ab3f1361b57",
       "dhash": "cce5cb0b0e321244",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7826,8 +7826,8 @@
       "sha256": "83871a955d703cbf905ebfe7603d5d8d8f901c8381367ab03a1ab481631c2877",
       "dhash": "cdedcb0aa63632c8",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7847,8 +7847,8 @@
       "sha256": "6af6e5498b7a3c03431ed3bb72a536c768688f229cf9daa05911d3084511acc6",
       "dhash": "e49d313c39939387",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7868,8 +7868,8 @@
       "sha256": "a6266766dc7d78f86653a50d1c78207ac018c2b38c6f377f9174b2229fe8dd2e",
       "dhash": "1e39232339213514",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7889,8 +7889,8 @@
       "sha256": "7c70ac3d5e70736b07b080b405107519d602bc280bb345056152f535a86d88e3",
       "dhash": "1629373335111594",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7910,8 +7910,8 @@
       "sha256": "b9b80fc5706eed7302f1d20bbf155dd7b63a651170276f85ab2cec4ed596c54b",
       "dhash": "735b1333332b9e9f",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7931,8 +7931,8 @@
       "sha256": "cf6da3f9fd3d7cbf30e983c9d09761bb7cae23311c4649d59ec45ecf63334f4f",
       "dhash": "735b1333332b9e9f",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7952,8 +7952,8 @@
       "sha256": "d69ca45579d97734c757d0aa27e74cb25dfe85657d2726136877d40cad7a1cb4",
       "dhash": "735b1333332b9e9f",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7973,8 +7973,8 @@
       "sha256": "c76671744c5389601371d256ed20db25b47396c4e436b9eae1d2b7af5e772dfa",
       "dhash": "ced2e3ba9a92d471",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -7994,8 +7994,8 @@
       "sha256": "2ba34b43b94ed6666d9adf298a807060fe4f5694b4e168260a2803d42e369f5e",
       "dhash": "8317233331231606",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -8015,8 +8015,8 @@
       "sha256": "f6776b7106373ec25b20024f0225bfbfdb31fc5050e82dcaaebf46c57409a7d3",
       "dhash": "8c0f3b0b1f8e8e4d",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -8036,8 +8036,8 @@
       "sha256": "79a60ed8d4edef14f587ebb0444cf6958f1408a3b3f21df23ddb23b104459bb4",
       "dhash": "8e0f0b0b03868e4d",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -8057,8 +8057,8 @@
       "sha256": "87068b6d3b3c887d34582bfcdf967d074bdd6588d82abc139273b2d6abaaecab",
       "dhash": "8686a79e9af87931",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -8078,8 +8078,8 @@
       "sha256": "363b51af735984e1c7fce809ae500e528ea66cf1975195954f99b54c876220b1",
       "dhash": "79797161612b1706",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -8099,8 +8099,8 @@
       "sha256": "cc3083b7d2321dafba926e6c0acd742fc964eab5f6b62e8eb152ecd9410235ec",
       "dhash": "86878e9e9ef86864",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -8120,8 +8120,8 @@
       "sha256": "771a2342c9a626b7f8cc8064142a3236aeab8475cabe1a412dd38176af45c9e5",
       "dhash": "8c8c9d9989606444",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -8141,8 +8141,8 @@
       "sha256": "e0aa228c1730360f03bdc03d68bd428490f69ab3d449fd3414cf9f8387344860",
       "dhash": "5a786074d4706965",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -8162,8 +8162,8 @@
       "sha256": "d0c6ccf18074b0b94604a79d1086544e9c176a58f82b82f446eb104f0774da23",
       "dhash": "4b68ecdcd4c4e9e1",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -8183,8 +8183,8 @@
       "sha256": "357ef04b6210d7bbd2c7bca8e7541082049bd3d9510877c6fddc8f8398405c98",
       "dhash": "2cf0f0d0d84c7861",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -8204,8 +8204,8 @@
       "sha256": "f5d3b1c7bab6d655b9d5f1064e3a18228d9a68c2001eaacb9a242f196b4fb9ab",
       "dhash": "9cfce4c6dcd46961",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
-      "categoryName": "Áo hoodie",
+      "categorySlug": "ao-hoodie",
+      "categoryName": "Hoodie",
       "prefix": "HOODIE"
     },
     {
@@ -8225,7 +8225,7 @@
       "sha256": "b64171abf5e8b805b9e9d7f4d5b035956682284fe4e4e76e4703e6240e35cdcc",
       "dhash": "930b139b81174aab",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8246,7 +8246,7 @@
       "sha256": "a6869096a8c6003c52ccc3dc86064ae9d9b27308201e0ae4335fd1909335f3db",
       "dhash": "4b4974fae66474a1",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8267,7 +8267,7 @@
       "sha256": "32c2763a23de3698d4c5109efc8a02d30201e3be544c8776d22abe4ea6f1bfcb",
       "dhash": "17330727232b179e",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8288,7 +8288,7 @@
       "sha256": "166b5fc3ca11916d808ca29bf0666a73210249e70235a029ceb835b56661a64d",
       "dhash": "272361633337268c",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8309,7 +8309,7 @@
       "sha256": "be98e9c8d860b66d4db8b09f2204223aa0feacbf430167f23486b1012c58e13b",
       "dhash": "0706636b2326060c",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8330,7 +8330,7 @@
       "sha256": "70c9d4bedaef1c5f2fc9847e5bed06dfbdaa7b1f3ba3d5baee0e0ec622f2356c",
       "dhash": "06332b070723168c",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8351,7 +8351,7 @@
       "sha256": "6714f6a44f0c568e9744b3822355763951cf5288a7261815fa1ac119ced2664d",
       "dhash": "071323232727864d",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8372,7 +8372,7 @@
       "sha256": "e5c9656c3aae13f6261d7f545eca28f6b7cc1893059b8b9271f788dcb3f024a0",
       "dhash": "261767653537260c",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8393,7 +8393,7 @@
       "sha256": "fa08c3cb8469a9fa495c5670c2dcc20eb80f8c0b1b575fd011d2b6c18a8805cf",
       "dhash": "edabb666c85b1796",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8414,7 +8414,7 @@
       "sha256": "7c34d1a403442d1f6e8904ff590297c59c157df863c75b589849a06c57ced11b",
       "dhash": "d9db836e46618686",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8435,7 +8435,7 @@
       "sha256": "1e37d00c84fb00192e3ac290fd53624d1d197e832ab4cb7ed2c1daaf01c00e3d",
       "dhash": "b6b24246e6e668b7",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8456,7 +8456,7 @@
       "sha256": "a2df321a2ade55117e0db700842d954b47db563ebd038ed47bb8742feec7095b",
       "dhash": "eda9b666c85b1796",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8477,7 +8477,7 @@
       "sha256": "906cb00ca83850ee070779cf27c8e81c4f322111d29112dc263528008bdba3de",
       "dhash": "4bac72d0d4646c30",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8498,7 +8498,7 @@
       "sha256": "fb9efccdd2230ece9bd470e56d041281ab6335b1c5bf44fe4262010ba0808c92",
       "dhash": "4787132d0d9b0746",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8519,7 +8519,7 @@
       "sha256": "67f28ba1278b27a165dd68d657877d6636ad1441fedb772fc3af09570205a6a2",
       "dhash": "4fac72d0d464a870",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8540,7 +8540,7 @@
       "sha256": "6c38d882b9eb909018116a1ea999ca4199b94e9aa12ff80f208f2856dcba13ec",
       "dhash": "0e19199b93830e4c",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8561,7 +8561,7 @@
       "sha256": "1f264c725e2336c640603d84a32521d10d869924e66b8dc0289f800100478867",
       "dhash": "26272b232b9b9e4c",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8582,7 +8582,7 @@
       "sha256": "4c7811f514941ba793661bd850c8f9694dd5b41a5e270bcb82fae4073fa82f63",
       "dhash": "0f5365633333278e",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8603,7 +8603,7 @@
       "sha256": "f2eb35aa64d9343a460a4ae5401a1892ff13b6de578ef6c6c7a90e64a5a1a5c1",
       "dhash": "071365676727078e",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8624,7 +8624,7 @@
       "sha256": "8a247eba138c24ad0d7d34c14b05bbe84489faee21cde345500d6dfa0f354a2d",
       "dhash": "0f5b67633333279e",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8645,7 +8645,7 @@
       "sha256": "2eaf230b19e17d621923adfe7d3f807d30aaf63993355de9e1eab4038c23a1ca",
       "dhash": "262131054e67770f",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8666,7 +8666,7 @@
       "sha256": "9dafaee213ca15b075fc022fdc98d1d201d13e419524fd67b9a65f13b9217c85",
       "dhash": "7068d7cecc9d8851",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8687,7 +8687,7 @@
       "sha256": "258da251a3c9292db7480bf84067a42b93b1d8a67bdc3ee7c145396d3b51ae7c",
       "dhash": "266131054e67770e",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8708,7 +8708,7 @@
       "sha256": "81315fb88b3d9d8f526c0ab6327d4f91573da05e4f90de87724937cc9cdd49ae",
       "dhash": "706cc7cecc9d8831",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8729,7 +8729,7 @@
       "sha256": "aaeecd2cd4956af386679b35f535728c837743ddb2764b466733990c5470c2ff",
       "dhash": "4196161796960f23",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8750,7 +8750,7 @@
       "sha256": "afcb9ca262fded1df8e10d780cfcb81d0cee81cf16d2250653d700ffe0c91f21",
       "dhash": "4196161396964d23",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8771,7 +8771,7 @@
       "sha256": "2b93868637b877a2b77e75c6ce1d70b83e8df7504755e128e4e9f11bd1fef147",
       "dhash": "c7cc6d44c5c42e1e",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8792,7 +8792,7 @@
       "sha256": "829436928809667bed1c9554ba27d02207ed1a1b34ad3c96bb4e699a42571bc9",
       "dhash": "6356c6c686a45012",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8813,7 +8813,7 @@
       "sha256": "790db61c08e41c4fe6f4acd36af246627666eef26d9ac91b4c8de52f82ef1fe5",
       "dhash": "b0471f1317969e48",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8834,7 +8834,7 @@
       "sha256": "1993927dec9e75d11104fe5b841880b9f5948317dff9934e61a0004d61dc3c3d",
       "dhash": "0055472b2b168e41",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8855,7 +8855,7 @@
       "sha256": "3c4ee5b7aef54741117827b1a50eb17700246bd26f544b49702d523a3d05996a",
       "dhash": "1794b22c68480823",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8876,7 +8876,7 @@
       "sha256": "2fa8a950b034faebe9f804532bbd28e7823123a28c620eae2e3ca34a31fe0f38",
       "dhash": "41d4aca8ba586923",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8897,7 +8897,7 @@
       "sha256": "8fa4bd2ff321cdd0067249ce9a326ac9aead892962ba437670f98eac7000d0ac",
       "dhash": "0594aca89a1a3823",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8918,7 +8918,7 @@
       "sha256": "45987e049b6d17ec88e138c7fee5c779ee5919903c7e08a9161aa6e4b888f1f3",
       "dhash": "5c49b1a9e8c9db7a",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8939,7 +8939,7 @@
       "sha256": "d8120112a04623a3d4b8090645eacdadd35a7055ef8eb5995934a13aede27d96",
       "dhash": "3c6db1a4aac9c96a",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8960,7 +8960,7 @@
       "sha256": "56ba799eaaab72ccaf3de64f886096f5f0b4efd09046d85379aac92ab9ccc635",
       "dhash": "2c6dd1a0e8c9f96a",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -8981,7 +8981,7 @@
       "sha256": "6cc22d837639b7835469778410ed043eaab5da19fbd6cccb1d9359f38e115cfb",
       "dhash": "65647a60f26224a1",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -9002,7 +9002,7 @@
       "sha256": "899ffc07a9ef5392043467c6af8195303a83d6278b014893f22b0e8c4469ca10",
       "dhash": "9393131d8d9983ea",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -9023,7 +9023,7 @@
       "sha256": "9628423141dc45f20923101e2c49d514ef7686fbad5aa5e85e13720cb1c110cc",
       "dhash": "e56dcb62483307a4",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -9044,7 +9044,7 @@
       "sha256": "cdb6f00c49c6a59fb603f49cf5cfc9ada0c7f9d653f7afca99eeea4a1768833a",
       "dhash": "e8e14b5a52318724",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -9065,7 +9065,7 @@
       "sha256": "06b3b1e7259e25aa98185b475fda251dfff0a3cff9bdc35fc97bc56b7efac61c",
       "dhash": "c8c9cb525631a324",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -9086,7 +9086,7 @@
       "sha256": "bb0678e22440e5f7d0b17338119d44d9c8f2b0f21d879e05eed895662e1abac1",
       "dhash": "c8d9cb5a5231a324",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -9107,7 +9107,7 @@
       "sha256": "ed38b7f33cea06e626c3a157aeb8cbdfcc84e16c95145c7a0f9ca8a739d1ef23",
       "dhash": "8c27232f23868e4d",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -9128,7 +9128,7 @@
       "sha256": "2c8b97f6b08f74ef0e9e77f3c531b5265cd519add332c57ba1c58919a62d3f2c",
       "dhash": "8c1f1b370796964c",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -9149,7 +9149,7 @@
       "sha256": "3110439e477f66566250adc6e97f59cd59c6b95c5fbde6df8101e473dd55572d",
       "dhash": "073b2b232333178e",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -9170,7 +9170,7 @@
       "sha256": "15d8afabc139d522939692b9094ca105a7a3c8e4726816717965b62e8a3f4125",
       "dhash": "264b59672727278c",
       "gender": "nam",
-      "categorySlug": "hoodie-sweater",
+      "categorySlug": "ao-len",
       "categoryName": "Áo len",
       "prefix": "SWEATER"
     },
@@ -9192,7 +9192,7 @@
       "dhash": "396961715511134f",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9213,7 +9213,7 @@
       "dhash": "66861783336767cf",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9234,7 +9234,7 @@
       "dhash": "3b3b3b236933334e",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9255,7 +9255,7 @@
       "dhash": "332f2f2f5133334e",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9276,7 +9276,7 @@
       "dhash": "1333391939894d54",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9297,7 +9297,7 @@
       "dhash": "2f232b1333333331",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9318,7 +9318,7 @@
       "dhash": "aeaceaaa8acccc8c",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9339,7 +9339,7 @@
       "dhash": "0c3c0c29ab9313cd",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9360,7 +9360,7 @@
       "dhash": "1c6c4c2d2899cbf0",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9381,7 +9381,7 @@
       "dhash": "6ee4cdc9db646c80",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9402,7 +9402,7 @@
       "dhash": "985c60b2d7464c47",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9423,7 +9423,7 @@
       "dhash": "8606139f8b331b47",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9444,7 +9444,7 @@
       "dhash": "997c60e0f46c6c47",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9465,7 +9465,7 @@
       "dhash": "9978c4e0e4ccec29",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9486,7 +9486,7 @@
       "dhash": "353645252989d761",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9507,7 +9507,7 @@
       "dhash": "e6c6c5c3d3e43806",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9528,7 +9528,7 @@
       "dhash": "3634343c2c8fc761",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9549,7 +9549,7 @@
       "dhash": "36241c3c2c87c761",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9570,7 +9570,7 @@
       "dhash": "fc663436049ce133",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9591,7 +9591,7 @@
       "dhash": "2c6c6c29291b97c0",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9612,7 +9612,7 @@
       "dhash": "985c62b2d7464c47",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9633,7 +9633,7 @@
       "dhash": "860603b313331b47",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9654,7 +9654,7 @@
       "dhash": "78c4d0cecccc450b",
       "gender": "nam",
       "categorySlug": "ao-polo",
-      "categoryName": "Áo polo",
+      "categoryName": "Polo",
       "prefix": "POLO"
     },
     {
@@ -9674,8 +9674,8 @@
       "sha256": "afc7b5ede125f45778f242a59aae32f38b9e47000d2ec96d72fb888fc4ff2bb1",
       "dhash": "168e9696270f8e69",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9695,8 +9695,8 @@
       "sha256": "3325bfe704ea4b91b99ee57b3389f4f251b63f9293480f3ff46606be65340362",
       "dhash": "2f27333331131505",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9716,8 +9716,8 @@
       "sha256": "afbab1b9eb2b2ca0dfbc1929015c34a590fd813e34a25b59d62d6a423cb48041",
       "dhash": "3e187b4b1b258373",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9737,8 +9737,8 @@
       "sha256": "37cb701278b500baf70d808b923197e3b7f0f3dd627e9f1b2cdc9857ebc74ff9",
       "dhash": "3e185b4b3b258773",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9758,8 +9758,8 @@
       "sha256": "00ef8bdaaaedd87dc385afee05baa71e574302d1af524d1e1e6d221618a439a5",
       "dhash": "ccc4b5b79bc505f3",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9779,8 +9779,8 @@
       "sha256": "3c4c2c7744288d024a1ecc8713fa8a6bdc4fe02e2adf0bae495c28ba75b7dc54",
       "dhash": "3e185b4b4b258773",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9800,8 +9800,8 @@
       "sha256": "bf906c7ebb59c21d185bc7a85ce568baf015e7e0e94125d47227adfbacfc15ce",
       "dhash": "e9b4b436bc9cd859",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9821,8 +9821,8 @@
       "sha256": "c9c2c86e0c1340fda6719e4d9f917d5313376e2edfbf7751dece0e2259f7d35e",
       "dhash": "75b4b62ebc9448c9",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9842,8 +9842,8 @@
       "sha256": "d751a7b8fdfdcdbfea93097ecd95bc4bed04e7bab16f865390215d04db6e80a8",
       "dhash": "61e591a5b5ac2821",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9863,8 +9863,8 @@
       "sha256": "b0d739b2ae27595149b61fffaaca3d3f111e2a4300d558a13752b803891ae42a",
       "dhash": "ccccb4b49c8caccc",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9884,8 +9884,8 @@
       "sha256": "776048e3239bcf45708a73acf7c332bdc882b0fd46d6c7c3561583c9114ee551",
       "dhash": "27f1e3636353359d",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9905,8 +9905,8 @@
       "sha256": "d6a6ab3ee4ff48289540c2b84bec80661aa959f82f8a09777f78d534b22e48ec",
       "dhash": "173733333333964c",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9926,8 +9926,8 @@
       "sha256": "d2abd71c1a52e95718b20cacb48f2aaf6f3813a9ed6369b40023275741c8450e",
       "dhash": "f0f2f67676b2b1e8",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9947,8 +9947,8 @@
       "sha256": "2d6953d487cd12d2fa99f947a5699b051173004235a7dbb3ca997764a800f5d9",
       "dhash": "b2f373f0e090a123",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9968,8 +9968,8 @@
       "sha256": "e54bd700470a2e1d6bb0096552b4872bbe25631f06923aafe35ea488fbf51c89",
       "dhash": "b2e36ddcdccce829",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -9989,8 +9989,8 @@
       "sha256": "957f2983b7cd27d0e1c4c97296c4bf198843d986ad6fdc8f6b753e6500ae3950",
       "dhash": "cec4c5bb9b8d01f3",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -10010,8 +10010,8 @@
       "sha256": "3f79dada61250d9a514ff8246f4cf9ef9370e836f80ac48d02ecba0d402714f7",
       "dhash": "3f181b430b258773",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -10031,8 +10031,8 @@
       "sha256": "2ce24bb5ecaf01d8a0ecacf4baee5b4c6e0bb4a9f7abd5b46347ecaafb937ac8",
       "dhash": "0ecce4ecacb6ec9c",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -10052,8 +10052,8 @@
       "sha256": "124b132502000bb4cbb41e45c4d2807f338c16dc2d8f97b44bc6fcb4da169f8d",
       "dhash": "0ed8f6f696320e0c",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -10073,8 +10073,8 @@
       "sha256": "c1f6c18aa50d2e7f5191e3a26a2071fdb71b5a459f7c712143fc916eeb6e88ff",
       "dhash": "cec4c5b3bb8d01f3",
       "gender": "nam",
-      "categorySlug": "so-mi-polo",
-      "categoryName": "Áo sơ mi",
+      "categorySlug": "ao-so-mi",
+      "categoryName": "Sơ mi",
       "prefix": "SHIRT"
     },
     {
@@ -11270,7 +11270,7 @@
       "sha256": "94ea2825aef9132e4d437ca9fd4245510579809acc63951f13888ded6eb89988",
       "dhash": "69f0f0868cdcd8a9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11291,7 +11291,7 @@
       "sha256": "c93dcb3d84d035195c7ae7fd9f2c4a7287a88721ccf49067fd88db623a47da99",
       "dhash": "b187c7ca249119c6",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11312,7 +11312,7 @@
       "sha256": "bb3201d8a44523a770861af8604bbd6cd393179c3039a340c082b97ea14d2624",
       "dhash": "b987864e24111bc6",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11333,7 +11333,7 @@
       "sha256": "8ad62119a0ce8483e94ecd91a8d7406b731bfb1e47b76c587e6bcd095462f40c",
       "dhash": "b987c6cee4913dc5",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11354,7 +11354,7 @@
       "sha256": "c0f5a86087c40cad7d5d202141b389137503a0d1910624c1a291ffb95cca937a",
       "dhash": "b9a7f27834211bda",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11375,7 +11375,7 @@
       "sha256": "05ad98b311bd40b6cbca941713a5e9aace11929912f7de1f47458fb70e85b75e",
       "dhash": "585c839b9b99987c",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11396,7 +11396,7 @@
       "sha256": "b66f4bce724dc6b36caaac7c92385ab3d1cb0b2b0da8f790d9101d7f402c1494",
       "dhash": "b8706afab4b49a5c",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11417,7 +11417,7 @@
       "sha256": "98a19c0c863dfe5b39fb0cbff7f82e2ed09bf5bfc06bab6943e416e79d67dc32",
       "dhash": "589991919b999c78",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11438,7 +11438,7 @@
       "sha256": "d0e743d9352fa3fbf4918581defb0918104b657bb1968d414eeb47addcba55d0",
       "dhash": "5858839b9b999878",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11459,7 +11459,7 @@
       "sha256": "0baa25793fa913594c4ef10c634adc326d34aacd49d13104f4c6d1b7cbd5de87",
       "dhash": "b8706afab4b49a5c",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11480,7 +11480,7 @@
       "sha256": "1effe4d4281fcc2533180e8413ae5f9a33d86e4a526931177781ad9ba869f60f",
       "dhash": "589991939b999c78",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11501,7 +11501,7 @@
       "sha256": "480d126c8c7f6cfc87dc174456f66303ff63c4afa445112b785949420f697976",
       "dhash": "ba7274d4d4c6f13b",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11522,7 +11522,7 @@
       "sha256": "0b2b3508bdc6583363a59697aa0912fafc04b2291d9bec79fd41a96037c09199",
       "dhash": "ba7674d4d4d6d13b",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11543,7 +11543,7 @@
       "sha256": "5078b0da9c17824f1acb1f9d8dde078369d37fe069c4b9df4993e459dfc9c1e8",
       "dhash": "ba7674d4d4d4f11b",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11564,7 +11564,7 @@
       "sha256": "eab3cbd30e5ccb38b756ed2c162d59ec7e51316da9c3c3772ccfac2ec8a5da6a",
       "dhash": "ba7274d4d4d6f11b",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11585,7 +11585,7 @@
       "sha256": "155f50e78cdcdd6422c4844c8c6e8ae2ddbd62f13dac1329db39d5cc8cd00199",
       "dhash": "ba7274d4d4d6f13b",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11606,7 +11606,7 @@
       "sha256": "225ad9fbc3bacbb27c206ce0ec975321505d3865d85288c5cd432dcaa0ef8728",
       "dhash": "e486162b3b36169f",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11627,7 +11627,7 @@
       "sha256": "eb60b081396369a79655f9ae93fbee5c319ae91535da2dd3a6fd881873f8b867",
       "dhash": "9691c9d9d8d9596b",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11648,7 +11648,7 @@
       "sha256": "45e40d5a21cdfd729935d667d8c973b0739803229e24bd2d1526a67f5707c50d",
       "dhash": "3b576627e7d6d5c9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11669,7 +11669,7 @@
       "sha256": "ed88369d6da03cfc46c19a531a8617edb0c32ea0be0cdd5a82d08e0fc16f20c4",
       "dhash": "3b133727a397c6c9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11690,7 +11690,7 @@
       "sha256": "13817fdb2a623cfc5ae844c04f7b2b7d709bcb03bf893c6f0a39424915265b00",
       "dhash": "16132d232397c6c1",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11711,7 +11711,7 @@
       "sha256": "29120022b1848182f11f853d04cc4f38a8ecd94f5cadb614c456dc7851dd70da",
       "dhash": "647969490f8a4eac",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11732,7 +11732,7 @@
       "sha256": "f081cd03440d2138505fc839392c7c85908f88d48a20fe11c69fc08e9deca28f",
       "dhash": "16061633339b9786",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11753,7 +11753,7 @@
       "sha256": "31d4ba5e3cb2e6168978ca6628897660ec9b70d8864ffa205659cae4d16b77fc",
       "dhash": "1f0b2f16968d6c24",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11774,7 +11774,7 @@
       "sha256": "aba8d3a188dc012bebb32e0d3eeaa7b86da699024bc9fa8c2195232bd870ffc7",
       "dhash": "489e332f3b17174b",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11795,7 +11795,7 @@
       "sha256": "35e043ec5fa63fa00b177bb41b05c8f2ae76b0a94e7f5670a077c2cf73fd37ae",
       "dhash": "3b7b2b2baba99899",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11816,7 +11816,7 @@
       "sha256": "3c1b9710e0381be76dae0d12e94b3a2e2fc2d691d688c3891a6734949f512cf8",
       "dhash": "49090d2cae9bcead",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11837,7 +11837,7 @@
       "sha256": "bfc191831e18a433cb329cbb47b1fe4e90bd88e7de511afab79cb9f9e7089a8e",
       "dhash": "9d696363aab61797",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11858,7 +11858,7 @@
       "sha256": "0975471df98cb88fc3075617fe3da46afe0718a34f087716abfc22cf0240066a",
       "dhash": "69f0f0869cdcd8e9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11879,7 +11879,7 @@
       "sha256": "acec15f0f82ed4fa5fa5e0224ab99de4100f832676b51c92ef123931ea7dfadf",
       "dhash": "4d69692849626230",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11900,7 +11900,7 @@
       "sha256": "4c7126c675ae090e7b07c5d260cdd117b73242197b0f322f15a5ad13e79be9f2",
       "dhash": "41616869c8c8a286",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11921,7 +11921,7 @@
       "sha256": "b3204bd93ea174b5d5357214fda21cf3fb47cbb5de08c3570919792ed47dbc5c",
       "dhash": "3d4d493a83452303",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11942,7 +11942,7 @@
       "sha256": "251c90a80d8cca14f11efb73892543b228cfb1e91a8bc2bf7dcaf5876ff308ac",
       "dhash": "3d4d493a83452313",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11963,7 +11963,7 @@
       "sha256": "e1ff9bac5a89013319061337c000538cbddee381b87874d1a44f59eaf0082a83",
       "dhash": "4d1d3c3ac1452303",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -11984,7 +11984,7 @@
       "sha256": "252416bfbffb83ee6c04f8ed9683ba8d72880c7781e8f4a623d8ecbd765cccf7",
       "dhash": "4c1c3c3a01452313",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12005,7 +12005,7 @@
       "sha256": "9d1bbee421bc315f41adb7d0f570a4fc528d1fc5220af275c4d1dfcf17368dc0",
       "dhash": "851d23b3898247e9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12026,7 +12026,7 @@
       "sha256": "03c3ab4e17c6a35eb6ec4f262a96553adf562579b01dd717d0a0f5c03ea6a6f7",
       "dhash": "910d2525899747e9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12047,7 +12047,7 @@
       "sha256": "0a8f2ac66278c5a522c7c4407c648c7b44f4e27d458034af5ef7e66579a8435e",
       "dhash": "e4645adae66824a1",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12068,7 +12068,7 @@
       "sha256": "91e3ece9394255d2783a6c97dcda93a69c93b6f0fffe79d0b0a6f2ad02270db3",
       "dhash": "8d477393d0540d0d",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12089,7 +12089,7 @@
       "sha256": "2a30d58122af3fb91790ad0c8fa74e59c201193d230309a3e641c5aee09cabc2",
       "dhash": "0dcdd3d0d4544d4d",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12110,7 +12110,7 @@
       "sha256": "1974b1d2ac733af177be03fe3625a67f925d49da62b1c41fe089082dbfe91cae",
       "dhash": "0d4df3d1d05c7121",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12131,7 +12131,7 @@
       "sha256": "28852f65b0e4d25a3354c9a048f103030ed08b406b62727659344e0333a994e1",
       "dhash": "69f0f09694ccd8e9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12152,7 +12152,7 @@
       "sha256": "98f2d0745ca777adc61b4721412dd1000ecd6a82254e5781a3561e9de136cf87",
       "dhash": "69f0e09694dcd8a9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12173,7 +12173,7 @@
       "sha256": "3b0623dd30492f673d2b2ece3f27e00bd1639b8052fdc4888531bfb2ee533c58",
       "dhash": "69f0f48e8cdcd8a9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12194,7 +12194,7 @@
       "sha256": "0a0a834915a56eff70e5ba00bae49085b4da086aab4285308f0da1b0abd087db",
       "dhash": "69f0e08c94d4d8e9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12215,7 +12215,7 @@
       "sha256": "168e926c0d2ea5aff771cbecccaae96bd46eeec639f5f1240c96d53f9b43ed5b",
       "dhash": "69f0cc968c9cd8e9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12236,7 +12236,7 @@
       "sha256": "5392ab94f2e124f4c6ac1ea8245f0f0311eced35ebf7163f03df8484187c560d",
       "dhash": "69f0e0b294ccd8e9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },
@@ -12257,7 +12257,7 @@
       "sha256": "5b46d7d21ffc6332d2d4d9a5f723719fdd7b784a9103d57507c345a5c56cb3e1",
       "dhash": "69f0e0969cccd8e9",
       "gender": "nam",
-      "categorySlug": "ao-thun",
+      "categorySlug": "ao-thun-dai-tay",
       "categoryName": "Áo thun dài tay",
       "prefix": "LONGSLEEVE"
     },

@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Drawer } from '@/components/ui/drawer';
 import { Product, SizeCode, AIStylistMessage } from '@/types';
 import { GENZ_CATEGORIES, GENZ_BRANDS } from '@/mocks/genzCategories';
+import { getActiveCategories, CATEGORY_DEFINITIONS } from '@/constants/categories';
 import { formatPrice } from '@/lib/utils';
 import {
   SlidersHorizontal,
@@ -46,25 +47,6 @@ interface QuickFilterPill {
   label: string;
   filter: QuickFilter;
 }
-
-// 5.1: Đơn giản hóa tên danh mục tiếng Việt ngắn gọn theo Master Prompt Section 5.1
-const QUICK_FILTER_PILLS: QuickFilterPill[] = [
-  { id: 'all', label: 'Tất cả', filter: {} },
-  { id: 'summer', label: 'Mùa hè', filter: { season: 'he' } },
-  { id: 'winter', label: 'Mùa đông', filter: { season: 'dong' } },
-  { id: 'spring-autumn', label: 'Xuân – Thu', filter: { season: 'xuan-thu' } },
-  { id: 'ao-thun', label: 'Áo thun', filter: { category: 'ao-thun' } },
-  { id: 'so-mi', label: 'Áo sơ mi', filter: { category: 'so-mi-polo' } },
-  { id: 'hoodie', label: 'Áo hoodie', filter: { category: 'hoodie-sweater' } },
-  { id: 'ao-len', label: 'Áo len', filter: { category: 'hoodie-sweater' } },
-  { id: 'ao-khoac', label: 'Áo khoác', filter: { category: 'ao-khoac' } },
-  { id: 'quan-jeans', label: 'Quần jeans', filter: { category: 'quan-jeans' } },
-  { id: 'quan-dai', label: 'Quần dài', filter: { category: 'quan-cargo-parachute' } },
-  { id: 'quan-ngan', label: 'Quần ngắn', filter: { category: 'quan-jeans' } },
-  { id: 'chan-vay', label: 'Chân váy', filter: { category: 'chan-vay' } },
-  { id: 'vay', label: 'Váy', filter: { category: 'chan-vay' } },
-  { id: 'phu-kien', label: 'Phụ kiện', filter: { category: 'phu-kien' } },
-];
 
 const ITEMS_PER_PAGE = 15;
 const MAX_CONSECUTIVE_AUTOLOADS = 3;
@@ -300,6 +282,46 @@ export const CatalogPage: React.FC = () => {
 
   const allFilteredProducts = useMemo(() => productService.getAll(filterOptions), [filterOptions]);
 
+  // Master Product Catalog & Color System: Đồng bộ danh mục và đếm số lượng thật theo bộ lọc
+  const allCatalogProducts = useMemo(() => productService.getAll(), []);
+
+  const activeCategories = useMemo(
+    () => getActiveCategories(allCatalogProducts, { gender: genderParam, season: seasonParam }),
+    [allCatalogProducts, genderParam, seasonParam]
+  );
+
+  const totalScopedProductsCount = useMemo(() => {
+    return allCatalogProducts.filter((p) => {
+      if (genderParam !== 'all') {
+        if (genderParam === 'unisex' && p.gender !== 'unisex') return false;
+        if (genderParam !== 'unisex' && p.gender !== genderParam && p.gender !== 'unisex') return false;
+      }
+      if (seasonParam !== 'all') {
+        const pSeasons = p.seasons || (p.season ? [p.season] : []);
+        if (!pSeasons.includes(seasonParam)) return false;
+      }
+      return true;
+    }).length;
+  }, [allCatalogProducts, genderParam, seasonParam]);
+
+  // Đồng bộ hoàn toàn Quick Filter Pills với activeCategories
+  const quickFilterPills: QuickFilterPill[] = useMemo(() => {
+    const basePills: QuickFilterPill[] = [
+      { id: 'all', label: 'Tất cả', filter: {} },
+      { id: 'summer', label: 'Mùa hè', filter: { season: 'he' } },
+      { id: 'winter', label: 'Mùa đông', filter: { season: 'dong' } },
+      { id: 'spring-autumn', label: 'Xuân – Thu', filter: { season: 'xuan-thu' } },
+    ];
+
+    const categoryPills: QuickFilterPill[] = activeCategories.map((cat) => ({
+      id: cat.slug,
+      label: cat.name,
+      filter: { category: cat.slug },
+    }));
+
+    return [...basePills, ...categoryPills];
+  }, [activeCategories]);
+
   // Paginated products
   const displayedProducts = useMemo(() => {
     return allFilteredProducts.slice(0, visibleCount);
@@ -362,8 +384,7 @@ export const CatalogPage: React.FC = () => {
   const categoryHeaderData = useMemo(() => {
     if (genderParam === 'nam') {
       if (categoryParam !== 'all') {
-        const cat = GENZ_CATEGORIES.find((c) => c.slug === categoryParam);
-        const catName = cat?.name || categoryParam;
+        const catName = CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam;
         return {
           title: `${catName.toUpperCase()} NAM`,
           breadcrumb: `${catName} Nam`,
@@ -381,8 +402,7 @@ export const CatalogPage: React.FC = () => {
 
     if (genderParam === 'nu') {
       if (categoryParam !== 'all') {
-        const cat = GENZ_CATEGORIES.find((c) => c.slug === categoryParam);
-        const catName = cat?.name || categoryParam;
+        const catName = CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam;
         return {
           title: `${catName.toUpperCase()} NỮ`,
           breadcrumb: `${catName} Nữ`,
@@ -399,8 +419,7 @@ export const CatalogPage: React.FC = () => {
     }
 
     if (categoryParam !== 'all') {
-      const cat = GENZ_CATEGORIES.find((c) => c.slug === categoryParam);
-      const catName = cat?.name || categoryParam;
+      const catName = CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam;
       return {
         title: catName.toUpperCase(),
         breadcrumb: catName,
@@ -625,9 +644,9 @@ export const CatalogPage: React.FC = () => {
               }`}
             >
               <span>Tất cả sản phẩm</span>
-              <span className="text-[11px] text-[#71717A]">130+</span>
+              <span className="text-[11px] text-[#71717A]">({totalScopedProductsCount})</span>
             </button>
-            {GENZ_CATEGORIES.map((cat) => (
+            {activeCategories.map((cat) => (
               <button
                 key={cat.id}
                 type="button"
@@ -1067,7 +1086,7 @@ export const CatalogPage: React.FC = () => {
               <span className="text-[11px] font-bold uppercase text-[#71717A] shrink-0 mr-1 hidden sm:inline">
                 Lọc nhanh:
               </span>
-              {QUICK_FILTER_PILLS.map((pill) => {
+              {quickFilterPills.map((pill) => {
                 const isActive =
                   (pill.id === 'all' &&
                     categoryParam === 'all' &&
@@ -1224,7 +1243,7 @@ export const CatalogPage: React.FC = () => {
 
             {categoryParam !== 'all' && (
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#F3E8FF] text-[#7C3AED] font-semibold border border-[#DDD6FE]">
-                {GENZ_CATEGORIES.find((c) => c.slug === categoryParam)?.name || categoryParam}
+                {CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam}
                 <button
                   onClick={() => updateParam('category', null)}
                   className="hover:text-[#DC2626] ml-1 cursor-pointer"

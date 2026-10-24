@@ -62,43 +62,174 @@ def extract_fabric_color(image_path, file_name=""):
             if not pixels:
                 return {"colorName": "Đen", "colorHex": "#18181B", "slug": "den", "confidence": 0.5, "needsColorReview": True, "source": "fallback"}
 
+            # Lọc bớt nhiễu viền hoặc họa tiết in: sắp xếp và lấy trung vị median
             r_vals = [p[0] for p in pixels]
             g_vals = [p[1] for p in pixels]
             b_vals = [p[2] for p in pixels]
 
-            r_avg = statistics.mean(r_vals)
-            g_avg = statistics.mean(g_vals)
-            b_avg = statistics.mean(b_vals)
+            r_med = statistics.median(r_vals)
+            g_med = statistics.median(g_vals)
+            b_med = statistics.median(b_vals)
 
-            h_val, s_val, v_val = colorsys.rgb_to_hsv(r_avg / 255.0, g_avg / 255.0, b_avg / 255.0)
+            h_val, s_val, v_val = colorsys.rgb_to_hsv(r_med / 255.0, g_med / 255.0, b_med / 255.0)
 
-            # Phân loại màu vải chủ đạo
-            if v_val < 0.28:
-                return {"colorName": "Đen", "colorHex": "#18181B", "slug": "den", "confidence": 0.95, "needsColorReview": False, "source": "cv"}
-            elif v_val > 0.80 and s_val < 0.20:
-                return {"colorName": "Trắng", "colorHex": "#F9FAFB", "slug": "trang", "confidence": 0.95, "needsColorReview": False, "source": "cv"}
-            elif s_val < 0.18:
-                return {"colorName": "Xám Khói", "colorHex": "#6B7280", "slug": "xam", "confidence": 0.90, "needsColorReview": False, "source": "cv"}
-            elif 0.06 <= h_val <= 0.15 and v_val > 0.65 and s_val < 0.35:
-                return {"colorName": "Kem Be", "colorHex": "#E8DDC8", "slug": "kem", "confidence": 0.88, "needsColorReview": False, "source": "cv"}
-            elif 0.05 <= h_val <= 0.12 and v_val <= 0.65:
-                return {"colorName": "Nâu Cà Phê", "colorHex": "#78350F", "slug": "nau", "confidence": 0.90, "needsColorReview": False, "source": "cv"}
-            elif 0.52 <= h_val <= 0.72:
-                if v_val < 0.38:
-                    return {"colorName": "Xanh Navy", "colorHex": "#1E3A8A", "slug": "xanh-navy", "confidence": 0.92, "needsColorReview": False, "source": "cv"}
+            # Phân loại màu vải chủ đạo theo thứ tự ưu tiên chính xác:
+            # 1. Trắng (White / Off-White)
+            if v_val >= 0.72 and s_val < 0.12:
+                return {
+                    "colorName": "Trắng",
+                    "colorHex": "#F9FAFB",
+                    "slug": "trang",
+                    "confidence": 0.95,
+                    "needsColorReview": False,
+                    "verificationStatus": "predicted",
+                    "source": "cv"
+                }
+
+            # 2. Kem / Be (Warm Off-white / Cream / Beige) - Kiểm tra TRƯỚC Xám
+            if 0.06 <= h_val <= 0.18 and v_val >= 0.62 and 0.08 <= s_val <= 0.38:
+                return {
+                    "colorName": "Kem Be",
+                    "colorHex": "#E8DDC8",
+                    "slug": "kem",
+                    "confidence": 0.90,
+                    "needsColorReview": False,
+                    "verificationStatus": "predicted",
+                    "source": "cv"
+                }
+
+            # 3. Vàng Nhạt (Light Yellow)
+            if 0.11 <= h_val <= 0.18 and v_val >= 0.65 and s_val > 0.38:
+                return {
+                    "colorName": "Vàng Nhạt",
+                    "colorHex": "#FDE047",
+                    "slug": "vang-nhat",
+                    "confidence": 0.90,
+                    "needsColorReview": False,
+                    "verificationStatus": "predicted",
+                    "source": "cv"
+                }
+
+            # 4. Xanh Navy (Dark Navy) - Kiểm tra TRƯỚC Đen
+            if 0.52 <= h_val <= 0.72 and s_val >= 0.20 and 0.12 <= v_val < 0.40:
+                return {
+                    "colorName": "Xanh Navy",
+                    "colorHex": "#1E3A8A",
+                    "slug": "xanh-navy",
+                    "confidence": 0.92,
+                    "needsColorReview": False,
+                    "verificationStatus": "predicted",
+                    "source": "cv"
+                }
+
+            # 5. Đen (True Black)
+            if v_val < 0.20 or (v_val < 0.28 and s_val < 0.18):
+                return {
+                    "colorName": "Đen",
+                    "colorHex": "#18181B",
+                    "slug": "den",
+                    "confidence": 0.95,
+                    "needsColorReview": False,
+                    "verificationStatus": "predicted",
+                    "source": "cv"
+                }
+
+            # 6. Xám (Light Gray, Gray, Dark Gray)
+            if s_val < 0.16:
+                if v_val >= 0.68:
+                    return {
+                        "colorName": "Xám Nhạt",
+                        "colorHex": "#D1D5DB",
+                        "slug": "xam-nhat",
+                        "confidence": 0.90,
+                        "needsColorReview": False,
+                        "verificationStatus": "predicted",
+                        "source": "cv"
+                    }
                 else:
-                    return {"colorName": "Xanh Dương", "colorHex": "#2563EB", "slug": "xanh-duong", "confidence": 0.90, "needsColorReview": False, "source": "cv"}
-            elif 0.22 <= h_val <= 0.48:
-                return {"colorName": "Xanh Rêu", "colorHex": "#365314", "slug": "xanh-reu", "confidence": 0.88, "needsColorReview": False, "source": "cv"}
-            elif (0.80 <= h_val <= 0.99) and v_val > 0.65 and s_val > 0.15:
-                return {"colorName": "Hồng Pastel", "colorHex": "#F472B6", "slug": "hong-pastel", "confidence": 0.95, "needsColorReview": False, "source": "cv"}
-            elif (h_val >= 0.95 or h_val <= 0.05) and s_val > 0.35:
-                return {"colorName": "Đỏ Đô", "colorHex": "#DC2626", "slug": "do", "confidence": 0.88, "needsColorReview": False, "source": "cv"}
-            else:
-                hex_rep = '#{:02x}{:02x}{:02x}'.format(int(r_avg), int(g_avg), int(b_avg))
-                return {"colorName": "Màu Phối Độc Bản", "colorHex": hex_rep, "slug": "phoi-mau", "confidence": 0.75, "needsColorReview": True, "source": "cv"}
+                    return {
+                        "colorName": "Xám Khói",
+                        "colorHex": "#6B7280",
+                        "slug": "xam",
+                        "confidence": 0.90,
+                        "needsColorReview": False,
+                        "verificationStatus": "predicted",
+                        "source": "cv"
+                    }
+
+            # 7. Nâu Cà Phê (Coffee Brown)
+            if 0.05 <= h_val <= 0.12 and 0.20 <= v_val < 0.60 and s_val >= 0.25:
+                return {
+                    "colorName": "Nâu Cà Phê",
+                    "colorHex": "#78350F",
+                    "slug": "nau",
+                    "confidence": 0.90,
+                    "needsColorReview": False,
+                    "verificationStatus": "predicted",
+                    "source": "cv"
+                }
+
+            # 8. Xanh Dương (Bright Blue)
+            if 0.50 <= h_val <= 0.70 and v_val >= 0.40 and s_val >= 0.20:
+                return {
+                    "colorName": "Xanh Dương",
+                    "colorHex": "#2563EB",
+                    "slug": "xanh-duong",
+                    "confidence": 0.90,
+                    "needsColorReview": False,
+                    "verificationStatus": "predicted",
+                    "source": "cv"
+                }
+
+            # 9. Xanh Rêu (Olive / Forest Green)
+            if 0.22 <= h_val <= 0.48 and s_val >= 0.18:
+                return {
+                    "colorName": "Xanh Rêu",
+                    "colorHex": "#365314",
+                    "slug": "xanh-reu",
+                    "confidence": 0.88,
+                    "needsColorReview": False,
+                    "verificationStatus": "predicted",
+                    "source": "cv"
+                }
+
+            # 10. Hồng Pastel (Pastel Pink)
+            if 0.80 <= h_val <= 0.99 and v_val > 0.60 and s_val > 0.15:
+                return {
+                    "colorName": "Hồng Pastel",
+                    "colorHex": "#F472B6",
+                    "slug": "hong-pastel",
+                    "confidence": 0.95,
+                    "needsColorReview": False,
+                    "verificationStatus": "predicted",
+                    "source": "cv"
+                }
+
+            # 11. Đỏ Đô (Burgundy / Red)
+            if (h_val >= 0.95 or h_val <= 0.05) and s_val > 0.35:
+                return {
+                    "colorName": "Đỏ Đô",
+                    "colorHex": "#DC2626",
+                    "slug": "do",
+                    "confidence": 0.88,
+                    "needsColorReview": False,
+                    "verificationStatus": "predicted",
+                    "source": "cv"
+                }
+
+            # Màu phối / Họa tiết phức tạp
+            hex_rep = '#{:02x}{:02x}{:02x}'.format(int(r_med), int(g_med), int(b_med))
+            return {
+                "colorName": "Màu Phối Độc Bản",
+                "colorHex": hex_rep,
+                "slug": "phoi-mau",
+                "confidence": 0.70,
+                "needsColorReview": True,
+                "verificationStatus": "needs-review",
+                "source": "cv"
+            }
     except Exception as e:
-        return {"colorName": "Đen", "colorHex": "#18181B", "slug": "den", "confidence": 0.5, "needsColorReview": True, "source": "error"}
+        return {"colorName": "Đen", "colorHex": "#18181B", "slug": "den", "confidence": 0.5, "needsColorReview": True, "verificationStatus": "needs-review", "source": "error"}
 
 def natural_sort_key(s):
     return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
@@ -115,15 +246,23 @@ def analyze():
     model_folders = manifest.get('modelFolders', [])
     print(f"Tổng số thư mục mẫu thiết kế: {len(model_folders)}")
 
-    # Cấu hình danh mục và tag mùa chuẩn xác
+    # Cấu hình danh mục và tag mùa chuẩn xác khớp từng folder thực tế
     CAT_METAS = {
         'ao-thun': {
             'prefix': 'TEE',
             'seasons': ['he', 'xuan-thu'],
             'basePrice': 179000,
-            'defaultName': 'Áo Thun Nam Cổ Tròn Dáng Rộng Gen Z',
+            'defaultName': 'Áo Thun Nam Cổ Tròn Dáng Rộng',
             'material': '100% Cotton Compact 250gsm dày dặn, thấm hút 2 chiều',
             'fit': 'Oversized Streetwear'
+        },
+        'ao-thun-dai-tay': {
+            'prefix': 'LONGSLEEVE',
+            'seasons': ['dong', 'xuan-thu'],
+            'basePrice': 199000,
+            'defaultName': 'Áo Thun Dài Tay Nam Cổ Tròn',
+            'material': 'Cotton 2 chiều dệt tổ ong thoáng khí giữ ấm',
+            'fit': 'Relaxed Fit'
         },
         'ao-polo': {
             'prefix': 'POLO',
@@ -133,21 +272,29 @@ def analyze():
             'material': '100% Pique Cotton dệt mắt chim thoáng khí, cổ dệt bo hai kim',
             'fit': 'Regular Boxy Fit'
         },
-        'so-mi-polo': {
+        'ao-so-mi': {
             'prefix': 'SHIRT',
             'seasons': ['he', 'xuan-thu', 'dong'],
             'basePrice': 239000,
-            'defaultName': 'Áo Sơ Mi Nam Tay Dài Phom Rộng Hàn Quốc',
+            'defaultName': 'Áo Sơ Mi Nam Tay Dài Phom Rộng',
             'material': 'Lụa Cotton chống nhăn pha sợi đũi cao cấp',
             'fit': 'Relaxed Drop-shoulder'
         },
-        'hoodie-sweater': {
+        'ao-hoodie': {
             'prefix': 'HOODIE',
             'seasons': ['dong', 'xuan-thu'],
             'basePrice': 329000,
-            'defaultName': 'Áo Hoodie / Len Dày Dặn Mùa Đông',
-            'material': 'Nỉ bông Cotton 380gsm hoặc sợi len lông cừu giữ nhiệt cao cấp',
+            'defaultName': 'Áo Hoodie Nỉ Bông Dày Dặn Mùa Đông',
+            'material': 'Nỉ bông Cotton 380gsm mũ trùm 2 lớp',
             'fit': 'Oversized Boxy'
+        },
+        'ao-len': {
+            'prefix': 'SWEATER',
+            'seasons': ['dong', 'xuan-thu'],
+            'basePrice': 299000,
+            'defaultName': 'Áo Len Dệt Kim Giữ Nhiệt Cao Cấp',
+            'material': 'Sợi len lông cừu mềm mịn không ngứa',
+            'fit': 'Regular Preppy Fit'
         },
         'ao-khoac': {
             'prefix': 'JACKET',
@@ -157,13 +304,13 @@ def analyze():
             'material': 'Vải gió dù 2 lớp chống nước cản gió tốt',
             'fit': 'Relaxed Bomber'
         },
-        'phu-kien': {
-            'prefix': 'ACC',
-            'seasons': ['he', 'xuan-thu', 'dong'],
-            'basePrice': 89000,
-            'defaultName': 'Phụ Kiện Thời Trang Gen Z',
-            'material': 'Hợp kim titan mạ bạc 925 chống xỉn',
-            'fit': 'Freesize'
+        'quan-short': {
+            'prefix': 'SHORTS',
+            'seasons': ['he', 'xuan-thu'],
+            'basePrice': 169000,
+            'defaultName': 'Quần Short Nam Năng Động Dạo Phố',
+            'material': 'Vải Kaki hoặc Dù gió thể thao nhanh khô',
+            'fit': 'Regular Fit trên gối'
         },
         'quan-dai': {
             'prefix': 'PANTS',
@@ -173,14 +320,6 @@ def analyze():
             'material': 'Kaki Cotton co giãn nhẹ hoặc vải Tuyết Mưa cao cấp',
             'fit': 'Straight Leg / Wide Leg'
         },
-        'quan-short': {
-            'prefix': 'SHORTS',
-            'seasons': ['he', 'xuan-thu'],
-            'basePrice': 169000,
-            'defaultName': 'Quần Short Nam Năng Động Dạo Phố',
-            'material': 'Vải Kaki hoặc Dù gió thể thao nhanh khô',
-            'fit': 'Regular Fit trên gối'
-        },
         'quan-jeans': {
             'prefix': 'JEANS',
             'seasons': ['he', 'xuan-thu', 'dong'],
@@ -188,6 +327,14 @@ def analyze():
             'defaultName': 'Quần Jeans Nam Denim Cao Cấp',
             'material': '100% Cotton Denim 13oz bền chắc đứng phom',
             'fit': 'Baggy / Straight Fit'
+        },
+        'phu-kien': {
+            'prefix': 'ACC',
+            'seasons': ['he', 'xuan-thu', 'dong'],
+            'basePrice': 89000,
+            'defaultName': 'Phụ Kiện Thời Trang Gen Z',
+            'material': 'Hợp kim titan mạ bạc 925 chống xỉn',
+            'fit': 'Freesize'
         }
     }
 
@@ -232,13 +379,18 @@ def analyze():
             c_hex = color_res['colorHex']
 
             if c_slug not in color_variants_dict:
+                is_ver = color_res.get("verificationStatus") in ["trusted-metadata", "admin-confirmed"]
                 color_variants_dict[c_slug] = {
                     "id": f"{prod_id}-{c_slug.upper()}",
+                    "productId": prod_id,
                     "colorName": c_name,
                     "colorHex": c_hex,
                     "slug": c_slug,
                     "images": [img_item['webPath']],
-                    "isVerified": True
+                    "thumbnail": img_item['webPath'],
+                    "verificationStatus": color_res.get("verificationStatus", "predicted"),
+                    "verificationSource": color_res.get("source", "cv"),
+                    "isVerified": is_ver
                 }
             else:
                 # Case C: Cùng một mẫu, cùng màu nhưng nhiều góc ảnh -> đưa vào gallery images!
@@ -295,7 +447,10 @@ def analyze():
                     "hex": cv["colorHex"],
                     "image": cv["images"][0],
                     "galleryCount": len(cv["images"]),
-                    "gallery": cv["images"]
+                    "gallery": cv["images"],
+                    "verificationStatus": cv.get("verificationStatus", "predicted"),
+                    "verificationSource": cv.get("verificationSource", "cv"),
+                    "isVerified": cv.get("isVerified", False)
                 }
                 for cv in color_variants_list
             ],

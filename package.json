@@ -11,6 +11,7 @@
     "images:scan": "node scripts/scan-images.cjs",
     "products:scan": "python scripts/products-scan.py",
     "products:analyze": "python scripts/products-analyze.py",
+    "products:audit-colors": "python scripts/products-audit.py",
     "products:sync": "python scripts/products-sync.py",
     "test:variants": "node scripts/test-variants.cjs"
   },

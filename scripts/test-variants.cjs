@@ -8,7 +8,7 @@ console.log("Kiểm thử 12 kịch bản bắt buộc theo Master Prompt Part 2
 console.log("================================================================================\n");
 
 let passedCount = 0;
-let totalTests = 12;
+let totalTests = 16;
 
 function runTest(testNum, testName, testFn) {
   try {
@@ -147,6 +147,73 @@ runTest(12, "Kết hợp đa bộ lọc (Giới tính, Mùa, Danh mục) -> Khô
   const ids = filtered.map(p => p.id);
   const unique = new Set(ids);
   assert.strictEqual(ids.length, unique.size, "Mỗi sản phẩm chỉ hiển thị 1 lần duy nhất");
+});
+
+// TEST 13: Danh mục theo thư mục thực tế -> Không có danh mục ghép cũ
+runTest(13, "Danh mục theo thư mục thực tế -> Không có danh mục ghép cũ (Sơ mi & Polo, Hoodie & Sweater...)", () => {
+  const categoriesPath = path.resolve(__dirname, '../src/mocks/genzCategories.ts');
+  const catTs = fs.readFileSync(categoriesPath, 'utf8');
+  assert(!catTs.includes("'so-mi-polo'"), "Không được có slug gộp so-mi-polo");
+  assert(!catTs.includes("'hoodie-sweater'"), "Không được có slug gộp hoodie-sweater");
+  assert(!catTs.includes("'ao-croptop-tank'"), "Không được có slug gộp ao-croptop-tank");
+  assert(!catTs.includes("'quan-jeans-jorts'"), "Không được có slug gộp quan-jeans-jorts");
+  assert(catTs.includes("'ao-thun'"), "Phải có danh mục ao-thun");
+  assert(catTs.includes("'ao-thun-dai-tay'"), "Phải có danh mục ao-thun-dai-tay");
+  assert(catTs.includes("'ao-polo'"), "Phải có danh mục ao-polo");
+  assert(catTs.includes("'ao-so-mi'"), "Phải có danh mục ao-so-mi");
+  assert(catTs.includes("'ao-hoodie'"), "Phải có danh mục ao-hoodie");
+  assert(catTs.includes("'ao-len'"), "Phải có danh mục ao-len");
+  assert(catTs.includes("'ao-khoac'"), "Phải có danh mục ao-khoac");
+  assert(catTs.includes("'quan-short'"), "Phải có danh mục quan-short");
+  assert(catTs.includes("'quan-dai'"), "Phải có danh mục quan-dai");
+});
+
+// TEST 14: Đếm mẫu thực tế theo Product ID, không đếm ảnh hay biến thể
+runTest(14, "Đếm mẫu sản phẩm theo Product ID -> Chính xác 126 mẫu thực tế", () => {
+  const allIds = new Set(products.map(p => p.id));
+  assert.strictEqual(allIds.size, 126, "Phải có đúng 126 mẫu sản phẩm đại diện cho 126 thư mục mẫu");
+  // Phân bổ danh mục
+  const counts = {};
+  products.forEach(p => {
+    counts[p.categorySlug] = (counts[p.categorySlug] || 0) + 1;
+  });
+  assert.strictEqual(counts['ao-thun'], 13, "Áo thun phải có đúng 13 mẫu");
+  assert.strictEqual(counts['ao-thun-dai-tay'], 24, "Áo thun dài tay phải có đúng 24 mẫu");
+  assert.strictEqual(counts['ao-polo'], 10, "Polo phải có đúng 10 mẫu");
+  assert.strictEqual(counts['ao-so-mi'], 12, "Sơ mi phải có đúng 12 mẫu");
+  assert.strictEqual(counts['ao-hoodie'], 10, "Hoodie phải có đúng 10 mẫu");
+  assert.strictEqual(counts['ao-len'], 17, "Áo len phải có đúng 17 mẫu");
+  assert.strictEqual(counts['ao-khoac'], 19, "Áo khoác phải có đúng 19 mẫu");
+  assert.strictEqual(counts['quan-short'], 16, "Quần short phải có đúng 16 mẫu");
+  assert.strictEqual(counts['quan-dai'], 5, "Quần dài phải có đúng 5 mẫu");
+});
+
+// TEST 15: Kiểm tra trạng thái xác minh màu sắc (verificationStatus)
+runTest(15, "Biến thể màu có trạng thái xác minh verificationStatus chuẩn", () => {
+  const validStatuses = ['trusted-metadata', 'predicted', 'needs-review', 'admin-confirmed'];
+  products.forEach(p => {
+    if (p.colorVariants) {
+      p.colorVariants.forEach(cv => {
+        assert(validStatuses.includes(cv.verificationStatus), `Trạng thái ${cv.verificationStatus} phải hợp lệ`);
+        assert(cv.colorName && cv.colorHex, "Biến thể màu phải có tên và mã hex");
+        assert(Array.isArray(cv.images) && cv.images.length > 0, "Biến thể màu phải có ít nhất 1 ảnh thật");
+      });
+    }
+  });
+});
+
+// TEST 16: Không có màu giả, mọi biến thể đều trỏ tới ảnh thật trên đĩa
+runTest(16, "Mọi biến thể màu đều trỏ tới ảnh thật trên đĩa, không có swatch giả", () => {
+  let checkedImagesCount = 0;
+  products.forEach(p => {
+    p.colors.forEach(c => {
+      const relPath = c.image.replace(/^\//, '');
+      const fullPath = path.resolve(__dirname, '../public', relPath);
+      assert(fs.existsSync(fullPath), `Ảnh ${c.image} của màu ${c.name} phải tồn tại trên đĩa`);
+      checkedImagesCount++;
+    });
+  });
+  assert(checkedImagesCount >= 250, `Phải kiểm tra ít nhất 250 biến thể màu thực tế (đã kiểm tra: ${checkedImagesCount})`);
 });
 
 console.log("\n================================================================================");

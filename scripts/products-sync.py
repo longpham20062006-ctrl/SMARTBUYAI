@@ -230,13 +230,17 @@ def sync(dry_run=False):
             "colors": colors_list,
             "colorVariants": [
                 {
-                    "id": f"{pid}-{c['slug'].upper()}",
-                    "colorName": c['name'],
+                    "id": f"{pid}-{c['colorId'].upper()}",
+                    "productId": pid,
+                    "colorName": c['color'],
                     "colorHex": c['hex'],
-                    "images": c['images'],
-                    "isVerified": True
+                    "images": c.get('gallery', [c['image']]),
+                    "thumbnail": c['image'],
+                    "verificationStatus": c.get('verificationStatus', 'predicted'),
+                    "verificationSource": c.get('verificationSource', 'cv'),
+                    "isVerified": c.get('isVerified', False)
                 }
-                for c in colors_list
+                for c in group['mergedColors']
             ],
             "defaultColorId": colors_list[0]['id'] if colors_list else 'den',
             "sizes": sizes,
