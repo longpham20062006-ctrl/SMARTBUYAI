@@ -63,3 +63,6 @@ ai-server/outputs/*
 !ai-server/outputs/.gitkeep
 ai-server/test_garments/
 ai-server/test_result.png
+
+# ECC - local AI agents and skills
+.agents/
