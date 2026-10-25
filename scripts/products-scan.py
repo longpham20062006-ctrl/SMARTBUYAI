@@ -1,10 +1,14 @@
 import os
 import sys
+import io
 import json
 import hashlib
 from PIL import Image
 
-sys.stdout.reconfigure(encoding='utf-8')
+if isinstance(sys.stdout, io.TextIOWrapper):
+    sys.stdout.reconfigure(encoding='utf-8')
+if isinstance(sys.stderr, io.TextIOWrapper):
+    sys.stderr.reconfigure(encoding='utf-8')
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 IMAGE_DIR = os.path.join(ROOT_DIR, 'public', 'images', 'san-pham')
@@ -79,75 +83,91 @@ def scan():
         elif 'quan-ao-unisex' in parts or 'unisex' in parts or 'phu-kien' in parts:
             gender = 'unisex'
 
-        # Xác định categorySlug và categoryName
+        # Bảng ánh xạ danh mục chuẩn (chuỗi dài kiểm tra trước để tránh nhầm)
+        CATEGORY_RULES = [
+            ('ao-thun-dai-tay', 'ao-thun-dai-tay', 'Áo thun dài tay', 'LONGSLEEVE'),
+            ('ao-croptop', 'ao-croptop', 'Croptop', 'CROPTOP'),
+            ('ao-hai-day', 'ao-hai-day', 'Áo hai dây / Tank Top', 'TANKTOP'),
+            ('ao-kieu', 'ao-kieu', 'Blouse / Áo kiểu', 'BLOUSE'),
+            ('ao-cardigan', 'ao-cardigan', 'Cardigan', 'CARDIGAN'),
+            ('ao-polo', 'ao-polo', 'Polo', 'POLO'),
+            ('ao-so-mi', 'ao-so-mi', 'Sơ mi', 'SHIRT'),
+            ('ao-hoodie', 'ao-hoodie', 'Hoodie', 'HOODIE'),
+            ('ao-len', 'ao-len', 'Áo len', 'SWEATER'),
+            ('ao-thun', 'ao-thun', 'Áo thun', 'TEE'),
+            ('quan-jeans', 'quan-jeans', 'Jeans', 'JEANS'),
+            ('quan-short', 'quan-short', 'Shorts', 'SHORTS'),
+            ('quan-ong-rong', 'quan-ong-rong', 'Quần ống rộng', 'WIDELEG'),
+            ('quan-cargo', 'quan-cargo', 'Cargo', 'CARGO'),
+            ('quan-legging', 'quan-legging', 'Leggings', 'LEGGING'),
+            ('quan-jogger', 'quan-jogger', 'Joggers', 'JOGGER'),
+            ('quan-dai', 'quan-dai', 'Quần dài', 'PANTS'),
+            ('chan-vay-ngan', 'chan-vay-ngan', 'Chân váy ngắn', 'MINISKIRT'),
+            ('chan-vay-dai', 'chan-vay-dai', 'Chân váy dài', 'MAXISKIRT'),
+            ('vay-lien', 'vay-lien', 'Váy liền', 'DRESS'),
+            ('dam-maxi', 'dam-maxi', 'Maxi Dress', 'MAXIDRESS'),
+            ('dam-du-tiec', 'dam-du-tiec', 'Đầm dự tiệc', 'PARTY'),
+            ('ao-khoac-jean', 'ao-khoac-jean', 'Denim Jacket', 'DENIMJACKET'),
+            ('ao-khoac-bomber', 'ao-khoac-bomber', 'Bomber', 'BOMBER'),
+            ('ao-blazer', 'ao-blazer', 'Blazer', 'BLAZER'),
+            ('ao-khoac-chong-nang', 'ao-khoac-chong-nang', 'Áo khoác chống nắng', 'SUNJACKET'),
+            ('ao-khoac', 'ao-khoac', 'Áo khoác', 'JACKET'),
+            ('set-ao-quan', 'set-ao-quan', 'Set áo & quần', 'SETPANTS'),
+            ('set-ao-chan-vay', 'set-ao-chan-vay', 'Set áo & chân váy', 'SETSKIRT'),
+            ('do-the-thao', 'do-the-thao', 'Set thể thao', 'SPORTSET'),
+            ('do-bo', 'do-bo', 'Đồ bộ', 'SET'),
+            ('chan-vay', 'chan-vay-ngan', 'Chân váy', 'SKIRT'),
+            ('dam', 'vay-lien', 'Đầm', 'DRESS'),
+            ('vong-tay', 'phu-kien', 'Vòng tay', 'BRACELET'),
+            ('day-chuyen', 'phu-kien', 'Dây chuyền', 'NECKLACE'),
+            ('nhan', 'phu-kien', 'Nhẫn', 'RING'),
+            ('phu-kien', 'phu-kien', 'Phụ kiện', 'ACC'),
+        ]
+
         cat_slug = 'ao-thun'
         cat_name = 'Áo thun'
         prefix = 'TEE'
 
-        if 'ao-polo' in parts:
-            cat_slug = 'ao-polo'
-            cat_name = 'Polo'
-            prefix = 'POLO'
-        elif 'ao-so-mi' in parts:
-            cat_slug = 'ao-so-mi'
-            cat_name = 'Sơ mi'
-            prefix = 'SHIRT'
-        elif 'ao-hoodie' in parts:
-            cat_slug = 'ao-hoodie'
-            cat_name = 'Hoodie'
-            prefix = 'HOODIE'
-        elif 'ao-len' in parts:
-            cat_slug = 'ao-len'
-            cat_name = 'Áo len'
-            prefix = 'SWEATER'
-        elif 'ao-thun-dai-tay' in parts:
-            cat_slug = 'ao-thun-dai-tay'
-            cat_name = 'Áo thun dài tay'
-            prefix = 'LONGSLEEVE'
-        elif 'ao-khoac' in parts:
-            cat_slug = 'ao-khoac'
-            cat_name = 'Áo khoác'
-            prefix = 'JACKET'
-        elif 'quan-jeans' in parts:
-            cat_slug = 'quan-jeans'
-            cat_name = 'Quần jeans'
-            prefix = 'JEANS'
-        elif 'quan-dai' in parts:
-            cat_slug = 'quan-dai'
-            cat_name = 'Quần dài'
-            prefix = 'PANTS'
-        elif 'quan-short' in parts:
-            cat_slug = 'quan-short'
-            cat_name = 'Quần short'
-            prefix = 'SHORTS'
-        elif 'do-bo' in parts:
-            cat_slug = 'do-bo'
-            cat_name = 'Đồ bộ'
-            prefix = 'SET'
-        elif 'chan-vay' in parts:
-            cat_slug = 'chan-vay'
-            cat_name = 'Chân váy'
-            prefix = 'SKIRT'
-        elif 'dam' in parts or 'vay-lien' in parts:
-            cat_slug = 'dam'
-            cat_name = 'Váy liền'
-            prefix = 'DRESS'
-        elif 'vong-tay' in parts:
-            cat_slug = 'phu-kien'
-            cat_name = 'Vòng tay'
-            prefix = 'BRACELET'
-        elif 'day-chuyen' in parts or 'vong-co' in parts:
-            cat_slug = 'phu-kien'
-            cat_name = 'Dây chuyền'
-            prefix = 'NECKLACE'
-        elif 'nhan' in parts:
-            cat_slug = 'phu-kien'
-            cat_name = 'Nhẫn'
-            prefix = 'RING'
-        elif 'phu-kien' in parts:
-            cat_slug = 'phu-kien'
-            cat_name = 'Phụ kiện'
-            prefix = 'ACC'
+        if gender == 'nu':
+            if 'ao-croptop' in parts:
+                cat_slug = 'ao-croptop'
+                cat_name = 'Croptop'
+                prefix = 'CROPTOP'
+            elif 'ao-hai-day' in parts:
+                cat_slug = 'ao-hai-day'
+                cat_name = 'Áo hai dây'
+                prefix = 'TANKTOP'
+            elif 'ao-cardigan' in parts:
+                cat_slug = 'ao-cardigan'
+                cat_name = 'Cardigan'
+                prefix = 'CARDIGAN'
+            elif 'ao-hoodie' in parts:
+                cat_slug = 'ao-hoodie'
+                cat_name = 'Hoodie'
+                prefix = 'HOODIE'
+            elif 'ao-len' in parts:
+                cat_slug = 'ao-len'
+                cat_name = 'Áo len'
+                prefix = 'SWEATER'
+            elif 'ao-thun' in parts:
+                cat_slug = 'ao-thun'
+                cat_name = 'Áo thun'
+                prefix = 'TEE'
+            elif 'quan' in parts:
+                cat_slug = 'quan'
+                cat_name = 'Quần'
+                prefix = 'PANTS'
+            elif 'vay' in parts:
+                cat_slug = 'vay'
+                cat_name = 'Váy'
+                prefix = 'DRESS'
+        else:
+            for pattern, slug_val, name_val, pref in CATEGORY_RULES:
+                if any(pattern == p or pattern in p for p in parts):
+                    cat_slug = slug_val
+                    cat_name = name_val
+                    prefix = pref
+                    break
 
         model_folder = parts[-1]
         category_rel = '/'.join(parts[:-1]) if len(parts) > 1 else rel_dir

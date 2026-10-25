@@ -1,14 +1,19 @@
 import os
 import sys
+import io
 import json
 import re
 import csv
 
-sys.stdout.reconfigure(encoding='utf-8')
+if isinstance(sys.stdout, io.TextIOWrapper):
+    sys.stdout.reconfigure(encoding='utf-8')
+if isinstance(sys.stderr, io.TextIOWrapper):
+    sys.stderr.reconfigure(encoding='utf-8')
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 REPORT_PATH = os.path.join(ROOT_DIR, 'src', 'mocks', 'duplicateReport.json')
 IMPORTED_TS_PATH = os.path.join(ROOT_DIR, 'src', 'mocks', 'importedProducts.ts')
+IMPORTED_JSON_PATH = os.path.join(ROOT_DIR, 'src', 'mocks', 'importedProducts.json')
 BUILDER_TS_PATH = os.path.join(ROOT_DIR, 'src', 'mocks', 'genzCatalogBuilder.ts')
 REPO_TS_PATH = os.path.join(ROOT_DIR, 'src', 'mocks', 'repository.ts')
 PRICING_REGISTRY_PATH = os.path.join(ROOT_DIR, 'src', 'mocks', 'pricingRegistry.json')
@@ -203,6 +208,99 @@ def sync(dry_run=False):
             'Set Đồ Bộ Nam Thể Thao Dù Gió 2 Lớp Năng Động',
             'Set Đồ Bộ Nam Mùa Hè Áo Cổ Tròn Phối Quần Short Thoáng Mát',
             'Set Đồ Bộ Nam Dệt Kim Cotton Waffle Thoải Mái Mặc Nhà & Dạo Phố'
+        ],
+        'W-CROPTOP': [
+            'Áo Croptop Nữ Ôm Dáng Cổ Tròn Minimalist Y2K',
+            'Áo Croptop Thun Tăm Co Giãn Tôn Eo Năng Động',
+            'Áo Croptop Cổ Vuông Dệt Kim Phong Cách Pháp',
+            'Áo Croptop Sát Nách Dáng Boxy Thể Thao Dạo Phố',
+            'Áo Croptop Bo Cổ Phối Viền Tương Phản Cá Tính',
+            'Áo Croptop Cắt Xẻ Cut-out Độc Bản Táo Bạo',
+            'Áo Croptop Rút Dây Hai Bên Eo Tùy Chỉnh Thời Thượng'
+        ],
+        'W-CARDIGAN': [
+            'Áo Cardigan Nữ Dệt Kim Mềm Mịn Cài Cúc Vintage',
+            'Áo Khoác Cardigan Len Mỏng Dáng Lửng Phối Váy',
+            'Áo Cardigan Cổ Chữ V Phong Cách Hàn Quốc Thanh Lịch',
+            'Áo Cardigan Dệt Gân Họa Tiết Nơ Dễ Thương',
+            'Áo Cardigan Phom Rộng Thả Vai Xu Hướng Thu Đông',
+            'Áo Cardigan Cúc Ánh Kim Sang Trọng Đi Làm Đi Chơi'
+        ],
+        'W-TANKTOP': [
+            'Áo Hai Dây Lụa Cổ Đổ Quyến Rũ Thanh Lịch',
+            'Áo Hai Dây Dệt Kim Ôm Body Mùa Hè Tươi Mát',
+            'Áo Tank Top Thể Thao Thun Lạnh Nhanh Khô Thoáng Khí',
+            'Áo Hai Dây Bản To Phong Cách Basic Tối Giản',
+            'Áo Hai Dây Phối Ren Duyên Dáng Dạo Phố',
+            'Áo Hai Dây Sọc Ngang Trẻ Trung Năng Động',
+            'Áo Tank Top Cắt Nách Sâu Cá Tính Khỏe Khoắn'
+        ],
+        'W-TEE': [
+            'Áo Thun Nữ Phom Rộng Baby Tee In Họa Tiết Vintage',
+            'Áo Thun Nữ Cotton Compact Cổ Tròn Dễ Phối Đồ',
+            'Áo Thun Nữ Dáng Rộng Thêu Chữ Nghệ Thuật Y2K',
+            'Áo Baby Tee Co Giãn Tôn Vòng Eo Con Kiến',
+            'Áo Thun Nữ Dài Quá Mông Phong Cách Giấu Quần',
+            'Áo Thun Nữ Cổ Viền Màu Dệt Mịn Thoáng Mát',
+            'Áo Thun Nữ In Hình Trừu Tượng Gen Z Độc Đáo',
+            'Áo Thun Nữ Wash Xám Bụi Bặm Phóng Khoáng',
+            'Áo Thun Nữ Họa Tiết Hoa Cúc Nhí Xinh Xắn',
+            'Áo Thun Nữ Oversized Phối Quần Jean Năng Động',
+            'Áo Baby Tee Cổ Tim Trẻ Trung Dễ Thương',
+            'Áo Thun Nữ Trơn Màu Pastel Dịu Mắt Mùa Hè',
+            'Áo Thun Nữ Phom Rộng Thả Vai Thoải Mái Cả Ngày'
+        ],
+        'W-HOODIE': [
+            'Áo Hoodie Nữ Nỉ Bông Phom Rộng In Chữ Aesthetic',
+            'Áo Hoodie Zip Nữ Khóa Kéo Hai Chiều Dáng Lửng',
+            'Áo Hoodie Nữ Thêu Họa Tiết Trái Tim Đáng Yêu',
+            'Áo Hoodie Nỉ Chân Cua 380gsm Đứng Dáng Ấm Áp',
+            'Áo Hoodie Nữ Túi Trước Rộng Rãi Phong Cách Ulzzang',
+            'Áo Hoodie Nữ Màu Pastel Ngọt Ngào Dạo Phố Thu Đông',
+            'Áo Hoodie Nữ Mũ Dày Dặn Dây Rút Kim Loại Cao Cấp',
+            'Áo Hoodie Crop Nữ Cạp Chun Thể Thao Khỏe Khoắn',
+            'Áo Hoodie Nữ Phối Màu Hai Tông Tương Phản Thời Thượng'
+        ],
+        'W-SWEATER': [
+            'Áo Len Nữ Dệt Kim Cổ Lọ Ấm Áp Mùa Đông',
+            'Áo Sweater Len Xù Mohair Dáng Rộng Hàn Quốc',
+            'Áo Len Nữ Cổ Tim Họa Tiết Quả Trám Preppy',
+            'Áo Len Nữ Phom Boxy Thả Vai Dệt Sợi Tự Nhiên'
+        ],
+        'W-PANTS': [
+            'Quần Nữ Ống Rộng Cạp Cao Hack Dáng Ulzzang',
+            'Quần Dài Nữ Dáng Suông Vải Tuyết Mưa Thanh Lịch',
+            'Quần Nữ Phom Rộng Phối Túi Sườn Thời Trang',
+            'Quần Nữ Ống Đứng Lưng Thun Co Giãn Dạo Phố',
+            'Quần Nữ Xếp Ly Phong Cách Hàn Quốc Tối Giản',
+            'Quần Nữ Cạp Liền Dáng Suông Dễ Phối Đồ'
+        ],
+        'W-DRESS': [
+            f"Váy Nữ Thiết Kế {style} #{i+1}" for i, style in enumerate([
+                'Dáng Xòe Nhẹ', 'Cổ Vuông Tiểu Thư', 'Phối Nơ Thanh Lịch', 'Xếp Ly Tinh Tế',
+                'Dáng Suông Tối Giản', 'Tay Bồng Hàn Quốc', 'Thắt Eo Duyên Dáng', 'Họa Tiết Pastel',
+                'Lụa Mềm Dạo Phố', 'Cổ Chữ V Quyến Rũ', 'Vạt Xéo Trẻ Trung', 'Dáng Chữ A Kinh Điển',
+                'Phối Cúc Thời Thượng', 'Dáng Midi Thướt Tha', 'Cúp Ngực Nhẹ Nhàng', 'Thêu Họa Tiết Nhỏ',
+                'Trễ Vai Tươi Tắn', 'Dệt Kim Mùa Hè', 'Hai Dây Nữ Tính', 'Xẻ Tà Tinh Tế',
+                'Nhún Bèo Xinh Xắn', 'Cổ Bẻ Thanh Lịch', 'Bo Eo Thon Gọn', 'Dáng Maxi Bay Bổng',
+                'Vintage Thập Niên 90', 'Aesthetic Gen Z', 'Cắt Ráp Hiện Đại', 'Tối Giản Phong Cách Pháp',
+                'Dáng Ôm Nhẹ Bodycon', 'Phối Viền Tương Phản', 'Chất Linen Thoáng Mát', 'Ren Phối Nhẹ',
+                'Cổ Yếm Dạo Phố', 'Dáng Lửng Năng Động', 'Xếp Tầng Bồng Bềnh', 'Dệt Gân Ôm Nhẹ',
+                'Tay Cánh Tiên', 'Họa Tiết Hoa Nhí', 'Suông Rộng Rũ Mềm', 'Cài Khóa Lưng Tinh Tế',
+                'Xẻ Gấu Duyên Dáng', 'Phom Rộng Phóng Khoáng', 'Cổ Peter Pan Cổ Điển', 'Bo Cổ Tròn Mịn',
+                'Thun Gân Co Giãn', 'Cột Nơ Sau Lưng', 'Đính Nút Ánh Kim', 'Tay Lỡ Thanh Nhã',
+                'Xòe Tầng Xếp Nếp', 'Họa Tiết Sọc Kẻ', 'Vải Tơ Mỏng Nhẹ', 'Dáng Xòe Công Chúa',
+                'Cổ Đổ Tự Nhiên', 'Chữ A Cạp Cao', 'Thêu Hoa Tay Tinh Xảo', 'Dáng Ôm Tôn Dáng',
+                'Dạo Phố Cuối Tuần', 'Dự Tiệc Nhẹ Nhàng', 'Đi Biển Thoải Mái', 'Phong Cách Seoul',
+                'Thời Trang Tokyo', 'Thanh Lịch Công Sở', 'Hẹn Hò Dễ Thương', 'Năng Động Trẻ Trung',
+                'A-Line Đứng Dáng', 'Midi Xòe Bồng', 'Xẻ Đùi Táo Bạo', 'Chấm Bi Retro',
+                'Vải Denim Mềm', 'Màu Trung Tính', 'Hồng Pastel Ngọt Ngào', 'Trắng Tinh Khôi',
+                'Đen Cá Tính', 'Beige Cát Tối Giản', 'Xanh Pastel Dịu Dàng', 'Vàng Nhạt Nắng Hè',
+                'Xanh Mint Tươi Mát', 'Xám Khói Thời Thượng', 'Tím Nhạt Mộng Mơ', 'Cam Đào Tươi Trẻ',
+                'Nâu Cà Phê Cổ Điển', 'Đỏ Đô Sang Trọng', 'Họa Tiết Nghệ Thuật', 'Thun Lạnh Nhanh Khô',
+                'Lụa Satin Mịn', 'Voan Tơ Mềm Rủ', 'Dệt Tổ Ong Thoáng', 'Kaki Mềm Đứng Phom',
+                'Phối Cúc Gỗ Mộc', 'Viền Bèo Nữ Tính', 'Phom Chuẩn Đi Học'
+            ])
         ]
     }
 
@@ -217,50 +315,109 @@ def sync(dry_run=False):
         'JACKET': [349000, 369000, 389000, 409000, 429000, 449000, 469000, 489000, 509000, 529000, 549000, 569000, 589000, 609000, 629000, 649000, 669000, 679000, 689000],
         'PANTS': [279000, 299000, 329000, 359000, 389000],
         'SHORTS': [179000, 189000, 199000, 209000, 219000, 229000, 239000, 249000, 259000, 269000, 279000, 289000, 299000, 309000, 319000, 325000],
-        'SET': [349000, 389000, 439000, 489000]
+        'SET': [349000, 389000, 439000, 489000],
+        'W-CROPTOP': [149000, 159000, 169000, 179000, 189000, 199000, 209000],
+        'W-CARDIGAN': [249000, 269000, 289000, 309000, 329000, 349000],
+        'W-TANKTOP': [119000, 129000, 139000, 149000, 159000, 169000, 179000],
+        'W-TEE': [169000, 179000, 189000, 199000, 209000, 219000, 229000, 239000, 249000, 259000, 269000, 279000, 289000],
+        'W-HOODIE': [329000, 349000, 369000, 389000, 409000, 429000, 449000, 469000, 489000],
+        'W-SWEATER': [279000, 299000, 319000, 339000],
+        'W-PANTS': [259000, 279000, 299000, 319000, 339000, 359000],
+        'W-DRESS': [249000 + ((i * 17) % 18) * 10000 for i in range(91)]
     }
+
+    # Đọc giá đã duyệt từ trước (nếu có) để KHÔNG ghi đè giá đã được Admin phê duyệt
+    existing_approved_prices = {}
+    if os.path.exists(PRICING_REGISTRY_PATH):
+        try:
+            with open(PRICING_REGISTRY_PATH, 'r', encoding='utf-8') as f:
+                prev_records = json.load(f)
+                for pr in prev_records:
+                    if pr.get('status') == 'approved' and pr.get('approvedPrice'):
+                        existing_approved_prices[pr['productId']] = {
+                            'approvedPrice': pr['approvedPrice'],
+                            'costPrice': pr.get('costPrice'),
+                            'status': pr['status'],
+                            'suggestedPrice': pr.get('suggestedPrice', pr['approvedPrice'])
+                        }
+        except Exception:
+            pass
+
+    DRESS_MANIFEST_PATH = os.path.join(ROOT_DIR, 'public', 'images', 'san-pham', 'dress_enhancement_manifest.json')
+    dress_opt_map = {}
+    if os.path.exists(DRESS_MANIFEST_PATH):
+        try:
+            with open(DRESS_MANIFEST_PATH, 'r', encoding='utf-8') as f:
+                d_m = json.load(f)
+                for it in d_m.get('items', []):
+                    dress_opt_map[it['originalWebPath']] = it['optimizedWebPath']
+        except Exception:
+            pass
 
     category_counters = {}
 
     for idx, group in enumerate(confirmed_groups):
         pid = group['parentProductId']
-        prefix = pid.split('-')[0]
-        cat_slug = group['category']
         gender = group.get('gender', 'nam')
+        is_women = pid.startswith('W-') or gender == 'nu'
+        raw_prefix = pid.split('-')[1] if pid.startswith('W-') else pid.split('-')[0]
+        lookup_key = f"W-{raw_prefix}" if is_women else raw_prefix
+
+        cat_slug = group['category']
         seasons = group['seasons']
         folder_key = group.get('folderKey', '')
         model_folder = group.get('modelFolder', '')
         
-        counter = category_counters.get(prefix, 0)
-        names_list = DESIGN_NAMES.get(prefix, [])
-        if model_folder == 'ao_thun_1':
+        counter = category_counters.get(lookup_key, 0)
+        names_list = DESIGN_NAMES.get(lookup_key, DESIGN_NAMES.get(raw_prefix, []))
+        if model_folder == 'ao_thun_1' and not is_women:
             prod_name = "Áo Thun NICE Typography Unisex Form Rộng"
         elif names_list:
             prod_name = names_list[counter % len(names_list)]
         else:
-            prod_name = group.get('productName', f"Thiết kế {prefix} #{counter + 1}")
+            prod_name = group.get('productName', f"Thiết kế {lookup_key} #{counter + 1}")
 
-        # Tính giá riêng biệt không trùng lặp cho từng sản phẩm
-        price_bracket = PRICE_BRACKETS.get(prefix, [249000])
-        base_price = price_bracket[counter % len(price_bracket)]
-        cost_price = int(round(base_price * 0.52))
-        profit_margin = round((base_price - cost_price) / base_price * 100, 1)
+        # Tính giá riêng biệt không trùng lặp cho từng sản phẩm (bảo toàn giá đã duyệt)
+        if pid in existing_approved_prices:
+            base_price = existing_approved_prices[pid]['approvedPrice']
+            cost_price = existing_approved_prices[pid].get('costPrice') or int(round(base_price * 0.52))
+            profit_margin = round((base_price - cost_price) / base_price * 100, 1)
+            price_status = 'approved'
+            suggested_price = existing_approved_prices[pid].get('suggestedPrice', base_price)
+            approved_price = base_price
+        else:
+            price_bracket = PRICE_BRACKETS.get(lookup_key, PRICE_BRACKETS.get(raw_prefix, [249000]))
+            suggested_price = price_bracket[counter % len(price_bracket)]
+            cost_price = int(round(suggested_price * 0.52))
+            profit_margin = round((suggested_price - cost_price) / suggested_price * 100, 1)
+            if is_women:
+                # Mẫu Nữ chưa có giá bán thật: tạo giá đề xuất riêng từng mẫu, trạng thái chờ admin duyệt
+                price_status = 'pending'
+                base_price = 0
+                approved_price = 0
+            else:
+                price_status = 'approved'
+                base_price = suggested_price
+                approved_price = suggested_price
 
-        category_counters[prefix] = counter + 1
+        category_counters[lookup_key] = counter + 1
         slug = f"{slugify(prod_name)}-{pid.lower()}"
 
-        # 3-tier colors mapping với đầy đủ gallery ảnh thực tế
+        # 3-tier colors mapping với đầy đủ gallery ảnh thực tế (áp dụng ảnh tối ưu độ nét cao cho Váy)
         colors_list = []
         all_images = []
         for c in group['mergedColors']:
-            gallery_imgs = c.get('gallery', [c['image']])
+            raw_gallery = c.get('gallery', [c['image']])
+            gallery_imgs = [dress_opt_map.get(img, img) for img in raw_gallery]
+            primary_c_img = dress_opt_map.get(c['image'], c['image'])
             c_item = {
                 "id": c['colorId'],
                 "name": c['color'],
                 "hex": c['hex'],
                 "slug": c['colorId'],
-                "image": c['image'],
-                "images": gallery_imgs
+                "image": primary_c_img,
+                "images": gallery_imgs,
+                "originalImage": c['image']
             }
             colors_list.append(c_item)
             all_images.extend(gallery_imgs)
@@ -272,13 +429,14 @@ def sync(dry_run=False):
         sku_variants = []
 
         for c_item in colors_list:
+            c_slug_str = str(c_item['slug'])
             for s in sizes:
-                v_sku = f"{pid}-{c_item['slug'].upper()}-{s}"
+                v_sku = f"{pid}-{c_slug_str.upper()}-{s}"
                 variant_obj = {
-                    "id": f"{pid.lower()}-{c_item['slug']}-{s.lower()}",
+                    "id": f"{pid.lower()}-{c_slug_str}-{s.lower()}",
                     "sku": v_sku,
                     "color": c_item,
-                    "colorId": c_item['slug'],
+                    "colorId": c_slug_str,
                     "size": s,
                     "price": base_price,
                     "originalPrice": base_price, # Không tự tạo giá gốc cao giả
@@ -289,7 +447,7 @@ def sync(dry_run=False):
                 variants.append(variant_obj)
                 sku_variants.append({
                     "sku": v_sku,
-                    "colorVariantId": f"{pid}-{c_item['slug'].upper()}",
+                    "colorVariantId": f"{pid}-{c_slug_str.upper()}",
                     "size": s,
                     "price": base_price,
                     "stock": variant_obj["stock"],
@@ -307,10 +465,13 @@ def sync(dry_run=False):
             "gender": gender,
             "brand": "SMARTBUY AI",
             "price": base_price,
-            "originalPrice": base_price,
+            "originalPrice": base_price if base_price > 0 else suggested_price,
             "costPrice": cost_price,
-            "suggestedPrice": base_price,
-            "approvedPrice": base_price,
+            "suggestedPrice": suggested_price,
+            "approvedPrice": approved_price,
+            "priceStatus": price_status,
+            "subCategoryPending": True if (is_women and cat_slug in ['quan', 'vay']) else False,
+            "needsClassification": True if (is_women and cat_slug in ['quan', 'vay']) else False,
             "isSetItem": is_set,
             "setDetails": {
                 "shirtSize": "L",
@@ -322,7 +483,7 @@ def sync(dry_run=False):
 - Tên thiết kế: {prod_name}
 - Thư mục nguồn: {folder_key}
 - Mã Parent SKU: {pid}
-- Phân loại: {"Set Đồ Bộ Nam (Gồm áo & quần đồng điệu)" if is_set else "Thời trang Nam cao cấp"}
+- Phân loại: {"Thời trang Nữ cao cấp" if is_women else ("Set Đồ Bộ Nam (Gồm áo & quần đồng điệu)" if is_set else "Thời trang Nam cao cấp")}
 - Thương hiệu: SMARTBUY AI (Chính hãng)
 - Form dáng: Oversized / Regular Fit chuẩn Gen Z
 - Phù hợp các mùa: {', '.join(['Mùa hè' if s == 'he' else 'Mùa đông' if s == 'dong' else 'Xuân – Thu' for s in seasons])}
@@ -333,8 +494,8 @@ def sync(dry_run=False):
 - Khi bấm chọn màu trên website, hình ảnh đổi sang đúng màu vải thực tế
 - Đường may đôi kỹ lưỡng, dệt bo sắc nét không bai dão sau khi giặt
 - Hỗ trợ đổi size linh hoạt trong 15 ngày""",
-            "material": "Cotton Compact dệt 2 chiều cao cấp" if is_set else "Cotton chải kỹ cao cấp dệt 2 chiều đứng dáng",
-            "fit": "Regular / Relaxed Set" if is_set else "Oversized / Boxy Fit",
+            "material": "Chất vải cao cấp thoáng mát mềm mại đứng dáng",
+            "fit": "Form dáng chuẩn Gen Z",
             "style": "Streetwear / Korean Casual",
             "occasion": ["Đi học", "Dạo phố", "Hằng ngày", "Chụp OOTD"],
             "season": "summer" if "he" in seasons else "winter" if "dong" in seasons else "spring-autumn",
@@ -368,7 +529,7 @@ def sync(dry_run=False):
             "reviewCount": 0,
             "soldCount": 0,
             "discountPercent": 0,
-            "badge": "SET" if is_set else "Mới",
+            "badge": "SET" if is_set else ("MỚI" if is_women else "Mới"),
             "isFeatured": idx % 4 == 0,
             "isNewArrival": True,
             "duplicateGroup": f"GRP-{pid}",
@@ -384,14 +545,17 @@ def sync(dry_run=False):
             "productId": pid,
             "productName": prod_name,
             "categorySlug": cat_slug,
+            "gender": gender,
+            "image": all_images[0] if all_images else '',
             "currentPrice": base_price,
             "costPrice": cost_price,
-            "suggestedPrice": base_price,
-            "approvedPrice": base_price,
-            "originalPrice": base_price,
+            "suggestedPrice": suggested_price,
+            "approvedPrice": approved_price,
+            "originalPrice": base_price if base_price > 0 else suggested_price,
             "profitMargin": profit_margin,
-            "status": "approved",
-            "updatedAt": "2026-10-24T11:30:00Z"
+            "status": price_status,
+            "subCategoryPending": True if (is_women and cat_slug in ['quan', 'vay']) else False,
+            "updatedAt": "2026-10-24T12:00:00Z"
         })
 
     if dry_run:
@@ -401,27 +565,36 @@ def sync(dry_run=False):
         print("[DRY-RUN] Kết thúc kiểm tra. Không có thay đổi nào được ghi vào đĩa.")
         return
 
-    # 1. Ghi file src/mocks/importedProducts.ts
-    imported_ts = f"""// Tự động sinh từ Folder-Based Product Variants Engine V4 (1 folder mẫu = 1 sản phẩm)
-import {{ Product }} from '@/types';
+    # 1. Ghi file src/mocks/importedProducts.json và wrapper src/mocks/importedProducts.ts
+    with open(IMPORTED_JSON_PATH, 'w', encoding='utf-8') as f:
+        json.dump(final_products, f, ensure_ascii=False, indent=2)
+    print(f"✓ Đã lưu {len(final_products)} sản phẩm hợp nhất vào {IMPORTED_JSON_PATH}")
 
-export const IMPORTED_PRODUCTS: Product[] = {json.dumps(final_products, ensure_ascii=False, indent=2)};
+    imported_ts = """// Tự động sinh từ Folder-Based Product Variants Engine V4 (1 folder mẫu = 1 sản phẩm)
+import { Product } from '@/types';
+import rawData from './importedProducts.json';
+
+export const IMPORTED_PRODUCTS: Product[] = rawData as Product[];
 """
     with open(IMPORTED_TS_PATH, 'w', encoding='utf-8') as f:
         f.write(imported_ts)
-    print(f"✓ Đã lưu {len(final_products)} sản phẩm hợp nhất vào {IMPORTED_TS_PATH}")
+    print(f"✓ Đã cập nhật wrapper {IMPORTED_TS_PATH}")
 
     # 2. Ghi bảng định giá độc lập src/mocks/pricingRegistry.json
     with open(PRICING_REGISTRY_PATH, 'w', encoding='utf-8') as f:
         json.dump(pricing_records, f, ensure_ascii=False, indent=2)
-    print(f"✓ Đã lưu bảng giá 130 sản phẩm độc lập vào {PRICING_REGISTRY_PATH}")
+    print(f"✓ Đã lưu bảng giá {len(pricing_records)} sản phẩm độc lập vào {PRICING_REGISTRY_PATH}")
 
-    # 3. Xuất file CSV public/data/men-catalog-pricing.csv phục vụ quản trị duyệt giá hàng loạt
+    # 3. Xuất file CSV: men-catalog-pricing.csv và women-catalog-pricing.csv
     os.makedirs(DATA_DIR, exist_ok=True)
+    women_pricing_path = os.path.join(DATA_DIR, 'women-catalog-pricing.csv')
+    men_records = [r for r in pricing_records if not r['productId'].startswith('W-')]
+    women_records = [r for r in pricing_records if r['productId'].startswith('W-')]
+
     with open(PRICING_CSV_PATH, 'w', encoding='utf-8-sig', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(['Product ID', 'Tên sản phẩm', 'Danh mục', 'Giá hiện tại (VNĐ)', 'Giá nhập (VNĐ)', 'Giá đề xuất (VNĐ)', 'Giá được duyệt (VNĐ)', 'Biên lợi nhuận (%)', 'Trạng thái duyệt'])
-        for r in pricing_records:
+        for r in men_records:
             writer.writerow([
                 r['productId'],
                 r['productName'],
@@ -433,7 +606,24 @@ export const IMPORTED_PRODUCTS: Product[] = {json.dumps(final_products, ensure_a
                 f"{r['profitMargin']}%",
                 r['status']
             ])
-    print(f"✓ Đã xuất CSV bảng giá sản phẩm Nam ra: {PRICING_CSV_PATH}")
+    print(f"✓ Đã xuất CSV bảng giá sản phẩm Nam ({len(men_records)} mẫu) ra: {PRICING_CSV_PATH}")
+
+    with open(women_pricing_path, 'w', encoding='utf-8-sig', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(['Product ID', 'Tên sản phẩm', 'Danh mục', 'Giá hiện tại (VNĐ)', 'Giá nhập (VNĐ)', 'Giá đề xuất (VNĐ)', 'Giá được duyệt (VNĐ)', 'Biên lợi nhuận (%)', 'Trạng thái duyệt'])
+        for r in women_records:
+            writer.writerow([
+                r['productId'],
+                r['productName'],
+                r['categorySlug'],
+                r['currentPrice'],
+                r['costPrice'],
+                r['suggestedPrice'],
+                r['approvedPrice'],
+                f"{r['profitMargin']}%",
+                r['status']
+            ])
+    print(f"✓ Đã xuất CSV bảng giá sản phẩm Nữ ({len(women_records)} mẫu) ra: {women_pricing_path}")
 
     # 4. Đồng bộ FINAL_GENZ_CATALOGUE trong src/mocks/genzCatalogBuilder.ts
     with open(BUILDER_TS_PATH, 'r', encoding='utf-8') as f:
@@ -454,13 +644,13 @@ export const IMPORTED_PRODUCTS: Product[] = {json.dumps(final_products, ensure_a
     with open(REPO_TS_PATH, 'r', encoding='utf-8') as f:
         repo_content = f.read()
 
-    new_version_str = "const SCHEMA_VERSION = 'v6.0-men-catalog-v4';"
+    new_version_str = "const SCHEMA_VERSION = 'v7.3-women-carousel-sync';"
     updated_repo = re.sub(r"const SCHEMA_VERSION = ['\"][^'\"]+['\"];", new_version_str, repo_content)
     with open(REPO_TS_PATH, 'w', encoding='utf-8') as f:
         f.write(updated_repo)
-    print(f"✓ Đã cập nhật SCHEMA_VERSION thành 'v6.0-men-catalog-v4' trong {REPO_TS_PATH}")
+    print(f"✓ Đã cập nhật SCHEMA_VERSION thành 'v7.3-women-carousel-sync' trong {REPO_TS_PATH}")
 
-    print("=== ĐỒNG BỘ THÀNH CÔNG TOÀN BỘ 130 SẢN PHẨM & BẢNG GIÁ ĐỘC LẬP ===")
+    print(f"=== ĐỒNG BỘ THÀNH CÔNG TOÀN BỘ {len(final_products)} SẢN PHẨM & BẢNG GIÁ ĐỘC LẬP ===")
 
 if __name__ == '__main__':
     is_dry = '--dry-run' in sys.argv

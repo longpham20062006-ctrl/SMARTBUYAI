@@ -1,9 +1,13 @@
 import os
 import sys
+import io
 import json
 import re
 
-sys.stdout.reconfigure(encoding='utf-8')
+if isinstance(sys.stdout, io.TextIOWrapper):
+    sys.stdout.reconfigure(encoding='utf-8')
+if isinstance(sys.stderr, io.TextIOWrapper):
+    sys.stderr.reconfigure(encoding='utf-8')
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 IMPORTED_TS = os.path.join(ROOT_DIR, 'src', 'mocks', 'importedProducts.ts')

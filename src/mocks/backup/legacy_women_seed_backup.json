@@ -1,0 +1,219 @@
+{
+  "timestamp": "2026-10-24T12:00:00+07:00",
+  "auditPurpose": "Sao lưu, kiểm toán và đối chiếu dữ liệu quần áo Nữ cũ từ các file seedData, seedDataMore, genzProducts và genzCatalogExpanded trước khi thiết lập hệ thống 29 danh mục chuẩn mới.",
+  "status": "archived_non_published",
+  "totalArchivedLegacyRecords": 21,
+  "notes": "Các sản phẩm dưới đây là dữ liệu giả định/demo cũ trước đây dùng ảnh Unsplash, đã được cô lập hoàn toàn khỏi FINAL_GENZ_CATALOGUE. Không xuất bản ra website khách hàng. Giữ lại tại đây để kiểm tra đối chiếu khi cần.",
+  "legacyProducts": [
+    {
+      "source": "seedData.ts",
+      "id": "p-5",
+      "name": "Áo Croptop Y2K Họa Tiết Bướm Cổ Điển",
+      "slug": "ao-croptop-y2k-hoa-tiet-buom",
+      "categorySlug": "ao-croptop",
+      "gender": "nu",
+      "price": 149000,
+      "originalPrice": 189000
+    },
+    {
+      "source": "seedData.ts",
+      "id": "p-9",
+      "name": "Áo Blazer Croptop Nữ Phom Rộng Minimalist",
+      "slug": "ao-blazer-croptop-nu-minimalist",
+      "categorySlug": "ao-blazer",
+      "gender": "nu",
+      "price": 389000,
+      "originalPrice": 450000
+    },
+    {
+      "source": "seedData.ts",
+      "id": "p-13",
+      "name": "Chân Váy Xếp Ly Tennis Phong Cách Preppy",
+      "slug": "chan-vay-xep-ly-tennis-preppy",
+      "categorySlug": "chan-vay-ngan",
+      "gender": "nu",
+      "price": 220000,
+      "originalPrice": 270000
+    },
+    {
+      "source": "seedData.ts",
+      "id": "p-14",
+      "name": "Đầm Bodycon Cut-Out Cổ Yếm Y2K",
+      "slug": "dam-bodycon-cut-out-co-yem",
+      "categorySlug": "dam-du-tiec",
+      "gender": "nu",
+      "price": 349000,
+      "originalPrice": 420000
+    },
+    {
+      "source": "seedData.ts",
+      "id": "p-16",
+      "name": "Set Áo Croptop & Chân Váy Chữ A Dạ Tweed",
+      "slug": "set-croptop-chan-vay-da-tweed",
+      "categorySlug": "set-ao-chan-vay",
+      "gender": "nu",
+      "price": 490000,
+      "originalPrice": 590000
+    },
+    {
+      "source": "seedDataMore.ts",
+      "id": "p-19",
+      "name": "Áo Len Dệt Kim Họa Tiết Kẻ Ngang Phong Cách Pháp",
+      "slug": "ao-len-det-kim-hoa-tiet-ke-ngang",
+      "categorySlug": "ao-len",
+      "gender": "nu",
+      "price": 289000,
+      "originalPrice": 350000
+    },
+    {
+      "source": "seedDataMore.ts",
+      "id": "p-21",
+      "name": "Quần Jeans Ống Suông Rộng Cạp Cao Vintage",
+      "slug": "quan-jeans-ong-suong-cap-cao-vintage",
+      "categorySlug": "quan-jeans",
+      "gender": "nu",
+      "price": 359000,
+      "originalPrice": 420000
+    },
+    {
+      "source": "genzProducts.ts",
+      "id": "genz-f-1",
+      "name": "Baby Tee 'CYBER ANGEL' Thêu Nổi Kim Tuyến",
+      "slug": "baby-tee-cyber-angel-theu-noi",
+      "categorySlug": "ao-croptop",
+      "gender": "nu",
+      "price": 149000,
+      "originalPrice": 199000
+    },
+    {
+      "source": "genzProducts.ts",
+      "id": "genz-f-2",
+      "name": "Áo Croptop Gân Cổ V Phối Viền Tương Phản",
+      "slug": "ao-croptop-gan-co-v-phoi-vien",
+      "categorySlug": "ao-croptop",
+      "gender": "nu",
+      "price": 129000,
+      "originalPrice": 169000
+    },
+    {
+      "source": "genzProducts.ts",
+      "id": "genz-f-3",
+      "name": "Chân Váy Tennis Xếp Ly Bản To Phối Thắt Lưng Bạc",
+      "slug": "chan-vay-tennis-xep-ly-ban-to",
+      "categorySlug": "chan-vay-ngan",
+      "gender": "nu",
+      "price": 199000,
+      "originalPrice": 259000
+    },
+    {
+      "source": "genzProducts.ts",
+      "id": "genz-f-4",
+      "name": "Chân Váy Jean Cargo Túi Hộp Dáng Chữ A",
+      "slug": "chan-vay-jean-cargo-tui-hop",
+      "categorySlug": "chan-vay-ngan",
+      "gender": "nu",
+      "price": 249000,
+      "originalPrice": 319000
+    },
+    {
+      "source": "genzProducts.ts",
+      "id": "genz-f-5",
+      "name": "Quần Parachute Nữ Ống Rộng Rút Dây Gấu Cạp Chun",
+      "slug": "quan-parachute-nu-ong-rong-rut-day",
+      "categorySlug": "quan-ong-rong",
+      "gender": "nu",
+      "price": 219000,
+      "originalPrice": 279000
+    },
+    {
+      "source": "genzProducts.ts",
+      "id": "genz-f-6",
+      "name": "Quần Jeans Ống Loe Cạp Cao Nữ Phom Ôm Tôn Dáng",
+      "slug": "quan-jeans-ong-loe-cap-cao-nu",
+      "categorySlug": "quan-jeans",
+      "gender": "nu",
+      "price": 289000,
+      "originalPrice": 359000
+    },
+    {
+      "source": "genzProducts.ts",
+      "id": "genz-f-7",
+      "name": "Áo Khoác Croptop Varsity Nỉ Chần Bông Phối Tay Da",
+      "slug": "ao-khoac-croptop-varsity-ni",
+      "categorySlug": "ao-khoac-bomber",
+      "gender": "nu",
+      "price": 349000,
+      "originalPrice": 429000
+    },
+    {
+      "source": "genzProducts.ts",
+      "id": "genz-f-8",
+      "name": "Áo Hoodie Dáng Lửng 'FUTURE GIRL' Khóa Kéo Hai Chiều",
+      "slug": "ao-hoodie-dang-lung-future-girl",
+      "categorySlug": "ao-hoodie",
+      "gender": "nu",
+      "price": 269000,
+      "originalPrice": 329000
+    },
+    {
+      "source": "genzProducts.ts",
+      "id": "genz-f-9",
+      "name": "Váy Liền Suông Thắt Eo Dáng Chữ A Phong Cách Hàn Quốc",
+      "slug": "vay-lien-suong-that-eo-chu-a",
+      "categorySlug": "vay-lien",
+      "gender": "nu",
+      "price": 299000,
+      "originalPrice": 379000
+    },
+    {
+      "source": "genzProducts.ts",
+      "id": "genz-f-10",
+      "name": "Đầm Hai Dây Maxi Đi Biển Họa Tiết Hoa Nhí Vintage",
+      "slug": "dam-hai-day-maxi-di-bien",
+      "categorySlug": "dam-maxi",
+      "gender": "nu",
+      "price": 319000,
+      "originalPrice": 399000
+    },
+    {
+      "source": "genzCatalogExpanded.ts",
+      "id": "m-37",
+      "name": "Baby Tee 'NEO ANGEL' In Kim Tuyến Y2K",
+      "slug": "baby-tee-neo-angel-in-kim-tuyen-y2k",
+      "categorySlug": "ao-croptop",
+      "gender": "nu",
+      "price": 139000,
+      "originalPrice": 189000
+    },
+    {
+      "source": "genzCatalogExpanded.ts",
+      "id": "m-38",
+      "name": "Áo Croptop Cổ Yếm Buộc Dây Hở Lưng Quyến Rũ",
+      "slug": "ao-croptop-co-yem-buoc-day-ho-lung",
+      "categorySlug": "ao-hai-day",
+      "gender": "nu",
+      "price": 119000,
+      "originalPrice": 159000
+    },
+    {
+      "source": "genzCatalogExpanded.ts",
+      "id": "m-39",
+      "name": "Áo Thun Dài Tay Ôm Body Cổ Thuyền Thời Thượng",
+      "slug": "ao-thun-dai-tay-om-body-co-thuyen",
+      "categorySlug": "ao-thun-dai-tay",
+      "gender": "nu",
+      "price": 169000,
+      "originalPrice": 219000
+    },
+    {
+      "source": "genzCatalogExpanded.ts",
+      "id": "m-40",
+      "name": "Áo Cardigan Dệt Kim Mỏng Cài Cúc Phong Cách Pháp",
+      "slug": "ao-cardigan-det-kim-mong-cai-cuc",
+      "categorySlug": "ao-cardigan",
+      "gender": "nu",
+      "price": 229000,
+      "originalPrice": 289000
+    }
+  ]
+}

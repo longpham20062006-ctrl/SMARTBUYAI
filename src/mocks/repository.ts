@@ -18,7 +18,7 @@ import {
 import { GENZ_BRANDS, GENZ_CATEGORIES, GENZ_COLLECTIONS } from './genzCategories';
 import { FINAL_GENZ_CATALOGUE } from './genzCatalogBuilder';
 
-const SCHEMA_VERSION = 'v6.0-men-catalog-v4';
+const SCHEMA_VERSION = 'v7.3-women-carousel-sync';
 const STORAGE_KEYS = {
   SCHEMA: 'sb_schema_version',
   PRODUCTS: 'sb_products',
@@ -41,16 +41,17 @@ function notifyChange(topic: string) {
   }
 }
 
-// Ensure database seeded with 130+ Gen Z Streetwear products
+// Khởi tạo Database với danh mục và sản phẩm thật
 function initDatabase() {
   if (typeof window === 'undefined') return;
 
   const currentVersion = localStorage.getItem(STORAGE_KEYS.SCHEMA);
   if (currentVersion !== SCHEMA_VERSION) {
-    // Preserve existing orders/users during migration if present
+    // Bảo tồn đơn hàng, giỏ hàng, người dùng nếu đã có
     const existingOrders = localStorage.getItem(STORAGE_KEYS.ORDERS);
     const existingUsers = localStorage.getItem(STORAGE_KEYS.USERS);
     const existingCurrentUser = localStorage.getItem(STORAGE_KEYS.CURRENT_USER);
+    const existingCart = localStorage.getItem(STORAGE_KEYS.CART);
 
     localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(FINAL_GENZ_CATALOGUE));
     localStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(GENZ_CATEGORIES));
@@ -59,7 +60,9 @@ function initDatabase() {
     localStorage.setItem(STORAGE_KEYS.ORDERS, existingOrders || JSON.stringify(INITIAL_ORDERS));
     localStorage.setItem(STORAGE_KEYS.USERS, existingUsers || JSON.stringify(DEMO_USERS));
     localStorage.setItem(STORAGE_KEYS.CURRENT_USER, existingCurrentUser || JSON.stringify(DEMO_USERS[0]));
-    if (!localStorage.getItem(STORAGE_KEYS.CART)) {
+    if (existingCart) {
+      localStorage.setItem(STORAGE_KEYS.CART, existingCart);
+    } else {
       localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify({ items: [], subtotal: 0, shippingFee: 0, discount: 0, total: 0 }));
     }
     if (!localStorage.getItem(STORAGE_KEYS.STOCK_LOGS)) {
@@ -94,7 +97,21 @@ function setStored<T>(key: string, data: T): void {
 // --- PRODUCTS ---
 export const MockRepo = {
   getProducts: (): Product[] => {
-    return getStored<Product[]>(STORAGE_KEYS.PRODUCTS, FINAL_GENZ_CATALOGUE);
+    const raw = getStored<Product[]>(STORAGE_KEYS.PRODUCTS, FINAL_GENZ_CATALOGUE);
+    const list = Array.isArray(raw) && raw.length > 0 ? raw : FINAL_GENZ_CATALOGUE;
+    return list.map((p) => ({
+      ...p,
+      images: Array.isArray(p.images) && p.images.length > 0
+        ? p.images.filter(Boolean)
+        : ['https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80'],
+      colors: Array.isArray(p.colors) ? p.colors : [],
+      sizes: Array.isArray(p.sizes) && p.sizes.length > 0 ? p.sizes : ['FreeSize'],
+      variants: Array.isArray(p.variants) ? p.variants : [],
+      price: typeof p.price === 'number' ? p.price : 0,
+      originalPrice: typeof p.originalPrice === 'number' ? p.originalPrice : (p.price ?? 0),
+      rating: typeof p.rating === 'number' ? p.rating : 5.0,
+      reviewCount: typeof p.reviewCount === 'number' ? p.reviewCount : 0,
+    }));
   },
 
   getProductBySlug: (slug: string): Product | undefined => {

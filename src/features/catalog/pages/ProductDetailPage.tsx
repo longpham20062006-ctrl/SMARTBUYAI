@@ -6,7 +6,6 @@ import { ColorOption, SizeCode, Product } from '@/types';
 import { formatPrice } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ColorSwatch } from '@/components/common/ColorSwatch';
 import { SizeSelector } from '@/components/common/SizeSelector';
 import { ProductCard } from '@/components/common/ProductCard';
 import { Modal } from '@/components/ui/modal';
@@ -25,6 +24,8 @@ import {
   Plus,
   Minus,
   Zap,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 
 const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
@@ -33,16 +34,22 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
 
   const isAccessory = Boolean(
     product.categorySlug === 'phu-kien' ||
-    (product.sizes.length === 1 && product.sizes[0] === 'FreeSize')
+    (Array.isArray(product.sizes) && product.sizes.length === 1 && product.sizes[0] === 'FreeSize')
   );
 
+  const colorsList = Array.isArray(product.colors) ? product.colors : [];
+  const variantsList = Array.isArray(product.variants) ? product.variants : [];
+  const sizesList = Array.isArray(product.sizes) ? product.sizes : ['FreeSize'];
+  const defaultColor: ColorOption = colorsList[0] || { name: 'Mặc định', hex: '#111111', slug: 'mac-dinh' };
+
   // Selected options initialized directly from product
-  const [selectedColor, setSelectedColor] = useState<ColorOption>(product.colors[0]);
+  const [selectedColor, setSelectedColor] = useState<ColorOption>(defaultColor);
   const [selectedSize, setSelectedSize] = useState<SizeCode | undefined>(() => {
-    if (isAccessory || product.sizes.includes('FreeSize')) return 'FreeSize';
-    const firstAvailable = product.variants.find(
-      (v) => v.color.slug === product.colors[0].slug && v.stock > 0
-    )?.size || product.sizes[0];
+    if (isAccessory || sizesList.includes('FreeSize')) return 'FreeSize';
+    const firstColorSlug = defaultColor.slug;
+    const firstAvailable = variantsList.find(
+      (v) => (v.color?.slug === firstColorSlug || v.colorId === defaultColor.id) && v.stock > 0
+    )?.size || sizesList[0];
     return firstAvailable;
   });
   const [quantity, setQuantity] = useState(1);
@@ -56,22 +63,27 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
   }, []);
 
   // Active variant
-  const activeVariant = product.variants.find(
-    (v) => v.color.slug === selectedColor?.slug && v.size === selectedSize
-  ) || product.variants[0];
+  const activeVariant = variantsList.find(
+    (v) => (v.color?.slug === selectedColor?.slug || v.colorId === selectedColor?.id) && v.size === selectedSize
+  ) || variantsList.find((v) => v.size === selectedSize) || variantsList[0];
 
-  const availableSizes = product.variants
-    .filter((v) => v.color.slug === selectedColor?.slug && v.stock > 0)
+  const availableSizes = variantsList
+    .filter((v) => (v.color?.slug === selectedColor?.slug || v.colorId === selectedColor?.id) && v.stock > 0)
     .map((v) => v.size);
 
-  const currentPrice = activeVariant?.price || product.price;
-  const originalPrice = activeVariant?.originalPrice || product.originalPrice;
+  const currentPrice = activeVariant?.price || product.price || 0;
+  const originalPrice = activeVariant?.originalPrice || product.originalPrice || 0;
   const currentStock = activeVariant?.stock ?? 10;
 
   const relatedProducts = productService.getRelated(product, 4);
   const suggestedAccessories = productService.getAccessories(4);
 
   const handleAddToCart = (directToCheckout: boolean = false) => {
+    if (!currentPrice || currentPrice <= 0) {
+      error('Sản phẩm đang cập nhật giá chính thức, tạm thời chưa mở bán.');
+      return;
+    }
+
     if (!selectedSize || !activeVariant) {
       error('Vui lòng chọn kích cỡ phù hợp');
       return;
@@ -95,8 +107,8 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
         productSlug: product.slug,
         productName: product.name,
         brand: product.brand,
-        image: activeVariant.image || product.images[0],
-        color: selectedColor || product.colors[0],
+        image: activeVariant?.image || product.images?.[0] || '',
+        color: selectedColor || defaultColor,
         size: selectedSize,
         price: currentPrice,
         originalPrice: originalPrice,
@@ -114,6 +126,10 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
       }
     }, 250);
   };
+
+  const activeGalleryImages = (selectedColor?.images && selectedColor.images.length > 0)
+    ? selectedColor.images
+    : [selectedColor?.image || product.images?.[0] || 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80'];
 
   return (
     <div className="bg-[#FAFAF8] min-h-screen">
@@ -134,9 +150,9 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
           {/* Gallery ảnh lớn bên trái (7 cột) */}
           <div className="lg:col-span-7 space-y-4">
             {/* Ảnh lớn chính (Tỷ lệ 3:4) */}
-            <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-[#F2F3F5] border border-[#E4E4E7] relative group shadow-card">
+            <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-[#F2F3F5] border border-[#E4E4E7] relative group shadow-card select-none">
               <img
-                src={product.images[activeImageIndex] || product.images[0]}
+                src={activeGalleryImages[activeImageIndex] || activeGalleryImages[0]}
                 alt={product.name}
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src =
@@ -144,6 +160,39 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                 }}
                 className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               />
+
+              {/* Mũi tên trái / phải */}
+              {activeGalleryImages.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setActiveImageIndex((prev) => (prev === 0 ? activeGalleryImages.length - 1 : prev - 1))}
+                    aria-label="Xem ảnh trước"
+                    title="Ảnh trước"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-[#18181B] hover:text-[#8B5CF6] shadow-sm flex items-center justify-center transition-all cursor-pointer z-10 active:scale-95"
+                  >
+                    <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setActiveImageIndex((prev) => (prev === activeGalleryImages.length - 1 ? 0 : prev + 1))}
+                    aria-label="Xem ảnh tiếp theo"
+                    title="Ảnh tiếp theo"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-[#18181B] hover:text-[#8B5CF6] shadow-sm flex items-center justify-center transition-all cursor-pointer z-10 active:scale-95"
+                  >
+                    <ChevronRight className="w-5 h-5 stroke-[2.5]" />
+                  </button>
+
+                  {/* Bộ đếm ảnh góc dưới */}
+                  <div className="absolute bottom-3 right-3 pointer-events-none z-10">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-black/60 text-white backdrop-blur-xs tracking-wider">
+                      {activeImageIndex + 1}/{activeGalleryImages.length}
+                    </span>
+                  </div>
+                </>
+              )}
+
               {product.badge && (
                 <div className="absolute top-4 left-4">
                   <Badge variant="accent">
@@ -158,10 +207,10 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
               )}
             </div>
 
-            {/* Dải ảnh phụ thumbnails */}
-            {product.images.length > 1 && (
+            {/* Dải ảnh phụ thumbnails của riêng màu đã chọn */}
+            {activeGalleryImages.length > 1 && (
               <div className="grid grid-cols-4 gap-3">
-                {product.images.map((img, idx) => (
+                {activeGalleryImages.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveImageIndex(idx)}
@@ -220,20 +269,33 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                 )}
               </div>
 
-              {/* Giá sinh viên */}
+              {/* Giá sản phẩm */}
               <div className="flex items-baseline gap-3 mt-3">
-                <span className="text-3xl font-black text-[#18181B]">
-                  {formatPrice(currentPrice)}
-                </span>
-                {originalPrice && originalPrice > currentPrice && (
-                  <span className="text-sm text-[#71717A] line-through">
-                    {formatPrice(originalPrice)}
-                  </span>
-                )}
-                {originalPrice && originalPrice > currentPrice && (
-                  <span className="text-[11px] text-[#DC2626] bg-[#FEF2F2] px-2 py-0.5 rounded font-bold border border-[#FEE2E2]">
-                    GIẢM {Math.round(((originalPrice - currentPrice) / originalPrice) * 100)}%
-                  </span>
+                {currentPrice && currentPrice > 0 ? (
+                  <>
+                    <span className="text-3xl font-black text-[#18181B]">
+                      {formatPrice(currentPrice)}
+                    </span>
+                    {originalPrice && originalPrice > currentPrice && (
+                      <span className="text-sm text-[#71717A] line-through">
+                        {formatPrice(originalPrice)}
+                      </span>
+                    )}
+                    {originalPrice && originalPrice > currentPrice && (
+                      <span className="text-[11px] text-[#DC2626] bg-[#FEF2F2] px-2 py-0.5 rounded font-bold border border-[#FEE2E2]">
+                        GIẢM {Math.round(((originalPrice - currentPrice) / originalPrice) * 100)}%
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <div className="space-y-1">
+                    <span className="text-2xl font-bold text-[#71717A]">
+                      Liên hệ / Đang cập nhật giá
+                    </span>
+                    <p className="text-xs text-amber-600 font-medium">
+                      (Sản phẩm mới chưa công bố giá bán chính thức, tạm thời chưa mở thanh toán trực tuyến)
+                    </p>
+                  </div>
                 )}
               </div>
 
@@ -242,36 +304,53 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
               </p>
             </div>
 
-            {/* Chọn Màu Sắc */}
-            {selectedColor && product.colors.length > 0 && (
+            {/* Thông tin màu sắc & Chọn màu (Không dùng bất kỳ chấm tròn màu nào) */}
+            {selectedColor && product.colors.length > 0 && selectedColor.slug !== 'chua-xac-minh' && (
               <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs mb-7">
+                <div className="flex justify-between items-center text-xs mb-1.5">
                   <span className="text-[#71717A]">
-                    Phối màu: <strong className="text-[#18181B]">{selectedColor.name}</strong>
+                    Màu sắc đang chọn: <strong className="text-[#18181B] text-sm">{selectedColor.name}</strong>
                   </span>
+                  {product.colors.filter((c) => c.slug !== 'chua-xac-minh' && c.slug !== 'phoi-mau').length > 1 && (
+                    <span className="text-xs text-[#8B5CF6] font-semibold">
+                      {product.colors.filter((c) => c.slug !== 'chua-xac-minh' && c.slug !== 'phoi-mau').length} màu sắc
+                    </span>
+                  )}
                 </div>
-                <ColorSwatch
-                  colors={product.colors}
-                  selectedColor={selectedColor}
-                  onSelectColor={(c) => {
-                    setSelectedColor(c);
-                    // Đồng bộ đổi ảnh thư viện gallery sang màu tương ứng
-                    const colorImg = c.image || product.variants.find((v) => v.color.slug === c.slug)?.image;
-                    if (colorImg) {
-                      const imgIdx = product.images.findIndex((img) => img === colorImg);
-                      if (imgIdx !== -1) {
-                        setActiveImageIndex(imgIdx);
-                      }
-                    }
-                    const validSizes = product.variants
-                      .filter((v) => v.color.slug === c.slug && v.stock > 0)
-                      .map((v) => v.size);
-                    if (selectedSize && !validSizes.includes(selectedSize) && validSizes.length > 0) {
-                      setSelectedSize(validSizes[0]);
-                    }
-                  }}
-                  size="md"
-                />
+
+                {product.colors.filter((c) => c.slug !== 'chua-xac-minh' && c.slug !== 'phoi-mau').length > 1 && (
+                  <div className="flex flex-wrap gap-2 pt-0.5">
+                    {product.colors
+                      .filter((c) => c.slug !== 'chua-xac-minh' && c.slug !== 'phoi-mau')
+                      .map((c) => {
+                        const isSelected = selectedColor.slug === c.slug;
+                        return (
+                          <button
+                            key={c.slug}
+                            type="button"
+                            onClick={() => {
+                              setSelectedColor(c);
+                              setActiveImageIndex(0);
+                              const validSizes = product.variants
+                                .filter((v) => v.color.slug === c.slug && v.stock > 0)
+                                .map((v) => v.size);
+                              if (selectedSize && !validSizes.includes(selectedSize) && validSizes.length > 0) {
+                                setSelectedSize(validSizes[0]);
+                              }
+                            }}
+                            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 border cursor-pointer ${
+                              isSelected
+                                ? 'bg-[#18181B] text-white border-[#18181B] shadow-sm'
+                                : 'bg-white text-[#18181B] border-[#E4E4E7] hover:border-[#8B5CF6] hover:bg-[#F9FAFB]'
+                            }`}
+                          >
+                            {isSelected && <Check className="w-3.5 h-3.5 text-[#8B5CF6]" />}
+                            <span>{c.name}</span>
+                          </button>
+                        );
+                      })}
+                  </div>
+                )}
               </div>
             )}
 
@@ -361,7 +440,7 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                   variant="primary"
                   className="h-12 text-xs font-bold uppercase tracking-wider"
                   isLoading={isAdding}
-                  disabled={currentStock <= 0 || !selectedSize}
+                  disabled={currentStock <= 0 || !selectedSize || !currentPrice || currentPrice <= 0}
                   onClick={() => handleAddToCart(false)}
                 >
                   <ShoppingBag className="w-4 h-4 mr-2" />
@@ -371,7 +450,7 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                 <Button
                   variant="accent"
                   className="h-12 text-xs font-bold uppercase tracking-wider"
-                  disabled={currentStock <= 0 || !selectedSize}
+                  disabled={currentStock <= 0 || !selectedSize || !currentPrice || currentPrice <= 0}
                   onClick={() => handleAddToCart(true)}
                 >
                   <Zap className="w-4 h-4 mr-1.5" />

@@ -5,18 +5,31 @@ import { SiteFooter } from './SiteFooter';
 import { QuickViewModal } from '@/components/common/QuickViewModal';
 import { ScrollToTop } from '@/components/common/ScrollToTop';
 import { BackToTopButton } from '@/components/common/BackToTopButton';
+import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import { Product } from '@/types';
 import { ArrowRightLeft, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const StoreLayout: React.FC = () => {
-  const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
+  const [quickViewData, setQuickViewData] = useState<{ product: Product; initialImageIndex?: number } | null>(null);
   const [comparedProducts, setComparedProducts] = useState<Product[]>([]);
 
   // Listen to global quick view & compare events
   useEffect(() => {
-    const handleOpenQuickView = (e: CustomEvent<Product>) => {
-      setQuickViewProduct(e.detail);
+    const handleOpenQuickView = (e: CustomEvent<any>) => {
+      if (e.detail) {
+        if (e.detail.product) {
+          setQuickViewData({
+            product: e.detail.product,
+            initialImageIndex: e.detail.initialImageIndex ?? 0,
+          });
+        } else {
+          setQuickViewData({
+            product: e.detail,
+            initialImageIndex: 0,
+          });
+        }
+      }
     };
 
     const handleToggleCompare = (e: CustomEvent<Product>) => {
@@ -50,7 +63,9 @@ export const StoreLayout: React.FC = () => {
       <SiteHeader />
 
       <main className="flex-1">
-        <Outlet />
+        <ErrorBoundary fallbackTitle="Không thể tải nội dung trang" fallbackMessage="Đã xảy ra sự cố khi hiển thị trang này. Bạn có thể nhấn thử lại bên dưới.">
+          <Outlet />
+        </ErrorBoundary>
       </main>
 
       <SiteFooter />
@@ -58,9 +73,10 @@ export const StoreLayout: React.FC = () => {
 
       {/* Global Quick View Modal */}
       <QuickViewModal
-        product={quickViewProduct}
-        isOpen={!!quickViewProduct}
-        onClose={() => setQuickViewProduct(null)}
+        product={quickViewData?.product || null}
+        initialImageIndex={quickViewData?.initialImageIndex || 0}
+        isOpen={!!quickViewData}
+        onClose={() => setQuickViewData(null)}
       />
 
       {/* Floating Compare Bar */}
@@ -86,7 +102,7 @@ export const StoreLayout: React.FC = () => {
                 key={p.id}
                 className="relative inline-block w-9 h-12 rounded-brand-sm overflow-hidden border-2 border-white shadow-2xs"
               >
-                <img src={p.images[0]} alt="" className="w-full h-full object-cover" />
+                <img src={p.images?.[0] || 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80'} alt="" className="w-full h-full object-cover" />
                 <button
                   onClick={() => setComparedProducts((prev) => prev.filter((item) => item.id !== p.id))}
                   className="absolute top-0 right-0 bg-black/60 text-white p-0.5 rounded-bl-sm"

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { MockRepo } from '@/mocks/repository';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 import {
@@ -73,12 +73,37 @@ export const SiteHeader: React.FC = () => {
     }
   };
 
-  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `text-xs uppercase tracking-wider font-semibold transition-colors hover:text-[#8B5CF6] relative py-2 ${
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const currentPath = location.pathname;
+  const currentGender = searchParams.get('gender');
+  const currentCategory = searchParams.get('category');
+  const currentSort = searchParams.get('sort');
+
+  // Xác định chính xác duy nhất 1 tab active theo route thực tế:
+  const getActiveTab = (): 'nam' | 'nu' | 'unisex' | 'phu-kien' | 'collections' | 'trending' | 'size-guide' | 'try-on' | null => {
+    if (currentPath === '/size-guide') return 'size-guide';
+    if (currentPath === '/try-on' || currentPath.startsWith('/virtual-try-on')) return 'try-on';
+    if (currentPath.startsWith('/collections')) return 'collections';
+    if (currentPath.startsWith('/products')) {
+      if (currentGender === 'nam') return 'nam';
+      if (currentGender === 'nu') return 'nu';
+      if (currentGender === 'unisex') return 'unisex';
+      if (currentCategory === 'phu-kien') return 'phu-kien';
+      if (currentSort === 'newest') return 'trending';
+    }
+    return null;
+  };
+
+  const activeTab = getActiveTab();
+
+  const getTabClass = (isActive: boolean) =>
+    cn(
+      'text-xs uppercase tracking-wider font-bold px-3 py-1.5 rounded-xl transition-all duration-150 select-none cursor-pointer',
       isActive
-        ? 'text-[#18181B] font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#8B5CF6]'
-        : 'text-[#71717A]'
-    }`;
+        ? 'bg-[#8B5CF6] text-white shadow-xs'
+        : 'text-[#52525B] hover:text-[#18181B] hover:bg-[#F4F4F5]'
+    );
 
   return (
     <>
@@ -144,20 +169,20 @@ export const SiteHeader: React.FC = () => {
             </Link>
           </div>
 
-          {/* Ở GIỮA: DESKTOP NAVIGATION (NAM | NỮ | UNISEX | PHỤ KIỆN | BỘ SƯU TẬP | BẢNG KÍCH CỠ) */}
-          <nav className="hidden lg:flex items-center justify-center gap-8 mx-auto">
-            <NavLink to="/products?gender=nam" className={navLinkClass}>
+          {/* Ở GIỮA: DESKTOP NAVIGATION (NAM | NỮ | UNISEX | PHỤ KIỆN | BỘ SƯU TẬP | XU HƯỚNG | BẢNG KÍCH CỠ | THỬ ĐỒ AI) */}
+          <nav className="hidden lg:flex items-center justify-center gap-2 mx-auto">
+            <Link to="/products?gender=nam" className={getTabClass(activeTab === 'nam')}>
               Nam
-            </NavLink>
-            <NavLink to="/products?gender=nu" className={navLinkClass}>
+            </Link>
+            <Link to="/products?gender=nu" className={getTabClass(activeTab === 'nu')}>
               Nữ
-            </NavLink>
-            <NavLink to="/products?gender=unisex" className={navLinkClass}>
+            </Link>
+            <Link to="/products?gender=unisex" className={getTabClass(activeTab === 'unisex')}>
               Unisex
-            </NavLink>
-            <NavLink to="/products?category=phu-kien" className={navLinkClass}>
+            </Link>
+            <Link to="/products?category=phu-kien" className={getTabClass(activeTab === 'phu-kien')}>
               Phụ kiện
-            </NavLink>
+            </Link>
 
             {/* Mega Menu Dropdown Bộ sưu tập */}
             <div
@@ -165,9 +190,16 @@ export const SiteHeader: React.FC = () => {
               onMouseEnter={() => setIsMegaMenuOpen(true)}
               onMouseLeave={() => setIsMegaMenuOpen(false)}
             >
-              <button className="flex items-center gap-1 text-xs uppercase tracking-wider font-semibold text-[#71717A] hover:text-[#8B5CF6] py-2 cursor-pointer transition-colors">
+              <button
+                className={cn(
+                  'flex items-center gap-1 text-xs uppercase tracking-wider font-bold px-3.5 py-1.5 rounded-xl transition-all duration-150 cursor-pointer select-none',
+                  activeTab === 'collections' || isMegaMenuOpen
+                    ? 'bg-[#8B5CF6] text-white shadow-xs'
+                    : 'text-[#52525B] hover:text-[#18181B] hover:bg-[#F4F4F5]'
+                )}
+              >
                 <span>Bộ sưu tập</span>
-                <ChevronDown className="w-3.5 h-3.5 opacity-60" />
+                <ChevronDown className="w-3.5 h-3.5 opacity-70" />
               </button>
 
               {/* Mega menu box */}
@@ -225,25 +257,24 @@ export const SiteHeader: React.FC = () => {
               )}
             </div>
 
-            <NavLink to="/products?sort=newest" className={navLinkClass}>
+            <Link to="/products?sort=newest" className={getTabClass(activeTab === 'trending')}>
               Xu hướng
-            </NavLink>
-            <NavLink to="/size-guide" className={navLinkClass}>
+            </Link>
+            <Link to="/size-guide" className={getTabClass(activeTab === 'size-guide')}>
               Bảng kích cỡ
-            </NavLink>
-            <NavLink
+            </Link>
+            <Link
               to="/try-on"
-              className={({ isActive }) =>
-                `flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all ${
-                  isActive
-                    ? 'bg-[#8B5CF6] text-white shadow-sm'
-                    : 'bg-[#F3E8FF] text-[#7C3AED] hover:bg-[#8B5CF6] hover:text-white'
-                }`
-              }
+              className={cn(
+                'flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 select-none cursor-pointer',
+                activeTab === 'try-on'
+                  ? 'bg-[#8B5CF6] text-white shadow-xs'
+                  : 'bg-[#F3E8FF] text-[#7C3AED] hover:bg-[#8B5CF6] hover:text-white'
+              )}
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Thử đồ AI</span>
-            </NavLink>
+            </Link>
           </nav>
 
           {/* Right Action Icons */}
@@ -471,28 +502,48 @@ export const SiteHeader: React.FC = () => {
             <Link
               to="/products?gender=nam"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg hover:bg-[#F2F3F5] text-[#18181B] font-medium transition-colors"
+              className={cn(
+                'block px-3.5 py-2.5 rounded-xl font-bold transition-colors text-xs uppercase tracking-wider',
+                activeTab === 'nam'
+                  ? 'bg-[#8B5CF6] text-white shadow-xs'
+                  : 'hover:bg-[#F2F3F5] text-[#18181B]'
+              )}
             >
               Thời trang Nam
             </Link>
             <Link
               to="/products?gender=nu"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg hover:bg-[#F2F3F5] text-[#18181B] font-medium transition-colors"
+              className={cn(
+                'block px-3.5 py-2.5 rounded-xl font-bold transition-colors text-xs uppercase tracking-wider',
+                activeTab === 'nu'
+                  ? 'bg-[#8B5CF6] text-white shadow-xs'
+                  : 'hover:bg-[#F2F3F5] text-[#18181B]'
+              )}
             >
               Thời trang Nữ
             </Link>
             <Link
               to="/products?gender=unisex"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg hover:bg-[#F2F3F5] text-[#18181B] font-medium transition-colors"
+              className={cn(
+                'block px-3.5 py-2.5 rounded-xl font-bold transition-colors text-xs uppercase tracking-wider',
+                activeTab === 'unisex'
+                  ? 'bg-[#8B5CF6] text-white shadow-xs'
+                  : 'hover:bg-[#F2F3F5] text-[#18181B]'
+              )}
             >
               Bộ sưu tập Unisex
             </Link>
             <Link
               to="/products?category=phu-kien"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg hover:bg-[#F2F3F5] text-[#18181B] font-medium transition-colors"
+              className={cn(
+                'block px-3.5 py-2.5 rounded-xl font-bold transition-colors text-xs uppercase tracking-wider',
+                activeTab === 'phu-kien'
+                  ? 'bg-[#8B5CF6] text-white shadow-xs'
+                  : 'hover:bg-[#F2F3F5] text-[#18181B]'
+              )}
             >
               Phụ kiện & Nón
             </Link>

@@ -59,6 +59,7 @@ export interface ColorOption {
   slug: string;
   image?: string;
   images?: string[];
+  originalImage?: string;
 }
 
 export type SizeCode = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'FreeSize' | 'Tiêu chuẩn' | string;
@@ -100,6 +101,9 @@ export interface Product {
   suggestedPrice?: number;
   approvedPrice?: number;
   profitMargin?: number;
+  priceStatus?: 'approved' | 'pending';
+  subCategoryPending?: boolean;
+  needsClassification?: boolean;
   isSetItem?: boolean;
   setDetails?: any;
   shortDescription: string;

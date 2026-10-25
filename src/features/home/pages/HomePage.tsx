@@ -38,8 +38,8 @@ export const HomePage: React.FC = () => {
 
   const activeLook = shopTheLooks.find((l) => l.id === selectedLookId) || shopTheLooks[0];
 
-  const handleOpenQuickView = (product: Product) => {
-    window.dispatchEvent(new CustomEvent('open_quick_view', { detail: product }));
+  const handleOpenQuickView = (product: Product, initialImageIndex: number = 0) => {
+    window.dispatchEvent(new CustomEvent('open_quick_view', { detail: { product, initialImageIndex } }));
   };
 
   const handleToggleCompare = (product: Product) => {
@@ -56,10 +56,13 @@ export const HomePage: React.FC = () => {
   };
 
   // PHẦN 11: THÊM CẢ BỘ VÀO GIỎ HÀNG (ADD COMPLETE LOOK TO CART)
-  const handleAddOutfitToCart = (outfit: ShopTheLookOutfit) => {
+  const handleAddOutfitToCart = (outfit?: ShopTheLookOutfit) => {
+    if (!outfit || !Array.isArray(outfit.items)) return;
     let addedCount = 0;
     outfit.items.forEach((item) => {
-      const variant = item.variants.find((v) => v.stock > 0) || item.variants[0];
+      if (!item) return;
+      const variantsList = Array.isArray(item.variants) ? item.variants : [];
+      const variant = variantsList.find((v) => v.stock > 0) || variantsList[0];
       if (variant) {
         MockRepo.addToCart({
           id: variant.id,
@@ -67,11 +70,11 @@ export const HomePage: React.FC = () => {
           productSlug: item.slug,
           productName: item.name,
           brand: item.brand,
-          image: variant.image || item.images[0],
-          color: variant.color,
-          size: variant.size,
-          price: variant.price,
-          originalPrice: variant.originalPrice,
+          image: variant.image || item.images?.[0] || '',
+          color: variant.color || { name: 'Mặc định', hex: '#111111', slug: 'mac-dinh' },
+          size: variant.size || 'FreeSize',
+          price: variant.price || item.price || 0,
+          originalPrice: variant.originalPrice || item.originalPrice || 0,
           quantity: 1,
         });
         addedCount++;
@@ -533,100 +536,104 @@ export const HomePage: React.FC = () => {
           </div>
 
           {/* Active Look Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Big Look Image (5 cols) */}
-            <div className="lg:col-span-5 relative rounded-2xl overflow-hidden aspect-[3/4] shadow-card bg-[#F2F3F5] group">
-              <img
-                src={activeLook.lookImage}
-                alt={activeLook.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 text-white">
-                <span className="text-[10px] font-bold uppercase tracking-wider bg-[#8B5CF6] px-2 py-0.5 rounded">
-                  {activeLook.style}
-                </span>
-                <h3 className="text-xl font-black uppercase mt-1.5">{activeLook.title}</h3>
-                <p className="text-xs text-[#E4E4E7] mt-0.5 line-clamp-2">{activeLook.tagline}</p>
-              </div>
-            </div>
-
-            {/* Outfit Items List & Total Action (7 cols) */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="space-y-3">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#71717A]">
-                  Các món đồ trong set ({activeLook.items.length} món):
-                </h4>
-                <div className="space-y-3">
-                  {activeLook.items.map((item, idx) => (
-                    <div
-                      key={item.id}
-                      className="p-3 rounded-2xl bg-[#FAFAF8] border border-[#E4E4E7] flex items-center justify-between gap-4 hover:border-[#8B5CF6] transition-colors"
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <img
-                          src={item.images[0]}
-                          alt={item.name}
-                          className="w-14 h-16 object-cover rounded-xl bg-white border border-[#E4E4E7] shrink-0"
-                        />
-                        <div className="min-w-0">
-                          <span className="text-[10px] font-bold text-[#8B5CF6] uppercase">
-                            Món 0{idx + 1} • {item.brand}
-                          </span>
-                          <h5 className="text-xs font-bold text-[#18181B] truncate">{item.name}</h5>
-                          <div className="text-xs font-bold text-[#18181B] mt-0.5">
-                            {formatPrice(item.price)}
-                          </div>
-                        </div>
-                      </div>
-
-                      <Link
-                        to={`/products/${item.slug}`}
-                        className="px-3 py-1.5 rounded-lg border border-[#E4E4E7] text-xs font-semibold text-[#18181B] hover:bg-[#18181B] hover:text-white transition-colors shrink-0"
-                      >
-                        Chi tiết
-                      </Link>
-                    </div>
-                  ))}
+          {activeLook && (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Big Look Image (5 cols) */}
+              <div className="lg:col-span-5 relative rounded-2xl overflow-hidden aspect-[3/4] shadow-card bg-[#F2F3F5] group">
+                <img
+                  src={activeLook.lookImage}
+                  alt={activeLook.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <span className="text-[10px] font-bold uppercase tracking-wider bg-[#8B5CF6] px-2 py-0.5 rounded">
+                    {activeLook.style}
+                  </span>
+                  <h3 className="text-xl font-black uppercase mt-1.5">{activeLook.title}</h3>
+                  <p className="text-xs text-[#E4E4E7] mt-0.5 line-clamp-2">{activeLook.tagline}</p>
                 </div>
               </div>
 
-              {/* Total Outfit Price & Add Set to Cart Button */}
-              <div className="p-5 rounded-2xl bg-[#F4F4F5] border border-[#E4E4E7] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                  <div className="text-xs text-[#71717A]">Tổng giá trọn bộ ({activeLook.items.length} món):</div>
-                  <div className="flex items-baseline gap-2 mt-0.5">
-                    <span className="text-2xl font-black text-[#18181B]">
-                      {formatPrice(
-                        activeLook.items.reduce((sum, item) => sum + item.price, 0) *
-                          (1 - (activeLook.discountPercent || 0) / 100)
+              {/* Outfit Items List & Total Action (7 cols) */}
+              <div className="lg:col-span-7 space-y-6">
+                <div className="space-y-3">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#71717A]">
+                    Các món đồ trong set ({Array.isArray(activeLook.items) ? activeLook.items.length : 0} món):
+                  </h4>
+                  <div className="space-y-3">
+                    {(activeLook.items || []).map((item, idx) => (
+                      <div
+                        key={item.id}
+                        className="p-3 rounded-2xl bg-[#FAFAF8] border border-[#E4E4E7] flex items-center justify-between gap-4 hover:border-[#8B5CF6] transition-colors"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <img
+                            src={item.images?.[0] || 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80'}
+                            alt={item.name}
+                            className="w-14 h-16 object-cover rounded-xl bg-white border border-[#E4E4E7] shrink-0"
+                          />
+                          <div className="min-w-0">
+                            <span className="text-[10px] font-bold text-[#8B5CF6] uppercase">
+                              Món 0{idx + 1} • {item.brand}
+                            </span>
+                            <h5 className="text-xs font-bold text-[#18181B] truncate">{item.name}</h5>
+                            <div className="text-xs font-bold text-[#18181B] mt-0.5">
+                              {formatPrice(item.price)}
+                            </div>
+                          </div>
+                        </div>
+
+                        <Link
+                          to={`/products/${item.slug}`}
+                          className="px-3 py-1.5 rounded-lg border border-[#E4E4E7] text-xs font-semibold text-[#18181B] hover:bg-[#18181B] hover:text-white transition-colors shrink-0"
+                        >
+                          Chi tiết
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Total Outfit Price & Add Set to Cart Button */}
+                <div className="p-5 rounded-2xl bg-[#F4F4F5] border border-[#E4E4E7] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <div className="text-xs text-[#71717A]">
+                      Tổng giá trọn bộ ({Array.isArray(activeLook.items) ? activeLook.items.length : 0} món):
+                    </div>
+                    <div className="flex items-baseline gap-2 mt-0.5">
+                      <span className="text-2xl font-black text-[#18181B]">
+                        {formatPrice(
+                          (activeLook.items || []).reduce((sum, item) => sum + (item.price || 0), 0) *
+                            (1 - (activeLook.discountPercent || 0) / 100)
+                        )}
+                      </span>
+                      {activeLook.discountPercent && (
+                        <span className="text-xs line-through text-[#71717A]">
+                          {formatPrice((activeLook.items || []).reduce((sum, item) => sum + (item.price || 0), 0))}
+                        </span>
                       )}
-                    </span>
+                    </div>
                     {activeLook.discountPercent && (
-                      <span className="text-xs line-through text-[#71717A]">
-                        {formatPrice(activeLook.items.reduce((sum, item) => sum + item.price, 0))}
+                      <span className="text-[11px] font-bold text-[#16A34A]">
+                        Tiết kiệm {activeLook.discountPercent}% khi mua cả bộ outfit
                       </span>
                     )}
                   </div>
-                  {activeLook.discountPercent && (
-                    <span className="text-[11px] font-bold text-[#16A34A]">
-                      Tiết kiệm {activeLook.discountPercent}% khi mua cả bộ outfit
-                    </span>
-                  )}
-                </div>
 
-                <Button
-                  variant="accent"
-                  size="lg"
-                  onClick={() => handleAddOutfitToCart(activeLook)}
-                  className="text-xs uppercase font-bold tracking-wider py-3.5 px-6 shadow-accent"
-                >
-                  <Plus className="w-4 h-4 mr-1.5" />
-                  THÊM CẢ BỘ VÀO GIỎ HÀNG
-                </Button>
+                  <Button
+                    variant="accent"
+                    size="lg"
+                    onClick={() => handleAddOutfitToCart(activeLook)}
+                    className="text-xs uppercase font-bold tracking-wider py-3.5 px-6 shadow-accent"
+                  >
+                    <Plus className="w-4 h-4 mr-1.5" />
+                    THÊM CẢ BỘ VÀO GIỎ HÀNG
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
