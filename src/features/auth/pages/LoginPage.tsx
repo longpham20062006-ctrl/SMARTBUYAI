@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { MockRepo } from '@/mocks/repository';
 import { useToast } from '@/components/ui/toast';
 import { Eye, EyeOff, ShieldCheck, UserCheck } from 'lucide-react';
+import { BrandLogo } from '@/components/common/BrandLogo';
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export const LoginPage: React.FC = () => {
       } else {
         MockRepo.switchUser('customer');
         success('Đăng nhập thành công', 'Chào mừng bạn quay lại với SMARTBUY AI');
-        navigate('/account');
+        navigate('/');
       }
     }
   };
@@ -41,7 +42,7 @@ export const LoginPage: React.FC = () => {
       `Đã đăng nhập demo: ${role === 'admin' ? 'Quản trị viên' : 'Khách hàng'}`,
       'Phiên làm việc thử nghiệm đã sẵn sàng.'
     );
-    navigate(role === 'admin' ? '/admin' : '/account');
+    navigate(role === 'admin' ? '/admin' : '/');
   };
 
   return (
@@ -71,12 +72,10 @@ export const LoginPage: React.FC = () => {
         {/* Form đăng nhập */}
         <div className="p-8 sm:p-10 flex flex-col justify-between space-y-6">
           <div>
-            <div className="flex items-center justify-between">
-              <span className="text-xs uppercase font-bold tracking-widest text-brand-forest">
-                Tài khoản
-              </span>
+            <div className="flex items-center justify-between mb-4">
+              <BrandLogo variant="header" />
               <span className="text-[10px] bg-brand-sand px-2 py-0.5 rounded-sm font-semibold text-brand-secondary">
-                Chế độ mô phỏng demo
+                Demo
               </span>
             </div>
 

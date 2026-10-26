@@ -1,0 +1,517 @@
+ .gitignore                                         |     1 [32m+[m
+ .vscode/settings.json                              |     9 [32m+[m
+ edge-debug-profile/Crashpad/settings.dat           |     0
+ edge-debug-profile/Crashpad/throttle_store.dat     |     1 [32m+[m
+ public/data/women-catalog-pricing.csv              |   144 [32m+[m
+ .../san-pham/dress_enhancement_manifest.json       |  1742 [32m+[m
+ public/images/san-pham/manifest.json               | 21721 [32m++++[m[31m-[m
+ .../quan-ao-nu/ao-khoac/ao-blazer/.gitkeep         |     1 [31m-[m
+ .../quan-ao-nu/ao-khoac/ao-khoac-bomber/.gitkeep   |     1 [31m-[m
+ .../quan-ao-nu/ao-khoac/ao-khoac-da/.gitkeep       |     1 [31m-[m
+ .../quan-ao-nu/ao-khoac/ao-khoac-denim/.gitkeep    |     1 [31m-[m
+ .../quan-ao-nu/ao-khoac/ao-khoac-gio/.gitkeep      |     1 [31m-[m
+ .../ao-khoac/ao-khoac-lung-crop/.gitkeep           |     1 [31m-[m
+ .../quan-ao-nu/ao-khoac/ao-mang-to/.gitkeep        |     1 [31m-[m
+ .../san-pham/quan-ao-nu/ao-khoac/ao-phao/.gitkeep  |     1 [31m-[m
+ .../quan-ao-nu/ao-khoac/ao-trench-coat/.gitkeep    |     1 [31m-[m
+ .../san-pham/quan-ao-nu/ao/ao-ba-lo/.gitkeep       |     1 [31m-[m
+ .../san-pham/quan-ao-nu/ao/ao-baby-tee/.gitkeep    |     1 [31m-[m
+ .../san-pham/quan-ao-nu/ao/ao-cardigan/.gitkeep    |     1 [31m-[m
+ ...4312280467_8e8c477b36c056a2ed65bbc180489462.jpg |   Bin [31m0[m -> [32m457937[m bytes
+ ...4312280467_6eaf54e803cbaffbe83419ac379bb75c.jpg |   Bin [31m0[m -> [32m406962[m bytes
+ ...4312280467_2b18ba69206862e011f5e4ea19ed57f4.jpg |   Bin [31m0[m -> [32m381049[m bytes
+ ...4312280467_0bc7cf93bbc0a7456f35e8e943a32e32.jpg |   Bin [31m0[m -> [32m425866[m bytes
+ ...4312280467_638b81a4d99f8f4f8e0f423cfb5dda1d.jpg |   Bin [31m0[m -> [32m296555[m bytes
+ ...4312280467_1a57436ae8316697689eb2935c60e92c.jpg |   Bin [31m0[m -> [32m95181[m bytes
+ ...4312280467_68d71f7fc010968da3c2f46e2291c8ef.jpg |   Bin [31m0[m -> [32m104044[m bytes
+ ...4312280467_41a08b15e2b9648060bcd68cb78d5459.jpg |   Bin [31m0[m -> [32m366534[m bytes
+ ...4312280467_dca1aa587429e9e3c3be21d3c6e8ab17.jpg |   Bin [31m0[m -> [32m402753[m bytes
+ ...4312280467_42697f197bfa20da65dc2ab9cbc902fa.jpg |   Bin [31m0[m -> [32m171774[m bytes
+ ...4312280467_0d949d2bb494f23c9eb60d6234f0f449.jpg |   Bin [31m0[m -> [32m391765[m bytes
+ ...4312280467_eb20a8b4c597f21040629ec156ceee75.jpg |   Bin [31m0[m -> [32m387482[m bytes
+ ...4312280467_6569f1c8f58d0d99e99c53791db9d6e8.jpg |   Bin [31m0[m -> [32m233098[m bytes
+ ...4312280467_702d838172e7cb3944d4d34bd1c10021.jpg |   Bin [31m0[m -> [32m217531[m bytes
+ ...4312280467_d5dff58236864a31a7f5854dfd3c0d8a.jpg |   Bin [31m0[m -> [32m187200[m bytes
+ ...4312280467_6cc45fb1b7d56b59ca9080a0ca75ce17.jpg |   Bin [31m0[m -> [32m229024[m bytes
+ .../san-pham/quan-ao-nu/ao/ao-co-yem/.gitkeep      |     1 [31m-[m
+ .../san-pham/quan-ao-nu/ao/ao-croptop/.gitkeep     |     1 [31m-[m
+ ...4312280467_ff57a4fc53bc92848692062e29e8b747.jpg |   Bin [31m0[m -> [32m228482[m bytes
+ ...4312280467_2f6c3acfaee86feaecea4a7d49a9beb7.jpg |   Bin [31m0[m -> [32m228160[m bytes
+ ...4312280467_dc1d382afd6ae033ebb6c3c96ea94909.jpg |   Bin [31m0[m -> [32m218567[m bytes
+ ...4312280467_6b654356fb7cd62827bd4763667c91ce.jpg |   Bin [31m0[m -> [32m195511[m bytes
+ ...4312280467_d81f4cc1c434958086e9aa0eb28b73eb.jpg |   Bin [31m0[m -> [32m218650[m bytes
+ ...4312280467_ccb30add1eb30929707da4f4a00468c8.jpg |   Bin [31m0[m -> [32m122975[m bytes
+ ...4312280467_50e652a5e2e557c125202d5fc26f8d65.jpg |   Bin [31m0[m -> [32m116495[m bytes
+ ...4312280467_5418624ca4afceabcaaab251850cc18e.jpg |   Bin [31m0[m -> [32m108997[m bytes
+ ...4312280467_82edf1d14cb45dfb24d1e2ce1916ef69.jpg |   Bin [31m0[m -> [32m113165[m bytes
+ ...4312280467_3a3081589e6bfdabe7074f44cfa60952.jpg |   Bin [31m0[m -> [32m127802[m bytes
+ ...4312280467_335f45cf786f89b8ba96b49fbd8d3870.jpg |   Bin [31m0[m -> [32m94623[m bytes
+ ...4312280467_7f4440d0d7eefc369eb4a99ec5136337.jpg |   Bin [31m0[m -> [32m89491[m bytes
+ ...4312280467_86f15887141e5800f15c98f5d03d83ce.jpg |   Bin [31m0[m -> [32m88932[m bytes
+ ...4312280467_03e530b7922878b737bfe3f57ef4b4e2.jpg |   Bin [31m0[m -> [32m86972[m bytes
+ ...4312280467_9370d3e86a914be1e9a266f185488b03.jpg |   Bin [31m0[m -> [32m95555[m bytes
+ ...4312280467_7a089c4cc0c6d2d5d2891854a4b09cfe.jpg |   Bin [31m0[m -> [32m354132[m bytes
+ ...4312280467_0b4c68ced8d53f25c489b297202c7630.jpg |   Bin [31m0[m -> [32m363998[m bytes
+ ...4312280467_60c2bc6710923317d683aaab8f888b3a.jpg |   Bin [31m0[m -> [32m170404[m bytes
+ ...4312280467_26c24135457608fbd85695278a826c12.jpg |   Bin [31m0[m -> [32m106699[m bytes
+ ...4312280467_5767406aa3c74d4c9fca43e9d006ea2e.jpg |   Bin [31m0[m -> [32m111321[m bytes
+ ...4312280467_626bd99e3e1fafb8005f790c52fce02c.jpg |   Bin [31m0[m -> [32m130027[m bytes
+ ...4312280467_070ff4a5ce1caccac789ac2629f47069.jpg |   Bin [31m0[m -> [32m349117[m bytes
+ ...4312280467_f78b15efbd876db0f5986acc11fb0d0f.jpg |   Bin [31m0[m -> [32m359867[m bytes
+ ...4312280467_7e80ee5a7acc53eef910b468a3d097dd.jpg |   Bin [31m0[m -> [32m267094[m bytes
+ ...4312280467_0ff56e671fc2e75f2426cf3fd8c418eb.jpg |   Bin [31m0[m -> [32m115487[m bytes
+ ...4312280467_449dc6d63a3a78a81bd63f9c100a7a29.jpg |   Bin [31m0[m -> [32m89272[m bytes
+ .../san-pham/quan-ao-nu/ao/ao-dai-tay/.gitkeep     |     1 [31m-[m
+ .../san-pham/quan-ao-nu/ao/ao-det-kim/.gitkeep     |     1 [31m-[m
+ .../san-pham/quan-ao-nu/ao/ao-hai-day/.gitkeep     |     1 [31m-[m
+ ...4312280467_cb09a23f373395e1abc783b532f18d9c.jpg |   Bin [31m0[m -> [32m99283[m bytes
+ ...4312280467_7dd4811d9d474c1723e85a95b6ae3327.jpg |   Bin [31m0[m -> [32m123368[m bytes
+ ...4312280467_01e75f5f4be2598b1828ddd4d18943c3.jpg |   Bin [31m0[m -> [32m125132[m bytes
+ ...4312280467_bde1e2739611c68c65bb94904a3dcfa9.jpg |   Bin [31m0[m -> [32m88533[m bytes
+ ...4312280467_7dcf2a10872bfc68e1dc6cc860a4c370.jpg |   Bin [31m0[m -> [32m98478[m bytes
+ ...4312280467_c22ebdede2adfbaa26dcbf707486d5e4.jpg |   Bin [31m0[m -> [32m66519[m bytes
+ ...4312280467_6ba76783b5c040647f694edaf89fae41.jpg |   Bin [31m0[m -> [32m70651[m bytes
+ ...4312280467_aecd143566908ff39c03db15235c18cd.jpg |   Bin [31m0[m -> [32m87304[m bytes
+ ...4312280467_ad91d7d971ec1657b90b9f8da0876379.jpg |   Bin [31m0[m -> [32m49293[m bytes
+ ...4312280467_cc11fdc7a6c8dd977a25a2d10b324e9b.jpg |   Bin [31m0[m -> [32m141475[m bytes
+ ...4312280467_73a790d41bd11f58f9ae8d3cb01a3421.jpg |   Bin [31m0[m -> [32m171752[m bytes
+ ...4312280467_fa8f904dfb00ed2cc962ed96adb924d1.jpg |   Bin [31m0[m -> [32m192008[m bytes
+ ...4312280467_0d75552a7aa87b2942a91a5a5b3a99a4.jpg |   Bin [31m0[m -> [32m213525[m bytes
+ ...4312280467_c977c4d6e05e6b9883e4f3b41381ab53.jpg |   Bin [31m0[m -> [32m155409[m bytes
+ ...4312280467_ee28a79f5450a89e836fb0c7b30f13bb.jpg |   Bin [31m0[m -> [32m239886[m bytes
+ ...4312280467_40b62f26f105569c3f9344c297eb358c.jpg |   Bin [31m0[m -> [32m233822[m bytes
+ .../san-pham/quan-ao-nu/ao/ao-hoodie/.gitkeep      |     1 [31m-[m
+ ...4312280467_29c6ae9b663a6432e8c126881ccd76a2.jpg |   Bin [31m0[m -> [32m216442[m bytes
+ ...4312280467_0292e29194d06455fa15467c7c190bc9.jpg |   Bin [31m0[m -> [32m311208[m bytes
+ ...4312280467_9b927da3cc2240a81592dff899cc013d.jpg |   Bin [31m0[m -> [32m293830[m bytes
+ ...4312280467_31fe72965f9c732597f8af29ac5fbdb0.jpg |   Bin [31m0[m -> [32m150560[m bytes
+ ...4312280467_2e816847736f71dd928a89bad164aa9a.jpg |   Bin [31m0[m -> [32m217289[m bytes
+ ...4312280467_16a87ca4206db8f597ba2ebd3bdae00d.jpg |   Bin [31m0[m -> [32m226602[m bytes
+ ...4312280467_6a5f74e85a0a53c4c1f359f8de04f7b7.jpg |   Bin [31m0[m -> [32m152555[m bytes
+ ...4312280467_ca1522eb06f98450dbfc989dd342fd3b.jpg |   Bin [31m0[m -> [32m154861[m bytes
+ ...4312280467_721bfd90038bdf5631358faf0b841fcc.jpg |   Bin [31m0[m -> [32m223151[m bytes
+ ...4312280467_5328d48399e0ef6592806bd91a448a2e.jpg |   Bin [31m0[m -> [32m158350[m bytes
+ ...4312280467_a99a6adf5f5ff5ac53779fcd093be00b.jpg |   Bin [31m0[m -> [32m154368[m bytes
+ ...4312280467_6e1f57617f6086fcd5f5e731641a8900.jpg |   Bin [31m0[m -> [32m230535[m bytes
+ ...4312280467_4c6f7f73b9417ae4934e7d7f5938f7fa.jpg |   Bin [31m0[m -> [32m205475[m bytes
+ .../san-pham/quan-ao-nu/ao/ao-kieu-blouse/.gitkeep |     1 [31m-[m
+ .../images/san-pham/quan-ao-nu/ao/ao-len/.gitkeep  |     1 [31m-[m
+ ...4312280467_c43cfde84572416252311ad299f7f484.jpg |   Bin [31m0[m -> [32m153023[m bytes
+ ...4312280467_d014b9adaf837e13c2fb4681e851f29b.jpg |   Bin [31m0[m -> [32m121241[m bytes
+ ...4312280467_6e85a2ade8bc532675275698b6521c74.jpg |   Bin [31m0[m -> [32m134158[m bytes
+ ...4312280467_58e39a2782d927e1bba53614378f691a.jpg |   Bin [31m0[m -> [32m144309[m bytes
+ ...4312280467_c64f6e2000c45877429962a630f703b2.jpg |   Bin [31m0[m -> [32m236203[m bytes
+ ...4312280467_e0d6999c834318c6c68fba1330bc0a0e.jpg |   Bin [31m0[m -> [32m141832[m bytes
+ ...4312280467_43e6d1b2715ea1e0c83229e1ff0935a2.jpg |   Bin [31m0[m -> [32m172165[m bytes
+ ...4312280467_3fe38ef2c9f912d24ec4369d119f928a.jpg |   Bin [31m0[m -> [32m366271[m bytes
+ ...4312280467_6e829f3f3d78b9e0931b9805c833edc2.jpg |   Bin [31m0[m -> [32m358818[m bytes
+ ...4312280467_a2d847f34d8d750c65e5d00239af13d9.jpg |   Bin [31m0[m -> [32m414062[m bytes
+ .../images/san-pham/quan-ao-nu/ao/ao-polo/.gitkeep |     1 [31m-[m
+ .../images/san-pham/quan-ao-nu/ao/ao-quay/.gitkeep |     1 [31m-[m
+ .../san-pham/quan-ao-nu/ao/ao-so-mi/.gitkeep       |     1 [31m-[m
+ .../images/san-pham/quan-ao-nu/ao/ao-thun/.gitkeep |     1 [31m-[m
+ ...4312280467_4cb54a07c5d9f47c2e7ae73db4377bbb.jpg |   Bin [31m0[m -> [32m304929[m bytes
+ ...4312280467_17a4be893850a7f80438eb4625904dfe.jpg |   Bin [31m0[m -> [32m227372[m bytes
+ ...4312280467_2d603872849fd4cdab255952246440a1.jpg |   Bin [31m0[m -> [32m302932[m bytes
+ ...4312280467_d85c1bcd178e80a990390f355e164cf1.jpg |   Bin [31m0[m -> [32m164798[m bytes
+ ...4312280467_e920d4914b14d0080bb7fe5e4b0b38de.jpg |   Bin [31m0[m -> [32m268170[m bytes
+ ...4312280467_8dfe4097316ae0af6e8ff06da2a0101d.jpg |   Bin [31m0[m -> [32m339484[m bytes
+ ...4312280467_e81e8259c33b28bd838d9dfb11da075a.jpg |   Bin [31m0[m -> [32m364299[m bytes
+ ...4312280467_29f518853fc3326e405dabc39b0c075d.jpg |   Bin [31m0[m -> [32m246201[m bytes
+ ...4312280467_9baff777394dfaa60fee26e3b0d31cde.jpg |   Bin [31m0[m -> [32m366419[m bytes
+ ...4312280467_0c51d17f219af0218782359f49d92eed.jpg |   Bin [31m0[m -> [32m185624[m bytes
+ ...4312280467_ba8288f2c8b65ca6364a7b0c3345d59c.jpg |   Bin [31m0[m -> [32m238054[m bytes
+ ...4312280467_32fad4eb1ee082d41b567683ce55324c.jpg |   Bin [31m0[m -> [32m260169[m bytes
+ ...4312280467_4ce5ba26a7c8ed1ee4f31f0976fd909e.jpg |   Bin [31m0[m -> [32m311073[m bytes
+ ...4312280467_8ec117027f0517a99cede4dce876a027.jpg |   Bin [31m0[m -> [32m251572[m bytes
+ ...4312280467_cf573cfa5fd22b90500bb5ff3339821b.jpg |   Bin [31m0[m -> [32m294961[m bytes
+ ...4312280467_9fc390567740a750c89d4b10e2283541.jpg |   Bin [31m0[m -> [32m326391[m bytes
+ ...4312280467_4ff98bb4b12f9d826325df11a9a98dac.jpg |   Bin [31m0[m -> [32m298982[m bytes
+ ...4312280467_f599e3a252eb431564a6c559e156247e.jpg |   Bin [31m0[m -> [32m335034[m bytes
+ ...4312280467_d27148caee2b780e5ee4b0a4d91598b8.jpg |   Bin [31m0[m -> [32m274618[m bytes
+ ...4312280467_677c557fd16a71b324c0f64e5c9093dd.jpg |   Bin [31m0[m -> [32m256574[m bytes
+ ...4312280467_71c26a0c9dec3b2fe7e57e39a2bffeb5.jpg |   Bin [31m0[m -> [32m321666[m bytes
+ ...4312280467_a545d52f3c033c758b5325aa5b6a295f.jpg |   Bin [31m0[m -> [32m254127[m bytes
+ ...4312280467_edcf97f589455d0930c575c81e61108a.jpg |   Bin [31m0[m -> [32m225628[m bytes
+ ...4312280467_f0181d15490ab23d2318e1d571d9c05e.jpg |   Bin [31m0[m -> [32m230338[m bytes
+ ...4312280467_2437e84dff0ebd86ddd61cf51593cdca.jpg |   Bin [31m0[m -> [32m258358[m bytes
+ ...4312280467_529480272474ef67d48572265fe2325a.jpg |   Bin [31m0[m -> [32m226629[m bytes
+ ...4312280467_06ac3d30fe0bae0ffcb1ff17f484d864.jpg |   Bin [31m0[m -> [32m222964[m bytes
+ ...4312280467_4191e02810a07573aef93e9d5dca6cc8.jpg |   Bin [31m0[m -> [32m445528[m bytes
+ ...4312280467_41aa218fed22b5b0f62a3c989af8beda.jpg |   Bin [31m0[m -> [32m453777[m bytes
+ ...4312280467_7795e9d798973a77aa626f6ce0dd1066.jpg |   Bin [31m0[m -> [32m447979[m bytes
+ ...4312280467_8877caba52110196f2908aa1820cfd52.jpg |   Bin [31m0[m -> [32m290752[m bytes
+ ...4312280467_50715dbca1949d22202954e22fbc697a.jpg |   Bin [31m0[m -> [32m254231[m bytes
+ ...4312280467_9716ddaa85340d77133084a5c96bbb69.jpg |   Bin [31m0[m -> [32m290022[m bytes
+ ...4312280467_54e6837a3eb43b6a553e1b21408210ff.jpg |   Bin [31m0[m -> [32m269036[m bytes
+ ...4312280467_b0dbfd04785e789e857374fc6a48e3c4.jpg |   Bin [31m0[m -> [32m163089[m bytes
+ ...4312280467_cbae18538c9c80ad9366c690a626bfa6.jpg |   Bin [31m0[m -> [32m146581[m bytes
+ ...4312280467_c8674f204de43843259928b29de9ee75.jpg |   Bin [31m0[m -> [32m168803[m bytes
+ ...4312280467_3272bfd89ca067ff1cfece53966ad887.jpg |   Bin [31m0[m -> [32m153752[m bytes
+ ...4312280467_f0c487720c693bc76fad556c218b3217.jpg |   Bin [31m0[m -> [32m159812[m bytes
+ ...4312280467_2cb7f31f90b9019c39215588cfe5e5ea.jpg |   Bin [31m0[m -> [32m143470[m bytes
+ ...4312280467_88c571d6c7020b4b3684cd20fa2dc4a0.jpg |   Bin [31m0[m -> [32m169115[m bytes
+ ...4312280467_714ee220ecf84d91fbf1cb668732c435.jpg |   Bin [31m0[m -> [32m259319[m bytes
+ ...4312280467_34dc19977ccccb8b80d9fb9934a0bfa1.jpg |   Bin [31m0[m -> [32m257786[m bytes
+ ...4312280467_b1cf1ac9b5d4789d28ea39bf01d386c8.jpg |   Bin [31m0[m -> [32m240061[m bytes
+ .../san-pham/quan-ao-nu/ao/ao-tre-vai/.gitkeep     |     1 [31m-[m
+ .../quan-ao-nu/chan-vay/chan-vay-cargo/.gitkeep    |     1 [31m-[m
+ .../quan-ao-nu/chan-vay/chan-vay-denim/.gitkeep    |     1 [31m-[m
+ .../quan-ao-nu/chan-vay/chan-vay-maxi/.gitkeep     |     1 [31m-[m
+ .../quan-ao-nu/chan-vay/chan-vay-midi/.gitkeep     |     1 [31m-[m
+ .../quan-ao-nu/chan-vay/chan-vay-ngan/.gitkeep     |     1 [31m-[m
+ .../quan-ao-nu/chan-vay/chan-vay-xep-ly/.gitkeep   |     1 [31m-[m
+ .../san-pham/quan-ao-nu/dam/dam-bodycon/.gitkeep   |     1 [31m-[m
+ .../quan-ao-nu/dam/dam-hai-day-slip/.gitkeep       |     1 [31m-[m
+ .../san-pham/quan-ao-nu/dam/dam-maxi/.gitkeep      |     1 [31m-[m
+ .../san-pham/quan-ao-nu/dam/dam-midi/.gitkeep      |     1 [31m-[m
+ .../san-pham/quan-ao-nu/dam/dam-mua-he/.gitkeep    |     1 [31m-[m
+ .../san-pham/quan-ao-nu/dam/dam-ngan/.gitkeep      |     1 [31m-[m
+ .../san-pham/quan-ao-nu/dam/dam-so-mi/.gitkeep     |     1 [31m-[m
+ .../quan-ao-nu/do-bo/do-bo-casual/.gitkeep         |     1 [31m-[m
+ .../quan-ao-nu/do-bo/do-bo-mua-dong/.gitkeep       |     1 [31m-[m
+ .../quan-ao-nu/do-bo/do-bo-mua-he/.gitkeep         |     1 [31m-[m
+ .../quan-ao-nu/do-bo/do-bo-set-matching/.gitkeep   |     1 [31m-[m
+ .../quan-ao-nu/do-bo/do-bo-the-thao/.gitkeep       |     1 [31m-[m
+ .../san-pham/quan-ao-nu/quan/quan-cargo/.gitkeep   |     1 [31m-[m
+ .../quan-ao-nu/quan/quan-jeans/baggy/.gitkeep      |     1 [31m-[m
+ .../quan-ao-nu/quan/quan-jeans/ong-dung/.gitkeep   |     1 [31m-[m
+ .../quan-ao-nu/quan/quan-jeans/ong-loe/.gitkeep    |     1 [31m-[m
+ .../quan-ao-nu/quan/quan-jeans/ong-rong/.gitkeep   |     1 [31m-[m
+ .../quan-ao-nu/quan/quan-jeans/skinny/.gitkeep     |     1 [31m-[m
+ .../san-pham/quan-ao-nu/quan/quan-jogger/.gitkeep  |     1 [31m-[m
+ .../san-pham/quan-ao-nu/quan/quan-legging/.gitkeep |     1 [31m-[m
+ .../san-pham/quan-ao-nu/quan/quan-linen/.gitkeep   |     1 [31m-[m
+ .../quan-ao-nu/quan/quan-short/bermuda/.gitkeep    |     1 [31m-[m
+ .../quan-ao-nu/quan/quan-short/casual/.gitkeep     |     1 [31m-[m
+ .../quan-ao-nu/quan/quan-short/denim/.gitkeep      |     1 [31m-[m
+ .../quan-ao-nu/quan/quan-short/the-thao/.gitkeep   |     1 [31m-[m
+ .../san-pham/quan-ao-nu/quan/quan-tay/.gitkeep     |     1 [31m-[m
+ ...4312280467_5909c50dfc07946bb4538fc2543032ec.jpg |   Bin [31m0[m -> [32m85929[m bytes
+ ...4312280467_ea4b93f04289335bd2991c000ac4b0bc.jpg |   Bin [31m0[m -> [32m149181[m bytes
+ ...4312280467_e4ee3af6c3a1a61a7b8688bde5add4d3.jpg |   Bin [31m0[m -> [32m199899[m bytes
+ ...4312280467_cb20c7261c92bc47c8239bdaec040158.jpg |   Bin [31m0[m -> [32m315289[m bytes
+ ...4312280467_3c303afe6662949f2dcac3c187ba9e30.jpg |   Bin [31m0[m -> [32m311545[m bytes
+ ...4312280467_c4c5967edd0abeddd399ec9d8f38e555.jpg |   Bin [31m0[m -> [32m287669[m bytes
+ ...4312280467_4a081b020a3f5a4c0ab76d2c8288693f.jpg |   Bin [31m0[m -> [32m269028[m bytes
+ ...4312280467_e0d7852e028cfd1727fb43a4965d80fd.jpg |   Bin [31m0[m -> [32m248513[m bytes
+ ...4312280467_be3d8c419c9751bbc95e3d28b46b2fa7.jpg |   Bin [31m0[m -> [32m65969[m bytes
+ ...4312280467_8db29092503d480cdc06b76f37fc1398.jpg |   Bin [31m0[m -> [32m205854[m bytes
+ ...4312280467_f1c59c18cd8eec2119c688ac31089c6d.jpg |   Bin [31m0[m -> [32m195288[m bytes
+ ...4312280467_d91e78b96a301f85108c820eace5d0a7.jpg |   Bin [31m0[m -> [32m84786[m bytes
+ ...4312280467_a8a4057f3e2399e287a457d079256924.jpg |   Bin [31m0[m -> [32m95831[m bytes
+ ...4312280467_9b787940d20a03ac6ac24a97a2970efe.jpg |   Bin [31m0[m -> [32m101206[m bytes
+ public/images/san-pham/quan-ao-nu/vay/1/anh.png    |   Bin [31m0[m -> [32m19629[m bytes
+ public/images/san-pham/quan-ao-nu/vay/10/anh.png   |   Bin [31m0[m -> [32m13212[m bytes
+ public/images/san-pham/quan-ao-nu/vay/11/anh.png   |   Bin [31m0[m -> [32m19910[m bytes
+ public/images/san-pham/quan-ao-nu/vay/12/anh.png   |   Bin [31m0[m -> [32m15425[m bytes
+ public/images/san-pham/quan-ao-nu/vay/13/anh.png   |   Bin [31m0[m -> [32m11550[m bytes
+ public/images/san-pham/quan-ao-nu/vay/14/anh.png   |   Bin [31m0[m -> [32m12026[m bytes
+ public/images/san-pham/quan-ao-nu/vay/15/anh.png   |   Bin [31m0[m -> [32m10867[m bytes
+ public/images/san-pham/quan-ao-nu/vay/16/anh.png   |   Bin [31m0[m -> [32m14385[m bytes
+ public/images/san-pham/quan-ao-nu/vay/17/anh.png   |   Bin [31m0[m -> [32m20376[m bytes
+ public/images/san-pham/quan-ao-nu/vay/18/anh.png   |   Bin [31m0[m -> [32m18760[m bytes
+ public/images/san-pham/quan-ao-nu/vay/19/anh.png   |   Bin [31m0[m -> [32m14490[m bytes
+ public/images/san-pham/quan-ao-nu/vay/2/anh.png    |   Bin [31m0[m -> [32m18932[m bytes
+ public/images/san-pham/quan-ao-nu/vay/20/anh.png   |   Bin [31m0[m -> [32m10769[m bytes
+ public/images/san-pham/quan-ao-nu/vay/21/anh.png   |   Bin [31m0[m -> [32m10564[m bytes
+ public/images/san-pham/quan-ao-nu/vay/22/anh.png   |   Bin [31m0[m -> [32m10759[m bytes
+ public/images/san-pham/quan-ao-nu/vay/23/anh.png   |   Bin [31m0[m -> [32m9793[m bytes
+ public/images/san-pham/quan-ao-nu/vay/24/anh.png   |   Bin [31m0[m -> [32m14839[m bytes
+ public/images/san-pham/quan-ao-nu/vay/25/anh.png   |   Bin [31m0[m -> [32m10666[m bytes
+ public/images/san-pham/quan-ao-nu/vay/26/anh.png   |   Bin [31m0[m -> [32m16643[m bytes
+ public/images/san-pham/quan-ao-nu/vay/27/anh.png   |   Bin [31m0[m -> [32m16892[m bytes
+ public/images/san-pham/quan-ao-nu/vay/28/anh.png   |   Bin [31m0[m -> [32m17248[m bytes
+ public/images/san-pham/quan-ao-nu/vay/29/anh.png   |   Bin [31m0[m -> [32m12205[m bytes
+ public/images/san-pham/quan-ao-nu/vay/3/anh.png    |   Bin [31m0[m -> [32m15088[m bytes
+ public/images/san-pham/quan-ao-nu/vay/30/anh.png   |   Bin [31m0[m -> [32m20149[m bytes
+ public/images/san-pham/quan-ao-nu/vay/31/anh.png   |   Bin [31m0[m -> [32m13919[m bytes
+ public/images/san-pham/quan-ao-nu/vay/32/anh.png   |   Bin [31m0[m -> [32m8827[m bytes
+ public/images/san-pham/quan-ao-nu/vay/33/anh.png   |   Bin [31m0[m -> [32m14503[m bytes
+ public/images/san-pham/quan-ao-nu/vay/34/anh.png   |   Bin [31m0[m -> [32m17227[m bytes
+ public/images/san-pham/quan-ao-nu/vay/35/anh.png   |   Bin [31m0[m -> [32m18951[m bytes
+ public/images/san-pham/quan-ao-nu/vay/36/anh.png   |   Bin [31m0[m -> [32m15932[m bytes
+ public/images/san-pham/quan-ao-nu/vay/37/anh.png   |   Bin [31m0[m -> [32m43283[m bytes
+ public/images/san-pham/quan-ao-nu/vay/38/anh.png   |   Bin [31m0[m -> [32m38980[m bytes
+ public/images/san-pham/quan-ao-nu/vay/39/anh.png   |   Bin [31m0[m -> [32m35107[m bytes
+ public/images/san-pham/quan-ao-nu/vay/4/anh.png    |   Bin [31m0[m -> [32m14528[m bytes
+ public/images/san-pham/quan-ao-nu/vay/40/anh.png   |   Bin [31m0[m -> [32m49891[m bytes
+ public/images/san-pham/quan-ao-nu/vay/41/anh.png   |   Bin [31m0[m -> [32m44511[m bytes
+ public/images/san-pham/quan-ao-nu/vay/42/anh.png   |   Bin [31m0[m -> [32m48652[m bytes
+ public/images/san-pham/quan-ao-nu/vay/43/anh.png   |   Bin [31m0[m -> [32m56473[m bytes
+ public/images/san-pham/quan-ao-nu/vay/44/anh.png   |   Bin [31m0[m -> [32m52151[m bytes
+ public/images/san-pham/quan-ao-nu/vay/45/anh.png   |   Bin [31m0[m -> [32m31772[m bytes
+ public/images/san-pham/quan-ao-nu/vay/46/anh.png   |   Bin [31m0[m -> [32m44595[m bytes
+ public/images/san-pham/quan-ao-nu/vay/47/anh.png   |   Bin [31m0[m -> [32m32388[m bytes
+ public/images/san-pham/quan-ao-nu/vay/48/anh.png   |   Bin [31m0[m -> [32m45838[m bytes
+ public/images/san-pham/quan-ao-nu/vay/49/anh.png   |   Bin [31m0[m -> [32m52817[m bytes
+ public/images/san-pham/quan-ao-nu/vay/5/anh.png    |   Bin [31m0[m -> [32m10479[m bytes
+ public/images/san-pham/quan-ao-nu/vay/50/anh.png   |   Bin [31m0[m -> [32m45583[m bytes
+ public/images/san-pham/quan-ao-nu/vay/51/anh.png   |   Bin [31m0[m -> [32m37099[m bytes
+ public/images/san-pham/quan-ao-nu/vay/52/anh.png   |   Bin [31m0[m -> [32m48994[m bytes
+ public/images/san-pham/quan-ao-nu/vay/53/anh.png   |   Bin [31m0[m -> [32m144608[m bytes
+ public/images/san-pham/quan-ao-nu/vay/54/anh.png   |   Bin [31m0[m -> [32m131842[m bytes
+ public/images/san-pham/quan-ao-nu/vay/55/anh.png   |   Bin [31m0[m -> [32m127150[m bytes
+ public/images/san-pham/quan-ao-nu/vay/56/anh.png   |   Bin [31m0[m -> [32m142742[m bytes
+ public/images/san-pham/quan-ao-nu/vay/57/anh.png   |   Bin [31m0[m -> [32m139895[m bytes
+ public/images/san-pham/quan-ao-nu/vay/58/anh.png   |   Bin [31m0[m -> [32m136524[m bytes
+ public/images/san-pham/quan-ao-nu/vay/59/anh.png   |   Bin [31m0[m -> [32m141685[m bytes
+ public/images/san-pham/quan-ao-nu/vay/6/anh.png    |   Bin [31m0[m -> [32m8749[m bytes
+ public/images/san-pham/quan-ao-nu/vay/60/anh.png   |   Bin [31m0[m -> [32m140976[m bytes
+ public/images/san-pham/quan-ao-nu/vay/61/anh.png   |   Bin [31m0[m -> [32m146947[m bytes
+ public/images/san-pham/quan-ao-nu/vay/62/anh.png   |   Bin [31m0[m -> [32m26394[m bytes
+ public/images/san-pham/quan-ao-nu/vay/63/anh.png   |   Bin [31m0[m -> [32m30905[m bytes
+ public/images/san-pham/quan-ao-nu/vay/64/anh.png   |   Bin [31m0[m -> [32m43908[m bytes
+ public/images/san-pham/quan-ao-nu/vay/65/anh.png   |   Bin [31m0[m -> [32m23391[m bytes
+ public/images/san-pham/quan-ao-nu/vay/66/anh.png   |   Bin [31m0[m -> [32m33125[m bytes
+ public/images/san-pham/quan-ao-nu/vay/67/anh.png   |   Bin [31m0[m -> [32m26277[m bytes
+ public/images/san-pham/quan-ao-nu/vay/68/anh.png   |   Bin [31m0[m -> [32m31004[m bytes
+ public/images/san-pham/quan-ao-nu/vay/69/anh.png   |   Bin [31m0[m -> [32m24495[m bytes
+ public/images/san-pham/quan-ao-nu/vay/7/anh.png    |   Bin [31m0[m -> [32m13747[m bytes
+ public/images/san-pham/quan-ao-nu/vay/70/anh.png   |   Bin [31m0[m -> [32m37368[m bytes
+ public/images/san-pham/quan-ao-nu/vay/71/anh.png   |   Bin [31m0[m -> [32m25670[m bytes
+ public/images/san-pham/quan-ao-nu/vay/72/anh.png   |   Bin [31m0[m -> [32m32227[m bytes
+ public/images/san-pham/quan-ao-nu/vay/73/anh.png   |   Bin [31m0[m -> [32m23506[m bytes
+ public/images/san-pham/quan-ao-nu/vay/74/anh.png   |   Bin [31m0[m -> [32m33545[m bytes
+ public/images/san-pham/quan-ao-nu/vay/75/anh.png   |   Bin [31m0[m -> [32m28976[m bytes
+ public/images/san-pham/quan-ao-nu/vay/76/anh.png   |   Bin [31m0[m -> [32m27157[m bytes
+ public/images/san-pham/quan-ao-nu/vay/77/anh.png   |   Bin [31m0[m -> [32m25639[m bytes
+ public/images/san-pham/quan-ao-nu/vay/78/anh.png   |   Bin [31m0[m -> [32m31469[m bytes
+ public/images/san-pham/quan-ao-nu/vay/79/anh.png   |   Bin [31m0[m -> [32m19044[m bytes
+ public/images/san-pham/quan-ao-nu/vay/8/anh.png    |   Bin [31m0[m -> [32m14331[m bytes
+ public/images/san-pham/quan-ao-nu/vay/80/anh.png   |   Bin [31m0[m -> [32m32159[m bytes
+ public/images/san-pham/quan-ao-nu/vay/81/anh.png   |   Bin [31m0[m -> [32m18178[m bytes
+ public/images/san-pham/quan-ao-nu/vay/82/anh.png   |   Bin [31m0[m -> [32m30375[m bytes
+ public/images/san-pham/quan-ao-nu/vay/83/anh.png   |   Bin [31m0[m -> [32m17354[m bytes
+ public/images/san-pham/quan-ao-nu/vay/84/anh.png   |   Bin [31m0[m -> [32m27077[m bytes
+ public/images/san-pham/quan-ao-nu/vay/85/anh.png   |   Bin [31m0[m -> [32m15931[m bytes
+ public/images/san-pham/quan-ao-nu/vay/86/anh.png   |   Bin [31m0[m -> [32m20904[m bytes
+ public/images/san-pham/quan-ao-nu/vay/87/anh.png   |   Bin [31m0[m -> [32m12687[m bytes
+ public/images/san-pham/quan-ao-nu/vay/88/anh.png   |   Bin [31m0[m -> [32m28868[m bytes
+ public/images/san-pham/quan-ao-nu/vay/89/anh.png   |   Bin [31m0[m -> [32m28965[m bytes
+ public/images/san-pham/quan-ao-nu/vay/9/anh.png    |   Bin [31m0[m -> [32m15836[m bytes
+ public/images/san-pham/quan-ao-nu/vay/90/anh.png   |   Bin [31m0[m -> [32m24432[m bytes
+ public/images/san-pham/quan-ao-nu/vay/91/anh.png   |   Bin [31m0[m -> [32m29573[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_1.png    |   Bin [31m0[m -> [32m237402[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_1.webp   |   Bin [31m0[m -> [32m21240[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_10.png   |   Bin [31m0[m -> [32m138197[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_10.webp  |   Bin [31m0[m -> [32m12854[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_11.png   |   Bin [31m0[m -> [32m222527[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_11.webp  |   Bin [31m0[m -> [32m20436[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_12.png   |   Bin [31m0[m -> [32m156992[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_12.webp  |   Bin [31m0[m -> [32m14528[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_13.png   |   Bin [31m0[m -> [32m92695[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_13.webp  |   Bin [31m0[m -> [32m9906[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_14.png   |   Bin [31m0[m -> [32m86841[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_14.webp  |   Bin [31m0[m -> [32m11692[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_15.png   |   Bin [31m0[m -> [32m105872[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_15.webp  |   Bin [31m0[m -> [32m10560[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_16.png   |   Bin [31m0[m -> [32m139712[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_16.webp  |   Bin [31m0[m -> [32m13782[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_17.png   |   Bin [31m0[m -> [32m232134[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_17.webp  |   Bin [31m0[m -> [32m22032[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_18.png   |   Bin [31m0[m -> [32m205843[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_18.webp  |   Bin [31m0[m -> [32m20068[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_19.png   |   Bin [31m0[m -> [32m154865[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_19.webp  |   Bin [31m0[m -> [32m14000[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_2.png    |   Bin [31m0[m -> [32m230537[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_2.webp   |   Bin [31m0[m -> [32m21258[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_20.png   |   Bin [31m0[m -> [32m117542[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_20.webp  |   Bin [31m0[m -> [32m10836[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_21.png   |   Bin [31m0[m -> [32m78224[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_21.webp  |   Bin [31m0[m -> [32m10302[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_22.png   |   Bin [31m0[m -> [32m90346[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_22.webp  |   Bin [31m0[m -> [32m11062[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_23.png   |   Bin [31m0[m -> [32m83220[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_23.webp  |   Bin [31m0[m -> [32m9148[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_24.png   |   Bin [31m0[m -> [32m160026[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_24.webp  |   Bin [31m0[m -> [32m14560[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_25.png   |   Bin [31m0[m -> [32m90676[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_25.webp  |   Bin [31m0[m -> [32m10924[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_26.png   |   Bin [31m0[m -> [32m171500[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_26.webp  |   Bin [31m0[m -> [32m16712[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_27.png   |   Bin [31m0[m -> [32m187008[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_27.webp  |   Bin [31m0[m -> [32m17308[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_28.png   |   Bin [31m0[m -> [32m200581[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_28.webp  |   Bin [31m0[m -> [32m19076[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_29.png   |   Bin [31m0[m -> [32m122063[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_29.webp  |   Bin [31m0[m -> [32m11596[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_3.png    |   Bin [31m0[m -> [32m154402[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_3.webp   |   Bin [31m0[m -> [32m17664[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_30.png   |   Bin [31m0[m -> [32m240560[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_30.webp  |   Bin [31m0[m -> [32m23482[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_31.png   |   Bin [31m0[m -> [32m149864[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_31.webp  |   Bin [31m0[m -> [32m13572[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_32.png   |   Bin [31m0[m -> [32m84532[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_32.webp  |   Bin [31m0[m -> [32m9134[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_33.png   |   Bin [31m0[m -> [32m129589[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_33.webp  |   Bin [31m0[m -> [32m15688[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_34.png   |   Bin [31m0[m -> [32m198871[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_34.webp  |   Bin [31m0[m -> [32m17892[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_35.png   |   Bin [31m0[m -> [32m225024[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_35.webp  |   Bin [31m0[m -> [32m21332[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_36.png   |   Bin [31m0[m -> [32m172335[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_36.webp  |   Bin [31m0[m -> [32m16684[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_37.png   |   Bin [31m0[m -> [32m298760[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_37.webp  |   Bin [31m0[m -> [32m28688[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_38.png   |   Bin [31m0[m -> [32m249852[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_38.webp  |   Bin [31m0[m -> [32m21362[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_39.png   |   Bin [31m0[m -> [32m211356[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_39.webp  |   Bin [31m0[m -> [32m19234[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_4.png    |   Bin [31m0[m -> [32m144765[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_4.webp   |   Bin [31m0[m -> [32m15476[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_40.png   |   Bin [31m0[m -> [32m335457[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_40.webp  |   Bin [31m0[m -> [32m30748[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_41.png   |   Bin [31m0[m -> [32m306184[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_41.webp  |   Bin [31m0[m -> [32m31340[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_42.png   |   Bin [31m0[m -> [32m311396[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_42.webp  |   Bin [31m0[m -> [32m30682[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_43.png   |   Bin [31m0[m -> [32m377631[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_43.webp  |   Bin [31m0[m -> [32m37764[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_44.png   |   Bin [31m0[m -> [32m356193[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_44.webp  |   Bin [31m0[m -> [32m35964[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_45.png   |   Bin [31m0[m -> [32m197668[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_45.webp  |   Bin [31m0[m -> [32m18248[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_46.png   |   Bin [31m0[m -> [32m302297[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_46.webp  |   Bin [31m0[m -> [32m29360[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_47.png   |   Bin [31m0[m -> [32m198209[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_47.webp  |   Bin [31m0[m -> [32m16522[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_48.png   |   Bin [31m0[m -> [32m310782[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_48.webp  |   Bin [31m0[m -> [32m29006[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_49.png   |   Bin [31m0[m -> [32m362101[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_49.webp  |   Bin [31m0[m -> [32m37508[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_5.png    |   Bin [31m0[m -> [32m84341[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_5.webp   |   Bin [31m0[m -> [32m10138[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_50.png   |   Bin [31m0[m -> [32m305804[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_50.webp  |   Bin [31m0[m -> [32m30102[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_51.png   |   Bin [31m0[m -> [32m242695[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_51.webp  |   Bin [31m0[m -> [32m21704[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_52.png   |   Bin [31m0[m -> [32m328664[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_52.webp  |   Bin [31m0[m -> [32m34976[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_53.png   |   Bin [31m0[m -> [32m466394[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_53.webp  |   Bin [31m0[m -> [32m62204[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_54.png   |   Bin [31m0[m -> [32m414920[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_54.webp  |   Bin [31m0[m -> [32m55126[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_55.png   |   Bin [31m0[m -> [32m422680[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_55.webp  |   Bin [31m0[m -> [32m57088[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_56.png   |   Bin [31m0[m -> [32m448625[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_56.webp  |   Bin [31m0[m -> [32m61100[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_57.png   |   Bin [31m0[m -> [32m455389[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_57.webp  |   Bin [31m0[m -> [32m58530[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_58.png   |   Bin [31m0[m -> [32m438524[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_58.webp  |   Bin [31m0[m -> [32m58880[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_59.png   |   Bin [31m0[m -> [32m460282[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_59.webp  |   Bin [31m0[m -> [32m60322[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_6.png    |   Bin [31m0[m -> [32m134381[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_6.webp   |   Bin [31m0[m -> [32m18442[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_60.png   |   Bin [31m0[m -> [32m454088[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_60.webp  |   Bin [31m0[m -> [32m59386[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_61.png   |   Bin [31m0[m -> [32m481457[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_61.webp  |   Bin [31m0[m -> [32m64520[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_62.png   |   Bin [31m0[m -> [32m228877[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_62.webp  |   Bin [31m0[m -> [32m26006[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_63.png   |   Bin [31m0[m -> [32m280311[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_63.webp  |   Bin [31m0[m -> [32m30006[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_64.png   |   Bin [31m0[m -> [32m406311[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_64.webp  |   Bin [31m0[m -> [32m48604[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_65.png   |   Bin [31m0[m -> [32m180645[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_65.webp  |   Bin [31m0[m -> [32m21382[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_66.png   |   Bin [31m0[m -> [32m296415[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_66.webp  |   Bin [31m0[m -> [32m31894[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_67.png   |   Bin [31m0[m -> [32m223178[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_67.webp  |   Bin [31m0[m -> [32m26038[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_68.png   |   Bin [31m0[m -> [32m277691[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_68.webp  |   Bin [31m0[m -> [32m28930[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_69.png   |   Bin [31m0[m -> [32m201646[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_69.webp  |   Bin [31m0[m -> [32m22912[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_7.png    |   Bin [31m0[m -> [32m145168[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_7.webp   |   Bin [31m0[m -> [32m13402[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_70.png   |   Bin [31m0[m -> [32m365191[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_70.webp  |   Bin [31m0[m -> [32m34778[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_71.png   |   Bin [31m0[m -> [32m208485[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_71.webp  |   Bin [31m0[m -> [32m24596[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_72.png   |   Bin [31m0[m -> [32m298656[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_72.webp  |   Bin [31m0[m -> [32m31358[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_73.png   |   Bin [31m0[m -> [32m194163[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_73.webp  |   Bin [31m0[m -> [32m23258[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_74.png   |   Bin [31m0[m -> [32m346164[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_74.webp  |   Bin [31m0[m -> [32m32868[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_75.png   |   Bin [31m0[m -> [32m263146[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_75.webp  |   Bin [31m0[m -> [32m28954[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_76.png   |   Bin [31m0[m -> [32m246010[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_76.webp  |   Bin [31m0[m -> [32m26420[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_77.png   |   Bin [31m0[m -> [32m208518[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_77.webp  |   Bin [31m0[m -> [32m27586[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_78.png   |   Bin [31m0[m -> [32m295748[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_78.webp  |   Bin [31m0[m -> [32m30478[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_79.png   |   Bin [31m0[m -> [32m165569[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_79.webp  |   Bin [31m0[m -> [32m18474[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_8.png    |   Bin [31m0[m -> [32m145427[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_8.webp   |   Bin [31m0[m -> [32m14518[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_80.png   |   Bin [31m0[m -> [32m292593[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_80.webp  |   Bin [31m0[m -> [32m32114[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_81.png   |   Bin [31m0[m -> [32m160729[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_81.webp  |   Bin [31m0[m -> [32m17734[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_82.png   |   Bin [31m0[m -> [32m321311[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_82.webp  |   Bin [31m0[m -> [32m34452[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_83.png   |   Bin [31m0[m -> [32m173925[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_83.webp  |   Bin [31m0[m -> [32m18392[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_84.png   |   Bin [31m0[m -> [32m311062[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_84.webp  |   Bin [31m0[m -> [32m30676[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_85.png   |   Bin [31m0[m -> [32m139105[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_85.webp  |   Bin [31m0[m -> [32m17072[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_86.png   |   Bin [31m0[m -> [32m202506[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_86.webp  |   Bin [31m0[m -> [32m20772[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_87.png   |   Bin [31m0[m -> [32m137415[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_87.webp  |   Bin [31m0[m -> [32m14606[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_88.png   |   Bin [31m0[m -> [32m364806[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_88.webp  |   Bin [31m0[m -> [32m35344[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_89.png   |   Bin [31m0[m -> [32m368021[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_89.webp  |   Bin [31m0[m -> [32m32642[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_9.png    |   Bin [31m0[m -> [32m181481[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_9.webp   |   Bin [31m0[m -> [32m18568[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_90.png   |   Bin [31m0[m -> [32m279289[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_90.webp  |   Bin [31m0[m -> [32m28548[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_91.png   |   Bin [31m0[m -> [32m364704[m bytes
+ .../san-pham/quan-ao-nu/vay_optimized/vay_91.webp  |   Bin [31m0[m -> [32m34870[m bytes
+ pyrightconfig.json                                 |    15 [32m+[m
+ requirements.txt                                   |     1 [32m+[m
+ scripts/check_sample_paths.py                      |    41 [32m+[m
+ scripts/enhance_dress_images.py                    |   141 [32m+[m
+ scripts/inspect_colors_clustering.py               |    64 [32m+[m
+ scripts/inspect_current_imported.py                |    45 [32m+[m
+ scripts/inspect_pants_and_skirts.py                |    53 [32m+[m
+ scripts/inspect_quan_vay.py                        |    27 [32m+[m
+ scripts/inspect_women_images.py                    |    45 [32m+[m
+ scripts/products-analyze.py                        |   523 [32m+[m[31m-[m
+ scripts/products-audit.py                          |     6 [32m+[m[31m-[m
+ scripts/products-scan.py                           |   152 [32m+[m[31m-[m
+ scripts/products-sync.py                           |   286 [32m+[m[31m-[m
+ scripts/test_clustering_all.py                     |   255 [32m+[m
+ scripts/test_routes_dom.py                         |    27 [32m+[m
+ scripts/test_women_colors.py                       |    46 [32m+[m
+ scripts/verify_carousel_and_enhancement.py         |    71 [32m+[m
+ src/App.tsx                                        |    13 [32m+[m[31m-[m
+ src/components/common/ErrorBoundary.tsx            |   104 [32m+[m
+ src/components/common/ProductCard.tsx              |   200 [32m+[m[31m-[m
+ src/components/common/QuickViewModal.tsx           |   196 [32m+[m[31m-[m
+ src/components/layout/SiteHeader.tsx               |   121 [32m+[m[31m-[m
+ src/components/layout/StoreLayout.tsx              |    32 [32m+[m[31m-[m
+ src/constants/categories.ts                        |   548 [32m+[m[31m-[m
+ .../admin/categories/pages/AdminCategoriesPage.tsx |   446 [32m+[m[31m-[m
+ .../admin/pricing/pages/AdminPricingPage.tsx       |   517 [32m+[m[31m-[m
+ src/features/catalog/pages/CatalogPage.tsx         |   591 [32m+[m[31m-[m
+ src/features/catalog/pages/ProductDetailPage.tsx   |   203 [32m+[m[31m-[m
+ src/features/home/pages/HomePage.tsx               |   181 [32m+[m[31m-[m
+ src/mocks/backup/legacy_women_seed_backup.json     |   219 [32m+[m
+ src/mocks/colorAuditReport.json                    |     8 [32m+[m[31m-[m
+ src/mocks/duplicateReport.json                     |  7137 [32m+[m[31m-[m
+ src/mocks/genzCategories.ts                        |    54 [32m+[m
+ src/mocks/importedProducts.json                    | 96301 [32m+++++++++++++++++++[m
+ src/mocks/importedProducts.ts                      | 53810 [32m+[m[31m----------[m
+ src/mocks/pricingRegistry.json                     |  2938 [32m+[m[31m-[m
+ src/mocks/repository.ts                            |    27 [32m+[m[31m-[m
+ src/services/productService.ts                     |    91 [32m+[m[31m-[m
+ src/types/index.ts                                 |     4 [32m+[m
+ tsconfig.app.json                                  |     3 [32m+[m[31m-[m
+ 516 files changed, 128096 insertions(+), 61121 deletions(-)

@@ -10,6 +10,7 @@ interface ProductCardProps {
   onQuickView?: (product: Product, initialImageIndex?: number) => void;
   onToggleCompare?: (product: Product) => void;
   isCompared?: boolean;
+  showPrice?: boolean;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -17,6 +18,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onQuickView,
   onToggleCompare,
   isCompared = false,
+  showPrice = true,
 }) => {
   if (!product) return null;
 
@@ -324,33 +326,48 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </div>
           )}
 
-          {/* Giá & Giảm giá */}
-          <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#F2F3F5]">
-            <div className="flex items-baseline gap-1.5 flex-wrap">
-              {currentPrice && currentPrice > 0 ? (
-                <>
-                  <span className="text-sm sm:text-base font-bold text-[#18181B]">
-                    {formatPrice(currentPrice)}
-                  </span>
-                  {originalPrice && originalPrice > currentPrice && (
-                    <span className="text-[11px] text-[#A1A1AA] line-through">
-                      {formatPrice(originalPrice)}
+          {/* Giá & Giảm giá hoặc Nút Chi tiết */}
+          {showPrice ? (
+            <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#F2F3F5]">
+              <div className="flex items-baseline gap-1.5 flex-wrap">
+                {currentPrice && currentPrice > 0 ? (
+                  <>
+                    <span className="text-sm sm:text-base font-bold text-[#18181B]">
+                      {formatPrice(currentPrice)}
                     </span>
-                  )}
-                </>
-              ) : (
-                <span className="text-xs sm:text-sm font-semibold text-[#71717A] italic">
-                  Liên hệ / Đang cập nhật
+                    {originalPrice && originalPrice > currentPrice && (
+                      <span className="text-[11px] text-[#A1A1AA] line-through">
+                        {formatPrice(originalPrice)}
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <span className="text-xs sm:text-sm font-semibold text-[#71717A] italic">
+                    Liên hệ / Đang cập nhật
+                  </span>
+                )}
+              </div>
+
+              {currentPrice && currentPrice > 0 && originalPrice && originalPrice > currentPrice && (
+                <span className="text-[10px] font-bold text-[#7C3AED] bg-[#F3E8FF] px-1.5 py-0.5 rounded-sm shrink-0">
+                  -{Math.round(((originalPrice - currentPrice) / originalPrice) * 100)}%
                 </span>
               )}
             </div>
-
-            {currentPrice && currentPrice > 0 && originalPrice && originalPrice > currentPrice && (
-              <span className="text-[10px] font-bold text-[#7C3AED] bg-[#F3E8FF] px-1.5 py-0.5 rounded-sm shrink-0">
-                -{Math.round(((originalPrice - currentPrice) / originalPrice) * 100)}%
+          ) : (
+            <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#F2F3F5]">
+              <span className="text-[11px] font-bold text-[#8B5CF6] uppercase tracking-wider truncate max-w-[120px]">
+                {product.brand || 'SMARTBUY AI'}
               </span>
-            )}
-          </div>
+              <Link
+                to={`/products/${product.slug}`}
+                className="text-xs font-bold text-[#18181B] hover:text-[#8B5CF6] transition-colors flex items-center gap-1 group/btn shrink-0"
+              >
+                <span>Chi tiết</span>
+                <span className="transition-transform group-hover/btn:translate-x-0.5">→</span>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

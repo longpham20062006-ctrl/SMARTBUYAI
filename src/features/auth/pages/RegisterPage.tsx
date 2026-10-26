@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { MockRepo } from '@/mocks/repository';
 import { useToast } from '@/components/ui/toast';
 import { Eye, EyeOff } from 'lucide-react';
+import { BrandLogo } from '@/components/common/BrandLogo';
 
 export const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ export const RegisterPage: React.FC = () => {
         phone,
       });
       success('Đăng ký tài khoản thành công', `Chào mừng ${name} đến với SMARTBUY AI!`);
-      navigate('/account');
+      navigate('/');
     }
   };
 
@@ -43,12 +44,10 @@ export const RegisterPage: React.FC = () => {
         {/* Form đăng ký */}
         <div className="p-8 sm:p-10 flex flex-col justify-between space-y-6">
           <div>
-            <div className="flex items-center justify-between">
-              <span className="text-xs uppercase font-bold tracking-widest text-brand-forest">
-                Thành viên mới
-              </span>
+            <div className="flex items-center justify-between mb-4">
+              <BrandLogo variant="header" />
               <span className="text-[10px] bg-brand-sand px-2 py-0.5 rounded-sm font-semibold text-brand-secondary">
-                Chế độ mô phỏng demo
+                Demo
               </span>
             </div>
 

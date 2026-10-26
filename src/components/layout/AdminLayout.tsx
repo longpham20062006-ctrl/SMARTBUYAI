@@ -24,6 +24,7 @@ import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 import { useToast } from '@/components/ui/toast';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { ScrollToTop } from '@/components/common/ScrollToTop';
+import { BrandLogo } from '@/components/common/BrandLogo';
 
 export const AdminLayout: React.FC = () => {
   useRepoSubscription(['products', 'orders', 'inventory', 'auth']);
@@ -70,14 +71,7 @@ export const AdminLayout: React.FC = () => {
         <div className="flex flex-col h-full overflow-y-auto scrollbar-none p-4 space-y-4">
           {/* Top Logo & Switcher */}
           <div className="flex items-center justify-between pb-1 px-1">
-            <Link to="/admin" className="flex items-center gap-1.5 group select-none">
-              <span className="font-sans text-xl font-black tracking-tight text-[#18181B] group-hover:text-[#8B5CF6] transition-colors">
-                SMARTBUY
-              </span>
-              <span className="text-[10px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#8B5CF6] text-white">
-                AI
-              </span>
-            </Link>
+            <BrandLogo variant="compact" href="/admin" />
 
             <button
               onClick={() => setIsSidebarOpen(false)}

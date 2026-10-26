@@ -17,6 +17,7 @@ import {
 import { cn } from '@/lib/utils';
 import { Drawer } from '@/components/ui/drawer';
 import { CartDrawer } from '@/components/common/CartDrawer';
+import { BrandLogo } from '@/components/common/BrandLogo';
 import { GENZ_COLLECTIONS, GENZ_CATEGORIES } from '@/mocks/genzCategories';
 
 export const SiteHeader: React.FC = () => {
@@ -81,7 +82,8 @@ export const SiteHeader: React.FC = () => {
   const currentSort = searchParams.get('sort');
 
   // Xác định chính xác duy nhất 1 tab active theo route thực tế:
-  const getActiveTab = (): 'nam' | 'nu' | 'unisex' | 'phu-kien' | 'collections' | 'trending' | 'size-guide' | 'try-on' | null => {
+  const getActiveTab = (): 'home' | 'nam' | 'nu' | 'unisex' | 'phu-kien' | 'collections' | 'trending' | 'size-guide' | 'try-on' | null => {
+    if (currentPath === '/') return 'home';
     if (currentPath === '/size-guide') return 'size-guide';
     if (currentPath === '/try-on' || currentPath.startsWith('/virtual-try-on')) return 'try-on';
     if (currentPath.startsWith('/collections')) return 'collections';
@@ -120,12 +122,12 @@ export const SiteHeader: React.FC = () => {
             isScrolled ? 'max-h-0 py-0 opacity-0 border-transparent' : 'max-h-10 py-1.5 opacity-100'
           )}
         >
-          <div className="max-w-container mx-auto w-full flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="bg-[#8B5CF6] text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded-sm tracking-wider">
+          <div className="max-w-container mx-auto w-full flex items-center justify-between min-w-0">
+            <div className="flex items-center gap-2 truncate min-w-0">
+              <span className="bg-[#8B5CF6] text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded-sm tracking-wider shrink-0">
                 NEW DROP
               </span>
-              <span className="text-[#D4D4D8]">FREESHIP ĐƠN TỪ 299K • ĐỔI SIZE 15 NGÀY TẬN NƠI</span>
+              <span className="text-[#D4D4D8] truncate text-[10px] sm:text-[11px]">FREESHIP ĐƠN TỪ 299K • ĐỔI SIZE 15 NGÀY TẬN NƠI</span>
             </div>
             <div className="hidden md:flex items-center gap-4 text-[#A1A1AA]">
               <span>MẶC CHẤT THEO CÁCH RIÊNG</span>
@@ -134,166 +136,72 @@ export const SiteHeader: React.FC = () => {
           </div>
         </div>
 
-        {/* Main Navbar */}
+        {/* TẦNG 1: LOGO LỚN RÕ RÀNG | SEARCH BAR HIỆN ĐẠI | TIỆN ÍCH MUA SẮM */}
         <div
           className={cn(
-            'max-w-container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 transition-all duration-300',
+            'max-w-container mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-4 transition-all duration-300',
             isScrolled ? 'h-16' : 'h-18 sm:h-20'
           )}
         >
           {/* Mobile menu trigger */}
-          <div className="flex items-center lg:hidden">
+          <div className="flex items-center lg:hidden shrink-0">
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="p-2 -ml-2 text-[#18181B] hover:text-[#8B5CF6] transition-colors cursor-pointer"
+              className="p-1.5 -ml-1 text-[#18181B] hover:text-[#8B5CF6] transition-colors cursor-pointer"
               aria-label="Mở menu điều hướng"
             >
               <Menu className="w-5 h-5" />
             </button>
           </div>
 
-          {/* LOGO THƯƠNG HIỆU (Góc trái riêng biệt, phóng to 35-40%) */}
-          <div className="flex items-center shrink-0 pr-4 lg:pr-8">
-            <Link to="/" className="flex flex-col items-start select-none group" aria-label="SMARTBUY AI Trang chủ">
-              <div className="flex items-center gap-1.5 leading-none">
-                <span className="font-sans text-2xl sm:text-3xl font-black tracking-tighter text-[#18181B] group-hover:text-[#8B5CF6] transition-colors">
-                  SMARTBUY
-                </span>
-                <span className="text-xs sm:text-sm font-black uppercase tracking-wider px-2 py-0.5 rounded bg-[#8B5CF6] text-white shadow-subtle">
-                  AI
-                </span>
-              </div>
-              <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.25em] text-[#71717A] mt-1 hidden sm:inline">
-                PREMIUM STREETWEAR
-              </span>
-            </Link>
+          {/* LOGO THƯƠNG HIỆU LỚN, RÕ RÀNG, NỔI BẬT (Không khung đen, không viền) */}
+          <div className="flex items-center shrink min-w-0 pr-1 sm:pr-4">
+            <BrandLogo variant="header" showTagline={false} />
           </div>
 
-          {/* Ở GIỮA: DESKTOP NAVIGATION (NAM | NỮ | UNISEX | PHỤ KIỆN | BỘ SƯU TẬP | XU HƯỚNG | BẢNG KÍCH CỠ | THỬ ĐỒ AI) */}
-          <nav className="hidden lg:flex items-center justify-center gap-2 mx-auto">
-            <Link to="/products?gender=nam" className={getTabClass(activeTab === 'nam')}>
-              Nam
-            </Link>
-            <Link to="/products?gender=nu" className={getTabClass(activeTab === 'nu')}>
-              Nữ
-            </Link>
-            <Link to="/products?gender=unisex" className={getTabClass(activeTab === 'unisex')}>
-              Unisex
-            </Link>
-            <Link to="/products?category=phu-kien" className={getTabClass(activeTab === 'phu-kien')}>
-              Phụ kiện
-            </Link>
-
-            {/* Mega Menu Dropdown Bộ sưu tập */}
-            <div
-              className="relative"
-              onMouseEnter={() => setIsMegaMenuOpen(true)}
-              onMouseLeave={() => setIsMegaMenuOpen(false)}
-            >
-              <button
-                className={cn(
-                  'flex items-center gap-1 text-xs uppercase tracking-wider font-bold px-3.5 py-1.5 rounded-xl transition-all duration-150 cursor-pointer select-none',
-                  activeTab === 'collections' || isMegaMenuOpen
-                    ? 'bg-[#8B5CF6] text-white shadow-xs'
-                    : 'text-[#52525B] hover:text-[#18181B] hover:bg-[#F4F4F5]'
+          {/* Ở GIỮA: THANH TÌM KIẾM RÕ RÀNG, HIỆN ĐẠI (Desktop) */}
+          <div className="hidden lg:flex flex-1 max-w-xl mx-4">
+            <form onSubmit={handleSearchSubmit} className="relative w-full">
+              <div className="relative flex items-center w-full">
+                <Search className="absolute left-3.5 w-4 h-4 text-[#71717A] pointer-events-none" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Tìm áo thun, hoodie, váy, quần jeans..."
+                  className="w-full pl-10 pr-10 py-2.5 text-xs sm:text-sm bg-[#F4F4F5] hover:bg-[#EFEFEF] focus:bg-white text-[#18181B] rounded-full border border-transparent focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/20 transition-all outline-none placeholder:text-[#A1A1AA]"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 p-1 text-[#71717A] hover:text-[#18181B] rounded-full hover:bg-black/5 cursor-pointer"
+                    title="Xóa tìm kiếm"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
                 )}
-              >
-                <span>Bộ sưu tập</span>
-                <ChevronDown className="w-3.5 h-3.5 opacity-70" />
-              </button>
+              </div>
+            </form>
+          </div>
 
-              {/* Mega menu box */}
-              {isMegaMenuOpen && (
-                <div className="absolute top-full -left-20 w-[620px] bg-white shadow-modal border border-[#E4E4E7] rounded-2xl p-6 grid grid-cols-2 gap-6 animate-fade-in z-50">
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#18181B] mb-3 border-b border-[#E4E4E7] pb-1.5">
-                      Bộ sưu tập 2026
-                    </h4>
-                    <div className="space-y-1.5">
-                      {GENZ_COLLECTIONS.map((c) => (
-                        <Link
-                          key={c.id}
-                          to={`/collections/${c.slug}`}
-                          onClick={() => setIsMegaMenuOpen(false)}
-                          className="group block p-2 rounded-xl hover:bg-[#F3E8FF] transition-colors"
-                        >
-                          <div className="text-xs font-bold text-[#18181B] group-hover:text-[#7C3AED]">
-                            {c.title}
-                          </div>
-                          <div className="text-[11px] text-[#71717A] line-clamp-1">{c.tagline}</div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#18181B] mb-3 border-b border-[#E4E4E7] pb-1.5">
-                      Danh mục Streetwear
-                    </h4>
-                    <div className="grid grid-cols-2 gap-1.5 text-xs">
-                      {GENZ_CATEGORIES.map((cat) => (
-                        <Link
-                          key={cat.id}
-                          to={`/products?category=${cat.slug}`}
-                          onClick={() => setIsMegaMenuOpen(false)}
-                          className="p-1.5 text-[#71717A] hover:text-[#8B5CF6] hover:bg-[#F2F3F5] rounded-md transition-colors"
-                        >
-                          {cat.name}
-                        </Link>
-                      ))}
-                    </div>
-                    <div className="mt-4 pt-3 border-t border-[#E4E4E7]">
-                      <Link
-                        to="/collections"
-                        onClick={() => setIsMegaMenuOpen(false)}
-                        className="text-xs font-bold text-[#18181B] hover:text-[#8B5CF6] hover:underline flex items-center justify-between"
-                      >
-                        <span>Xem tất cả bộ sưu tập</span>
-                        <span>→</span>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <Link to="/products?sort=newest" className={getTabClass(activeTab === 'trending')}>
-              Xu hướng
-            </Link>
-            <Link to="/size-guide" className={getTabClass(activeTab === 'size-guide')}>
-              Bảng kích cỡ
-            </Link>
-            <Link
-              to="/try-on"
-              className={cn(
-                'flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 select-none cursor-pointer',
-                activeTab === 'try-on'
-                  ? 'bg-[#8B5CF6] text-white shadow-xs'
-                  : 'bg-[#F3E8FF] text-[#7C3AED] hover:bg-[#8B5CF6] hover:text-white'
-              )}
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Thử đồ AI</span>
-            </Link>
-          </nav>
-
-          {/* Right Action Icons */}
-          <div className="flex items-center gap-1 sm:gap-2">
-            {/* Search Trigger */}
+          {/* PHÍA PHẢI: TIỆN ÍCH MUA SẮM (Tài khoản, Wishlist, Giỏ hàng) */}
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+            {/* Mobile Search Trigger */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 text-[#18181B] hover:text-[#8B5CF6] rounded-full hover:bg-black/5 transition-colors cursor-pointer"
+              className="lg:hidden p-2 text-[#18181B] hover:text-[#8B5CF6] rounded-full hover:bg-black/5 transition-colors cursor-pointer"
               title="Tìm kiếm sản phẩm"
               aria-label="Tìm kiếm sản phẩm"
             >
               <Search className="w-5 h-5" />
             </button>
 
-            {/* User Dropdown */}
-            <div className="relative" ref={userMenuRef}>
+            {/* User Dropdown (Hiện trên tablet & desktop, mobile thao tác qua menu drawer) */}
+            <div className="relative hidden sm:block" ref={userMenuRef}>
               <button
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className="p-2 text-[#18181B] hover:text-[#8B5CF6] rounded-full hover:bg-black/5 transition-colors flex items-center gap-1 cursor-pointer"
+                className="p-2 text-[#18181B] hover:text-[#8B5CF6] rounded-full hover:bg-black/5 transition-colors flex items-center gap-1.5 cursor-pointer"
                 title="Tài khoản của bạn"
                 aria-label="Tài khoản của bạn"
               >
@@ -410,6 +318,121 @@ export const SiteHeader: React.FC = () => {
             </button>
           </div>
         </div>
+
+        {/* TẦNG 2: NAVIGATION MENU & DANH MỤC ĐIỀU HƯỚNG (Desktop) */}
+        <div className="hidden lg:block border-t border-[#F2F3F5] bg-white">
+          <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+            <nav className="flex items-center justify-center gap-1.5 py-1.5">
+              <Link to="/" className={getTabClass(activeTab === 'home')}>
+                Trang chủ
+              </Link>
+              <Link to="/products?gender=nam" className={getTabClass(activeTab === 'nam')}>
+                Nam
+              </Link>
+              <Link to="/products?gender=nu" className={getTabClass(activeTab === 'nu')}>
+                Nữ
+              </Link>
+              <Link to="/products?gender=unisex" className={getTabClass(activeTab === 'unisex')}>
+                Unisex
+              </Link>
+              <Link to="/products?category=phu-kien" className={getTabClass(activeTab === 'phu-kien')}>
+                Phụ kiện
+              </Link>
+
+              {/* Mega Menu Dropdown Bộ sưu tập */}
+              <div
+                className="relative"
+                onMouseEnter={() => setIsMegaMenuOpen(true)}
+                onMouseLeave={() => setIsMegaMenuOpen(false)}
+              >
+                <button
+                  className={cn(
+                    'flex items-center gap-1 text-xs uppercase tracking-wider font-bold px-3.5 py-1.5 rounded-xl transition-all duration-150 cursor-pointer select-none',
+                    activeTab === 'collections' || isMegaMenuOpen
+                      ? 'bg-[#8B5CF6] text-white shadow-xs'
+                      : 'text-[#52525B] hover:text-[#18181B] hover:bg-[#F4F4F5]'
+                  )}
+                >
+                  <span>Bộ sưu tập</span>
+                  <ChevronDown className="w-3.5 h-3.5 opacity-70" />
+                </button>
+
+                {/* Mega menu box */}
+                {isMegaMenuOpen && (
+                  <div className="absolute top-full -left-20 w-[620px] bg-white shadow-modal border border-[#E4E4E7] rounded-2xl p-6 grid grid-cols-2 gap-6 animate-fade-in z-50">
+                    <div>
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-[#18181B] mb-3 border-b border-[#E4E4E7] pb-1.5">
+                        Bộ sưu tập 2026
+                      </h4>
+                      <div className="space-y-1.5">
+                        {GENZ_COLLECTIONS.map((c) => (
+                          <Link
+                            key={c.id}
+                            to={`/collections/${c.slug}`}
+                            onClick={() => setIsMegaMenuOpen(false)}
+                            className="group block p-2 rounded-xl hover:bg-[#F3E8FF] transition-colors"
+                          >
+                            <div className="text-xs font-bold text-[#18181B] group-hover:text-[#7C3AED]">
+                              {c.title}
+                            </div>
+                            <div className="text-[11px] text-[#71717A] line-clamp-1">{c.tagline}</div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-[#18181B] mb-3 border-b border-[#E4E4E7] pb-1.5">
+                        Danh mục Streetwear
+                      </h4>
+                      <div className="grid grid-cols-2 gap-1.5 text-xs">
+                        {GENZ_CATEGORIES.map((cat) => (
+                          <Link
+                            key={cat.id}
+                            to={`/products?category=${cat.slug}`}
+                            onClick={() => setIsMegaMenuOpen(false)}
+                            className="p-1.5 text-[#71717A] hover:text-[#8B5CF6] hover:bg-[#F2F3F5] rounded-md transition-colors"
+                          >
+                            {cat.name}
+                          </Link>
+                        ))}
+                      </div>
+                      <div className="mt-4 pt-3 border-t border-[#E4E4E7]">
+                        <Link
+                          to="/collections"
+                          onClick={() => setIsMegaMenuOpen(false)}
+                          className="text-xs font-bold text-[#18181B] hover:text-[#8B5CF6] hover:underline flex items-center justify-between"
+                        >
+                          <span>Xem tất cả bộ sưu tập</span>
+                          <span>→</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <Link to="/products?sort=newest" className={getTabClass(activeTab === 'trending')}>
+                Xu hướng
+              </Link>
+              <Link
+                to="/try-on"
+                className={cn(
+                  'flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 select-none cursor-pointer',
+                  activeTab === 'try-on'
+                    ? 'bg-[#8B5CF6] text-white shadow-xs'
+                    : 'bg-[#F3E8FF] text-[#7C3AED] hover:bg-[#8B5CF6] hover:text-white'
+                )}
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Thử đồ AI</span>
+              </Link>
+              <Link to="/size-guide" className={getTabClass(activeTab === 'size-guide')}>
+                Giới thiệu
+              </Link>
+            </nav>
+          </div>
+        </div>
       </header>
 
       {/* Search Overlay Modal */}
@@ -487,18 +510,25 @@ export const SiteHeader: React.FC = () => {
         onClose={() => setIsMobileMenuOpen(false)}
         position="left"
         maxWidth="max-w-xs"
-        title={
-          <div className="flex items-center gap-2">
-            <span className="font-sans text-lg font-black tracking-tighter text-[#18181B]">SMARTBUY</span>
-            <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded-sm bg-[#8B5CF6] text-white">AI</span>
-          </div>
-        }
+        title={<BrandLogo variant="compact" href={null} />}
       >
         <div className="space-y-6 text-sm">
           <div className="space-y-1">
             <div className="text-xs font-bold uppercase tracking-wider text-[#71717A] px-2 py-1">
-              Khám phá theo giới
+              Khám phá thời trang
             </div>
+            <Link
+              to="/"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={cn(
+                'block px-3.5 py-2.5 rounded-xl font-bold transition-colors text-xs uppercase tracking-wider',
+                activeTab === 'home'
+                  ? 'bg-[#8B5CF6] text-white shadow-xs'
+                  : 'hover:bg-[#F2F3F5] text-[#18181B]'
+              )}
+            >
+              Trang chủ
+            </Link>
             <Link
               to="/products?gender=nam"
               onClick={() => setIsMobileMenuOpen(false)}

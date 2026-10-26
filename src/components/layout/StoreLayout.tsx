@@ -5,6 +5,7 @@ import { SiteFooter } from './SiteFooter';
 import { QuickViewModal } from '@/components/common/QuickViewModal';
 import { ScrollToTop } from '@/components/common/ScrollToTop';
 import { BackToTopButton } from '@/components/common/BackToTopButton';
+import { FloatingAIStylist } from '@/components/common/FloatingAIStylist';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import { Product } from '@/types';
 import { ArrowRightLeft, X } from 'lucide-react';
@@ -58,7 +59,7 @@ export const StoreLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-brand-ivory text-brand-charcoal">
+    <div className="min-h-screen flex flex-col bg-brand-ivory text-brand-charcoal overflow-x-hidden w-full">
       <ScrollToTop />
       <SiteHeader />
 
@@ -70,6 +71,7 @@ export const StoreLayout: React.FC = () => {
 
       <SiteFooter />
       <BackToTopButton />
+      <FloatingAIStylist />
 
       {/* Global Quick View Modal */}
       <QuickViewModal

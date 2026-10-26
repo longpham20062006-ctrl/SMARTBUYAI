@@ -541,6 +541,12 @@ export const MockRepo = {
     return getStored<User[]>(STORAGE_KEYS.USERS, DEMO_USERS);
   },
 
+  syncBackendProducts: (products: Product[]) => {
+    if (typeof window === 'undefined' || !Array.isArray(products) || products.length === 0) return;
+    setStored(STORAGE_KEYS.PRODUCTS, products);
+    notifyChange('products');
+  },
+
   resetAll: () => {
     if (typeof window === 'undefined') return;
     localStorage.removeItem(STORAGE_KEYS.SCHEMA);

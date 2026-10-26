@@ -64,3 +64,5 @@ ai-server/outputs/*
 !ai-server/outputs/.gitkeep
 ai-server/test_garments/
 ai-server/test_result.png
+
+edge-debug-profile/

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Sparkles, Shield, RefreshCw, HeartHandshake } from 'lucide-react';
 import { MockRepo } from '@/mocks/repository';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
+import { BrandLogo } from '@/components/common/BrandLogo';
 
 export const SiteFooter: React.FC = () => {
   const [isResetConfirmOpen, setIsResetConfirmOpen] = useState(false);
@@ -58,27 +59,26 @@ export const SiteFooter: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 py-12">
           {/* Cột 1: Thương hiệu */}
           <div className="col-span-2 space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="font-sans text-2xl font-black tracking-tighter text-white">
-                SMARTBUY
-              </span>
-              <span className="text-[10px] uppercase font-black tracking-wider px-1.5 py-0.5 rounded-sm bg-[#8B5CF6] text-white">
-                AI
-              </span>
-            </div>
-            <p className="text-xs text-[#A1A1AA] max-w-sm leading-relaxed">
-              “Mặc chất theo cách riêng” — Cửa hàng thời trang Gen Z streetwear, Y2K và Korean casual với 130+ sản phẩm tuyển chọn cho giới trẻ.
+            <BrandLogo variant="footer" showTagline={true} />
+            <p className="text-xs text-[#A1A1AA] max-w-sm leading-relaxed pt-1">
+              SMARTBUY AI — Khám phá phong cách thời trang Gen Z với trải nghiệm mua sắm thông minh.
             </p>
             <div className="flex items-center gap-2 text-xs text-[#A1A1AA] pt-1">
-              <span className="inline-block w-2 h-2 rounded-full bg-[#8B5CF6] animate-pulse" />
-              <span>Chế độ mô phỏng Frontend Single Page Application</span>
+              <span className="inline-block w-2 h-2 rounded-full bg-[#18F4FC] animate-pulse" />
+              <span>Hệ thống Backend Java Spring Boot & AI Try-On</span>
+            </div>
+            <div className="pt-2 flex items-center gap-3 text-xs text-[#71717A]">
+              <span className="font-semibold text-white">Chấp nhận thanh toán:</span>
+              <span className="px-2 py-0.5 rounded-sm bg-white/10 text-white font-mono text-[10px]">VISA</span>
+              <span className="px-2 py-0.5 rounded-sm bg-[#A50064]/40 text-[#FF66C4] font-bold text-[10px]">MOMO</span>
+              <span className="px-2 py-0.5 rounded-sm bg-[#005BAA]/40 text-[#60A5FA] font-bold text-[10px]">VNPAY</span>
             </div>
           </div>
 
           {/* Cột 2: Mua sắm */}
           <div>
             <h5 className="text-xs font-bold uppercase tracking-wider text-white mb-4">
-              Thời trang
+              Mua sắm
             </h5>
             <ul className="space-y-2.5 text-xs text-[#A1A1AA]">
               <li>
@@ -93,42 +93,42 @@ export const SiteFooter: React.FC = () => {
               </li>
               <li>
                 <Link to="/products?gender=unisex" className="hover:text-[#8B5CF6] transition-colors">
-                  Bộ sưu tập Unisex
+                  Unisex
                 </Link>
               </li>
               <li>
                 <Link to="/products?category=phu-kien" className="hover:text-[#8B5CF6] transition-colors font-semibold text-white">
-                  Phụ kiện & Trang sức
+                  Phụ kiện
                 </Link>
               </li>
               <li>
                 <Link to="/collections" className="hover:text-[#8B5CF6] transition-colors">
-                  Lookbook & Chiến dịch
+                  Bộ sưu tập
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Cột 3: Dịch vụ & Trợ lý */}
+          {/* Cột 3: Hỗ trợ & Dịch vụ */}
           <div>
             <h5 className="text-xs font-bold uppercase tracking-wider text-white mb-4">
-              Trợ lý & Dịch vụ
+              Hỗ trợ
             </h5>
             <ul className="space-y-2.5 text-xs text-[#A1A1AA]">
               <li>
+                <Link to="/size-guide" className="hover:text-[#8B5CF6] transition-colors">
+                  Hướng dẫn chọn size
+                </Link>
+              </li>
+              <li>
                 <Link to="/ai-stylist" className="hover:text-[#8B5CF6] transition-colors flex items-center gap-1.5 font-bold text-[#8B5CF6]">
                   <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
-                  <span>AI OUTFIT STYLIST</span>
+                  <span>AI Stylist</span>
                 </Link>
               </li>
               <li>
-                <Link to="/size-guide" className="hover:text-[#8B5CF6] transition-colors">
-                  Bảng kích cỡ (Size Guide)
-                </Link>
-              </li>
-              <li>
-                <Link to="/compare" className="hover:text-[#8B5CF6] transition-colors">
-                  So sánh sản phẩm
+                <Link to="/try-on" className="hover:text-[#8B5CF6] transition-colors">
+                  Thử đồ AI (Try-On)
                 </Link>
               </li>
               <li>
@@ -136,13 +136,18 @@ export const SiteFooter: React.FC = () => {
                   Tra cứu đơn hàng
                 </Link>
               </li>
+              <li>
+                <Link to="/compare" className="hover:text-[#8B5CF6] transition-colors">
+                  So sánh sản phẩm
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Cột 4: Hệ thống & Quản trị */}
+          {/* Cột 4: Kết nối & Quản trị */}
           <div>
             <h5 className="text-xs font-bold uppercase tracking-wider text-white mb-4">
-              Hệ thống Demo
+              Kết nối & Hệ thống
             </h5>
             <ul className="space-y-2.5 text-xs text-[#A1A1AA]">
               <li>
@@ -176,11 +181,11 @@ export const SiteFooter: React.FC = () => {
         {/* Bản quyền */}
         <div className="pt-8 border-t border-[#27272A] flex flex-col sm:flex-row items-center justify-between text-xs text-[#71717A] gap-4">
           <div>
-            © 2026 SMARTBUY AI — Nền tảng thời trang thương mại điện tử Gen Z.
+            © 2026 SMARTBUY AI. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
             <span>Bảo mật dữ liệu</span>
-            <span>Điều khoản sử dụng</span>
+            <span>Điều khoản dịch vụ</span>
             <span>Chính sách đổi trả 15 ngày</span>
           </div>
         </div>

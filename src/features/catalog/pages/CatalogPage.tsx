@@ -80,12 +80,8 @@ export const CatalogPage: React.FC = () => {
   const selectedStyles = searchParams.getAll('style');
   const selectedFits = searchParams.getAll('fit');
 
-  // Mobile drawer states
+  // Mobile filter drawer state
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
-  const [isMobileAIStylistOpen, setIsMobileAIStylistOpen] = useState(false);
-
-  // Desktop AI Stylist Collapsible state (allows product grid to expand to 4 cols)
-  const [isStylistCollapsed, setIsStylistCollapsed] = useState(false);
 
   // Left Filter Accordion Open/Closed States
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
@@ -123,11 +119,6 @@ export const CatalogPage: React.FC = () => {
     quickFilterScrollRef.current.scrollBy({ left: amount, behavior: 'smooth' });
     setTimeout(checkScrollability, 300);
   };
-
-  // AI Stylist Sidebar States
-  const [stylistQuery, setStylistQuery] = useState('');
-  const [isStylistLoading, setIsStylistLoading] = useState(false);
-  const [stylistMessages, setStylistMessages] = useState<AIStylistMessage[]>([]);
 
   // Hybrid infinite scroll & sentinel states
   const sentinelRef = useRef<HTMLDivElement>(null);
@@ -724,75 +715,6 @@ export const CatalogPage: React.FC = () => {
     };
   }, [categoryParam, seasonParam, genderParam]);
 
-  // Contextual Prompts for AI Stylist
-  const contextualPrompts = useMemo(() => {
-    const name = categoryHeaderData.categoryName;
-    if (seasonParam === 'he') {
-      return [
-        'Outfit mùa hè dưới 500k cho học sinh sinh viên',
-        'Phối áo thun oversize với quần short dạo phố mát mẻ',
-        'Set đồ baby tee + chân váy đi biển/cafe',
-        'Phụ kiện kính râm và mũ bucket hè năng động',
-      ];
-    }
-    if (seasonParam === 'dong') {
-      return [
-        'Phối đồ mùa đông đi học ấm áp với hoodie nỉ bông',
-        'Sweater dệt kim phối với quần jeans baggy ống rộng',
-        'Chọn khăn quàng len và mũ beanie ấm áp cho áo khoác',
-        'Set đồ mùa đông hoàn chỉnh 3 món dưới 600k',
-      ];
-    }
-    if (genderParam === 'nam') {
-      return [
-        'Phối đồ nam đi học phong cách Korean Casual',
-        'Phối áo hoodie với quần jeans baggy nam',
-        'Outfit nam mùa hè dưới 400.000đ',
-        'Chọn phụ kiện streetwear cho bạn nam',
-      ];
-    }
-    if (genderParam === 'nu') {
-      return [
-        'Phối đồ nữ đi chơi phong cách Y2K',
-        'Baby tee phối với chân váy chữ A',
-        'Outfit nữ đi cafe chụp ảnh sống ảo',
-        'Phụ kiện vòng cổ và túi xách nữ cá tính',
-      ];
-    }
-    return [
-      `Phối ${name} đi học phong cách Korean Casual`,
-      `Phối ${name} đi chơi phong cách Streetwear`,
-      `${name} hợp với giày và phụ kiện gì?`,
-      'Gợi ý trọn set đồ 3 món dưới 400k cho sinh viên',
-    ];
-  }, [categoryParam, seasonParam, genderParam, categoryHeaderData.categoryName]);
-
-  // AI Stylist submit handler
-  const handleConsultStylist = async (promptText: string) => {
-    if (!promptText.trim() || isStylistLoading) return;
-    setIsStylistLoading(true);
-    setStylistQuery('');
-
-    setStylistMessages((prev) => [
-      ...prev,
-      {
-        id: `usr_${prev.length + 1}_${promptText.slice(0, 8)}`,
-        sender: 'user',
-        text: promptText.trim(),
-        timestamp: 'Vừa xong',
-      },
-    ]);
-
-    try {
-      const response = await stylistService.consult(promptText.trim());
-      setStylistMessages((prev) => [...prev, response]);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setIsStylistLoading(false);
-    }
-  };
-
   const handleOpenQuickView = (product: Product, initialImageIndex: number = 0) => {
     window.dispatchEvent(new CustomEvent('open_quick_view', { detail: { product, initialImageIndex } }));
   };
@@ -1037,200 +959,6 @@ export const CatalogPage: React.FC = () => {
           Đặt lại bộ lọc
         </Button>
       </div>
-    </div>
-  );
-
-  // 10: AI STYLIST PANEL THIẾT KẾ HIỆN ĐẠI
-  const renderAIStylistPanel = () => (
-    <div className="bg-white rounded-2xl border border-[#E4E4E7] shadow-subtle p-4 flex flex-col h-full max-h-[calc(100vh-9.5rem)]">
-      {/* Header AI Stylist */}
-      <div className="pb-3 border-b border-[#E4E4E7] flex items-center justify-between shrink-0">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-[#F3E8FF] text-[#8B5CF6] flex items-center justify-center shrink-0">
-            <Sparkles className="w-4 h-4" />
-          </div>
-          <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-[#18181B] flex items-center gap-1.5">
-              <span>AI STYLIST</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" title="Trực tuyến" />
-            </h3>
-            <p className="text-[10px] text-[#71717A]">Trợ lý phối đồ dành riêng cho bạn</p>
-          </div>
-        </div>
-
-        {stylistMessages.length > 0 && (
-          <button
-            onClick={() => setStylistMessages([])}
-            className="p-1.5 text-[#71717A] hover:text-[#DC2626] rounded-md hover:bg-gray-100 transition-colors cursor-pointer"
-            title="Làm mới cuộc trò chuyện"
-            aria-label="Làm mới trò chuyện"
-          >
-            <RefreshCw className="w-3.5 h-3.5" />
-          </button>
-        )}
-      </div>
-
-      {/* Message & Recommendation Content Area */}
-      <div className="flex-1 overflow-y-auto py-3 space-y-3 pr-1 scrollbar-thin">
-        {/* Contextual Greeting */}
-        <div className="p-3 rounded-xl bg-[#FAFAF8] border border-[#E4E4E7] space-y-1.5">
-          <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#18181B]">
-            <Bot className="w-3.5 h-3.5 text-[#8B5CF6]" />
-            <span>Tư vấn theo phong cách</span>
-          </div>
-          <p className="text-[11px] text-[#71717A] leading-relaxed">
-            Bạn đang xem <strong className="text-[#8B5CF6]">{categoryHeaderData.breadcrumb}</strong>. Bạn muốn phối set đi học, đi chơi hay outfit theo ngân sách?
-          </p>
-        </div>
-
-        {/* Suggestion Prompts */}
-        {stylistMessages.length === 0 && (
-          <div className="space-y-1.5">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#71717A] block">
-              Gợi ý câu hỏi nhanh:
-            </span>
-            <div className="space-y-1.5">
-              {contextualPrompts.map((prompt, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => handleConsultStylist(prompt)}
-                  className="w-full text-left p-2 rounded-xl bg-white border border-[#E4E4E7] hover:border-[#8B5CF6] hover:bg-[#F3E8FF]/30 text-xs text-[#18181B] font-medium transition-all flex items-center justify-between group cursor-pointer"
-                >
-                  <span className="line-clamp-1">{prompt}</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-[#A1A1AA] group-hover:text-[#8B5CF6] shrink-0 ml-1" />
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Chat Messages */}
-        {stylistMessages.map((msg) => (
-          <div key={msg.id} className="space-y-2 animate-fade-in">
-            {msg.sender === 'user' ? (
-              <div className="flex justify-end">
-                <div className="bg-[#18181B] text-white text-xs py-2 px-3 rounded-2xl rounded-tr-xs max-w-[85%]">
-                  {msg.text}
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                <div className="bg-[#F3E8FF]/60 border border-[#DDD6FE] text-[#18181B] text-xs p-3 rounded-2xl rounded-tl-xs leading-relaxed space-y-1.5">
-                  <div className="flex items-center gap-1.5 font-bold text-[#7C3AED] text-[11px]">
-                    <Sparkles className="w-3 h-3" />
-                    <span>SMARTBUY AI STYLIST</span>
-                  </div>
-                  <p>{msg.text}</p>
-                </div>
-
-                {/* Recommended Products */}
-                {msg.recommendedProducts && msg.recommendedProducts.length > 0 && (
-                  <div className="space-y-2 pt-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#71717A]">
-                      Outfit đề xuất:
-                    </span>
-                    <div className="space-y-1.5">
-                      {msg.recommendedProducts.map((p) => (
-                        <div
-                          key={p.id}
-                          className="flex items-center gap-2.5 p-2 rounded-xl bg-white border border-[#E4E4E7] hover:border-[#8B5CF6] transition-colors"
-                        >
-                          <img
-                            src={p.images[0]}
-                            alt={p.name}
-                            className="w-10 h-12 object-cover rounded-lg shrink-0"
-                          />
-                          <div className="flex-1 min-w-0">
-                            <div className="text-[11px] font-semibold text-[#18181B] truncate">
-                              {p.name}
-                            </div>
-                            <div className="text-[10px] text-[#8B5CF6] font-bold">
-                              {formatPrice(p.price)}
-                            </div>
-                          </div>
-                          <Link
-                            to={`/products/${p.slug}`}
-                            onClick={() => {
-                              sessionStorage.setItem('catalog_scroll_pos', String(window.scrollY));
-                              sessionStorage.setItem('catalog_visible_count', String(visibleCount));
-                            }}
-                            className="p-1.5 text-xs text-[#8B5CF6] hover:bg-[#F3E8FF] rounded-lg transition-colors shrink-0"
-                            title="Xem chi tiết"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                          </Link>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Nút Thử outfit này bằng AI theo Master Prompt Section 10 */}
-                    <div className="pt-1.5">
-                      <Button
-                        variant="accent"
-                        size="sm"
-                        onClick={() => {
-                          const top = msg.recommendedProducts?.find((p) =>
-                            ['ao-thun', 'hoodie-sweater', 'so-mi-polo', 'ao-khoac'].includes(p.categorySlug)
-                          );
-                          const bottom = msg.recommendedProducts?.find((p) =>
-                            ['quan-jeans', 'quan-cargo-parachute', 'chan-vay'].includes(p.categorySlug)
-                          );
-                          const accessory = msg.recommendedProducts?.find((p) => p.categorySlug === 'phu-kien');
-                          const params = new URLSearchParams();
-                          if (top) params.set('topId', top.id);
-                          if (bottom) params.set('bottomId', bottom.id);
-                          if (accessory) params.set('accId', accessory.id);
-                          navigate(`/try-on?${params.toString()}`);
-                        }}
-                        className="w-full h-8 text-xs font-bold bg-[#8B5CF6] hover:bg-[#7C3AED] text-white flex items-center justify-center gap-1.5 rounded-xl shadow-xs transition-all"
-                      >
-                        <Sparkles className="w-3.5 h-3.5 text-white animate-pulse" />
-                        <span>✨ Thử outfit này bằng AI</span>
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        ))}
-
-        {/* Loading Indicator */}
-        {isStylistLoading && (
-          <div className="flex items-center gap-2 text-xs text-[#8B5CF6] p-3 rounded-xl bg-[#F3E8FF]/40 border border-[#DDD6FE]">
-            <Loader2 className="w-4 h-4 animate-spin shrink-0" />
-            <span>AI đang phối outfit chuẩn gu...</span>
-          </div>
-        )}
-      </div>
-
-      {/* Input Box */}
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleConsultStylist(stylistQuery);
-        }}
-        className="pt-2.5 border-t border-[#E4E4E7] shrink-0 flex items-center gap-1.5"
-      >
-        <input
-          type="text"
-          value={stylistQuery}
-          onChange={(e) => setStylistQuery(e.target.value)}
-          placeholder={`Hỏi phối ${categoryHeaderData.categoryName}...`}
-          disabled={isStylistLoading}
-          className="flex-1 bg-[#F2F3F5] border border-[#E4E4E7] rounded-xl px-3 py-1.5 text-xs text-[#18181B] placeholder-[#A1A1AA] focus:outline-none focus:border-[#8B5CF6] focus:bg-white transition-colors"
-        />
-        <Button
-          type="submit"
-          variant="accent"
-          size="sm"
-          disabled={!stylistQuery.trim() || isStylistLoading}
-          className="h-8 px-3 rounded-xl shrink-0"
-        >
-          <Send className="w-3.5 h-3.5" />
-        </Button>
-      </form>
     </div>
   );
 
@@ -1547,14 +1275,6 @@ export const CatalogPage: React.FC = () => {
               <SlidersHorizontal className="w-3.5 h-3.5 text-[#DDD6FE]" />
               <span>Bộ lọc {activeFilterCount > 0 && `(${activeFilterCount})`}</span>
             </button>
-
-            <button
-              onClick={() => setIsMobileAIStylistOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#F3E8FF] text-[#7C3AED] text-xs font-bold border border-[#DDD6FE] cursor-pointer active:scale-95 transition-all"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
-              <span>AI Stylist</span>
-            </button>
           </div>
 
           {/* Desktop Filter Summary */}
@@ -1565,24 +1285,8 @@ export const CatalogPage: React.FC = () => {
             </span>
           </div>
 
-          {/* Right Controls: Sort & AI Stylist Panel Toggle on Desktop */}
+          {/* Right Controls: Sort Select */}
           <div className="flex items-center gap-3 ml-auto">
-            {/* Desktop AI Stylist Toggle Button */}
-            <button
-              type="button"
-              onClick={() => setIsStylistCollapsed(!isStylistCollapsed)}
-              className={`hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
-                !isStylistCollapsed
-                  ? 'bg-[#F3E8FF] text-[#7C3AED] border-[#DDD6FE] hover:bg-[#EDE9FE]'
-                  : 'bg-white text-[#71717A] border-[#E4E4E7] hover:text-[#18181B] hover:border-[#8B5CF6]'
-              }`}
-              title={isStylistCollapsed ? 'Mở rộng AI Stylist bên phải' : 'Thu gọn AI Stylist để xem sản phẩm rộng hơn'}
-            >
-              <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
-              <span>{isStylistCollapsed ? 'Mở AI Stylist' : 'Thu gọn AI'}</span>
-              {isStylistCollapsed ? <Maximize2 className="w-3 h-3 ml-0.5" /> : <Minimize2 className="w-3 h-3 ml-0.5" />}
-            </button>
-
             {/* Sort Select */}
             <div className="flex items-center gap-1.5">
               <span className="text-xs text-[#71717A] hidden sm:inline font-medium">SẮP XẾP:</span>
@@ -1870,14 +1574,8 @@ export const CatalogPage: React.FC = () => {
               )
             ) : (
               <>
-                {/* Responsive grid 2-3 cột (khi mở AI) hoặc 3-4 cột (khi thu gọn AI) */}
-                <div
-                  className={`grid gap-3.5 sm:gap-4 transition-all duration-300 ${
-                    isStylistCollapsed
-                      ? 'grid-cols-2 sm:grid-cols-3 xl:grid-cols-4'
-                      : 'grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3'
-                  }`}
-                >
+                {/* 4 CỘT SẢN PHẨM TRÊN DESKTOP RỘNG (xl:grid-cols-4), 3 CỘT TRÊN LAPTOP (md:grid-cols-3), 2 CỘT TRÊN MOBILE (grid-cols-2) */}
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3.5 sm:gap-4.5 transition-all duration-300">
                   {displayedProducts.map((product) => (
                     <div
                       key={product.id}
@@ -1897,14 +1595,8 @@ export const CatalogPage: React.FC = () => {
 
                 {/* Skeleton Cards during Auto-Loading */}
                 {isAutoLoading && (
-                  <div
-                    className={`grid gap-3.5 sm:gap-4 mt-4 ${
-                      isStylistCollapsed
-                        ? 'grid-cols-2 sm:grid-cols-3 xl:grid-cols-4'
-                        : 'grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3'
-                    }`}
-                  >
-                    {[1, 2, 3].map((s) => (
+                  <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3.5 sm:gap-4.5 mt-4">
+                    {[1, 2, 3, 4].map((s) => (
                       <div
                         key={s}
                         className="rounded-2xl border border-[#E4E4E7] bg-white p-3 space-y-3 animate-pulse"
@@ -1975,26 +1667,8 @@ export const CatalogPage: React.FC = () => {
               </>
             )}
           </main>
-
-          {/* CỘT PHẢI — AI STYLIST (Khoảng 280–300px, sticky, có thể thu gọn) */}
-          {!isStylistCollapsed && (
-            <aside className="hidden lg:block w-[280px] xl:w-[300px] shrink-0 sticky top-32">
-              {renderAIStylistPanel()}
-            </aside>
-          )}
         </div>
       </div>
-
-      {/* Mobile Floating Button to open AI Stylist */}
-      <button
-        type="button"
-        onClick={() => setIsMobileAIStylistOpen(true)}
-        className="lg:hidden fixed bottom-6 right-6 z-30 flex items-center gap-2 px-4 py-3 bg-[#18181B] text-white rounded-full shadow-modal hover:bg-[#8B5CF6] active:scale-95 transition-all cursor-pointer font-bold text-xs"
-        aria-label="Mở trợ lý AI Stylist"
-      >
-        <Sparkles className="w-4 h-4 text-[#DDD6FE]" />
-        <span>Tư vấn AI Stylist</span>
-      </button>
 
       {/* Mobile Filter Drawer */}
       <Drawer
@@ -2027,18 +1701,6 @@ export const CatalogPage: React.FC = () => {
         }
       >
         {renderFilterContent()}
-      </Drawer>
-
-      {/* Mobile AI Stylist Drawer */}
-      <Drawer
-        isOpen={isMobileAIStylistOpen}
-        onClose={() => setIsMobileAIStylistOpen(false)}
-        position="right"
-        title="AI OUTFIT STYLIST"
-      >
-        <div className="h-[75vh]">
-          {renderAIStylistPanel()}
-        </div>
       </Drawer>
     </div>
   );
