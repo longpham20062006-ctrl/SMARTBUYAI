@@ -33,19 +33,42 @@ export const SiteHeader: React.FC = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const totalCartCount = cart.items.reduce((s, i) => s + i.quantity, 0);
 
-  // Smooth compacting header detection
+  // Dynamic header height measurement for sticky sub-navigation & Quick Filter
   useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+
+    const updateHeaderHeight = () => {
+      const h = el.getBoundingClientRect().height;
+      if (h > 0) {
+        document.documentElement.style.setProperty('--site-header-height', `${Math.round(h)}px`);
+      }
+    };
+
+    updateHeaderHeight();
+
+    const ro = new ResizeObserver(() => {
+      updateHeaderHeight();
+    });
+    ro.observe(el);
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', updateHeaderHeight);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateHeaderHeight);
+    };
   }, []);
 
   // Close dropdowns on outside click
@@ -110,6 +133,7 @@ export const SiteHeader: React.FC = () => {
   return (
     <>
       <header
+        ref={headerRef}
         className={cn(
           'sticky top-0 z-40 w-full border-b border-[#E4E4E7] bg-white transition-all duration-200',
           isScrolled ? 'shadow-subtle' : ''

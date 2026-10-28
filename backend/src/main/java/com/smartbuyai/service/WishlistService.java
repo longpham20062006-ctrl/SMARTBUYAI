@@ -1,7 +1,6 @@
 package com.smartbuyai.service;
 
 import com.smartbuyai.dto.ProductDto;
-import com.smartbuyai.entity.ProductEntity;
 import com.smartbuyai.entity.WishlistItemEntity;
 import com.smartbuyai.repository.ProductRepository;
 import com.smartbuyai.repository.WishlistItemRepository;

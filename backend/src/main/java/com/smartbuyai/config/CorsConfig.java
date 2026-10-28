@@ -18,6 +18,10 @@ public class CorsConfig {
         config.setAllowedOriginPatterns(Arrays.asList(
                 "http://localhost:5173",
                 "http://127.0.0.1:5173",
+                "http://smartai.test",
+                "http://smartai.test:80",
+                "http://smartai.test:5173",
+                "http://smartbuyai.test:5173",
                 "http://localhost:3000",
                 "http://127.0.0.1:3000"
         ));

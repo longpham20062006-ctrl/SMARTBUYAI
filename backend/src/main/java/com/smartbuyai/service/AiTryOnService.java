@@ -12,7 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.*;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,8 +47,8 @@ public class AiTryOnService {
         this.tryOnJobRepository = tryOnJobRepository;
         this.productRepository = productRepository;
         this.restTemplate = restTemplateBuilder
-                .setConnectTimeout(Duration.ofSeconds(5))
-                .setReadTimeout(Duration.ofSeconds(60))
+                .connectTimeout(Duration.ofSeconds(5))
+                .readTimeout(Duration.ofSeconds(60))
                 .build();
     }
 
@@ -100,7 +105,13 @@ public class AiTryOnService {
             map.add("request_id", jobId);
 
             HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
-            ResponseEntity<Map> response = restTemplate.postForEntity(tryonServerUrl + "/try-on", request, Map.class);
+            ParameterizedTypeReference<Map<String, Object>> typeRef = new ParameterizedTypeReference<>() {};
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                    tryonServerUrl + "/try-on",
+                    HttpMethod.POST,
+                    request,
+                    typeRef
+            );
 
             if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
                 String aiJobId = (String) response.getBody().get("job_id");
@@ -121,7 +132,13 @@ public class AiTryOnService {
         // If in PROCESSING, poll python worker if needed
         if ("PROCESSING".equalsIgnoreCase(job.getStatus())) {
             try {
-                ResponseEntity<Map> response = restTemplate.getForEntity(tryonServerUrl + "/jobs/" + jobId, Map.class);
+                ParameterizedTypeReference<Map<String, Object>> typeRef = new ParameterizedTypeReference<>() {};
+                ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                        tryonServerUrl + "/jobs/" + jobId,
+                        HttpMethod.GET,
+                        null,
+                        typeRef
+                );
                 if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
                     String workerStatus = (String) response.getBody().get("status");
                     String resultUrl = (String) response.getBody().get("result_image_url");

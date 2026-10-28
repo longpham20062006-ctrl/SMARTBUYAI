@@ -59,7 +59,7 @@ export const StoreLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-brand-ivory text-brand-charcoal overflow-x-hidden w-full">
+    <div className="min-h-screen flex flex-col bg-brand-ivory text-brand-charcoal overflow-x-clip w-full">
       <ScrollToTop />
       <SiteHeader />
 

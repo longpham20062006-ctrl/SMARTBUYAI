@@ -10,6 +10,7 @@ import { Drawer } from '@/components/ui/drawer';
 import { Product, SizeCode, AIStylistMessage } from '@/types';
 import { GENZ_CATEGORIES, GENZ_BRANDS } from '@/mocks/genzCategories';
 import { getActiveCategories, getActiveGroupedCategories, CATEGORY_DEFINITIONS } from '@/constants/categories';
+import { getDiscoveryOrderedProducts } from '@/utils/productDiscoveryOrder';
 import { formatPrice } from '@/lib/utils';
 import {
   SlidersHorizontal,
@@ -143,6 +144,18 @@ export const CatalogPage: React.FC = () => {
     }
   }, []);
 
+  // Support ?scrollTo=Y query param for testing and direct navigation
+  useEffect(() => {
+    const scrollPos = searchParams.get('scrollTo');
+    if (scrollPos) {
+      const y = parseInt(scrollPos, 10);
+      if (!isNaN(y) && y >= 0) {
+        const timer = setTimeout(() => window.scrollTo({ top: y, behavior: 'instant' }), 120);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [searchParams]);
+
   // Reset scroll count when core filter params change
   useEffect(() => {
     if (isInitialMount.current) {
@@ -273,7 +286,38 @@ export const CatalogPage: React.FC = () => {
     ]
   );
 
-  const allFilteredProducts = useMemo(() => productService.getAll(filterOptions), [filterOptions]);
+  const allFilteredProducts = useMemo(() => {
+    const rawList = productService.getAll(filterOptions);
+    const isDefaultDiscoveryMode =
+      genderParam === 'all' &&
+      categoryParam === 'all' &&
+      seasonParam === 'all' &&
+      brandParam === 'all' &&
+      !searchParam &&
+      !minPriceParam &&
+      !maxPriceParam &&
+      selectedColors.length === 0 &&
+      selectedSizes.length === 0 &&
+      selectedStyles.length === 0 &&
+      selectedFits.length === 0 &&
+      (sortParam === 'newest' || !sortParam);
+
+    return getDiscoveryOrderedProducts(rawList, isDefaultDiscoveryMode);
+  }, [
+    filterOptions,
+    genderParam,
+    categoryParam,
+    seasonParam,
+    brandParam,
+    searchParam,
+    minPriceParam,
+    maxPriceParam,
+    selectedColors,
+    selectedSizes,
+    selectedStyles,
+    selectedFits,
+    sortParam,
+  ]);
 
   // Master Product Catalog & Color System: Đồng bộ danh mục và đếm số lượng thật theo bộ lọc
   const allCatalogProducts = useMemo(() => productService.getAll(), []);
@@ -1192,8 +1236,11 @@ export const CatalogPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 5.2: QUICK FILTER PILLS BAR CÓ CUỘN NGANG VÀ MŨI TÊN ĐIỀU HƯỚNG */}
-      <div className="border-b border-[#E4E4E7] bg-white sticky top-16 z-30 shadow-subtle">
+      {/* 5.2: QUICK FILTER PILLS BAR CÓ CUỘN NGANG VÀ MŨI TÊN ĐIỀU HƯỚNG — STICKY DƯỚI HEADER */}
+      <div
+        className="border-b border-[#E4E4E7] bg-white/95 backdrop-blur-md sticky z-30 shadow-xs transition-all duration-200"
+        style={{ top: 'var(--site-header-height, 136px)' }}
+      >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
           <div className="relative flex items-center">
             {/* Scroll Left Button */}
@@ -1437,8 +1484,14 @@ export const CatalogPage: React.FC = () => {
 
         {/* 3-COLUMN DYNAMIC FLEX CONTAINER */}
         <div className="flex flex-col lg:flex-row gap-6 xl:gap-8 items-start">
-          {/* CỘT TRÁI — BỘ LỌC (Khoảng 240px, sticky) */}
-          <aside className="hidden lg:block w-[240px] xl:w-[250px] shrink-0 bg-white rounded-2xl p-5 border border-[#E4E4E7] shadow-subtle sticky top-32 max-h-[calc(100vh-9rem)] overflow-y-auto scrollbar-thin">
+          {/* CỘT TRÁI — BỘ LỌC (Khoảng 240px, sticky dưới Quick Filter) */}
+          <aside
+            className="hidden lg:block w-[240px] xl:w-[250px] shrink-0 bg-white rounded-2xl p-5 border border-[#E4E4E7] shadow-subtle sticky z-20 overflow-y-auto scrollbar-thin"
+            style={{
+              top: 'calc(var(--site-header-height, 112px) + 54px)',
+              maxHeight: 'calc(100vh - var(--site-header-height, 112px) - 70px)',
+            }}
+          >
             <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#E4E4E7]">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#18181B] flex items-center gap-1.5">
                 <Flame className="w-3.5 h-3.5 text-[#8B5CF6]" />

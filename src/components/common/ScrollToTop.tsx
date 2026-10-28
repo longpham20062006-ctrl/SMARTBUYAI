@@ -5,12 +5,13 @@ export function ScrollToTop() {
   const { pathname, search } = useLocation();
 
   useEffect(() => {
+    // Only scroll to top when navigating to a different page route
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'instant', // Cuộn tức thì lên đầu khi đổi route để trải nghiệm tự nhiên nhất
+      behavior: 'instant',
     });
-  }, [pathname, search]);
+  }, [pathname]);
 
   return null;
 }

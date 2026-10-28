@@ -30,7 +30,7 @@
     background-color: #FAFAF8;
     color: #18181B;
     font-family: 'Be Vietnam Pro', Inter, system-ui, -apple-system, sans-serif;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   ::selection {

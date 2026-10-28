@@ -1,6 +1,5 @@
 package com.smartbuyai.dto;
 
-import java.util.List;
 
 public class StylistRequest {
     private String prompt;

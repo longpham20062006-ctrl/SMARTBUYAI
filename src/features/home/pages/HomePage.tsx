@@ -17,6 +17,12 @@ import {
   Cpu,
 } from 'lucide-react';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
+import { GalaxyIntro } from '@/components/effects/GalaxyIntro';
+import { AmbientGalaxy } from '@/components/effects/AmbientGalaxy';
+import { GalaxyDebugPanel } from '@/components/effects/GalaxyDebugPanel';
+import { ScrollReveal } from '@/components/effects/ScrollReveal';
+import { TrendingFashionCard } from '@/components/home/TrendingFashionCard';
+import { HeroFashionGallery } from '@/components/home/HeroFashionGallery';
 
 // 4 ẢNH THỜI TRANG TRANG CHỦ CHÍNH XÁC TỪ THƯ MỤC public/images/anh_trangchu/
 const HOME_IMAGES = {
@@ -33,6 +39,17 @@ const HOME_IMAGES = {
 export const HomePage: React.FC = () => {
   useRepoSubscription(['products']);
   const navigate = useNavigate();
+
+  // Galaxy 3D Cinematic Reveal state: tự động khởi động mỗi lần vào HomePage hoặc reload
+  const [showIntro, setShowIntro] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('intro') === '0') return false;
+    return true; // Tự động khởi động khi vào HomePage
+  });
+
+  const handleIntroComplete = React.useCallback(() => setShowIntro(false), []);
+  const handleReplayIntro = React.useCallback(() => setShowIntro(true), []);
 
   // Interactive AI Stylist state
   const [stylistPrompt, setStylistPrompt] = useState('');
@@ -112,25 +129,51 @@ export const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="bg-[#FAFAF9] space-y-16 sm:space-y-24">
+    <>
       {/* ============================================================ */}
-      {/* 1. HERO BANNER — ẢNH 1: SMARTBUY AI STREETWEAR FLAGSHIP       */}
+      {/* GALAXY 3D CINEMATIC INTRO (TỰ ĐỘNG CHẠY KHI MỞ TRANG CHỦ)   */}
       {/* ============================================================ */}
-      <section className="relative overflow-hidden bg-[#18181B] text-white select-none">
-        {/* Subtle ambient lighting */}
-        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#8B5CF6]/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-[#18F4FC]/10 rounded-full blur-3xl pointer-events-none" />
+      {showIntro && (
+        <GalaxyIntro forcePlay={true} onComplete={handleIntroComplete} />
+      )}
 
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
-            {/* Cột Typography & CTA (7 cols trên Desktop) */}
-            <div className="lg:col-span-7 space-y-6 text-left">
-              {/* Tag Pill */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#18F4FC] text-xs font-bold tracking-wider uppercase animate-fade-in">
-                <Sparkles className="w-3.5 h-3.5 text-[#18F4FC]" />
-                <span>SMARTBUY AI // STREETWEAR 2026</span>
-              </div>
+      {/* Telemetry Debug Panel (Chỉ hiển thị khi URL có ?debugGalaxy=1) */}
+      <GalaxyDebugPanel onReplayIntro={handleReplayIntro} />
+
+      <div className="bg-[#FAFAF9] space-y-16 sm:space-y-24">
+        {/* ============================================================ */}
+        {/* 1. HERO BANNER — ẢNH 1: SMARTBUY AI STREETWEAR FLAGSHIP       */}
+        {/* ============================================================ */}
+        <section className="relative overflow-hidden bg-[#050510] text-white select-none">
+          {/* TẦNG 2 — CONTINUOUS AMBIENT GALAXY (Hạt sao 3D chuyển động chậm liên tục ở Hero) */}
+          <AmbientGalaxy />
+
+          {/* Subtle cosmic ambient lighting */}
+          <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#8B5CF6]/15 rounded-full blur-3xl pointer-events-none z-0" />
+          <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-[#22D3EE]/10 rounded-full blur-3xl pointer-events-none z-0" />
+
+          <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              
+              {/* Cột Typography & CTA (7 cols trên Desktop) */}
+              <div className="lg:col-span-7 space-y-6 text-left">
+                {/* Tag Pill & 3D Intro Replay Button */}
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#18F4FC] text-xs font-bold tracking-wider uppercase animate-fade-in">
+                    <Sparkles className="w-3.5 h-3.5 text-[#18F4FC]" />
+                    <span>SMARTBUY AI // STREETWEAR 2026</span>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setShowIntro(true)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 active:scale-95 text-[#22D3EE] text-[11px] font-bold tracking-wider uppercase border border-[#22D3EE]/30 transition-all cursor-pointer group shadow-xs"
+                    title="Xem lại hiệu ứng vũ trụ Galaxy 3D"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-[#EC4899] group-hover:rotate-45 transition-transform" />
+                    <span>Xem lại 3D Intro</span>
+                  </button>
+                </div>
 
               {/* Big Headline */}
               <div className="space-y-2">
@@ -192,32 +235,9 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Cột ẢNH 1 — High Fashion Editorial Banner (5 cols trên Desktop) */}
+            {/* Cột ẢNH 1 — High Fashion Editorial Banner: Hover đổi 4 ảnh mượt mà (5 cols trên Desktop) */}
             <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-[460px] lg:max-w-none rounded-3xl overflow-hidden aspect-[3/4] bg-[#27272A] border border-white/15 shadow-2xl group">
-                <img
-                  src={HOME_IMAGES.heroStreetwear}
-                  alt="SMARTBUY AI Streetwear Model - YOUR STYLE YOUR RULES"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                  loading="eager"
-                />
-                {/* Subtle vignette gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                
-                {/* Floating Brand Badge */}
-                <div className="absolute top-4 left-4 bg-black/75 backdrop-blur-md border border-white/20 text-[#18F4FC] text-[10px] font-extrabold uppercase px-3 py-1.5 rounded-full tracking-wider">
-                  GEN Z STREETWEAR LOOK 01
-                </div>
-
-                <div className="absolute bottom-4 left-4 right-4 text-left pointer-events-none">
-                  <span className="text-[10px] font-black uppercase text-[#18F4FC] tracking-widest">
-                    OVERSIZED GRAPHIC SWEATSHIRT
-                  </span>
-                  <p className="text-xs text-white/90 font-medium mt-0.5">
-                    Phom rộng thoải mái • Phong cách đường phố tự do
-                  </p>
-                </div>
-              </div>
+              <HeroFashionGallery />
             </div>
 
           </div>
@@ -349,42 +369,45 @@ export const HomePage: React.FC = () => {
       {/* ============================================================ */}
       {/* 4. SẢN PHẨM NỔI BẬT (TRENDING NOW — NO PRICES)               */}
       {/* ============================================================ */}
-      <section className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-3 border-b border-[#E4E4E7] gap-3">
-          <div>
-            <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#DC2626] bg-rose-50 px-2.5 py-0.5 rounded-sm border border-rose-200">
-              <Flame className="w-3.5 h-3.5 text-[#DC2626]" />
-              <span>TRENDING NOW</span>
+      {/* 4. SẢN PHẨM NỔI BẬT (TRENDING NOW — EDITORIAL FASHION GRID)  */}
+      {/* ============================================================ */}
+      <ScrollReveal animation="fade-up">
+        <section className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-3 border-b border-[#E4E4E7] gap-3">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#DC2626] bg-rose-50 px-2.5 py-0.5 rounded-sm border border-rose-200">
+                <Flame className="w-3.5 h-3.5 text-[#DC2626]" />
+                <span>HOT TRENDING // EDITORIAL 2026</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-[#18181B] uppercase mt-2">
+                SẢN PHẨM NỔI BẬT
+              </h2>
+              <p className="text-xs text-[#71717A] mt-0.5">
+                Các thiết kế Gen Z được tuyển chọn nổi bật từ kho sản phẩm thật của SMARTBUY AI.
+              </p>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-[#18181B] uppercase mt-2">
-              SẢN PHẨM NỔI BẬT
-            </h2>
-            <p className="text-xs text-[#71717A] mt-0.5">
-              Các mẫu thời trang Gen Z được tuyển chọn nổi bật từ kho sản phẩm thật của SMARTBUY AI.
-            </p>
+            <Link
+              to="/products?sort=rating-desc"
+              className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors whitespace-nowrap group"
+            >
+              <span>Xem tất cả sản phẩm nổi bật</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
-          <Link
-            to="/products?sort=rating-desc"
-            className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors whitespace-nowrap"
-          >
-            <span>Xem tất cả sản phẩm nổi bật</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
 
-        {/* Product Grid — KHÔNG HIỂN THỊ GIÁ TIỀN */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3.5 sm:gap-5">
-          {trendingProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onQuickView={handleOpenQuickView}
-              onToggleCompare={handleToggleCompare}
-              showPrice={false}
-            />
-          ))}
-        </div>
-      </section>
+          {/* Editorial Grid — KHÔNG HIỂN THỊ GIÁ TIỀN, 6 CARD CAO CẤP */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4.5">
+            {trendingProducts.slice(0, 6).map((product, idx) => (
+              <TrendingFashionCard
+                key={product.id}
+                product={product}
+                rank={idx + 1}
+                badge={idx === 0 ? 'EDITOR PICK' : idx === 1 ? 'VIRAL HIT' : 'HOT DROP'}
+              />
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
 
       {/* ============================================================ */}
       {/* 5. MEN'S STREETWEAR — ẢNH 2: PHONG CÁCH CỦA PHÁI MẠNH        */}
@@ -939,5 +962,6 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
     </div>
-  );
+  </>
+);
 };

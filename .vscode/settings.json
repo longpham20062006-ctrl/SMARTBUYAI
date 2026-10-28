@@ -5,5 +5,10 @@
   ],
   "python.autoComplete.extraPaths": [
     "C:\\Users\\Admin\\AppData\\Roaming\\Python\\Python314\\site-packages"
-  ]
+  ],
+  "java.import.maven.enabled": true,
+  "java.project.sourcePaths": [
+    "backend/src/main/java"
+  ],
+  "java.configuration.updateBuildConfiguration": "automatic"
 }

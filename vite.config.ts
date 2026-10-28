@@ -13,6 +13,8 @@ export default defineConfig({
   server: {
     host: '0.0.0.0', // Cho phép điện thoại, laptop khác trong mạng LAN truy cập (192.168.1.139)
     port: 5173,
+    strictPort: true,
+    allowedHosts: ['smartai.test', 'smartbuyai.test', 'localhost', '127.0.0.1'],
     watch: {
       ignored: ['**/ai-server/**', '**/.venv/**'],
     },
