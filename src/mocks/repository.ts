@@ -18,7 +18,7 @@ import {
 import { GENZ_BRANDS, GENZ_CATEGORIES, GENZ_COLLECTIONS } from './genzCategories';
 import { FINAL_GENZ_CATALOGUE } from './genzCatalogBuilder';
 
-const SCHEMA_VERSION = 'v8.0-enterprise-analytics-20261029';
+const SCHEMA_VERSION = 'v9.0-full-catalog-audit-202610291935';
 const STORAGE_KEYS = {
   SCHEMA: 'sb_schema_version',
   PRODUCTS: 'sb_products',

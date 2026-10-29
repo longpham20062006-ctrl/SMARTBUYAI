@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { MockRepo } from '@/mocks/repository';
+import { apiClient } from '@/services/apiClient';
 import { formatPrice } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -101,6 +102,26 @@ export const CheckoutPage: React.FC = () => {
         totalAmount: cart.total,
         paymentMethod: paymentMethod,
         paymentStatus: paymentMethod === 'COD' ? 'PENDING' : 'PAID',
+      });
+
+      // Đồng bộ đơn hàng vào Spring Boot Backend & H2 Database
+      apiClient.createOrder({
+        customerName: fullName,
+        customerEmail: email,
+        customerPhone: phone,
+        shippingAddress: `${street}, ${ward}, ${district}, ${province}`,
+        paymentMethod: paymentMethod,
+        note: note || undefined,
+        items: cart.items.map((i) => ({
+          productId: i.productId,
+          variantId: i.id,
+          size: i.size,
+          colorName: i.color.name,
+          quantity: i.quantity,
+        })),
+      }).catch((err) => {
+        // Fallback ghi nhận nhẹ nhàng nếu backend ở chế độ offline
+        console.warn('Backend order synchronization notice:', err);
       });
 
       setIsSubmitting(false);

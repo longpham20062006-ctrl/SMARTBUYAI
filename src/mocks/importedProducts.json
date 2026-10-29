@@ -46580,7 +46580,8 @@
       "Phơi nơi râm mát thoáng gió"
     ],
     "images": [
-      "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_5/1792798442790_348043404565674403_5540743654312280467_e7942ab57ec5f1a91938bfb83e454565.jpg"
+      "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_5/1792798442790_348043404565674403_5540743654312280467_e7942ab57ec5f1a91938bfb83e454565.jpg",
+      "/images/san-pham/quan-ao-nam/quan/quan-dai/1792798442795_348043404565674403_5540743654312280467_a80592e298195e259619ac4731c03dd9.jpg"
     ],
     "colors": [
       {
@@ -46590,7 +46591,8 @@
         "slug": "kem",
         "image": "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_5/1792798442790_348043404565674403_5540743654312280467_e7942ab57ec5f1a91938bfb83e454565.jpg",
         "images": [
-          "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_5/1792798442790_348043404565674403_5540743654312280467_e7942ab57ec5f1a91938bfb83e454565.jpg"
+          "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_5/1792798442790_348043404565674403_5540743654312280467_e7942ab57ec5f1a91938bfb83e454565.jpg",
+          "/images/san-pham/quan-ao-nam/quan/quan-dai/1792798442795_348043404565674403_5540743654312280467_a80592e298195e259619ac4731c03dd9.jpg"
         ],
         "originalImage": "/images/san-pham/quan-ao-nam/quan/quan-dai/quan_dai_5/1792798442790_348043404565674403_5540743654312280467_e7942ab57ec5f1a91938bfb83e454565.jpg"
       }
@@ -99886,6 +99888,1343 @@
     "mergeStatus": "merged",
     "createdAt": "2026-10-28",
     "updatedAt": "2026-10-28",
+    "isActive": true,
+    "needsReview": false
+  },
+  {
+    "id": "W-DRESS-GOTHIC-001",
+    "folderKey": "quan-ao-nu/vay",
+    "modelFolder": "w-dress-gothic-001",
+    "name": "Váy Corset Gothic Ren Hoa Văn Victorian",
+    "slug": "vay-corset-gothic-ren-hoa-van-victorian-w-dress-gothic-001",
+    "categorySlug": "vay",
+    "parentGroup": "vay",
+    "gender": "nu",
+    "brand": "SMARTBUY AI",
+    "price": 689000,
+    "originalPrice": 789000,
+    "costPrice": 345000,
+    "suggestedPrice": 689000,
+    "approvedPrice": 689000,
+    "priceStatus": "approved",
+    "profitMargin": 49.9,
+    "subCategoryPending": false,
+    "needsClassification": false,
+    "isSetItem": false,
+    "setDetails": null,
+    "shortDescription": "Váy corset gothic phong cách Victorian cổ điển, phối ren dệt tinh xảo, đai nẹp siết eo quý phái.",
+    "description": "🔥 THÔNG TIN SẢN PHẨM:\n- Tên thiết kế: Váy Corset Gothic Ren Hoa Văn Victorian\n- Mã SKU: W-DRESS-GOTHIC-001\n- Phân loại: Váy Thiết Kế Gothic Nữ Cao Cấp\n- Thương hiệu: SMARTBUY AI\n- Phom dáng: Fit & Flare siết eo tôn dáng\n- Chất liệu: Vải Tafta phối ren hoa dệt thủ công\n- Họa tiết: Ren chìm phong cách Victorian quý tộc Anh Quốc\n- Các màu: Đen Huyền Bí (Black Noir)\n\n✨ ĐẶC ĐIỂM NỔI BẬT:\n- Khung xương nẹp thân áo mềm mại định hình vòng eo con kiến\n- Tay áo phối ren xếp tầng bồng bềnh nữ tính\n- Khóa kéo lưng ẩn giấu tinh tế, êm ái khi cử động\n- Thích hợp dự tiệc tối, chụp ảnh nghệ thuật phong cách Dark Romantic",
+    "material": "Tafta cao cấp & Ren dệt Victorian",
+    "fit": "Form chuẩn Gothic Luxury",
+    "style": "Gothic Victorian Luxury",
+    "occasion": [
+      "Dự tiệc",
+      "Chụp OOTD",
+      "Sự kiện",
+      "Dạo phố"
+    ],
+    "season": "all",
+    "seasons": [
+      "he",
+      "dong",
+      "xuan-thu"
+    ],
+    "careInstructions": [
+      "Giặt khô hoặc giặt tay nước mát nhẹ nhàng",
+      "Không vắt mạnh hoặc sấy nhiệt độ cao",
+      "Là hơi nước ở mức nhiệt thấp"
+    ],
+    "images": [
+      "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+    ],
+    "colors": [
+      {
+        "id": "den-noir",
+        "name": "Đen Noir",
+        "hex": "#0A0A0A",
+        "slug": "den-noir",
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+        ],
+        "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+      }
+    ],
+    "colorVariants": [
+      {
+        "id": "W-DRESS-GOTHIC-001-DEN-NOIR",
+        "productId": "W-DRESS-GOTHIC-001",
+        "colorName": "Đen Noir",
+        "colorHex": "#0A0A0A",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+        ],
+        "thumbnail": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png",
+        "verificationStatus": "verified",
+        "verificationSource": "disk",
+        "isVerified": true
+      }
+    ],
+    "defaultColorId": "den-noir",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "variants": [
+      {
+        "id": "w-dress-gothic-001-den-noir-s",
+        "sku": "W-DRESS-GOTHIC-001-DEN-NOIR-S",
+        "color": {
+          "id": "den-noir",
+          "name": "Đen Noir",
+          "hex": "#0A0A0A",
+          "slug": "den-noir",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+        },
+        "colorId": "den-noir",
+        "size": "S",
+        "price": 689000,
+        "originalPrice": 789000,
+        "stock": 25,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-001-den-noir-m",
+        "sku": "W-DRESS-GOTHIC-001-DEN-NOIR-M",
+        "color": {
+          "id": "den-noir",
+          "name": "Đen Noir",
+          "hex": "#0A0A0A",
+          "slug": "den-noir",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+        },
+        "colorId": "den-noir",
+        "size": "M",
+        "price": 689000,
+        "originalPrice": 789000,
+        "stock": 30,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-001-den-noir-l",
+        "sku": "W-DRESS-GOTHIC-001-DEN-NOIR-L",
+        "color": {
+          "id": "den-noir",
+          "name": "Đen Noir",
+          "hex": "#0A0A0A",
+          "slug": "den-noir",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+        },
+        "colorId": "den-noir",
+        "size": "L",
+        "price": 689000,
+        "originalPrice": 789000,
+        "stock": 35,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png",
+        "isVerified": true
+      }
+    ],
+    "skuVariants": [
+      {
+        "sku": "W-DRESS-GOTHIC-001-DEN-NOIR-S",
+        "colorVariantId": "W-DRESS-GOTHIC-001-DEN-NOIR",
+        "size": "S",
+        "price": 689000,
+        "stock": 25,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-001-DEN-NOIR-M",
+        "colorVariantId": "W-DRESS-GOTHIC-001-DEN-NOIR",
+        "size": "M",
+        "price": 689000,
+        "stock": 30,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-001-DEN-NOIR-L",
+        "colorVariantId": "W-DRESS-GOTHIC-001-DEN-NOIR",
+        "size": "L",
+        "price": 689000,
+        "stock": 35,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png"
+      }
+    ],
+    "rating": 5.0,
+    "reviewCount": 18,
+    "soldCount": 46,
+    "discountPercent": 13,
+    "badge": "LUXURY",
+    "isFeatured": true,
+    "isNewArrival": true,
+    "duplicateGroup": "GRP-W-DRESS-GOTHIC-001",
+    "mergeStatus": "merged",
+    "createdAt": "2026-10-29",
+    "updatedAt": "2026-10-29",
+    "isActive": true,
+    "needsReview": false
+  },
+  {
+    "id": "W-DRESS-GOTHIC-002",
+    "folderKey": "quan-ao-nu/vay",
+    "modelFolder": "w-dress-gothic-002",
+    "name": "Váy Corset Gothic Đen Ngà Cầu Kỳ",
+    "slug": "vay-corset-gothic-den-nga-cau-ky-w-dress-gothic-002",
+    "categorySlug": "vay",
+    "parentGroup": "vay",
+    "gender": "nu",
+    "brand": "SMARTBUY AI",
+    "price": 729000,
+    "originalPrice": 850000,
+    "costPrice": 365000,
+    "suggestedPrice": 729000,
+    "approvedPrice": 729000,
+    "priceStatus": "approved",
+    "profitMargin": 49.9,
+    "subCategoryPending": false,
+    "needsClassification": false,
+    "isSetItem": false,
+    "setDetails": null,
+    "shortDescription": "Váy corset gothic dạ hội phối sắc đen ngà kiêu kỳ, đính viền ren rủ bồng bềnh phong cách quý tộc Châu Âu.",
+    "description": "🔥 THÔNG TIN SẢN PHẨM:\n- Tên thiết kế: Váy Corset Gothic Đen Ngà Cầu Kỳ\n- Mã SKU: W-DRESS-GOTHIC-002\n- Phân loại: Váy Thiết Kế Gothic Nữ Cao Cấp\n- Thương hiệu: SMARTBUY AI\n- Phom dáng: Corset Ballgown tiểu thư\n- Chất liệu: Satin mờ phối tơ ngà bồng bềnh\n- Màu sắc: Đen Ngà Hoàng Gia (Black & Ivory)\n\n✨ ĐẶC ĐIỂM NỔI BẬT:\n- Thiết kế phối màu đen và ngà tương phản ấn tượng\n- Chi tiết nơ ren ngực đính kết thủ công tỉ mỉ\n- Tùng váy nhiều lớp xòe rộng nhẹ nhàng khi sải bước",
+    "material": "Satin mờ cao cấp & Tơ ngà bồng bềnh",
+    "fit": "Form chuẩn Gothic Luxury",
+    "style": "Dark Romance & Royal Gothic",
+    "occasion": [
+      "Dự tiệc",
+      "Chụp OOTD",
+      "Sự kiện",
+      "Dạo phố"
+    ],
+    "season": "all",
+    "seasons": [
+      "he",
+      "dong",
+      "xuan-thu"
+    ],
+    "careInstructions": [
+      "Giặt khô hoặc giặt tay nước mát nhẹ nhàng",
+      "Không vắt mạnh hoặc sấy nhiệt độ cao",
+      "Là hơi nước ở mức nhiệt thấp"
+    ],
+    "images": [
+      "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+    ],
+    "colors": [
+      {
+        "id": "den-nga",
+        "name": "Đen Ngà",
+        "hex": "#1C1917",
+        "slug": "den-nga",
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+        ],
+        "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+      }
+    ],
+    "colorVariants": [
+      {
+        "id": "W-DRESS-GOTHIC-002-DEN-NGA",
+        "productId": "W-DRESS-GOTHIC-002",
+        "colorName": "Đen Ngà",
+        "colorHex": "#1C1917",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+        ],
+        "thumbnail": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+        "verificationStatus": "verified",
+        "verificationSource": "disk",
+        "isVerified": true
+      }
+    ],
+    "defaultColorId": "den-nga",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "variants": [
+      {
+        "id": "w-dress-gothic-002-den-nga-s",
+        "sku": "W-DRESS-GOTHIC-002-DEN-NGA-S",
+        "color": {
+          "id": "den-nga",
+          "name": "Đen Ngà",
+          "hex": "#1C1917",
+          "slug": "den-nga",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+        },
+        "colorId": "den-nga",
+        "size": "S",
+        "price": 729000,
+        "originalPrice": 850000,
+        "stock": 25,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-002-den-nga-m",
+        "sku": "W-DRESS-GOTHIC-002-DEN-NGA-M",
+        "color": {
+          "id": "den-nga",
+          "name": "Đen Ngà",
+          "hex": "#1C1917",
+          "slug": "den-nga",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+        },
+        "colorId": "den-nga",
+        "size": "M",
+        "price": 729000,
+        "originalPrice": 850000,
+        "stock": 30,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-002-den-nga-l",
+        "sku": "W-DRESS-GOTHIC-002-DEN-NGA-L",
+        "color": {
+          "id": "den-nga",
+          "name": "Đen Ngà",
+          "hex": "#1C1917",
+          "slug": "den-nga",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+        },
+        "colorId": "den-nga",
+        "size": "L",
+        "price": 729000,
+        "originalPrice": 850000,
+        "stock": 35,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+        "isVerified": true
+      }
+    ],
+    "skuVariants": [
+      {
+        "sku": "W-DRESS-GOTHIC-002-DEN-NGA-S",
+        "colorVariantId": "W-DRESS-GOTHIC-002-DEN-NGA",
+        "size": "S",
+        "price": 729000,
+        "stock": 25,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-002-DEN-NGA-M",
+        "colorVariantId": "W-DRESS-GOTHIC-002-DEN-NGA",
+        "size": "M",
+        "price": 729000,
+        "stock": 30,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-002-DEN-NGA-L",
+        "colorVariantId": "W-DRESS-GOTHIC-002-DEN-NGA",
+        "size": "L",
+        "price": 729000,
+        "stock": 35,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png"
+      }
+    ],
+    "rating": 5.0,
+    "reviewCount": 18,
+    "soldCount": 46,
+    "discountPercent": 14,
+    "badge": "LUXURY",
+    "isFeatured": true,
+    "isNewArrival": true,
+    "duplicateGroup": "GRP-W-DRESS-GOTHIC-002",
+    "mergeStatus": "merged",
+    "createdAt": "2026-10-29",
+    "updatedAt": "2026-10-29",
+    "isActive": true,
+    "needsReview": false
+  },
+  {
+    "id": "W-DRESS-GOTHIC-003",
+    "folderKey": "quan-ao-nu/vay",
+    "modelFolder": "w-dress-gothic-003",
+    "name": "Váy Corset Gothic Đen Trắng Nhiều Tầng",
+    "slug": "vay-corset-gothic-den-trang-nhieu-tang-w-dress-gothic-003",
+    "categorySlug": "vay",
+    "parentGroup": "vay",
+    "gender": "nu",
+    "brand": "SMARTBUY AI",
+    "price": 759000,
+    "originalPrice": 890000,
+    "costPrice": 380000,
+    "suggestedPrice": 759000,
+    "approvedPrice": 759000,
+    "priceStatus": "approved",
+    "profitMargin": 49.9,
+    "subCategoryPending": false,
+    "needsClassification": false,
+    "isSetItem": false,
+    "setDetails": null,
+    "shortDescription": "Thiết kế tùng váy đa tầng xếp bèo bồng bềnh, phối thân áo corset thắt dây sau lưng kiêu sa.",
+    "description": "🔥 THÔNG TIN SẢN PHẨM:\n- Tên thiết kế: Váy Corset Gothic Đen Trắng Nhiều Tầng\n- Mã SKU: W-DRESS-GOTHIC-003\n- Phân loại: Váy Thiết Kế Gothic Nữ Cao Cấp\n- Thương hiệu: SMARTBUY AI\n- Phom dáng: Tiered Ballgown xếp tầng bồng bềnh\n- Màu sắc: Đen Trắng Tương Phản\n\n✨ ĐẶC ĐIỂM NỔI BẬT:\n- Tùng váy 4 lớp voan lưới bồng tự nhiên không cần tùng độn\n- Thân áo ôm sát đường cong tạo tỷ lệ đồng hồ cát quyến rũ\n- Dây ruy băng đan chéo sau lưng có thể điều chỉnh độ ôm theo vóc dáng",
+    "material": "Voan lưới cao cấp & Thân áo nhung gấm",
+    "fit": "Form chuẩn Gothic Luxury",
+    "style": "Dark Coquette & Gothic Lolita",
+    "occasion": [
+      "Dự tiệc",
+      "Chụp OOTD",
+      "Sự kiện",
+      "Dạo phố"
+    ],
+    "season": "all",
+    "seasons": [
+      "he",
+      "dong",
+      "xuan-thu"
+    ],
+    "careInstructions": [
+      "Giặt khô hoặc giặt tay nước mát nhẹ nhàng",
+      "Không vắt mạnh hoặc sấy nhiệt độ cao",
+      "Là hơi nước ở mức nhiệt thấp"
+    ],
+    "images": [
+      "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+    ],
+    "colors": [
+      {
+        "id": "den-trang",
+        "name": "Đen Trắng",
+        "hex": "#18181B",
+        "slug": "den-trang",
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+        ],
+        "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+      }
+    ],
+    "colorVariants": [
+      {
+        "id": "W-DRESS-GOTHIC-003-DEN-TRANG",
+        "productId": "W-DRESS-GOTHIC-003",
+        "colorName": "Đen Trắng",
+        "colorHex": "#18181B",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+        ],
+        "thumbnail": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+        "verificationStatus": "verified",
+        "verificationSource": "disk",
+        "isVerified": true
+      }
+    ],
+    "defaultColorId": "den-trang",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "variants": [
+      {
+        "id": "w-dress-gothic-003-den-trang-s",
+        "sku": "W-DRESS-GOTHIC-003-DEN-TRANG-S",
+        "color": {
+          "id": "den-trang",
+          "name": "Đen Trắng",
+          "hex": "#18181B",
+          "slug": "den-trang",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+        },
+        "colorId": "den-trang",
+        "size": "S",
+        "price": 759000,
+        "originalPrice": 890000,
+        "stock": 25,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-003-den-trang-m",
+        "sku": "W-DRESS-GOTHIC-003-DEN-TRANG-M",
+        "color": {
+          "id": "den-trang",
+          "name": "Đen Trắng",
+          "hex": "#18181B",
+          "slug": "den-trang",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+        },
+        "colorId": "den-trang",
+        "size": "M",
+        "price": 759000,
+        "originalPrice": 890000,
+        "stock": 30,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-003-den-trang-l",
+        "sku": "W-DRESS-GOTHIC-003-DEN-TRANG-L",
+        "color": {
+          "id": "den-trang",
+          "name": "Đen Trắng",
+          "hex": "#18181B",
+          "slug": "den-trang",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+        },
+        "colorId": "den-trang",
+        "size": "L",
+        "price": 759000,
+        "originalPrice": 890000,
+        "stock": 35,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+        "isVerified": true
+      }
+    ],
+    "skuVariants": [
+      {
+        "sku": "W-DRESS-GOTHIC-003-DEN-TRANG-S",
+        "colorVariantId": "W-DRESS-GOTHIC-003-DEN-TRANG",
+        "size": "S",
+        "price": 759000,
+        "stock": 25,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-003-DEN-TRANG-M",
+        "colorVariantId": "W-DRESS-GOTHIC-003-DEN-TRANG",
+        "size": "M",
+        "price": 759000,
+        "stock": 30,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-003-DEN-TRANG-L",
+        "colorVariantId": "W-DRESS-GOTHIC-003-DEN-TRANG",
+        "size": "L",
+        "price": 759000,
+        "stock": 35,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png"
+      }
+    ],
+    "rating": 5.0,
+    "reviewCount": 18,
+    "soldCount": 46,
+    "discountPercent": 15,
+    "badge": "LUXURY",
+    "isFeatured": true,
+    "isNewArrival": true,
+    "duplicateGroup": "GRP-W-DRESS-GOTHIC-003",
+    "mergeStatus": "merged",
+    "createdAt": "2026-10-29",
+    "updatedAt": "2026-10-29",
+    "isActive": true,
+    "needsReview": false
+  },
+  {
+    "id": "W-DRESS-GOTHIC-004",
+    "folderKey": "quan-ao-nu/vay",
+    "modelFolder": "w-dress-gothic-004",
+    "name": "Váy Corset Kẻ Đỏ Đen Cổ Điển",
+    "slug": "vay-corset-ke-do-den-co-dien-w-dress-gothic-004",
+    "categorySlug": "vay",
+    "parentGroup": "vay",
+    "gender": "nu",
+    "brand": "SMARTBUY AI",
+    "price": 649000,
+    "originalPrice": 750000,
+    "costPrice": 325000,
+    "suggestedPrice": 649000,
+    "approvedPrice": 649000,
+    "priceStatus": "approved",
+    "profitMargin": 49.9,
+    "subCategoryPending": false,
+    "needsClassification": false,
+    "isSetItem": false,
+    "setDetails": null,
+    "shortDescription": "Váy corset họa tiết kẻ Tartan đỏ đen phong cách punk rock pha gothic cổ điển cá tính và cuốn hút.",
+    "description": "🔥 THÔNG TIN SẢN PHẨM:\n- Tên thiết kế: Váy Corset Kẻ Đỏ Đen Cổ Điển\n- Mã SKU: W-DRESS-GOTHIC-004\n- Phân loại: Váy Thiết Kế Gothic Nữ\n- Thương hiệu: SMARTBUY AI\n- Phong cách: Punk Gothic & Visual Kei\n- Họa tiết: Kẻ Tartan đỏ đen truyền thống\n\n✨ ĐẶC ĐIỂM NỔI BẬT:\n- Chất vải dạ mỏng đứng phom, giữ nếp váy suôn mượt\n- Phối khóa cài kim loại và dây da thời thượng\n- Dễ phối cùng bốt cao cổ hoặc giày Mary Jane da bóng",
+    "material": "Dạ nỉ kẻ dệt cao cấp chống nhăn",
+    "fit": "Form chuẩn Gothic Luxury",
+    "style": "Punk Gothic Vintage",
+    "occasion": [
+      "Dự tiệc",
+      "Chụp OOTD",
+      "Sự kiện",
+      "Dạo phố"
+    ],
+    "season": "all",
+    "seasons": [
+      "he",
+      "dong",
+      "xuan-thu"
+    ],
+    "careInstructions": [
+      "Giặt khô hoặc giặt tay nước mát nhẹ nhàng",
+      "Không vắt mạnh hoặc sấy nhiệt độ cao",
+      "Là hơi nước ở mức nhiệt thấp"
+    ],
+    "images": [
+      "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+    ],
+    "colors": [
+      {
+        "id": "do-den-tartan",
+        "name": "Đỏ Đen Tartan",
+        "hex": "#7F1D1D",
+        "slug": "do-den-tartan",
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+        ],
+        "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+      }
+    ],
+    "colorVariants": [
+      {
+        "id": "W-DRESS-GOTHIC-004-DO-DEN-TARTAN",
+        "productId": "W-DRESS-GOTHIC-004",
+        "colorName": "Đỏ Đen Tartan",
+        "colorHex": "#7F1D1D",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+        ],
+        "thumbnail": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+        "verificationStatus": "verified",
+        "verificationSource": "disk",
+        "isVerified": true
+      }
+    ],
+    "defaultColorId": "do-den-tartan",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "variants": [
+      {
+        "id": "w-dress-gothic-004-do-den-tartan-s",
+        "sku": "W-DRESS-GOTHIC-004-DO-DEN-TARTAN-S",
+        "color": {
+          "id": "do-den-tartan",
+          "name": "Đỏ Đen Tartan",
+          "hex": "#7F1D1D",
+          "slug": "do-den-tartan",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+        },
+        "colorId": "do-den-tartan",
+        "size": "S",
+        "price": 649000,
+        "originalPrice": 750000,
+        "stock": 25,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-004-do-den-tartan-m",
+        "sku": "W-DRESS-GOTHIC-004-DO-DEN-TARTAN-M",
+        "color": {
+          "id": "do-den-tartan",
+          "name": "Đỏ Đen Tartan",
+          "hex": "#7F1D1D",
+          "slug": "do-den-tartan",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+        },
+        "colorId": "do-den-tartan",
+        "size": "M",
+        "price": 649000,
+        "originalPrice": 750000,
+        "stock": 30,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-004-do-den-tartan-l",
+        "sku": "W-DRESS-GOTHIC-004-DO-DEN-TARTAN-L",
+        "color": {
+          "id": "do-den-tartan",
+          "name": "Đỏ Đen Tartan",
+          "hex": "#7F1D1D",
+          "slug": "do-den-tartan",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+        },
+        "colorId": "do-den-tartan",
+        "size": "L",
+        "price": 649000,
+        "originalPrice": 750000,
+        "stock": 35,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+        "isVerified": true
+      }
+    ],
+    "skuVariants": [
+      {
+        "sku": "W-DRESS-GOTHIC-004-DO-DEN-TARTAN-S",
+        "colorVariantId": "W-DRESS-GOTHIC-004-DO-DEN-TARTAN",
+        "size": "S",
+        "price": 649000,
+        "stock": 25,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-004-DO-DEN-TARTAN-M",
+        "colorVariantId": "W-DRESS-GOTHIC-004-DO-DEN-TARTAN",
+        "size": "M",
+        "price": 649000,
+        "stock": 30,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-004-DO-DEN-TARTAN-L",
+        "colorVariantId": "W-DRESS-GOTHIC-004-DO-DEN-TARTAN",
+        "size": "L",
+        "price": 649000,
+        "stock": 35,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
+      }
+    ],
+    "rating": 5.0,
+    "reviewCount": 18,
+    "soldCount": 46,
+    "discountPercent": 13,
+    "badge": "LUXURY",
+    "isFeatured": true,
+    "isNewArrival": true,
+    "duplicateGroup": "GRP-W-DRESS-GOTHIC-004",
+    "mergeStatus": "merged",
+    "createdAt": "2026-10-29",
+    "updatedAt": "2026-10-29",
+    "isActive": true,
+    "needsReview": false
+  },
+  {
+    "id": "W-DRESS-GOTHIC-005",
+    "folderKey": "quan-ao-nu/vay",
+    "modelFolder": "w-dress-gothic-005",
+    "name": "Váy Dạ Hội Corset Đen Trắng Ren Hoa",
+    "slug": "vay-da-hoi-corset-den-trang-ren-hoa-w-dress-gothic-005",
+    "categorySlug": "vay",
+    "parentGroup": "vay",
+    "gender": "nu",
+    "brand": "SMARTBUY AI",
+    "price": 799000,
+    "originalPrice": 920000,
+    "costPrice": 400000,
+    "suggestedPrice": 799000,
+    "approvedPrice": 799000,
+    "priceStatus": "approved",
+    "profitMargin": 49.9,
+    "subCategoryPending": false,
+    "needsClassification": false,
+    "isSetItem": false,
+    "setDetails": null,
+    "shortDescription": "Váy dạ hội corset lộng lẫy thêu ren hoa nổi tinh xảo, tùng xòe dài sang trọng cho những buổi dạ tiệc.",
+    "description": "🔥 THÔNG TIN SẢN PHẨM:\n- Tên thiết kế: Váy Dạ Hội Corset Đen Trắng Ren Hoa\n- Mã SKU: W-DRESS-GOTHIC-005\n- Phân loại: Váy Dạ Hội Gothic Cao Cấp\n- Thương hiệu: SMARTBUY AI\n- Phom dáng: Đầm dạ tiệc đuôi dài sang trọng\n\n✨ ĐẶC ĐIỂM NỔI BẬT:\n- Họa tiết ren hoa nổi 3D dệt thủ công sắc sảo\n- Lớp lót lụa tơ tằm nhân tạo mềm êm làn da\n- Thiết kế độc quyền cho các sự kiện dạ tiệc thời trang cao cấp",
+    "material": "Gấm hoa chìm dệt nổi & Lót lụa satin",
+    "fit": "Form chuẩn Gothic Luxury",
+    "style": "Evening Glamour & Gothic Chic",
+    "occasion": [
+      "Dự tiệc",
+      "Chụp OOTD",
+      "Sự kiện",
+      "Dạo phố"
+    ],
+    "season": "all",
+    "seasons": [
+      "he",
+      "dong",
+      "xuan-thu"
+    ],
+    "careInstructions": [
+      "Giặt khô hoặc giặt tay nước mát nhẹ nhàng",
+      "Không vắt mạnh hoặc sấy nhiệt độ cao",
+      "Là hơi nước ở mức nhiệt thấp"
+    ],
+    "images": [
+      "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+    ],
+    "colors": [
+      {
+        "id": "den-trang-da-hoi",
+        "name": "Đen Trắng Dạ Hội",
+        "hex": "#09090B",
+        "slug": "den-trang-da-hoi",
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+        ],
+        "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+      }
+    ],
+    "colorVariants": [
+      {
+        "id": "W-DRESS-GOTHIC-005-DEN-TRANG-DA-HOI",
+        "productId": "W-DRESS-GOTHIC-005",
+        "colorName": "Đen Trắng Dạ Hội",
+        "colorHex": "#09090B",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+        ],
+        "thumbnail": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+        "verificationStatus": "verified",
+        "verificationSource": "disk",
+        "isVerified": true
+      }
+    ],
+    "defaultColorId": "den-trang-da-hoi",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "variants": [
+      {
+        "id": "w-dress-gothic-005-den-trang-da-hoi-s",
+        "sku": "W-DRESS-GOTHIC-005-DEN-TRANG-DA-HOI-S",
+        "color": {
+          "id": "den-trang-da-hoi",
+          "name": "Đen Trắng Dạ Hội",
+          "hex": "#09090B",
+          "slug": "den-trang-da-hoi",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+        },
+        "colorId": "den-trang-da-hoi",
+        "size": "S",
+        "price": 799000,
+        "originalPrice": 920000,
+        "stock": 25,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-005-den-trang-da-hoi-m",
+        "sku": "W-DRESS-GOTHIC-005-DEN-TRANG-DA-HOI-M",
+        "color": {
+          "id": "den-trang-da-hoi",
+          "name": "Đen Trắng Dạ Hội",
+          "hex": "#09090B",
+          "slug": "den-trang-da-hoi",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+        },
+        "colorId": "den-trang-da-hoi",
+        "size": "M",
+        "price": 799000,
+        "originalPrice": 920000,
+        "stock": 30,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-005-den-trang-da-hoi-l",
+        "sku": "W-DRESS-GOTHIC-005-DEN-TRANG-DA-HOI-L",
+        "color": {
+          "id": "den-trang-da-hoi",
+          "name": "Đen Trắng Dạ Hội",
+          "hex": "#09090B",
+          "slug": "den-trang-da-hoi",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+        },
+        "colorId": "den-trang-da-hoi",
+        "size": "L",
+        "price": 799000,
+        "originalPrice": 920000,
+        "stock": 35,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+        "isVerified": true
+      }
+    ],
+    "skuVariants": [
+      {
+        "sku": "W-DRESS-GOTHIC-005-DEN-TRANG-DA-HOI-S",
+        "colorVariantId": "W-DRESS-GOTHIC-005-DEN-TRANG-DA-HOI",
+        "size": "S",
+        "price": 799000,
+        "stock": 25,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-005-DEN-TRANG-DA-HOI-M",
+        "colorVariantId": "W-DRESS-GOTHIC-005-DEN-TRANG-DA-HOI",
+        "size": "M",
+        "price": 799000,
+        "stock": 30,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-005-DEN-TRANG-DA-HOI-L",
+        "colorVariantId": "W-DRESS-GOTHIC-005-DEN-TRANG-DA-HOI",
+        "size": "L",
+        "price": 799000,
+        "stock": 35,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png"
+      }
+    ],
+    "rating": 5.0,
+    "reviewCount": 18,
+    "soldCount": 46,
+    "discountPercent": 13,
+    "badge": "LUXURY",
+    "isFeatured": true,
+    "isNewArrival": true,
+    "duplicateGroup": "GRP-W-DRESS-GOTHIC-005",
+    "mergeStatus": "merged",
+    "createdAt": "2026-10-29",
+    "updatedAt": "2026-10-29",
+    "isActive": true,
+    "needsReview": false
+  },
+  {
+    "id": "W-DRESS-GOTHIC-006",
+    "folderKey": "quan-ao-nu/vay",
+    "modelFolder": "w-dress-gothic-006",
+    "name": "Váy Gothic Lolita Cổ Yếm Ren Đen Ivory",
+    "slug": "vay-gothic-lolita-co-yem-ren-den-ivory-w-dress-gothic-006",
+    "categorySlug": "vay",
+    "parentGroup": "vay",
+    "gender": "nu",
+    "brand": "SMARTBUY AI",
+    "price": 699000,
+    "originalPrice": 820000,
+    "costPrice": 350000,
+    "suggestedPrice": 699000,
+    "approvedPrice": 699000,
+    "priceStatus": "approved",
+    "profitMargin": 49.9,
+    "subCategoryPending": false,
+    "needsClassification": false,
+    "isSetItem": false,
+    "setDetails": null,
+    "shortDescription": "Váy thiết kế cổ yếm thêu hoa văn cung đình, kết hợp viền bèo ivory thanh nhã và nữ tính.",
+    "description": "🔥 THÔNG TIN SẢN PHẨM:\n- Tên thiết kế: Váy Gothic Lolita Cổ Yếm Ren Đen Ivory\n- Mã SKU: W-DRESS-GOTHIC-006\n- Phân loại: Váy Thiết Kế Gothic Lolita\n- Thương hiệu: SMARTBUY AI\n- Phom dáng: Cổ yếm bèo rủ xòe chữ A\n\n✨ ĐẶC ĐIỂM NỔI BẬT:\n- Cổ yếm kín đáo nhưng thanh thoát, tôn bờ vai thon gọn\n- Nơ ngực và viền xếp ly tỉ mỉ phong cách búp bê sứ Châu Âu\n- Dây buộc cổ êm ái không gây hằn cấn",
+    "material": "Cotton nhung mềm phối ren tơ mềm mại",
+    "fit": "Form chuẩn Gothic Luxury",
+    "style": "Gothic Lolita Doll",
+    "occasion": [
+      "Dự tiệc",
+      "Chụp OOTD",
+      "Sự kiện",
+      "Dạo phố"
+    ],
+    "season": "all",
+    "seasons": [
+      "he",
+      "dong",
+      "xuan-thu"
+    ],
+    "careInstructions": [
+      "Giặt khô hoặc giặt tay nước mát nhẹ nhàng",
+      "Không vắt mạnh hoặc sấy nhiệt độ cao",
+      "Là hơi nước ở mức nhiệt thấp"
+    ],
+    "images": [
+      "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+    ],
+    "colors": [
+      {
+        "id": "den-ivory",
+        "name": "Đen Phối Ivory",
+        "hex": "#27272A",
+        "slug": "den-ivory",
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+        ],
+        "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+      }
+    ],
+    "colorVariants": [
+      {
+        "id": "W-DRESS-GOTHIC-006-DEN-IVORY",
+        "productId": "W-DRESS-GOTHIC-006",
+        "colorName": "Đen Phối Ivory",
+        "colorHex": "#27272A",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+        ],
+        "thumbnail": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+        "verificationStatus": "verified",
+        "verificationSource": "disk",
+        "isVerified": true
+      }
+    ],
+    "defaultColorId": "den-ivory",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "variants": [
+      {
+        "id": "w-dress-gothic-006-den-ivory-s",
+        "sku": "W-DRESS-GOTHIC-006-DEN-IVORY-S",
+        "color": {
+          "id": "den-ivory",
+          "name": "Đen Phối Ivory",
+          "hex": "#27272A",
+          "slug": "den-ivory",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+        },
+        "colorId": "den-ivory",
+        "size": "S",
+        "price": 699000,
+        "originalPrice": 820000,
+        "stock": 25,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-006-den-ivory-m",
+        "sku": "W-DRESS-GOTHIC-006-DEN-IVORY-M",
+        "color": {
+          "id": "den-ivory",
+          "name": "Đen Phối Ivory",
+          "hex": "#27272A",
+          "slug": "den-ivory",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+        },
+        "colorId": "den-ivory",
+        "size": "M",
+        "price": 699000,
+        "originalPrice": 820000,
+        "stock": 30,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-006-den-ivory-l",
+        "sku": "W-DRESS-GOTHIC-006-DEN-IVORY-L",
+        "color": {
+          "id": "den-ivory",
+          "name": "Đen Phối Ivory",
+          "hex": "#27272A",
+          "slug": "den-ivory",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+        },
+        "colorId": "den-ivory",
+        "size": "L",
+        "price": 699000,
+        "originalPrice": 820000,
+        "stock": 35,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+        "isVerified": true
+      }
+    ],
+    "skuVariants": [
+      {
+        "sku": "W-DRESS-GOTHIC-006-DEN-IVORY-S",
+        "colorVariantId": "W-DRESS-GOTHIC-006-DEN-IVORY",
+        "size": "S",
+        "price": 699000,
+        "stock": 25,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-006-DEN-IVORY-M",
+        "colorVariantId": "W-DRESS-GOTHIC-006-DEN-IVORY",
+        "size": "M",
+        "price": 699000,
+        "stock": 30,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-006-DEN-IVORY-L",
+        "colorVariantId": "W-DRESS-GOTHIC-006-DEN-IVORY",
+        "size": "L",
+        "price": 699000,
+        "stock": 35,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png"
+      }
+    ],
+    "rating": 5.0,
+    "reviewCount": 18,
+    "soldCount": 46,
+    "discountPercent": 15,
+    "badge": "LUXURY",
+    "isFeatured": true,
+    "isNewArrival": true,
+    "duplicateGroup": "GRP-W-DRESS-GOTHIC-006",
+    "mergeStatus": "merged",
+    "createdAt": "2026-10-29",
+    "updatedAt": "2026-10-29",
+    "isActive": true,
+    "needsReview": false
+  },
+  {
+    "id": "W-DRESS-GOTHIC-007",
+    "folderKey": "quan-ao-nu/vay",
+    "modelFolder": "w-dress-gothic-007",
+    "name": "Váy Gothic Ren Hoa Đen Trắng Thanh Lịch",
+    "slug": "vay-gothic-ren-hoa-den-trang-thanh-lich-w-dress-gothic-007",
+    "categorySlug": "vay",
+    "parentGroup": "vay",
+    "gender": "nu",
+    "brand": "SMARTBUY AI",
+    "price": 679000,
+    "originalPrice": 790000,
+    "costPrice": 340000,
+    "suggestedPrice": 679000,
+    "approvedPrice": 679000,
+    "priceStatus": "approved",
+    "profitMargin": 49.9,
+    "subCategoryPending": false,
+    "needsClassification": false,
+    "isSetItem": false,
+    "setDetails": null,
+    "shortDescription": "Thiết kế váy ren hoa trang nhã phom ôm rủ nhẹ nhàng, phong cách gothic đương đại thanh lịch.",
+    "description": "🔥 THÔNG TIN SẢN PHẨM:\n- Tên thiết kế: Váy Gothic Ren Hoa Đen Trắng Thanh Lịch\n- Mã SKU: W-DRESS-GOTHIC-007\n- Phân loại: Váy Thiết Kế Gothic Nữ Thanh Lịch\n- Thương hiệu: SMARTBUY AI\n- Phom dáng: Regular Fit thanh lịch\n\n✨ ĐẶC ĐIỂM NỔI BẬT:\n- Họa tiết hoa ren đen trên nền vải trắng sữa thanh tao\n- Ứng dụng linh hoạt từ dạo phố đến các buổi tiệc trà cuối tuần\n- Giữ màu đen tuyền bền đẹp sau nhiều lần giặt",
+    "material": "Ren hoa nổi Pháp & Lót lụa nhân tạo",
+    "fit": "Form chuẩn Gothic Luxury",
+    "style": "Gothic Elegance",
+    "occasion": [
+      "Dự tiệc",
+      "Chụp OOTD",
+      "Sự kiện",
+      "Dạo phố"
+    ],
+    "season": "all",
+    "seasons": [
+      "he",
+      "dong",
+      "xuan-thu"
+    ],
+    "careInstructions": [
+      "Giặt khô hoặc giặt tay nước mát nhẹ nhàng",
+      "Không vắt mạnh hoặc sấy nhiệt độ cao",
+      "Là hơi nước ở mức nhiệt thấp"
+    ],
+    "images": [
+      "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+    ],
+    "colors": [
+      {
+        "id": "den-trang-thanh-lich",
+        "name": "Đen Trắng Thanh Lịch",
+        "hex": "#18181B",
+        "slug": "den-trang-thanh-lich",
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+        ],
+        "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+      }
+    ],
+    "colorVariants": [
+      {
+        "id": "W-DRESS-GOTHIC-007-DEN-TRANG-THANH-LICH",
+        "productId": "W-DRESS-GOTHIC-007",
+        "colorName": "Đen Trắng Thanh Lịch",
+        "colorHex": "#18181B",
+        "images": [
+          "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+        ],
+        "thumbnail": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+        "verificationStatus": "verified",
+        "verificationSource": "disk",
+        "isVerified": true
+      }
+    ],
+    "defaultColorId": "den-trang-thanh-lich",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "variants": [
+      {
+        "id": "w-dress-gothic-007-den-trang-thanh-lich-s",
+        "sku": "W-DRESS-GOTHIC-007-DEN-TRANG-THANH-LICH-S",
+        "color": {
+          "id": "den-trang-thanh-lich",
+          "name": "Đen Trắng Thanh Lịch",
+          "hex": "#18181B",
+          "slug": "den-trang-thanh-lich",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+        },
+        "colorId": "den-trang-thanh-lich",
+        "size": "S",
+        "price": 679000,
+        "originalPrice": 790000,
+        "stock": 25,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-007-den-trang-thanh-lich-m",
+        "sku": "W-DRESS-GOTHIC-007-DEN-TRANG-THANH-LICH-M",
+        "color": {
+          "id": "den-trang-thanh-lich",
+          "name": "Đen Trắng Thanh Lịch",
+          "hex": "#18181B",
+          "slug": "den-trang-thanh-lich",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+        },
+        "colorId": "den-trang-thanh-lich",
+        "size": "M",
+        "price": 679000,
+        "originalPrice": 790000,
+        "stock": 30,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+        "isVerified": true
+      },
+      {
+        "id": "w-dress-gothic-007-den-trang-thanh-lich-l",
+        "sku": "W-DRESS-GOTHIC-007-DEN-TRANG-THANH-LICH-L",
+        "color": {
+          "id": "den-trang-thanh-lich",
+          "name": "Đen Trắng Thanh Lịch",
+          "hex": "#18181B",
+          "slug": "den-trang-thanh-lich",
+          "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+          "images": [
+            "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+          ],
+          "originalImage": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+        },
+        "colorId": "den-trang-thanh-lich",
+        "size": "L",
+        "price": 679000,
+        "originalPrice": 790000,
+        "stock": 35,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+        "isVerified": true
+      }
+    ],
+    "skuVariants": [
+      {
+        "sku": "W-DRESS-GOTHIC-007-DEN-TRANG-THANH-LICH-S",
+        "colorVariantId": "W-DRESS-GOTHIC-007-DEN-TRANG-THANH-LICH",
+        "size": "S",
+        "price": 679000,
+        "stock": 25,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-007-DEN-TRANG-THANH-LICH-M",
+        "colorVariantId": "W-DRESS-GOTHIC-007-DEN-TRANG-THANH-LICH",
+        "size": "M",
+        "price": 679000,
+        "stock": 30,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+      },
+      {
+        "sku": "W-DRESS-GOTHIC-007-DEN-TRANG-THANH-LICH-L",
+        "colorVariantId": "W-DRESS-GOTHIC-007-DEN-TRANG-THANH-LICH",
+        "size": "L",
+        "price": 679000,
+        "stock": 35,
+        "isVerified": true,
+        "image": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+      }
+    ],
+    "rating": 5.0,
+    "reviewCount": 18,
+    "soldCount": 46,
+    "discountPercent": 14,
+    "badge": "LUXURY",
+    "isFeatured": true,
+    "isNewArrival": true,
+    "duplicateGroup": "GRP-W-DRESS-GOTHIC-007",
+    "mergeStatus": "merged",
+    "createdAt": "2026-10-29",
+    "updatedAt": "2026-10-29",
     "isActive": true,
     "needsReview": false
   }

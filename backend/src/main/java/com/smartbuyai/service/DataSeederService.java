@@ -251,115 +251,137 @@ public class DataSeederService implements CommandLineRunner {
     }
 
     private void seedProducts() {
-        if (productRepository.count() == 0) {
-            log.info("Bắt đầu nạp dữ liệu sản phẩm từ importedProducts.json vào Database...");
-            try {
-                InputStream is = null;
-                ClassPathResource resource = new ClassPathResource("data/importedProducts.json");
-                if (resource.exists()) {
-                    is = resource.getInputStream();
-                } else {
-                    File file = new File("../src/mocks/importedProducts.json");
-                    if (file.exists()) {
-                        is = file.toURI().toURL().openStream();
-                    }
+        log.info("Kiểm tra và đồng bộ danh mục sản phẩm từ importedProducts.json vào Database...");
+        try {
+            InputStream is = null;
+            ClassPathResource resource = new ClassPathResource("data/importedProducts.json");
+            if (resource.exists()) {
+                is = resource.getInputStream();
+            } else {
+                File file = new File("../src/mocks/importedProducts.json");
+                if (file.exists()) {
+                    is = file.toURI().toURL().openStream();
+                }
+            }
+
+            if (is == null) {
+                log.warn("Không tìm thấy tệp importedProducts.json để seed dữ liệu.");
+                return;
+            }
+
+            List<JsonNode> nodes = objectMapper.readValue(is, new TypeReference<List<JsonNode>>() {
+            });
+            log.info("Tìm thấy {} sản phẩm trong file importedProducts.json.", nodes.size());
+
+            Set<String> usedVariantIds = new HashSet<>();
+            int importedCount = 0;
+            int updatedCount = 0;
+            for (JsonNode n : nodes) {
+                String pid = n.path("id").asText();
+                if (pid == null || pid.isBlank()) {
+                    continue;
                 }
 
-                if (is == null) {
-                    log.warn("Không tìm thấy tệp importedProducts.json để seed dữ liệu.");
-                    return;
-                }
-
-                List<JsonNode> nodes = objectMapper.readValue(is, new TypeReference<List<JsonNode>>() {
-                });
-                log.info("Tìm thấy {} sản phẩm trong file importedProducts.json.", nodes.size());
-
-                Set<String> usedVariantIds = new HashSet<>();
-                int importedCount = 0;
-                for (JsonNode n : nodes) {
-                    ProductEntity p = new ProductEntity();
-                    p.setId(n.path("id").asText());
-                    p.setName(n.path("name").asText());
-                    p.setSlug(n.path("slug").asText());
-                    p.setCategorySlug(n.path("categorySlug").asText());
-                    p.setGender(n.path("gender").asText("nam"));
-                    p.setBrand(n.path("brand").asText("SMARTBUY AI"));
-                    p.setPrice(n.path("price").asLong(199000));
-                    p.setOriginalPrice(n.path("originalPrice").asLong(p.getPrice()));
-                    p.setCostPrice(n.path("costPrice").asLong(0));
-                    p.setSuggestedPrice(n.path("suggestedPrice").asLong(p.getPrice()));
-                    p.setApprovedPrice(n.path("approvedPrice").asLong(p.getPrice()));
-                    p.setPriceStatus(n.path("priceStatus").asText("approved"));
-                    p.setFolderKey(n.path("folderKey").asText());
-                    p.setModelFolder(n.path("modelFolder").asText());
-                    p.setShortDescription(n.path("shortDescription").asText());
-                    p.setDescription(n.path("description").asText());
-                    p.setMaterial(n.path("material").asText());
-                    p.setFit(n.path("fit").asText());
-                    p.setStyle(n.path("style").asText());
-                    p.setSeason(n.path("season").asText());
-                    p.setRating(n.path("rating").asDouble(4.8));
-                    p.setReviewCount(n.path("reviewCount").asInt(12));
-                    p.setIsActive(n.path("isActive").asBoolean(true));
-                    p.setIsNewDrop(n.path("isNewDrop").asBoolean(false));
-                    p.setIsBestSeller(n.path("isBestSeller").asBoolean(false));
-
-                    // Images
+                Optional<ProductEntity> existingOpt = productRepository.findById(pid);
+                if (existingOpt.isPresent()) {
+                    ProductEntity existing = existingOpt.get();
                     JsonNode imagesNode = n.path("images");
-                    if (imagesNode.isArray()) {
+                    if (imagesNode.isArray() && imagesNode.size() > existing.getImages().size()) {
+                        existing.getImages().clear();
                         int order = 0;
                         for (JsonNode imgNode : imagesNode) {
                             String url = imgNode.asText();
-                            p.getImages().add(new ProductImageEntity(p, url, order, order == 0));
+                            existing.getImages().add(new ProductImageEntity(existing, url, order, order == 0));
                             order++;
                         }
+                        productRepository.save(existing);
+                        updatedCount++;
                     }
-
-                    // Variants
-                    JsonNode variantsNode = n.path("variants");
-                    if (variantsNode.isArray()) {
-                        int vIdx = 1;
-                        for (JsonNode vNode : variantsNode) {
-                            ProductVariantEntity v = new ProductVariantEntity();
-                            String rawVid = vNode.path("id").asText();
-                            String candidateId = (rawVid != null && !rawVid.isBlank()) ? rawVid
-                                    : (p.getId().toLowerCase() + "-v" + vIdx);
-                            if (usedVariantIds.contains(candidateId)) {
-                                candidateId = p.getId().toLowerCase() + "-" + candidateId + "-" + vIdx;
-                            }
-                            while (usedVariantIds.contains(candidateId)) {
-                                candidateId = candidateId + "_" + vIdx;
-                            }
-                            usedVariantIds.add(candidateId);
-                            v.setId(candidateId);
-                            v.setProduct(p);
-                            v.setSku(vNode.path("sku").asText());
-                            v.setSize(vNode.path("size").asText("FreeSize"));
-                            v.setStock(vNode.path("stock").asInt(10));
-                            v.setPrice(vNode.path("price").asLong(p.getPrice()));
-                            v.setOriginalPrice(vNode.path("originalPrice").asLong(p.getOriginalPrice()));
-                            v.setImageUrl(vNode.path("image").asText());
-
-                            JsonNode colorNode = vNode.path("color");
-                            if (colorNode.isObject()) {
-                                v.setColorName(colorNode.path("name").asText("Mặc định"));
-                                v.setColorHex(colorNode.path("hex").asText("#111111"));
-                                v.setColorSlug(colorNode.path("slug").asText("mac-dinh"));
-                            }
-                            p.getVariants().add(v);
-                            vIdx++;
-                        }
-                    }
-
-                    productRepository.save(p);
-                    importedCount++;
+                    continue;
                 }
 
-                log.info("ĐÃ NẠP THÀNH CÔNG {}/{} SẢN PHẨM VÀO DATABASE SPRING BOOT!", importedCount, nodes.size());
+                ProductEntity p = new ProductEntity();
+                p.setId(pid);
+                p.setName(n.path("name").asText());
+                p.setSlug(n.path("slug").asText());
+                p.setCategorySlug(n.path("categorySlug").asText());
+                p.setGender(n.path("gender").asText("nam"));
+                p.setBrand(n.path("brand").asText("SMARTBUY AI"));
+                p.setPrice(n.path("price").asLong(199000));
+                p.setOriginalPrice(n.path("originalPrice").asLong(p.getPrice()));
+                p.setCostPrice(n.path("costPrice").asLong(0));
+                p.setSuggestedPrice(n.path("suggestedPrice").asLong(p.getPrice()));
+                p.setApprovedPrice(n.path("approvedPrice").asLong(p.getPrice()));
+                p.setPriceStatus(n.path("priceStatus").asText("approved"));
+                p.setFolderKey(n.path("folderKey").asText());
+                p.setModelFolder(n.path("modelFolder").asText());
+                p.setShortDescription(n.path("shortDescription").asText());
+                p.setDescription(n.path("description").asText());
+                p.setMaterial(n.path("material").asText());
+                p.setFit(n.path("fit").asText());
+                p.setStyle(n.path("style").asText());
+                p.setSeason(n.path("season").asText());
+                p.setRating(n.path("rating").asDouble(4.8));
+                p.setReviewCount(n.path("reviewCount").asInt(12));
+                p.setIsActive(n.path("isActive").asBoolean(true));
+                p.setIsNewDrop(n.path("isNewDrop").asBoolean(false));
+                p.setIsBestSeller(n.path("isBestSeller").asBoolean(false));
 
-            } catch (Exception e) {
-                log.error("Lỗi khi đọc file importedProducts.json: {}", e.getMessage(), e);
+                // Images
+                JsonNode imagesNode = n.path("images");
+                if (imagesNode.isArray()) {
+                    int order = 0;
+                    for (JsonNode imgNode : imagesNode) {
+                        String url = imgNode.asText();
+                        p.getImages().add(new ProductImageEntity(p, url, order, order == 0));
+                        order++;
+                    }
+                }
+
+                // Variants
+                JsonNode variantsNode = n.path("variants");
+                if (variantsNode.isArray()) {
+                    int vIdx = 1;
+                    for (JsonNode vNode : variantsNode) {
+                        ProductVariantEntity v = new ProductVariantEntity();
+                        String rawVid = vNode.path("id").asText();
+                        String candidateId = (rawVid != null && !rawVid.isBlank()) ? rawVid
+                                : (p.getId().toLowerCase() + "-v" + vIdx);
+                        if (usedVariantIds.contains(candidateId)) {
+                            candidateId = p.getId().toLowerCase() + "-" + candidateId + "-" + vIdx;
+                        }
+                        while (usedVariantIds.contains(candidateId)) {
+                            candidateId = candidateId + "_" + vIdx;
+                        }
+                        usedVariantIds.add(candidateId);
+                        v.setId(candidateId);
+                        v.setProduct(p);
+                        v.setSku(vNode.path("sku").asText());
+                        v.setSize(vNode.path("size").asText("FreeSize"));
+                        v.setStock(vNode.path("stock").asInt(10));
+                        v.setPrice(vNode.path("price").asLong(p.getPrice()));
+                        v.setOriginalPrice(vNode.path("originalPrice").asLong(p.getOriginalPrice()));
+                        v.setImageUrl(vNode.path("image").asText());
+
+                        JsonNode colorNode = vNode.path("color");
+                        if (colorNode.isObject()) {
+                            v.setColorName(colorNode.path("name").asText("Mặc định"));
+                            v.setColorHex(colorNode.path("hex").asText("#111111"));
+                            v.setColorSlug(colorNode.path("slug").asText("mac-dinh"));
+                        }
+                        p.getVariants().add(v);
+                        vIdx++;
+                    }
+                }
+
+                productRepository.save(p);
+                importedCount++;
             }
+
+            log.info("ĐỒNG BỘ SẢN PHẨM HOÀN TẤT: Đã thêm mới {} sản phẩm, cập nhật {} sản phẩm vào Database!", importedCount, updatedCount);
+
+        } catch (Exception e) {
+            log.error("Lỗi khi đọc file importedProducts.json: {}", e.getMessage(), e);
         }
     }
 }
