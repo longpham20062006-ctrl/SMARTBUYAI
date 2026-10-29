@@ -3,7 +3,6 @@ package com.smartbuyai.controller;
 import com.smartbuyai.dto.AuthRequest;
 import com.smartbuyai.dto.AuthResponse;
 import com.smartbuyai.dto.RegisterRequest;
-import com.smartbuyai.dto.UserDto;
 import com.smartbuyai.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -37,10 +36,10 @@ public class AuthController {
 
     @GetMapping("/me")
     @Operation(summary = "Lấy thông tin tài khoản đang đăng nhập")
-    public ResponseEntity<UserDto> getCurrentUser(Authentication auth) {
-        if (auth == null) {
-            // Return demo customer by default for local testing
-            return ResponseEntity.ok(authService.getUserProfile("user-demo-1"));
+    public ResponseEntity<?> getCurrentUser(Authentication auth) {
+        if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getName())) {
+            return ResponseEntity.status(org.springframework.http.HttpStatus.UNAUTHORIZED)
+                    .body(java.util.Map.of("message", "Chưa đăng nhập hoặc phiên làm việc đã hết hạn"));
         }
         return ResponseEntity.ok(authService.getUserProfile(auth.getName()));
     }

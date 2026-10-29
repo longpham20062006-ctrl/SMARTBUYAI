@@ -180,6 +180,18 @@ export const productService = {
       .slice(0, limit);
   },
 
+  getHotProducts: (limit: number = 8): Product[] => {
+    const all = MockRepo.getProducts().filter((p) => p.isActive);
+    const hotList = all.filter((p) => p.badge === 'HOT' || p.badge === 'DROP' || p.badge === 'TRENDING' || p.isFeatured || (p as any).isHot);
+    if (hotList.length >= limit) {
+      return hotList.slice(0, limit);
+    }
+    const remaining = all
+      .filter((p) => !hotList.some((h) => h.id === p.id))
+      .sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0));
+    return [...hotList, ...remaining].slice(0, limit);
+  },
+
   getNewArrivals: (limit: number = 8): Product[] => {
     return MockRepo.getProducts()
       .filter((p) => p.isActive && (p.isNewArrival || p.badge === 'Mới' || p.badge === 'NEW' || p.badge === 'DROP'))

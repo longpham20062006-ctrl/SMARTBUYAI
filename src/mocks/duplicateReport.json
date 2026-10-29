@@ -3,17 +3,1493 @@
   "title": "SMARTBUY AI — Báo Cáo Phân Tích Mẫu Sản Phẩm Theo Folder Thực Tế V3",
   "engine": "Folder-Based Product Variants Engine V3 (1 Folder = 1 Product)",
   "summary": {
-    "totalModelFolders": 273,
-    "totalConfirmedProducts": 273,
-    "totalMergedProducts": 273,
-    "confirmedMergedGroupsCount": 273,
-    "totalScannedImages": 536,
+    "totalModelFolders": 211,
+    "totalConfirmedProducts": 211,
+    "totalMergedProducts": 211,
+    "confirmedMergedGroupsCount": 211,
+    "totalScannedImages": 605,
     "looseImagesCount": 1,
-    "multiColorProductsCount": 106,
-    "multiAngleGalleryProductsCount": 67,
+    "multiColorProductsCount": 127,
+    "multiAngleGalleryProductsCount": 88,
     "pendingReviewCount": 10
   },
   "confirmedMergedGroups": [
+    {
+      "groupId": "GRP-ACC-001",
+      "parentProductId": "ACC-001",
+      "folderKey": "phu-kien/mu-non/New folder",
+      "modelFolder": "New folder",
+      "productName": "Phụ Kiện Thời Trang Gen Z #1",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/mu-non/New folder/1793193694736_348043404565674403_5540743654312280467_1c904c63a18ea8e9a29d53f72c910cb1.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/mu-non/New folder/1793193694736_348043404565674403_5540743654312280467_1c904c63a18ea8e9a29d53f72c910cb1.jpg",
+        "/images/san-pham/phu-kien/mu-non/New folder/1793193694754_348043404565674403_5540743654312280467_5c8bc5dd3ee2d94fcb570a1050917f7f.jpg",
+        "/images/san-pham/phu-kien/mu-non/New folder/1793193694767_348043404565674403_5540743654312280467_c5f7fcbbdeaf26b85e8f58084f599169.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xanh Dương",
+          "colorId": "xanh-duong",
+          "hex": "#2563EB",
+          "image": "/images/san-pham/phu-kien/mu-non/New folder/1793193694736_348043404565674403_5540743654312280467_1c904c63a18ea8e9a29d53f72c910cb1.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/mu-non/New folder/1793193694736_348043404565674403_5540743654312280467_1c904c63a18ea8e9a29d53f72c910cb1.jpg",
+            "/images/san-pham/phu-kien/mu-non/New folder/1793193694754_348043404565674403_5540743654312280467_5c8bc5dd3ee2d94fcb570a1050917f7f.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/phu-kien/mu-non/New folder/1793193694767_348043404565674403_5540743654312280467_c5f7fcbbdeaf26b85e8f58084f599169.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/mu-non/New folder/1793193694767_348043404565674403_5540743654312280467_c5f7fcbbdeaf26b85e8f58084f599169.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 3,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/mu-non/New folder): 2 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-002",
+      "parentProductId": "ACC-002",
+      "folderKey": "phu-kien/mu-non/New folder (2)",
+      "modelFolder": "New folder (2)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #2",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/mu-non/New folder (2)/1793193694777_348043404565674403_5540743654312280467_7f75ec5044f3db0b6dbc4fed8dd8e24e.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/mu-non/New folder (2)/1793193694777_348043404565674403_5540743654312280467_7f75ec5044f3db0b6dbc4fed8dd8e24e.jpg",
+        "/images/san-pham/phu-kien/mu-non/New folder (2)/1793193694786_348043404565674403_5540743654312280467_d69424d2b9cfb6acaaa7cfe798bb790d.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/phu-kien/mu-non/New folder (2)/1793193694777_348043404565674403_5540743654312280467_7f75ec5044f3db0b6dbc4fed8dd8e24e.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/mu-non/New folder (2)/1793193694777_348043404565674403_5540743654312280467_7f75ec5044f3db0b6dbc4fed8dd8e24e.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Xanh Navy",
+          "colorId": "xanh-navy",
+          "hex": "#1E3A8A",
+          "image": "/images/san-pham/phu-kien/mu-non/New folder (2)/1793193694786_348043404565674403_5540743654312280467_d69424d2b9cfb6acaaa7cfe798bb790d.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/mu-non/New folder (2)/1793193694786_348043404565674403_5540743654312280467_d69424d2b9cfb6acaaa7cfe798bb790d.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/mu-non/New folder (2)): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-003",
+      "parentProductId": "ACC-003",
+      "folderKey": "phu-kien/mu-non/New folder (3)",
+      "modelFolder": "New folder (3)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #3",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/mu-non/New folder (3)/1793193694795_348043404565674403_5540743654312280467_ad96f343b6337dcfb4e06e36dbc9a68a.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/mu-non/New folder (3)/1793193694795_348043404565674403_5540743654312280467_ad96f343b6337dcfb4e06e36dbc9a68a.jpg",
+        "/images/san-pham/phu-kien/mu-non/New folder (3)/1793193694802_348043404565674403_5540743654312280467_e7eddee47f006747b360754179bf7677.jpg",
+        "/images/san-pham/phu-kien/mu-non/New folder (3)/1793193694809_348043404565674403_5540743654312280467_91ac915fc90bd8de2da0885005aa7bc2.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Màu Phối Độc Bản",
+          "colorId": "phoi-mau",
+          "hex": "#f7921f",
+          "image": "/images/san-pham/phu-kien/mu-non/New folder (3)/1793193694795_348043404565674403_5540743654312280467_ad96f343b6337dcfb4e06e36dbc9a68a.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/mu-non/New folder (3)/1793193694795_348043404565674403_5540743654312280467_ad96f343b6337dcfb4e06e36dbc9a68a.jpg",
+            "/images/san-pham/phu-kien/mu-non/New folder (3)/1793193694802_348043404565674403_5540743654312280467_e7eddee47f006747b360754179bf7677.jpg"
+          ],
+          "verificationStatus": "needs-review",
+          "verificationSource": "cv",
+          "isVerified": false
+        },
+        {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/phu-kien/mu-non/New folder (3)/1793193694809_348043404565674403_5540743654312280467_91ac915fc90bd8de2da0885005aa7bc2.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/mu-non/New folder (3)/1793193694809_348043404565674403_5540743654312280467_91ac915fc90bd8de2da0885005aa7bc2.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 3,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/mu-non/New folder (3)): 2 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-004",
+      "parentProductId": "ACC-004",
+      "folderKey": "phu-kien/mu-non/New folder (4)",
+      "modelFolder": "New folder (4)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #4",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/mu-non/New folder (4)/1793193694815_348043404565674403_5540743654312280467_737539ba61e7e1150300d353e15a8ffb.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/mu-non/New folder (4)/1793193694815_348043404565674403_5540743654312280467_737539ba61e7e1150300d353e15a8ffb.jpg",
+        "/images/san-pham/phu-kien/mu-non/New folder (4)/1793193694827_348043404565674403_5540743654312280467_680a754b85dd382b136d34dcb55069de.jpg",
+        "/images/san-pham/phu-kien/mu-non/New folder (4)/1793193694821_348043404565674403_5540743654312280467_3e15b3fd6a642b349478474029c8bf4d.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/phu-kien/mu-non/New folder (4)/1793193694815_348043404565674403_5540743654312280467_737539ba61e7e1150300d353e15a8ffb.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/mu-non/New folder (4)/1793193694815_348043404565674403_5540743654312280467_737539ba61e7e1150300d353e15a8ffb.jpg",
+            "/images/san-pham/phu-kien/mu-non/New folder (4)/1793193694827_348043404565674403_5540743654312280467_680a754b85dd382b136d34dcb55069de.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Đỏ Đô",
+          "colorId": "do",
+          "hex": "#DC2626",
+          "image": "/images/san-pham/phu-kien/mu-non/New folder (4)/1793193694821_348043404565674403_5540743654312280467_3e15b3fd6a642b349478474029c8bf4d.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/mu-non/New folder (4)/1793193694821_348043404565674403_5540743654312280467_3e15b3fd6a642b349478474029c8bf4d.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 3,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/mu-non/New folder (4)): 2 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-005",
+      "parentProductId": "ACC-005",
+      "folderKey": "phu-kien/mu-non/New folder (5)",
+      "modelFolder": "New folder (5)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #5",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/mu-non/New folder (5)/1793193694831_348043404565674403_5540743654312280467_c1abb6333d358bd1b3ec9b3398efefc7.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/mu-non/New folder (5)/1793193694831_348043404565674403_5540743654312280467_c1abb6333d358bd1b3ec9b3398efefc7.jpg",
+        "/images/san-pham/phu-kien/mu-non/New folder (5)/1793193694836_348043404565674403_5540743654312280467_19d79bd96cb5668e0c6f87820814065c.jpg",
+        "/images/san-pham/phu-kien/mu-non/New folder (5)/1793193694841_348043404565674403_5540743654312280467_5210ad4202ff93736886c1e4f8c7e1f5.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/phu-kien/mu-non/New folder (5)/1793193694831_348043404565674403_5540743654312280467_c1abb6333d358bd1b3ec9b3398efefc7.jpg",
+          "galleryCount": 3,
+          "gallery": [
+            "/images/san-pham/phu-kien/mu-non/New folder (5)/1793193694831_348043404565674403_5540743654312280467_c1abb6333d358bd1b3ec9b3398efefc7.jpg",
+            "/images/san-pham/phu-kien/mu-non/New folder (5)/1793193694836_348043404565674403_5540743654312280467_19d79bd96cb5668e0c6f87820814065c.jpg",
+            "/images/san-pham/phu-kien/mu-non/New folder (5)/1793193694841_348043404565674403_5540743654312280467_5210ad4202ff93736886c1e4f8c7e1f5.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 3,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/mu-non/New folder (5)): 1 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-006",
+      "parentProductId": "ACC-006",
+      "folderKey": "phu-kien/mu-non/New folder (6)",
+      "modelFolder": "New folder (6)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #6",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/mu-non/New folder (6)/1793193694845_348043404565674403_5540743654312280467_7a17948032599ea09e2ee36333a67409.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/mu-non/New folder (6)/1793193694845_348043404565674403_5540743654312280467_7a17948032599ea09e2ee36333a67409.jpg",
+        "/images/san-pham/phu-kien/mu-non/New folder (6)/1793193694849_348043404565674403_5540743654312280467_e3762d8b5d838c5963588539c733f285.jpg",
+        "/images/san-pham/phu-kien/mu-non/New folder (6)/1793193694854_348043404565674403_5540743654312280467_e41a1fad0a52c118bc02ae393f0e6925.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/phu-kien/mu-non/New folder (6)/1793193694845_348043404565674403_5540743654312280467_7a17948032599ea09e2ee36333a67409.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/mu-non/New folder (6)/1793193694845_348043404565674403_5540743654312280467_7a17948032599ea09e2ee36333a67409.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/mu-non/New folder (6)/1793193694849_348043404565674403_5540743654312280467_e3762d8b5d838c5963588539c733f285.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/mu-non/New folder (6)/1793193694849_348043404565674403_5540743654312280467_e3762d8b5d838c5963588539c733f285.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/phu-kien/mu-non/New folder (6)/1793193694854_348043404565674403_5540743654312280467_e41a1fad0a52c118bc02ae393f0e6925.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/mu-non/New folder (6)/1793193694854_348043404565674403_5540743654312280467_e41a1fad0a52c118bc02ae393f0e6925.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 3,
+      "totalImages": 3,
+      "totalVariants": 15,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/mu-non/New folder (6)): 3 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-007",
+      "parentProductId": "ACC-007",
+      "folderKey": "phu-kien/trang-suc/New folder",
+      "modelFolder": "New folder",
+      "productName": "Phụ Kiện Thời Trang Gen Z #7",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder/1793194206410_348043404565674403_5540743654312280467_9b7593e268ddbf4f799a6b934b966795.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder/1793194206410_348043404565674403_5540743654312280467_9b7593e268ddbf4f799a6b934b966795.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder/1793194206430_348043404565674403_5540743654312280467_9abf875445453e01c4b8380adb27a483.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Màu Phối Độc Bản",
+          "colorId": "phoi-mau",
+          "hex": "#b1928f",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder/1793194206410_348043404565674403_5540743654312280467_9b7593e268ddbf4f799a6b934b966795.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder/1793194206410_348043404565674403_5540743654312280467_9b7593e268ddbf4f799a6b934b966795.jpg"
+          ],
+          "verificationStatus": "needs-review",
+          "verificationSource": "cv",
+          "isVerified": false
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder/1793194206430_348043404565674403_5540743654312280467_9abf875445453e01c4b8380adb27a483.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder/1793194206430_348043404565674403_5540743654312280467_9abf875445453e01c4b8380adb27a483.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-008",
+      "parentProductId": "ACC-008",
+      "folderKey": "phu-kien/trang-suc/New folder (2)",
+      "modelFolder": "New folder (2)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #8",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (2)/1793194206444_348043404565674403_5540743654312280467_a24dfe4e2cc317c410a2f5eb59e239b3.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (2)/1793194206444_348043404565674403_5540743654312280467_a24dfe4e2cc317c410a2f5eb59e239b3.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (2)/1793194206454_348043404565674403_5540743654312280467_23a84e0e589b62044e0795ae0249b1f7.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (2)/1793194206463_348043404565674403_5540743654312280467_ad145730f3e3b4350db61d8ce0bfcf42.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (2)/1793194206444_348043404565674403_5540743654312280467_a24dfe4e2cc317c410a2f5eb59e239b3.jpg",
+          "galleryCount": 3,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (2)/1793194206444_348043404565674403_5540743654312280467_a24dfe4e2cc317c410a2f5eb59e239b3.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (2)/1793194206454_348043404565674403_5540743654312280467_23a84e0e589b62044e0795ae0249b1f7.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (2)/1793194206463_348043404565674403_5540743654312280467_ad145730f3e3b4350db61d8ce0bfcf42.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 3,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (2)): 1 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-009",
+      "parentProductId": "ACC-009",
+      "folderKey": "phu-kien/trang-suc/New folder (3)",
+      "modelFolder": "New folder (3)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #9",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (3)/1793194206471_348043404565674403_5540743654312280467_a05c049835751f4d088fadb2a4f6c2fa.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (3)/1793194206471_348043404565674403_5540743654312280467_a05c049835751f4d088fadb2a4f6c2fa.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (3)/1793194206480_348043404565674403_5540743654312280467_2a57349a9634f1dba40fed57d71c8743.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (3)/1793194206471_348043404565674403_5540743654312280467_a05c049835751f4d088fadb2a4f6c2fa.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (3)/1793194206471_348043404565674403_5540743654312280467_a05c049835751f4d088fadb2a4f6c2fa.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Xanh Navy",
+          "colorId": "xanh-navy",
+          "hex": "#1E3A8A",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (3)/1793194206480_348043404565674403_5540743654312280467_2a57349a9634f1dba40fed57d71c8743.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (3)/1793194206480_348043404565674403_5540743654312280467_2a57349a9634f1dba40fed57d71c8743.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (3)): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-010",
+      "parentProductId": "ACC-010",
+      "folderKey": "phu-kien/trang-suc/New folder (4)",
+      "modelFolder": "New folder (4)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #10",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (4)/1793194206487_348043404565674403_5540743654312280467_5553655eef3ce6d22ead841ec3b484ff.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (4)/1793194206487_348043404565674403_5540743654312280467_5553655eef3ce6d22ead841ec3b484ff.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (4)/1793194206494_348043404565674403_5540743654312280467_63e42efaa9495b593d563b63e23237bf.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (4)/1793194206500_348043404565674403_5540743654312280467_fc7b2a7a8c12b5f57f1dfd2a014a8086.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (4)/1793194206507_348043404565674403_5540743654312280467_08499650403e96fffc02b45c7a94149b.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (4)/1793194206487_348043404565674403_5540743654312280467_5553655eef3ce6d22ead841ec3b484ff.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (4)/1793194206487_348043404565674403_5540743654312280467_5553655eef3ce6d22ead841ec3b484ff.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (4)/1793194206494_348043404565674403_5540743654312280467_63e42efaa9495b593d563b63e23237bf.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (4)/1793194206500_348043404565674403_5540743654312280467_fc7b2a7a8c12b5f57f1dfd2a014a8086.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (4)/1793194206500_348043404565674403_5540743654312280467_fc7b2a7a8c12b5f57f1dfd2a014a8086.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (4)/1793194206507_348043404565674403_5540743654312280467_08499650403e96fffc02b45c7a94149b.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 4,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (4)): 2 màu, 4 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-011",
+      "parentProductId": "ACC-011",
+      "folderKey": "phu-kien/trang-suc/New folder (5)",
+      "modelFolder": "New folder (5)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #11",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (5)/1793194206512_348043404565674403_5540743654312280467_b7a4700d2a7fc9dfb1de0010ca3acbe1.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (5)/1793194206512_348043404565674403_5540743654312280467_b7a4700d2a7fc9dfb1de0010ca3acbe1.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (5)/1793194206517_348043404565674403_5540743654312280467_142c15249c9186304395b646511b6d3d.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (5)/1793194206512_348043404565674403_5540743654312280467_b7a4700d2a7fc9dfb1de0010ca3acbe1.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (5)/1793194206512_348043404565674403_5540743654312280467_b7a4700d2a7fc9dfb1de0010ca3acbe1.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (5)/1793194206517_348043404565674403_5540743654312280467_142c15249c9186304395b646511b6d3d.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 2,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (5)): 1 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-012",
+      "parentProductId": "ACC-012",
+      "folderKey": "phu-kien/trang-suc/New folder (6)",
+      "modelFolder": "New folder (6)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #12",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (6)/1793194206522_348043404565674403_5540743654312280467_98d47d77ac3f017416f6a90e88aaa5d6.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (6)/1793194206522_348043404565674403_5540743654312280467_98d47d77ac3f017416f6a90e88aaa5d6.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (6)/1793194206527_348043404565674403_5540743654312280467_41a759afa51d74bc51405b6d415c9a92.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (6)/1793194206531_348043404565674403_5540743654312280467_f43e384703f8ec291e97098600201eac.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (6)/1793194206536_348043404565674403_5540743654312280467_0ed822a06789b5b9093d8bdfd5e683ba.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (6)/1793194206522_348043404565674403_5540743654312280467_98d47d77ac3f017416f6a90e88aaa5d6.jpg",
+          "galleryCount": 4,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (6)/1793194206522_348043404565674403_5540743654312280467_98d47d77ac3f017416f6a90e88aaa5d6.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (6)/1793194206527_348043404565674403_5540743654312280467_41a759afa51d74bc51405b6d415c9a92.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (6)/1793194206531_348043404565674403_5540743654312280467_f43e384703f8ec291e97098600201eac.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (6)/1793194206536_348043404565674403_5540743654312280467_0ed822a06789b5b9093d8bdfd5e683ba.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 4,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (6)): 1 màu, 4 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-013",
+      "parentProductId": "ACC-013",
+      "folderKey": "phu-kien/trang-suc/New folder (7)",
+      "modelFolder": "New folder (7)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #13",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (7)/1793194206540_348043404565674403_5540743654312280467_79b4bc85c604732a905c51d114d92cc9.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (7)/1793194206540_348043404565674403_5540743654312280467_79b4bc85c604732a905c51d114d92cc9.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (7)/1793194206544_348043404565674403_5540743654312280467_ebf9c155620fcdee6a51d7a3f7bc6a73.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (7)/1793194206548_348043404565674403_5540743654312280467_7b8412367c279c9a6379b4cbbffcceb4.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (7)/1793194206540_348043404565674403_5540743654312280467_79b4bc85c604732a905c51d114d92cc9.jpg",
+          "galleryCount": 3,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (7)/1793194206540_348043404565674403_5540743654312280467_79b4bc85c604732a905c51d114d92cc9.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (7)/1793194206544_348043404565674403_5540743654312280467_ebf9c155620fcdee6a51d7a3f7bc6a73.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (7)/1793194206548_348043404565674403_5540743654312280467_7b8412367c279c9a6379b4cbbffcceb4.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 3,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (7)): 1 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-014",
+      "parentProductId": "ACC-014",
+      "folderKey": "phu-kien/trang-suc/New folder (8)",
+      "modelFolder": "New folder (8)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #14",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (8)/1793194206552_348043404565674403_5540743654312280467_e798075e7023a5445be4725785580aa6.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (8)/1793194206552_348043404565674403_5540743654312280467_e798075e7023a5445be4725785580aa6.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (8)/1793194206556_348043404565674403_5540743654312280467_8fe20ea26db77c46db695810a5b2171c.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (8)/1793194206560_348043404565674403_5540743654312280467_f2b884bf7f8be062e4a16dfa87ab31ac.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (8)/1793194206552_348043404565674403_5540743654312280467_e798075e7023a5445be4725785580aa6.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (8)/1793194206552_348043404565674403_5540743654312280467_e798075e7023a5445be4725785580aa6.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (8)/1793194206556_348043404565674403_5540743654312280467_8fe20ea26db77c46db695810a5b2171c.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (8)/1793194206556_348043404565674403_5540743654312280467_8fe20ea26db77c46db695810a5b2171c.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (8)/1793194206560_348043404565674403_5540743654312280467_f2b884bf7f8be062e4a16dfa87ab31ac.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 3,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (8)): 2 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-015",
+      "parentProductId": "ACC-015",
+      "folderKey": "phu-kien/trang-suc/New folder (9)",
+      "modelFolder": "New folder (9)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #15",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (9)/1793194206564_348043404565674403_5540743654312280467_9d36ca185dec0505bc714e42209e48f9.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (9)/1793194206564_348043404565674403_5540743654312280467_9d36ca185dec0505bc714e42209e48f9.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (9)/1793194206568_348043404565674403_5540743654312280467_bd64eb97dfa4567501a375af80bffeaf.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Màu Phối Độc Bản",
+          "colorId": "phoi-mau",
+          "hex": "#d5a376",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (9)/1793194206564_348043404565674403_5540743654312280467_9d36ca185dec0505bc714e42209e48f9.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (9)/1793194206564_348043404565674403_5540743654312280467_9d36ca185dec0505bc714e42209e48f9.jpg"
+          ],
+          "verificationStatus": "needs-review",
+          "verificationSource": "cv",
+          "isVerified": false
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (9)/1793194206568_348043404565674403_5540743654312280467_bd64eb97dfa4567501a375af80bffeaf.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (9)/1793194206568_348043404565674403_5540743654312280467_bd64eb97dfa4567501a375af80bffeaf.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (9)): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-016",
+      "parentProductId": "ACC-016",
+      "folderKey": "phu-kien/trang-suc/New folder (10)",
+      "modelFolder": "New folder (10)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #16",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (10)/1793194627177_348043404565674403_5540743654312280467_ff2e17c9f4937baffb9170d0a6e714c0.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (10)/1793194627177_348043404565674403_5540743654312280467_ff2e17c9f4937baffb9170d0a6e714c0.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (10)/1793194627201_348043404565674403_5540743654312280467_e668cf18654f77722002b3db5b69ed6b.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (10)/1793194627213_348043404565674403_5540743654312280467_d2f3e7acc399e3acb9d502d33b82c3c1.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (10)/1793194627222_348043404565674403_5540743654312280467_c0dd10fc2a5529fcef014a9ecfba4c9a.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (10)/1793194627177_348043404565674403_5540743654312280467_ff2e17c9f4937baffb9170d0a6e714c0.jpg",
+          "galleryCount": 3,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (10)/1793194627177_348043404565674403_5540743654312280467_ff2e17c9f4937baffb9170d0a6e714c0.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (10)/1793194627201_348043404565674403_5540743654312280467_e668cf18654f77722002b3db5b69ed6b.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (10)/1793194627213_348043404565674403_5540743654312280467_d2f3e7acc399e3acb9d502d33b82c3c1.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (10)/1793194627222_348043404565674403_5540743654312280467_c0dd10fc2a5529fcef014a9ecfba4c9a.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (10)/1793194627222_348043404565674403_5540743654312280467_c0dd10fc2a5529fcef014a9ecfba4c9a.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 4,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (10)): 2 màu, 4 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-017",
+      "parentProductId": "ACC-017",
+      "folderKey": "phu-kien/trang-suc/New folder (11)",
+      "modelFolder": "New folder (11)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #17",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (11)/1793194627230_348043404565674403_5540743654312280467_08eba82c0b48bc5d9a5378b93b62a3b1.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (11)/1793194627230_348043404565674403_5540743654312280467_08eba82c0b48bc5d9a5378b93b62a3b1.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (11)/1793194627238_348043404565674403_5540743654312280467_6a99bc8f68a818727cacf5817b8b8d8c.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xanh Dương",
+          "colorId": "xanh-duong",
+          "hex": "#2563EB",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (11)/1793194627230_348043404565674403_5540743654312280467_08eba82c0b48bc5d9a5378b93b62a3b1.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (11)/1793194627230_348043404565674403_5540743654312280467_08eba82c0b48bc5d9a5378b93b62a3b1.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (11)/1793194627238_348043404565674403_5540743654312280467_6a99bc8f68a818727cacf5817b8b8d8c.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (11)/1793194627238_348043404565674403_5540743654312280467_6a99bc8f68a818727cacf5817b8b8d8c.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 2,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (11)): 2 màu, 2 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-018",
+      "parentProductId": "ACC-018",
+      "folderKey": "phu-kien/trang-suc/New folder (12)",
+      "modelFolder": "New folder (12)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #18",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (12)/1793194627245_348043404565674403_5540743654312280467_0d69a917111d2ec5c86ea473cc0717f5.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (12)/1793194627245_348043404565674403_5540743654312280467_0d69a917111d2ec5c86ea473cc0717f5.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (12)/1793194627252_348043404565674403_5540743654312280467_59fa18e9ad9675f538875b62d3e7f4a0.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (12)/1793194627259_348043404565674403_5540743654312280467_34fb2da654bf76ebac06eaf423db517e.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Màu Phối Độc Bản",
+          "colorId": "phoi-mau",
+          "hex": "#7c6364",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (12)/1793194627245_348043404565674403_5540743654312280467_0d69a917111d2ec5c86ea473cc0717f5.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (12)/1793194627245_348043404565674403_5540743654312280467_0d69a917111d2ec5c86ea473cc0717f5.jpg"
+          ],
+          "verificationStatus": "needs-review",
+          "verificationSource": "cv",
+          "isVerified": false
+        },
+        {
+          "color": "Màu Phối Độc Bản",
+          "colorId": "phoi-mau",
+          "hex": "#cfa198",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (12)/1793194627252_348043404565674403_5540743654312280467_59fa18e9ad9675f538875b62d3e7f4a0.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (12)/1793194627252_348043404565674403_5540743654312280467_59fa18e9ad9675f538875b62d3e7f4a0.jpg"
+          ],
+          "verificationStatus": "needs-review",
+          "verificationSource": "cv",
+          "isVerified": false
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (12)/1793194627259_348043404565674403_5540743654312280467_34fb2da654bf76ebac06eaf423db517e.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (12)/1793194627259_348043404565674403_5540743654312280467_34fb2da654bf76ebac06eaf423db517e.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 3,
+      "totalImages": 3,
+      "totalVariants": 15,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (12)): 3 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-019",
+      "parentProductId": "ACC-019",
+      "folderKey": "phu-kien/trang-suc/New folder (13)",
+      "modelFolder": "New folder (13)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #19",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (13)/1793194627264_348043404565674403_5540743654312280467_b36c9c4ab6ed0d00b73c884ff6bc5a6e.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (13)/1793194627264_348043404565674403_5540743654312280467_b36c9c4ab6ed0d00b73c884ff6bc5a6e.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (13)/1793194627269_348043404565674403_5540743654312280467_c0ec63a74769738ac4ed52de3ae67615.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (13)/1793194627274_348043404565674403_5540743654312280467_651b116da23cee47f19c77c739f34231.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (13)/1793194627264_348043404565674403_5540743654312280467_b36c9c4ab6ed0d00b73c884ff6bc5a6e.jpg",
+          "galleryCount": 3,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (13)/1793194627264_348043404565674403_5540743654312280467_b36c9c4ab6ed0d00b73c884ff6bc5a6e.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (13)/1793194627269_348043404565674403_5540743654312280467_c0ec63a74769738ac4ed52de3ae67615.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (13)/1793194627274_348043404565674403_5540743654312280467_651b116da23cee47f19c77c739f34231.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 3,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (13)): 1 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-020",
+      "parentProductId": "ACC-020",
+      "folderKey": "phu-kien/trang-suc/New folder (14)",
+      "modelFolder": "New folder (14)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #20",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627279_348043404565674403_5540743654312280467_7001fe5817cf4633ec6ef14c428a8d62.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627279_348043404565674403_5540743654312280467_7001fe5817cf4633ec6ef14c428a8d62.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627283_348043404565674403_5540743654312280467_6513143a5f26b75e54459073ca58b915.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627287_348043404565674403_5540743654312280467_4e3acee20a094bb115111e573d14b372.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627292_348043404565674403_5540743654312280467_58bab34e659f41cf32028abdff00d440.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627279_348043404565674403_5540743654312280467_7001fe5817cf4633ec6ef14c428a8d62.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627279_348043404565674403_5540743654312280467_7001fe5817cf4633ec6ef14c428a8d62.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627283_348043404565674403_5540743654312280467_6513143a5f26b75e54459073ca58b915.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Màu Phối Độc Bản",
+          "colorId": "phoi-mau",
+          "hex": "#867568",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627287_348043404565674403_5540743654312280467_4e3acee20a094bb115111e573d14b372.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627287_348043404565674403_5540743654312280467_4e3acee20a094bb115111e573d14b372.jpg"
+          ],
+          "verificationStatus": "needs-review",
+          "verificationSource": "cv",
+          "isVerified": false
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627292_348043404565674403_5540743654312280467_58bab34e659f41cf32028abdff00d440.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627292_348043404565674403_5540743654312280467_58bab34e659f41cf32028abdff00d440.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 3,
+      "totalImages": 4,
+      "totalVariants": 15,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (14)): 3 màu, 4 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-021",
+      "parentProductId": "ACC-021",
+      "folderKey": "phu-kien/trang-suc/New folder (15)",
+      "modelFolder": "New folder (15)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #21",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/trang-suc/New folder (15)/1793194627296_348043404565674403_5540743654312280467_69430a730c4825ed3706705dedbcd87c.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (15)/1793194627296_348043404565674403_5540743654312280467_69430a730c4825ed3706705dedbcd87c.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (15)/1793194627300_348043404565674403_5540743654312280467_1860e5a23a472a17b7502c2a7a9f5a3b.jpg",
+        "/images/san-pham/phu-kien/trang-suc/New folder (15)/1793194627304_348043404565674403_5540743654312280467_a407454ad8824f9447f61fefb1eaac76.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Màu Phối Độc Bản",
+          "colorId": "phoi-mau",
+          "hex": "#ac7d67",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (15)/1793194627296_348043404565674403_5540743654312280467_69430a730c4825ed3706705dedbcd87c.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (15)/1793194627296_348043404565674403_5540743654312280467_69430a730c4825ed3706705dedbcd87c.jpg",
+            "/images/san-pham/phu-kien/trang-suc/New folder (15)/1793194627300_348043404565674403_5540743654312280467_1860e5a23a472a17b7502c2a7a9f5a3b.jpg"
+          ],
+          "verificationStatus": "needs-review",
+          "verificationSource": "cv",
+          "isVerified": false
+        },
+        {
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/phu-kien/trang-suc/New folder (15)/1793194627304_348043404565674403_5540743654312280467_a407454ad8824f9447f61fefb1eaac76.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/trang-suc/New folder (15)/1793194627304_348043404565674403_5540743654312280467_a407454ad8824f9447f61fefb1eaac76.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 3,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/trang-suc/New folder (15)): 2 màu, 3 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-022",
+      "parentProductId": "ACC-022",
+      "folderKey": "phu-kien/tui-xach/New folder",
+      "modelFolder": "New folder",
+      "productName": "Phụ Kiện Thời Trang Gen Z #22",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/tui-xach/New folder/1793200292604_8720659837308163697_8720659837308163697_57a8850bb568d9848794fa35946f837f.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/tui-xach/New folder/1793200292604_8720659837308163697_8720659837308163697_57a8850bb568d9848794fa35946f837f.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder/1793200292641_8720659837308163697_8720659837308163697_257f0da6e5f9d0b638d075a4efb3cd23.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder/1793200292664_8720659837308163697_8720659837308163697_33d17b1e8e13c42932991e3b87ebabbe.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder/1793200292683_8720659837308163697_8720659837308163697_602e74d1152636ebbd4883333997217f.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder/1793200292604_8720659837308163697_8720659837308163697_57a8850bb568d9848794fa35946f837f.jpg",
+          "galleryCount": 3,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder/1793200292604_8720659837308163697_8720659837308163697_57a8850bb568d9848794fa35946f837f.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder/1793200292641_8720659837308163697_8720659837308163697_257f0da6e5f9d0b638d075a4efb3cd23.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder/1793200292664_8720659837308163697_8720659837308163697_33d17b1e8e13c42932991e3b87ebabbe.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder/1793200292683_8720659837308163697_8720659837308163697_602e74d1152636ebbd4883333997217f.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder/1793200292683_8720659837308163697_8720659837308163697_602e74d1152636ebbd4883333997217f.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 4,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/tui-xach/New folder): 2 màu, 4 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-023",
+      "parentProductId": "ACC-023",
+      "folderKey": "phu-kien/tui-xach/New folder (2)",
+      "modelFolder": "New folder (2)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #23",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/tui-xach/New folder (2)/1793200292701_8720659837308163697_8720659837308163697_847ad785a88af1acee743592ad425b90.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/tui-xach/New folder (2)/1793200292701_8720659837308163697_8720659837308163697_847ad785a88af1acee743592ad425b90.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (2)/1793200292701_8720659837308163697_8720659837308163697_847ad785a88af1acee743592ad425b90.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (2)/1793200292701_8720659837308163697_8720659837308163697_847ad785a88af1acee743592ad425b90.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 1,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/tui-xach/New folder (2)): 1 màu, 1 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-024",
+      "parentProductId": "ACC-024",
+      "folderKey": "phu-kien/tui-xach/New folder (3)",
+      "modelFolder": "New folder (3)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #24",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292715_8720659837308163697_8720659837308163697_c01b3b1a3313085083c27273593b21dc.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292715_8720659837308163697_8720659837308163697_c01b3b1a3313085083c27273593b21dc.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292738_8720659837308163697_8720659837308163697_375a4d7e380177a906de3b2eeebe8098.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292749_8720659837308163697_8720659837308163697_db1e80cfd65d7ee590f041745375fe16.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292785_8720659837308163697_8720659837308163697_be5389ca334444d9d2eb8b5f1ae130a2.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292761_8720659837308163697_8720659837308163697_3e9f805d11edaaf8afc98fd22b95579c.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292773_8720659837308163697_8720659837308163697_60dea6930d04ce128f1992927a432e12.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292715_8720659837308163697_8720659837308163697_c01b3b1a3313085083c27273593b21dc.jpg",
+          "galleryCount": 4,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292715_8720659837308163697_8720659837308163697_c01b3b1a3313085083c27273593b21dc.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292738_8720659837308163697_8720659837308163697_375a4d7e380177a906de3b2eeebe8098.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292749_8720659837308163697_8720659837308163697_db1e80cfd65d7ee590f041745375fe16.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292785_8720659837308163697_8720659837308163697_be5389ca334444d9d2eb8b5f1ae130a2.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292761_8720659837308163697_8720659837308163697_3e9f805d11edaaf8afc98fd22b95579c.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292761_8720659837308163697_8720659837308163697_3e9f805d11edaaf8afc98fd22b95579c.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292773_8720659837308163697_8720659837308163697_60dea6930d04ce128f1992927a432e12.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (3)/1793200292773_8720659837308163697_8720659837308163697_60dea6930d04ce128f1992927a432e12.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 3,
+      "totalImages": 6,
+      "totalVariants": 15,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/tui-xach/New folder (3)): 3 màu, 6 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-025",
+      "parentProductId": "ACC-025",
+      "folderKey": "phu-kien/tui-xach/New folder (4)",
+      "modelFolder": "New folder (4)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #25",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292797_8720659837308163697_8720659837308163697_6b5d038710d0b0663cc7aad5968c5818.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292797_8720659837308163697_8720659837308163697_6b5d038710d0b0663cc7aad5968c5818.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292823_8720659837308163697_8720659837308163697_047496b38fd24afe9b83b7802c95d3d7.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292835_8720659837308163697_8720659837308163697_cfc9e92bf7105c1368583b702eb55cc3.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292847_8720659837308163697_8720659837308163697_4b3afb6efbf2a8656d91bb4665734297.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292810_8720659837308163697_8720659837308163697_02a7f94fd543302040a32f747420aa09.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292860_8720659837308163697_8720659837308163697_d25bd13287cb29e69d8f6cd84dbdb4be.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292797_8720659837308163697_8720659837308163697_6b5d038710d0b0663cc7aad5968c5818.jpg",
+          "galleryCount": 4,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292797_8720659837308163697_8720659837308163697_6b5d038710d0b0663cc7aad5968c5818.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292823_8720659837308163697_8720659837308163697_047496b38fd24afe9b83b7802c95d3d7.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292835_8720659837308163697_8720659837308163697_cfc9e92bf7105c1368583b702eb55cc3.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292847_8720659837308163697_8720659837308163697_4b3afb6efbf2a8656d91bb4665734297.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292810_8720659837308163697_8720659837308163697_02a7f94fd543302040a32f747420aa09.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292810_8720659837308163697_8720659837308163697_02a7f94fd543302040a32f747420aa09.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (4)/1793200292860_8720659837308163697_8720659837308163697_d25bd13287cb29e69d8f6cd84dbdb4be.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 2,
+      "totalImages": 6,
+      "totalVariants": 10,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/tui-xach/New folder (4)): 2 màu, 6 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-026",
+      "parentProductId": "ACC-026",
+      "folderKey": "phu-kien/tui-xach/New folder (5)",
+      "modelFolder": "New folder (5)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #26",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292872_8720659837308163697_8720659837308163697_d888c3fa17ae6b4d4519ca6db0566b26.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292872_8720659837308163697_8720659837308163697_d888c3fa17ae6b4d4519ca6db0566b26.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292909_8720659837308163697_8720659837308163697_a7b851fd1c0b24c7d6a1ff35d38f18b5.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292884_8720659837308163697_8720659837308163697_4d4bf072cafb79efa3810b051ee56e3b.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292922_8720659837308163697_8720659837308163697_e511aa2ceb947a0f3b6c947ca386ed53.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292897_8720659837308163697_8720659837308163697_6bd8aea004dd0d60205237850b363fbe.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292872_8720659837308163697_8720659837308163697_d888c3fa17ae6b4d4519ca6db0566b26.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292872_8720659837308163697_8720659837308163697_d888c3fa17ae6b4d4519ca6db0566b26.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292909_8720659837308163697_8720659837308163697_a7b851fd1c0b24c7d6a1ff35d38f18b5.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292884_8720659837308163697_8720659837308163697_4d4bf072cafb79efa3810b051ee56e3b.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292884_8720659837308163697_8720659837308163697_4d4bf072cafb79efa3810b051ee56e3b.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292922_8720659837308163697_8720659837308163697_e511aa2ceb947a0f3b6c947ca386ed53.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Nâu Cà Phê",
+          "colorId": "nau",
+          "hex": "#78350F",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292897_8720659837308163697_8720659837308163697_6bd8aea004dd0d60205237850b363fbe.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (5)/1793200292897_8720659837308163697_8720659837308163697_6bd8aea004dd0d60205237850b363fbe.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 3,
+      "totalImages": 5,
+      "totalVariants": 15,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/tui-xach/New folder (5)): 3 màu, 5 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-027",
+      "parentProductId": "ACC-027",
+      "folderKey": "phu-kien/tui-xach/New folder (6)",
+      "modelFolder": "New folder (6)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #27",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292934_8720659837308163697_8720659837308163697_44cdc3d2546dba3b8d3d3e3727878e19.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292934_8720659837308163697_8720659837308163697_44cdc3d2546dba3b8d3d3e3727878e19.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292957_8720659837308163697_8720659837308163697_5cd5695c30a5f7e8d8f810d76c22a637.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292992_8720659837308163697_8720659837308163697_62f083e2484c79c8ac31fd5ceb499f00.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292946_8720659837308163697_8720659837308163697_044c3a5ba923d922616fceca2a6d3b6e.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292968_8720659837308163697_8720659837308163697_45276a12383d294a4858c693b5e078cc.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292980_8720659837308163697_8720659837308163697_ecad39ecf5b53038573d21befd4c83c3.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Xám Khói",
+          "colorId": "xam",
+          "hex": "#6B7280",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292934_8720659837308163697_8720659837308163697_44cdc3d2546dba3b8d3d3e3727878e19.jpg",
+          "galleryCount": 3,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292934_8720659837308163697_8720659837308163697_44cdc3d2546dba3b8d3d3e3727878e19.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292957_8720659837308163697_8720659837308163697_5cd5695c30a5f7e8d8f810d76c22a637.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292992_8720659837308163697_8720659837308163697_62f083e2484c79c8ac31fd5ceb499f00.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292946_8720659837308163697_8720659837308163697_044c3a5ba923d922616fceca2a6d3b6e.jpg",
+          "galleryCount": 1,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292946_8720659837308163697_8720659837308163697_044c3a5ba923d922616fceca2a6d3b6e.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
+        {
+          "color": "Kem Be",
+          "colorId": "kem",
+          "hex": "#E8DDC8",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292968_8720659837308163697_8720659837308163697_45276a12383d294a4858c693b5e078cc.jpg",
+          "galleryCount": 2,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292968_8720659837308163697_8720659837308163697_45276a12383d294a4858c693b5e078cc.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (6)/1793200292980_8720659837308163697_8720659837308163697_ecad39ecf5b53038573d21befd4c83c3.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 3,
+      "totalImages": 6,
+      "totalVariants": 15,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/tui-xach/New folder (6)): 3 màu, 6 ảnh"
+    },
+    {
+      "groupId": "GRP-ACC-028",
+      "parentProductId": "ACC-028",
+      "folderKey": "phu-kien/tui-xach/New folder (7)",
+      "modelFolder": "New folder (7)",
+      "productName": "Phụ Kiện Thời Trang Gen Z #28",
+      "category": "phu-kien",
+      "gender": "unisex",
+      "seasons": [
+        "he",
+        "xuan-thu",
+        "dong"
+      ],
+      "primaryImage": "/images/san-pham/phu-kien/tui-xach/New folder (7)/1793200293004_8720659837308163697_8720659837308163697_0b7d60a899fe1ce48d42ac7ce5d27e37.jpg",
+      "allImages": [
+        "/images/san-pham/phu-kien/tui-xach/New folder (7)/1793200293004_8720659837308163697_8720659837308163697_0b7d60a899fe1ce48d42ac7ce5d27e37.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (7)/1793200293017_8720659837308163697_8720659837308163697_7bef6b0caa787b330363f2725fa80b92.jpg",
+        "/images/san-pham/phu-kien/tui-xach/New folder (7)/1793200293029_8720659837308163697_8720659837308163697_7657d65c5078d455314713803c5df324.jpg"
+      ],
+      "mergedColors": [
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/phu-kien/tui-xach/New folder (7)/1793200293004_8720659837308163697_8720659837308163697_0b7d60a899fe1ce48d42ac7ce5d27e37.jpg",
+          "galleryCount": 3,
+          "gallery": [
+            "/images/san-pham/phu-kien/tui-xach/New folder (7)/1793200293004_8720659837308163697_8720659837308163697_0b7d60a899fe1ce48d42ac7ce5d27e37.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (7)/1793200293017_8720659837308163697_8720659837308163697_7bef6b0caa787b330363f2725fa80b92.jpg",
+            "/images/san-pham/phu-kien/tui-xach/New folder (7)/1793200293029_8720659837308163697_8720659837308163697_7657d65c5078d455314713803c5df324.jpg"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        }
+      ],
+      "totalColors": 1,
+      "totalImages": 3,
+      "totalVariants": 5,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (phu-kien/tui-xach/New folder (7)): 1 màu, 3 ảnh"
+    },
     {
       "groupId": "GRP-JACKET-001",
       "parentProductId": "JACKET-001",
@@ -9031,8 +10507,8 @@
     {
       "groupId": "GRP-W-DRESS-001",
       "parentProductId": "W-DRESS-001",
-      "folderKey": "quan-ao-nu/vay/1",
-      "modelFolder": "1",
+      "folderKey": "quan-ao-nu/vay",
+      "modelFolder": "vay",
       "productName": "Váy Nữ Thời Trang #1",
       "category": "vay",
       "gender": "nu",
@@ -9040,3272 +10516,274 @@
         "he",
         "xuan-thu"
       ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/1/anh.png",
+      "primaryImage": "/images/san-pham/quan-ao-nu/vay/vay_01.webp",
       "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/1/anh.png"
+        "/images/san-pham/quan-ao-nu/vay/vay_01.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_03.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_04.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_05.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_06.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_07.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_08.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_09.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_10.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_11.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_12.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_13.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_14.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_15.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_16.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_17.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_18.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_19.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_20.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_21.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_22.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_23.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_24.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_25.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_26.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_27.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_28.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_29.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_30.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_32.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_33.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_34.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_36.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_65.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_67.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_71.webp",
+        "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+        "/images/san-pham/quan-ao-nu/vay/vay_02.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_37.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_38.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_42.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_43.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_44.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_45.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_46.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_47.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_48.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_49.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_50.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_52.webp",
+        "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png",
+        "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+        "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+        "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+        "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+        "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+        "/images/san-pham/quan-ao-nu/vay/vay_35.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_39.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_40.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_41.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_51.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_63.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_64.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_66.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_68.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_69.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_70.webp",
+        "/images/san-pham/quan-ao-nu/vay/vay_72.webp"
       ],
       "mergedColors": [
         {
-          "color": "Xanh Navy",
-          "colorId": "xanh-navy",
-          "hex": "#1E3A8A",
-          "image": "/images/san-pham/quan-ao-nu/vay/1/anh.png",
-          "galleryCount": 1,
+          "color": "Đen",
+          "colorId": "den",
+          "hex": "#18181B",
+          "image": "/images/san-pham/quan-ao-nu/vay/vay_01.webp",
+          "galleryCount": 37,
           "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/1/anh.png"
+            "/images/san-pham/quan-ao-nu/vay/vay_01.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_03.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_04.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_05.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_06.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_07.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_08.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_09.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_10.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_11.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_12.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_13.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_14.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_15.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_16.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_17.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_18.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_19.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_20.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_21.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_22.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_23.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_24.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_25.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_26.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_27.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_28.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_29.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_30.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_32.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_33.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_34.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_36.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_65.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_67.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_71.webp",
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png"
           ],
           "verificationStatus": "predicted",
           "verificationSource": "cv",
           "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/1): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-002",
-      "parentProductId": "W-DRESS-002",
-      "folderKey": "quan-ao-nu/vay/2",
-      "modelFolder": "2",
-      "productName": "Váy Nữ Thời Trang #2",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/2/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/2/anh.png"
-      ],
-      "mergedColors": [
+        },
+        {
+          "color": "Trắng",
+          "colorId": "trang",
+          "hex": "#F9FAFB",
+          "image": "/images/san-pham/quan-ao-nu/vay/vay_02.webp",
+          "galleryCount": 19,
+          "gallery": [
+            "/images/san-pham/quan-ao-nu/vay/vay_02.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_37.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_38.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_42.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_43.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_44.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_45.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_46.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_47.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_48.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_49.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_50.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_52.webp",
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png",
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+            "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+            "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+            "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+            "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png"
+          ],
+          "verificationStatus": "predicted",
+          "verificationSource": "cv",
+          "isVerified": true
+        },
         {
           "color": "Xám Khói",
           "colorId": "xam",
           "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nu/vay/2/anh.png",
+          "image": "/images/san-pham/quan-ao-nu/vay/vay_35.webp",
           "galleryCount": 1,
           "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/2/anh.png"
+            "/images/san-pham/quan-ao-nu/vay/vay_35.webp"
           ],
           "verificationStatus": "predicted",
           "verificationSource": "cv",
           "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/2): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-003",
-      "parentProductId": "W-DRESS-003",
-      "folderKey": "quan-ao-nu/vay/3",
-      "modelFolder": "3",
-      "productName": "Váy Nữ Thời Trang #3",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/3/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/3/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/3/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/3/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/3): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-004",
-      "parentProductId": "W-DRESS-004",
-      "folderKey": "quan-ao-nu/vay/4",
-      "modelFolder": "4",
-      "productName": "Váy Nữ Thời Trang #4",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/4/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/4/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/4/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/4/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/4): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-005",
-      "parentProductId": "W-DRESS-005",
-      "folderKey": "quan-ao-nu/vay/5",
-      "modelFolder": "5",
-      "productName": "Váy Nữ Thời Trang #5",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/5/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/5/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/5/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/5/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/5): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-006",
-      "parentProductId": "W-DRESS-006",
-      "folderKey": "quan-ao-nu/vay/6",
-      "modelFolder": "6",
-      "productName": "Váy Nữ Thời Trang #6",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/6/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/6/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/6/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/6/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/6): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-007",
-      "parentProductId": "W-DRESS-007",
-      "folderKey": "quan-ao-nu/vay/7",
-      "modelFolder": "7",
-      "productName": "Váy Nữ Thời Trang #7",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/7/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/7/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xanh Navy",
-          "colorId": "xanh-navy",
-          "hex": "#1E3A8A",
-          "image": "/images/san-pham/quan-ao-nu/vay/7/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/7/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/7): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-008",
-      "parentProductId": "W-DRESS-008",
-      "folderKey": "quan-ao-nu/vay/8",
-      "modelFolder": "8",
-      "productName": "Váy Nữ Thời Trang #8",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/8/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/8/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/8/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/8/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/8): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-009",
-      "parentProductId": "W-DRESS-009",
-      "folderKey": "quan-ao-nu/vay/9",
-      "modelFolder": "9",
-      "productName": "Váy Nữ Thời Trang #9",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/9/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/9/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/9/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/9/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/9): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-010",
-      "parentProductId": "W-DRESS-010",
-      "folderKey": "quan-ao-nu/vay/10",
-      "modelFolder": "10",
-      "productName": "Váy Nữ Thời Trang #10",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/10/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/10/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xanh Navy",
-          "colorId": "xanh-navy",
-          "hex": "#1E3A8A",
-          "image": "/images/san-pham/quan-ao-nu/vay/10/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/10/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/10): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-011",
-      "parentProductId": "W-DRESS-011",
-      "folderKey": "quan-ao-nu/vay/11",
-      "modelFolder": "11",
-      "productName": "Váy Nữ Thời Trang #11",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/11/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/11/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xanh Navy",
-          "colorId": "xanh-navy",
-          "hex": "#1E3A8A",
-          "image": "/images/san-pham/quan-ao-nu/vay/11/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/11/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/11): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-012",
-      "parentProductId": "W-DRESS-012",
-      "folderKey": "quan-ao-nu/vay/12",
-      "modelFolder": "12",
-      "productName": "Váy Nữ Thời Trang #12",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/12/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/12/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/12/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/12/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/12): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-013",
-      "parentProductId": "W-DRESS-013",
-      "folderKey": "quan-ao-nu/vay/13",
-      "modelFolder": "13",
-      "productName": "Váy Nữ Thời Trang #13",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/13/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/13/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/13/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/13/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/13): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-014",
-      "parentProductId": "W-DRESS-014",
-      "folderKey": "quan-ao-nu/vay/14",
-      "modelFolder": "14",
-      "productName": "Váy Nữ Thời Trang #14",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/14/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/14/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/14/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/14/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/14): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-015",
-      "parentProductId": "W-DRESS-015",
-      "folderKey": "quan-ao-nu/vay/15",
-      "modelFolder": "15",
-      "productName": "Váy Nữ Thời Trang #15",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/15/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/15/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xanh Navy",
-          "colorId": "xanh-navy",
-          "hex": "#1E3A8A",
-          "image": "/images/san-pham/quan-ao-nu/vay/15/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/15/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/15): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-016",
-      "parentProductId": "W-DRESS-016",
-      "folderKey": "quan-ao-nu/vay/16",
-      "modelFolder": "16",
-      "productName": "Váy Nữ Thời Trang #16",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/16/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/16/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/16/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/16/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/16): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-017",
-      "parentProductId": "W-DRESS-017",
-      "folderKey": "quan-ao-nu/vay/17",
-      "modelFolder": "17",
-      "productName": "Váy Nữ Thời Trang #17",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/17/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/17/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/17/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/17/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/17): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-018",
-      "parentProductId": "W-DRESS-018",
-      "folderKey": "quan-ao-nu/vay/18",
-      "modelFolder": "18",
-      "productName": "Váy Nữ Thời Trang #18",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/18/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/18/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/18/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/18/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/18): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-019",
-      "parentProductId": "W-DRESS-019",
-      "folderKey": "quan-ao-nu/vay/19",
-      "modelFolder": "19",
-      "productName": "Váy Nữ Thời Trang #19",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/19/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/19/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xanh Navy",
-          "colorId": "xanh-navy",
-          "hex": "#1E3A8A",
-          "image": "/images/san-pham/quan-ao-nu/vay/19/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/19/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/19): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-020",
-      "parentProductId": "W-DRESS-020",
-      "folderKey": "quan-ao-nu/vay/20",
-      "modelFolder": "20",
-      "productName": "Váy Nữ Thời Trang #20",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/20/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/20/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/20/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/20/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/20): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-021",
-      "parentProductId": "W-DRESS-021",
-      "folderKey": "quan-ao-nu/vay/21",
-      "modelFolder": "21",
-      "productName": "Váy Nữ Thời Trang #21",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/21/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/21/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/21/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/21/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/21): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-022",
-      "parentProductId": "W-DRESS-022",
-      "folderKey": "quan-ao-nu/vay/22",
-      "modelFolder": "22",
-      "productName": "Váy Nữ Thời Trang #22",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/22/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/22/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/22/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/22/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/22): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-023",
-      "parentProductId": "W-DRESS-023",
-      "folderKey": "quan-ao-nu/vay/23",
-      "modelFolder": "23",
-      "productName": "Váy Nữ Thời Trang #23",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/23/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/23/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/23/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/23/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/23): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-024",
-      "parentProductId": "W-DRESS-024",
-      "folderKey": "quan-ao-nu/vay/24",
-      "modelFolder": "24",
-      "productName": "Váy Nữ Thời Trang #24",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/24/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/24/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/24/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/24/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/24): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-025",
-      "parentProductId": "W-DRESS-025",
-      "folderKey": "quan-ao-nu/vay/25",
-      "modelFolder": "25",
-      "productName": "Váy Nữ Thời Trang #25",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/25/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/25/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/25/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/25/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/25): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-026",
-      "parentProductId": "W-DRESS-026",
-      "folderKey": "quan-ao-nu/vay/26",
-      "modelFolder": "26",
-      "productName": "Váy Nữ Thời Trang #26",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/26/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/26/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/26/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/26/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/26): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-027",
-      "parentProductId": "W-DRESS-027",
-      "folderKey": "quan-ao-nu/vay/27",
-      "modelFolder": "27",
-      "productName": "Váy Nữ Thời Trang #27",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/27/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/27/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/27/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/27/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/27): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-028",
-      "parentProductId": "W-DRESS-028",
-      "folderKey": "quan-ao-nu/vay/28",
-      "modelFolder": "28",
-      "productName": "Váy Nữ Thời Trang #28",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/28/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/28/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/28/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/28/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/28): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-029",
-      "parentProductId": "W-DRESS-029",
-      "folderKey": "quan-ao-nu/vay/29",
-      "modelFolder": "29",
-      "productName": "Váy Nữ Thời Trang #29",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/29/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/29/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/29/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/29/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/29): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-030",
-      "parentProductId": "W-DRESS-030",
-      "folderKey": "quan-ao-nu/vay/30",
-      "modelFolder": "30",
-      "productName": "Váy Nữ Thời Trang #30",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/30/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/30/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/30/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/30/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/30): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-031",
-      "parentProductId": "W-DRESS-031",
-      "folderKey": "quan-ao-nu/vay/31",
-      "modelFolder": "31",
-      "productName": "Váy Nữ Thời Trang #31",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/31/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/31/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/31/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/31/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/31): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-032",
-      "parentProductId": "W-DRESS-032",
-      "folderKey": "quan-ao-nu/vay/32",
-      "modelFolder": "32",
-      "productName": "Váy Nữ Thời Trang #32",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/32/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/32/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/32/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/32/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/32): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-033",
-      "parentProductId": "W-DRESS-033",
-      "folderKey": "quan-ao-nu/vay/33",
-      "modelFolder": "33",
-      "productName": "Váy Nữ Thời Trang #33",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/33/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/33/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/33/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/33/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/33): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-034",
-      "parentProductId": "W-DRESS-034",
-      "folderKey": "quan-ao-nu/vay/34",
-      "modelFolder": "34",
-      "productName": "Váy Nữ Thời Trang #34",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/34/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/34/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nu/vay/34/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/34/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/34): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-035",
-      "parentProductId": "W-DRESS-035",
-      "folderKey": "quan-ao-nu/vay/35",
-      "modelFolder": "35",
-      "productName": "Váy Nữ Thời Trang #35",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/35/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/35/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/35/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/35/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/35): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-036",
-      "parentProductId": "W-DRESS-036",
-      "folderKey": "quan-ao-nu/vay/36",
-      "modelFolder": "36",
-      "productName": "Váy Nữ Thời Trang #36",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/36/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/36/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/36/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/36/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/36): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-037",
-      "parentProductId": "W-DRESS-037",
-      "folderKey": "quan-ao-nu/vay/37",
-      "modelFolder": "37",
-      "productName": "Váy Nữ Thời Trang #37",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/37/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/37/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xám Nhạt",
-          "colorId": "xam-nhat",
-          "hex": "#D1D5DB",
-          "image": "/images/san-pham/quan-ao-nu/vay/37/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/37/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/37): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-038",
-      "parentProductId": "W-DRESS-038",
-      "folderKey": "quan-ao-nu/vay/38",
-      "modelFolder": "38",
-      "productName": "Váy Nữ Thời Trang #38",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/38/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/38/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Màu Phối Độc Bản",
-          "colorId": "phoi-mau",
-          "hex": "#ddbdb5",
-          "image": "/images/san-pham/quan-ao-nu/vay/38/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/38/anh.png"
-          ],
-          "verificationStatus": "needs-review",
-          "verificationSource": "cv",
-          "isVerified": false
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/38): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-039",
-      "parentProductId": "W-DRESS-039",
-      "folderKey": "quan-ao-nu/vay/39",
-      "modelFolder": "39",
-      "productName": "Váy Nữ Thời Trang #39",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/39/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/39/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nu/vay/39/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/39/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/39): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-040",
-      "parentProductId": "W-DRESS-040",
-      "folderKey": "quan-ao-nu/vay/40",
-      "modelFolder": "40",
-      "productName": "Váy Nữ Thời Trang #40",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/40/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/40/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Màu Phối Độc Bản",
-          "colorId": "phoi-mau",
-          "hex": "#e9c7c3",
-          "image": "/images/san-pham/quan-ao-nu/vay/40/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/40/anh.png"
-          ],
-          "verificationStatus": "needs-review",
-          "verificationSource": "cv",
-          "isVerified": false
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/40): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-041",
-      "parentProductId": "W-DRESS-041",
-      "folderKey": "quan-ao-nu/vay/41",
-      "modelFolder": "41",
-      "productName": "Váy Nữ Thời Trang #41",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/41/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/41/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xám Nhạt",
-          "colorId": "xam-nhat",
-          "hex": "#D1D5DB",
-          "image": "/images/san-pham/quan-ao-nu/vay/41/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/41/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/41): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-042",
-      "parentProductId": "W-DRESS-042",
-      "folderKey": "quan-ao-nu/vay/42",
-      "modelFolder": "42",
-      "productName": "Váy Nữ Thời Trang #42",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/42/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/42/anh.png"
-      ],
-      "mergedColors": [
+        },
         {
           "color": "Kem Be",
           "colorId": "kem",
           "hex": "#E8DDC8",
-          "image": "/images/san-pham/quan-ao-nu/vay/42/anh.png",
-          "galleryCount": 1,
+          "image": "/images/san-pham/quan-ao-nu/vay/vay_39.webp",
+          "galleryCount": 4,
           "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/42/anh.png"
+            "/images/san-pham/quan-ao-nu/vay/vay_39.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_40.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_41.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_51.webp"
           ],
           "verificationStatus": "predicted",
           "verificationSource": "cv",
           "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/42): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-043",
-      "parentProductId": "W-DRESS-043",
-      "folderKey": "quan-ao-nu/vay/43",
-      "modelFolder": "43",
-      "productName": "Váy Nữ Thời Trang #43",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/43/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/43/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xám Nhạt",
-          "colorId": "xam-nhat",
-          "hex": "#D1D5DB",
-          "image": "/images/san-pham/quan-ao-nu/vay/43/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/43/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/43): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-044",
-      "parentProductId": "W-DRESS-044",
-      "folderKey": "quan-ao-nu/vay/44",
-      "modelFolder": "44",
-      "productName": "Váy Nữ Thời Trang #44",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/44/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/44/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Màu Phối Độc Bản",
-          "colorId": "phoi-mau",
-          "hex": "#dbb6b3",
-          "image": "/images/san-pham/quan-ao-nu/vay/44/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/44/anh.png"
-          ],
-          "verificationStatus": "needs-review",
-          "verificationSource": "cv",
-          "isVerified": false
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/44): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-045",
-      "parentProductId": "W-DRESS-045",
-      "folderKey": "quan-ao-nu/vay/45",
-      "modelFolder": "45",
-      "productName": "Váy Nữ Thời Trang #45",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/45/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/45/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Kem Be",
-          "colorId": "kem",
-          "hex": "#E8DDC8",
-          "image": "/images/san-pham/quan-ao-nu/vay/45/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/45/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/45): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-046",
-      "parentProductId": "W-DRESS-046",
-      "folderKey": "quan-ao-nu/vay/46",
-      "modelFolder": "46",
-      "productName": "Váy Nữ Thời Trang #46",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/46/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/46/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nu/vay/46/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/46/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/46): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-047",
-      "parentProductId": "W-DRESS-047",
-      "folderKey": "quan-ao-nu/vay/47",
-      "modelFolder": "47",
-      "productName": "Váy Nữ Thời Trang #47",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/47/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/47/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Màu Phối Độc Bản",
-          "colorId": "phoi-mau",
-          "hex": "#e3c6bd",
-          "image": "/images/san-pham/quan-ao-nu/vay/47/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/47/anh.png"
-          ],
-          "verificationStatus": "needs-review",
-          "verificationSource": "cv",
-          "isVerified": false
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/47): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-048",
-      "parentProductId": "W-DRESS-048",
-      "folderKey": "quan-ao-nu/vay/48",
-      "modelFolder": "48",
-      "productName": "Váy Nữ Thời Trang #48",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/48/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/48/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xám Nhạt",
-          "colorId": "xam-nhat",
-          "hex": "#D1D5DB",
-          "image": "/images/san-pham/quan-ao-nu/vay/48/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/48/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/48): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-049",
-      "parentProductId": "W-DRESS-049",
-      "folderKey": "quan-ao-nu/vay/49",
-      "modelFolder": "49",
-      "productName": "Váy Nữ Thời Trang #49",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/49/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/49/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Màu Phối Độc Bản",
-          "colorId": "phoi-mau",
-          "hex": "#dfbeb1",
-          "image": "/images/san-pham/quan-ao-nu/vay/49/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/49/anh.png"
-          ],
-          "verificationStatus": "needs-review",
-          "verificationSource": "cv",
-          "isVerified": false
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/49): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-050",
-      "parentProductId": "W-DRESS-050",
-      "folderKey": "quan-ao-nu/vay/50",
-      "modelFolder": "50",
-      "productName": "Váy Nữ Thời Trang #50",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/50/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/50/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Màu Phối Độc Bản",
-          "colorId": "phoi-mau",
-          "hex": "#e2c5bd",
-          "image": "/images/san-pham/quan-ao-nu/vay/50/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/50/anh.png"
-          ],
-          "verificationStatus": "needs-review",
-          "verificationSource": "cv",
-          "isVerified": false
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/50): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-051",
-      "parentProductId": "W-DRESS-051",
-      "folderKey": "quan-ao-nu/vay/51",
-      "modelFolder": "51",
-      "productName": "Váy Nữ Thời Trang #51",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/51/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/51/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xám Nhạt",
-          "colorId": "xam-nhat",
-          "hex": "#D1D5DB",
-          "image": "/images/san-pham/quan-ao-nu/vay/51/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/51/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/51): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-052",
-      "parentProductId": "W-DRESS-052",
-      "folderKey": "quan-ao-nu/vay/52",
-      "modelFolder": "52",
-      "productName": "Váy Nữ Thời Trang #52",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/52/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/52/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nu/vay/52/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/52/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/52): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-053",
-      "parentProductId": "W-DRESS-053",
-      "folderKey": "quan-ao-nu/vay/53",
-      "modelFolder": "53",
-      "productName": "Váy Nữ Thời Trang #53",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/53/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/53/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nu/vay/53/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/53/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/53): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-054",
-      "parentProductId": "W-DRESS-054",
-      "folderKey": "quan-ao-nu/vay/54",
-      "modelFolder": "54",
-      "productName": "Váy Nữ Thời Trang #54",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/54/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/54/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Trắng",
-          "colorId": "trang",
-          "hex": "#F9FAFB",
-          "image": "/images/san-pham/quan-ao-nu/vay/54/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/54/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/54): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-055",
-      "parentProductId": "W-DRESS-055",
-      "folderKey": "quan-ao-nu/vay/55",
-      "modelFolder": "55",
-      "productName": "Váy Nữ Thời Trang #55",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/55/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/55/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nu/vay/55/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/55/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/55): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-056",
-      "parentProductId": "W-DRESS-056",
-      "folderKey": "quan-ao-nu/vay/56",
-      "modelFolder": "56",
-      "productName": "Váy Nữ Thời Trang #56",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/56/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/56/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xám Nhạt",
-          "colorId": "xam-nhat",
-          "hex": "#D1D5DB",
-          "image": "/images/san-pham/quan-ao-nu/vay/56/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/56/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/56): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-057",
-      "parentProductId": "W-DRESS-057",
-      "folderKey": "quan-ao-nu/vay/57",
-      "modelFolder": "57",
-      "productName": "Váy Nữ Thời Trang #57",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/57/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/57/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Kem Be",
-          "colorId": "kem",
-          "hex": "#E8DDC8",
-          "image": "/images/san-pham/quan-ao-nu/vay/57/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/57/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/57): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-058",
-      "parentProductId": "W-DRESS-058",
-      "folderKey": "quan-ao-nu/vay/58",
-      "modelFolder": "58",
-      "productName": "Váy Nữ Thời Trang #58",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/58/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/58/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xám Khói",
-          "colorId": "xam",
-          "hex": "#6B7280",
-          "image": "/images/san-pham/quan-ao-nu/vay/58/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/58/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/58): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-059",
-      "parentProductId": "W-DRESS-059",
-      "folderKey": "quan-ao-nu/vay/59",
-      "modelFolder": "59",
-      "productName": "Váy Nữ Thời Trang #59",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/59/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/59/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Kem Be",
-          "colorId": "kem",
-          "hex": "#E8DDC8",
-          "image": "/images/san-pham/quan-ao-nu/vay/59/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/59/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/59): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-060",
-      "parentProductId": "W-DRESS-060",
-      "folderKey": "quan-ao-nu/vay/60",
-      "modelFolder": "60",
-      "productName": "Váy Nữ Thời Trang #60",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/60/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/60/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Kem Be",
-          "colorId": "kem",
-          "hex": "#E8DDC8",
-          "image": "/images/san-pham/quan-ao-nu/vay/60/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/60/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/60): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-061",
-      "parentProductId": "W-DRESS-061",
-      "folderKey": "quan-ao-nu/vay/61",
-      "modelFolder": "61",
-      "productName": "Váy Nữ Thời Trang #61",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/61/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/61/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Xám Nhạt",
-          "colorId": "xam-nhat",
-          "hex": "#D1D5DB",
-          "image": "/images/san-pham/quan-ao-nu/vay/61/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/61/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/61): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-062",
-      "parentProductId": "W-DRESS-062",
-      "folderKey": "quan-ao-nu/vay/62",
-      "modelFolder": "62",
-      "productName": "Váy Nữ Thời Trang #62",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/62/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/62/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/62/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/62/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/62): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-063",
-      "parentProductId": "W-DRESS-063",
-      "folderKey": "quan-ao-nu/vay/63",
-      "modelFolder": "63",
-      "productName": "Váy Nữ Thời Trang #63",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/63/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/63/anh.png"
-      ],
-      "mergedColors": [
+        },
         {
           "color": "Đỏ Đô",
           "colorId": "do",
           "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/63/anh.png",
-          "galleryCount": 1,
+          "image": "/images/san-pham/quan-ao-nu/vay/vay_63.webp",
+          "galleryCount": 7,
           "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/63/anh.png"
+            "/images/san-pham/quan-ao-nu/vay/vay_63.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_64.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_66.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_68.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_69.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_70.webp",
+            "/images/san-pham/quan-ao-nu/vay/vay_72.webp"
           ],
           "verificationStatus": "predicted",
           "verificationSource": "cv",
           "isVerified": true
         }
       ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/63): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-064",
-      "parentProductId": "W-DRESS-064",
-      "folderKey": "quan-ao-nu/vay/64",
-      "modelFolder": "64",
-      "productName": "Váy Nữ Thời Trang #64",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/64/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/64/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/64/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/64/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/64): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-065",
-      "parentProductId": "W-DRESS-065",
-      "folderKey": "quan-ao-nu/vay/65",
-      "modelFolder": "65",
-      "productName": "Váy Nữ Thời Trang #65",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/65/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/65/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/65/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/65/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/65): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-066",
-      "parentProductId": "W-DRESS-066",
-      "folderKey": "quan-ao-nu/vay/66",
-      "modelFolder": "66",
-      "productName": "Váy Nữ Thời Trang #66",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/66/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/66/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/66/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/66/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/66): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-067",
-      "parentProductId": "W-DRESS-067",
-      "folderKey": "quan-ao-nu/vay/67",
-      "modelFolder": "67",
-      "productName": "Váy Nữ Thời Trang #67",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/67/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/67/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/67/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/67/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/67): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-068",
-      "parentProductId": "W-DRESS-068",
-      "folderKey": "quan-ao-nu/vay/68",
-      "modelFolder": "68",
-      "productName": "Váy Nữ Thời Trang #68",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/68/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/68/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/68/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/68/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/68): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-069",
-      "parentProductId": "W-DRESS-069",
-      "folderKey": "quan-ao-nu/vay/69",
-      "modelFolder": "69",
-      "productName": "Váy Nữ Thời Trang #69",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/69/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/69/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/69/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/69/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/69): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-070",
-      "parentProductId": "W-DRESS-070",
-      "folderKey": "quan-ao-nu/vay/70",
-      "modelFolder": "70",
-      "productName": "Váy Nữ Thời Trang #70",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/70/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/70/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/70/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/70/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/70): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-071",
-      "parentProductId": "W-DRESS-071",
-      "folderKey": "quan-ao-nu/vay/71",
-      "modelFolder": "71",
-      "productName": "Váy Nữ Thời Trang #71",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/71/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/71/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/71/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/71/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/71): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-072",
-      "parentProductId": "W-DRESS-072",
-      "folderKey": "quan-ao-nu/vay/72",
-      "modelFolder": "72",
-      "productName": "Váy Nữ Thời Trang #72",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/72/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/72/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/72/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/72/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/72): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-073",
-      "parentProductId": "W-DRESS-073",
-      "folderKey": "quan-ao-nu/vay/73",
-      "modelFolder": "73",
-      "productName": "Váy Nữ Thời Trang #73",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/73/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/73/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/73/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/73/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/73): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-074",
-      "parentProductId": "W-DRESS-074",
-      "folderKey": "quan-ao-nu/vay/74",
-      "modelFolder": "74",
-      "productName": "Váy Nữ Thời Trang #74",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/74/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/74/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/74/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/74/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/74): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-075",
-      "parentProductId": "W-DRESS-075",
-      "folderKey": "quan-ao-nu/vay/75",
-      "modelFolder": "75",
-      "productName": "Váy Nữ Thời Trang #75",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/75/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/75/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/75/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/75/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/75): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-076",
-      "parentProductId": "W-DRESS-076",
-      "folderKey": "quan-ao-nu/vay/76",
-      "modelFolder": "76",
-      "productName": "Váy Nữ Thời Trang #76",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/76/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/76/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/76/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/76/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/76): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-077",
-      "parentProductId": "W-DRESS-077",
-      "folderKey": "quan-ao-nu/vay/77",
-      "modelFolder": "77",
-      "productName": "Váy Nữ Thời Trang #77",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/77/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/77/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/77/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/77/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/77): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-078",
-      "parentProductId": "W-DRESS-078",
-      "folderKey": "quan-ao-nu/vay/78",
-      "modelFolder": "78",
-      "productName": "Váy Nữ Thời Trang #78",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/78/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/78/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/78/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/78/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/78): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-079",
-      "parentProductId": "W-DRESS-079",
-      "folderKey": "quan-ao-nu/vay/79",
-      "modelFolder": "79",
-      "productName": "Váy Nữ Thời Trang #79",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/79/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/79/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/79/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/79/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/79): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-080",
-      "parentProductId": "W-DRESS-080",
-      "folderKey": "quan-ao-nu/vay/80",
-      "modelFolder": "80",
-      "productName": "Váy Nữ Thời Trang #80",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/80/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/80/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/80/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/80/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/80): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-081",
-      "parentProductId": "W-DRESS-081",
-      "folderKey": "quan-ao-nu/vay/81",
-      "modelFolder": "81",
-      "productName": "Váy Nữ Thời Trang #81",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/81/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/81/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/81/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/81/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/81): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-082",
-      "parentProductId": "W-DRESS-082",
-      "folderKey": "quan-ao-nu/vay/82",
-      "modelFolder": "82",
-      "productName": "Váy Nữ Thời Trang #82",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/82/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/82/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/82/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/82/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/82): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-083",
-      "parentProductId": "W-DRESS-083",
-      "folderKey": "quan-ao-nu/vay/83",
-      "modelFolder": "83",
-      "productName": "Váy Nữ Thời Trang #83",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/83/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/83/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/83/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/83/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/83): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-084",
-      "parentProductId": "W-DRESS-084",
-      "folderKey": "quan-ao-nu/vay/84",
-      "modelFolder": "84",
-      "productName": "Váy Nữ Thời Trang #84",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/84/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/84/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/84/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/84/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/84): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-085",
-      "parentProductId": "W-DRESS-085",
-      "folderKey": "quan-ao-nu/vay/85",
-      "modelFolder": "85",
-      "productName": "Váy Nữ Thời Trang #85",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/85/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/85/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/85/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/85/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/85): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-086",
-      "parentProductId": "W-DRESS-086",
-      "folderKey": "quan-ao-nu/vay/86",
-      "modelFolder": "86",
-      "productName": "Váy Nữ Thời Trang #86",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/86/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/86/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/86/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/86/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/86): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-087",
-      "parentProductId": "W-DRESS-087",
-      "folderKey": "quan-ao-nu/vay/87",
-      "modelFolder": "87",
-      "productName": "Váy Nữ Thời Trang #87",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/87/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/87/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/87/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/87/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/87): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-088",
-      "parentProductId": "W-DRESS-088",
-      "folderKey": "quan-ao-nu/vay/88",
-      "modelFolder": "88",
-      "productName": "Váy Nữ Thời Trang #88",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/88/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/88/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đen",
-          "colorId": "den",
-          "hex": "#18181B",
-          "image": "/images/san-pham/quan-ao-nu/vay/88/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/88/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/88): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-089",
-      "parentProductId": "W-DRESS-089",
-      "folderKey": "quan-ao-nu/vay/89",
-      "modelFolder": "89",
-      "productName": "Váy Nữ Thời Trang #89",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/89/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/89/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/89/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/89/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/89): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-090",
-      "parentProductId": "W-DRESS-090",
-      "folderKey": "quan-ao-nu/vay/90",
-      "modelFolder": "90",
-      "productName": "Váy Nữ Thời Trang #90",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/90/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/90/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/90/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/90/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/90): 1 màu, 1 ảnh"
-    },
-    {
-      "groupId": "GRP-W-DRESS-091",
-      "parentProductId": "W-DRESS-091",
-      "folderKey": "quan-ao-nu/vay/91",
-      "modelFolder": "91",
-      "productName": "Váy Nữ Thời Trang #91",
-      "category": "vay",
-      "gender": "nu",
-      "seasons": [
-        "he",
-        "xuan-thu"
-      ],
-      "primaryImage": "/images/san-pham/quan-ao-nu/vay/91/anh.png",
-      "allImages": [
-        "/images/san-pham/quan-ao-nu/vay/91/anh.png"
-      ],
-      "mergedColors": [
-        {
-          "color": "Đỏ Đô",
-          "colorId": "do",
-          "hex": "#DC2626",
-          "image": "/images/san-pham/quan-ao-nu/vay/91/anh.png",
-          "galleryCount": 1,
-          "gallery": [
-            "/images/san-pham/quan-ao-nu/vay/91/anh.png"
-          ],
-          "verificationStatus": "predicted",
-          "verificationSource": "cv",
-          "isVerified": true
-        }
-      ],
-      "totalColors": 1,
-      "totalImages": 1,
-      "totalVariants": 5,
-      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay/91): 1 màu, 1 ảnh"
+      "totalColors": 5,
+      "totalImages": 68,
+      "totalVariants": 25,
+      "reason": "Mỗi folder mẫu = 1 sản phẩm (quan-ao-nu/vay): 5 màu, 68 ảnh"
     }
   ],
   "duplicateCandidates": [
+    {
+      "folder": "phu-kien/mu-non/New folder (3)",
+      "productId": "ACC-003",
+      "productName": "Phụ Kiện Thời Trang Gen Z #3",
+      "status": "Cần xác nhận màu phối độc bản",
+      "unmergedFilesCount": 1,
+      "sampleFiles": [
+        "/images/san-pham/phu-kien/mu-non/New folder (3)/1793193694795_348043404565674403_5540743654312280467_ad96f343b6337dcfb4e06e36dbc9a68a.jpg"
+      ]
+    },
+    {
+      "folder": "phu-kien/trang-suc/New folder",
+      "productId": "ACC-007",
+      "productName": "Phụ Kiện Thời Trang Gen Z #7",
+      "status": "Cần xác nhận màu phối độc bản",
+      "unmergedFilesCount": 1,
+      "sampleFiles": [
+        "/images/san-pham/phu-kien/trang-suc/New folder/1793194206410_348043404565674403_5540743654312280467_9b7593e268ddbf4f799a6b934b966795.jpg"
+      ]
+    },
+    {
+      "folder": "phu-kien/trang-suc/New folder (9)",
+      "productId": "ACC-015",
+      "productName": "Phụ Kiện Thời Trang Gen Z #15",
+      "status": "Cần xác nhận màu phối độc bản",
+      "unmergedFilesCount": 1,
+      "sampleFiles": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (9)/1793194206564_348043404565674403_5540743654312280467_9d36ca185dec0505bc714e42209e48f9.jpg"
+      ]
+    },
+    {
+      "folder": "phu-kien/trang-suc/New folder (12)",
+      "productId": "ACC-018",
+      "productName": "Phụ Kiện Thời Trang Gen Z #18",
+      "status": "Cần xác nhận màu phối độc bản",
+      "unmergedFilesCount": 1,
+      "sampleFiles": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (12)/1793194627245_348043404565674403_5540743654312280467_0d69a917111d2ec5c86ea473cc0717f5.jpg"
+      ]
+    },
+    {
+      "folder": "phu-kien/trang-suc/New folder (14)",
+      "productId": "ACC-020",
+      "productName": "Phụ Kiện Thời Trang Gen Z #20",
+      "status": "Cần xác nhận màu phối độc bản",
+      "unmergedFilesCount": 1,
+      "sampleFiles": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (14)/1793194627279_348043404565674403_5540743654312280467_7001fe5817cf4633ec6ef14c428a8d62.jpg"
+      ]
+    },
+    {
+      "folder": "phu-kien/trang-suc/New folder (15)",
+      "productId": "ACC-021",
+      "productName": "Phụ Kiện Thời Trang Gen Z #21",
+      "status": "Cần xác nhận màu phối độc bản",
+      "unmergedFilesCount": 1,
+      "sampleFiles": [
+        "/images/san-pham/phu-kien/trang-suc/New folder (15)/1793194627296_348043404565674403_5540743654312280467_69430a730c4825ed3706705dedbcd87c.jpg"
+      ]
+    },
     {
       "folder": "quan-ao-nam/ao/ao-len/ao_len_13",
       "productId": "SWEATER-013",
@@ -12344,66 +10822,6 @@
       "unmergedFilesCount": 1,
       "sampleFiles": [
         "/images/san-pham/quan-ao-nu/quan/quan_2/1792824170393_348043404565674403_5540743654312280467_e4ee3af6c3a1a61a7b8688bde5add4d3.jpg"
-      ]
-    },
-    {
-      "folder": "quan-ao-nu/vay/38",
-      "productId": "W-DRESS-038",
-      "productName": "Váy Nữ Thời Trang #38",
-      "status": "Cần xác nhận màu phối độc bản",
-      "unmergedFilesCount": 1,
-      "sampleFiles": [
-        "/images/san-pham/quan-ao-nu/vay/38/anh.png"
-      ]
-    },
-    {
-      "folder": "quan-ao-nu/vay/40",
-      "productId": "W-DRESS-040",
-      "productName": "Váy Nữ Thời Trang #40",
-      "status": "Cần xác nhận màu phối độc bản",
-      "unmergedFilesCount": 1,
-      "sampleFiles": [
-        "/images/san-pham/quan-ao-nu/vay/40/anh.png"
-      ]
-    },
-    {
-      "folder": "quan-ao-nu/vay/44",
-      "productId": "W-DRESS-044",
-      "productName": "Váy Nữ Thời Trang #44",
-      "status": "Cần xác nhận màu phối độc bản",
-      "unmergedFilesCount": 1,
-      "sampleFiles": [
-        "/images/san-pham/quan-ao-nu/vay/44/anh.png"
-      ]
-    },
-    {
-      "folder": "quan-ao-nu/vay/47",
-      "productId": "W-DRESS-047",
-      "productName": "Váy Nữ Thời Trang #47",
-      "status": "Cần xác nhận màu phối độc bản",
-      "unmergedFilesCount": 1,
-      "sampleFiles": [
-        "/images/san-pham/quan-ao-nu/vay/47/anh.png"
-      ]
-    },
-    {
-      "folder": "quan-ao-nu/vay/49",
-      "productId": "W-DRESS-049",
-      "productName": "Váy Nữ Thời Trang #49",
-      "status": "Cần xác nhận màu phối độc bản",
-      "unmergedFilesCount": 1,
-      "sampleFiles": [
-        "/images/san-pham/quan-ao-nu/vay/49/anh.png"
-      ]
-    },
-    {
-      "folder": "quan-ao-nu/vay/50",
-      "productId": "W-DRESS-050",
-      "productName": "Váy Nữ Thời Trang #50",
-      "status": "Cần xác nhận màu phối độc bản",
-      "unmergedFilesCount": 1,
-      "sampleFiles": [
-        "/images/san-pham/quan-ao-nu/vay/50/anh.png"
       ]
     }
   ],

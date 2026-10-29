@@ -116,6 +116,11 @@ export const SiteFooter: React.FC = () => {
             </h5>
             <ul className="space-y-2.5 text-xs text-[#A1A1AA]">
               <li>
+                <Link to="/about" className="hover:text-[#8B5CF6] transition-colors font-semibold text-white">
+                  Câu chuyện thương hiệu
+                </Link>
+              </li>
+              <li>
                 <Link to="/size-guide" className="hover:text-[#8B5CF6] transition-colors">
                   Hướng dẫn chọn size
                 </Link>

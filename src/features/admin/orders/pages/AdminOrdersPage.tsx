@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { MockRepo } from '@/mocks/repository';
 import { OrderStatus } from '@/types';
 import { formatPrice, formatDate } from '@/lib/utils';
@@ -20,8 +20,18 @@ export const AdminOrdersPage: React.FC = () => {
   const orders = MockRepo.getOrders();
   const { success, error } = useToast();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialStatus = searchParams.get('status') || 'ALL';
+
   const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState('ALL');
+  const [statusFilter, setStatusFilter] = useState(initialStatus);
+
+  useEffect(() => {
+    const s = searchParams.get('status');
+    if (s) {
+      setStatusFilter(s);
+    }
+  }, [searchParams]);
 
   const filtered = orders.filter((o) => {
     const matchSearch =

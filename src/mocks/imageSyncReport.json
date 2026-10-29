@@ -1,0 +1,249 @@
+{
+  "syncTimestamp": "2026-10-29T00:19:05.473838",
+  "mode": "dry-run",
+  "imageStats": {
+    "totalImagesScanned": 606,
+    "exactDuplicatesSHA256": 0,
+    "nearDuplicatesPerceptual": 63,
+    "corruptedImages": 0,
+    "sharpenedDressImagesAvailable": 61,
+    "gothicPngDresses": 7
+  },
+  "productStats": {
+    "initialProductCount": 301,
+    "finalProductCount": 301,
+    "activeProductCount": 271,
+    "newAccessoriesAdded": 0,
+    "sharpenedDressesReplaced": 0,
+    "activeDresses": 61,
+    "draftDressesAwaitingPhotos": 30
+  },
+  "classification": {
+    "men": 130,
+    "women": 143,
+    "unisex": 28,
+    "accessories": 28,
+    "dresses": 91
+  },
+  "pendingReviewWaitlist": {
+    "dressesAwaitingPhotos": [
+      {
+        "productId": "W-DRESS-031",
+        "name": "Váy Nữ Thiết Kế Chất Linen Thoáng Mát #31",
+        "missingImage": "vay_31.webp hoặc vay_31.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-053",
+        "name": "Váy Nữ Thiết Kế Cổ Đổ Tự Nhiên #53",
+        "missingImage": "vay_53.webp hoặc vay_53.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-054",
+        "name": "Váy Nữ Thiết Kế Chữ A Cạp Cao #54",
+        "missingImage": "vay_54.webp hoặc vay_54.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-055",
+        "name": "Váy Nữ Thiết Kế Thêu Hoa Tay Tinh Xảo #55",
+        "missingImage": "vay_55.webp hoặc vay_55.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-056",
+        "name": "Váy Nữ Thiết Kế Dáng Ôm Tôn Dáng #56",
+        "missingImage": "vay_56.webp hoặc vay_56.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-057",
+        "name": "Váy Nữ Thiết Kế Dạo Phố Cuối Tuần #57",
+        "missingImage": "vay_57.webp hoặc vay_57.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-058",
+        "name": "Váy Nữ Thiết Kế Dự Tiệc Nhẹ Nhàng #58",
+        "missingImage": "vay_58.webp hoặc vay_58.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-059",
+        "name": "Váy Nữ Thiết Kế Đi Biển Thoải Mái #59",
+        "missingImage": "vay_59.webp hoặc vay_59.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-060",
+        "name": "Váy Nữ Thiết Kế Phong Cách Seoul #60",
+        "missingImage": "vay_60.webp hoặc vay_60.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-061",
+        "name": "Váy Nữ Thiết Kế Thời Trang Tokyo #61",
+        "missingImage": "vay_61.webp hoặc vay_61.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-062",
+        "name": "Váy Nữ Thiết Kế Thanh Lịch Công Sở #62",
+        "missingImage": "vay_62.webp hoặc vay_62.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-073",
+        "name": "Váy Nữ Thiết Kế Đen Cá Tính #73",
+        "missingImage": "vay_73.webp hoặc vay_73.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-074",
+        "name": "Váy Nữ Thiết Kế Beige Cát Tối Giản #74",
+        "missingImage": "vay_74.webp hoặc vay_74.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-075",
+        "name": "Váy Nữ Thiết Kế Xanh Pastel Dịu Dàng #75",
+        "missingImage": "vay_75.webp hoặc vay_75.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-076",
+        "name": "Váy Nữ Thiết Kế Vàng Nhạt Nắng Hè #76",
+        "missingImage": "vay_76.webp hoặc vay_76.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-077",
+        "name": "Váy Nữ Thiết Kế Xanh Mint Tươi Mát #77",
+        "missingImage": "vay_77.webp hoặc vay_77.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-078",
+        "name": "Váy Nữ Thiết Kế Xám Khói Thời Thượng #78",
+        "missingImage": "vay_78.webp hoặc vay_78.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-079",
+        "name": "Váy Nữ Thiết Kế Tím Nhạt Mộng Mơ #79",
+        "missingImage": "vay_79.webp hoặc vay_79.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-080",
+        "name": "Váy Nữ Thiết Kế Cam Đào Tươi Trẻ #80",
+        "missingImage": "vay_80.webp hoặc vay_80.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-081",
+        "name": "Váy Nữ Thiết Kế Nâu Cà Phê Cổ Điển #81",
+        "missingImage": "vay_81.webp hoặc vay_81.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-082",
+        "name": "Váy Nữ Thiết Kế Đỏ Đô Sang Trọng #82",
+        "missingImage": "vay_82.webp hoặc vay_82.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-083",
+        "name": "Váy Nữ Thiết Kế Họa Tiết Nghệ Thuật #83",
+        "missingImage": "vay_83.webp hoặc vay_83.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-084",
+        "name": "Váy Nữ Thiết Kế Thun Lạnh Nhanh Khô #84",
+        "missingImage": "vay_84.webp hoặc vay_84.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-085",
+        "name": "Váy Nữ Thiết Kế Lụa Satin Mịn #85",
+        "missingImage": "vay_85.webp hoặc vay_85.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-086",
+        "name": "Váy Nữ Thiết Kế Voan Tơ Mềm Rủ #86",
+        "missingImage": "vay_86.webp hoặc vay_86.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-087",
+        "name": "Váy Nữ Thiết Kế Dệt Tổ Ong Thoáng #87",
+        "missingImage": "vay_87.webp hoặc vay_87.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-088",
+        "name": "Váy Nữ Thiết Kế Kaki Mềm Đứng Phom #88",
+        "missingImage": "vay_88.webp hoặc vay_88.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-089",
+        "name": "Váy Nữ Thiết Kế Phối Cúc Gỗ Mộc #89",
+        "missingImage": "vay_89.webp hoặc vay_89.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-090",
+        "name": "Váy Nữ Thiết Kế Viền Bèo Nữ Tính #90",
+        "missingImage": "vay_90.webp hoặc vay_90.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      },
+      {
+        "productId": "W-DRESS-091",
+        "name": "Váy Nữ Thiết Kế Phom Chuẩn Đi Học #91",
+        "missingImage": "vay_91.webp hoặc vay_91.webp",
+        "status": "Awaiting Photo Assets (Chờ bổ sung ảnh)"
+      }
+    ],
+    "gothicPngDressesPendingPricing": [
+      {
+        "fileName": "váy_corset_gothic_ren_hoa_văn_victorian.png",
+        "webPath": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png",
+        "cleanTitle": "Váy Corset Gothic Ren Hoa Văn Victorian"
+      },
+      {
+        "fileName": "váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+        "webPath": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+        "cleanTitle": "Váy Corset Gothic Đen Ngà Cầu Kỳ"
+      },
+      {
+        "fileName": "váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+        "webPath": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+        "cleanTitle": "Váy Corset Gothic Đen Trắng Nhiều Tầng"
+      },
+      {
+        "fileName": "váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+        "webPath": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+        "cleanTitle": "Váy Corset Kẻ Đỏ Đen Cổ Điển"
+      },
+      {
+        "fileName": "váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+        "webPath": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+        "cleanTitle": "Váy Dạ Hội Corset Đen Trắng Ren Hoa"
+      },
+      {
+        "fileName": "váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+        "webPath": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+        "cleanTitle": "Váy Gothic Lolita Cổ Yếm Ren Đen Ivory"
+      },
+      {
+        "fileName": "váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+        "webPath": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+        "cleanTitle": "Váy Gothic Ren Hoa Đen Trắng Thanh Lịch"
+      }
+    ]
+  }
+}

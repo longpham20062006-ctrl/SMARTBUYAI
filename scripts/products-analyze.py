@@ -6,6 +6,7 @@ import re
 import colorsys
 import statistics
 import math
+from typing import Any, Dict, List, Tuple, Union, Optional
 from PIL import Image
 
 if isinstance(sys.stdout, io.TextIOWrapper):
@@ -57,7 +58,16 @@ def extract_fabric_color(image_path, file_name="", is_pants=False):
                     cropped.thumbnail((30, 30))
                     loaded = cropped.load()
                     cw, ch = cropped.size
-                    pixels = [loaded[x, y][:3] for y in range(ch) for x in range(cw)] if loaded else []
+                    pixels: List[Tuple[int, int, int]] = []
+                    if loaded is not None:
+                        for y in range(ch):
+                            for x in range(cw):
+                                px = loaded[x, y]
+                                if isinstance(px, (tuple, list)) and len(px) >= 3:
+                                    pixels.append((px[0], px[1], px[2]))
+                                elif isinstance(px, (int, float)):
+                                    iv = int(px)
+                                    pixels.append((iv, iv, iv))
                     r_med = statistics.median([p[0] for p in pixels]) if pixels else 128
                     g_med = statistics.median([p[1] for p in pixels]) if pixels else 128
                     b_med = statistics.median([p[2] for p in pixels]) if pixels else 128
@@ -100,7 +110,15 @@ def extract_fabric_color(image_path, file_name="", is_pants=False):
                     "verificationStatus": "needs-review",
                     "source": "unverified"
                 }
-            pixels = [loaded[x, y][:3] for y in range(ch) for x in range(cw)]
+            pixels: List[Tuple[int, int, int]] = []
+            for y in range(ch):
+                for x in range(cw):
+                    px = loaded[x, y]
+                    if isinstance(px, (tuple, list)) and len(px) >= 3:
+                        pixels.append((px[0], px[1], px[2]))
+                    elif isinstance(px, (int, float)):
+                        iv = int(px)
+                        pixels.append((iv, iv, iv))
             if not pixels:
                 return {
                     "colorName": "Chưa xác minh",
@@ -124,6 +142,7 @@ def extract_fabric_color(image_path, file_name="", is_pants=False):
             h_val, s_val, v_val = colorsys.rgb_to_hsv(r_med / 255.0, g_med / 255.0, b_med / 255.0)
 
             # Phân loại màu vải chủ đạo theo thứ tự ưu tiên chính xác:
+            res: Dict[str, Any]
             # 1. Trắng (White / Off-White)
             if v_val >= 0.70 and s_val < 0.12:
                 res = {

@@ -180,30 +180,30 @@ export const AdminLayout: React.FC = () => {
                 className="w-9 h-9 rounded-full object-cover shrink-0 border border-white shadow-2xs"
               />
               <div className="truncate min-w-0">
-                <div className="text-xs font-bold text-[#18181B] truncate">{currentUser.name || 'Admin Master'}</div>
-                <div className="text-[11px] text-[#71717A] truncate">admin@smartbuy.vn</div>
+                <div className="text-xs font-bold text-[#18181B] truncate">{currentUser?.name || 'Admin Master'}</div>
+                <div className="text-[11px] text-[#71717A] truncate">{currentUser?.email || 'admin@smartbuy.vn'}</div>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-1 text-[11px] font-semibold text-[#71717A]">
               <button
                 type="button"
-                onClick={() => navigate('/admin')}
+                onClick={() => navigate('/')}
                 className="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg hover:bg-[#F4F4F5] hover:text-[#18181B] transition-colors cursor-pointer"
               >
-                <Settings className="w-3.5 h-3.5" />
-                <span>Settings</span>
+                <Store className="w-3.5 h-3.5" />
+                <span>Xem Shop</span>
               </button>
               <button
                 type="button"
                 onClick={() => {
-                  MockRepo.switchUser('customer');
-                  navigate('/');
+                  MockRepo.logout();
+                  navigate('/login');
                 }}
-                className="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg hover:bg-[#F4F4F5] hover:text-[#18181B] transition-colors cursor-pointer"
+                className="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer font-bold"
               >
                 <LogOut className="w-3.5 h-3.5" />
-                <span>Exit Admin</span>
+                <span>Đăng xuất</span>
               </button>
             </div>
           </div>

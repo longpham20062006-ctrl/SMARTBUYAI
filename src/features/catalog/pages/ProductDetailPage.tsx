@@ -529,7 +529,9 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
               </div>
               <div className="p-3.5 rounded-xl bg-white border border-[#E4E4E7] shadow-subtle">
                 <span className="text-[#71717A] block text-[10px] uppercase">Dịp mặc</span>
-                <strong className="text-[#18181B] text-xs mt-0.5 block">{product.occasion.join(', ')}</strong>
+                <strong className="text-[#18181B] text-xs mt-0.5 block">
+                  {Array.isArray(product.occasion) ? product.occasion.join(', ') : (product.occasion || 'Đi chơi, dạo phố, đi học')}
+                </strong>
               </div>
             </div>
           </div>
@@ -539,7 +541,11 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
               Cách giặt & Giữ màu chuẩn Streetwear
             </h3>
             <div className="p-4 rounded-xl bg-white border border-[#E4E4E7] shadow-subtle space-y-2 text-xs text-[#18181B]">
-              {product.careInstructions.map((instruction, idx) => (
+              {(Array.isArray(product.careInstructions) && product.careInstructions.length > 0 ? product.careInstructions : [
+                'Giặt ở nhiệt độ thường, lộn trái sản phẩm khi giặt',
+                'Không sử dụng chất tẩy mạnh hoặc clo',
+                'Phơi trong bóng râm, tránh ánh nắng trực tiếp'
+              ]).map((instruction, idx) => (
                 <div key={idx} className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6] mt-1.5 shrink-0" />
                   <span>{instruction}</span>
@@ -718,7 +724,9 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
 export const ProductDetailPage: React.FC = () => {
   useRepoSubscription(['products', 'cart']);
   const { slug } = useParams<{ slug: string }>();
-  const product = slug ? productService.getBySlug(slug) : undefined;
+  const product = slug
+    ? (productService.getBySlug(slug) || productService.getAll().find(p => p.id.toLowerCase() === slug.toLowerCase() || p.slug.toLowerCase() === slug.toLowerCase()))
+    : undefined;
 
   if (!product) {
     return (

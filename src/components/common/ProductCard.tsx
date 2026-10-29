@@ -132,6 +132,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <div
+      data-testid="product-card"
       className={`group flex flex-col h-full bg-white rounded-2xl border border-[#E4E4E7] hover:border-[#DDD6FE] hover:shadow-card-hover transition-all duration-300 relative ${
         isHovered ? 'z-20' : 'z-0'
       }`}

@@ -26,10 +26,10 @@ export const CheckoutPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Form values
-  const defaultAddress = currentUser.savedAddresses?.[0];
-  const [fullName, setFullName] = useState(defaultAddress?.fullName || currentUser.name || '');
-  const [phone, setPhone] = useState(defaultAddress?.phone || currentUser.phone || '');
-  const [email, setEmail] = useState(defaultAddress?.email || currentUser.email || '');
+  const defaultAddress = currentUser?.savedAddresses?.[0];
+  const [fullName, setFullName] = useState(defaultAddress?.fullName || currentUser?.name || '');
+  const [phone, setPhone] = useState(defaultAddress?.phone || currentUser?.phone || '');
+  const [email, setEmail] = useState(defaultAddress?.email || currentUser?.email || '');
   const [province, setProvince] = useState(defaultAddress?.province || 'Thành phố Hồ Chí Minh');
   const [district, setDistrict] = useState(defaultAddress?.district || 'Quận 1');
   const [ward, setWard] = useState(defaultAddress?.ward || 'Phường Bến Nghé');
@@ -82,7 +82,7 @@ export const CheckoutPage: React.FC = () => {
       }));
 
       const res = MockRepo.createOrder({
-        userId: currentUser.id,
+        userId: currentUser?.id || 'user-customer-1',
         customerName: fullName,
         customerEmail: email,
         shippingAddress: {

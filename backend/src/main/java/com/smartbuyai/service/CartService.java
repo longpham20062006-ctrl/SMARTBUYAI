@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -25,7 +26,8 @@ public class CartService {
     private final CartItemRepository cartItemRepository;
     private final ProductRepository productRepository;
 
-    public CartService(CartRepository cartRepository, CartItemRepository cartItemRepository, ProductRepository productRepository) {
+    public CartService(CartRepository cartRepository, CartItemRepository cartItemRepository,
+            ProductRepository productRepository) {
         this.cartRepository = cartRepository;
         this.cartItemRepository = cartItemRepository;
         this.productRepository = productRepository;
@@ -48,11 +50,18 @@ public class CartService {
     }
 
     public CartDto addItem(String cartId, AddToCartRequest req) {
-        CartEntity cart = cartRepository.findById(cartId)
+        if (cartId == null || cartId.isBlank()) {
+            throw new ResourceNotFoundException("Mã giỏ hàng không hợp lệ");
+        }
+        CartEntity cart = cartRepository.findById(Objects.requireNonNull(cartId))
                 .orElseThrow(() -> new ResourceNotFoundException("Giỏ hàng không tồn tại: " + cartId));
 
-        ProductEntity product = productRepository.findById(req.getProductId())
-                .orElseThrow(() -> new ResourceNotFoundException("Sản phẩm không tồn tại: " + req.getProductId()));
+        if (req == null || req.getProductId() == null || req.getProductId().isBlank()) {
+            throw new ResourceNotFoundException("Mã sản phẩm không hợp lệ");
+        }
+        String productId = Objects.requireNonNull(req.getProductId());
+        ProductEntity product = productRepository.findById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException("Sản phẩm không tồn tại: " + productId));
 
         // Server-side price validation
         Long verifiedPrice = product.getPrice();
@@ -63,8 +72,10 @@ public class CartService {
         if (req.getVariantId() != null && !req.getVariantId().isBlank()) {
             for (ProductVariantEntity v : product.getVariants()) {
                 if (v.getId().equals(req.getVariantId())) {
-                    if (v.getPrice() != null && v.getPrice() > 0) verifiedPrice = v.getPrice();
-                    if (v.getImageUrl() != null && !v.getImageUrl().isBlank()) imageUrl = v.getImageUrl();
+                    if (v.getPrice() != null && v.getPrice() > 0)
+                        verifiedPrice = v.getPrice();
+                    if (v.getImageUrl() != null && !v.getImageUrl().isBlank())
+                        imageUrl = v.getImageUrl();
                     break;
                 }
             }
@@ -111,7 +122,13 @@ public class CartService {
     }
 
     public CartDto updateItemQuantity(String cartId, Long itemId, int quantity) {
-        CartEntity cart = cartRepository.findById(cartId)
+        if (cartId == null || cartId.isBlank()) {
+            throw new ResourceNotFoundException("Mã giỏ hàng không hợp lệ");
+        }
+        if (itemId == null) {
+            throw new ResourceNotFoundException("Mã mục giỏ hàng không hợp lệ");
+        }
+        CartEntity cart = cartRepository.findById(Objects.requireNonNull(cartId))
                 .orElseThrow(() -> new ResourceNotFoundException("Giỏ hàng không tồn tại: " + cartId));
 
         if (quantity <= 0) {
@@ -135,21 +152,30 @@ public class CartService {
     }
 
     public CartDto updateItemQuantityDirect(Long itemId, int quantity) {
-        CartItemEntity item = cartItemRepository.findById(itemId)
+        if (itemId == null) {
+            throw new ResourceNotFoundException("Mã mục giỏ hàng không hợp lệ");
+        }
+        CartItemEntity item = cartItemRepository.findById(Objects.requireNonNull(itemId))
                 .orElseThrow(() -> new ResourceNotFoundException("Mục giỏ hàng không tồn tại: " + itemId));
         CartEntity cart = item.getCart();
         return updateItemQuantity(cart.getId(), itemId, quantity);
     }
 
     public CartDto removeItemDirect(Long itemId) {
-        CartItemEntity item = cartItemRepository.findById(itemId)
+        if (itemId == null) {
+            throw new ResourceNotFoundException("Mã mục giỏ hàng không hợp lệ");
+        }
+        CartItemEntity item = cartItemRepository.findById(Objects.requireNonNull(itemId))
                 .orElseThrow(() -> new ResourceNotFoundException("Mục giỏ hàng không tồn tại: " + itemId));
         CartEntity cart = item.getCart();
         return removeItem(cart.getId(), itemId);
     }
 
     public CartDto clearCart(String cartId) {
-        CartEntity cart = cartRepository.findById(cartId)
+        if (cartId == null || cartId.isBlank()) {
+            throw new ResourceNotFoundException("Mã giỏ hàng không hợp lệ");
+        }
+        CartEntity cart = cartRepository.findById(Objects.requireNonNull(cartId))
                 .orElseThrow(() -> new ResourceNotFoundException("Giỏ hàng không tồn tại: " + cartId));
         cart.getItems().clear();
         cart.setUpdatedAt(LocalDateTime.now());

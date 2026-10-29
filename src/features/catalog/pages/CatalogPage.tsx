@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { useSearchParams, Link, useNavigate } from 'react-router-dom';
 import { productService, ProductFilterOptions } from '@/services/productService';
 import { stylistService } from '@/services/stylistService';
@@ -96,10 +96,39 @@ export const CatalogPage: React.FC = () => {
     setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
-  // Quick filter horizontal scroll state & ref
+  // Quick filter horizontal scroll state & refs
   const quickFilterScrollRef = useRef<HTMLDivElement>(null);
+  const quickFilterContainerRef = useRef<HTMLDivElement>(null);
+  const catalogTopAnchorRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+
+  // Auto Scroll thông minh: cuộn mượt về đầu danh sách sản phẩm khi người dùng chọn danh mục/bộ lọc
+  const performAutoScrollToTop = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const behavior = prefersReduced ? 'instant' : 'smooth';
+
+    requestAnimationFrame(() => {
+      if (catalogTopAnchorRef.current) {
+        // Đo chính xác chiều cao header đang dính + chiều cao thanh quick filter
+        const headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--site-header-height')) || 110;
+        const quickH = quickFilterContainerRef.current?.getBoundingClientRect().height || 48;
+        const totalStickyOffset = headerH + quickH + 10; // Khoảng thở an toàn 10px
+
+        const anchorTop = catalogTopAnchorRef.current.getBoundingClientRect().top + window.scrollY;
+        const targetY = Math.max(0, anchorTop - totalStickyOffset);
+
+        // Chỉ cuộn lên nếu vị trí hiện tại đang ở bên dưới mục tiêu
+        if (window.scrollY > targetY + 20) {
+          window.scrollTo({
+            top: targetY,
+            behavior,
+          });
+        }
+      }
+    });
+  }, []);
 
   const checkScrollability = () => {
     if (!quickFilterScrollRef.current) return;
@@ -176,6 +205,7 @@ export const CatalogPage: React.FC = () => {
     setSearchParams(next);
     setVisibleCount(ITEMS_PER_PAGE);
     setAutoLoadCount(0);
+    performAutoScrollToTop();
   };
 
   const toggleArrayParam = (key: string, value: string) => {
@@ -190,6 +220,7 @@ export const CatalogPage: React.FC = () => {
     setSearchParams(next);
     setVisibleCount(ITEMS_PER_PAGE);
     setAutoLoadCount(0);
+    performAutoScrollToTop();
   };
 
   const clearAllFilters = () => {
@@ -198,6 +229,7 @@ export const CatalogPage: React.FC = () => {
     setSearchParams(next);
     setVisibleCount(ITEMS_PER_PAGE);
     setAutoLoadCount(0);
+    performAutoScrollToTop();
   };
 
   // 5.3: Đồng bộ bộ lọc & Giữ nguyên giới tính hiện tại khi bấm quick filter
@@ -212,6 +244,7 @@ export const CatalogPage: React.FC = () => {
       setSearchParams(next);
       setVisibleCount(ITEMS_PER_PAGE);
       setAutoLoadCount(0);
+      performAutoScrollToTop();
       return;
     }
 
@@ -250,6 +283,7 @@ export const CatalogPage: React.FC = () => {
     setSearchParams(next);
     setVisibleCount(ITEMS_PER_PAGE);
     setAutoLoadCount(0);
+    performAutoScrollToTop();
   };
 
   // Filter options
@@ -503,13 +537,27 @@ export const CatalogPage: React.FC = () => {
       return [
         { id: 'all', label: `Tất cả đồ Nữ (${totalScopedProductsCount})`, filter: {} },
         { id: 'ao-thun', label: 'Áo thun (13)', filter: { category: 'ao-thun' } },
+        { id: 'vay-group', label: `Váy Nữ (${vayCount})`, filter: { category: 'vay' } },
+        { id: 'ao-hoodie', label: 'Hoodie (9)', filter: { category: 'ao-hoodie' } },
         { id: 'ao-croptop', label: 'Croptop (7)', filter: { category: 'ao-croptop' } },
         { id: 'ao-hai-day', label: 'Áo hai dây (7)', filter: { category: 'ao-hai-day' } },
-        { id: 'ao-hoodie', label: 'Hoodie (9)', filter: { category: 'ao-hoodie' } },
         { id: 'ao-len', label: 'Áo len (4)', filter: { category: 'ao-len' } },
         { id: 'ao-cardigan', label: 'Cardigan (6)', filter: { category: 'ao-cardigan' } },
         { id: 'quan-group', label: `Quần Nữ (${pantCount})`, filter: { category: 'quan' } },
-        { id: 'vay-group', label: `Váy Nữ (${vayCount})`, filter: { category: 'vay' } },
+      ];
+    }
+
+    if (genderParam === 'all') {
+      return [
+        { id: 'all', label: `Tất cả sản phẩm (${totalScopedProductsCount})`, filter: {} },
+        { id: 'ao-thun', label: 'Áo thun', filter: { category: 'ao-thun' } },
+        { id: 'ao-hoodie', label: 'Hoodie', filter: { category: 'ao-hoodie' } },
+        { id: 'vay-group', label: `Váy & Đầm (${vayCount})`, filter: { category: 'vay' } },
+        { id: 'quan-group', label: `Quần (${pantCount})`, filter: { category: 'quan' } },
+        { id: 'ao-khoac-group', label: `Áo khoác (${jacketCount})`, filter: { category: 'ao-khoac' } },
+        { id: 'ao-polo', label: 'Polo (10)', filter: { category: 'ao-polo' } },
+        { id: 'ao-so-mi', label: 'Sơ mi (12)', filter: { category: 'ao-so-mi' } },
+        { id: 'do-bo-group', label: `Đồ bộ (${doBoCount})`, filter: { category: 'do-bo' } },
       ];
     }
 
@@ -1238,8 +1286,10 @@ export const CatalogPage: React.FC = () => {
 
       {/* 5.2: QUICK FILTER PILLS BAR CÓ CUỘN NGANG VÀ MŨI TÊN ĐIỀU HƯỚNG — STICKY DƯỚI HEADER */}
       <div
+        ref={quickFilterContainerRef}
+        data-testid="quick-filter-container"
         className="border-b border-[#E4E4E7] bg-white/95 backdrop-blur-md sticky z-30 shadow-xs transition-all duration-200"
-        style={{ top: 'var(--site-header-height, 136px)' }}
+        style={{ top: 'var(--site-header-height, 110px)' }}
       >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
           <div className="relative flex items-center">
@@ -1308,6 +1358,15 @@ export const CatalogPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Anchor cuộn mượt thông minh cho QuickFilter và Category click */}
+      <div
+        ref={catalogTopAnchorRef}
+        id="catalog-top-anchor"
+        data-testid="catalog-top-anchor"
+        className="scroll-mt-36 sm:scroll-mt-44"
+        style={{ scrollMarginTop: 'calc(var(--site-header-height, 110px) + 56px)' }}
+      />
 
       {/* 3: BỐ CỤC 3 VÙNG / 2 VÙNG LINH HOẠT [BỘ LỌC 240px | CATALOG TỰ CO GIÃN | AI STYLIST 290px] */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">

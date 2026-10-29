@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -52,8 +54,9 @@ public class OrderService {
 
         // Case A: Create order from Cart
         if (req.getCartId() != null && !req.getCartId().isBlank()) {
-            CartEntity cart = cartRepository.findById(req.getCartId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Giỏ hàng không tồn tại: " + req.getCartId()));
+            String cartId = Objects.requireNonNull(req.getCartId());
+            CartEntity cart = cartRepository.findById(cartId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Giỏ hàng không tồn tại: " + cartId));
 
             for (CartItemEntity item : cart.getItems()) {
                 OrderItemEntity oi = new OrderItemEntity();
@@ -76,8 +79,12 @@ public class OrderService {
         } else if (req.getItems() != null && !req.getItems().isEmpty()) {
             // Case B: Create order from explicit items
             for (CreateOrderRequest.OrderItemInput input : req.getItems()) {
-                ProductEntity product = productRepository.findById(input.getProductId())
-                        .orElseThrow(() -> new ResourceNotFoundException("Sản phẩm không tồn tại: " + input.getProductId()));
+                if (input == null || input.getProductId() == null || input.getProductId().isBlank()) {
+                    throw new IllegalArgumentException("Mã sản phẩm trong đơn hàng không hợp lệ");
+                }
+                String productId = Objects.requireNonNull(input.getProductId());
+                ProductEntity product = productRepository.findById(productId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Sản phẩm không tồn tại: " + productId));
 
                 Long price = product.getPrice();
                 String img = !product.getImages().isEmpty() ? product.getImages().get(0).getImageUrl() : "";
@@ -126,13 +133,19 @@ public class OrderService {
 
     @Transactional(readOnly = true)
     public OrderDto getOrderById(String orderId) {
-        OrderEntity order = orderRepository.findById(orderId)
+        if (orderId == null || orderId.isBlank()) {
+            throw new ResourceNotFoundException("Mã đơn hàng không hợp lệ");
+        }
+        OrderEntity order = orderRepository.findById(Objects.requireNonNull(orderId))
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy đơn hàng: " + orderId));
         return mapToDto(order);
     }
 
     @Transactional(readOnly = true)
     public List<OrderDto> getOrdersByUser(String userId) {
+        if (userId == null || userId.isBlank()) {
+            return Collections.emptyList();
+        }
         return orderRepository.findByUserIdOrderByCreatedAtDesc(userId).stream()
                 .map(this::mapToDto)
                 .collect(Collectors.toList());
@@ -145,7 +158,23 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
+    public OrderDto updateOrderStatus(String orderId, String newStatus) {
+        if (orderId == null || orderId.isBlank()) {
+            throw new ResourceNotFoundException("Mã đơn hàng không hợp lệ");
+        }
+        OrderEntity order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy đơn hàng: " + orderId));
+        if (newStatus != null && !newStatus.isBlank()) {
+            order.setStatus(newStatus.trim().toUpperCase());
+        }
+        OrderEntity savedOrder = Objects.requireNonNull(orderRepository.save(Objects.requireNonNull(order)));
+        return mapToDto(savedOrder);
+    }
+
     private OrderDto mapToDto(OrderEntity entity) {
+        if (entity == null) {
+            return null;
+        }
         OrderDto dto = new OrderDto();
         dto.setId(entity.getId());
         dto.setUserId(entity.getUserId());
@@ -162,7 +191,7 @@ public class OrderService {
         dto.setNote(entity.getNote());
         dto.setCreatedAt(entity.getCreatedAt());
 
-        List<OrderItemDto> items = entity.getItems().stream().map(i -> {
+        List<OrderItemDto> items = entity.getItems() != null ? entity.getItems().stream().map(i -> {
             OrderItemDto itemDto = new OrderItemDto();
             itemDto.setId(i.getId());
             itemDto.setProductId(i.getProductId());
@@ -174,7 +203,7 @@ public class OrderService {
             itemDto.setQuantity(i.getQuantity());
             itemDto.setImageUrl(i.getImageUrl());
             return itemDto;
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toList()) : new ArrayList<>();
 
         dto.setItems(items);
         return dto;

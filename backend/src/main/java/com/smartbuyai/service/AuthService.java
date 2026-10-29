@@ -64,6 +64,9 @@ public class AuthService {
 
     @Transactional(readOnly = true)
     public UserDto getUserProfile(String userId) {
+        if (userId == null || userId.isBlank()) {
+            throw new ResourceNotFoundException("Mã người dùng không hợp lệ");
+        }
         UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy người dùng: " + userId));
         return new UserDto(user.getId(), user.getEmail(), user.getName(), user.getPhone(), user.getRole());

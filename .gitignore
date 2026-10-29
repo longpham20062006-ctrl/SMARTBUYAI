@@ -12,6 +12,7 @@ node_modules
 dist
 dist-ssr
 *.local
+*test_credentials*
 
 # Environment variables & API keys
 .env

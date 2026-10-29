@@ -29,6 +29,8 @@ target/
 data/
 *.mv.db
 *.trace.db
+*test_credentials*
+*.local
 
 ### Logs ###
 logs/

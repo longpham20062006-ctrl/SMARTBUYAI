@@ -28,6 +28,7 @@ import org.springframework.web.client.RestTemplate;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -58,12 +59,16 @@ public class AiTryOnService {
         String garmentName = "Trang phục SMARTBUY AI";
         String garmentImage = req.getGarmentImageUrl();
 
-        if (req.getGarmentId() != null) {
-            ProductEntity product = productRepository.findById(req.getGarmentId()).orElse(null);
+        String reqGarmentId = req.getGarmentId();
+        if (reqGarmentId != null && !reqGarmentId.isBlank()) {
+            ProductEntity product = productRepository.findById(Objects.requireNonNull(reqGarmentId)).orElse(null);
             if (product != null) {
-                garmentName = product.getName();
+                String pName = product.getName();
+                if (pName != null && !pName.isBlank()) {
+                    garmentName = pName;
+                }
                 if (garmentImage == null || garmentImage.isBlank()) {
-                    if (!product.getImages().isEmpty()) {
+                    if (product.getImages() != null && !product.getImages().isEmpty()) {
                         garmentImage = product.getImages().get(0).getImageUrl();
                     }
                 }
@@ -108,13 +113,15 @@ public class AiTryOnService {
             ParameterizedTypeReference<Map<String, Object>> typeRef = new ParameterizedTypeReference<>() {};
             ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
                     tryonServerUrl + "/try-on",
-                    HttpMethod.POST,
+                    Objects.requireNonNull(HttpMethod.POST),
                     request,
                     typeRef
             );
 
-            if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
-                String aiJobId = (String) response.getBody().get("job_id");
+            Map<String, Object> body = response.getBody();
+            if (response.getStatusCode().is2xxSuccessful() && body != null) {
+                Object rawJobId = body.get("job_id");
+                String aiJobId = rawJobId != null ? String.valueOf(rawJobId) : null;
                 log.info("Python AI Server đã tiếp nhận tác vụ, AI Job ID: {}", aiJobId);
                 updateJobStatus(jobId, "PROCESSING", null, null);
             }
@@ -126,29 +133,38 @@ public class AiTryOnService {
 
     @Transactional(readOnly = true)
     public TryOnStatusResponse getJobStatus(String jobId) {
-        TryOnJobEntity job = tryOnJobRepository.findById(jobId)
-                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy tác vụ thử đồ: " + jobId));
+        if (jobId == null || jobId.isBlank()) {
+            throw new ResourceNotFoundException("Mã tác vụ thử đồ không hợp lệ");
+        }
+        final String cleanJobId = Objects.requireNonNull(jobId);
+        TryOnJobEntity job = tryOnJobRepository.findById(cleanJobId)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy tác vụ thử đồ: " + cleanJobId));
 
         // If in PROCESSING, poll python worker if needed
         if ("PROCESSING".equalsIgnoreCase(job.getStatus())) {
             try {
                 ParameterizedTypeReference<Map<String, Object>> typeRef = new ParameterizedTypeReference<>() {};
+                HttpEntity<Void> emptyEntity = new HttpEntity<>(new HttpHeaders());
                 ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
-                        tryonServerUrl + "/jobs/" + jobId,
-                        HttpMethod.GET,
-                        null,
+                        tryonServerUrl + "/jobs/" + cleanJobId,
+                        Objects.requireNonNull(HttpMethod.GET),
+                        emptyEntity,
                         typeRef
                 );
-                if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
-                    String workerStatus = (String) response.getBody().get("status");
-                    String resultUrl = (String) response.getBody().get("result_image_url");
+                Map<String, Object> body = response.getBody();
+                if (response.getStatusCode().is2xxSuccessful() && body != null) {
+                    Object rawStatus = body.get("status");
+                    String workerStatus = rawStatus != null ? String.valueOf(rawStatus) : null;
+                    Object rawResultUrl = body.get("result_image_url");
+                    String resultUrl = rawResultUrl != null ? String.valueOf(rawResultUrl) : null;
                     if ("completed".equalsIgnoreCase(workerStatus)) {
                         job.setStatus("COMPLETED");
                         job.setResultImageUrl(resultUrl);
                         tryOnJobRepository.save(job);
                     } else if ("failed".equalsIgnoreCase(workerStatus)) {
                         job.setStatus("FAILED");
-                        job.setErrorMessage((String) response.getBody().get("error"));
+                        Object rawError = body.get("error");
+                        job.setErrorMessage(rawError != null ? String.valueOf(rawError) : "Xử lý thử đồ AI thất bại");
                         tryOnJobRepository.save(job);
                     }
                 }
@@ -169,7 +185,11 @@ public class AiTryOnService {
     }
 
     private void updateJobStatus(String jobId, String status, String resultImageUrl, String errorMessage) {
-        tryOnJobRepository.findById(jobId).ifPresent(job -> {
+        if (jobId == null || jobId.isBlank()) {
+            return;
+        }
+        final String cleanJobId = Objects.requireNonNull(jobId);
+        tryOnJobRepository.findById(cleanJobId).ifPresent(job -> {
             job.setStatus(status);
             if (resultImageUrl != null) job.setResultImageUrl(resultImageUrl);
             if (errorMessage != null) job.setErrorMessage(errorMessage);

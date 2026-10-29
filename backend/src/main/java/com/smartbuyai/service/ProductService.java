@@ -3,7 +3,6 @@ package com.smartbuyai.service;
 import com.smartbuyai.dto.PagedResponse;
 import com.smartbuyai.dto.ProductDto;
 import com.smartbuyai.entity.ProductEntity;
-import com.smartbuyai.entity.ProductImageEntity;
 import com.smartbuyai.entity.ProductVariantEntity;
 import com.smartbuyai.exception.ResourceNotFoundException;
 import com.smartbuyai.repository.ProductRepository;
@@ -14,7 +13,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -73,12 +74,18 @@ public class ProductService {
     }
 
     public ProductDto getProductById(String id) {
+        if (id == null || id.isBlank()) {
+            throw new ResourceNotFoundException("Mã sản phẩm không hợp lệ");
+        }
         ProductEntity entity = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sản phẩm có mã: " + id));
         return mapToDto(entity);
     }
 
     public ProductDto getProductBySlug(String slug) {
+        if (slug == null || slug.isBlank()) {
+            throw new ResourceNotFoundException("Slug sản phẩm không hợp lệ");
+        }
         ProductEntity entity = productRepository.findBySlug(slug)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sản phẩm với slug: " + slug));
         return mapToDto(entity);
@@ -86,6 +93,9 @@ public class ProductService {
 
     @Transactional
     public ProductDto updateProductPriceAndStock(String id, Long newPrice, Integer newStock) {
+        if (id == null || id.isBlank()) {
+            throw new ResourceNotFoundException("Mã sản phẩm không hợp lệ");
+        }
         ProductEntity entity = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sản phẩm để cập nhật giá: " + id));
 
@@ -104,7 +114,7 @@ public class ProductService {
             }
         }
 
-        ProductEntity saved = productRepository.save(entity);
+        ProductEntity saved = productRepository.save(Objects.requireNonNull(entity));
         return mapToDto(saved);
     }
 
@@ -147,12 +157,15 @@ public class ProductService {
         dto.setFolderKey(entity.getFolderKey());
         dto.setModelFolder(entity.getModelFolder());
 
-        List<String> images = entity.getImages().stream()
-                .map(ProductImageEntity::getImageUrl)
-                .collect(Collectors.toList());
+        List<String> images = entity.getImages() != null ? entity.getImages().stream()
+                .filter(Objects::nonNull)
+                .map(img -> img.getImageUrl())
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList()) : Collections.emptyList();
         dto.setImages(images);
 
-        List<ProductDto.VariantDto> variants = entity.getVariants().stream()
+        List<ProductDto.VariantDto> variants = entity.getVariants() != null ? entity.getVariants().stream()
+                .filter(Objects::nonNull)
                 .map(v -> new ProductDto.VariantDto(
                         v.getId(),
                         v.getSku(),
@@ -163,7 +176,7 @@ public class ProductService {
                         v.getStock(),
                         v.getImageUrl()
                 ))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()) : Collections.emptyList();
         dto.setVariants(variants);
 
         return dto;

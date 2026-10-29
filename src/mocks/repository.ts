@@ -18,7 +18,7 @@ import {
 import { GENZ_BRANDS, GENZ_CATEGORIES, GENZ_COLLECTIONS } from './genzCategories';
 import { FINAL_GENZ_CATALOGUE } from './genzCatalogBuilder';
 
-const SCHEMA_VERSION = 'v7.3-women-carousel-sync';
+const SCHEMA_VERSION = 'v8.0-enterprise-analytics-20261029';
 const STORAGE_KEYS = {
   SCHEMA: 'sb_schema_version',
   PRODUCTS: 'sb_products',
@@ -41,34 +41,81 @@ function notifyChange(topic: string) {
   }
 }
 
-// Khởi tạo Database với danh mục và sản phẩm thật
+// In-memory fallback store for environments where localStorage is unavailable, restricted, or quota is exceeded (e.g. iOS Safari / Messenger WKWebView)
+const memoryStore = new Map<string, string>();
+
+const safeStorage = {
+  getItem: (key: string): string | null => {
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const val = window.localStorage.getItem(key);
+        if (val !== null) return val;
+      }
+    } catch {
+      // localStorage may throw SecurityError or QuotaExceededError in restricted webviews
+    }
+    return memoryStore.get(key) ?? null;
+  },
+  setItem: (key: string, value: string): void => {
+    // Luôn lưu vào memoryStore dự phòng
+    memoryStore.set(key, value);
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.setItem(key, value);
+      }
+    } catch (e) {
+      // QuotaExceededError hoặc SecurityError trên Safari iOS / Messenger:
+      // Không ném lỗi ra ngoài làm crash ứng dụng, dữ liệu vẫn được bảo tồn an toàn trong memoryStore
+      console.warn(`[SafeStorage] localStorage.setItem failed for key "${key}", retained in memory:`, (e as any)?.message || e);
+    }
+  },
+  removeItem: (key: string): void => {
+    memoryStore.delete(key);
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.removeItem(key);
+      }
+    } catch {
+      // ignore
+    }
+  }
+};
+
+// Khởi tạo Database với danh mục và sản phẩm thật (bảo vệ tuyệt đối chống crash iOS/WebKit)
 function initDatabase() {
   if (typeof window === 'undefined') return;
 
-  const currentVersion = localStorage.getItem(STORAGE_KEYS.SCHEMA);
-  if (currentVersion !== SCHEMA_VERSION) {
-    // Bảo tồn đơn hàng, giỏ hàng, người dùng nếu đã có
-    const existingOrders = localStorage.getItem(STORAGE_KEYS.ORDERS);
-    const existingUsers = localStorage.getItem(STORAGE_KEYS.USERS);
-    const existingCurrentUser = localStorage.getItem(STORAGE_KEYS.CURRENT_USER);
-    const existingCart = localStorage.getItem(STORAGE_KEYS.CART);
+  try {
+    const currentVersion = safeStorage.getItem(STORAGE_KEYS.SCHEMA);
+    if (currentVersion !== SCHEMA_VERSION) {
+      // Bảo tồn đơn hàng, giỏ hàng, người dùng nếu đã có
+      const existingOrders = safeStorage.getItem(STORAGE_KEYS.ORDERS);
+      const existingUsers = safeStorage.getItem(STORAGE_KEYS.USERS);
+      const existingCurrentUser = safeStorage.getItem(STORAGE_KEYS.CURRENT_USER);
+      const existingCart = safeStorage.getItem(STORAGE_KEYS.CART);
 
-    localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(FINAL_GENZ_CATALOGUE));
-    localStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(GENZ_CATEGORIES));
-    localStorage.setItem(STORAGE_KEYS.BRANDS, JSON.stringify(GENZ_BRANDS));
-    localStorage.setItem(STORAGE_KEYS.COLLECTIONS, JSON.stringify(GENZ_COLLECTIONS));
-    localStorage.setItem(STORAGE_KEYS.ORDERS, existingOrders || JSON.stringify(INITIAL_ORDERS));
-    localStorage.setItem(STORAGE_KEYS.USERS, existingUsers || JSON.stringify(DEMO_USERS));
-    localStorage.setItem(STORAGE_KEYS.CURRENT_USER, existingCurrentUser || JSON.stringify(DEMO_USERS[0]));
-    if (existingCart) {
-      localStorage.setItem(STORAGE_KEYS.CART, existingCart);
-    } else {
-      localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify({ items: [], subtotal: 0, shippingFee: 0, discount: 0, total: 0 }));
+      // Lưu trữ với fallback an toàn
+      safeStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(FINAL_GENZ_CATALOGUE));
+      safeStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(GENZ_CATEGORIES));
+      safeStorage.setItem(STORAGE_KEYS.BRANDS, JSON.stringify(GENZ_BRANDS));
+      safeStorage.setItem(STORAGE_KEYS.COLLECTIONS, JSON.stringify(GENZ_COLLECTIONS));
+      safeStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(INITIAL_ORDERS));
+      safeStorage.setItem(STORAGE_KEYS.USERS, existingUsers || JSON.stringify(DEMO_USERS));
+      if (existingCurrentUser) {
+        safeStorage.setItem(STORAGE_KEYS.CURRENT_USER, existingCurrentUser);
+      }
+      if (existingCart) {
+        safeStorage.setItem(STORAGE_KEYS.CART, existingCart);
+      } else {
+        safeStorage.setItem(STORAGE_KEYS.CART, JSON.stringify({ items: [], subtotal: 0, shippingFee: 0, discount: 0, total: 0 }));
+      }
+      if (!safeStorage.getItem(STORAGE_KEYS.STOCK_LOGS)) {
+        safeStorage.setItem(STORAGE_KEYS.STOCK_LOGS, JSON.stringify([]));
+      }
+      safeStorage.setItem(STORAGE_KEYS.SCHEMA, SCHEMA_VERSION);
     }
-    if (!localStorage.getItem(STORAGE_KEYS.STOCK_LOGS)) {
-      localStorage.setItem(STORAGE_KEYS.STOCK_LOGS, JSON.stringify([]));
-    }
-    localStorage.setItem(STORAGE_KEYS.SCHEMA, SCHEMA_VERSION);
+  } catch (err) {
+    console.warn('[SafeStorage] initDatabase error caught safely:', err);
   }
 }
 
@@ -78,7 +125,7 @@ initDatabase();
 // Helpers
 function getStored<T>(key: string, fallback: T): T {
   try {
-    const data = localStorage.getItem(key);
+    const data = safeStorage.getItem(key);
     return data ? JSON.parse(data) : fallback;
   } catch (e) {
     console.error(`Error reading ${key}`, e);
@@ -88,7 +135,7 @@ function getStored<T>(key: string, fallback: T): T {
 
 function setStored<T>(key: string, data: T): void {
   try {
-    localStorage.setItem(key, JSON.stringify(data));
+    safeStorage.setItem(key, JSON.stringify(data));
   } catch (e) {
     console.error(`Error saving ${key}`, e);
   }
@@ -509,9 +556,108 @@ export const MockRepo = {
     return { success: true };
   },
 
+  // --- WISHLIST ---
+  getWishlist: (): string[] => {
+    return getStored<string[]>('sb_wishlist', ['prod-1', 'prod-2', 'prod-6']);
+  },
+
+  toggleWishlist: (productId: string): boolean => {
+    const list = MockRepo.getWishlist();
+    const idx = list.indexOf(productId);
+    let isAdded = false;
+    if (idx >= 0) {
+      list.splice(idx, 1);
+    } else {
+      list.push(productId);
+      isAdded = true;
+    }
+    setStored('sb_wishlist', list);
+    notifyChange('wishlist');
+    return isAdded;
+  },
+
   // --- USERS & AUTH ---
-  getCurrentUser: (): User => {
-    return getStored<User>(STORAGE_KEYS.CURRENT_USER, DEMO_USERS[0]);
+  getCurrentUser: (): User | null => {
+    return getStored<User | null>(STORAGE_KEYS.CURRENT_USER, null);
+  },
+
+  login: (email: string, password?: string): { success: boolean; user?: User; message?: string } => {
+    const users = MockRepo.getAllUsers();
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanPassword = (password || '').trim();
+
+    // Tìm kiếm chính xác người dùng theo email (Tuyệt đối không auto-match ký tự @ hoặc demo)
+    const matched = users.find((u) => u.email.toLowerCase() === cleanEmail);
+    if (!matched) {
+      return { success: false, message: 'Email hoặc mật khẩu không chính xác' };
+    }
+
+    // Xác thực mật khẩu theo tài khoản
+    let isValidPassword = false;
+    if (matched.role === 'admin') {
+      isValidPassword = cleanPassword === 'admin123';
+    } else {
+      isValidPassword = cleanPassword === '123456' || (cleanPassword.length >= 6 && cleanPassword === (matched as any).password);
+    }
+
+    if (!isValidPassword) {
+      return { success: false, message: 'Email hoặc mật khẩu không chính xác' };
+    }
+
+    setStored(STORAGE_KEYS.CURRENT_USER, matched);
+    notifyChange('auth');
+    return { success: true, user: matched };
+  },
+
+  register: (userData: { name: string; email: string; phone?: string; password?: string }): { success: boolean; user?: User; message?: string } => {
+    const users = MockRepo.getAllUsers();
+    const cleanEmail = userData.email.trim().toLowerCase();
+    if (users.some((u) => u.email.toLowerCase() === cleanEmail)) {
+      return { success: false, message: 'Email này đã được sử dụng' };
+    }
+    const newUser: User = {
+      id: `user-${Date.now()}`,
+      name: userData.name.trim(),
+      email: cleanEmail,
+      phone: userData.phone?.trim() || '0901234567',
+      role: 'customer',
+      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80',
+      savedAddresses: [
+        {
+          fullName: userData.name.trim(),
+          phone: userData.phone?.trim() || '0901234567',
+          email: cleanEmail,
+          province: 'Thành phố Hồ Chí Minh',
+          district: 'Quận 1',
+          ward: 'Phường Bến Nghé',
+          street: '123 Đường Mẫu',
+        },
+      ],
+      preferences: {
+        gender: 'unisex',
+        preferredSizes: ['M', 'L'],
+        preferredStyles: ['Streetwear', 'Tối giản'],
+      },
+      createdAt: new Date().toISOString(),
+    };
+    users.push(newUser);
+    setStored(STORAGE_KEYS.USERS, users);
+    setStored(STORAGE_KEYS.CURRENT_USER, newUser);
+    notifyChange('auth');
+    return { success: true, user: newUser };
+  },
+
+  logout: () => {
+    safeStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem('sb_token');
+        sessionStorage.removeItem('sb_intro_seen');
+      } catch {
+        // ignore
+      }
+    }
+    notifyChange('auth');
   },
 
   switchUser: (role: 'customer' | 'admin'): User => {
@@ -521,13 +667,22 @@ export const MockRepo = {
     return target;
   },
 
-  updateUserProfile: (user: Partial<User>): User => {
+  setCurrentUser: (user: User | null) => {
+    if (user) {
+      setStored(STORAGE_KEYS.CURRENT_USER, user);
+    } else {
+      safeStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
+    }
+    notifyChange('auth');
+  },
+
+  updateUserProfile: (user: Partial<User>): User | null => {
     const current = MockRepo.getCurrentUser();
-    const updated = { ...current, ...user };
+    const updated = current ? { ...current, ...user } : (user as User);
     setStored(STORAGE_KEYS.CURRENT_USER, updated);
 
     const users = getStored<User[]>(STORAGE_KEYS.USERS, DEMO_USERS);
-    const idx = users.findIndex((u) => u.id === current.id);
+    const idx = users.findIndex((u) => u.id === (updated.id || ''));
     if (idx >= 0) {
       users[idx] = updated;
       setStored(STORAGE_KEYS.USERS, users);
@@ -549,7 +704,7 @@ export const MockRepo = {
 
   resetAll: () => {
     if (typeof window === 'undefined') return;
-    localStorage.removeItem(STORAGE_KEYS.SCHEMA);
+    safeStorage.removeItem(STORAGE_KEYS.SCHEMA);
     initDatabase();
     notifyChange('products');
     notifyChange('orders');

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { MockRepo } from '@/mocks/repository';
 import { StockMovement } from '@/types';
 import { Button } from '@/components/ui/button';
@@ -16,8 +17,17 @@ export const AdminInventoryPage: React.FC = () => {
   const currentUser = MockRepo.getCurrentUser();
   const { success, error } = useToast();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlFilter = searchParams.get('filter') || 'all';
+
   const [activeTab, setActiveTab] = useState<'variants' | 'logs'>('variants');
   const [search, setSearch] = useState('');
+  const [stockFilter, setStockFilter] = useState(urlFilter);
+
+  useEffect(() => {
+    const f = searchParams.get('filter');
+    if (f) setStockFilter(f);
+  }, [searchParams]);
 
   // Modal Điều chỉnh tồn
   const [isAdjustModalOpen, setIsAdjustModalOpen] = useState(false);
@@ -64,12 +74,21 @@ export const AdminInventoryPage: React.FC = () => {
     });
   });
 
-  const filteredVariants = allVariantsList.filter(
-    (item) =>
+  const filteredVariants = allVariantsList.filter((item) => {
+    const matchSearch =
       item.productName.toLowerCase().includes(search.toLowerCase()) ||
       item.sku.toLowerCase().includes(search.toLowerCase()) ||
-      item.colorName.toLowerCase().includes(search.toLowerCase())
-  );
+      item.colorName.toLowerCase().includes(search.toLowerCase());
+
+    let matchStock = true;
+    if (stockFilter === 'low-stock') {
+      matchStock = item.stock > 0 && item.stock < 12;
+    } else if (stockFilter === 'out-of-stock') {
+      matchStock = item.stock === 0;
+    }
+
+    return matchSearch && matchStock;
+  });
 
   const handleOpenAdjust = (v: typeof allVariantsList[0]) => {
     setSelectedVariant({
@@ -93,7 +112,7 @@ export const AdminInventoryPage: React.FC = () => {
       selectedVariant.id,
       newStock,
       reason,
-      currentUser.name
+      currentUser?.name || 'Admin Master'
     );
 
     if (res.success) {
@@ -148,7 +167,7 @@ export const AdminInventoryPage: React.FC = () => {
       {activeTab === 'variants' ? (
         /* Tab 1: Danh sách biến thể */
         <div className="space-y-4">
-          <div className="bg-brand-paper rounded-brand-xl p-4 border border-brand-border/60 shadow-subtle flex items-center justify-between">
+          <div className="bg-brand-paper rounded-brand-xl p-4 border border-brand-border/60 shadow-subtle flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="relative w-full sm:w-72">
               <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-brand-muted" />
               <input
@@ -159,9 +178,21 @@ export const AdminInventoryPage: React.FC = () => {
                 className="w-full pl-9 pr-3 py-2 text-xs rounded-brand border border-brand-border bg-brand-sand/40 focus:outline-none focus:border-brand-forest text-brand-charcoal"
               />
             </div>
-            <span className="text-xs text-brand-muted">
-              Đang xem {filteredVariants.length} biến thể
-            </span>
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <span className="text-xs text-brand-secondary">Lọc kho:</span>
+              <select
+                value={stockFilter}
+                onChange={(e) => setStockFilter(e.target.value)}
+                className="text-xs bg-brand-paper border border-brand-border rounded-brand px-3 py-2 text-brand-charcoal focus:outline-none"
+              >
+                <option value="all">Tất cả biến thể ({allVariantsList.length})</option>
+                <option value="low-stock">Sắp hết hàng (&lt; 12 cái)</option>
+                <option value="out-of-stock">Hết hàng (0 sản phẩm)</option>
+              </select>
+              <span className="text-xs text-brand-muted shrink-0 hidden md:inline">
+                ({filteredVariants.length} biến thể)
+              </span>
+            </div>
           </div>
 
           <div className="bg-brand-paper rounded-brand-xl border border-brand-border/60 shadow-subtle overflow-x-auto">

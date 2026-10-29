@@ -1,0 +1,197 @@
+ .gitignore                                         |      1 [32m+[m
+ .vscode/settings.json                              |      5 [32m+[m[31m-[m
+ backend/.gitignore                                 |      2 [32m+[m
+ backend/.mvn/wrapper/maven-wrapper.properties      |      3 [32m+[m
+ backend/mvnw                                       |    295 [32m+[m
+ backend/mvnw.cmd                                   |    189 [32m+[m
+ .../java/com/smartbuyai/config/SecurityConfig.java |     12 [32m+[m
+ .../controller/AdminDashboardController.java       |    177 [32m+[m
+ .../controller/AdminOrderController.java           |     40 [32m+[m
+ .../smartbuyai/controller/AiTryOnController.java   |      4 [32m+[m[31m-[m
+ .../com/smartbuyai/controller/AuthController.java  |      9 [32m+[m[31m-[m
+ .../security/JwtAuthenticationFilter.java          |      6 [32m+[m[31m-[m
+ .../com/smartbuyai/service/AiTryOnService.java     |     54 [32m+[m[31m-[m
+ .../java/com/smartbuyai/service/AuthService.java   |      3 [32m+[m
+ .../java/com/smartbuyai/service/CartService.java   |     46 [32m+[m[31m-[m
+ .../com/smartbuyai/service/DataSeederService.java  |    196 [32m+[m[31m-[m
+ .../java/com/smartbuyai/service/OrderService.java  |     43 [32m+[m[31m-[m
+ .../com/smartbuyai/service/ProductService.java     |     27 [32m+[m[31m-[m
+ .../com/smartbuyai/service/WishlistService.java    |     33 [32m+[m[31m-[m
+ .../com/smartbuyai/service/AiTryOnServiceTest.java |    116 [32m+[m
+ data/smartbuydb.mv.db                              |    Bin [31m0[m -> [32m1146880[m bytes
+ docs/SMARTBUY_AUTH_ADMIN_CUSTOMER_UPGRADE.md       |    123 [32m+[m
+ docs/SMARTBUY_CONTINUOUS_QA_REPORT.md              |    146 [32m+[m
+ docs/SMARTBUY_ENTERPRISE_UPGRADE_REPORT.md         |    129 [32m+[m
+ docs/SMARTBUY_REAL_USER_QA_REPORT.md               |    139 [32m+[m
+ package-lock.json                                  |     30 [32m+[m
+ package.json                                       |      3 [32m+[m
+ playwright-screenshots/luxury_login_desktop.png    |    Bin [31m0[m -> [32m2109867[m bytes
+ .../luxury_login_mobile_iphone.png                 |    Bin [31m0[m -> [32m392060[m bytes
+ public/images/san-pham/manifest.json               |  17278 [32m+[m[31m--[m
+ ...4312280467_7f75ec5044f3db0b6dbc4fed8dd8e24e.jpg |    Bin [31m0[m -> [32m300641[m bytes
+ ...4312280467_d69424d2b9cfb6acaaa7cfe798bb790d.jpg |    Bin [31m0[m -> [32m310270[m bytes
+ ...4312280467_ad96f343b6337dcfb4e06e36dbc9a68a.jpg |    Bin [31m0[m -> [32m162822[m bytes
+ ...4312280467_e7eddee47f006747b360754179bf7677.jpg |    Bin [31m0[m -> [32m189496[m bytes
+ ...4312280467_91ac915fc90bd8de2da0885005aa7bc2.jpg |    Bin [31m0[m -> [32m120530[m bytes
+ ...4312280467_737539ba61e7e1150300d353e15a8ffb.jpg |    Bin [31m0[m -> [32m207636[m bytes
+ ...4312280467_3e15b3fd6a642b349478474029c8bf4d.jpg |    Bin [31m0[m -> [32m298282[m bytes
+ ...4312280467_680a754b85dd382b136d34dcb55069de.jpg |    Bin [31m0[m -> [32m194580[m bytes
+ ...4312280467_c1abb6333d358bd1b3ec9b3398efefc7.jpg |    Bin [31m0[m -> [32m116884[m bytes
+ ...4312280467_19d79bd96cb5668e0c6f87820814065c.jpg |    Bin [31m0[m -> [32m87668[m bytes
+ ...4312280467_5210ad4202ff93736886c1e4f8c7e1f5.jpg |    Bin [31m0[m -> [32m78330[m bytes
+ ...4312280467_7a17948032599ea09e2ee36333a67409.jpg |    Bin [31m0[m -> [32m273553[m bytes
+ ...4312280467_e3762d8b5d838c5963588539c733f285.jpg |    Bin [31m0[m -> [32m244889[m bytes
+ ...4312280467_e41a1fad0a52c118bc02ae393f0e6925.jpg |    Bin [31m0[m -> [32m258658[m bytes
+ ...4312280467_1c904c63a18ea8e9a29d53f72c910cb1.jpg |    Bin [31m0[m -> [32m135816[m bytes
+ ...4312280467_5c8bc5dd3ee2d94fcb570a1050917f7f.jpg |    Bin [31m0[m -> [32m83328[m bytes
+ ...4312280467_c5f7fcbbdeaf26b85e8f58084f599169.jpg |    Bin [31m0[m -> [32m109567[m bytes
+ .../phu-kien/mu-non/mu-beanie-len/.gitkeep         |      1 [31m-[m
+ .../san-pham/phu-kien/mu-non/mu-beret-noi/.gitkeep |      1 [31m-[m
+ .../san-pham/phu-kien/mu-non/mu-bucket/.gitkeep    |      1 [31m-[m
+ .../san-pham/phu-kien/mu-non/mu-luoi-trai/.gitkeep |      1 [31m-[m
+ .../san-pham/phu-kien/mu-non/mu-snapback/.gitkeep  |      1 [31m-[m
+ .../phu-kien/phu-kien-khac/bang-do/.gitkeep        |      1 [31m-[m
+ .../phu-kien/phu-kien-khac/ca-vat/.gitkeep         |      1 [31m-[m
+ .../phu-kien/phu-kien-khac/charm-treo-tui/.gitkeep |      1 [31m-[m
+ .../phu-kien-khac/chun-buoc-toc-scrunchie/.gitkeep |      1 [31m-[m
+ .../phu-kien/phu-kien-khac/gang-tay/.gitkeep       |      1 [31m-[m
+ .../phu-kien/phu-kien-khac/kep-toc/.gitkeep        |      1 [31m-[m
+ .../phu-kien/phu-kien-khac/khan-bandana/.gitkeep   |      1 [31m-[m
+ .../phu-kien/phu-kien-khac/khan-quang/.gitkeep     |      1 [31m-[m
+ .../phu-kien/phu-kien-khac/kinh-ram/.gitkeep       |      1 [31m-[m
+ .../phu-kien-khac/kinh-thoi-trang/.gitkeep         |      1 [31m-[m
+ .../phu-kien/phu-kien-khac/moc-khoa/.gitkeep       |      1 [31m-[m
+ .../phu-kien/phu-kien-khac/tat-vo/.gitkeep         |      1 [31m-[m
+ .../phu-kien/phu-kien-khac/that-lung/.gitkeep      |      1 [31m-[m
+ .../phu-kien/phu-kien-khac/vi-tien/.gitkeep        |      1 [31m-[m
+ ...4312280467_ff2e17c9f4937baffb9170d0a6e714c0.jpg |    Bin [31m0[m -> [32m209118[m bytes
+ ...4312280467_e668cf18654f77722002b3db5b69ed6b.jpg |    Bin [31m0[m -> [32m111956[m bytes
+ ...4312280467_d2f3e7acc399e3acb9d502d33b82c3c1.jpg |    Bin [31m0[m -> [32m141729[m bytes
+ ...4312280467_c0dd10fc2a5529fcef014a9ecfba4c9a.jpg |    Bin [31m0[m -> [32m204368[m bytes
+ ...4312280467_08eba82c0b48bc5d9a5378b93b62a3b1.jpg |    Bin [31m0[m -> [32m95644[m bytes
+ ...4312280467_6a99bc8f68a818727cacf5817b8b8d8c.jpg |    Bin [31m0[m -> [32m93937[m bytes
+ ...4312280467_0d69a917111d2ec5c86ea473cc0717f5.jpg |    Bin [31m0[m -> [32m156340[m bytes
+ ...4312280467_59fa18e9ad9675f538875b62d3e7f4a0.jpg |    Bin [31m0[m -> [32m121054[m bytes
+ ...4312280467_34fb2da654bf76ebac06eaf423db517e.jpg |    Bin [31m0[m -> [32m66802[m bytes
+ ...4312280467_b36c9c4ab6ed0d00b73c884ff6bc5a6e.jpg |    Bin [31m0[m -> [32m108627[m bytes
+ ...4312280467_c0ec63a74769738ac4ed52de3ae67615.jpg |    Bin [31m0[m -> [32m169760[m bytes
+ ...4312280467_651b116da23cee47f19c77c739f34231.jpg |    Bin [31m0[m -> [32m150021[m bytes
+ ...4312280467_7001fe5817cf4633ec6ef14c428a8d62.jpg |    Bin [31m0[m -> [32m115241[m bytes
+ ...4312280467_6513143a5f26b75e54459073ca58b915.jpg |    Bin [31m0[m -> [32m152151[m bytes
+ ...4312280467_4e3acee20a094bb115111e573d14b372.jpg |    Bin [31m0[m -> [32m141352[m bytes
+ ...4312280467_58bab34e659f41cf32028abdff00d440.jpg |    Bin [31m0[m -> [32m66397[m bytes
+ ...4312280467_69430a730c4825ed3706705dedbcd87c.jpg |    Bin [31m0[m -> [32m117092[m bytes
+ ...4312280467_1860e5a23a472a17b7502c2a7a9f5a3b.jpg |    Bin [31m0[m -> [32m106346[m bytes
+ ...4312280467_a407454ad8824f9447f61fefb1eaac76.jpg |    Bin [31m0[m -> [32m181687[m bytes
+ ...4312280467_a24dfe4e2cc317c410a2f5eb59e239b3.jpg |    Bin [31m0[m -> [32m81778[m bytes
+ ...4312280467_23a84e0e589b62044e0795ae0249b1f7.jpg |    Bin [31m0[m -> [32m78792[m bytes
+ ...4312280467_ad145730f3e3b4350db61d8ce0bfcf42.jpg |    Bin [31m0[m -> [32m68062[m bytes
+ ...4312280467_a05c049835751f4d088fadb2a4f6c2fa.jpg |    Bin [31m0[m -> [32m140774[m bytes
+ ...4312280467_2a57349a9634f1dba40fed57d71c8743.jpg |    Bin [31m0[m -> [32m122682[m bytes
+ ...4312280467_5553655eef3ce6d22ead841ec3b484ff.jpg |    Bin [31m0[m -> [32m60039[m bytes
+ ...4312280467_63e42efaa9495b593d563b63e23237bf.jpg |    Bin [31m0[m -> [32m62288[m bytes
+ ...4312280467_fc7b2a7a8c12b5f57f1dfd2a014a8086.jpg |    Bin [31m0[m -> [32m120343[m bytes
+ ...4312280467_08499650403e96fffc02b45c7a94149b.jpg |    Bin [31m0[m -> [32m155067[m bytes
+ ...4312280467_b7a4700d2a7fc9dfb1de0010ca3acbe1.jpg |    Bin [31m0[m -> [32m103561[m bytes
+ ...4312280467_142c15249c9186304395b646511b6d3d.jpg |    Bin [31m0[m -> [32m200144[m bytes
+ ...4312280467_98d47d77ac3f017416f6a90e88aaa5d6.jpg |    Bin [31m0[m -> [32m177925[m bytes
+ ...4312280467_41a759afa51d74bc51405b6d415c9a92.jpg |    Bin [31m0[m -> [32m251052[m bytes
+ ...4312280467_f43e384703f8ec291e97098600201eac.jpg |    Bin [31m0[m -> [32m315906[m bytes
+ ...4312280467_0ed822a06789b5b9093d8bdfd5e683ba.jpg |    Bin [31m0[m -> [32m197340[m bytes
+ ...4312280467_79b4bc85c604732a905c51d114d92cc9.jpg |    Bin [31m0[m -> [32m113428[m bytes
+ ...4312280467_ebf9c155620fcdee6a51d7a3f7bc6a73.jpg |    Bin [31m0[m -> [32m113194[m bytes
+ ...4312280467_7b8412367c279c9a6379b4cbbffcceb4.jpg |    Bin [31m0[m -> [32m141208[m bytes
+ ...4312280467_e798075e7023a5445be4725785580aa6.jpg |    Bin [31m0[m -> [32m170254[m bytes
+ ...4312280467_8fe20ea26db77c46db695810a5b2171c.jpg |    Bin [31m0[m -> [32m120859[m bytes
+ ...4312280467_f2b884bf7f8be062e4a16dfa87ab31ac.jpg |    Bin [31m0[m -> [32m117433[m bytes
+ ...4312280467_9d36ca185dec0505bc714e42209e48f9.jpg |    Bin [31m0[m -> [32m108656[m bytes
+ ...4312280467_bd64eb97dfa4567501a375af80bffeaf.jpg |    Bin [31m0[m -> [32m148448[m bytes
+ ...4312280467_9b7593e268ddbf4f799a6b934b966795.jpg |    Bin [31m0[m -> [32m109293[m bytes
+ ...4312280467_9abf875445453e01c4b8380adb27a483.jpg |    Bin [31m0[m -> [32m90212[m bytes
+ .../trang-suc/khuyen-tai/chuoi-stud/.gitkeep       |      1 [31m-[m
+ .../trang-suc/khuyen-tai/dang-dai-drop/.gitkeep    |      1 [31m-[m
+ .../trang-suc/khuyen-tai/ear-cuff/.gitkeep         |      1 [31m-[m
+ .../trang-suc/khuyen-tai/kep-clip-on/.gitkeep      |      1 [31m-[m
+ .../trang-suc/khuyen-tai/tron-hoop/.gitkeep        |      1 [31m-[m
+ .../trang-suc/nhan/dieu-chinh-size/.gitkeep        |      1 [31m-[m
+ .../san-pham/phu-kien/trang-suc/nhan/doi/.gitkeep  |      1 [31m-[m
+ .../phu-kien/trang-suc/nhan/minimal/.gitkeep       |      1 [31m-[m
+ .../phu-kien/trang-suc/nhan/signet/.gitkeep        |      1 [31m-[m
+ .../phu-kien/trang-suc/nhan/stackable/.gitkeep     |      1 [31m-[m
+ .../phu-kien/trang-suc/nhan/statement/.gitkeep     |      1 [31m-[m
+ .../trang-suc-khac/cai-ao-brooch/.gitkeep          |      1 [31m-[m
+ .../trang-suc/trang-suc-khac/charm/.gitkeep        |      1 [31m-[m
+ .../trang-suc/trang-suc-khac/lac-chan/.gitkeep     |      1 [31m-[m
+ .../trang-suc-khac/xich-co-the-body-chain/.gitkeep |      1 [31m-[m
+ .../trang-suc/vong-co-day-chuyen/choker/.gitkeep   |      1 [31m-[m
+ .../vong-co-day-chuyen/hat-beaded/.gitkeep         |      1 [31m-[m
+ .../vong-co-day-chuyen/mat-day-chuyen/.gitkeep     |      1 [31m-[m
+ .../vong-co-day-chuyen/ngoc-trai/.gitkeep          |      1 [31m-[m
+ .../vong-co-day-chuyen/nhieu-tang/.gitkeep         |      1 [31m-[m
+ .../vong-co-day-chuyen/noi-bat-statement/.gitkeep  |      1 [31m-[m
+ .../trang-suc/vong-co-day-chuyen/xich/.gitkeep     |      1 [31m-[m
+ .../trang-suc/vong-tay-lac-tay/charm/.gitkeep      |      1 [31m-[m
+ .../trang-suc/vong-tay-lac-tay/cuff/.gitkeep       |      1 [31m-[m
+ .../trang-suc/vong-tay-lac-tay/da/.gitkeep         |      1 [31m-[m
+ .../trang-suc/vong-tay-lac-tay/hat-beaded/.gitkeep |      1 [31m-[m
+ .../trang-suc/vong-tay-lac-tay/tinh-ban/.gitkeep   |      1 [31m-[m
+ .../vong-tay-lac-tay/vong-cung-bangle/.gitkeep     |      1 [31m-[m
+ .../trang-suc/vong-tay-lac-tay/xich/.gitkeep       |      1 [31m-[m
+ ...7308163697_847ad785a88af1acee743592ad425b90.jpg |    Bin [31m0[m -> [32m60554[m bytes
+ ...7308163697_c01b3b1a3313085083c27273593b21dc.jpg |    Bin [31m0[m -> [32m36889[m bytes
+ ...7308163697_375a4d7e380177a906de3b2eeebe8098.jpg |    Bin [31m0[m -> [32m41390[m bytes
+ ...7308163697_db1e80cfd65d7ee590f041745375fe16.jpg |    Bin [31m0[m -> [32m114646[m bytes
+ ...7308163697_3e9f805d11edaaf8afc98fd22b95579c.jpg |    Bin [31m0[m -> [32m131915[m bytes
+ ...7308163697_60dea6930d04ce128f1992927a432e12.jpg |    Bin [31m0[m -> [32m248465[m bytes
+ ...7308163697_be5389ca334444d9d2eb8b5f1ae130a2.jpg |    Bin [31m0[m -> [32m228862[m bytes
+ ...7308163697_6b5d038710d0b0663cc7aad5968c5818.jpg |    Bin [31m0[m -> [32m145388[m bytes
+ ...7308163697_02a7f94fd543302040a32f747420aa09.jpg |    Bin [31m0[m -> [32m125782[m bytes
+ ...7308163697_047496b38fd24afe9b83b7802c95d3d7.jpg |    Bin [31m0[m -> [32m126271[m bytes
+ ...7308163697_cfc9e92bf7105c1368583b702eb55cc3.jpg |    Bin [31m0[m -> [32m63879[m bytes
+ ...7308163697_4b3afb6efbf2a8656d91bb4665734297.jpg |    Bin [31m0[m -> [32m113976[m bytes
+ ...7308163697_d25bd13287cb29e69d8f6cd84dbdb4be.jpg |    Bin [31m0[m -> [32m75149[m bytes
+ ...7308163697_d888c3fa17ae6b4d4519ca6db0566b26.jpg |    Bin [31m0[m -> [32m93736[m bytes
+ ...7308163697_4d4bf072cafb79efa3810b051ee56e3b.jpg |    Bin [31m0[m -> [32m237440[m bytes
+ ...7308163697_6bd8aea004dd0d60205237850b363fbe.jpg |    Bin [31m0[m -> [32m191496[m bytes
+ ...7308163697_a7b851fd1c0b24c7d6a1ff35d38f18b5.jpg |    Bin [31m0[m -> [32m287710[m bytes
+ ...7308163697_e511aa2ceb947a0f3b6c947ca386ed53.jpg |    Bin [31m0[m -> [32m188601[m bytes
+ ...7308163697_44cdc3d2546dba3b8d3d3e3727878e19.jpg |    Bin [31m0[m -> [32m127970[m bytes
+ ...7308163697_044c3a5ba923d922616fceca2a6d3b6e.jpg |    Bin [31m0[m -> [32m73158[m bytes
+ ...7308163697_5cd5695c30a5f7e8d8f810d76c22a637.jpg |    Bin [31m0[m -> [32m66636[m bytes
+ ...7308163697_45276a12383d294a4858c693b5e078cc.jpg |    Bin [31m0[m -> [32m75256[m bytes
+ ...7308163697_ecad39ecf5b53038573d21befd4c83c3.jpg |    Bin [31m0[m -> [32m154120[m bytes
+ ...7308163697_62f083e2484c79c8ac31fd5ceb499f00.jpg |    Bin [31m0[m -> [32m151652[m bytes
+ ...7308163697_0b7d60a899fe1ce48d42ac7ce5d27e37.jpg |    Bin [31m0[m -> [32m202995[m bytes
+ ...7308163697_7bef6b0caa787b330363f2725fa80b92.jpg |    Bin [31m0[m -> [32m187027[m bytes
+ ...7308163697_7657d65c5078d455314713803c5df324.jpg |    Bin [31m0[m -> [32m206873[m bytes
+ ...7308163697_57a8850bb568d9848794fa35946f837f.jpg |    Bin [31m0[m -> [32m281092[m bytes
+ ...7308163697_257f0da6e5f9d0b638d075a4efb3cd23.jpg |    Bin [31m0[m -> [32m211671[m bytes
+ ...7308163697_33d17b1e8e13c42932991e3b87ebabbe.jpg |    Bin [31m0[m -> [32m191246[m bytes
+ ...7308163697_602e74d1152636ebbd4883333997217f.jpg |    Bin [31m0[m -> [32m189497[m bytes
+ .../san-pham/phu-kien/tui-xach/balo/.gitkeep       |      1 [31m-[m
+ .../san-pham/phu-kien/tui-xach/clutch/.gitkeep     |      1 [31m-[m
+ .../phu-kien/tui-xach/tui-bao-tu-waist/.gitkeep    |      1 [31m-[m
+ .../phu-kien/tui-xach/tui-deo-cheo/.gitkeep        |      1 [31m-[m
+ .../tui-xach/tui-kep-nach-shoulder/.gitkeep        |      1 [31m-[m
+ .../san-pham/phu-kien/tui-xach/tui-mini/.gitkeep   |      1 [31m-[m
+ .../san-pham/phu-kien/tui-xach/tui-tote/.gitkeep   |      1 [31m-[m
+ .../phu-kien/tui-xach/tui-xach-tay/.gitkeep        |      1 [31m-[m
+ .../quan-ao-nu/vay/{New folder => }/vay_01.webp    |    Bin
+ .../quan-ao-nu/vay/{New folder => }/vay_02.webp    |    Bin
+ .../quan-ao-nu/vay/{New folder => }/vay_03.webp    |    Bin
+ .../quan-ao-nu/vay/{New folder => }/vay_04.webp    |    Bin
+ .../quan-ao-nu/vay/{New folder => }/vay_05.webp    |    Bin
+ .../quan-ao-nu/vay/{New folder => }/vay_06.webp    |    Bin
+ .../quan-ao-nu/vay/{New folder => }/vay_07.webp    |    Bin
+ .../quan-ao-nu/vay/{New folder => }/vay_08.webp    |    Bin
+ .../quan-ao-nu/vay/{New folder => }/vay_09.webp    |    Bin
+ .../quan-ao-nu/vay/{New folder => }/vay_10.webp    |    Bin
+ public/images/san-pham/quan-ao-nu/vay/vay_32.webp  |    Bin [31m0[m -> [32m58902[m bytes
+ public/images/san-pham/quan-ao-nu/vay/vay_33.webp  |    Bin [31m0[m -> [32m63372[m bytes
+ public/images/san-pham/quan-ao-nu/vay/vay_34.webp  |    Bin [31m0[m -> [32m135116[m bytes
+ public/images/san-pham/quan-ao-nu/vay/vay_35.webp  |    Bin [31m0[m -> [32m145846[m bytes
+ public/images/san-pham/quan-ao-nu/vay/vay_36.webp  |    Bin [31m0[m -> [32m94738[m bytes
+ public/images/san-pham/quan-ao-nu/vay/vay_37.webp  |    Bin [31m0[m -> [32m111862[m bytes
+ public/images/san-pham/quan-ao-nu/vay/vay_38.webp  |    Bin [31m0[m -> [32m117392[m bytes
+ public/images/san-pham/quan-ao-nu/vay/vay_39.webp  |    Bin [31m0[m -> [32m125426[m bytes
+ public/images/san-

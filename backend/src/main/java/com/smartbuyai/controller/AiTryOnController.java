@@ -1,5 +1,6 @@
 package com.smartbuyai.controller;
 
+import org.springframework.security.core.Authentication;
 import com.smartbuyai.dto.TryOnRequest;
 import com.smartbuyai.dto.TryOnResponse;
 import com.smartbuyai.dto.TryOnStatusResponse;
@@ -30,8 +31,7 @@ public class AiTryOnController {
     @Operation(summary = "Tiếp nhận tác vụ thử đồ AI và đưa vào hàng đợi xử lý")
     public ResponseEntity<TryOnResponse> submitTryOnJob(
             @RequestBody TryOnRequest req,
-            Authentication auth
-    ) {
+            Authentication auth) {
         String userId = auth != null ? auth.getName() : "guest";
         TryOnResponse response = tryOnService.submitTryOnJob(req, userId);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);

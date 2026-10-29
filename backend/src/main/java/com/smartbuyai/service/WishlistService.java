@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -27,21 +29,44 @@ public class WishlistService {
 
     @Transactional(readOnly = true)
     public List<ProductDto> getWishlist(String userId) {
+        if (userId == null || userId.isBlank()) {
+            return Collections.emptyList();
+        }
         List<WishlistItemEntity> items = wishlistRepository.findByUserId(userId);
+        if (items == null) {
+            return Collections.emptyList();
+        }
         List<ProductDto> result = new ArrayList<>();
         for (WishlistItemEntity item : items) {
-            productRepository.findById(item.getProductId()).ifPresent(p -> result.add(productService.mapToDto(p)));
+            if (item != null && item.getProductId() != null && !item.getProductId().isBlank()) {
+                String validProductId = Objects.requireNonNull(item.getProductId());
+                productRepository.findById(validProductId)
+                        .ifPresent(p -> {
+                            ProductDto dto = productService.mapToDto(p);
+                            if (dto != null) {
+                                result.add(dto);
+                            }
+                        });
+            }
         }
         return result;
     }
 
     public boolean toggleWishlist(String userId, String productId) {
-        Optional<WishlistItemEntity> existing = wishlistRepository.findByUserIdAndProductId(userId, productId);
+        if (userId == null || userId.isBlank() || productId == null || productId.isBlank()) {
+            return false;
+        }
+        final String cleanUserId = Objects.requireNonNull(userId);
+        final String cleanProductId = Objects.requireNonNull(productId);
+        Optional<WishlistItemEntity> existing = wishlistRepository.findByUserIdAndProductId(cleanUserId, cleanProductId);
         if (existing.isPresent()) {
-            wishlistRepository.delete(existing.get());
+            WishlistItemEntity itemToDelete = existing.get();
+            if (itemToDelete != null) {
+                wishlistRepository.delete(itemToDelete);
+            }
             return false; // Removed
         } else {
-            wishlistRepository.save(new WishlistItemEntity(userId, productId));
+            wishlistRepository.save(new WishlistItemEntity(cleanUserId, cleanProductId));
             return true; // Added
         }
     }

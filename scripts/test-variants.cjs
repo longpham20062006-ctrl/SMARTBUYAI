@@ -28,11 +28,13 @@ const importedTsPath = path.resolve(__dirname, '../src/mocks/importedProducts.ts
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
 
-// Trích xuất mảng IMPORTED_PRODUCTS từ file ts
+// Trích xuất mảng IMPORTED_PRODUCTS từ file ts hoặc json
 const tsContent = fs.readFileSync(importedTsPath, 'utf8');
 const jsonMatch = tsContent.match(/export const IMPORTED_PRODUCTS: Product\[\] = (\[[\s\S]*?\]);/);
-assert(jsonMatch, "Phải tìm thấy IMPORTED_PRODUCTS trong importedProducts.ts");
-const products = JSON.parse(jsonMatch[1]);
+const products = jsonMatch
+  ? JSON.parse(jsonMatch[1])
+  : JSON.parse(fs.readFileSync(path.resolve(__dirname, '../src/mocks/importedProducts.json'), 'utf8'));
+assert(Array.isArray(products) && products.length > 0, "Phải tìm thấy danh sách IMPORTED_PRODUCTS hợp lệ");
 
 // TEST 1: Cùng một mẫu áo, ba ảnh với ba màu khác nhau
 runTest(1, "Cùng một mẫu áo, ba ảnh ba màu khác nhau -> 1 Product Card, 3 chấm màu", () => {

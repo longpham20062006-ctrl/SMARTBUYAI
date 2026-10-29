@@ -14,7 +14,9 @@ export const OrdersPage: React.FC = () => {
   const allOrders = MockRepo.getOrders();
 
   // Chỉ lấy đơn hàng thuộc về currentUser hiện tại
-  const myOrders = allOrders.filter((o) => o.userId === currentUser.id);
+  const myOrders = allOrders.filter(
+    (o) => currentUser && (o.userId === currentUser.id || o.customerEmail.toLowerCase() === currentUser.email.toLowerCase())
+  );
 
   const [statusFilter, setStatusFilter] = useState<string>('ALL');
 
@@ -70,11 +72,10 @@ export const OrdersPage: React.FC = () => {
             key={tab.id}
             type="button"
             onClick={() => setStatusFilter(tab.id)}
-            className={`px-4 py-2 rounded-brand font-medium whitespace-nowrap transition-colors cursor-pointer ${
-              statusFilter === tab.id
+            className={`px-4 py-2 rounded-brand font-medium whitespace-nowrap transition-colors cursor-pointer ${statusFilter === tab.id
                 ? 'bg-brand-forest text-brand-ivory font-semibold'
                 : 'text-brand-secondary hover:text-brand-charcoal hover:bg-brand-sand/60'
-            }`}
+              }`}
           >
             {tab.label}
           </button>

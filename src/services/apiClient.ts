@@ -220,7 +220,8 @@ export const apiClient = {
    */
   adminUpdatePrice: async (productId: string, price: number, stock?: number, token?: string) => {
     const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-    if (token) headers['Authorization'] = `Bearer ${token}`;
+    const effectiveToken = token || (typeof window !== 'undefined' ? localStorage.getItem('sb_token') : null);
+    if (effectiveToken) headers['Authorization'] = `Bearer ${effectiveToken}`;
 
     const res = await fetch(`${API_BASE}/admin/products/${productId}/pricing`, {
       method: 'PUT',
@@ -228,5 +229,73 @@ export const apiClient = {
       body: JSON.stringify({ price, stock }),
     });
     return res.ok ? await res.json() : null;
+  },
+
+  /**
+   * Xác thực và đăng nhập tài khoản trực tiếp từ Java Spring Boot Backend
+   */
+  login: async (credentials: { email: string; password?: string }): Promise<{ success: boolean; data?: any; message?: string }> => {
+    try {
+      const res = await fetch(`${API_BASE}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(credentials),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data?.token) {
+        if (typeof window !== 'undefined') {
+          try {
+            localStorage.setItem('sb_token', data.token);
+          } catch {
+            // ignore
+          }
+        }
+        return { success: true, data };
+      }
+      return { success: false, message: data?.message || 'Email hoặc mật khẩu không chính xác' };
+    } catch {
+      return { success: false, message: 'Không thể kết nối đến máy chủ xác thực' };
+    }
+  },
+
+  /**
+   * Lấy thông tin tài khoản hiện tại từ Backend (xác minh quyền ROLE_ADMIN / ROLE_CUSTOMER)
+   */
+  getCurrentUser: async (token?: string): Promise<any | null> => {
+    try {
+      const effectiveToken = token || (typeof window !== 'undefined' ? localStorage.getItem('sb_token') : null);
+      if (!effectiveToken) return null;
+
+      const res = await fetch(`${API_BASE}/auth/me`, {
+        headers: { 'Authorization': `Bearer ${effectiveToken}` },
+      });
+      if (res.ok) {
+        return await res.json();
+      }
+      return null;
+    } catch {
+      return null;
+    }
+  },
+
+  /**
+   * Lấy số liệu KPI Admin Dashboard thời gian thực từ Spring Boot
+   */
+  getAdminDashboardKpi: async (timeFilter: string = 'thisMonth', token?: string) => {
+    try {
+      const effectiveToken = token || (typeof window !== 'undefined' ? localStorage.getItem('sb_token') : null);
+      const headers: Record<string, string> = {};
+      if (effectiveToken) headers['Authorization'] = `Bearer ${effectiveToken}`;
+
+      const res = await fetch(`${API_BASE}/admin/dashboard/kpi?timeFilter=${encodeURIComponent(timeFilter)}`, {
+        headers,
+      });
+      if (res.ok) {
+        return await res.json();
+      }
+      return null;
+    } catch {
+      return null;
+    }
   },
 };
