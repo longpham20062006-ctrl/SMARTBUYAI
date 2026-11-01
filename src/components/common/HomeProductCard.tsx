@@ -5,6 +5,7 @@ import { Lock, X, ArrowRight, Flame, Sparkles } from 'lucide-react';
 import { getValidProductImages, isProductEligibleForPublicDisplay } from '@/lib/imageValidator';
 import { MockRepo } from '@/mocks/repository';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
+import { useToast } from '@/components/ui/toast';
 
 interface HomeProductCardProps {
   product: Product;
@@ -29,6 +30,7 @@ export const HomeProductCard: React.FC<HomeProductCardProps> = ({
   const currentUser = MockRepo.getCurrentUser();
   const isGuest = !currentUser;
 
+  const { toast } = useToast();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -45,8 +47,8 @@ export const HomeProductCard: React.FC<HomeProductCardProps> = ({
     e.stopPropagation();
 
     if (isGuest) {
-      // Guest: Mở modal mời đăng nhập
-      setShowLoginModal(true);
+      toast('Vui lòng đăng nhập để tiếp tục mua sắm.', 'Chuyển sang trang đăng nhập...', 'info');
+      navigate(`/login?redirect=${encodeURIComponent('/products/' + product.slug)}`);
     } else {
       // Customer hoặc Admin: Điều hướng sang trang Product Detail trong Shopping Area
       navigate(`/products/${product.slug}`);

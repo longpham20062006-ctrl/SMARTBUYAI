@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { SizeSelector } from '@/components/common/SizeSelector';
 import { ProductCard } from '@/components/common/ProductCard';
+import { BackButton } from '@/components/common/BackButton';
 import { Modal } from '@/components/ui/modal';
 import { useToast } from '@/components/ui/toast';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
@@ -139,15 +140,18 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <div className="bg-[#FAFAF8] min-h-screen">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-12">
-        {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#71717A]">
-          <Link to="/" className="hover:text-[#18181B]">Trang chủ</Link>
-          <span>/</span>
-          <Link to={`/products?category=${product.categorySlug}`} className="hover:text-[#18181B]">
-            {product.categorySlug.replace(/-/g, ' ')}
-          </Link>
-          <span>/</span>
-          <span className="text-[#18181B] font-bold truncate max-w-xs">{product.name}</span>
+        {/* Top bar with BackButton & Breadcrumbs */}
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <BackButton fallbackPath="/shop" label="Quay lại" />
+          <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#71717A] overflow-x-auto py-1">
+            <Link to="/" className="hover:text-[#18181B] whitespace-nowrap">Trang chủ</Link>
+            <span>/</span>
+            <Link to={`/products?category=${product.categorySlug}`} className="hover:text-[#18181B] whitespace-nowrap">
+              {product.categorySlug.replace(/-/g, ' ')}
+            </Link>
+            <span>/</span>
+            <span className="text-[#18181B] font-bold truncate max-w-xs">{product.name}</span>
+          </div>
         </div>
 
         {/* Main Product Layout (Gallery 58% / Info 42%) */}
@@ -427,7 +431,7 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                 className="w-full h-11 bg-gradient-to-r from-[#F3E8FF] to-[#FAF5FF] hover:from-[#8B5CF6] hover:to-[#7C3AED] text-[#7C3AED] hover:text-white border border-[#DDD6FE] hover:border-transparent font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-subtle group"
               >
                 <Sparkles className="w-4 h-4 text-[#8B5CF6] group-hover:text-white transition-colors animate-pulse" />
-                <span>✨ Thử đồ bằng AI trên ảnh của bạn</span>
+                <span>Thử đồ online · Chụp ảnh hoặc tải ảnh</span>
               </button>
 
               <div className="grid grid-cols-2 gap-3">

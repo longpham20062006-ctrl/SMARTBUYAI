@@ -13,6 +13,7 @@ import { getActiveCategories, getActiveGroupedCategories, CATEGORY_DEFINITIONS }
 import { isProductEligibleForPublicDisplay } from '@/lib/imageValidator';
 import { getDiscoveryOrderedProducts } from '@/utils/productDiscoveryOrder';
 import { formatPrice } from '@/lib/utils';
+import { BackButton } from '@/components/common/BackButton';
 import {
   SlidersHorizontal,
   Heart,
@@ -105,7 +106,7 @@ export const CatalogPage: React.FC = () => {
   const [canScrollRight, setCanScrollRight] = useState(true);
 
   // Auto Scroll thông minh: cuộn về đầu danh sách sản phẩm khi người dùng chọn danh mục/bộ lọc
-  const performAutoScrollToTop = useCallback((force = false) => {
+  const performAutoScrollToTop = useCallback(() => {
     if (typeof window === 'undefined') return;
     requestAnimationFrame(() => {
       if (catalogTopAnchorRef.current) {
@@ -117,8 +118,8 @@ export const CatalogPage: React.FC = () => {
         const anchorTop = catalogTopAnchorRef.current.getBoundingClientRect().top + window.scrollY;
         const targetY = Math.max(0, anchorTop - totalStickyOffset);
 
-        // Cuộn về đầu vùng sản phẩm nếu được yêu cầu bắt buộc (chuyển danh mục/giới tính) hoặc nếu đang cuộn sâu bên dưới
-        if (force || window.scrollY > targetY + 20) {
+        // Chỉ cuộn lên nếu vị trí hiện tại đang ở bên dưới mục tiêu
+        if (window.scrollY > targetY + 20) {
           window.scrollTo({
             top: targetY,
             behavior: 'instant',
@@ -172,13 +173,13 @@ export const CatalogPage: React.FC = () => {
     if (savedScrollPos) {
       const scrollY = Number(savedScrollPos);
       if (!isNaN(scrollY) && scrollY > 0) {
-        requestAnimationFrame(() => {
-          window.scrollTo({
-            top: scrollY,
-            behavior: 'instant',
-          });
+        window.scrollTo({
+          top: scrollY,
+          behavior: 'instant',
         });
       }
+      sessionStorage.removeItem('catalog_scroll_pos');
+      sessionStorage.removeItem('catalog_visible_count');
     }
   }, [navigationType]);
 
@@ -194,36 +195,15 @@ export const CatalogPage: React.FC = () => {
     }
   }, [searchParams]);
 
-  const prevFilterRef = useRef({
-    cat: categoryParam,
-    season: seasonParam,
-    gender: genderParam,
-  });
-
-  // Reset scroll position and auto load count when core filter params change (Nam/Nữ/Danh mục)
+  // Reset scroll position and auto load count when core filter params change
   useEffect(() => {
-    // Không can thiệp nếu đang khôi phục lịch sử duyệt bằng nút Back (POP)
-    if (navigationType === 'POP') {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
       return;
     }
-
-    const changed =
-      prevFilterRef.current.cat !== categoryParam ||
-      prevFilterRef.current.gender !== genderParam ||
-      prevFilterRef.current.season !== seasonParam;
-
-    prevFilterRef.current = {
-      cat: categoryParam,
-      season: seasonParam,
-      gender: genderParam,
-    };
-
-    // Chỉ cuộn khi người dùng thực sự thay đổi danh mục hoặc giới tính, không cuộn khi vừa vào trang/refresh
-    if (changed) {
-      setAutoLoadCount(0);
-      performAutoScrollToTop(true);
-    }
-  }, [categoryParam, seasonParam, genderParam, navigationType, performAutoScrollToTop]);
+    setAutoLoadCount(0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [categoryParam, seasonParam, genderParam]);
 
   // Param update helper
   const updateParam = (key: string, value: string | null) => {
@@ -1100,64 +1080,71 @@ export const CatalogPage: React.FC = () => {
   return (
     <div className="bg-[#FAFAF8] min-h-screen">
       {/* 7.1: EDITORIAL CENTERED PAGE HEADER */}
-      <div className="border-b border-[#E4E4E7] bg-white py-8 sm:py-10 text-center">
+      <div className="border-b border-[#E4E4E7] bg-white py-6 sm:py-9 text-center relative">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb nhỏ tương tác */}
-          <nav aria-label="Breadcrumb" className="flex items-center justify-center gap-2 text-[11px] uppercase tracking-wider text-[#71717A] mb-3">
-            <Link to="/" className="hover:text-[#8B5CF6] transition-colors">
-              Trang chủ
-            </Link>
-            <span>/</span>
-            {genderParam === 'nam' ? (
-              <button
-                type="button"
-                onClick={() => updateParam('category', 'all')}
-                className={`hover:text-[#8B5CF6] transition-colors cursor-pointer ${
-                  categoryParam === 'all' ? 'font-bold text-[#8B5CF6]' : ''
-                }`}
-              >
-                Nam
-              </button>
-            ) : (
-              <span className="text-[#71717A]">Catalog</span>
-            )}
+          {/* Top Row: Nút Quay Lại & Breadcrumb */}
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <BackButton fallbackPath="/" label="Quay lại" />
 
-            {genderParam === 'nam' && currentActiveGroup !== 'all' && (
-              <>
-                <span>/</span>
+            {/* Breadcrumb nhỏ tương tác */}
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#71717A] overflow-x-auto py-1">
+              <Link to="/" className="hover:text-[#8B5CF6] transition-colors whitespace-nowrap">
+                Trang chủ
+              </Link>
+              <span>/</span>
+              {genderParam === 'nam' ? (
                 <button
                   type="button"
-                  onClick={() => updateParam('category', currentActiveGroup)}
-                  className={`hover:text-[#8B5CF6] transition-colors cursor-pointer ${
-                    categoryParam === currentActiveGroup ? 'font-bold text-[#8B5CF6]' : ''
+                  onClick={() => updateParam('category', 'all')}
+                  className={`hover:text-[#8B5CF6] transition-colors cursor-pointer whitespace-nowrap ${
+                    categoryParam === 'all' ? 'font-bold text-[#8B5CF6]' : ''
                   }`}
                 >
-                  {currentActiveGroup === 'ao'
-                    ? 'Áo'
-                    : currentActiveGroup === 'ao-khoac'
-                    ? 'Áo khoác'
-                    : currentActiveGroup === 'quan'
-                    ? 'Quần'
-                    : currentActiveGroup}
+                  Nam
                 </button>
-              </>
-            )}
+              ) : (
+                <span className="text-[#71717A] whitespace-nowrap">Catalog</span>
+              )}
 
-            {categoryParam !== 'all' &&
-              categoryParam !== 'ao' &&
-              categoryParam !== 'ao-khoac' &&
-              categoryParam !== 'quan' && (
+              {genderParam === 'nam' && currentActiveGroup !== 'all' && (
                 <>
                   <span>/</span>
-                  <span className="text-[#8B5CF6] font-bold">
-                    {CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam}
-                  </span>
+                  <button
+                    type="button"
+                    onClick={() => updateParam('category', currentActiveGroup)}
+                    className={`hover:text-[#8B5CF6] transition-colors cursor-pointer whitespace-nowrap ${
+                      categoryParam === currentActiveGroup ? 'font-bold text-[#8B5CF6]' : ''
+                    }`}
+                  >
+                    {currentActiveGroup === 'ao'
+                      ? 'Áo'
+                      : currentActiveGroup === 'ao-khoac'
+                      ? 'Áo khoác'
+                      : currentActiveGroup === 'quan'
+                      ? 'Quần'
+                      : currentActiveGroup}
+                  </button>
                 </>
               )}
-          </nav>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#F3E8FF] text-[#7C3AED] text-[10px] font-bold uppercase mb-2 border border-[#DDD6FE]">
-            <Sparkles className="w-3 h-3 text-[#8B5CF6]" />
+              {categoryParam !== 'all' &&
+                categoryParam !== 'ao' &&
+                categoryParam !== 'ao-khoac' &&
+                categoryParam !== 'quan' && (
+                  <>
+                    <span>/</span>
+                    <span className="text-[#8B5CF6] font-bold whitespace-nowrap">
+                      {CATEGORY_DEFINITIONS[categoryParam]?.name || categoryParam}
+                    </span>
+                  </>
+                )}
+            </nav>
+
+            <div className="w-16 hidden lg:block" />
+          </div>
+
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#F3E8FF] text-[#7C3AED] text-[10px] sm:text-xs font-bold uppercase mb-2 border border-[#DDD6FE]">
+            <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
             <span>
               {genderParam === 'nu'
                 ? "GEN Z WOMEN'S ESSENTIALS"
@@ -1167,13 +1154,13 @@ export const CatalogPage: React.FC = () => {
             </span>
           </div>
 
-          {/* Tiêu đề danh mục cực lớn căn giữa */}
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#18181B] uppercase font-sans max-w-4xl mx-auto transition-all duration-300">
+          {/* Tiêu đề danh mục — Căn chỉnh khoảng cách chuẩn, không bao giờ đè chữ, tự động xuống dòng mượt mà */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-[#18181B] uppercase font-sans max-w-4xl mx-auto leading-snug sm:leading-tight break-words px-2 my-2 sm:my-3 transition-all duration-300">
             {categoryHeaderData.title}
           </h1>
 
           {/* Mô tả ngắn căn giữa */}
-          <p className="text-xs sm:text-sm text-[#71717A] mt-2 max-w-2xl mx-auto text-center leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#71717A] mt-2 mb-4 max-w-2xl mx-auto text-center leading-relaxed">
             {categoryHeaderData.description}
           </p>
 

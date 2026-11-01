@@ -127,7 +127,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     if (isGuest) {
       e.preventDefault();
       e.stopPropagation();
-      setShowLoginModal(true);
+      toast('Vui lòng đăng nhập để tiếp tục mua sắm.', 'Chuyển sang trang đăng nhập...', 'info');
+      navigate(`/login?redirect=${encodeURIComponent('/products/' + product.slug)}`);
     }
   };
 

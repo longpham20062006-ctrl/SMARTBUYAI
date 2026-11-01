@@ -23,6 +23,7 @@ const RegisterPage = lazy(() => import('@/features/auth/pages/RegisterPage').the
 const AccountPage = lazy(() => import('@/features/account/pages/AccountPage').then((m) => ({ default: m.AccountPage })));
 const AboutPage = lazy(() => import('@/features/info/pages/AboutPage').then((m) => ({ default: m.AboutPage })));
 const SizeGuidePage = lazy(() => import('@/features/info/pages/SizeGuidePage').then((m) => ({ default: m.SizeGuidePage })));
+const FavoritesPage = lazy(() => import('@/features/catalog/pages/FavoritesPage').then((m) => ({ default: m.FavoritesPage })));
 const VirtualTryOnPage = lazy(() => import('@/features/virtual-try-on/pages/VirtualTryOnPage').then((m) => ({ default: m.VirtualTryOnPage })));
 const ForbiddenPage = lazy(() => import('@/features/info/pages/ForbiddenPage').then((m) => ({ default: m.ForbiddenPage })));
 const NotFoundPage = lazy(() => import('@/features/info/pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
@@ -76,15 +77,16 @@ export const router = createBrowserRouter([
     children: [
       // Trang chủ công khai: BẤT KỲ AI CŨNG CÓ THỂ XEM
       { index: true, element: load(HomePage) },
-      // Customer Shop & Mua sắm: Bắt buộc đăng nhập Customer hoặc Admin
-      { path: 'products', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(CatalogPage)}</AuthGuard> },
-      { path: 'shop', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(CatalogPage)}</AuthGuard> },
+      // Customer Shop & Danh mục: Cho phép khách vãng lai và thành viên xem danh sách sản phẩm
+      { path: 'products', element: load(CatalogPage) },
+      { path: 'shop', element: load(CatalogPage) },
       { path: 'products/:slug', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(ProductDetailPage)}</AuthGuard> },
       { path: 'collections', element: load(CollectionsPage) },
       { path: 'collections/:slug', element: load(CollectionDetailPage) },
       { path: 'cart', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(CartPage)}</AuthGuard> },
       { path: 'checkout', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(CheckoutPage)}</AuthGuard> },
-      { path: 'wishlist', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(CatalogPage)}</AuthGuard> },
+      { path: 'wishlist', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(FavoritesPage)}</AuthGuard> },
+      { path: 'favorites', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(FavoritesPage)}</AuthGuard> },
       { path: 'orders', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(OrdersPage)}</AuthGuard> },
       { path: 'orders/:id', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(OrderDetailPage)}</AuthGuard> },
       { path: 'compare', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(ComparePage)}</AuthGuard> },

@@ -10,7 +10,11 @@ const API_BASE = '/api/v1';
 
 const getAuthHeaders = (token?: string): Record<string, string> => {
   const headers: Record<string, string> = { Accept: 'application/json' };
-  const effectiveToken = token || (typeof window !== 'undefined' ? localStorage.getItem('sb_token') : null);
+  const effectiveToken =
+    token ||
+    (typeof window !== 'undefined'
+      ? sessionStorage.getItem('sb_token') || localStorage.getItem('sb_token')
+      : null);
   if (effectiveToken) {
     headers['Authorization'] = `Bearer ${effectiveToken}`;
   }
@@ -211,6 +215,21 @@ export const apiClient = {
   },
 
   /**
+   * Lấy danh sách toàn bộ đơn hàng quản trị từ Backend
+   */
+  getAdminOrders: async () => {
+    try {
+      const res = await fetch(`${API_BASE}/admin/orders`, {
+        headers: { ...getAuthHeaders() },
+      });
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
+  },
+
+  /**
    * AI Stylist qua Java Spring Boot
    */
   getStylistRecommendation: async (req: {
@@ -253,7 +272,11 @@ export const apiClient = {
    */
   adminUpdatePrice: async (productId: string, price: number, stock?: number, token?: string) => {
     const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-    const effectiveToken = token || (typeof window !== 'undefined' ? localStorage.getItem('sb_token') : null);
+    const effectiveToken =
+      token ||
+      (typeof window !== 'undefined'
+        ? sessionStorage.getItem('sb_token') || localStorage.getItem('sb_token')
+        : null);
     if (effectiveToken) headers['Authorization'] = `Bearer ${effectiveToken}`;
 
     const res = await fetch(`${API_BASE}/admin/products/${productId}/pricing`, {
@@ -282,7 +305,8 @@ export const apiClient = {
       if (res.ok && data?.token) {
         if (typeof window !== 'undefined') {
           try {
-            localStorage.setItem('sb_token', data.token);
+            sessionStorage.setItem('sb_token', data.token);
+            localStorage.removeItem('sb_token');
           } catch {
             // ignore
           }
@@ -318,7 +342,8 @@ export const apiClient = {
       if (res.ok && data?.token) {
         if (typeof window !== 'undefined') {
           try {
-            localStorage.setItem('sb_token', data.token);
+            sessionStorage.setItem('sb_token', data.token);
+            localStorage.removeItem('sb_token');
           } catch {
             // ignore
           }
@@ -339,7 +364,11 @@ export const apiClient = {
    */
   getCurrentUser: async (token?: string): Promise<any | null> => {
     try {
-      const effectiveToken = token || (typeof window !== 'undefined' ? localStorage.getItem('sb_token') : null);
+      const effectiveToken =
+        token ||
+        (typeof window !== 'undefined'
+          ? sessionStorage.getItem('sb_token') || localStorage.getItem('sb_token')
+          : null);
       if (!effectiveToken) return null;
 
       const res = await fetch(`${API_BASE}/auth/me`, {
@@ -359,7 +388,11 @@ export const apiClient = {
    */
   getAdminDashboardKpi: async (timeFilter: string = 'thisMonth', token?: string) => {
     try {
-      const effectiveToken = token || (typeof window !== 'undefined' ? localStorage.getItem('sb_token') : null);
+      const effectiveToken =
+        token ||
+        (typeof window !== 'undefined'
+          ? sessionStorage.getItem('sb_token') || localStorage.getItem('sb_token')
+          : null);
       const headers: Record<string, string> = {};
       if (effectiveToken) headers['Authorization'] = `Bearer ${effectiveToken}`;
 

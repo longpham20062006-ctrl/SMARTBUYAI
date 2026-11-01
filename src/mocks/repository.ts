@@ -19,6 +19,7 @@ import { GENZ_BRANDS, GENZ_CATEGORIES, GENZ_COLLECTIONS } from './genzCategories
 import { FINAL_GENZ_CATALOGUE } from './genzCatalogBuilder';
 
 import { isValidImagePath } from '@/lib/imageValidator';
+import { safeSessionStorage } from '@/lib/storage';
 
 const SCHEMA_VERSION = 'v16.2-clean-image-audit-and-price-fix-20261031';
 const STORAGE_KEYS = {
@@ -88,12 +89,23 @@ function initDatabase() {
   if (typeof window === 'undefined') return;
 
   try {
+    // Luôn dọn sạch khóa xác thực lưu trong localStorage để bảo đảm chính sách phiên mới:
+    // Mở website trong phiên trình duyệt mới luôn là khách vãng lai, KHÔNG tự động đăng nhập.
+    safeStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        window.localStorage.removeItem('sb_token');
+        window.localStorage.removeItem('sb_current_user');
+      } catch {
+        // ignore
+      }
+    }
+
     const currentVersion = safeStorage.getItem(STORAGE_KEYS.SCHEMA);
     if (currentVersion !== SCHEMA_VERSION) {
       // Bảo tồn đơn hàng, giỏ hàng, người dùng nếu đã có
       const existingOrders = safeStorage.getItem(STORAGE_KEYS.ORDERS);
       const existingUsers = safeStorage.getItem(STORAGE_KEYS.USERS);
-      const existingCurrentUser = safeStorage.getItem(STORAGE_KEYS.CURRENT_USER);
       const existingCart = safeStorage.getItem(STORAGE_KEYS.CART);
 
       // Lưu trữ với fallback an toàn
@@ -103,9 +115,6 @@ function initDatabase() {
       safeStorage.setItem(STORAGE_KEYS.COLLECTIONS, JSON.stringify(GENZ_COLLECTIONS));
       safeStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(INITIAL_ORDERS));
       safeStorage.setItem(STORAGE_KEYS.USERS, existingUsers || JSON.stringify(DEMO_USERS));
-      if (existingCurrentUser) {
-        safeStorage.setItem(STORAGE_KEYS.CURRENT_USER, existingCurrentUser);
-      }
       if (existingCart) {
         safeStorage.setItem(STORAGE_KEYS.CART, existingCart);
       } else {
@@ -570,13 +579,17 @@ export const MockRepo = {
     return { success: true };
   },
 
-  // --- WISHLIST ---
+  // --- WISHLIST (LƯU THEO TỪNG TÀI KHOẢN ĐANG ĐĂNG NHẬP) ---
   getWishlist: (): string[] => {
-    return getStored<string[]>('sb_wishlist', ['prod-1', 'prod-2', 'prod-6']);
+    const user = getStored<User | null>(STORAGE_KEYS.CURRENT_USER, null);
+    const key = user ? `sb_wishlist_${user.id}` : 'sb_wishlist';
+    return getStored<string[]>(key, ['prod-1', 'prod-2', 'prod-6']);
   },
 
   toggleWishlist: (productId: string): boolean => {
-    const list = MockRepo.getWishlist();
+    const user = getStored<User | null>(STORAGE_KEYS.CURRENT_USER, null);
+    const key = user ? `sb_wishlist_${user.id}` : 'sb_wishlist';
+    const list = getStored<string[]>(key, ['prod-1', 'prod-2', 'prod-6']);
     const idx = list.indexOf(productId);
     let isAdded = false;
     if (idx >= 0) {
@@ -585,14 +598,20 @@ export const MockRepo = {
       list.push(productId);
       isAdded = true;
     }
-    setStored('sb_wishlist', list);
+    setStored(key, list);
     notifyChange('wishlist');
     return isAdded;
   },
 
   // --- USERS & AUTH ---
   getCurrentUser: (): User | null => {
-    return getStored<User | null>(STORAGE_KEYS.CURRENT_USER, null);
+    try {
+      const data = safeSessionStorage.getItem(STORAGE_KEYS.CURRENT_USER);
+      return data ? JSON.parse(data) : null;
+    } catch (e) {
+      console.error('Error reading currentUser from sessionStorage', e);
+      return null;
+    }
   },
 
   login: (email: string, password?: string): { success: boolean; user?: User; message?: string } => {
@@ -618,7 +637,9 @@ export const MockRepo = {
       return { success: false, message: 'Email hoặc mật khẩu không chính xác' };
     }
 
-    setStored(STORAGE_KEYS.CURRENT_USER, matched);
+    // Lưu vào sessionStorage cho phiên làm việc hiện tại, xóa khỏi localStorage
+    safeSessionStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(matched));
+    safeStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
     notifyChange('auth');
     return { success: true, user: matched };
   },
@@ -656,16 +677,20 @@ export const MockRepo = {
     };
     users.push(newUser);
     setStored(STORAGE_KEYS.USERS, users);
-    setStored(STORAGE_KEYS.CURRENT_USER, newUser);
+    safeSessionStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(newUser));
+    safeStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
     notifyChange('auth');
     return { success: true, user: newUser };
   },
 
   logout: () => {
+    safeSessionStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
     safeStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
     if (typeof window !== 'undefined') {
       try {
+        sessionStorage.removeItem('sb_token');
         localStorage.removeItem('sb_token');
+        sessionStorage.removeItem('sb_play_intro');
         sessionStorage.removeItem('sb_intro_seen');
         sessionStorage.removeItem('sb_post_intro_redirect');
         sessionStorage.setItem('sb_logging_out', '1');
@@ -678,15 +703,18 @@ export const MockRepo = {
 
   switchUser: (role: 'customer' | 'admin'): User => {
     const target = DEMO_USERS.find((u) => u.role === role) || DEMO_USERS[0];
-    setStored(STORAGE_KEYS.CURRENT_USER, target);
+    safeSessionStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(target));
+    safeStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
     notifyChange('auth');
     return target;
   },
 
   setCurrentUser: (user: User | null) => {
     if (user) {
-      setStored(STORAGE_KEYS.CURRENT_USER, user);
+      safeSessionStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(user));
+      safeStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
     } else {
+      safeSessionStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
       safeStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
     }
     notifyChange('auth');
@@ -695,7 +723,7 @@ export const MockRepo = {
   updateUserProfile: (user: Partial<User>): User | null => {
     const current = MockRepo.getCurrentUser();
     const updated = current ? { ...current, ...user } : (user as User);
-    setStored(STORAGE_KEYS.CURRENT_USER, updated);
+    safeSessionStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(updated));
 
     const users = getStored<User[]>(STORAGE_KEYS.USERS, DEMO_USERS);
     const idx = users.findIndex((u) => u.id === (updated.id || ''));
@@ -709,7 +737,20 @@ export const MockRepo = {
   },
 
   getAllUsers: (): User[] => {
-    return getStored<User[]>(STORAGE_KEYS.USERS, DEMO_USERS);
+    const stored = getStored<User[]>(STORAGE_KEYS.USERS, DEMO_USERS);
+    const map = new Map(stored.map((u) => [u.email.toLowerCase(), u]));
+    let hasNew = false;
+    for (const demo of DEMO_USERS) {
+      if (!map.has(demo.email.toLowerCase())) {
+        stored.push(demo);
+        map.set(demo.email.toLowerCase(), demo);
+        hasNew = true;
+      }
+    }
+    if (hasNew) {
+      setStored(STORAGE_KEYS.USERS, stored);
+    }
+    return stored;
   },
 
   syncBackendProducts: (incoming: Product[]) => {

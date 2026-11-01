@@ -15,6 +15,8 @@ import {
   Heart,
   ArrowRight,
   Flame,
+  Bot,
+  Ruler,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Drawer } from '@/components/ui/drawer';
@@ -74,15 +76,26 @@ export const SiteHeader: React.FC = () => {
     };
   }, []);
 
-  // Close dropdowns on outside click
+  // Close dropdowns on outside click or ESC key
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
         setIsUserMenuOpen(false);
       }
     };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsUserMenuOpen(false);
+        setIsSearchOpen(false);
+        setIsMegaMenuOpen(false);
+      }
+    };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   // Focus search input on open
@@ -108,12 +121,29 @@ export const SiteHeader: React.FC = () => {
   const currentSort = searchParams.get('sort');
   const isHomePage = currentPath === '/';
 
+  const handleHomeClick = (e: React.MouseEvent) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleHotClick = (e: React.MouseEvent) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      const el = document.getElementById('san-pham-hot');
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+  };
+
   // Xác định chính xác duy nhất 1 tab active theo route thực tế:
-  const getActiveTab = (): 'home' | 'nam' | 'nu' | 'unisex' | 'phu-kien' | 'collections' | 'trending' | 'about' | 'size-guide' | 'try-on' | 'ai-stylist' | null => {
+  const getActiveTab = (): 'home' | 'nam' | 'nu' | 'unisex' | 'phu-kien' | 'collections' | 'trending' | 'about' | 'size-guide' | 'try-on' | null => {
     if (currentPath === '/') return 'home';
     if (currentPath === '/about') return 'about';
     if (currentPath === '/size-guide') return 'size-guide';
-    if (currentPath === '/ai-stylist') return 'ai-stylist';
     if (currentPath === '/try-on' || currentPath.startsWith('/virtual-try-on')) return 'try-on';
     if (currentPath.startsWith('/collections')) return 'collections';
     if (currentPath.startsWith('/products')) {
@@ -189,12 +219,13 @@ export const SiteHeader: React.FC = () => {
             <BrandLogo variant="header" showTagline={false} />
           </div>
 
-          {/* Ở GIỮA: TRANG CHỦ DÙNG MENU ĐIỀU HƯỚNG CHUẨN MASTER PROMPT V19 | TRANG MUA HÀNG DÙNG THANH TÌM KIẾM */}
+          {/* Ở GIỮA: TRANG CHỦ — ĐIỀU HƯỚNG TINH GỌN (Trang chủ | Sản phẩm HOT | Shop | Khám phá thời trang) */}
           {isHomePage ? (
-            <div className="hidden lg:flex items-center gap-5 xl:gap-7 mx-4">
+            <div className="hidden lg:flex items-center gap-6 xl:gap-8 mx-4">
               <NavLink
                 to="/"
                 end
+                onClick={handleHomeClick}
                 className={({ isActive }) =>
                   cn(
                     'text-xs uppercase font-extrabold tracking-wider transition-colors py-1 border-b-2',
@@ -207,22 +238,9 @@ export const SiteHeader: React.FC = () => {
                 Trang chủ
               </NavLink>
 
-              <NavLink
-                to="/collections"
-                className={({ isActive }) =>
-                  cn(
-                    'text-xs uppercase font-extrabold tracking-wider transition-colors py-1 border-b-2',
-                    isActive
-                      ? 'text-[#8B5CF6] border-[#8B5CF6]'
-                      : 'text-zinc-700 hover:text-[#8B5CF6] border-transparent'
-                  )
-                }
-              >
-                Bộ sưu tập
-              </NavLink>
-
               <a
                 href="#san-pham-hot"
+                onClick={handleHotClick}
                 className="text-xs uppercase font-extrabold tracking-wider text-zinc-700 hover:text-[#8B5CF6] transition-colors py-1 border-b-2 border-transparent hover:border-[#8B5CF6] flex items-center gap-1.5"
               >
                 <span>Sản phẩm HOT</span>
@@ -230,7 +248,7 @@ export const SiteHeader: React.FC = () => {
               </a>
 
               <NavLink
-                to="/about"
+                to="/shop"
                 className={({ isActive }) =>
                   cn(
                     'text-xs uppercase font-extrabold tracking-wider transition-colors py-1 border-b-2',
@@ -240,10 +258,10 @@ export const SiteHeader: React.FC = () => {
                   )
                 }
               >
-                Giới thiệu
+                Shop
               </NavLink>
 
-              {/* KHÁM PHÁ THỜI TRANG (Lối vào Shopping Area chính thức theo V19) */}
+              {/* KHÁM PHÁ THỜI TRANG */}
               <Link
                 to="/shop"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] hover:from-[#7C3AED] hover:to-[#6D28D9] text-white text-xs font-black uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95"
@@ -314,74 +332,92 @@ export const SiteHeader: React.FC = () => {
                     )}
                   </button>
 
-                  {/* User Menu Content */}
+                  {/* User Menu Content: HIỂN THỊ BÊN DƯỚI AVATAR 10px, KHÔNG CHE AVATAR, CÓ MŨI TÊN CHỈ LÊN */}
                   {isUserMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-64 bg-white shadow-elevated border border-[#E4E4E7] rounded-xl py-2 z-50 animate-fade-in text-xs">
-                      <div className="px-4 py-2 border-b border-[#E4E4E7]">
-                        <div className="font-bold text-[#18181B]">{currentUser.name}</div>
-                        <div className="text-[11px] text-[#71717A] truncate">{currentUser.email}</div>
-                        <span className="inline-block mt-1 px-2 py-0.5 rounded-sm bg-[#F2F3F5] text-[#18181B] text-[10px] uppercase font-bold tracking-wider border border-[#E4E4E7]">
+                    <div className="absolute top-full right-0 mt-2.5 w-64 max-w-[calc(100vw-24px)] bg-white shadow-xl border border-[#E4E4E7] rounded-2xl py-2 z-50 animate-fade-in text-xs before:content-[''] before:absolute before:-top-1.5 before:right-4 before:w-3 before:h-3 before:bg-white before:rotate-45 before:border-t before:border-l before:border-[#E4E4E7]">
+                      {/* 1. Header: Ảnh đại diện, tên, email khách hàng */}
+                      <div className="px-4 py-2.5 border-b border-[#E4E4E7] relative z-10 bg-white rounded-t-2xl">
+                        <div className="flex items-center gap-2.5 mb-1.5">
+                          {currentUser?.avatar ? (
+                            <img
+                              src={currentUser.avatar}
+                              alt={currentUser.name}
+                              className="w-8 h-8 rounded-full object-cover border border-[#E4E4E7]"
+                            />
+                          ) : (
+                            <div className="w-8 h-8 rounded-full bg-[#8B5CF6] text-white flex items-center justify-center font-bold text-xs">
+                              {currentUser.name ? currentUser.name.charAt(0).toUpperCase() : 'U'}
+                            </div>
+                          )}
+                          <div className="min-w-0 flex-1">
+                            <div className="font-bold text-[#18181B] truncate">{currentUser.name}</div>
+                            <div className="text-[11px] text-[#71717A] truncate">{currentUser.email}</div>
+                          </div>
+                        </div>
+                        <span className="inline-block px-2 py-0.5 rounded-md bg-[#F2F3F5] text-[#18181B] text-[10px] uppercase font-bold tracking-wider border border-[#E4E4E7]">
                           Vai trò: {currentUser.role === 'admin' ? 'Quản trị viên' : 'Khách hàng'}
                         </span>
                       </div>
 
+                      {/* 2. Menu Điều hướng chi tiết theo Section 8 */}
                       <div className="py-1">
-                        <Link
-                          to="/shop"
-                          onClick={() => setIsUserMenuOpen(false)}
-                          className="flex items-center gap-2 px-4 py-2 font-bold text-[#8B5CF6] hover:bg-[#F3E8FF] transition-colors"
-                        >
-                          <ShoppingBag className="w-3.5 h-3.5 text-[#8B5CF6]" />
-                          <span>Vào Shop mua sắm</span>
-                        </Link>
                         <Link
                           to="/account"
                           onClick={() => setIsUserMenuOpen(false)}
-                          className="block px-4 py-2 text-[#71717A] hover:bg-[#F2F3F5] hover:text-[#18181B] transition-colors"
+                          className="flex items-center gap-2.5 px-4 py-2 text-[#52525B] hover:bg-[#F3E8FF]/60 hover:text-[#7C3AED] transition-colors font-medium"
                         >
-                          Trung tâm tài khoản
+                          <UserIcon className="w-4 h-4 text-[#71717A]" />
+                          <span>Thông tin cá nhân</span>
                         </Link>
                         <Link
                           to="/orders"
                           onClick={() => setIsUserMenuOpen(false)}
-                          className="block px-4 py-2 text-[#71717A] hover:bg-[#F2F3F5] hover:text-[#18181B] transition-colors"
+                          className="flex items-center gap-2.5 px-4 py-2 text-[#52525B] hover:bg-[#F3E8FF]/60 hover:text-[#7C3AED] transition-colors font-medium"
                         >
-                          Lịch sử đơn hàng
+                          <ShoppingBag className="w-4 h-4 text-[#71717A]" />
+                          <span>Đơn hàng của tôi</span>
                         </Link>
                         <Link
                           to="/wishlist"
                           onClick={() => setIsUserMenuOpen(false)}
-                          className="block px-4 py-2 text-[#71717A] hover:bg-[#F2F3F5] hover:text-[#18181B] transition-colors"
+                          className="flex items-center gap-2.5 px-4 py-2 text-[#52525B] hover:bg-[#F3E8FF]/60 hover:text-[#7C3AED] transition-colors font-medium"
                         >
-                          Danh sách yêu thích
+                          <Heart className="w-4 h-4 text-[#71717A]" />
+                          <span>Sản phẩm yêu thích</span>
                         </Link>
-                        <Link
-                          to="/compare"
-                          onClick={() => setIsUserMenuOpen(false)}
-                          className="block px-4 py-2 text-[#71717A] hover:bg-[#F2F3F5] hover:text-[#18181B] transition-colors"
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setIsUserMenuOpen(false);
+                            setIsCartDrawerOpen(true);
+                          }}
+                          className="w-full flex items-center gap-2.5 px-4 py-2 text-[#52525B] hover:bg-[#F3E8FF]/60 hover:text-[#7C3AED] transition-colors text-left cursor-pointer font-medium"
                         >
-                          So sánh sản phẩm
-                        </Link>
+                          <ShoppingBag className="w-4 h-4 text-[#71717A]" />
+                          <div className="flex items-center justify-between flex-1">
+                            <span>Giỏ hàng</span>
+                            {totalCartCount > 0 && (
+                              <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-[#8B5CF6] text-white font-bold">
+                                {totalCartCount}
+                              </span>
+                            )}
+                          </div>
+                        </button>
                       </div>
 
-                      {/* Quản trị & Switch Role */}
-                      <div className="border-t border-[#E4E4E7] pt-1 mt-1 bg-[#FAFAF8]">
-                        {currentUser.role === 'admin' ? (
+                      {/* 3. Phân hệ Quản trị & Đăng xuất */}
+                      <div className="border-t border-[#E4E4E7] pt-1 mt-1 bg-[#FAFAF9] rounded-b-2xl">
+                        {currentUser.role === 'admin' && (
                           <Link
                             to="/admin"
                             onClick={() => setIsUserMenuOpen(false)}
-                            className="flex items-center gap-2 px-4 py-2 font-semibold text-[#8B5CF6] hover:bg-[#F3E8FF] transition-colors"
+                            className="flex items-center gap-2.5 px-4 py-2 font-bold text-[#8B5CF6] hover:bg-[#F3E8FF] transition-colors"
                           >
-                            <Shield className="w-3.5 h-3.5" />
+                            <Shield className="w-4 h-4 text-[#8B5CF6]" />
                             <span>Vào trang Quản trị (Admin)</span>
                           </Link>
-                        ) : (
-                          <div className="px-4 py-1.5 text-[11px] text-zinc-500">
-                            Thành viên SMARTBUY AI
-                          </div>
                         )}
 
-                        {/* Explicit Logout Button */}
                         <button
                           type="button"
                           onClick={() => {
@@ -389,10 +425,10 @@ export const SiteHeader: React.FC = () => {
                             setIsUserMenuOpen(false);
                             navigate('/');
                           }}
-                          className="w-full flex items-center gap-2 px-4 py-2 text-[#DC2626] hover:bg-rose-50 transition-colors cursor-pointer text-left font-bold"
+                          className="w-full flex items-center gap-2.5 px-4 py-2 text-[#DC2626] hover:bg-rose-50 transition-colors cursor-pointer text-left font-bold"
                         >
-                          <LogOut className="w-3.5 h-3.5" />
-                          <span>Đăng xuất tài khoản</span>
+                          <LogOut className="w-4 h-4" />
+                          <span>Đăng xuất</span>
                         </button>
                       </div>
                     </div>
@@ -429,7 +465,7 @@ export const SiteHeader: React.FC = () => {
             {/* Wishlist Link — CHỈ HIỂN THỊ KHI ĐÃ ĐĂNG NHẬP (CUSTOMER) */}
             {currentUser && (
               <Link
-                to="/wishlist"
+                to="/favorites"
                 className="p-2 text-[#18181B] hover:text-[#8B5CF6] rounded-full hover:bg-black/5 transition-colors cursor-pointer hidden sm:flex items-center justify-center"
                 title="Sản phẩm yêu thích"
                 aria-label="Sản phẩm yêu thích"
@@ -457,133 +493,56 @@ export const SiteHeader: React.FC = () => {
           </div>
         </div>
 
-        {/* TẦNG 2: NAVIGATION MENU & DANH MỤC ĐIỀU HƯỚNG (Desktop - Ẩn trên Home, hiện đầy đủ trên Shop/Catalog) */}
+        {/* TẦNG 2: NAVIGATION MENU DÀNH RIÊNG CHO SHOP (Desktop) — 6 MỤC CHUẨN SECTION 1 */}
         {!isHomePage && (
           <div className="hidden lg:block border-t border-[#F2F3F5] bg-white">
             <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-              <nav data-testid="category-nav" className="flex items-center justify-center gap-1.5 py-1.5">
-                <Link to="/" className={getTabClass(activeTab === 'home')}>
-                  Trang chủ
-                </Link>
-                <Link to={`${currentPath.startsWith('/shop') ? '/shop' : '/products'}?gender=nam`} className={getTabClass(activeTab === 'nam')}>
+              <nav data-testid="category-nav" className="flex items-center justify-center gap-2.5 py-2">
+                <Link to="/shop?gender=nam" className={getTabClass(activeTab === 'nam')}>
                   Nam
                 </Link>
-                <Link to={`${currentPath.startsWith('/shop') ? '/shop' : '/products'}?gender=nu`} className={getTabClass(activeTab === 'nu')}>
+                <Link to="/shop?gender=nu" className={getTabClass(activeTab === 'nu')}>
                   Nữ
                 </Link>
-                <Link to={`${currentPath.startsWith('/shop') ? '/shop' : '/products'}?gender=unisex`} className={getTabClass(activeTab === 'unisex')}>
-                  Unisex
-                </Link>
-                <Link to={`${currentPath.startsWith('/shop') ? '/shop' : '/products'}?category=phu-kien`} className={getTabClass(activeTab === 'phu-kien')}>
+                <Link to="/shop?category=phu-kien" className={getTabClass(activeTab === 'phu-kien')}>
                   Phụ kiện
                 </Link>
 
-                {/* Mega Menu Dropdown Bộ sưu tập */}
-                <div
-                  className="relative"
-                  onMouseEnter={() => setIsMegaMenuOpen(true)}
-                  onMouseLeave={() => setIsMegaMenuOpen(false)}
+                {/* Chatbot AI */}
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new CustomEvent('open_ai_stylist'))}
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs uppercase tracking-wider font-bold text-[#7C3AED] bg-[#F3E8FF] hover:bg-[#8B5CF6] hover:text-white transition-all cursor-pointer shadow-2xs"
+                  title="Mở Trợ lý Chatbot AI tư vấn thời trang"
                 >
-                  <button
-                    className={cn(
-                      'flex items-center gap-1 text-xs uppercase tracking-wider font-bold px-3.5 py-1.5 rounded-xl transition-all duration-150 cursor-pointer select-none',
-                      activeTab === 'collections' || isMegaMenuOpen
-                        ? 'bg-[#8B5CF6] text-white shadow-xs'
-                        : 'text-[#52525B] hover:text-[#18181B] hover:bg-[#F4F4F5]'
-                    )}
-                  >
-                    <span>Bộ sưu tập</span>
-                    <ChevronDown className="w-3.5 h-3.5 opacity-70" />
-                  </button>
+                  <Bot className="w-3.5 h-3.5" />
+                  <span>Chatbot AI</span>
+                </button>
 
-                  {/* Mega menu box */}
-                  {isMegaMenuOpen && (
-                    <div className="absolute top-full -left-20 w-[620px] bg-white shadow-modal border border-[#E4E4E7] rounded-2xl p-6 grid grid-cols-2 gap-6 animate-fade-in z-50">
-                      <div>
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#18181B] mb-3 border-b border-[#E4E4E7] pb-1.5">
-                          Bộ sưu tập 2026
-                        </h4>
-                        <div className="space-y-1.5">
-                          {GENZ_COLLECTIONS.map((c) => (
-                            <Link
-                              key={c.id}
-                              to={`/collections/${c.slug}`}
-                              onClick={() => setIsMegaMenuOpen(false)}
-                              className="group block p-2 rounded-xl hover:bg-[#F3E8FF] transition-colors"
-                            >
-                              <div className="text-xs font-bold text-[#18181B] group-hover:text-[#7C3AED]">
-                                {c.title}
-                              </div>
-                              <div className="text-[11px] text-[#71717A] line-clamp-1">{c.tagline}</div>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#18181B] mb-3 border-b border-[#E4E4E7] pb-1.5">
-                          Danh mục Streetwear
-                        </h4>
-                        <div className="grid grid-cols-2 gap-1.5 text-xs">
-                          {GENZ_CATEGORIES.map((cat) => (
-                            <Link
-                              key={cat.id}
-                              to={`/products?category=${cat.slug}`}
-                              onClick={() => setIsMegaMenuOpen(false)}
-                              className="p-1.5 text-[#71717A] hover:text-[#8B5CF6] hover:bg-[#F2F3F5] rounded-md transition-colors"
-                            >
-                              {cat.name}
-                            </Link>
-                          ))}
-                        </div>
-                        <div className="mt-4 pt-3 border-t border-[#E4E4E7]">
-                          <Link
-                            to="/collections"
-                            onClick={() => setIsMegaMenuOpen(false)}
-                            className="text-xs font-bold text-[#18181B] hover:text-[#8B5CF6] hover:underline flex items-center justify-between"
-                          >
-                            <span>Xem tất cả bộ sưu tập</span>
-                            <span>→</span>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <Link to="/products?sort=newest" className={getTabClass(activeTab === 'trending')}>
-                  Xu hướng
-                </Link>
-                <Link
-                  to="/ai-stylist"
-                  className={cn(
-                    'flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 select-none cursor-pointer',
-                    activeTab === 'ai-stylist'
-                      ? 'bg-[#8B5CF6] text-white shadow-xs'
-                      : 'bg-[#F3E8FF] text-[#7C3AED] hover:bg-[#8B5CF6] hover:text-white'
-                  )}
-                >
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>AI Stylist</span>
-                </Link>
+                {/* Thử đồ AI */}
                 <Link
                   to="/try-on"
                   className={cn(
-                    'flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 select-none cursor-pointer',
+                    'flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all duration-150 select-none cursor-pointer',
                     activeTab === 'try-on'
                       ? 'bg-[#8B5CF6] text-white shadow-xs'
-                      : 'bg-[#F3E8FF] text-[#7C3AED] hover:bg-[#8B5CF6] hover:text-white'
+                      : 'bg-zinc-900 text-white hover:bg-[#8B5CF6]'
                   )}
                 >
-                  <Sparkles className="w-3.5 h-3.5" />
+                  <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
                   <span>Thử đồ AI</span>
                 </Link>
-                <Link to="/about" className={getTabClass(activeTab === 'about')}>
-                  Giới thiệu
-                </Link>
-                <Link to="/size-guide" className={getTabClass(activeTab === 'size-guide')}>
-                  Bảng size
-                </Link>
+
+                {/* Bảng size */}
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new CustomEvent('open_size_guide'))}
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs uppercase tracking-wider font-bold text-[#52525B] hover:text-[#18181B] hover:bg-[#F4F4F5] transition-all cursor-pointer"
+                  title="Tra cứu bảng kích thước chuẩn"
+                >
+                  <Ruler className="w-3.5 h-3.5 text-zinc-500" />
+                  <span>Bảng size</span>
+                </button>
               </nav>
             </div>
           </div>
@@ -668,7 +627,7 @@ export const SiteHeader: React.FC = () => {
         title={<BrandLogo variant="compact" href={null} />}
       >
         <div className="space-y-6 text-sm">
-          {/* Main Navigation matching Master Prompt V19 */}
+          {/* Main Navigation matching Section 1 */}
           <div className="space-y-1">
             <div className="text-xs font-bold uppercase tracking-wider text-[#71717A] px-2 py-1">
               Menu Chính
@@ -685,29 +644,6 @@ export const SiteHeader: React.FC = () => {
             >
               Trang chủ
             </Link>
-            <Link
-              to="/shop"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-between px-3.5 py-2.5 rounded-xl font-black bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white text-xs uppercase tracking-wider shadow-xs hover:shadow-md transition-all"
-            >
-              <div className="flex items-center gap-2">
-                <ShoppingBag className="w-4 h-4 text-cyan-200" />
-                <span>Khám phá thời trang (Shop)</span>
-              </div>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              to="/collections"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={cn(
-                'block px-3.5 py-2.5 rounded-xl font-bold transition-colors text-xs uppercase tracking-wider',
-                activeTab === 'collections'
-                  ? 'bg-[#8B5CF6] text-white shadow-xs'
-                  : 'hover:bg-[#F2F3F5] text-[#18181B]'
-              )}
-            >
-              Bộ sưu tập
-            </Link>
             <a
               href="/#san-pham-hot"
               onClick={() => setIsMobileMenuOpen(false)}
@@ -720,22 +656,28 @@ export const SiteHeader: React.FC = () => {
               <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
             </a>
             <Link
-              to="/about"
+              to="/shop"
               onClick={() => setIsMobileMenuOpen(false)}
-              className={cn(
-                'block px-3.5 py-2.5 rounded-xl font-bold transition-colors text-xs uppercase tracking-wider',
-                activeTab === 'about'
-                  ? 'bg-[#8B5CF6] text-white shadow-xs'
-                  : 'hover:bg-[#F2F3F5] text-[#18181B]'
-              )}
+              className="block px-3.5 py-2.5 rounded-xl font-bold hover:bg-[#F2F3F5] text-[#18181B] transition-colors text-xs uppercase tracking-wider"
             >
-              Giới thiệu
+              Shop
+            </Link>
+            <Link
+              to="/shop"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3.5 py-2.5 rounded-xl font-black bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white text-xs uppercase tracking-wider shadow-xs hover:shadow-md transition-all"
+            >
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-cyan-200" />
+                <span>Khám phá thời trang</span>
+              </div>
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
           <div className="space-y-1 pt-4 border-t border-[#E4E4E7]">
             <div className="text-xs font-bold uppercase tracking-wider text-[#71717A] px-2 py-1">
-              Danh mục sản phẩm trong Shop
+              Danh mục trong Shop
             </div>
             <Link
               to="/shop?gender=nam"
@@ -762,18 +704,6 @@ export const SiteHeader: React.FC = () => {
               Thời trang Nữ
             </Link>
             <Link
-              to="/shop?gender=unisex"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={cn(
-                'block px-3.5 py-2 rounded-lg font-medium transition-colors text-xs uppercase tracking-wider',
-                activeTab === 'unisex'
-                  ? 'bg-[#8B5CF6] text-white shadow-xs'
-                  : 'hover:bg-[#F2F3F5] text-[#18181B]'
-              )}
-            >
-              Bộ sưu tập Unisex
-            </Link>
-            <Link
               to="/shop?category=phu-kien"
               onClick={() => setIsMobileMenuOpen(false)}
               className={cn(
@@ -785,6 +715,39 @@ export const SiteHeader: React.FC = () => {
             >
               Phụ kiện & Nón
             </Link>
+            <button
+              type="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                window.dispatchEvent(new CustomEvent('open_ai_stylist'));
+              }}
+              className="w-full flex items-center justify-between px-3.5 py-2 rounded-lg bg-[#F3E8FF] text-[#7C3AED] font-bold text-xs uppercase tracking-wider"
+            >
+              <div className="flex items-center gap-2">
+                <Bot className="w-4 h-4 text-[#8B5CF6]" />
+                <span>Chatbot AI</span>
+              </div>
+              <Sparkles className="w-3.5 h-3.5" />
+            </button>
+            <Link
+              to="/try-on"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3.5 py-2 rounded-lg bg-[#18181B] text-white font-bold text-xs uppercase tracking-wider"
+            >
+              <span>Thử đồ AI</span>
+              <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+            </Link>
+            <button
+              type="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                window.dispatchEvent(new CustomEvent('open_size_guide'));
+              }}
+              className="w-full flex items-center justify-between px-3.5 py-2 rounded-lg hover:bg-[#F2F3F5] text-[#18181B] font-medium text-xs uppercase tracking-wider"
+            >
+              <span>Bảng size</span>
+              <Ruler className="w-4 h-4 text-zinc-500" />
+            </button>
           </div>
 
           <div className="space-y-1 pt-4 border-t border-[#E4E4E7]">

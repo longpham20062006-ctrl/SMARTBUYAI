@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="no-referrer" />
+  <title>SmartFit AI | Thử đồ trực tuyến</title>
+  <style>
+    :root{font-family:Inter,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#161a24;background:#f5f6fa}
+    *{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}
+    header{background:#101525;color:#fff;padding:17px max(18px,calc((100vw - 1140px)/2));display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{display:flex;gap:12px;align-items:center;font-size:20px;font-weight:800}.emblem{display:grid;place-items:center;border-radius:12px;background:linear-gradient(120deg,#7963f6,#4fb4ee);width:42px;height:42px;color:white}
+    .tag{font-size:12px;font-weight:500;color:#b9c2dc}main{max-width:1140px;margin:28px auto;padding:0 18px 40px}
+    h1{font-size:clamp(23px,3vw,31px);margin:0 0 7px}p.sub{color:#637084;margin:0 0 24px}
+    .layout{display:grid;grid-template-columns:minmax(320px,.88fr) minmax(320px,1.12fr);gap:22px}.card{background:white;border:1px solid #e4e7ef;border-radius:18px;box-shadow:0 5px 30px #202b4010;padding:22px}
+    .label{display:block;font-size:14px;font-weight:700;margin:0 0 9px}.upload{border:2px dashed #cbd2e5;border-radius:14px;min-height:194px;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;cursor:pointer;background:#fcfcff;overflow:hidden;text-align:center}
+    .upload.drag{border-color:#6654f4;background:#f1efff}.upload input{position:absolute;inset:0;opacity:0;width:100%;cursor:pointer}.upload img{width:100%;height:238px;object-fit:contain;background:#f3f4f9}.upload .help{font-size:12px;color:#718096}.upload svg{width:29px;height:29px;color:#7464ef}.section{margin:0 0 22px}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}.control{display:flex;flex-direction:column;gap:7px}.control label{font-size:13px;font-weight:700;color:#343b4e}.control select,.control input{width:100%;border:1px solid #d9ddec;border-radius:9px;padding:10px;background:#fff;color:#172033}
+    .button{border:0;border-radius:12px;padding:13px 17px;font-weight:700;cursor:pointer;background:#6654e8;color:#fff}.button:disabled{opacity:.55;cursor:not-allowed}.button.secondary{background:#eef0fd;color:#5246c0}.button.outline{background:white;color:#4e54a5;border:1px solid #d6d8e6}.button-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}
+    .status{min-height:45px;border-radius:10px;background:#f2f3ff;color:#4236a7;padding:12px;display:flex;align-items:center;gap:9px;font-size:14px}.status.error{background:#fff1f1;color:#c33030}.status.done{background:#eaf8ef;color:#1a7441}
+    .preview{height:472px;border-radius:12px;background:#f1f2f8;display:grid;place-items:center;position:relative;overflow:hidden;border:1px solid #e0e3eb}.preview img{width:100%;height:100%;object-fit:contain}
+    .preview-placeholder{text-align:center;color:#939aac;padding:22px}.preview-placeholder b{display:block;color:#545f74;font-size:17px;margin:10px}
+    .pills{display:flex;gap:8px;margin:0 0 15px}.pill{border:1px solid #d9ddef;border-radius:20px;padding:7px 12px;background:white;color:#404969;cursor:pointer}.pill.active{color:white;background:#262a44;border-color:#262a44}
+    .under{margin-top:13px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.range-wrap{display:flex;gap:10px;align-items:center;color:#5b667d;font-size:13px}.range-wrap input{accent-color:#6654e8}
+    details{margin-top:15px;border-top:1px solid #ecedf3;padding-top:15px}details summary{cursor:pointer;color:#505b77;font-weight:700}.small{font-size:12px;color:#717d93;line-height:1.6}.badge{background:#e9ebff;color:#5445c4;border-radius:100px;padding:5px 10px;font-size:12px}
+    .toast{font-size:13px;color:#a65e16;min-height:20px;margin:10px 0 0}@media(max-width:830px){.layout{grid-template-columns:1fr}.preview{height:380px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="emblem">SF</span><div>SmartFit AI <div class="tag">FASHN VTON v1.5 · xử lý trực tiếp trên PC</div></div></div>
+    <span class="badge">GPU cục bộ · Không gửi ảnh lên API cloud</span>
+  </header>
+  <main>
+    <h1>Thử trang phục bằng AI</h1>
+    <p class="sub">Tải ảnh người, chọn trang phục và xem kết quả. Hệ thống tự nhận diện vùng quần áo, không cần tô mặt nạ.</p>
+    <div class="layout">
+      <section class="card" aria-label="Thiết lập thử đồ">
+        <div class="section"><span class="label">1. Ảnh người</span>
+          <div class="upload" id="personDrop"><div id="personPrompt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="9" r="3"/><path d="M6 19c1-4 11-4 12 0"/></svg><b>Kéo thả hoặc chọn ảnh người</b><div class="help">JPG, PNG, WEBP · nên chụp thẳng, đủ sáng</div></div><img id="personView" alt="Xem trước ảnh người" hidden/><input type="file" id="person" accept="image/jpeg,image/png,image/webp" aria-label="Chọn ảnh người" /></div>
+          <div class="button-row"><button type="button" class="button secondary" id="camera">📷 Chụp từ webcam</button><button type="button" class="button outline" id="cancelCam" hidden>Đóng camera</button></div>
+          <video id="video" autoplay playsinline muted hidden style="width:100%;border-radius:12px;margin-top:8px;max-height:280px;background:#000"></video>
+        </div>
+        <div class="section"><span class="label">2. Trang phục muốn thử</span>
+          <div class="upload" id="garmentDrop"><div id="garmentPrompt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 3-5 3-2 6 5 2 2-3v10h6V11l2 3 5-2-2-6-5-3-3 3z"/></svg><b>Kéo thả hoặc chọn ảnh áo / quần / váy</b><div class="help">Ảnh sản phẩm nền rõ, nhìn chính diện</div></div><img id="garmentView" alt="Xem trước ảnh trang phục" hidden/><input id="garment" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Chọn ảnh trang phục" /></div>
+        </div>
+        <div class="split section">
+          <div class="control"><label for="category">Loại trang phục</label><select id="category"><option value="tops">Áo / hoodie / khoác</option><option value="bottoms">Quần / chân váy</option><option value="one-pieces">Váy liền</option></select></div>
+          <div class="control"><label for="photoType">Ảnh trang phục</label><select id="photoType"><option value="flat-lay">Ảnh sản phẩm</option><option value="model">Mặc trên người mẫu</option></select></div>
+        </div>
+        <details><summary>Tùy chỉnh AI (nâng cao)</summary>
+          <div class="split" style="margin-top:14px"><div class="control"><label for="steps">Steps</label><select id="steps"><option value="20">Nhanh · 20 bước</option><option value="30" selected>Cân bằng · 30 bước</option><option value="40">Chi tiết · 40 bước</option></select></div><div class="control"><label for="seed">Seed</label><input id="seed" type="number" min="0" max="2147483647" value="42"/></div></div>
+          <div class="split" style="margin-top:12px"><div class="control"><label for="guidance">Guidance</label><input id="guidance" type="number" min="1" max="3" step="0.1" value="1.5"/></div><div class="control"><label for="maskless">Chế độ xử lý</label><select id="maskless"><option value="true">Maskless – ưu tiên tự nhiên</option><option value="false">Segmentation – thử khi áo cũ còn sót</option></select></div></div>
+          <label style="display:flex;gap:7px;align-items:center;margin-top:13px;font-size:13px"><input id="retry" type="checkbox"/> Tạo thêm ứng viên nếu có cảnh báo (chậm hơn)</label>
+        </details>
+        <div style="margin-top:20px"><button class="button" id="submit" style="width:100%">✨ Tạo ảnh thử đồ</button></div>
+        <p class="small">Ảnh sinh bởi AI có thể sai ở tay, tóc, dáng người hoặc họa tiết. Hãy kiểm tra trước khi sử dụng.</p>
+      </section>
+      <section class="card" aria-label="Kết quả thử đồ">
+        <div class="pills"><button type="button" id="tabResult" class="pill active">Ảnh kết quả</button><button type="button" id="tabCompare" class="pill">So sánh trước / sau</button></div>
+        <div class="preview"><div id="placeholder" class="preview-placeholder"><span style="font-size:56px">🪄</span><b>Kết quả sẽ hiển thị ở đây</b>Chọn hai ảnh và nhấn “Tạo ảnh thử đồ”.</div><img id="result" alt="Ảnh kết quả thử đồ" hidden/><img id="comparison" alt="Ảnh so sánh trước sau" hidden/></div>
+        <div class="under"><div id="renderInfo" class="small">Sẵn sàng thử đồ</div><a id="download" class="button secondary" download="smartfit-tryon.png" hidden>Tải PNG</a></div>
+        <div style="margin-top:16px" id="status" class="status" role="status" aria-live="polite">Chưa có yêu cầu.</div>
+        <p id="warnings" class="toast"></p>
+        <div class="small">Chạy trên PC có GPU. Khi server trên máy tắt, tính năng tạo ảnh sẽ tạm ngưng.</div>
+      </section>
+    </div>
+  </main>
+  <script>
+    // Web demo is SAME-ORIGIN with FastAPI. Do not place private API keys in frontend code.
+    const $ = (id) => document.getElementById(id);
+    let personFile = null, garmentFile = null, personUrl = null, garmentUrl = null;
+    let currentJob = null, liveStream = null, pollAbort = false, resultUrl = null;
+    const sleep = (t) => new Promise(resolve => setTimeout(resolve, t));
+    function status(text, kind = ''){$('status').textContent = text; $('status').className = 'status '+kind;}
+    function fileOk(f){return f && ['image/png','image/jpeg','image/webp'].includes(f.type) && f.size <= 20 * 1024 * 1024;}
+    function preview(role, file){
+      if(!fileOk(file)){status('Ảnh phải là JPG/PNG/WEBP và không quá 20 MB.','error');return;}
+      const previous=role==='person'?personUrl:garmentUrl;
+      if(previous) URL.revokeObjectURL(previous);
+      const url=URL.createObjectURL(file);
+      if(role==='person'){personFile=file;personUrl=url;}else{garmentFile=file;garmentUrl=url;}
+      $(role+'View').src=url;$(role+'View').hidden=false;$(role+'Prompt').hidden=true;
+      status('Đã tải ảnh. Sẵn sàng thử đồ.');
+    }
+    ['person','garment'].forEach(role=>{
+      $(role).addEventListener('change', e=>{if(e.target.files?.[0])preview(role,e.target.files[0]);});
+      const drop=$(role+'Drop');
+      ['dragenter','dragover'].forEach(type=>drop.addEventListener(type,e=>{e.preventDefault();drop.classList.add('drag');}));
+      ['dragleave','drop'].forEach(type=>drop.addEventListener(type,e=>{e.preventDefault();drop.classList.remove('drag');}));
+      drop.addEventListener('drop',e=>{if(e.dataTransfer?.files?.[0])preview(role,e.dataTransfer.files[0]);});
+    });
+    async function stopCamera(){if(liveStream){liveStream.getTracks().forEach(t=>t.stop()); liveStream=null;}$('video').hidden=true;$('cancelCam').hidden=true;$('camera').textContent='📷 Chụp từ webcam';}
+    $('camera').onclick=async()=>{
+      if(liveStream){
+        const video=$('video'),canvas=document.createElement('canvas');canvas.width=video.videoWidth;canvas.height=video.videoHeight;
+        canvas.getContext('2d').drawImage(video,0,0);
+        canvas.toBlob(blob=>{if(blob)preview('person',new File([blob],'webcam.jpg',{type:'image/jpeg'}));},'image/jpeg',0.93);
+        await stopCamera();return;
+      }
+      try{liveStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false});$('video').srcObject=liveStream;$('video').hidden=false;$('cancelCam').hidden=false;$('camera').textContent='📸 Chụp ảnh';}
+      catch(e){status('Không mở được webcam. Hãy cấp quyền camera và dùng localhost hoặc HTTPS.','error');}
+    };
+    $('cancelCam').onclick=stopCamera;
+    function toggleCompare(mode){$('tabResult').classList.toggle('active',mode==='result');$('tabCompare').classList.toggle('active',mode==='compare');$('result').hidden=mode!=='result'||!resultUrl;$('comparison').hidden=mode!=='compare'||!resultUrl;}
+    $('tabResult').onclick=()=>toggleCompare('result');$('tabCompare').onclick=()=>toggleCompare('compare');
+    async function parseResponse(r){let data=await r.json().catch(()=>({}));if(!r.ok)throw Error(typeof data.detail==='string'?data.detail:'Máy chủ báo lỗi '+r.status);return data;}
+    $('submit').onclick=async()=>{
+      if(!personFile||!garmentFile){status('Bạn cần chọn cả ảnh người và trang phục.','error');return;}
+      if(currentJob){status('Một yêu cầu đang xử lý, hãy xem kết quả trước khi gửi tiếp.');return;}
+      $('submit').disabled=true;pollAbort=false;$('download').hidden=true;resultUrl=null;$('result').hidden=true;$('comparison').hidden=true;$('placeholder').hidden=false;$('warnings').textContent='';
+      const form=new FormData();form.append('person',personFile);form.append('garment',garmentFile);
+      for(const [a,b] of [['category','category'],['photo_type','photoType'],['steps','steps'],['guidance','guidance'],['seed','seed'],['segmentation_free','maskless']])form.append(a,$(b).value);
+      form.append('retry_if_flagged',$('retry').checked?'true':'false');
+      try{
+        status('Đang tải ảnh lên SmartFit...');
+        let response=await parseResponse(await fetch('/api/v1/jobs',{method:'POST',body:form}));currentJob=response.job_id;
+        while(!pollAbort){
+          let state=await parseResponse(await fetch(`/api/v1/jobs/${currentJob}`,{cache:'no-store'}));
+          if(state.status==='failed')throw Error(state.error||'Tạo ảnh không thành công');
+          if(state.status==='completed'){
+            const info=state.result;
+            // The browser must use same-origin image URLs. For a hosted web, use the server proxy routes.
+            $('result').src=info.image_url;$('comparison').src=info.comparison_url;
+            $('download').href=info.image_url;$('download').hidden=false;
+            $('placeholder').hidden=true;resultUrl=info.image_url;toggleCompare('result');
+            $('renderInfo').textContent=`Đã tạo · ${info.seconds}s · seed ${info.seed}`;
+            const warning=[...(info.quality?.warnings||[]),...(info.quality?.input_warnings?.person||[]),...(info.quality?.input_warnings?.garment||[])];
+            $('warnings').textContent=warning.length?'Lưu ý: '+warning.join(' · '):'Đã tạo ảnh. Bạn vẫn nên kiểm tra các chi tiết tay, cổ và hoa văn.';
+            status('Hoàn tất. Bạn có thể xem so sánh hoặc tải ảnh PNG.','done');break;
+          }
+          status(`${state.status==='queued'?'Đang chờ GPU':'Đang tạo ảnh'} · ${state.stage}`);
+          await sleep(1800);
+        }
+      }catch(e){status('Không thể tạo ảnh: '+e.message,'error');}
+      finally{currentJob=null;$('submit').disabled=false;}
+    };
+  </script>
+</body>
+</html>

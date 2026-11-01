@@ -13,6 +13,9 @@ dist
 dist-ssr
 *.local
 *test_credentials*
+*demo_credentials*
+data/*.local
+backend/data/*.local
 
 # Environment variables & API keys
 .env

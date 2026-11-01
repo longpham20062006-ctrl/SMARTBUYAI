@@ -152,8 +152,9 @@ export const LoginPage: React.FC = () => {
       }
 
       // TRẠNG THÁI 2: ĐĂNG NHẬP CUSTOMER
-      // Xóa cờ intro_seen của phiên cũ để kích hoạt Intro 3D cho phiên đăng nhập mới
+      // Kích hoạt cờ sb_play_intro để chạy Intro 3D duy nhất ngay sau khi đăng nhập thành công
       try {
+        sessionStorage.setItem('sb_play_intro', '1');
         sessionStorage.removeItem('sb_intro_seen');
       } catch {
         // ignore
@@ -300,6 +301,14 @@ export const LoginPage: React.FC = () => {
               Trải nghiệm thời trang thông minh với AI Stylist, Virtual Try-On và trung tâm quản trị.
             </p>
           </div>
+
+          {/* Thông báo thân thiện khi khách được yêu cầu đăng nhập */}
+          {redirectUrl && (
+            <div className="mt-4 p-3 rounded-2xl bg-purple-950/40 border border-[#8B5CF6]/50 text-purple-200 text-xs flex items-center gap-2.5 animate-fade-in shadow-xs">
+              <Sparkles className="w-4 h-4 shrink-0 text-[#22D3EE]" />
+              <span className="font-semibold text-white">Vui lòng đăng nhập để tiếp tục mua sắm.</span>
+            </div>
+          )}
 
           {/* Server Error Alert (Giữ nguyên data-testid cho kiểm thử tự động) */}
           {serverError && (

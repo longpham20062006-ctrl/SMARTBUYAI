@@ -1,0 +1,23 @@
+SMARTBUY AI - THU DO ONLINE TU SAN PHAM CO SAN
+============================================
+
+Khach hang:
+  1. Vao trang san pham tren website SMARTBUY AI.
+  2. Bam "Thu do online".
+  3. Tai anh ban than hoac chup webcam. Khong can tai anh ao.
+  4. Bam "Thu do ngay". Cho PC tao anh va xem ket qua.
+
+CHAY DEMO PC GPU + LAPTOP:
+  PC: giai nen thu muc gpu-server-FASHN-8GB, chay INSTALL.bat,
+      DOWNLOAD_MODELS.bat, START_PC_LAPTOP.bat (neu da cai model thi bo qua cai).
+      PC phai luon bat va online neu dung Tailscale.
+  Laptop: copy .env.smartfit.example thanh .env.local, sua IP PC va key.
+      Chay START_LAPTOP_WEB.bat. Mo http://localhost:5173.
+
+Kiem tra ket noi truoc: http://localhost:5173/api/smartfit/health
+Can CUDA=true va PC GPU da san sang.
+
+HUONG DAN DAY DU (TIENG VIET): SMARTFIT_WEB_PRODUCT_TRYON.md
+
+Luu y: Ban chi chay trong LAN/Tailscale, khong mo cong GPU API cong khai.
+Anh khach duoc luu tren PC trong lich su AI. Ban demo can thuc hien xoa du lieu sau buoi thu.

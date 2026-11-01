@@ -1,9 +1,13 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import { fileURLToPath, URL } from 'node:url'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  const environment = loadEnv(mode, process.cwd(), '')
+  const smartfitTarget = environment.SMARTFIT_BACKEND_URL || 'http://127.0.0.1:7860'
+  const smartfitKey = environment.SMARTFIT_API_KEY || ''
+  return {
   plugins: [react()],
   define: {
     'process.env': {},
@@ -15,14 +19,24 @@ export default defineConfig({
     },
   },
   server: {
-    host: '0.0.0.0', // Cho phép điện thoại, laptop khác trong mạng LAN truy cập (192.168.1.139)
+    host: '127.0.0.1', // Laptop demo: localhost để webcam hoạt động và tránh công khai API proxy
     port: 5173,
     strictPort: false,
-    allowedHosts: true,
+    allowedHosts: ['localhost'],
     watch: {
       ignored: ['**/ai-server/**', '**/.venv/**', '**/backend/**', '**/target/**', '**/data/**'],
     },
     proxy: {
+      '/api/smartfit': {
+        target: smartfitTarget,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/smartfit/, '/api/v1'),
+        configure(proxy) {
+          proxy.on('proxyReq', (proxyReq) => {
+            if (smartfitKey) proxyReq.setHeader('X-SmartFit-Key', smartfitKey)
+          })
+        },
+      },
       // Chuyển tiếp các yêu cầu REST API đến Java Spring Boot Backend (Port 8080)
       '/api/v1': {
         target: 'http://127.0.0.1:8080',
@@ -64,4 +78,4 @@ export default defineConfig({
       },
     },
   },
-})
+}})

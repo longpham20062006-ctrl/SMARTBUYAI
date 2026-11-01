@@ -56,6 +56,7 @@ public class DataSeederService implements CommandLineRunner {
     public void run(String... args) {
         seedUsers();
         bootstrapTestAccounts();
+        bootstrapDemoAccounts();
         seedCategories();
         seedProducts();
     }
@@ -175,6 +176,115 @@ public class DataSeederService implements CommandLineRunner {
             );
             userRepository.save(adminTest);
             log.info("Đã khởi tạo an toàn tài khoản thử nghiệm quản trị: {}", adminEmail);
+        }
+    }
+
+    private void bootstrapDemoAccounts() {
+        // Chỉ chạy ở môi trường DEVELOPMENT / TEST, tuyệt đối không chạy ở production
+        if (environment != null && environment.getActiveProfiles() != null) {
+            for (String profile : environment.getActiveProfiles()) {
+                if ("prod".equalsIgnoreCase(profile) || "production".equalsIgnoreCase(profile)) {
+                    log.info("Môi trường Production: Bỏ qua tạo tài khoản demo.");
+                    return;
+                }
+            }
+        }
+
+        String adminEmail = "admin.demo@smartbuy.local";
+        String customerEmail = "customer.demo@smartbuy.local";
+
+        boolean adminExists = userRepository.findByEmail(adminEmail).isPresent();
+        boolean customerExists = userRepository.findByEmail(customerEmail).isPresent();
+
+        if (adminExists && customerExists) {
+            log.info("Hai tài khoản demo (admin.demo@smartbuy.local & customer.demo@smartbuy.local) đã sẵn sàng trong Database.");
+            return;
+        }
+
+        // Tệp lưu trữ thông tin đăng nhập demo phát triển cục bộ (tuyệt đối không commit vào git)
+        File[] candidateFiles = new File[] {
+                new File("data/demo_credentials.local"),
+                new File("backend/data/demo_credentials.local")
+        };
+
+        Properties props = new Properties();
+        for (File f : candidateFiles) {
+            if (f.exists()) {
+                try (InputStream is = new FileInputStream(f)) {
+                    props.load(is);
+                    break;
+                } catch (Exception e) {
+                    log.warn("Không thể đọc tệp credentials từ {}: {}", f.getPath(), e.getMessage());
+                }
+            }
+        }
+
+        String adminPass = System.getenv("SMARTBUY_ADMIN_DEMO_PASSWORD");
+        if (adminPass == null || adminPass.isBlank()) {
+            adminPass = props.getProperty("ADMIN_DEMO_PASSWORD");
+        }
+        if (adminPass == null || adminPass.isBlank()) {
+            adminPass = generateSecurePassword(18);
+            props.setProperty("ADMIN_DEMO_PASSWORD", adminPass);
+        }
+
+        String customerPass = System.getenv("SMARTBUY_CUSTOMER_DEMO_PASSWORD");
+        if (customerPass == null || customerPass.isBlank()) {
+            customerPass = props.getProperty("CUSTOMER_DEMO_PASSWORD");
+        }
+        if (customerPass == null || customerPass.isBlank()) {
+            customerPass = generateSecurePassword(16);
+            props.setProperty("CUSTOMER_DEMO_PASSWORD", customerPass);
+        }
+
+        if (adminPass.equals(customerPass)) {
+            customerPass = generateSecurePassword(16);
+            props.setProperty("CUSTOMER_DEMO_PASSWORD", customerPass);
+        }
+
+        props.setProperty("ADMIN_DEMO_EMAIL", adminEmail);
+        props.setProperty("ADMIN_DEMO_ROLE", "ADMIN");
+        props.setProperty("CUSTOMER_DEMO_EMAIL", customerEmail);
+        props.setProperty("CUSTOMER_DEMO_ROLE", "CUSTOMER");
+
+        // Ghi tệp demo_credentials.local an toàn
+        for (File f : candidateFiles) {
+            try {
+                if (f.getParentFile() != null && !f.getParentFile().exists()) {
+                    f.getParentFile().mkdirs();
+                }
+                try (OutputStream os = new FileOutputStream(f)) {
+                    props.store(os, "SMARTBUY AI - DEVELOPMENT DEMO ACCOUNTS (CONFIDENTIAL - DO NOT COMMIT TO GIT)");
+                }
+            } catch (Exception e) {
+                log.warn("Không thể lưu file credentials tại {}: {}", f.getPath(), e.getMessage());
+            }
+        }
+
+        if (!adminExists) {
+            UserEntity adminDemo = new UserEntity(
+                    "user-admin-demo",
+                    adminEmail,
+                    passwordEncoder.encode(adminPass),
+                    "Quản Trị Viên Demo SMARTBUY",
+                    "0909000111",
+                    "ADMIN"
+            );
+            userRepository.save(adminDemo);
+            log.info("Đã khởi tạo thành công tài khoản ADMIN Demo: {}", adminEmail);
+        }
+
+        if (!customerExists) {
+            UserEntity customerDemo = new UserEntity(
+                    "user-customer-demo",
+                    customerEmail,
+                    passwordEncoder.encode(customerPass),
+                    "Khách Hàng Demo SMARTBUY",
+                    "0909000222",
+                    "CUSTOMER"
+            );
+            userRepository.save(customerDemo);
+            log.info("Đã khởi tạo thành công tài khoản CUSTOMER Demo: {}", customerEmail);
         }
     }
 

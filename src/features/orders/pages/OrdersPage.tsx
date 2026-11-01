@@ -5,6 +5,7 @@ import { OrderStatus } from '@/types';
 import { formatPrice, formatDate } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { BackButton } from '@/components/common/BackButton';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 import { ClipboardList, ArrowRight } from 'lucide-react';
 
@@ -44,13 +45,17 @@ export const OrdersPage: React.FC = () => {
 
   return (
     <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
-      {/* Title */}
-      <div>
-        <div className="flex items-center gap-2 text-xs text-brand-muted mb-2">
+      {/* Top Bar with Back Button & Breadcrumbs */}
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <BackButton fallbackPath="/shop" label="Quay lại" />
+        <div className="flex items-center gap-2 text-xs text-brand-muted">
           <Link to="/" className="hover:text-brand-charcoal">Trang chủ</Link>
           <span>/</span>
           <span className="text-brand-charcoal font-medium">Lịch sử đơn hàng</span>
         </div>
+      </div>
+
+      <div>
         <h1 className="font-editorial text-3xl font-semibold text-brand-charcoal">
           Đơn hàng của bạn
         </h1>

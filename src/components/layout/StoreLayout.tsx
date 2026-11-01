@@ -6,6 +6,7 @@ import { QuickViewModal } from '@/components/common/QuickViewModal';
 import { ScrollToTop } from '@/components/common/ScrollToTop';
 import { BackToTopButton } from '@/components/common/BackToTopButton';
 import { FloatingAIStylist } from '@/components/common/FloatingAIStylist';
+import { SizeGuideModal } from '@/components/common/SizeGuideModal';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import { Product } from '@/types';
 import { ArrowRightLeft, X } from 'lucide-react';
@@ -76,8 +77,11 @@ export const StoreLayout: React.FC = () => {
       <SiteFooter />
       <BackToTopButton />
 
-      {/* Trợ lý AI Fashion Sales Assistant (Master Prompt V20) */}
+      {/* Chatbot AI Stylist — Trợ lý thời trang trực tuyến tương tác thông minh cho mọi khách hàng */}
       <FloatingAIStylist />
+
+      {/* Global Size Guide Modal — Tra cứu bảng size chuẩn Gen Z */}
+      <SizeGuideModal />
 
       {/* Global Quick View Modal — Customer Only */}
       {currentUser && (

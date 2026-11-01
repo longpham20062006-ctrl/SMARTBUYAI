@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/components/ui/toast';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 import { formatPrice, formatDate } from '@/lib/utils';
+import { BackButton } from '@/components/common/BackButton';
 import {
   User as UserIcon,
   MapPin,
@@ -78,17 +79,17 @@ export const AccountPage: React.FC = () => {
     currentUser?.savedAddresses && currentUser.savedAddresses.length > 0
       ? currentUser.savedAddresses
       : [
-          {
-            fullName: currentUser?.name || 'Khách hàng',
-            phone: currentUser?.phone || '0901234567',
-            email: currentUser?.email || 'khachhang@smartbuy.vn',
-            province: 'Thành phố Hồ Chí Minh',
-            district: 'Quận 1',
-            ward: 'Phường Bến Nghé',
-            street: 'Số 45 Đường Lê Duẩn, Căn hộ 12B',
-            note: 'Giao giờ hành chính',
-          },
-        ]
+        {
+          fullName: currentUser?.name || 'Khách hàng',
+          phone: currentUser?.phone || '0901234567',
+          email: currentUser?.email || 'khachhang@smartbuy.vn',
+          province: 'Thành phố Hồ Chí Minh',
+          district: 'Quận 1',
+          ward: 'Phường Bến Nghé',
+          street: 'Số 45 Đường Lê Duẩn, Căn hộ 12B',
+          note: 'Giao giờ hành chính',
+        },
+      ]
   );
 
   const [isAddingAddress, setIsAddingAddress] = useState(false);
@@ -255,7 +256,17 @@ export const AccountPage: React.FC = () => {
   }
 
   return (
-    <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-8">
+    <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
+      {/* Top Header Row with Back Button */}
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <BackButton fallbackPath="/shop" label="Quay lại" />
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs uppercase tracking-wider text-[#71717A]">
+          <Link to="/" className="hover:text-[#18181B]">Trang chủ</Link>
+          <span>/</span>
+          <span className="text-[#18181B] font-bold">Tài khoản</span>
+        </nav>
+      </div>
+
       {/* 1. TOP MEMBER HERO BANNER */}
       <div className="p-6 sm:p-8 rounded-3xl bg-zinc-950 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xl relative overflow-hidden">
         <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-[#8B5CF6]/20 to-transparent pointer-events-none" />
@@ -325,11 +336,10 @@ export const AccountPage: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as TabType)}
-                className={`w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-xs font-semibold transition-all cursor-pointer ${
-                  isActive
+                className={`w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-xs font-semibold transition-all cursor-pointer ${isActive
                     ? 'bg-[#18181B] text-white shadow-xs font-bold'
                     : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5]'
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-3">
                   <Icon className={`w-4 h-4 ${isActive ? 'text-[#8B5CF6]' : 'text-[#71717A]'}`} />
@@ -737,11 +747,10 @@ export const AccountPage: React.FC = () => {
                         ].map((s) => (
                           <div key={s.step} className="flex flex-col items-center space-y-2">
                             <div
-                              className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-colors ${
-                                s.active
+                              className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-colors ${s.active
                                   ? 'bg-[#8B5CF6] text-white shadow-xs'
                                   : 'bg-[#E4E4E7] text-[#71717A]'
-                              }`}
+                                }`}
                             >
                               {s.step}
                             </div>
@@ -1013,11 +1022,10 @@ export const AccountPage: React.FC = () => {
                           key={size}
                           type="button"
                           onClick={() => toggleSize(size)}
-                          className={`w-12 h-10 rounded-xl flex items-center justify-center text-xs font-bold transition-all cursor-pointer ${
-                            isSelected
+                          className={`w-12 h-10 rounded-xl flex items-center justify-center text-xs font-bold transition-all cursor-pointer ${isSelected
                               ? 'bg-[#18181B] text-white shadow-xs'
                               : 'bg-[#FAFAF8] text-[#71717A] border border-[#E4E4E7] hover:border-zinc-400'
-                          }`}
+                            }`}
                         >
                           {size}
                         </button>
@@ -1037,11 +1045,10 @@ export const AccountPage: React.FC = () => {
                           key={st}
                           type="button"
                           onClick={() => toggleStyle(st)}
-                          className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                            isSelected
+                          className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${isSelected
                               ? 'bg-[#8B5CF6] text-white shadow-xs font-bold'
                               : 'bg-[#FAFAF8] text-[#71717A] border border-[#E4E4E7] hover:border-zinc-400'
-                          }`}
+                            }`}
                         >
                           {st}
                         </button>

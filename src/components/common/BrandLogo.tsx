@@ -136,10 +136,18 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     );
   };
 
+  const handleClick = (e: React.MouseEvent) => {
+    if (href === '/' && typeof window !== 'undefined' && window.location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   if (href) {
     return (
       <Link
         to={href}
+        onClick={handleClick}
         className="inline-flex items-center select-none group focus:outline-hidden"
         aria-label="SMARTBUY AI - Trang chủ"
       >

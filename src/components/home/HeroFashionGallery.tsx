@@ -23,29 +23,29 @@ export const HERO_GALLERY_IMAGES: HeroGalleryItem[] = [
   },
   {
     id: 'look-2',
-    src: '/images/anh_trangchu/anh_1.png',
-    alt: 'SMARTBUY AI Korean Minimalist Layered Shirt',
+    src: '/images/anh_trangchu/3b35766f-f734-4c5a-9990-3223433700dd.png',
+    alt: 'SMARTBUY AI Urban Streetwear Casual Look',
     badge: 'GEN Z STREETWEAR LOOK 02',
-    title: 'MINIMALIST LAYERED SHIRT',
-    desc: 'Sơ mi phối màu pastel • Tinh tế thanh lịch chuẩn Hàn',
+    title: 'URBAN STREETWEAR CASUAL',
+    desc: 'Áo sơ mi đen tối giản • Quần ống suông loang màu',
     objectPosition: 'center 20%',
   },
   {
     id: 'look-3',
-    src: '/images/anh_trangchu/anh_2.png',
-    alt: 'SMARTBUY AI Cyberpunk Night Streetwear Look',
-    badge: 'GEN Z STREETWEAR LOOK 03',
-    title: 'CYBERPUNK NIGHT OUTLOOK',
-    desc: 'Phối cravat & quần hai màu • Nổi bật ánh đèn thành phố',
-    objectPosition: 'center 15%',
+    src: '/images/anh_trangchu/421e2c20-a146-443d-b809-4ab18442b461.png',
+    alt: 'SMARTBUY AI Cyberpunk Corset Dress Look',
+    badge: 'GEN Z FASHION LOOK 03',
+    title: 'CYBERPUNK CORSET DRESS',
+    desc: 'Đầm corset đính phụ kiện • Phối voan đen cá tính dạo phố',
+    objectPosition: 'center 20%',
   },
   {
     id: 'look-4',
-    src: '/images/anh_trangchu/anh_3.png',
-    alt: 'SMARTBUY AI Vintage Acid Wash Hoodie',
-    badge: 'GEN Z STREETWEAR LOOK 04',
-    title: 'VINTAGE WASH ACID HOODIE',
-    desc: 'Chất nỉ bông xử lý wash • Quần túi hộp đậm chất bụi bặm',
+    src: '/images/anh_trangchu/68818615-3bdd-4a63-bf3f-cc3bb5bde4aa.png',
+    alt: 'SMARTBUY AI Elegant Tutu Cocktail Dress',
+    badge: 'GEN Z FASHION LOOK 04',
+    title: 'TUTU COCKTAIL DRESS',
+    desc: 'Đầm xòe phối corset pastel • Tôn vóc dáng kiêu kỳ',
     objectPosition: 'center 20%',
   },
 ];
@@ -159,11 +159,10 @@ export const HeroFashionGallery: React.FC = () => {
             src={img.src}
             alt={img.alt}
             style={{ objectPosition: img.objectPosition }}
-            className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out ${
-              isActive
+            className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out ${isActive
                 ? `opacity-100 ${prefersReducedMotion ? 'scale-100' : 'scale-103'} z-10`
                 : 'opacity-0 scale-100 z-0 pointer-events-none'
-            }`}
+              }`}
             loading={idx === 0 ? 'eager' : 'lazy'}
           />
         );
@@ -212,11 +211,10 @@ export const HeroFashionGallery: React.FC = () => {
               key={dotIdx}
               type="button"
               onClick={(e) => goToIndex(dotIdx, e)}
-              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                dotIdx === currentIndex
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${dotIdx === currentIndex
                   ? 'w-7 bg-[#18F4FC] shadow-[0_0_8px_rgba(24,244,252,0.6)]'
                   : 'w-2 bg-white/35 hover:bg-white/70'
-              }`}
+                }`}
               aria-label={`Chuyển đến ảnh ${dotIdx + 1}`}
             />
           ))}
