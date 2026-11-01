@@ -76,8 +76,8 @@ export const StoreLayout: React.FC = () => {
       <SiteFooter />
       <BackToTopButton />
 
-      {/* Các tiện ích mua sắm tương tác CHỈ HIỂN THỊ KHI ĐÃ ĐĂNG NHẬP (CUSTOMER / ADMIN) */}
-      {currentUser && <FloatingAIStylist />}
+      {/* Trợ lý AI Fashion Sales Assistant (Master Prompt V20) */}
+      <FloatingAIStylist />
 
       {/* Global Quick View Modal — Customer Only */}
       {currentUser && (

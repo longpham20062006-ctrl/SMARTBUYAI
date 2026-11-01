@@ -23,21 +23,28 @@ export const AIStylistPage: React.FC = () => {
     {
       id: 'welcome',
       sender: 'stylist',
-      text: 'Yo! Chào bạn! Tôi là SMARTBUY AI Stylist — chuyên gia định hình Outfit Streetwear & Y2K theo ngân sách sinh viên. Bạn đang cần phối set đi đâu, ngân sách khoảng bao nhiêu (ví dụ: "Có 400k phối đồ nam streetwear đi chơi", "Set Y2K nữ dưới 350k")?',
+      text: 'Dạ em chào anh/chị! Em là trợ lý tư vấn thời trang của SMARTBUY AI ạ. Em có thể hỗ trợ anh/chị định hình phong cách, tìm trang phục Nam/Nữ, tư vấn phối set đồ đi chơi hoặc chọn size chuẩn theo vóc dáng. Anh/chị cần em hỗ trợ gì trước ạ?',
       timestamp: 'Vừa xong',
       quickReplies: [
-        'Tôi có 400.000đ, muốn phối đồ streetwear nam đi chơi',
-        'Phối set Y2K nữ xinh xắn dưới 350.000đ',
-        'Outfit Korean Casual đi học thanh lịch 500k',
-        'Tìm áo thun graphic dưới 199k',
+        'Tư vấn phối đồ đi chơi cá tính',
+        'Tìm áo nam dưới 300k',
+        'Gợi ý váy nữ đi tiệc Y2K',
+        'Tư vấn chọn size theo chiều cao cân nặng',
       ],
     },
   ]);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  // Cuộn NỘI BỘ vùng danh sách tin nhắn, tuyệt đối KHÔNG gọi window.scrollTo hoặc scrollIntoView làm nhảy toàn trang
+  const scrollToBottom = (behavior: ScrollBehavior = 'smooth') => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTo({
+        top: messagesContainerRef.current.scrollHeight,
+        behavior,
+      });
+    }
   };
 
   const handleSendMessage = useCallback(async (text: string) => {
@@ -64,8 +71,18 @@ export const AIStylistPage: React.FC = () => {
     }
   }, [isLoading]);
 
+  // Khởi tạo trang luôn ở đỉnh đầu viewport
   useEffect(() => {
-    scrollToBottom();
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
+
+  useEffect(() => {
+    // Không tự cuộn khi vừa mở trang để người dùng nhìn thấy tiêu đề và nội dung trên cùng
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    scrollToBottom('smooth');
   }, [messages, isLoading]);
 
   const initialPromptProcessed = useRef(false);
@@ -106,9 +123,13 @@ export const AIStylistPage: React.FC = () => {
         </div>
 
         {/* Khung chat */}
-        <div className="bg-brand-surface rounded-2xl border border-brand-border shadow-xs flex flex-col min-h-[580px] overflow-hidden">
-          {/* Messages list */}
-          <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-6 bg-brand-subtle/40">
+        <div className="bg-brand-surface rounded-2xl border border-brand-border shadow-xs flex flex-col h-[650px] max-h-[75vh] overflow-hidden">
+          {/* Messages list - Vùng cuộn NỘI BỘ, cách biệt với cuộn toàn trang */}
+          <div
+            ref={messagesContainerRef}
+            data-testid="ai-stylist-chat-container"
+            className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-6 bg-brand-subtle/40 scrollbar-thin"
+          >
             {messages.map((msg) => (
               <div
                 key={msg.id}
@@ -243,8 +264,6 @@ export const AIStylistPage: React.FC = () => {
                 </div>
               </div>
             )}
-
-            <div ref={messagesEndRef} />
           </div>
 
           {/* Input box */}

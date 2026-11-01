@@ -45,15 +45,11 @@ export function ScrollToTop() {
   const { pathname, search, key } = useLocation();
   const navigationType = useNavigationType();
   const prevPathRef = useRef<string>(pathname);
-  const prevSearchRef = useRef<string>(search);
 
   // Synchronous layout effect before paint
   useLayoutEffect(() => {
     const pathChanged = prevPathRef.current !== pathname;
-    const searchChanged = prevSearchRef.current !== search;
-
     prevPathRef.current = pathname;
-    prevSearchRef.current = search;
 
     // Check if test parameter ?scrollTo= is present
     const searchParams = new URLSearchParams(search);
@@ -61,19 +57,31 @@ export function ScrollToTop() {
       return;
     }
 
-    if (pathChanged || searchChanged) {
+    // Khi người dùng bấm nút Back hoặc Forward (POP), bảo tồn vị trí lịch sử trình duyệt
+    if (navigationType === 'POP') {
+      return;
+    }
+
+    // CHỈ cuộn lên đầu trang khi ĐIỀU HƯỚNG ROUTE MỚI (PUSH hoặc REPLACE).
+    // Tuyệt đối không tự cuộn toàn trang khi chỉ thay đổi query param (chọn màu, size, sort, filter...)
+    if (pathChanged) {
       resetGlobalScroll();
     }
-  }, [pathname, search, key, navigationType]);
+  }, [pathname, key, navigationType, search]);
 
-  // Secondary effect to prevent any late asynchronous layout pushes
+  // Secondary effect to prevent any late asynchronous layout pushes after lazy chunks resolve
   useEffect(() => {
     const searchParams = new URLSearchParams(search);
     if (searchParams.has('scrollTo')) {
       return;
     }
+    if (navigationType === 'POP') {
+      return;
+    }
+
+    // Đảm bảo cuộn về đầu khi route mới được nạp
     resetGlobalScroll();
-  }, [pathname, search]);
+  }, [pathname, navigationType]);
 
   return null;
 }

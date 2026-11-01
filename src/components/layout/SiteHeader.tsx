@@ -109,10 +109,11 @@ export const SiteHeader: React.FC = () => {
   const isHomePage = currentPath === '/';
 
   // Xác định chính xác duy nhất 1 tab active theo route thực tế:
-  const getActiveTab = (): 'home' | 'nam' | 'nu' | 'unisex' | 'phu-kien' | 'collections' | 'trending' | 'about' | 'size-guide' | 'try-on' | null => {
+  const getActiveTab = (): 'home' | 'nam' | 'nu' | 'unisex' | 'phu-kien' | 'collections' | 'trending' | 'about' | 'size-guide' | 'try-on' | 'ai-stylist' | null => {
     if (currentPath === '/') return 'home';
     if (currentPath === '/about') return 'about';
     if (currentPath === '/size-guide') return 'size-guide';
+    if (currentPath === '/ai-stylist') return 'ai-stylist';
     if (currentPath === '/try-on' || currentPath.startsWith('/virtual-try-on')) return 'try-on';
     if (currentPath.startsWith('/collections')) return 'collections';
     if (currentPath.startsWith('/products')) {
@@ -464,16 +465,16 @@ export const SiteHeader: React.FC = () => {
                 <Link to="/" className={getTabClass(activeTab === 'home')}>
                   Trang chủ
                 </Link>
-                <Link to="/products?gender=nam" className={getTabClass(activeTab === 'nam')}>
+                <Link to={`${currentPath.startsWith('/shop') ? '/shop' : '/products'}?gender=nam`} className={getTabClass(activeTab === 'nam')}>
                   Nam
                 </Link>
-                <Link to="/products?gender=nu" className={getTabClass(activeTab === 'nu')}>
+                <Link to={`${currentPath.startsWith('/shop') ? '/shop' : '/products'}?gender=nu`} className={getTabClass(activeTab === 'nu')}>
                   Nữ
                 </Link>
-                <Link to="/products?gender=unisex" className={getTabClass(activeTab === 'unisex')}>
+                <Link to={`${currentPath.startsWith('/shop') ? '/shop' : '/products'}?gender=unisex`} className={getTabClass(activeTab === 'unisex')}>
                   Unisex
                 </Link>
-                <Link to="/products?category=phu-kien" className={getTabClass(activeTab === 'phu-kien')}>
+                <Link to={`${currentPath.startsWith('/shop') ? '/shop' : '/products'}?category=phu-kien`} className={getTabClass(activeTab === 'phu-kien')}>
                   Phụ kiện
                 </Link>
 
@@ -552,6 +553,18 @@ export const SiteHeader: React.FC = () => {
 
                 <Link to="/products?sort=newest" className={getTabClass(activeTab === 'trending')}>
                   Xu hướng
+                </Link>
+                <Link
+                  to="/ai-stylist"
+                  className={cn(
+                    'flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 select-none cursor-pointer',
+                    activeTab === 'ai-stylist'
+                      ? 'bg-[#8B5CF6] text-white shadow-xs'
+                      : 'bg-[#F3E8FF] text-[#7C3AED] hover:bg-[#8B5CF6] hover:text-white'
+                  )}
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>AI Stylist</span>
                 </Link>
                 <Link
                   to="/try-on"

@@ -46,6 +46,14 @@ export const AdminLayout: React.FC = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [pathname]);
 
+  // Secondary effect to guarantee top positioning after lazy chunks resolve
+  useEffect(() => {
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollTop = 0;
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+
   const handleConfirmReset = () => {
     MockRepo.resetAll();
     setShowResetConfirm(false);

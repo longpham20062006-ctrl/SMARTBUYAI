@@ -78,11 +78,11 @@ public class AiStylistService {
 
         String detectedText = !prompt.isEmpty() ? prompt : (isStreet ? "phong cách Gen Z Streetwear đường phố" : "phong cách Gen Z Streetwear hàng ngày");
         String explanation = String.format(
-                "Dựa trên yêu cầu của bạn (%s), SMARTBUY AI Stylist đề xuất %d sản phẩm hot trend giá học sinh sinh viên phù hợp nhất từ catalog chính hãng:",
+                "Dạ dựa trên yêu cầu của anh/chị (%s), em xin gợi ý %d mẫu thiết kế hot trend chuẩn gu từ kho hàng chính hãng của SMARTBUY AI ạ:",
                 detectedText, recommended.size()
         );
 
-        String advice = "💡 Tips phối đồ: Kết hợp phom áo Boxy / Oversized với quần ống suông để hack dáng tự nhiên. Đi kèm giày sneaker thể thao hoặc chunky slides để tạo điểm nhấn chuẩn gu đường phố.";
+        String advice = "💡 Tips phối đồ từ Stylist: Anh/chị có thể kết hợp phom áo Boxy / Oversized với quần ống suông để hack dáng tự nhiên và tạo phong cách đường phố tự do, phóng khoáng nhé ạ!";
 
         return new StylistResponse(explanation, advice, totalEstimated, recommended);
     }
