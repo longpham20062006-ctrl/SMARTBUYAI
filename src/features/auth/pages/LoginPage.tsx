@@ -114,6 +114,8 @@ export const LoginPage: React.FC = () => {
         };
 
         MockRepo.setCurrentUser(authenticatedUser);
+        // Đồng bộ toàn bộ giá bán và biến thể thật từ Backend cho phiên đăng nhập mới
+        await apiClient.syncWithBackend();
       } else {
         // 2. Fallback nếu backend đang ngoại tuyến: Xác thực theo Database Người Dùng Cục Bộ
         const localRes = MockRepo.login(trimmedEmail, password);

@@ -16,14 +16,14 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOriginPatterns(Arrays.asList(
-                "http://localhost:5173",
-                "http://127.0.0.1:5173",
-                "http://smartai.test",
-                "http://smartai.test:80",
-                "http://smartai.test:5173",
-                "http://smartbuyai.test:5173",
-                "http://localhost:3000",
-                "http://127.0.0.1:3000"
+                "http://localhost:*",
+                "http://127.0.0.1:*",
+                "http://192.168.*:*",
+                "http://10.*:*",
+                "http://172.*:*",
+                "http://smartai.test:*",
+                "http://smartbuyai.test:*",
+                "*"
         ));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With", "Accept", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"));

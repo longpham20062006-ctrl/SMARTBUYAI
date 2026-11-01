@@ -62,9 +62,9 @@ export class ErrorBoundary extends Component<Props, State> {
             </div>
 
             {/* Development error details (chỉ hiện khi có lỗi kỹ thuật) */}
-            {process.env.NODE_ENV !== 'production' && this.state.error && (
+            {Boolean(import.meta.env.DEV && this.state.error) && (
               <div className="text-left bg-[#F4F4F5] p-3 rounded-xl border border-[#E4E4E7] text-[11px] font-mono text-[#E11D48] overflow-x-auto max-h-32">
-                <p className="font-bold">{this.state.error.name}: {this.state.error.message}</p>
+                <p className="font-bold">{this.state.error?.name}: {this.state.error?.message}</p>
               </div>
             )}
 

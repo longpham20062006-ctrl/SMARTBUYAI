@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { router } from './app/router';
 import { ToastProvider } from './components/ui/toast';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
+import { PerformanceProvider } from './context/PerformanceContext';
 import { apiClient } from './services/apiClient';
 
 const queryClient = new QueryClient({
@@ -24,9 +25,11 @@ export function App() {
   return (
     <ErrorBoundary fallbackTitle="Đang khởi tạo SMARTBUY AI" fallbackMessage="Ứng dụng gặp sự cố khi tải. Bạn vui lòng tải lại trang.">
       <QueryClientProvider client={queryClient}>
-        <ToastProvider>
-          <RouterProvider router={router} />
-        </ToastProvider>
+        <PerformanceProvider>
+          <ToastProvider>
+            <RouterProvider router={router} />
+          </ToastProvider>
+        </PerformanceProvider>
       </QueryClientProvider>
     </ErrorBoundary>
   );

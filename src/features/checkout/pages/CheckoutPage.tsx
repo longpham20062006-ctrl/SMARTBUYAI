@@ -55,7 +55,7 @@ export const CheckoutPage: React.FC = () => {
     e.preventDefault();
     if (validateStep1()) {
       setStep(2);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
   };
 
@@ -130,7 +130,7 @@ export const CheckoutPage: React.FC = () => {
         setCreatedOrderNumber(res.order.orderNumber);
         setStep(3);
         success('Đặt hàng thành công!', `Mã đơn hàng của bạn: ${res.order.orderNumber}`);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       } else {
         error('Không thể hoàn tất đơn hàng', res.message);
       }

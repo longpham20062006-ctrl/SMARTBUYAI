@@ -3,20 +3,36 @@ import * as THREE from 'three';
 import { globalGalaxyTelemetry } from './GalaxyDebugPanel';
 
 /**
- * TẦNG 2 — CONTINUOUS AMBIENT GALAXY (NÂNG CẤP V2)
- * Hiệu ứng Three.js vũ trụ nền chuyển động liên tục, sinh động và có chiều sâu 3D trong khu vực Hero.
+ * Kiểm tra thiết bị có hỗ trợ WebGL hay không trước khi khởi tạo Three.js
+ */
+function checkWebGLSupport(): boolean {
+  try {
+    if (typeof window === 'undefined') return false;
+    const testCanvas = document.createElement('canvas');
+    const gl =
+      testCanvas.getContext('webgl2') ||
+      testCanvas.getContext('webgl') ||
+      testCanvas.getContext('experimental-webgl');
+    return Boolean(gl);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * TẦNG 2 — CONTINUOUS AMBIENT GALAXY (NÂNG CẤP TƯƠNG THÍCH MOBILE CAO CẤP)
+ * Hiệu ứng vũ trụ nền chuyển động liên tục, sinh động và có chiều sâu 3D trong khu vực Hero.
  * - Hạt sao sáng rõ hơn +35%, tâm phát sáng rực rỡ với Additive Radial Glow 64x64.
- * - Tốc độ di chuyển tăng +50% so với bản cũ, cảm giác bay nhẹ nhàng sống động theo thời gian thực (Delta-time).
  * - Phân tầng 2 nhóm hạt: Hạt tiền cảnh sáng to bay nhanh + Hạt nền trôi dạt sâu trong không gian.
- * - Tự động pause animation khi cuộn khỏi viewport để tiết kiệm 100% GPU.
- * - pointer-events: none bảo đảm 100% khả năng tương tác với nút CTA, link và văn bản.
+ * - Tương thích 100% với iOS Safari, Android WebKit, hỗ trợ fallback 2D Canvas mượt mà khi GPU yếu/không có WebGL.
+ * - Tự động pause animation khi cuộn khỏi viewport để tiết kiệm 100% pin & GPU trên điện thoại.
+ * - Sử dụng delta time chính xác thay cho THREE.Clock đã deprecated.
  */
 export const AmbientGalaxy: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    // 1. Cập nhật Telemetry
     globalGalaxyTelemetry.ambientMounted = true;
     globalGalaxyTelemetry.ambientActive = true;
 
@@ -35,8 +51,9 @@ export const AmbientGalaxy: React.FC = () => {
     const getWidth = () => container.clientWidth || window.innerWidth || 1280;
     const getHeight = () => container.clientHeight || 750;
 
-    // --- FALLBACK 2D CANVAS KHI WEBGL KHÔNG KHẢ DỤNG ---
+    // --- FALLBACK 2D CANVAS KHI WEBGL KHÔNG KHẢ DỤNG HOẶC MẤT CONTEXT ---
     const runCanvas2DFallback = () => {
+      globalGalaxyTelemetry.webglAvailable = false;
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
 
@@ -45,12 +62,12 @@ export const AmbientGalaxy: React.FC = () => {
       canvas.width = w;
       canvas.height = h;
 
-      const starCount = 200;
+      const starCount = window.innerWidth < 768 ? 120 : 200;
       const stars = Array.from({ length: starCount }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        size: Math.random() * 2.8 + 1.2,
-        speed: Math.random() * 0.7 + 0.25,
+        size: Math.random() * 2.4 + 1.0,
+        speed: Math.random() * 0.6 + 0.2,
         color: ['#FFFFFF', '#18F4FC', '#22D3EE', '#C084FC', '#8B5CF6'][Math.floor(Math.random() * 5)],
       }));
 
@@ -60,14 +77,15 @@ export const AmbientGalaxy: React.FC = () => {
         globalGalaxyTelemetry.ambientActive = true;
 
         ctx.clearRect(0, 0, w, h);
-        stars.forEach((s) => {
+        for (let i = 0; i < stars.length; i++) {
+          const s = stars[i];
           s.y -= s.speed;
           if (s.y < 0) s.y = h;
           ctx.fillStyle = s.color;
           ctx.beginPath();
           ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
           ctx.fill();
-        });
+        }
 
         animationFrameId = requestAnimationFrame(animate2D);
       };
@@ -75,8 +93,25 @@ export const AmbientGalaxy: React.FC = () => {
       animationFrameId = requestAnimationFrame(animate2D);
     };
 
+    // Kiểm tra tính tương thích WebGL của thiết bị mobile
+    if (!checkWebGLSupport()) {
+      runCanvas2DFallback();
+      return () => {
+        isTerminated = true;
+        cancelAnimationFrame(animationFrameId);
+        globalGalaxyTelemetry.ambientMounted = false;
+        globalGalaxyTelemetry.ambientActive = false;
+      };
+    }
+
     // --- THREE.JS WEBGL RENDERER ---
-    let renderer: THREE.WebGLRenderer;
+    let renderer: THREE.WebGLRenderer | null = null;
+    let geoMajor: THREE.BufferGeometry | null = null;
+    let matMajor: THREE.PointsMaterial | null = null;
+    let geoDeep: THREE.BufferGeometry | null = null;
+    let matDeep: THREE.PointsMaterial | null = null;
+    let texture: THREE.CanvasTexture | null = null;
+
     try {
       renderer = new THREE.WebGLRenderer({
         canvas,
@@ -84,6 +119,15 @@ export const AmbientGalaxy: React.FC = () => {
         antialias: false,
         powerPreference: 'high-performance',
       });
+
+      if (!renderer.getContext()) {
+        runCanvas2DFallback();
+        return () => {
+          isTerminated = true;
+          cancelAnimationFrame(animationFrameId);
+        };
+      }
+
       globalGalaxyTelemetry.webglAvailable = true;
     } catch {
       runCanvas2DFallback();
@@ -95,31 +139,37 @@ export const AmbientGalaxy: React.FC = () => {
       };
     }
 
+    // Lắng nghe sự kiện mất Context trên GPU Mobile (Webview / pin yếu / chuyển app)
+    const handleContextLost = (e: Event) => {
+      e.preventDefault();
+      cancelAnimationFrame(animationFrameId);
+      runCanvas2DFallback();
+    };
+    canvas.addEventListener('webglcontextlost', handleContextLost, false);
+
     const currentW = getWidth();
     const currentH = getHeight();
     renderer.setSize(currentW, currentH);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    const isMobile = window.innerWidth < 768;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.0 : 1.5));
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, currentW / currentH, 1, 2400);
+    const camera = new THREE.PerspectiveCamera(60, currentW / (currentH || 1), 1, 2400);
     camera.position.z = 600;
+    const totalStarCount = prefersReducedMotion ? 600 : isMobile ? 1000 : 2200;
+    const majorCount = Math.floor(totalStarCount * 0.25);
+    const deepCount = totalStarCount - majorCount;
 
-    const isMobile = window.innerWidth < 768;
-    const totalStarCount = prefersReducedMotion ? 900 : isMobile ? 1500 : 2800;
-    const majorCount = Math.floor(totalStarCount * 0.25); // 25% hạt sáng to bay nhanh
-    const deepCount = totalStarCount - majorCount;        // 75% hạt nền không gian sâu
-
-    // Palette sáng rực rỡ: Trắng, Cyan, Lavender, Tím
     const colorPalette = [
-      new THREE.Color(0xffffff), // Radiant White
-      new THREE.Color(0xffffff), // Radiant White
-      new THREE.Color(0x18f4fc), // Bright Cyan
-      new THREE.Color(0x22d3ee), // Cyan
-      new THREE.Color(0xc084fc), // Soft Lavender
-      new THREE.Color(0x8b5cf6), // Purple
+      new THREE.Color(0xffffff),
+      new THREE.Color(0xffffff),
+      new THREE.Color(0x18f4fc),
+      new THREE.Color(0x22d3ee),
+      new THREE.Color(0xc084fc),
+      new THREE.Color(0x8b5cf6),
     ];
 
-    // Particle Texture siêu sáng 64x64 Additive Radial Glow
+    // Texture hạt siêu sáng với Radial Glow
     const pointCanvas = document.createElement('canvas');
     pointCanvas.width = 64;
     pointCanvas.height = 64;
@@ -135,10 +185,12 @@ export const AmbientGalaxy: React.FC = () => {
       pCtx.fillStyle = grad;
       pCtx.fillRect(0, 0, 64, 64);
     }
-    const texture = new THREE.CanvasTexture(pointCanvas);
+    texture = new THREE.CanvasTexture(pointCanvas);
+    texture.flipY = false;
+    texture.premultiplyAlpha = false;
 
-    // --- 1. MAJOR FOREGROUND LUMINOUS STARS ---
-    const geoMajor = new THREE.BufferGeometry();
+    // --- 1. FOREGROUND STARS ---
+    geoMajor = new THREE.BufferGeometry();
     const posMajor = new Float32Array(majorCount * 3);
     const colMajor = new Float32Array(majorCount * 3);
     const spdMajor = new Float32Array(majorCount);
@@ -154,16 +206,14 @@ export const AmbientGalaxy: React.FC = () => {
       colMajor[i3 + 1] = c.g;
       colMajor[i3 + 2] = c.b;
 
-      // Tốc độ di chuyển tăng +50% so với cũ
       spdMajor[i] = prefersReducedMotion ? 0.15 + Math.random() * 0.2 : 0.45 + Math.random() * 0.85;
     }
 
     geoMajor.setAttribute('position', new THREE.BufferAttribute(posMajor, 3));
     geoMajor.setAttribute('color', new THREE.BufferAttribute(colMajor, 3));
 
-    // Kích thước hạt lớn tăng +30% (desktop 6.2px, mobile 4.8px)
-    const matMajor = new THREE.PointsMaterial({
-      size: isMobile ? 4.8 : 6.2,
+    matMajor = new THREE.PointsMaterial({
+      size: isMobile ? 4.2 : 5.8,
       vertexColors: true,
       map: texture,
       transparent: true,
@@ -175,7 +225,7 @@ export const AmbientGalaxy: React.FC = () => {
     scene.add(majorPoints);
 
     // --- 2. DEEP AMBIENT STARS ---
-    const geoDeep = new THREE.BufferGeometry();
+    geoDeep = new THREE.BufferGeometry();
     const posDeep = new Float32Array(deepCount * 3);
     const colDeep = new Float32Array(deepCount * 3);
     const spdDeep = new Float32Array(deepCount);
@@ -191,16 +241,14 @@ export const AmbientGalaxy: React.FC = () => {
       colDeep[i3 + 1] = c.g;
       colDeep[i3 + 2] = c.b;
 
-      // Vận tốc hạt sâu: 0.25 - 0.6
       spdDeep[i] = prefersReducedMotion ? 0.08 + Math.random() * 0.12 : 0.25 + Math.random() * 0.45;
     }
 
     geoDeep.setAttribute('position', new THREE.BufferAttribute(posDeep, 3));
     geoDeep.setAttribute('color', new THREE.BufferAttribute(colDeep, 3));
 
-    // Kích thước hạt nền: desktop 4.4px, mobile 3.2px
-    const matDeep = new THREE.PointsMaterial({
-      size: isMobile ? 3.2 : 4.4,
+    matDeep = new THREE.PointsMaterial({
+      size: isMobile ? 3.0 : 4.0,
       vertexColors: true,
       map: texture,
       transparent: true,
@@ -211,35 +259,35 @@ export const AmbientGalaxy: React.FC = () => {
     const deepPoints = new THREE.Points(geoDeep, matDeep);
     scene.add(deepPoints);
 
-    // Animation loop & pause mechanism với Delta-time chuẩn xác
-    let clock = new THREE.Clock();
+    // Chuẩn hóa Delta-time không phụ thuộc THREE.Clock
+    let lastTime = performance.now();
+    let totalElapsed = 0;
 
     const animate = () => {
-      if (isTerminated || !isVisible) return;
+      if (isTerminated || !isVisible || !renderer) return;
       animationFrameId = requestAnimationFrame(animate);
 
       globalGalaxyTelemetry.ambientFrameCount++;
       globalGalaxyTelemetry.ambientActive = true;
 
-      const delta = Math.min(clock.getDelta(), 0.08);
-      const time = clock.getElapsedTime();
+      const now = performance.now();
+      const delta = Math.min((now - lastTime) / 1000, 0.08);
+      lastTime = now;
+      totalElapsed += delta;
 
-      // Gentle continuous rotation (tăng nhẹ độ sinh động)
       const rotSpeed = prefersReducedMotion ? 0.010 : 0.032;
-      majorPoints.rotation.y = time * rotSpeed;
-      majorPoints.rotation.x = Math.sin(time * 0.018) * 0.06;
+      majorPoints.rotation.y = totalElapsed * rotSpeed;
+      majorPoints.rotation.x = Math.sin(totalElapsed * 0.018) * 0.06;
 
-      deepPoints.rotation.y = time * rotSpeed * 0.75;
-      deepPoints.rotation.x = Math.sin(time * 0.015) * 0.04;
+      deepPoints.rotation.y = totalElapsed * rotSpeed * 0.75;
+      deepPoints.rotation.x = Math.sin(totalElapsed * 0.015) * 0.04;
 
-      // Camera gentle breathing
       if (!prefersReducedMotion) {
-        camera.position.x = Math.sin(time * 0.05) * 40;
-        camera.position.y = Math.cos(time * 0.035) * 22;
+        camera.position.x = Math.sin(totalElapsed * 0.05) * 40;
+        camera.position.y = Math.cos(totalElapsed * 0.035) * 22;
       }
       camera.lookAt(0, 0, 0);
 
-      // Cập nhật vị trí hạt lớn (Bay nhanh hơn +55% tạo chiều sâu 3D rõ rệt)
       const arrMajor = (geoMajor.attributes.position as THREE.BufferAttribute).array as Float32Array;
       for (let i = 0; i < majorCount; i++) {
         const i3 = i * 3;
@@ -250,7 +298,6 @@ export const AmbientGalaxy: React.FC = () => {
       }
       (geoMajor.attributes.position as THREE.BufferAttribute).needsUpdate = true;
 
-      // Cập nhật vị trí hạt nền sâu
       const arrDeep = (geoDeep.attributes.position as THREE.BufferAttribute).array as Float32Array;
       for (let i = 0; i < deepCount; i++) {
         const i3 = i * 3;
@@ -261,10 +308,13 @@ export const AmbientGalaxy: React.FC = () => {
       }
       (geoDeep.attributes.position as THREE.BufferAttribute).needsUpdate = true;
 
-      renderer.render(scene, camera);
+      try {
+        renderer.render(scene, camera);
+      } catch {
+        // Bảo vệ chống crash khi WebGL context bị ngắt đột ngột
+      }
     };
 
-    // Pause when hero scrolled completely out of viewport (intersectionRatio == 0)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -272,7 +322,7 @@ export const AmbientGalaxy: React.FC = () => {
             if (!isVisible) {
               isVisible = true;
               globalGalaxyTelemetry.ambientActive = true;
-              clock.start();
+              lastTime = performance.now();
               animate();
             }
           } else if (entry.intersectionRatio === 0) {
@@ -286,21 +336,19 @@ export const AmbientGalaxy: React.FC = () => {
     );
     observer.observe(container);
 
-    // Start initial loop
     animate();
 
     const updateSize = () => {
-      if (isTerminated) return;
+      if (isTerminated || !renderer) return;
       const w = getWidth();
       const h = getHeight();
-      camera.aspect = w / h;
+      camera.aspect = w / (h || 1);
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     };
 
-    window.addEventListener('resize', updateSize);
+    window.addEventListener('resize', updateSize, { passive: true });
 
-    // ResizeObserver tracks container DOM size changes
     let resizeObserver: ResizeObserver | null = null;
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(() => {
@@ -309,7 +357,6 @@ export const AmbientGalaxy: React.FC = () => {
       resizeObserver.observe(container);
     }
 
-    // Page visibility (tab switch) pause
     const handleVisibilityChange = () => {
       if (document.hidden) {
         isVisible = false;
@@ -318,7 +365,7 @@ export const AmbientGalaxy: React.FC = () => {
       } else if (container.getBoundingClientRect().bottom > 0) {
         isVisible = true;
         globalGalaxyTelemetry.ambientActive = true;
-        clock.start();
+        lastTime = performance.now();
         animate();
       }
     };
@@ -331,16 +378,17 @@ export const AmbientGalaxy: React.FC = () => {
       resizeObserver?.disconnect();
       window.removeEventListener('resize', updateSize);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      canvas.removeEventListener('webglcontextlost', handleContextLost);
 
       globalGalaxyTelemetry.ambientMounted = false;
       globalGalaxyTelemetry.ambientActive = false;
 
-      geoMajor.dispose();
-      matMajor.dispose();
-      geoDeep.dispose();
-      matDeep.dispose();
-      texture.dispose();
-      renderer.dispose();
+      geoMajor?.dispose();
+      matMajor?.dispose();
+      geoDeep?.dispose();
+      matDeep?.dispose();
+      texture?.dispose();
+      renderer?.dispose();
     };
   }, []);
 

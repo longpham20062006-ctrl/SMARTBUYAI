@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
-import { useSearchParams, Link, useNavigate } from 'react-router-dom';
+import { useSearchParams, Link, useNavigate, useNavigationType } from 'react-router-dom';
 import { productService, ProductFilterOptions } from '@/services/productService';
 import { stylistService } from '@/services/stylistService';
 import { ProductCard } from '@/components/common/ProductCard';
@@ -10,6 +10,7 @@ import { Drawer } from '@/components/ui/drawer';
 import { Product, SizeCode, AIStylistMessage } from '@/types';
 import { GENZ_CATEGORIES, GENZ_BRANDS } from '@/mocks/genzCategories';
 import { getActiveCategories, getActiveGroupedCategories, CATEGORY_DEFINITIONS } from '@/constants/categories';
+import { isProductEligibleForPublicDisplay } from '@/lib/imageValidator';
 import { getDiscoveryOrderedProducts } from '@/utils/productDiscoveryOrder';
 import { formatPrice } from '@/lib/utils';
 import {
@@ -103,12 +104,9 @@ export const CatalogPage: React.FC = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  // Auto Scroll thông minh: cuộn mượt về đầu danh sách sản phẩm khi người dùng chọn danh mục/bộ lọc
+  // Auto Scroll thông minh: cuộn về đầu danh sách sản phẩm khi người dùng chọn danh mục/bộ lọc
   const performAutoScrollToTop = useCallback(() => {
     if (typeof window === 'undefined') return;
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const behavior = prefersReduced ? 'instant' : 'smooth';
-
     requestAnimationFrame(() => {
       if (catalogTopAnchorRef.current) {
         // Đo chính xác chiều cao header đang dính + chiều cao thanh quick filter
@@ -123,9 +121,11 @@ export const CatalogPage: React.FC = () => {
         if (window.scrollY > targetY + 20) {
           window.scrollTo({
             top: targetY,
-            behavior,
+            behavior: 'instant',
           });
         }
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       }
     });
   }, []);
@@ -156,22 +156,31 @@ export const CatalogPage: React.FC = () => {
   const [isAutoLoading, setIsAutoLoading] = useState(false);
   const isInitialMount = useRef(true);
 
-  // Scroll restoration
+  const navigationType = useNavigationType();
+
+  // Scroll restoration: ONLY restore if the user navigated back via browser Back button (POP)
+  // Discard saved position on standard PUSH/REPLACE links to eliminate delayed layout jumps
   useEffect(() => {
+    if (navigationType !== 'POP') {
+      sessionStorage.removeItem('catalog_scroll_pos');
+      sessionStorage.removeItem('catalog_visible_count');
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      return;
+    }
+
     const savedScrollPos = sessionStorage.getItem('catalog_scroll_pos');
     if (savedScrollPos) {
       const scrollY = Number(savedScrollPos);
-      const timer = setTimeout(() => {
+      if (!isNaN(scrollY) && scrollY > 0) {
         window.scrollTo({
           top: scrollY,
           behavior: 'instant',
         });
-        sessionStorage.removeItem('catalog_scroll_pos');
-        sessionStorage.removeItem('catalog_visible_count');
-      }, 50);
-      return () => clearTimeout(timer);
+      }
+      sessionStorage.removeItem('catalog_scroll_pos');
+      sessionStorage.removeItem('catalog_visible_count');
     }
-  }, []);
+  }, [navigationType]);
 
   // Support ?scrollTo=Y query param for testing and direct navigation
   useEffect(() => {
@@ -185,13 +194,14 @@ export const CatalogPage: React.FC = () => {
     }
   }, [searchParams]);
 
-  // Reset scroll count when core filter params change
+  // Reset scroll position and auto load count when core filter params change
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
       return;
     }
     setAutoLoadCount(0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [categoryParam, seasonParam, genderParam]);
 
   // Param update helper
@@ -536,14 +546,15 @@ export const CatalogPage: React.FC = () => {
     if (genderParam === 'nu') {
       return [
         { id: 'all', label: `Tất cả đồ Nữ (${totalScopedProductsCount})`, filter: {} },
+        { id: 'ao-group', label: `Áo Nữ (${shirtCount})`, filter: { category: 'ao' } },
+        { id: 'quan-group', label: `Quần Nữ (${pantCount})`, filter: { category: 'quan' } },
+        { id: 'vay-group', label: `Váy & Đầm (${vayCount})`, filter: { category: 'vay' } },
         { id: 'ao-thun', label: 'Áo thun (13)', filter: { category: 'ao-thun' } },
-        { id: 'vay-group', label: `Váy Nữ (${vayCount})`, filter: { category: 'vay' } },
-        { id: 'ao-hoodie', label: 'Hoodie (9)', filter: { category: 'ao-hoodie' } },
         { id: 'ao-croptop', label: 'Croptop (7)', filter: { category: 'ao-croptop' } },
         { id: 'ao-hai-day', label: 'Áo hai dây (7)', filter: { category: 'ao-hai-day' } },
-        { id: 'ao-len', label: 'Áo len (4)', filter: { category: 'ao-len' } },
+        { id: 'ao-hoodie', label: 'Hoodie (9)', filter: { category: 'ao-hoodie' } },
         { id: 'ao-cardigan', label: 'Cardigan (6)', filter: { category: 'ao-cardigan' } },
-        { id: 'quan-group', label: `Quần Nữ (${pantCount})`, filter: { category: 'quan' } },
+        { id: 'ao-len', label: 'Áo len (4)', filter: { category: 'ao-len' } },
       ];
     }
 
@@ -578,9 +589,9 @@ export const CatalogPage: React.FC = () => {
     ];
   }, [currentActiveGroup, activeCategories, shirtCount, jacketCount, pantCount, vayCount, doBoCount, totalScopedProductsCount, genderParam]);
 
-  // Paginated products
+  // Paginated products (đảm bảo 100% chỉ hiển thị sản phẩm hợp lệ, không có ô trống/lỗ thủng grid)
   const displayedProducts = useMemo(() => {
-    return allFilteredProducts.slice(0, visibleCount);
+    return allFilteredProducts.filter(isProductEligibleForPublicDisplay).slice(0, visibleCount);
   }, [allFilteredProducts, visibleCount]);
 
   const hasMore = visibleCount < allFilteredProducts.length;
@@ -907,10 +918,21 @@ export const CatalogPage: React.FC = () => {
             {groupedCategories.map((group) => (
               <div key={group.groupKey} className="space-y-1">
                 {/* Tiêu đề Cấp 2: Nhóm Lớn (Áo, Quần, Váy...) */}
-                <div className="flex items-center justify-between px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-[#18181B] bg-[#F2F3F5] rounded-md">
+                <button
+                  type="button"
+                  onClick={() => updateParam('category', group.groupKey)}
+                  className={`w-full text-left flex items-center justify-between px-2.5 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-md cursor-pointer transition-colors ${
+                    categoryParam === group.groupKey
+                      ? 'bg-[#8B5CF6] text-white shadow-2xs'
+                      : 'text-[#18181B] bg-[#F2F3F5] hover:bg-[#E4E4E7]'
+                  }`}
+                  title={`Xem tất cả sản phẩm thuộc nhóm ${group.groupName}`}
+                >
                   <span>{group.groupName}</span>
-                  <span className="text-[10px] text-[#71717A] font-semibold">({group.totalCount})</span>
-                </div>
+                  <span className={`text-[10px] font-semibold ${categoryParam === group.groupKey ? 'text-purple-100' : 'text-[#71717A]'}`}>
+                    ({group.totalCount})
+                  </span>
+                </button>
 
                 {/* Danh sách Cấp 3: Loại sản phẩm */}
                 <div className="space-y-0.5 pl-1.5">
@@ -1688,7 +1710,7 @@ export const CatalogPage: React.FC = () => {
               <>
                 {/* 4 CỘT SẢN PHẨM TRÊN DESKTOP RỘNG (xl:grid-cols-4), 3 CỘT TRÊN LAPTOP (md:grid-cols-3), 2 CỘT TRÊN MOBILE (grid-cols-2) */}
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3.5 sm:gap-4.5 transition-all duration-300">
-                  {displayedProducts.map((product) => (
+                  {displayedProducts.filter(isProductEligibleForPublicDisplay).map((product) => (
                     <div
                       key={product.id}
                       onClick={() => {

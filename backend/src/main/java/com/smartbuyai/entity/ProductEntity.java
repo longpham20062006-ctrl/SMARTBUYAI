@@ -5,7 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "products")
+@Table(
+    name = "products",
+    indexes = {
+        @Index(name = "idx_products_slug", columnList = "slug", unique = true),
+        @Index(name = "idx_products_gender_active", columnList = "gender, is_active"),
+        @Index(name = "idx_products_category_active", columnList = "category_slug, is_active"),
+        @Index(name = "idx_products_price_filter", columnList = "is_active, gender, price")
+    }
+)
 public class ProductEntity {
 
     @Id

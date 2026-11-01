@@ -1,6 +1,7 @@
 import { MockRepo } from '@/mocks/repository';
 import { Product } from '@/types';
 import { CATEGORY_DEFINITIONS } from '@/constants/categories';
+import { isProductEligibleForPublicDisplay, hasValidProductImage } from '@/lib/imageValidator';
 
 export interface ProductFilterOptions {
   gender?: string; // 'nam' | 'nu' | 'unisex' | 'all'
@@ -19,6 +20,7 @@ export interface ProductFilterOptions {
   inStockOnly?: boolean;
   searchQuery?: string;
   sort?: 'newest' | 'price-asc' | 'price-desc' | 'name-asc' | 'rating-desc';
+  includeUnavailableImages?: boolean; // Cho phép Admin truy vấn cả sản phẩm thiếu ảnh
 }
 
 export interface ShopTheLookOutfit {
@@ -33,7 +35,14 @@ export interface ShopTheLookOutfit {
 
 export const productService = {
   getAll: (filters?: ProductFilterOptions): Product[] => {
-    let list = MockRepo.getProducts().filter((p) => p.isActive);
+    // Chỉ lấy sản phẩm có ảnh hợp lệ trên website công khai, trừ khi được yêu cầu rõ ràng (Admin)
+    let list = MockRepo.getProducts().filter((p) => {
+      if (!p.isActive) return false;
+      if (!filters?.includeUnavailableImages && !isProductEligibleForPublicDisplay(p)) {
+        return false;
+      }
+      return true;
+    });
 
     if (!filters) return list;
 
@@ -171,17 +180,31 @@ export const productService = {
   },
 
   getBySlug: (slug: string): Product | undefined => {
-    return MockRepo.getProductBySlug(slug);
+    const product = MockRepo.getProductBySlug(slug);
+    if (!product || !isProductEligibleForPublicDisplay(product)) {
+      return undefined;
+    }
+    return product;
+  },
+
+  getRawByIdOrSlug: (idOrSlug: string): Product | undefined => {
+    return MockRepo.getProducts().find(
+      (p) => p.id.toLowerCase() === idOrSlug.toLowerCase() || p.slug.toLowerCase() === idOrSlug.toLowerCase()
+    );
+  },
+
+  getAllForAdmin: (): Product[] => {
+    return MockRepo.getProducts();
   },
 
   getRelated: (product: Product, limit: number = 4): Product[] => {
     return MockRepo.getProducts()
-      .filter((p) => p.id !== product.id && p.isActive && (p.categorySlug === product.categorySlug || p.brand === product.brand))
+      .filter((p) => p.id !== product.id && isProductEligibleForPublicDisplay(p) && (p.categorySlug === product.categorySlug || p.brand === product.brand))
       .slice(0, limit);
   },
 
   getHotProducts: (limit: number = 8): Product[] => {
-    const all = MockRepo.getProducts().filter((p) => p.isActive);
+    const all = MockRepo.getProducts().filter((p) => isProductEligibleForPublicDisplay(p));
     const hotList = all.filter((p) => p.badge === 'HOT' || p.badge === 'DROP' || p.badge === 'TRENDING' || p.isFeatured || (p as any).isHot);
     if (hotList.length >= limit) {
       return hotList.slice(0, limit);
@@ -194,14 +217,14 @@ export const productService = {
 
   getNewArrivals: (limit: number = 8): Product[] => {
     return MockRepo.getProducts()
-      .filter((p) => p.isActive && (p.isNewArrival || p.badge === 'Mới' || p.badge === 'NEW' || p.badge === 'DROP'))
+      .filter((p) => isProductEligibleForPublicDisplay(p) && (p.isNewArrival || p.badge === 'Mới' || p.badge === 'NEW' || p.badge === 'DROP'))
       .slice(0, limit);
   },
 
   getBestSellers: (limit: number = 8): Product[] => {
     return MockRepo.getProducts()
-      .filter((p) => p.isActive)
-      .sort((a, b) => b.reviewCount - a.reviewCount)
+      .filter((p) => isProductEligibleForPublicDisplay(p))
+      .sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0))
       .slice(0, limit);
   },
 
@@ -209,7 +232,7 @@ export const productService = {
     return MockRepo.getProducts()
       .filter(
         (p) =>
-          p.isActive &&
+          isProductEligibleForPublicDisplay(p) &&
           (['ao-thun', 'ao-croptop', 'ao-hai-day', 'ao-polo', 'vay', 'quan-short'].includes(p.categorySlug) ||
             p.material?.toLowerCase().includes('cotton') ||
             p.shortDescription?.toLowerCase().includes('mát'))
@@ -221,7 +244,7 @@ export const productService = {
     return MockRepo.getProducts()
       .filter(
         (p) =>
-          p.isActive &&
+          isProductEligibleForPublicDisplay(p) &&
           (['ao-hoodie', 'ao-khoac', 'ao-cardigan', 'ao-len', 'quan', 'quan-dai'].includes(p.categorySlug) ||
             p.material?.toLowerCase().includes('nỉ') ||
             p.material?.toLowerCase().includes('len') ||
@@ -232,19 +255,19 @@ export const productService = {
 
   getFeatured: (limit: number = 6): Product[] => {
     return MockRepo.getProducts()
-      .filter((p) => p.isActive && p.isFeatured)
+      .filter((p) => isProductEligibleForPublicDisplay(p) && p.isFeatured)
       .slice(0, limit);
   },
 
   getAccessories: (limit: number = 8): Product[] => {
     return MockRepo.getProducts()
-      .filter((p) => p.isActive && p.categorySlug === 'phu-kien')
+      .filter((p) => isProductEligibleForPublicDisplay(p) && p.categorySlug === 'phu-kien')
       .slice(0, limit);
   },
 
   // PHẦN 11: SHOP THE LOOK OUTFITS
   getShopTheLookOutfits: (): ShopTheLookOutfit[] => {
-    const all = MockRepo.getProducts().filter((p) => p.isActive);
+    const all = MockRepo.getProducts().filter((p) => isProductEligibleForPublicDisplay(p));
     if (all.length === 0) return [];
     const tops = all.filter((p) => ['ao-thun', 'ao-hoodie', 'ao-polo', 'ao-so-mi', 'ao-croptop', 'ao-cardigan'].includes(p.categorySlug));
     const bottoms = all.filter((p) => ['quan', 'quan-dai', 'quan-short', 'vay'].includes(p.categorySlug));

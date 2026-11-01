@@ -47,7 +47,7 @@ export const GalaxyDebugPanel: React.FC<GalaxyDebugPanelProps> = ({ onReplayIntr
   useEffect(() => {
     // Check if ?debugGalaxy=1 is in URL
     const params = new URLSearchParams(window.location.search);
-    const isDebug = params.get('debugGalaxy') === '1' || process.env.NODE_ENV === 'development';
+    const isDebug = params.get('debugGalaxy') === '1' || Boolean(import.meta.env.DEV);
     if (!isDebug) return;
 
     const interval = setInterval(() => {

@@ -23,26 +23,32 @@ public class CartController {
     }
 
     @GetMapping
-    @Operation(summary = "Lấy giỏ hàng theo User ID hoặc Session ID")
+    @Operation(summary = "Lấy giỏ hàng của Customer đã đăng nhập")
     public ResponseEntity<CartDto> getCart(
             @RequestParam(required = false) String sessionId,
             Authentication auth
     ) {
-        String userId = auth != null ? auth.getName() : null;
+        if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getPrincipal())) {
+            return ResponseEntity.status(org.springframework.http.HttpStatus.UNAUTHORIZED).build();
+        }
+        String userId = auth.getName();
         return ResponseEntity.ok(cartService.getOrCreateCart(userId, sessionId));
     }
 
     @PostMapping("/items")
-    @Operation(summary = "Thêm sản phẩm vào giỏ hàng trực tiếp")
+    @Operation(summary = "Thêm sản phẩm vào giỏ hàng trực tiếp (Bắt buộc Customer đã đăng nhập)")
     public ResponseEntity<CartDto> addItemDirect(
             @Valid @RequestBody AddToCartRequest req,
             @RequestParam(required = false) String sessionId,
             Authentication auth
     ) {
+        if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getPrincipal())) {
+            return ResponseEntity.status(org.springframework.http.HttpStatus.UNAUTHORIZED).build();
+        }
         String effectiveSessionId = req.getSessionId() != null ? req.getSessionId() : sessionId;
         String cartId = req.getCartId();
         if (cartId == null || cartId.isBlank()) {
-            String userId = auth != null ? auth.getName() : null;
+            String userId = auth.getName();
             CartDto cart = cartService.getOrCreateCart(userId, effectiveSessionId);
             cartId = cart.getId();
         }

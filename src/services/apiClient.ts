@@ -8,6 +8,15 @@ import { MockRepo } from '@/mocks/repository';
 
 const API_BASE = '/api/v1';
 
+const getAuthHeaders = (token?: string): Record<string, string> => {
+  const headers: Record<string, string> = { Accept: 'application/json' };
+  const effectiveToken = token || (typeof window !== 'undefined' ? localStorage.getItem('sb_token') : null);
+  if (effectiveToken) {
+    headers['Authorization'] = `Bearer ${effectiveToken}`;
+  }
+  return headers;
+};
+
 export interface PagedResponse<T> {
   content: T[];
   page: number;
@@ -25,7 +34,7 @@ export const apiClient = {
   syncWithBackend: async (): Promise<boolean> => {
     try {
       const res = await fetch(`${API_BASE}/products?size=500`, {
-        headers: { 'Accept': 'application/json' },
+        headers: getAuthHeaders(),
       });
       if (!res.ok) return false;
       const data: PagedResponse<Product> = await res.json();
@@ -64,7 +73,9 @@ export const apiClient = {
       q.set('page', (params?.page ?? 0).toString());
       q.set('size', (params?.size ?? 40).toString());
 
-      const res = await fetch(`${API_BASE}/products?${q.toString()}`);
+      const res = await fetch(`${API_BASE}/products?${q.toString()}`, {
+        headers: getAuthHeaders(),
+      });
       if (!res.ok) return null;
       return await res.json();
     } catch {
@@ -77,7 +88,24 @@ export const apiClient = {
    */
   getProductById: async (id: string): Promise<Product | null> => {
     try {
-      const res = await fetch(`${API_BASE}/products/${id}`);
+      const res = await fetch(`${API_BASE}/products/${id}`, {
+        headers: getAuthHeaders(),
+      });
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
+  },
+
+  /**
+   * Lấy chi tiết sản phẩm theo Slug từ Java Backend
+   */
+  getProductBySlug: async (slug: string): Promise<Product | null> => {
+    try {
+      const res = await fetch(`${API_BASE}/products/slug/${slug}`, {
+        headers: getAuthHeaders(),
+      });
       if (!res.ok) return null;
       return await res.json();
     } catch {
@@ -103,7 +131,9 @@ export const apiClient = {
    */
   getCart: async (sessionId?: string) => {
     const q = sessionId ? `?sessionId=${encodeURIComponent(sessionId)}` : '';
-    const res = await fetch(`${API_BASE}/cart${q}`);
+    const res = await fetch(`${API_BASE}/cart${q}`, {
+      headers: getAuthHeaders(),
+    });
     return res.ok ? await res.json() : null;
   },
 
@@ -118,7 +148,7 @@ export const apiClient = {
   }) => {
     const res = await fetch(`${API_BASE}/cart/items`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
     return res.ok ? await res.json() : null;
@@ -127,7 +157,7 @@ export const apiClient = {
   updateCartItem: async (itemId: number, quantity: number) => {
     const res = await fetch(`${API_BASE}/cart/items/${itemId}`, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
       body: JSON.stringify({ quantity }),
     });
     return res.ok ? await res.json() : null;
@@ -136,6 +166,7 @@ export const apiClient = {
   removeCartItem: async (itemId: number) => {
     const res = await fetch(`${API_BASE}/cart/items/${itemId}`, {
       method: 'DELETE',
+      headers: getAuthHeaders(),
     });
     return res.ok ? await res.json() : null;
   },
@@ -145,7 +176,9 @@ export const apiClient = {
    */
   getWishlist: async (userId: string = 'user-demo-1'): Promise<Product[]> => {
     try {
-      const res = await fetch(`${API_BASE}/wishlist?userId=${encodeURIComponent(userId)}`);
+      const res = await fetch(`${API_BASE}/wishlist?userId=${encodeURIComponent(userId)}`, {
+        headers: getAuthHeaders(),
+      });
       return res.ok ? await res.json() : [];
     } catch {
       return [];
@@ -155,7 +188,7 @@ export const apiClient = {
   toggleWishlist: async (productId: string, userId: string = 'user-demo-1') => {
     const res = await fetch(`${API_BASE}/wishlist`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
       body: JSON.stringify({ productId, userId }),
     });
     return res.ok ? await res.json() : null;
@@ -167,7 +200,7 @@ export const apiClient = {
   createOrder: async (orderData: any) => {
     const res = await fetch(`${API_BASE}/orders`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
       body: JSON.stringify(orderData),
     });
     if (!res.ok) {
@@ -236,11 +269,15 @@ export const apiClient = {
    */
   login: async (credentials: { email: string; password?: string }): Promise<{ success: boolean; data?: any; message?: string }> => {
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3000);
       const res = await fetch(`${API_BASE}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials),
+        signal: controller.signal,
       });
+      clearTimeout(timeoutId);
       const data = await res.json().catch(() => ({}));
       if (res.ok && data?.token) {
         if (typeof window !== 'undefined') {
@@ -255,6 +292,45 @@ export const apiClient = {
       return { success: false, message: data?.message || 'Email hoặc mật khẩu không chính xác' };
     } catch {
       return { success: false, message: 'Không thể kết nối đến máy chủ xác thực' };
+    }
+  },
+
+  /**
+   * Đăng ký tài khoản thành viên mới (ROLE_CUSTOMER) trực tiếp trên máy chủ Java Spring Boot
+   */
+  register: async (userData: {
+    name: string;
+    email: string;
+    phone: string;
+    password: string;
+  }): Promise<{ success: boolean; data?: any; message?: string }> => {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4000);
+      const res = await fetch(`${API_BASE}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData),
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data?.token) {
+        if (typeof window !== 'undefined') {
+          try {
+            localStorage.setItem('sb_token', data.token);
+          } catch {
+            // ignore
+          }
+        }
+        return { success: true, data };
+      }
+      return {
+        success: false,
+        message: data?.message || data?.error || 'Đăng ký không thành công',
+      };
+    } catch {
+      return { success: false, message: 'Không thể kết nối đến máy chủ đăng ký' };
     }
   },
 

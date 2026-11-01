@@ -58,15 +58,18 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 // Swagger & H2
                 .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/api-docs/**", "/h2-console/**").permitAll()
-                // Public shop APIs
+                // Auth APIs (Public)
+                .requestMatchers("/api/v1/auth/**").permitAll()
+                // Public shop preview APIs (Products & Categories - server-side sanitizes prices for unauthenticated callers)
                 .requestMatchers("/api/v1/products/**").permitAll()
                 .requestMatchers("/api/v1/categories/**").permitAll()
-                .requestMatchers("/api/v1/cart/**").permitAll()
-                .requestMatchers("/api/v1/wishlist/**").permitAll()
-                .requestMatchers("/api/v1/orders/**").permitAll()
-                .requestMatchers("/api/v1/auth/**").permitAll()
-                .requestMatchers("/api/v1/ai/**").permitAll()
-                // Admin APIs
+                .requestMatchers("/api/v1/ai/stylist/**").permitAll()
+                // Authenticated Customer / Admin APIs (Cart, Orders/Checkout, Wishlist, AI Try-On)
+                .requestMatchers("/api/v1/cart/**").hasAnyRole("CUSTOMER", "ADMIN")
+                .requestMatchers("/api/v1/wishlist/**").hasAnyRole("CUSTOMER", "ADMIN")
+                .requestMatchers("/api/v1/orders/**").hasAnyRole("CUSTOMER", "ADMIN")
+                .requestMatchers("/api/v1/ai/try-on/**").hasAnyRole("CUSTOMER", "ADMIN")
+                // Admin exclusive APIs
                 .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
             );

@@ -28,11 +28,14 @@ public class AiTryOnController {
     }
 
     @PostMapping
-    @Operation(summary = "Tiếp nhận tác vụ thử đồ AI và đưa vào hàng đợi xử lý")
+    @Operation(summary = "Tiếp nhận tác vụ thử đồ AI và đưa vào hàng đợi xử lý (Bắt buộc Customer đã đăng nhập)")
     public ResponseEntity<TryOnResponse> submitTryOnJob(
             @RequestBody TryOnRequest req,
             Authentication auth) {
-        String userId = auth != null ? auth.getName() : "guest";
+        if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getPrincipal())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        String userId = auth.getName();
         TryOnResponse response = tryOnService.submitTryOnJob(req, userId);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }

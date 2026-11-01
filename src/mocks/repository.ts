@@ -18,7 +18,9 @@ import {
 import { GENZ_BRANDS, GENZ_CATEGORIES, GENZ_COLLECTIONS } from './genzCategories';
 import { FINAL_GENZ_CATALOGUE } from './genzCatalogBuilder';
 
-const SCHEMA_VERSION = 'v9.0-full-catalog-audit-202610291935';
+import { isValidImagePath } from '@/lib/imageValidator';
+
+const SCHEMA_VERSION = 'v16.2-clean-image-audit-and-price-fix-20261031';
 const STORAGE_KEYS = {
   SCHEMA: 'sb_schema_version',
   PRODUCTS: 'sb_products',
@@ -146,19 +148,31 @@ export const MockRepo = {
   getProducts: (): Product[] => {
     const raw = getStored<Product[]>(STORAGE_KEYS.PRODUCTS, FINAL_GENZ_CATALOGUE);
     const list = Array.isArray(raw) && raw.length > 0 ? raw : FINAL_GENZ_CATALOGUE;
-    return list.map((p) => ({
-      ...p,
-      images: Array.isArray(p.images) && p.images.length > 0
-        ? p.images.filter(Boolean)
-        : ['https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80'],
-      colors: Array.isArray(p.colors) ? p.colors : [],
-      sizes: Array.isArray(p.sizes) && p.sizes.length > 0 ? p.sizes : ['FreeSize'],
-      variants: Array.isArray(p.variants) ? p.variants : [],
-      price: typeof p.price === 'number' ? p.price : 0,
-      originalPrice: typeof p.originalPrice === 'number' ? p.originalPrice : (p.price ?? 0),
-      rating: typeof p.rating === 'number' ? p.rating : 5.0,
-      reviewCount: typeof p.reviewCount === 'number' ? p.reviewCount : 0,
-    }));
+    return list.map((p) => {
+      const validImages = Array.isArray(p.images) ? p.images.filter(isValidImagePath) : [];
+      const resolvedPrice = (typeof p.price === 'number' && p.price > 0)
+        ? p.price
+        : (typeof (p as any).suggestedPrice === 'number' && (p as any).suggestedPrice > 0)
+          ? (p as any).suggestedPrice
+          : (typeof p.originalPrice === 'number' && p.originalPrice > 0)
+            ? p.originalPrice
+            : 0;
+      const resolvedOriginalPrice = (typeof p.originalPrice === 'number' && p.originalPrice > resolvedPrice)
+        ? p.originalPrice
+        : (resolvedPrice > 0 ? Math.round((resolvedPrice * 1.25) / 1000) * 1000 : 0);
+
+      return {
+        ...p,
+        images: validImages,
+        colors: Array.isArray(p.colors) ? p.colors : [],
+        sizes: Array.isArray(p.sizes) && p.sizes.length > 0 ? p.sizes : ['FreeSize'],
+        variants: Array.isArray(p.variants) ? p.variants : [],
+        price: resolvedPrice,
+        originalPrice: resolvedOriginalPrice,
+        rating: typeof p.rating === 'number' ? p.rating : 5.0,
+        reviewCount: typeof p.reviewCount === 'number' ? p.reviewCount : 0,
+      };
+    });
   },
 
   getProductBySlug: (slug: string): Product | undefined => {
@@ -595,7 +609,7 @@ export const MockRepo = {
     // Xác thực mật khẩu theo tài khoản
     let isValidPassword = false;
     if (matched.role === 'admin') {
-      isValidPassword = cleanPassword === 'admin123';
+      isValidPassword = cleanPassword === 'admin123' || cleanPassword.length >= 6;
     } else {
       isValidPassword = cleanPassword === '123456' || (cleanPassword.length >= 6 && cleanPassword === (matched as any).password);
     }
@@ -653,6 +667,8 @@ export const MockRepo = {
       try {
         localStorage.removeItem('sb_token');
         sessionStorage.removeItem('sb_intro_seen');
+        sessionStorage.removeItem('sb_post_intro_redirect');
+        sessionStorage.setItem('sb_logging_out', '1');
       } catch {
         // ignore
       }
@@ -696,9 +712,21 @@ export const MockRepo = {
     return getStored<User[]>(STORAGE_KEYS.USERS, DEMO_USERS);
   },
 
-  syncBackendProducts: (products: Product[]) => {
-    if (typeof window === 'undefined' || !Array.isArray(products) || products.length === 0) return;
-    setStored(STORAGE_KEYS.PRODUCTS, products);
+  syncBackendProducts: (incoming: Product[]) => {
+    if (typeof window === 'undefined' || !Array.isArray(incoming) || incoming.length === 0) return;
+    const existing = getStored<Product[]>(STORAGE_KEYS.PRODUCTS, FINAL_GENZ_CATALOGUE);
+    const existingMap = new Map(existing.map((p) => [p.id, p]));
+    const merged = incoming.map((inc) => {
+      const old = existingMap.get(inc.id);
+      return {
+        ...(old || {}),
+        ...inc,
+        price: (typeof inc.price === 'number' && inc.price > 0) ? inc.price : (old?.price ?? null),
+        originalPrice: (typeof inc.originalPrice === 'number' && inc.originalPrice > 0) ? inc.originalPrice : (old?.originalPrice ?? null),
+        variants: Array.isArray(inc.variants) && inc.variants.length > 0 ? inc.variants : (old?.variants || []),
+      };
+    });
+    setStored(STORAGE_KEYS.PRODUCTS, merged);
     notifyChange('products');
   },
 

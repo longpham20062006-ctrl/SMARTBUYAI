@@ -3,6 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { MockRepo } from '@/mocks/repository';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 import { UserRole } from '@/types';
+import { safeSessionStorage } from '@/lib/storage';
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -31,6 +32,9 @@ export const AuthGuard: React.FC<AuthGuardProps> = ({
 
   // If user is not logged in and page is protected
   if (!currentUser && !publicOnly) {
+    if (safeSessionStorage.getItem('sb_logging_out')) {
+      return <Navigate to="/" replace />;
+    }
     const redirectUrl = encodeURIComponent(location.pathname + location.search);
     return <Navigate to={`/login?redirect=${redirectUrl}`} replace />;
   }

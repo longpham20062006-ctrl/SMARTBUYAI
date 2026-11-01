@@ -1,10 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
+import { ScrollToTop } from '@/components/common/ScrollToTop';
 
 export const AuthLayout: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#07070A] text-white flex flex-col justify-between selection:bg-[#8B5CF6]/30 selection:text-white relative overflow-x-hidden">
+      <ScrollToTop />
       {/* Ambient background glows */}
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(139,92,246,0.18),rgba(7,7,10,0))]" />
       <div className="fixed bottom-0 right-0 w-[500px] h-[400px] pointer-events-none bg-[radial-gradient(circle_at_bottom_right,rgba(24,244,252,0.08),transparent)] blur-3xl" />

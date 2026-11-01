@@ -11,6 +11,7 @@ import { ProductCard } from '@/components/common/ProductCard';
 import { Modal } from '@/components/ui/modal';
 import { useToast } from '@/components/ui/toast';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
+import { getValidProductImages, isValidImagePath } from '@/lib/imageValidator';
 import {
   ShoppingBag,
   Heart,
@@ -59,8 +60,10 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    setActiveImageIndex(0);
+    setQuantity(1);
+  }, [product?.id, product?.slug]);
 
   // Active variant
   const activeVariant = variantsList.find(
@@ -127,9 +130,11 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
     }, 250);
   };
 
-  const activeGalleryImages = (selectedColor?.images && selectedColor.images.length > 0)
-    ? selectedColor.images
-    : [selectedColor?.image || product.images?.[0] || 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80'];
+  const validImages = getValidProductImages(product);
+  const colorImages = (selectedColor?.images && selectedColor.images.length > 0)
+    ? selectedColor.images.filter(isValidImagePath)
+    : [];
+  const activeGalleryImages = colorImages.length > 0 ? colorImages : (validImages.length > 0 ? validImages : [selectedColor?.image || product.images?.[0] || '']);
 
   return (
     <div className="bg-[#FAFAF8] min-h-screen">
@@ -154,10 +159,6 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
               <img
                 src={activeGalleryImages[activeImageIndex] || activeGalleryImages[0]}
                 alt={product.name}
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).src =
-                    'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=800&auto=format&fit=crop&q=80';
-                }}
                 className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               />
 
@@ -214,19 +215,14 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                   <button
                     key={idx}
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`aspect-[3/4] rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
-                      activeImageIndex === idx
+                    className={`aspect-[3/4] rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${activeImageIndex === idx
                         ? 'border-[#8B5CF6] ring-1 ring-[#8B5CF6] shadow-subtle'
                         : 'border-transparent opacity-60 hover:opacity-100 bg-[#F2F3F5]'
-                    }`}
+                      }`}
                   >
                     <img
                       src={img}
                       alt=""
-                      onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).src =
-                          'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=800&auto=format&fit=crop&q=80';
-                      }}
                       className="w-full h-full object-cover"
                     />
                   </button>
@@ -338,11 +334,10 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                                 setSelectedSize(validSizes[0]);
                               }
                             }}
-                            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 border cursor-pointer ${
-                              isSelected
+                            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 border cursor-pointer ${isSelected
                                 ? 'bg-[#18181B] text-white border-[#18181B] shadow-sm'
                                 : 'bg-white text-[#18181B] border-[#E4E4E7] hover:border-[#8B5CF6] hover:bg-[#F9FAFB]'
-                            }`}
+                              }`}
                           >
                             {isSelected && <Check className="w-3.5 h-3.5 text-[#8B5CF6]" />}
                             <span>{c.name}</span>
@@ -655,11 +650,11 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                   {(product.sizeMeasurements && product.sizeMeasurements.length > 0
                     ? product.sizeMeasurements
                     : [
-                        { size: 'S', chest: '106 cm', waist: '72 cm', length: '70 cm', fitHeight: '1m60 - 1m68', fitWeight: '50 - 58 kg' },
-                        { size: 'M', chest: '112 cm', waist: '76 cm', length: '72 cm', fitHeight: '1m68 - 1m74', fitWeight: '59 - 68 kg' },
-                        { size: 'L', chest: '118 cm', waist: '82 cm', length: '74 cm', fitHeight: '1m72 - 1m80', fitWeight: '68 - 78 kg' },
-                        { size: 'XL', chest: '124 cm', waist: '88 cm', length: '76 cm', fitHeight: '1m76 - 1m86', fitWeight: '78 - 90 kg' },
-                      ]
+                      { size: 'S', chest: '106 cm', waist: '72 cm', length: '70 cm', fitHeight: '1m60 - 1m68', fitWeight: '50 - 58 kg' },
+                      { size: 'M', chest: '112 cm', waist: '76 cm', length: '72 cm', fitHeight: '1m68 - 1m74', fitWeight: '59 - 68 kg' },
+                      { size: 'L', chest: '118 cm', waist: '82 cm', length: '74 cm', fitHeight: '1m72 - 1m80', fitWeight: '68 - 78 kg' },
+                      { size: 'XL', chest: '124 cm', waist: '88 cm', length: '76 cm', fitHeight: '1m76 - 1m86', fitWeight: '78 - 90 kg' },
+                    ]
                   ).map((m: any) => (
                     <tr key={m.size} className="hover:bg-[#F2F3F5]">
                       <td className="p-3 font-bold text-[#18181B] bg-[#F2F3F5]">{m.size}</td>
@@ -684,10 +679,6 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                 src={product.images[0]}
                 alt={product.name}
                 className="w-10 h-10 object-cover rounded-lg border border-[#E4E4E7] shrink-0"
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).src =
-                    'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=800&auto=format&fit=crop&q=80';
-                }}
               />
               <div className="min-w-0">
                 <p className="text-xs font-bold text-[#18181B] truncate">{product.name}</p>
@@ -735,7 +726,7 @@ export const ProductDetailPage: React.FC = () => {
           Không tìm thấy thiết kế này
         </h2>
         <p className="text-xs text-brand-secondary">
-          Sản phẩm có thể đã ngừng mở bán hoặc đường dẫn không chính xác.
+          Sản phẩm đang được cập nhật hình ảnh thực tế hoặc tạm thời chưa mở bán công khai.
         </p>
         <Link to="/products">
           <Button variant="accent" size="sm" className="font-bold">

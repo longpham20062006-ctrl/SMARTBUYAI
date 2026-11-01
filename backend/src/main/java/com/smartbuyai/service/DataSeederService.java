@@ -285,15 +285,48 @@ public class DataSeederService implements CommandLineRunner {
                 Optional<ProductEntity> existingOpt = productRepository.findById(pid);
                 if (existingOpt.isPresent()) {
                     ProductEntity existing = existingOpt.get();
+                    boolean changed = false;
+
+                    long jsonPrice = n.path("price").asLong(0);
+                    if (jsonPrice > 0 && (existing.getPrice() == null || existing.getPrice() == 0)) {
+                        existing.setPrice(jsonPrice);
+                        existing.setOriginalPrice(n.path("originalPrice").asLong(jsonPrice));
+                        existing.setSuggestedPrice(n.path("suggestedPrice").asLong(jsonPrice));
+                        existing.setApprovedPrice(n.path("approvedPrice").asLong(jsonPrice));
+                        changed = true;
+                    }
+
+                    if (n.has("isActive")) {
+                        boolean jsonActive = n.path("isActive").asBoolean(true);
+                        if (existing.getIsActive() != jsonActive) {
+                            existing.setIsActive(jsonActive);
+                            changed = true;
+                        }
+                    }
+
+                    if (n.has("categorySlug") && !n.path("categorySlug").asText().isBlank()) {
+                        String jsonCat = n.path("categorySlug").asText();
+                        if (!jsonCat.equals(existing.getCategorySlug())) {
+                            existing.setCategorySlug(jsonCat);
+                            changed = true;
+                        }
+                    }
+
                     JsonNode imagesNode = n.path("images");
-                    if (imagesNode.isArray() && imagesNode.size() > existing.getImages().size()) {
+                    if (imagesNode.isArray() && (imagesNode.size() != existing.getImages().size() || existing.getImages().isEmpty())) {
                         existing.getImages().clear();
                         int order = 0;
                         for (JsonNode imgNode : imagesNode) {
                             String url = imgNode.asText();
-                            existing.getImages().add(new ProductImageEntity(existing, url, order, order == 0));
-                            order++;
+                            if (url != null && !url.isBlank()) {
+                                existing.getImages().add(new ProductImageEntity(existing, url, order, order == 0));
+                                order++;
+                            }
                         }
+                        changed = true;
+                    }
+
+                    if (changed) {
                         productRepository.save(existing);
                         updatedCount++;
                     }

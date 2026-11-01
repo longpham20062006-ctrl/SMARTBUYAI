@@ -68,13 +68,16 @@ export const GalaxyIntro: React.FC<GalaxyIntroProps> = ({ onComplete, forcePlay 
         pCtx.fillStyle = grad;
         pCtx.fillRect(0, 0, 64, 64);
       }
-      return new THREE.CanvasTexture(pCanvas);
+      const tex = new THREE.CanvasTexture(pCanvas);
+      tex.flipY = false;
+      tex.premultiplyAlpha = false;
+      return tex;
     };
 
     // Forward declarations for cleanup
-    let handleResize: () => void = () => {};
-    let handleKeyDown: (e: KeyboardEvent) => void = () => {};
-    let cleanupResources: () => void = () => {};
+    let handleResize: () => void = () => { };
+    let handleKeyDown: (e: KeyboardEvent) => void = () => { };
+    let cleanupResources: () => void = () => { };
 
     // KẾT THÚC VÀ BÁO HOÀN THÀNH
     const finishIntro = () => {
@@ -201,6 +204,9 @@ export const GalaxyIntro: React.FC<GalaxyIntroProps> = ({ onComplete, forcePlay 
         antialias: true,
         powerPreference: 'high-performance',
       });
+      if (!renderer.getContext()) {
+        throw new Error('WebGL context is not available');
+      }
       globalGalaxyTelemetry.webglAvailable = true;
       globalGalaxyTelemetry.rendererInitialized = true;
     } catch (err: any) {
@@ -214,8 +220,9 @@ export const GalaxyIntro: React.FC<GalaxyIntroProps> = ({ onComplete, forcePlay 
       };
     }
 
+    const isMobile = width < 768;
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.0 : 1.5));
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x050510);
@@ -224,7 +231,6 @@ export const GalaxyIntro: React.FC<GalaxyIntroProps> = ({ onComplete, forcePlay 
     const camera = new THREE.PerspectiveCamera(65, width / height, 1, 3500);
     camera.position.z = 800;
 
-    const isMobile = width < 768;
     // Tối ưu số lượng hạt: phân tầng 2 nhóm (Major Foreground Stars + Deep Nebula Stars)
     const totalStarCount = prefersReducedMotion ? 2200 : isMobile ? 3800 : 7500;
     const majorCount = Math.floor(totalStarCount * 0.28); // 28% hạt sao lớn sáng rực rỡ cận cảnh
@@ -572,9 +578,8 @@ export const GalaxyIntro: React.FC<GalaxyIntroProps> = ({ onComplete, forcePlay 
   return (
     <div
       ref={containerRef}
-      className={`fixed inset-0 z-50 overflow-hidden bg-[#050510] transition-opacity duration-700 select-none ${
-        isFadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
-      }`}
+      className={`fixed inset-0 z-50 overflow-hidden bg-[#050510] transition-opacity duration-700 select-none ${isFadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
       aria-label="Galaxy 3D Intro SMARTBUY AI"
     >
       {/* 3D WebGL Canvas */}
@@ -595,9 +600,8 @@ export const GalaxyIntro: React.FC<GalaxyIntroProps> = ({ onComplete, forcePlay 
 
       {/* Center Brand Logo & Typography Reveal (Scene 4) */}
       <div
-        className={`absolute inset-0 z-10 flex flex-col items-center justify-center p-6 text-center pointer-events-none transition-all duration-700 ease-out ${
-          showLogo ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-        }`}
+        className={`absolute inset-0 z-10 flex flex-col items-center justify-center p-6 text-center pointer-events-none transition-all duration-700 ease-out ${showLogo ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
       >
         {/* Ambient Purple/Cyan Glow Backdrop */}
         <div className="absolute w-[360px] h-[360px] sm:w-[500px] sm:h-[500px] rounded-full bg-gradient-to-tr from-[#8B5CF6]/35 via-[#22D3EE]/30 to-[#EC4899]/25 blur-3xl -z-10 animate-pulse" />

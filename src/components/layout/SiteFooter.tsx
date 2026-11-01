@@ -4,6 +4,7 @@ import { Sparkles, Shield, RefreshCw, HeartHandshake } from 'lucide-react';
 import { MockRepo } from '@/mocks/repository';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { BrandLogo } from '@/components/common/BrandLogo';
+import { PerformanceToggle } from '@/components/common/PerformanceToggle';
 
 export const SiteFooter: React.FC = () => {
   const [isResetConfirmOpen, setIsResetConfirmOpen] = useState(false);
@@ -183,10 +184,11 @@ export const SiteFooter: React.FC = () => {
           </div>
         </div>
 
-        {/* Bản quyền */}
+        {/* Bản quyền & Chế độ hiệu năng */}
         <div className="pt-8 border-t border-[#27272A] flex flex-col sm:flex-row items-center justify-between text-xs text-[#71717A] gap-4">
-          <div>
-            © 2026 SMARTBUY AI. All rights reserved.
+          <div className="flex items-center gap-4">
+            <span>© 2026 SMARTBUY AI. All rights reserved.</span>
+            <PerformanceToggle compact />
           </div>
           <div className="flex items-center gap-6">
             <span>Bảo mật dữ liệu</span>

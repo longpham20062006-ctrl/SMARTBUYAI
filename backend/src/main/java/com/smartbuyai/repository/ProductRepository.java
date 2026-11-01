@@ -18,8 +18,13 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String>,
     Optional<ProductEntity> findBySlug(String slug);
 
     @Query("SELECT p FROM ProductEntity p WHERE p.isActive = true " +
+           "AND SIZE(p.images) > 0 " +
+           "AND p.price > 0 " +
            "AND (:gender IS NULL OR LOWER(p.gender) = LOWER(:gender)) " +
-           "AND (:categorySlug IS NULL OR p.categorySlug = :categorySlug) " +
+           "AND (:categorySlug IS NULL OR p.categorySlug = :categorySlug " +
+           "     OR (:categorySlug = 'ao' AND p.categorySlug LIKE 'ao%') " +
+           "     OR (:categorySlug = 'quan' AND p.categorySlug LIKE 'quan%') " +
+           "     OR (:categorySlug = 'vay' AND (p.categorySlug LIKE 'vay%' OR p.categorySlug LIKE 'dam%' OR p.categorySlug LIKE 'chan-vay%'))) " +
            "AND (:query IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :query, '%')) " +
            "     OR LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', :query, '%')) " +
            "     OR LOWER(p.material) LIKE LOWER(CONCAT('%', :query, '%'))) " +
@@ -34,8 +39,15 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String>,
             Pageable pageable
     );
 
+    @Query("SELECT p FROM ProductEntity p WHERE p.isActive = true AND SIZE(p.images) > 0 AND p.price > 0 AND p.isNewDrop = true ORDER BY p.price ASC")
     List<ProductEntity> findTop8ByIsActiveTrueAndIsNewDropTrueOrderByPriceAsc();
+
+    @Query("SELECT p FROM ProductEntity p WHERE p.isActive = true AND SIZE(p.images) > 0 AND p.price > 0 AND p.isBestSeller = true ORDER BY p.rating DESC")
     List<ProductEntity> findTop8ByIsActiveTrueAndIsBestSellerTrueOrderByRatingDesc();
-    List<ProductEntity> findTop8ByIsActiveTrueAndCategorySlug(String categorySlug);
-    List<ProductEntity> findTop8ByIsActiveTrueAndSeason(String season);
+
+    @Query("SELECT p FROM ProductEntity p WHERE p.isActive = true AND SIZE(p.images) > 0 AND p.price > 0 AND p.categorySlug = :categorySlug")
+    List<ProductEntity> findTop8ByIsActiveTrueAndCategorySlug(@Param("categorySlug") String categorySlug);
+
+    @Query("SELECT p FROM ProductEntity p WHERE p.isActive = true AND SIZE(p.images) > 0 AND p.price > 0 AND p.season = :season")
+    List<ProductEntity> findTop8ByIsActiveTrueAndSeason(@Param("season") String season);
 }

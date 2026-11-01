@@ -13,11 +13,14 @@ import {
   Shield,
   LogOut,
   Heart,
+  ArrowRight,
+  Flame,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Drawer } from '@/components/ui/drawer';
 import { CartDrawer } from '@/components/common/CartDrawer';
 import { BrandLogo } from '@/components/common/BrandLogo';
+import { PerformanceToggle } from '@/components/common/PerformanceToggle';
 import { GENZ_COLLECTIONS, GENZ_CATEGORIES } from '@/mocks/genzCategories';
 
 export const SiteHeader: React.FC = () => {
@@ -185,39 +188,67 @@ export const SiteHeader: React.FC = () => {
             <BrandLogo variant="header" showTagline={false} />
           </div>
 
-          {/* Ở GIỮA: TRANG CHỦ DÙNG MENU ĐIỀU HƯỚNG TỐI GIẢN | TRANG MUA HÀNG DÙNG THANH TÌM KIẾM */}
+          {/* Ở GIỮA: TRANG CHỦ DÙNG MENU ĐIỀU HƯỚNG CHUẨN MASTER PROMPT V19 | TRANG MUA HÀNG DÙNG THANH TÌM KIẾM */}
           {isHomePage ? (
-            <div className="hidden lg:flex items-center gap-6 mx-4">
-              <Link
-                to="/products"
-                className="text-xs uppercase font-bold tracking-wider text-zinc-700 hover:text-[#8B5CF6] transition-colors py-1 border-b-2 border-transparent hover:border-[#8B5CF6]"
+            <div className="hidden lg:flex items-center gap-5 xl:gap-7 mx-4">
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  cn(
+                    'text-xs uppercase font-extrabold tracking-wider transition-colors py-1 border-b-2',
+                    isActive
+                      ? 'text-[#8B5CF6] border-[#8B5CF6]'
+                      : 'text-zinc-700 hover:text-[#8B5CF6] border-transparent'
+                  )
+                }
               >
-                Khám phá Shop
-              </Link>
-              <Link
+                Trang chủ
+              </NavLink>
+
+              <NavLink
                 to="/collections"
-                className="text-xs uppercase font-bold tracking-wider text-zinc-700 hover:text-[#8B5CF6] transition-colors py-1 border-b-2 border-transparent hover:border-[#8B5CF6]"
+                className={({ isActive }) =>
+                  cn(
+                    'text-xs uppercase font-extrabold tracking-wider transition-colors py-1 border-b-2',
+                    isActive
+                      ? 'text-[#8B5CF6] border-[#8B5CF6]'
+                      : 'text-zinc-700 hover:text-[#8B5CF6] border-transparent'
+                  )
+                }
               >
                 Bộ sưu tập
-              </Link>
-              <Link
-                to="/try-on"
-                className="text-xs uppercase font-bold tracking-wider text-[#8B5CF6] hover:text-[#7C3AED] transition-colors py-1 flex items-center gap-1 font-extrabold"
+              </NavLink>
+
+              <a
+                href="#san-pham-hot"
+                className="text-xs uppercase font-extrabold tracking-wider text-zinc-700 hover:text-[#8B5CF6] transition-colors py-1 border-b-2 border-transparent hover:border-[#8B5CF6] flex items-center gap-1.5"
               >
-                <Sparkles className="w-3.5 h-3.5" />
-                AI Try-On
-              </Link>
-              <Link
-                to="/ai-stylist"
-                className="text-xs uppercase font-bold tracking-wider text-zinc-700 hover:text-[#8B5CF6] transition-colors py-1"
-              >
-                AI Stylist
-              </Link>
-              <Link
+                <span>Sản phẩm HOT</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+              </a>
+
+              <NavLink
                 to="/about"
-                className="text-xs uppercase font-bold tracking-wider text-zinc-700 hover:text-[#8B5CF6] transition-colors py-1"
+                className={({ isActive }) =>
+                  cn(
+                    'text-xs uppercase font-extrabold tracking-wider transition-colors py-1 border-b-2',
+                    isActive
+                      ? 'text-[#8B5CF6] border-[#8B5CF6]'
+                      : 'text-zinc-700 hover:text-[#8B5CF6] border-transparent'
+                  )
+                }
               >
-                Về thương hiệu
+                Giới thiệu
+              </NavLink>
+
+              {/* KHÁM PHÁ THỜI TRANG (Lối vào Shopping Area chính thức theo V19) */}
+              <Link
+                to="/shop"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] hover:from-[#7C3AED] hover:to-[#6D28D9] text-white text-xs font-black uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-cyan-200" />
+                <span>Khám phá thời trang</span>
               </Link>
             </div>
           ) : (
@@ -261,8 +292,8 @@ export const SiteHeader: React.FC = () => {
               </button>
             )}
 
-            {/* User Dropdown (Hiện trên tablet & desktop, mobile thao tác qua menu drawer) */}
-            <div className="relative hidden sm:block" ref={userMenuRef}>
+            {/* User Dropdown / Login Button (Hiện diện trên cả Mobile & Desktop) */}
+            <div className="relative flex items-center" ref={userMenuRef}>
               {currentUser ? (
                 <>
                   <button
@@ -295,6 +326,14 @@ export const SiteHeader: React.FC = () => {
 
                       <div className="py-1">
                         <Link
+                          to="/shop"
+                          onClick={() => setIsUserMenuOpen(false)}
+                          className="flex items-center gap-2 px-4 py-2 font-bold text-[#8B5CF6] hover:bg-[#F3E8FF] transition-colors"
+                        >
+                          <ShoppingBag className="w-3.5 h-3.5 text-[#8B5CF6]" />
+                          <span>Vào Shop mua sắm</span>
+                        </Link>
+                        <Link
                           to="/account"
                           onClick={() => setIsUserMenuOpen(false)}
                           className="block px-4 py-2 text-[#71717A] hover:bg-[#F2F3F5] hover:text-[#18181B] transition-colors"
@@ -307,6 +346,13 @@ export const SiteHeader: React.FC = () => {
                           className="block px-4 py-2 text-[#71717A] hover:bg-[#F2F3F5] hover:text-[#18181B] transition-colors"
                         >
                           Lịch sử đơn hàng
+                        </Link>
+                        <Link
+                          to="/wishlist"
+                          onClick={() => setIsUserMenuOpen(false)}
+                          className="block px-4 py-2 text-[#71717A] hover:bg-[#F2F3F5] hover:text-[#18181B] transition-colors"
+                        >
+                          Danh sách yêu thích
                         </Link>
                         <Link
                           to="/compare"
@@ -340,7 +386,7 @@ export const SiteHeader: React.FC = () => {
                           onClick={() => {
                             MockRepo.logout();
                             setIsUserMenuOpen(false);
-                            navigate('/login');
+                            navigate('/');
                           }}
                           className="w-full flex items-center gap-2 px-4 py-2 text-[#DC2626] hover:bg-rose-50 transition-colors cursor-pointer text-left font-bold"
                         >
@@ -362,36 +408,51 @@ export const SiteHeader: React.FC = () => {
               )}
             </div>
 
-            {/* Wishlist Link */}
-            <Link
-              to={currentUser ? "/products?sort=rating-desc" : "/login?redirect=%2Fproducts%3Fsort%3Drating-desc"}
-              className="p-2 text-[#18181B] hover:text-[#8B5CF6] rounded-full hover:bg-black/5 transition-colors cursor-pointer hidden sm:flex items-center justify-center"
-              title="Sản phẩm yêu thích"
-              aria-label="Sản phẩm yêu thích"
-            >
-              <Heart className="w-5 h-5 text-[#18181B]" />
-            </Link>
+            {/* Performance Mode Switcher */}
+            <div className="hidden sm:flex items-center">
+              <PerformanceToggle compact />
+            </div>
 
-            {/* Cart Trigger with Real Badge */}
-            <button
-              onClick={() => {
-                if (!currentUser) {
-                  navigate('/login?redirect=%2Fcart');
-                } else {
-                  setIsCartDrawerOpen(true);
-                }
-              }}
-              className="relative p-2 text-[#18181B] hover:text-[#8B5CF6] rounded-full hover:bg-black/5 transition-colors cursor-pointer"
-              title="Mở giỏ hàng"
-              aria-label="Giỏ hàng"
-            >
-              <ShoppingBag className="w-5 h-5 text-[#18181B]" />
-              {totalCartCount > 0 && (
-                <span className="absolute top-0.5 right-0.5 flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-bold text-white bg-[#8B5CF6] rounded-full px-1 shadow-subtle">
-                  {totalCartCount}
-                </span>
-              )}
-            </button>
+            {/* Lối vào Shop nhanh cho Customer theo Master Prompt V19 */}
+            {currentUser && (
+              <Link
+                to="/shop"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-[#18181B] bg-[#F4F4F5] hover:bg-[#8B5CF6] hover:text-white transition-all shadow-2xs"
+                title="Khám phá toàn bộ cửa hàng SMARTBUY"
+              >
+                <ShoppingBag className="w-3.5 h-3.5" />
+                <span>Shop</span>
+              </Link>
+            )}
+
+            {/* Wishlist Link — CHỈ HIỂN THỊ KHI ĐÃ ĐĂNG NHẬP (CUSTOMER) */}
+            {currentUser && (
+              <Link
+                to="/wishlist"
+                className="p-2 text-[#18181B] hover:text-[#8B5CF6] rounded-full hover:bg-black/5 transition-colors cursor-pointer hidden sm:flex items-center justify-center"
+                title="Sản phẩm yêu thích"
+                aria-label="Sản phẩm yêu thích"
+              >
+                <Heart className="w-5 h-5 text-[#18181B]" />
+              </Link>
+            )}
+
+            {/* Cart Trigger with Real Badge — CHỈ HIỂN THỊ KHI ĐÃ ĐĂNG NHẬP (CUSTOMER) */}
+            {currentUser && (
+              <button
+                onClick={() => setIsCartDrawerOpen(true)}
+                className="relative p-2 text-[#18181B] hover:text-[#8B5CF6] rounded-full hover:bg-black/5 transition-colors cursor-pointer"
+                title="Mở giỏ hàng"
+                aria-label="Giỏ hàng"
+              >
+                <ShoppingBag className="w-5 h-5 text-[#18181B]" />
+                {totalCartCount > 0 && (
+                  <span className="absolute top-0.5 right-0.5 flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-bold text-white bg-[#8B5CF6] rounded-full px-1 shadow-subtle">
+                    {totalCartCount}
+                  </span>
+                )}
+              </button>
+            )}
           </div>
         </div>
 
@@ -594,9 +655,10 @@ export const SiteHeader: React.FC = () => {
         title={<BrandLogo variant="compact" href={null} />}
       >
         <div className="space-y-6 text-sm">
+          {/* Main Navigation matching Master Prompt V19 */}
           <div className="space-y-1">
             <div className="text-xs font-bold uppercase tracking-wider text-[#71717A] px-2 py-1">
-              Khám phá thời trang
+              Menu Chính
             </div>
             <Link
               to="/"
@@ -611,10 +673,62 @@ export const SiteHeader: React.FC = () => {
               Trang chủ
             </Link>
             <Link
-              to="/products?gender=nam"
+              to="/shop"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3.5 py-2.5 rounded-xl font-black bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white text-xs uppercase tracking-wider shadow-xs hover:shadow-md transition-all"
+            >
+              <div className="flex items-center gap-2">
+                <ShoppingBag className="w-4 h-4 text-cyan-200" />
+                <span>Khám phá thời trang (Shop)</span>
+              </div>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              to="/collections"
               onClick={() => setIsMobileMenuOpen(false)}
               className={cn(
                 'block px-3.5 py-2.5 rounded-xl font-bold transition-colors text-xs uppercase tracking-wider',
+                activeTab === 'collections'
+                  ? 'bg-[#8B5CF6] text-white shadow-xs'
+                  : 'hover:bg-[#F2F3F5] text-[#18181B]'
+              )}
+            >
+              Bộ sưu tập
+            </Link>
+            <a
+              href="/#san-pham-hot"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3.5 py-2.5 rounded-xl font-bold hover:bg-[#F2F3F5] text-[#18181B] transition-colors text-xs uppercase tracking-wider"
+            >
+              <div className="flex items-center gap-2">
+                <Flame className="w-4 h-4 text-rose-500" />
+                <span>Sản phẩm HOT</span>
+              </div>
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+            </a>
+            <Link
+              to="/about"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={cn(
+                'block px-3.5 py-2.5 rounded-xl font-bold transition-colors text-xs uppercase tracking-wider',
+                activeTab === 'about'
+                  ? 'bg-[#8B5CF6] text-white shadow-xs'
+                  : 'hover:bg-[#F2F3F5] text-[#18181B]'
+              )}
+            >
+              Giới thiệu
+            </Link>
+          </div>
+
+          <div className="space-y-1 pt-4 border-t border-[#E4E4E7]">
+            <div className="text-xs font-bold uppercase tracking-wider text-[#71717A] px-2 py-1">
+              Danh mục sản phẩm trong Shop
+            </div>
+            <Link
+              to="/shop?gender=nam"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={cn(
+                'block px-3.5 py-2 rounded-lg font-medium transition-colors text-xs uppercase tracking-wider',
                 activeTab === 'nam'
                   ? 'bg-[#8B5CF6] text-white shadow-xs'
                   : 'hover:bg-[#F2F3F5] text-[#18181B]'
@@ -623,10 +737,10 @@ export const SiteHeader: React.FC = () => {
               Thời trang Nam
             </Link>
             <Link
-              to="/products?gender=nu"
+              to="/shop?gender=nu"
               onClick={() => setIsMobileMenuOpen(false)}
               className={cn(
-                'block px-3.5 py-2.5 rounded-xl font-bold transition-colors text-xs uppercase tracking-wider',
+                'block px-3.5 py-2 rounded-lg font-medium transition-colors text-xs uppercase tracking-wider',
                 activeTab === 'nu'
                   ? 'bg-[#8B5CF6] text-white shadow-xs'
                   : 'hover:bg-[#F2F3F5] text-[#18181B]'
@@ -635,10 +749,10 @@ export const SiteHeader: React.FC = () => {
               Thời trang Nữ
             </Link>
             <Link
-              to="/products?gender=unisex"
+              to="/shop?gender=unisex"
               onClick={() => setIsMobileMenuOpen(false)}
               className={cn(
-                'block px-3.5 py-2.5 rounded-xl font-bold transition-colors text-xs uppercase tracking-wider',
+                'block px-3.5 py-2 rounded-lg font-medium transition-colors text-xs uppercase tracking-wider',
                 activeTab === 'unisex'
                   ? 'bg-[#8B5CF6] text-white shadow-xs'
                   : 'hover:bg-[#F2F3F5] text-[#18181B]'
@@ -647,10 +761,10 @@ export const SiteHeader: React.FC = () => {
               Bộ sưu tập Unisex
             </Link>
             <Link
-              to="/products?category=phu-kien"
+              to="/shop?category=phu-kien"
               onClick={() => setIsMobileMenuOpen(false)}
               className={cn(
-                'block px-3.5 py-2.5 rounded-xl font-bold transition-colors text-xs uppercase tracking-wider',
+                'block px-3.5 py-2 rounded-lg font-medium transition-colors text-xs uppercase tracking-wider',
                 activeTab === 'phu-kien'
                   ? 'bg-[#8B5CF6] text-white shadow-xs'
                   : 'hover:bg-[#F2F3F5] text-[#18181B]'
@@ -744,7 +858,7 @@ export const SiteHeader: React.FC = () => {
                   onClick={() => {
                     MockRepo.logout();
                     setIsMobileMenuOpen(false);
-                    navigate('/login');
+                    navigate('/');
                   }}
                   className="w-full text-left px-3 py-2 rounded-lg text-rose-600 hover:bg-rose-50 font-bold transition-colors cursor-pointer"
                 >
@@ -760,6 +874,12 @@ export const SiteHeader: React.FC = () => {
                 Đăng nhập ngay
               </Link>
             )}
+
+            {/* Mobile Performance Mode Toggle */}
+            <div className="pt-3 border-t border-[#E4E4E7]/60 flex items-center justify-between px-2">
+              <span className="text-xs text-[#71717A]">Hiệu năng hiển thị:</span>
+              <PerformanceToggle />
+            </div>
           </div>
         </div>
       </Drawer>

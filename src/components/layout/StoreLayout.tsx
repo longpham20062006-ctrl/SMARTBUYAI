@@ -10,8 +10,12 @@ import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import { Product } from '@/types';
 import { ArrowRightLeft, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { MockRepo } from '@/mocks/repository';
+import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 
 export const StoreLayout: React.FC = () => {
+  useRepoSubscription(['auth']);
+  const currentUser = MockRepo.getCurrentUser();
   const [quickViewData, setQuickViewData] = useState<{ product: Product; initialImageIndex?: number } | null>(null);
   const [comparedProducts, setComparedProducts] = useState<Product[]>([]);
 
@@ -71,18 +75,22 @@ export const StoreLayout: React.FC = () => {
 
       <SiteFooter />
       <BackToTopButton />
-      <FloatingAIStylist />
 
-      {/* Global Quick View Modal */}
-      <QuickViewModal
-        product={quickViewData?.product || null}
-        initialImageIndex={quickViewData?.initialImageIndex || 0}
-        isOpen={!!quickViewData}
-        onClose={() => setQuickViewData(null)}
-      />
+      {/* Các tiện ích mua sắm tương tác CHỈ HIỂN THỊ KHI ĐÃ ĐĂNG NHẬP (CUSTOMER / ADMIN) */}
+      {currentUser && <FloatingAIStylist />}
 
-      {/* Floating Compare Bar */}
-      {comparedProducts.length > 0 && (
+      {/* Global Quick View Modal — Customer Only */}
+      {currentUser && (
+        <QuickViewModal
+          product={quickViewData?.product || null}
+          initialImageIndex={quickViewData?.initialImageIndex || 0}
+          isOpen={!!quickViewData}
+          onClose={() => setQuickViewData(null)}
+        />
+      )}
+
+      {/* Floating Compare Bar — Customer Only */}
+      {currentUser && comparedProducts.length > 0 && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-brand-paper shadow-drawer border border-brand-border/80 rounded-brand-xl px-5 py-3 flex items-center gap-4 animate-fade-in max-w-xl w-[90%]">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-brand-forest-light text-brand-forest flex items-center justify-center shrink-0">

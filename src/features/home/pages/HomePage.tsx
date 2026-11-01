@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { productService } from '@/services/productService';
 import { MockRepo } from '@/mocks/repository';
-import { ProductCard } from '@/components/common/ProductCard';
+import { HomeProductCard } from '@/components/common/HomeProductCard';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/types';
 import {
@@ -16,14 +16,25 @@ import {
   Camera,
   CheckCircle2,
   Cpu,
+  ShieldCheck,
+  RefreshCw,
+  ShoppingBag,
 } from 'lucide-react';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
-import { GalaxyIntro } from '@/components/effects/GalaxyIntro';
-import { AmbientGalaxy } from '@/components/effects/AmbientGalaxy';
 import { GalaxyDebugPanel } from '@/components/effects/GalaxyDebugPanel';
 import { ScrollReveal } from '@/components/effects/ScrollReveal';
-import { TrendingFashionCard } from '@/components/home/TrendingFashionCard';
+import { safeSessionStorage } from '@/lib/storage';
 import { HeroFashionGallery } from '@/components/home/HeroFashionGallery';
+import { usePerformance } from '@/context/PerformanceContext';
+import { resetGlobalScroll } from '@/components/common/ScrollToTop';
+
+// Lazy-load Three.js 3D effects to prevent blocking initial homepage render
+const GalaxyIntro = React.lazy(() =>
+  import('@/components/effects/GalaxyIntro').then((m) => ({ default: m.GalaxyIntro }))
+);
+const AmbientGalaxy = React.lazy(() =>
+  import('@/components/effects/AmbientGalaxy').then((m) => ({ default: m.AmbientGalaxy }))
+);
 
 // 4 ẢNH THỜI TRANG TRANG CHỦ CHÍNH XÁC TỪ THƯ MỤC public/images/anh_trangchu/
 const HOME_IMAGES = {
@@ -38,8 +49,18 @@ const HOME_IMAGES = {
 };
 
 export const HomePage: React.FC = () => {
-  useRepoSubscription(['products']);
+  useRepoSubscription(['products', 'auth']);
   const navigate = useNavigate();
+  const { isSaver } = usePerformance();
+
+  // Nếu đã đăng nhập Admin, tự động điều hướng vào Admin Dashboard theo thiết kế quản trị
+  useEffect(() => {
+    safeSessionStorage.removeItem('sb_logging_out');
+    const user = MockRepo.getCurrentUser();
+    if (user && user.role === 'admin') {
+      navigate('/admin/dashboard', { replace: true });
+    }
+  }, [navigate]);
 
   // Galaxy 3D Cinematic Reveal state: tự động khởi động lần đầu trong phiên (Chỉ dành cho Customer)
   const [showIntro, setShowIntro] = useState(() => {
@@ -50,23 +71,25 @@ export const HomePage: React.FC = () => {
 
     const params = new URLSearchParams(window.location.search);
     if (params.get('intro') === '0') return false;
-    if (sessionStorage.getItem('sb_intro_seen')) return false;
+    if (safeSessionStorage.getItem('sb_intro_seen')) return false;
     return true;
   });
 
   const handleIntroComplete = React.useCallback(() => {
     setShowIntro(false);
-    try {
-      sessionStorage.setItem('sb_intro_seen', '1');
-      const postIntroRedirect = sessionStorage.getItem('sb_post_intro_redirect');
-      if (postIntroRedirect) {
-        sessionStorage.removeItem('sb_post_intro_redirect');
-        navigate(postIntroRedirect, { replace: true });
-      }
-    } catch {
-      // ignore
+    safeSessionStorage.setItem('sb_intro_seen', '1');
+    resetGlobalScroll();
+    const postIntroRedirect = safeSessionStorage.getItem('sb_post_intro_redirect');
+    if (postIntroRedirect && postIntroRedirect !== '/') {
+      safeSessionStorage.removeItem('sb_post_intro_redirect');
+      navigate(postIntroRedirect, { replace: true });
+    } else {
+      // Prompt V19 Section VIII: Khi Customer đăng nhập thông thường (không chọn sản phẩm cụ thể),
+      // sau Intro 3D giữ người dùng ở lại Trang chủ (/) để họ chủ động bấm "Khám phá thời trang" hoặc "Vào Shop"
+      navigate('/', { replace: true });
     }
   }, [navigate]);
+
   const handleReplayIntro = React.useCallback(() => setShowIntro(true), []);
 
   // Interactive AI Stylist state
@@ -74,8 +97,6 @@ export const HomePage: React.FC = () => {
 
   // Sản phẩm thật từ Catalog SMARTBUY AI (270+ mẫu)
   const hotProducts = productService.getHotProducts(8);
-  const trendingProducts = productService.getBestSellers(8);
-  const newArrivals = productService.getNewArrivals(8);
   const menHighlights = productService.getAll({ gender: 'nam' }).slice(0, 4);
   const womenHighlights = productService.getAll({ gender: 'nu' }).slice(0, 4);
 
@@ -85,14 +106,6 @@ export const HomePage: React.FC = () => {
   const jeansFirst = productService.getAll({ categorySlug: 'quan-jeans' })[0] || productService.getAll({ categorySlug: 'quan' })[0];
   const nuFirst = productService.getAll({ gender: 'nu' })[0];
   const unisexFirst = productService.getAll({ gender: 'unisex' })[0] || aoThunFirst;
-
-  const handleOpenQuickView = (product: Product, initialImageIndex: number = 0) => {
-    window.dispatchEvent(new CustomEvent('open_quick_view', { detail: { product, initialImageIndex } }));
-  };
-
-  const handleToggleCompare = (product: Product) => {
-    window.dispatchEvent(new CustomEvent('toggle_compare', { detail: product }));
-  };
 
   const handleStylistSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -108,7 +121,7 @@ export const HomePage: React.FC = () => {
     {
       title: 'Thời Trang Nam',
       gender: 'nam',
-      link: '/products?gender=nam',
+      link: '/shop?gender=nam',
       image: menHighlights[0]?.images?.[0] || '/images/san-pham/ao-thun-nam-1.jpg',
       count: '130+ Mẫu',
       desc: 'Áo thun, Hoodie, Jeans, Sơ mi boxy',
@@ -116,7 +129,7 @@ export const HomePage: React.FC = () => {
     {
       title: 'Thời Trang Nữ',
       gender: 'nu',
-      link: '/products?gender=nu',
+      link: '/shop?gender=nu',
       image: nuFirst?.images?.[0] || '/images/san-pham/vay-nu-1.jpg',
       count: '140+ Mẫu',
       desc: 'Váy đầm, Croptop, Baby Tee, Cardigan',
@@ -124,7 +137,7 @@ export const HomePage: React.FC = () => {
     {
       title: 'Thời Trang Unisex',
       gender: 'unisex',
-      link: '/products?gender=unisex',
+      link: '/shop?gender=unisex',
       image: unisexFirst?.images?.[0] || aoThunFirst?.images?.[0] || '/images/san-pham/ao-thun-unisex-1.jpg',
       count: 'Oversize Fit',
       desc: 'Phom rộng tự do, thoải mái cho cả nam & nữ',
@@ -132,7 +145,7 @@ export const HomePage: React.FC = () => {
     {
       title: 'Áo Hoodie & Nỉ',
       gender: 'hoodie',
-      link: '/products?category=ao-hoodie',
+      link: '/shop?category=ao-hoodie',
       image: hoodieFirst?.images?.[0] || '/images/san-pham/ao-hoodie-1.jpg',
       count: 'Chất Nỉ Bông',
       desc: 'Dày dặn, ấm áp, phom rộng chuẩn Gen Z',
@@ -140,7 +153,7 @@ export const HomePage: React.FC = () => {
     {
       title: 'Quần Jeans & Kaki',
       gender: 'jeans',
-      link: '/products?category=quan-jeans',
+      link: '/shop?category=quan-jeans',
       image: jeansFirst?.images?.[0] || '/images/san-pham/quan-jeans-1.jpg',
       count: 'Ống Suông Rộng',
       desc: 'Hack dáng, dễ phối cùng áo thun và sơ mi',
@@ -150,10 +163,12 @@ export const HomePage: React.FC = () => {
   return (
     <>
       {/* ============================================================ */}
-      {/* GALAXY 3D CINEMATIC INTRO (TỰ ĐỘNG CHẠY KHI MỞ TRANG CHỦ)   */}
+      {/* GALAXY 3D CINEMATIC INTRO (CHỈ DÀNH CHO CUSTOMER ĐĂNG NHẬP)  */}
       {/* ============================================================ */}
-      {showIntro && (
-        <GalaxyIntro forcePlay={true} onComplete={handleIntroComplete} />
+      {showIntro && !isSaver && (
+        <React.Suspense fallback={null}>
+          <GalaxyIntro forcePlay={true} onComplete={handleIntroComplete} />
+        </React.Suspense>
       )}
 
       {/* Telemetry Debug Panel (Chỉ hiển thị khi URL có ?debugGalaxy=1) */}
@@ -165,7 +180,13 @@ export const HomePage: React.FC = () => {
         {/* ============================================================ */}
         <section className="relative overflow-hidden bg-[#050510] text-white select-none">
           {/* TẦNG 2 — CONTINUOUS AMBIENT GALAXY (Hạt sao 3D chuyển động chậm liên tục ở Hero) */}
-          <AmbientGalaxy />
+          {!isSaver ? (
+            <React.Suspense fallback={<div className="absolute inset-0 bg-[#050510]" />}>
+              <AmbientGalaxy />
+            </React.Suspense>
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-b from-[#050510] via-[#0A0D18] to-[#050510] pointer-events-none" />
+          )}
 
           {/* Subtle cosmic ambient lighting */}
           <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#8B5CF6]/15 rounded-full blur-3xl pointer-events-none z-0" />
@@ -212,29 +233,29 @@ export const HomePage: React.FC = () => {
                   Khám phá phong cách thời trang Gen Z theo cách riêng của bạn.
                 </p>
 
-                {/* CTAs */}
+                {/* CTAs theo Master Prompt V19 Section II.2 */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-                  <Link to="/products">
+                  <Link to="/shop">
                     <Button
                       variant="accent"
                       size="lg"
                       className="w-full sm:w-auto text-xs uppercase tracking-wider font-extrabold shadow-elevated bg-[#8B5CF6] hover:bg-[#7C3AED] text-white py-4 px-8 rounded-xl cursor-pointer"
                     >
                       <Zap className="w-4 h-4 mr-2" />
-                      KHÁM PHÁ NGAY
+                      KHÁM PHÁ THỜI TRANG
                     </Button>
                   </Link>
 
-                  <Link to="/try-on">
+                  <a href="#san-pham-hot">
                     <Button
                       variant="secondary"
                       size="lg"
                       className="w-full sm:w-auto text-xs uppercase tracking-wider font-bold bg-white/15 hover:bg-white/25 text-white backdrop-blur-md border border-white/25 py-4 px-7 rounded-xl cursor-pointer"
                     >
-                      <Sparkles className="w-4 h-4 mr-2 text-[#18F4FC]" />
-                      TRẢI NGHIỆM AI
+                      <Flame className="w-4 h-4 mr-2 text-rose-400" />
+                      KHÁM PHÁ BỘ SƯU TẬP
                     </Button>
-                  </Link>
+                  </a>
                 </div>
 
                 {/* Brand Value Chips */}
@@ -337,10 +358,10 @@ export const HomePage: React.FC = () => {
               </h2>
             </div>
             <Link
-              to="/products"
+              to="/shop"
               className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors"
             >
-              <span>Xem toàn bộ 270+ sản phẩm</span>
+              <span>Vào Shop mua sắm đầy đủ</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -386,10 +407,10 @@ export const HomePage: React.FC = () => {
         </section>
 
         {/* ============================================================ */}
-        {/* 4. SẢN PHẨM HOT (ĐANG ĐƯỢC YÊU THÍCH — 4 CỘT TRÊN DESKTOP)     */}
+        {/* 4. SẢN PHẨM HOT — MASTER PROMPT V19: TUYỆT ĐỐI KHÔNG HIỂN THỊ GIÁ */}
         {/* ============================================================ */}
         <ScrollReveal animation="fade-up">
-          <section className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+          <section id="san-pham-hot" className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-3 border-b border-[#E4E4E7] gap-3">
               <div>
                 <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#DC2626] bg-rose-50 px-2.5 py-0.5 rounded-sm border border-rose-200">
@@ -400,29 +421,38 @@ export const HomePage: React.FC = () => {
                   SẢN PHẨM HOT
                 </h2>
                 <p className="text-xs text-[#71717A] mt-0.5">
-                  Các mẫu thiết kế HOT nhất từ kho sản phẩm thật của SMARTBUY AI, hiển thị giá công khai và hình ảnh chân thực.
+                  Các mẫu thiết kế nổi bật nhất từ SMARTBUY AI, tập trung vào hình ảnh và chi tiết phom dáng.
                 </p>
               </div>
               <Link
-                to="/products"
+                to="/shop"
                 className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors whitespace-nowrap group"
               >
-                <span>Khám phá toàn bộ sản phẩm</span>
+                <span>Vào Shop xem giá & mua sắm</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
 
-            {/* Lưới 4 sản phẩm trên 1 hàng ở desktop theo Master Prompt V7 */}
+            {/* Lưới 4 sản phẩm trên 1 hàng ở desktop — HomeProductCard: 0 GIÁ, NÚT XEM CHI TIẾT */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {hotProducts.slice(0, 8).map((product) => (
-                <ProductCard
+                <HomeProductCard
                   key={product.id}
                   product={product}
-                  showPrice={true}
-                  onQuickView={handleOpenQuickView}
-                  onToggleCompare={handleToggleCompare}
                 />
               ))}
+            </div>
+
+            {/* Nút lớn dẫn vào Shopping Area theo Prompt V19 */}
+            <div className="mt-10 text-center">
+              <Link
+                to="/shop"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-[#18181B] hover:bg-[#27272A] text-white text-xs uppercase tracking-wider font-extrabold shadow-md hover:shadow-lg transition-all group cursor-pointer"
+              >
+                <ShoppingBag className="w-4 h-4 text-[#8B5CF6]" />
+                <span>Khám phá toàn bộ sản phẩm trong Shop</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </section>
         </ScrollReveal>
@@ -430,7 +460,7 @@ export const HomePage: React.FC = () => {
         {/* ============================================================ */}
         {/* 5. MEN'S STREETWEAR — ẢNH 2: PHONG CÁCH CỦA PHÁI MẠNH        */}
         {/* ============================================================ */}
-        <section className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="bo-suu-tap-nam" className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
           <div className="rounded-3xl bg-white border border-[#E4E4E7] p-6 sm:p-10 lg:p-12 shadow-card overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
@@ -452,7 +482,7 @@ export const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Cột Giới thiệu và 4 sản phẩm Nam thật (7 cols) */}
+              {/* Cột Giới thiệu và 4 sản phẩm Nam thật (7 cols) — HomeProductCard: 0 GIÁ */}
               <div className="lg:col-span-7 space-y-6 text-left">
                 <div className="space-y-2">
                   <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#7C3AED] bg-[#F3E8FF] px-2.5 py-0.5 rounded-sm border border-[#DDD6FE]">
@@ -466,36 +496,21 @@ export const HomePage: React.FC = () => {
                   </p>
                 </div>
 
-                {/* 4 Sản phẩm Nam thật — KHÔNG HIỂN THỊ GIÁ TIỀN */}
+                {/* 4 Sản phẩm Nam thật — HomeProductCard: ZERO GIÁ, CÓ NÚT XEM CHI TIẾT */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {menHighlights.map((p) => (
-                    <div key={p.id} className="group relative bg-[#FAFAF9] p-2 rounded-xl border border-[#E4E4E7] hover:border-[#8B5CF6] transition-all">
-                      <div className="aspect-[3/4] rounded-lg overflow-hidden bg-white mb-2">
-                        <img
-                          src={p.images?.[0] || ''}
-                          alt={p.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="text-[11px] font-bold text-[#18181B] line-clamp-1">{p.name}</div>
-                      <div className="text-[10px] font-bold text-[#8B5CF6] mt-0.5 flex items-center justify-between">
-                        <span className="uppercase text-[#71717A] tracking-wider truncate max-w-[70px]">{p.brand || 'SMARTBUY AI'}</span>
-                        <span>Chi tiết →</span>
-                      </div>
-                      <Link to={`/products/${p.slug}`} className="absolute inset-0" aria-label={p.name} />
-                    </div>
+                    <HomeProductCard key={p.id} product={p} />
                   ))}
                 </div>
 
                 <div>
-                  <Link to="/products?gender=nam">
+                  <Link to="/shop?gender=nam">
                     <Button
                       variant="accent"
                       size="lg"
                       className="text-xs uppercase font-extrabold tracking-wider bg-[#18181B] hover:bg-[#27272A] text-white py-4 px-8 rounded-xl cursor-pointer"
                     >
-                      KHÁM PHÁ THỜI TRANG NAM →
+                      KHÁM PHÁ THỜI TRANG NAM TRONG SHOP →
                     </Button>
                   </Link>
                 </div>
@@ -506,49 +521,9 @@ export const HomePage: React.FC = () => {
         </section>
 
         {/* ============================================================ */}
-        {/* 6. NEW ARRIVALS (SẢN PHẨM MỚI VỀ — NO PRICES)                 */}
+        {/* 6. WOMEN'S COLLECTION — ẢNH 3: TỎA SÁNG THEO CÁCH RIÊNG       */}
         {/* ============================================================ */}
-        <section className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-3 border-b border-[#E4E4E7] gap-3">
-            <div>
-              <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#7C3AED] bg-[#F3E8FF] px-2.5 py-0.5 rounded-sm border border-[#DDD6FE]">
-                <Zap className="w-3.5 h-3.5 text-[#7C3AED]" />
-                <span>NEW ARRIVALS</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-[#18181B] uppercase mt-2">
-                SẢN PHẨM MỚI VỀ
-              </h2>
-              <p className="text-xs text-[#71717A] mt-0.5">
-                Những thiết kế mới nhất vừa được đưa lên kệ, chụp ảnh sản phẩm thật 100%.
-              </p>
-            </div>
-            <Link
-              to="/products?sort=newest"
-              className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors whitespace-nowrap"
-            >
-              <span>XEM TẤT CẢ</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          {/* Product Grid — KHÔNG HIỂN THỊ GIÁ TIỀN */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3.5 sm:gap-5">
-            {newArrivals.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onQuickView={handleOpenQuickView}
-                onToggleCompare={handleToggleCompare}
-                showPrice={false}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* ============================================================ */}
-        {/* 7. WOMEN'S COLLECTION — ẢNH 3: TỎA SÁNG THEO CÁCH RIÊNG       */}
-        {/* ============================================================ */}
-        <section className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="bo-suu-tap-nu" className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
           <div className="rounded-3xl bg-white border border-[#E4E4E7] p-6 sm:p-10 lg:p-12 shadow-card overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
@@ -566,36 +541,21 @@ export const HomePage: React.FC = () => {
                   </p>
                 </div>
 
-                {/* 4 Sản phẩm Nữ thật — KHÔNG HIỂN THỊ GIÁ TIỀN */}
+                {/* 4 Sản phẩm Nữ thật — HomeProductCard: ZERO GIÁ, CÓ NÚT XEM CHI TIẾT */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {womenHighlights.map((p) => (
-                    <div key={p.id} className="group relative bg-[#FAFAF9] p-2 rounded-xl border border-[#E4E4E7] hover:border-[#EC4899] transition-all">
-                      <div className="aspect-[3/4] rounded-lg overflow-hidden bg-white mb-2">
-                        <img
-                          src={p.images?.[0] || ''}
-                          alt={p.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="text-[11px] font-bold text-[#18181B] line-clamp-1">{p.name}</div>
-                      <div className="text-[10px] font-bold text-[#EC4899] mt-0.5 flex items-center justify-between">
-                        <span className="uppercase text-[#71717A] tracking-wider truncate max-w-[70px]">{p.brand || 'SMARTBUY AI'}</span>
-                        <span>Chi tiết →</span>
-                      </div>
-                      <Link to={`/products/${p.slug}`} className="absolute inset-0" aria-label={p.name} />
-                    </div>
+                    <HomeProductCard key={p.id} product={p} />
                   ))}
                 </div>
 
                 <div>
-                  <Link to="/products?gender=nu">
+                  <Link to="/shop?gender=nu">
                     <Button
                       variant="accent"
                       size="lg"
                       className="text-xs uppercase font-extrabold tracking-wider bg-[#EC4899] hover:bg-[#DB2777] text-white py-4 px-8 rounded-xl cursor-pointer"
                     >
-                      KHÁM PHÁ THỜI TRANG NỮ →
+                      KHÁM PHÁ THỜI TRANG NỮ TRONG SHOP →
                     </Button>
                   </Link>
                 </div>
@@ -624,9 +584,184 @@ export const HomePage: React.FC = () => {
         </section>
 
         {/* ============================================================ */}
-        {/* 8. AI VIRTUAL TRY-ON (THỬ ĐỒ TRƯỚC KHI MUA)                  */}
+        {/* 7. FASHION LOOKBOOK — ẢNH 4: FIND YOUR INSPIRATION            */}
         {/* ============================================================ */}
-        <section className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="lookbook" className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
+          <div className="bg-white border border-[#E4E4E7] rounded-3xl p-6 sm:p-10 lg:p-12 shadow-card overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+              {/* Cột ẢNH 4 — Editorial Lookbook (Chiếm 7 cols trên Desktop) */}
+              <div className="lg:col-span-7 relative rounded-2xl overflow-hidden aspect-[9/14] sm:aspect-[4/5] max-h-[620px] bg-[#FAF5FF] shadow-card group">
+                <img
+                  src={HOME_IMAGES.womenLookbook}
+                  alt="Fashion Lookbook Model - FIND YOUR INSPIRATION"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-[#7C3AED] text-[10px] font-extrabold uppercase px-3.5 py-1.5 rounded-full border border-purple-200 shadow-subtle tracking-wider">
+                  EDITORIAL LOOKBOOK
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-6 left-6 right-6 text-left text-white pointer-events-none">
+                  <div className="text-sm font-black uppercase tracking-wider text-[#18F4FC]">THE WHITE BALLET DRESS</div>
+                  <div className="text-xs text-[#E4E4E7] mt-1 font-sans">
+                    Cảm hứng nghệ thuật bảo tàng • Chất liệu voan xếp tầng bồng bềnh
+                  </div>
+                </div>
+              </div>
+
+              {/* Cột Tiêu đề, Mô tả, Items phối đồ & CTA (5 cols trên Desktop) */}
+              <div className="lg:col-span-5 space-y-6 text-left">
+                <div className="space-y-2">
+                  <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#7C3AED] bg-[#F3E8FF] px-2.5 py-0.5 rounded-sm border border-[#DDD6FE]">
+                    <Sparkles className="w-3.5 h-3.5 text-[#7C3AED]" />
+                    <span>FASHION LOOKBOOK</span>
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-black text-[#18181B] uppercase leading-tight">
+                    FIND YOUR INSPIRATION
+                  </h2>
+                  <p className="text-sm font-semibold text-[#6D28D9] italic">
+                    Cảm hứng thời trang cho những khoảnh khắc của bạn.
+                  </p>
+                  <p className="text-xs text-[#71717A] leading-relaxed">
+                    Mỗi trang phục là một tuyên ngôn phong cách riêng. Khám phá những bản phối tinh tế kết hợp giữa nét cổ điển thanh lịch và tinh thần Gen Z đương đại.
+                  </p>
+                </div>
+
+                {/* Set các món phối trong Lookbook từ catalog thật (KHÔNG HIỂN THỊ GIÁ) */}
+                <div>
+                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#18181B] mb-2.5">
+                    Gợi ý món đồ đồng điệu:
+                  </h4>
+                  <div className="space-y-2.5">
+                    {womenHighlights.slice(0, 2).map((item) => (
+                      <div
+                        key={item.id}
+                        className="flex items-center gap-3 p-3 rounded-xl bg-[#FAFAF9] border border-[#E4E4E7] hover:border-[#8B5CF6] transition-all"
+                      >
+                        <div className="w-14 h-16 rounded-lg overflow-hidden bg-white shrink-0">
+                          <img
+                            src={item.images?.[0] || ''}
+                            alt={item.name}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1 text-left">
+                          <span className="text-[10px] uppercase font-bold text-[#8B5CF6] tracking-wider">
+                            {item.brand}
+                          </span>
+                          <h5 className="text-xs font-bold text-[#18181B] line-clamp-1 mt-0.5">{item.name}</h5>
+                          <div className="text-[11px] font-bold text-[#8B5CF6] mt-0.5 flex items-center gap-1">
+                            <span>Chi tiết thiết kế</span>
+                          </div>
+                        </div>
+                        <Link
+                          to={`/products/${item.slug}`}
+                          className="px-3 py-1.5 rounded-lg bg-[#18181B] text-white hover:bg-[#8B5CF6] text-[11px] font-bold uppercase transition-colors flex items-center gap-1 shrink-0"
+                          title="Xem chi tiết"
+                        >
+                          <span>Xem chi tiết</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div className="pt-2">
+                  <Link to="/collections">
+                    <Button
+                      variant="accent"
+                      size="lg"
+                      className="w-full sm:w-auto text-xs uppercase font-extrabold tracking-wider bg-[#8B5CF6] hover:bg-[#7C3AED] text-white py-4 px-8 rounded-xl cursor-pointer shadow-elevated"
+                    >
+                      <Sparkles className="w-4 h-4 mr-2 text-[#18F4FC]" />
+                      KHÁM PHÁ BỘ SƯU TẬP THỜI TRANG →
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* 8. AI STYLIST (KHÔNG BIẾT HÔM NAY MẶC GÌ?)                   */}
+        {/* ============================================================ */}
+        <section id="ai-stylist" className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
+          <div className="rounded-3xl bg-[#18181B] text-white p-6 sm:p-12 relative overflow-hidden shadow-elevated border border-[#27272A] text-left">
+            {/* Subtle violet/cyan ambient glow */}
+            <div className="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 rounded-full bg-[#8B5CF6]/20 blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 rounded-full bg-[#18F4FC]/10 blur-3xl pointer-events-none" />
+
+            <div className="max-w-2xl relative z-10 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-[#DDD6FE] text-xs font-semibold uppercase border border-white/15">
+                <Sparkles className="w-3.5 h-3.5 text-[#18F4FC]" />
+                <span>AI STYLIST</span>
+              </div>
+
+              <div className="space-y-2">
+                <h2 className="text-3xl sm:text-4xl font-black text-white uppercase leading-tight">
+                  KHÔNG BIẾT HÔM NAY MẶC GÌ?
+                </h2>
+                <p className="text-xs sm:text-sm text-[#D4D4D8] leading-relaxed font-sans">
+                  Khám phá những cách phối đồ từ các sản phẩm có sẵn trong SMARTBUY AI — phù hợp cho đi học, đi chơi, hẹn hò và phong cách streetwear.
+                </p>
+              </div>
+
+              {/* Ô nhập tương tác thật */}
+              <form onSubmit={handleStylistSubmit} className="pt-2">
+                <div className="flex flex-col sm:flex-row gap-2 bg-white p-1.5 rounded-xl shadow-card border border-white focus-within:ring-2 focus-within:ring-[#8B5CF6]">
+                  <input
+                    type="text"
+                    value={stylistPrompt}
+                    onChange={(e) => setStylistPrompt(e.target.value)}
+                    placeholder="Ví dụ: Phối đồ đi học, phong cách streetwear cá tính..."
+                    className="flex-1 px-4 py-3 text-xs sm:text-sm text-[#18181B] bg-transparent focus:outline-none placeholder:text-[#A1A1AA]"
+                  />
+                  <Button
+                    type="submit"
+                    variant="accent"
+                    className="h-12 px-6 text-xs uppercase tracking-wider font-extrabold bg-[#8B5CF6] hover:bg-[#7C3AED] text-white rounded-lg cursor-pointer"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 mr-1.5 text-[#18F4FC]" />
+                    NHẬN TƯ VẤN AI
+                  </Button>
+                </div>
+              </form>
+
+              {/* Các chủ đề gợi ý */}
+              <div className="flex flex-wrap items-center gap-2 text-xs text-[#D4D4D8] pt-1 font-sans">
+                <span className="text-[#DDD6FE] font-bold">Gợi ý phong cách:</span>
+                {[
+                  'Phối đồ đi học',
+                  'Phối đồ đi chơi',
+                  'Streetwear',
+                  'Phong cách tối giản',
+                  'Phối đồ đi hẹn hò',
+                  'Outfit mùa lạnh',
+                ].map((sample) => (
+                  <button
+                    key={sample}
+                    type="button"
+                    onClick={() => setStylistPrompt(`Gợi ý outfit: ${sample}`)}
+                    className="bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 hover:text-white transition-colors cursor-pointer text-[11px] border border-white/10"
+                  >
+                    {sample}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* 9. AI VIRTUAL TRY-ON (THỬ ĐỒ TRƯỚC KHI MUA)                  */}
+        {/* ============================================================ */}
+        <section id="ai-try-on" className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
           <div className="rounded-3xl bg-gradient-to-br from-[#F5F3FF] via-[#EDE9FE] to-[#F0FDFA] border border-[#DDD6FE] p-6 sm:p-12 shadow-card text-left relative overflow-hidden">
             {/* Decorative background blurs */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#8B5CF6]/15 rounded-full blur-3xl pointer-events-none" />
@@ -714,175 +849,78 @@ export const HomePage: React.FC = () => {
         </section>
 
         {/* ============================================================ */}
-        {/* 9. FASHION LOOKBOOK — ẢNH 4: FIND YOUR INSPIRATION            */}
+        {/* 10. GIỚI THIỆU THƯƠNG HIỆU SMARTBUY AI (BRAND MANIFESTO)     */}
         {/* ============================================================ */}
-        <section className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white border border-[#E4E4E7] rounded-3xl p-6 sm:p-10 lg:p-12 shadow-card overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-
-              {/* Cột ẢNH 4 — Editorial Lookbook (Chiếm 55% / 7 cols trên Desktop) */}
-              <div className="lg:col-span-7 relative rounded-2xl overflow-hidden aspect-[9/14] sm:aspect-[4/5] max-h-[620px] bg-[#FAF5FF] shadow-card group">
-                <img
-                  src={HOME_IMAGES.womenLookbook}
-                  alt="Fashion Lookbook Model - FIND YOUR INSPIRATION"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-[#7C3AED] text-[10px] font-extrabold uppercase px-3.5 py-1.5 rounded-full border border-purple-200 shadow-subtle tracking-wider">
-                  EDITORIAL LOOKBOOK
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-6 left-6 right-6 text-left text-white pointer-events-none">
-                  <div className="text-sm font-black uppercase tracking-wider text-[#18F4FC]">THE WHITE BALLET DRESS</div>
-                  <div className="text-xs text-[#E4E4E7] mt-1 font-sans">
-                    Cảm hứng nghệ thuật bảo tàng • Chất liệu voan xếp tầng bồng bềnh
-                  </div>
-                </div>
+        <section id="gioi-thieu" className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
+          <div className="bg-white rounded-3xl border border-[#E4E4E7] p-8 sm:p-12 lg:p-16 shadow-card text-left">
+            <div className="max-w-3xl space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B5CF6]/10 text-[#7C3AED] text-xs font-bold uppercase tracking-wider">
+                <ShieldCheck className="w-4 h-4 text-[#8B5CF6]" />
+                <span>VỀ THƯƠNG HIỆU SMARTBUY AI</span>
               </div>
 
-              {/* Cột Tiêu đề, Mô tả, Items phối đồ & CTA (5 cols trên Desktop) */}
-              <div className="lg:col-span-5 space-y-6 text-left">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#18181B] uppercase tracking-tight leading-tight">
+                THỜI TRANG GEN Z TIÊN PHONG CÔNG NGHỆ
+              </h2>
+
+              <p className="text-sm sm:text-base text-[#52525B] leading-relaxed">
+                SMARTBUY AI kết hợp hoàn hảo giữa thời trang đường phố đương đại và sức mạnh của trí tuệ nhân tạo.
+                Mục tiêu của chúng tôi là đem lại trải nghiệm mua sắm thông minh, chính xác và truyền cảm hứng nhất cho giới trẻ.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-[#E4E4E7]">
                 <div className="space-y-2">
-                  <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#7C3AED] bg-[#F3E8FF] px-2.5 py-0.5 rounded-sm border border-[#DDD6FE]">
-                    <Sparkles className="w-3.5 h-3.5 text-[#7C3AED]" />
-                    <span>FASHION LOOKBOOK</span>
+                  <div className="w-10 h-10 rounded-xl bg-purple-50 text-[#8B5CF6] flex items-center justify-center font-black">
+                    01
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-black text-[#18181B] uppercase leading-tight">
-                    FIND YOUR INSPIRATION
-                  </h2>
-                  <p className="text-sm font-semibold text-[#6D28D9] italic">
-                    Cảm hứng thời trang cho những khoảnh khắc của bạn.
-                  </p>
+                  <h4 className="text-sm font-black text-[#18181B] uppercase">100% Ảnh Thực Tế</h4>
                   <p className="text-xs text-[#71717A] leading-relaxed">
-                    Mỗi trang phục là một tuyên ngôn phong cách riêng. Khám phá những bản phối tinh tế kết hợp giữa nét cổ điển thanh lịch và tinh thần Gen Z đương đại.
+                    Mọi hình ảnh sản phẩm đều được chụp trực tiếp từ mẫu thật và xưởng may, cam kết không dùng ảnh ảo lừa dối khách hàng.
                   </p>
                 </div>
 
-                {/* Set các món phối trong Lookbook từ catalog thật (KHÔNG HIỂN THỊ GIÁ) */}
-                <div>
-                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#18181B] mb-2.5">
-                    Gợi ý món đồ đồng điệu:
-                  </h4>
-                  <div className="space-y-2.5">
-                    {womenHighlights.slice(0, 2).map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex items-center gap-3 p-3 rounded-xl bg-[#FAFAF9] border border-[#E4E4E7] hover:border-[#8B5CF6] transition-all"
-                      >
-                        <div className="w-14 h-16 rounded-lg overflow-hidden bg-white shrink-0">
-                          <img
-                            src={item.images?.[0] || ''}
-                            alt={item.name}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div className="min-w-0 flex-1 text-left">
-                          <span className="text-[10px] uppercase font-bold text-[#8B5CF6] tracking-wider">
-                            {item.brand}
-                          </span>
-                          <h5 className="text-xs font-bold text-[#18181B] line-clamp-1 mt-0.5">{item.name}</h5>
-                          <div className="text-[11px] font-bold text-[#8B5CF6] mt-0.5 flex items-center gap-1">
-                            <span>Xem chi tiết</span>
-                            <span>→</span>
-                          </div>
-                        </div>
-                        <Link
-                          to={`/products/${item.slug}`}
-                          className="p-2 text-[#71717A] hover:text-[#8B5CF6]"
-                          title="Xem chi tiết"
-                        >
-                          <ArrowRight className="w-4 h-4" />
-                        </Link>
-                      </div>
-                    ))}
+                <div className="space-y-2">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-50 text-[#0891B2] flex items-center justify-center font-black">
+                    02
                   </div>
+                  <h4 className="text-sm font-black text-[#18181B] uppercase">Chất Liệu Tuyển Chọn</h4>
+                  <p className="text-xs text-[#71717A] leading-relaxed">
+                    Sử dụng vải Heavyweight Cotton 250-280gsm giữ phom đứng, co giãn thoáng mát, chống xù lông và bạc màu sau giặt.
+                  </p>
                 </div>
 
-                {/* CTA */}
-                <div className="pt-2">
-                  <Link to="/products?gender=nu">
-                    <Button
-                      variant="accent"
-                      size="lg"
-                      className="w-full sm:w-auto text-xs uppercase font-extrabold tracking-wider bg-[#8B5CF6] hover:bg-[#7C3AED] text-white py-4 px-8 rounded-xl cursor-pointer shadow-elevated"
-                    >
-                      <Sparkles className="w-4 h-4 mr-2 text-[#18F4FC]" />
-                      KHÁM PHÁ PHONG CÁCH →
-                    </Button>
-                  </Link>
+                <div className="space-y-2">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#059669] flex items-center justify-center font-black">
+                    03
+                  </div>
+                  <h4 className="text-sm font-black text-[#18181B] uppercase">Đổi Size 15 Ngày</h4>
+                  <p className="text-xs text-[#71717A] leading-relaxed">
+                    Chính sách đổi size tận nơi linh hoạt trong 15 ngày, nhân viên giao hàng nhận hàng đổi trả ngay tại cửa nhà bạn.
+                  </p>
                 </div>
               </div>
 
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================ */}
-        {/* 10. AI STYLIST (KHÔNG BIẾT HÔM NAY MẶC GÌ?)                   */}
-        {/* ============================================================ */}
-        <section className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-[#18181B] text-white p-6 sm:p-12 relative overflow-hidden shadow-elevated border border-[#27272A] text-left">
-            {/* Subtle violet/cyan ambient glow */}
-            <div className="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 rounded-full bg-[#8B5CF6]/20 blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 rounded-full bg-[#18F4FC]/10 blur-3xl pointer-events-none" />
-
-            <div className="max-w-2xl relative z-10 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-[#DDD6FE] text-xs font-semibold uppercase border border-white/15">
-                <Sparkles className="w-3.5 h-3.5 text-[#18F4FC]" />
-                <span>AI STYLIST</span>
-              </div>
-
-              <div className="space-y-2">
-                <h2 className="text-3xl sm:text-4xl font-black text-white uppercase leading-tight">
-                  KHÔNG BIẾT HÔM NAY MẶC GÌ?
-                </h2>
-                <p className="text-xs sm:text-sm text-[#D4D4D8] leading-relaxed font-sans">
-                  Khám phá những cách phối đồ từ các sản phẩm có sẵn trong SMARTBUY AI — phù hợp cho đi học, đi chơi, hẹn hò và phong cách streetwear.
-                </p>
-              </div>
-
-              {/* Ô nhập tương tác thật */}
-              <form onSubmit={handleStylistSubmit} className="pt-2">
-                <div className="flex flex-col sm:flex-row gap-2 bg-white p-1.5 rounded-xl shadow-card border border-white focus-within:ring-2 focus-within:ring-[#8B5CF6]">
-                  <input
-                    type="text"
-                    value={stylistPrompt}
-                    onChange={(e) => setStylistPrompt(e.target.value)}
-                    placeholder="Ví dụ: Phối đồ đi học, phong cách streetwear cá tính..."
-                    className="flex-1 px-4 py-3 text-xs sm:text-sm text-[#18181B] bg-transparent focus:outline-none placeholder:text-[#A1A1AA]"
-                  />
+              <div className="pt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                <Link to="/shop">
                   <Button
-                    type="submit"
                     variant="accent"
-                    className="h-12 px-6 text-xs uppercase tracking-wider font-extrabold bg-[#8B5CF6] hover:bg-[#7C3AED] text-white rounded-lg cursor-pointer"
+                    size="lg"
+                    className="w-full sm:w-auto text-xs uppercase font-black tracking-wider bg-[#8B5CF6] hover:bg-[#7C3AED] text-white py-4 px-8 rounded-xl shadow-elevated cursor-pointer"
                   >
-                    <Sparkles className="w-3.5 h-3.5 mr-1.5 text-[#18F4FC]" />
-                    NHẬN TƯ VẤN AI
+                    <ShoppingBag className="w-4 h-4 mr-2" />
+                    VÀO SHOP MUA SẮM NGAY
                   </Button>
-                </div>
-              </form>
+                </Link>
 
-              {/* Các chủ đề gợi ý */}
-              <div className="flex flex-wrap items-center gap-2 text-xs text-[#D4D4D8] pt-1 font-sans">
-                <span className="text-[#DDD6FE] font-bold">Gợi ý phong cách:</span>
-                {[
-                  'Phối đồ đi học',
-                  'Phối đồ đi chơi',
-                  'Streetwear',
-                  'Phong cách tối giản',
-                  'Phối đồ đi hẹn hò',
-                  'Outfit mùa lạnh',
-                ].map((sample) => (
-                  <button
-                    key={sample}
-                    type="button"
-                    onClick={() => setStylistPrompt(`Gợi ý outfit: ${sample}`)}
-                    className="bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 hover:text-white transition-colors cursor-pointer text-[11px] border border-white/10"
+                <Link to="/about">
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    className="w-full sm:w-auto text-xs uppercase font-bold bg-[#F4F4F5] hover:bg-[#E4E4E7] text-[#18181B] py-4 px-7 rounded-xl cursor-pointer"
                   >
-                    {sample}
-                  </button>
-                ))}
+                    TÌM HIỂU THÊM VỀ CHÚNG TÔI →
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -923,7 +961,7 @@ export const HomePage: React.FC = () => {
                 readTime: '4 phút đọc',
                 desc: 'Cách kết hợp áo thun boxy fit, hoodie trùm đầu cùng quần ống rộng và phụ kiện kim loại mang lại diện mạo cá tính.',
                 image: menHighlights[1]?.images?.[0] || '/images/san-pham/ao-thun-nam-1.jpg',
-                link: '/products?gender=unisex',
+                link: '/shop?gender=unisex',
               },
               {
                 id: 'blog-2',

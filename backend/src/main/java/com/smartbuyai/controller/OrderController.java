@@ -25,29 +25,34 @@ public class OrderController {
     }
 
     @PostMapping
-    @Operation(summary = "Tạo đơn hàng mới (tính toán giá và phí vận chuyển từ máy chủ)")
+    @Operation(summary = "Tạo đơn hàng mới (Bắt buộc Customer đã đăng nhập)")
     public ResponseEntity<OrderDto> createOrder(
             @Valid @RequestBody CreateOrderRequest req,
             Authentication auth
     ) {
-        String userId = auth != null ? auth.getName() : "guest";
+        if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getPrincipal())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        String userId = auth.getName();
         OrderDto order = orderService.createOrder(req, userId);
         return ResponseEntity.status(HttpStatus.CREATED).body(order);
     }
 
     @GetMapping("/{orderId}")
-    @Operation(summary = "Xem thông tin đơn hàng theo mã đơn")
-    public ResponseEntity<OrderDto> getOrderById(@PathVariable String orderId) {
+    @Operation(summary = "Xem thông tin đơn hàng theo mã đơn (Bắt buộc đăng nhập)")
+    public ResponseEntity<OrderDto> getOrderById(@PathVariable String orderId, Authentication auth) {
+        if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getPrincipal())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
         return ResponseEntity.ok(orderService.getOrderById(orderId));
     }
 
     @GetMapping("/my-orders")
-    @Operation(summary = "Lịch sử đơn hàng của người dùng hiện tại")
-    public ResponseEntity<List<OrderDto>> getMyOrders(
-            @RequestParam(required = false, defaultValue = "user-demo-1") String userId,
-            Authentication auth
-    ) {
-        String effectiveUserId = auth != null ? auth.getName() : userId;
-        return ResponseEntity.ok(orderService.getOrdersByUser(effectiveUserId));
+    @Operation(summary = "Lịch sử đơn hàng của người dùng hiện tại (Bắt buộc đăng nhập)")
+    public ResponseEntity<List<OrderDto>> getMyOrders(Authentication auth) {
+        if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getPrincipal())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.ok(orderService.getOrdersByUser(auth.getName()));
     }
 }

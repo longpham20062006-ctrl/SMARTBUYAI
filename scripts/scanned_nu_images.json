@@ -1,0 +1,1878 @@
+{
+  "summary": {
+    "aoCount": 125,
+    "quanCount": 14,
+    "vayCount": 68,
+    "totalCount": 207,
+    "duplicateGroupsCount": 0,
+    "usedCount": 207,
+    "unusedCount": 0
+  },
+  "duplicates": [],
+  "unusedFiles": [],
+  "allFiles": [
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_1\\1792819659487_348043404565674403_5540743654312280467_8e8c477b36c056a2ed65bbc180489462.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_1/1792819659487_348043404565674403_5540743654312280467_8e8c477b36c056a2ed65bbc180489462.jpg",
+      "fileName": "1792819659487_348043404565674403_5540743654312280467_8e8c477b36c056a2ed65bbc180489462.jpg",
+      "ext": ".jpg",
+      "size": 457937,
+      "hash": "d7525439c937293adef7c084b549ee8b"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_1\\1792819659516_348043404565674403_5540743654312280467_6eaf54e803cbaffbe83419ac379bb75c.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_1/1792819659516_348043404565674403_5540743654312280467_6eaf54e803cbaffbe83419ac379bb75c.jpg",
+      "fileName": "1792819659516_348043404565674403_5540743654312280467_6eaf54e803cbaffbe83419ac379bb75c.jpg",
+      "ext": ".jpg",
+      "size": 406962,
+      "hash": "b7926c39f5e24a80983c4ab1db7c8316"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_1\\1792819659528_348043404565674403_5540743654312280467_2b18ba69206862e011f5e4ea19ed57f4.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_1/1792819659528_348043404565674403_5540743654312280467_2b18ba69206862e011f5e4ea19ed57f4.jpg",
+      "fileName": "1792819659528_348043404565674403_5540743654312280467_2b18ba69206862e011f5e4ea19ed57f4.jpg",
+      "ext": ".jpg",
+      "size": 381049,
+      "hash": "2f1df13012f501a35f8c3fad320a4656"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_2\\1792819659538_348043404565674403_5540743654312280467_0bc7cf93bbc0a7456f35e8e943a32e32.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_2/1792819659538_348043404565674403_5540743654312280467_0bc7cf93bbc0a7456f35e8e943a32e32.jpg",
+      "fileName": "1792819659538_348043404565674403_5540743654312280467_0bc7cf93bbc0a7456f35e8e943a32e32.jpg",
+      "ext": ".jpg",
+      "size": 425866,
+      "hash": "a4daf8cf6af5199fe7d788e8725239dd"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_2\\1792819659547_348043404565674403_5540743654312280467_638b81a4d99f8f4f8e0f423cfb5dda1d.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_2/1792819659547_348043404565674403_5540743654312280467_638b81a4d99f8f4f8e0f423cfb5dda1d.jpg",
+      "fileName": "1792819659547_348043404565674403_5540743654312280467_638b81a4d99f8f4f8e0f423cfb5dda1d.jpg",
+      "ext": ".jpg",
+      "size": 296555,
+      "hash": "eec07bf0d00bc83e31692edf8d8312e9"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_3\\1792819659555_348043404565674403_5540743654312280467_1a57436ae8316697689eb2935c60e92c.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_3/1792819659555_348043404565674403_5540743654312280467_1a57436ae8316697689eb2935c60e92c.jpg",
+      "fileName": "1792819659555_348043404565674403_5540743654312280467_1a57436ae8316697689eb2935c60e92c.jpg",
+      "ext": ".jpg",
+      "size": 95181,
+      "hash": "f1041d75d1dec10894f43213296a4bb3"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_3\\1792819659562_348043404565674403_5540743654312280467_68d71f7fc010968da3c2f46e2291c8ef.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_3/1792819659562_348043404565674403_5540743654312280467_68d71f7fc010968da3c2f46e2291c8ef.jpg",
+      "fileName": "1792819659562_348043404565674403_5540743654312280467_68d71f7fc010968da3c2f46e2291c8ef.jpg",
+      "ext": ".jpg",
+      "size": 104044,
+      "hash": "d2afa1760921d59fe27c6607f0eb2eb7"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_4\\1792819659569_348043404565674403_5540743654312280467_41a08b15e2b9648060bcd68cb78d5459.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_4/1792819659569_348043404565674403_5540743654312280467_41a08b15e2b9648060bcd68cb78d5459.jpg",
+      "fileName": "1792819659569_348043404565674403_5540743654312280467_41a08b15e2b9648060bcd68cb78d5459.jpg",
+      "ext": ".jpg",
+      "size": 366534,
+      "hash": "4c746dba4ce163677312021f8917e800"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_4\\1792819659576_348043404565674403_5540743654312280467_dca1aa587429e9e3c3be21d3c6e8ab17.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_4/1792819659576_348043404565674403_5540743654312280467_dca1aa587429e9e3c3be21d3c6e8ab17.jpg",
+      "fileName": "1792819659576_348043404565674403_5540743654312280467_dca1aa587429e9e3c3be21d3c6e8ab17.jpg",
+      "ext": ".jpg",
+      "size": 402753,
+      "hash": "4edbd0ff666dfa5e6fe5ed244d5239f9"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_5\\1792819659581_348043404565674403_5540743654312280467_42697f197bfa20da65dc2ab9cbc902fa.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_5/1792819659581_348043404565674403_5540743654312280467_42697f197bfa20da65dc2ab9cbc902fa.jpg",
+      "fileName": "1792819659581_348043404565674403_5540743654312280467_42697f197bfa20da65dc2ab9cbc902fa.jpg",
+      "ext": ".jpg",
+      "size": 171774,
+      "hash": "de5eabf0bcd7dee90c89c6a463776ec1"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_5\\1792819659586_348043404565674403_5540743654312280467_0d949d2bb494f23c9eb60d6234f0f449.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_5/1792819659586_348043404565674403_5540743654312280467_0d949d2bb494f23c9eb60d6234f0f449.jpg",
+      "fileName": "1792819659586_348043404565674403_5540743654312280467_0d949d2bb494f23c9eb60d6234f0f449.jpg",
+      "ext": ".jpg",
+      "size": 391765,
+      "hash": "d5a2a71e11e2a91c10f5aa6b4532eb75"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_5\\1792819659591_348043404565674403_5540743654312280467_eb20a8b4c597f21040629ec156ceee75.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_5/1792819659591_348043404565674403_5540743654312280467_eb20a8b4c597f21040629ec156ceee75.jpg",
+      "fileName": "1792819659591_348043404565674403_5540743654312280467_eb20a8b4c597f21040629ec156ceee75.jpg",
+      "ext": ".jpg",
+      "size": 387482,
+      "hash": "a874658c8389b8f3d1d017dfdbb0417a"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_6\\1792819659595_348043404565674403_5540743654312280467_6569f1c8f58d0d99e99c53791db9d6e8.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_6/1792819659595_348043404565674403_5540743654312280467_6569f1c8f58d0d99e99c53791db9d6e8.jpg",
+      "fileName": "1792819659595_348043404565674403_5540743654312280467_6569f1c8f58d0d99e99c53791db9d6e8.jpg",
+      "ext": ".jpg",
+      "size": 233098,
+      "hash": "9e90f7bf43d120fbc63eff0379cb2bed"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_6\\1792819659600_348043404565674403_5540743654312280467_702d838172e7cb3944d4d34bd1c10021.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_6/1792819659600_348043404565674403_5540743654312280467_702d838172e7cb3944d4d34bd1c10021.jpg",
+      "fileName": "1792819659600_348043404565674403_5540743654312280467_702d838172e7cb3944d4d34bd1c10021.jpg",
+      "ext": ".jpg",
+      "size": 217531,
+      "hash": "024fccc87fd159cbe00433a27d978d07"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_6\\1792819659604_348043404565674403_5540743654312280467_d5dff58236864a31a7f5854dfd3c0d8a.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_6/1792819659604_348043404565674403_5540743654312280467_d5dff58236864a31a7f5854dfd3c0d8a.jpg",
+      "fileName": "1792819659604_348043404565674403_5540743654312280467_d5dff58236864a31a7f5854dfd3c0d8a.jpg",
+      "ext": ".jpg",
+      "size": 187200,
+      "hash": "03293542dac497f13726b98930bd6f8b"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-cardigan\\ao_6\\1792819659609_348043404565674403_5540743654312280467_6cc45fb1b7d56b59ca9080a0ca75ce17.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-cardigan/ao_6/1792819659609_348043404565674403_5540743654312280467_6cc45fb1b7d56b59ca9080a0ca75ce17.jpg",
+      "fileName": "1792819659609_348043404565674403_5540743654312280467_6cc45fb1b7d56b59ca9080a0ca75ce17.jpg",
+      "ext": ".jpg",
+      "size": 229024,
+      "hash": "3afd7cb9208f6c553ad84447ccdb1ac3"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_1\\1792820110382_348043404565674403_5540743654312280467_ff57a4fc53bc92848692062e29e8b747.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_1/1792820110382_348043404565674403_5540743654312280467_ff57a4fc53bc92848692062e29e8b747.jpg",
+      "fileName": "1792820110382_348043404565674403_5540743654312280467_ff57a4fc53bc92848692062e29e8b747.jpg",
+      "ext": ".jpg",
+      "size": 228482,
+      "hash": "d8d6daba7cac6a61a8bc30da10e6ec80"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_1\\1792820110403_348043404565674403_5540743654312280467_2f6c3acfaee86feaecea4a7d49a9beb7.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_1/1792820110403_348043404565674403_5540743654312280467_2f6c3acfaee86feaecea4a7d49a9beb7.jpg",
+      "fileName": "1792820110403_348043404565674403_5540743654312280467_2f6c3acfaee86feaecea4a7d49a9beb7.jpg",
+      "ext": ".jpg",
+      "size": 228160,
+      "hash": "8696a87f51298d19755257061a42880b"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_1\\1792820110415_348043404565674403_5540743654312280467_dc1d382afd6ae033ebb6c3c96ea94909.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_1/1792820110415_348043404565674403_5540743654312280467_dc1d382afd6ae033ebb6c3c96ea94909.jpg",
+      "fileName": "1792820110415_348043404565674403_5540743654312280467_dc1d382afd6ae033ebb6c3c96ea94909.jpg",
+      "ext": ".jpg",
+      "size": 218567,
+      "hash": "4de1be8ad55ec0317e09418999eccf4f"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_1\\1792820110427_348043404565674403_5540743654312280467_6b654356fb7cd62827bd4763667c91ce.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_1/1792820110427_348043404565674403_5540743654312280467_6b654356fb7cd62827bd4763667c91ce.jpg",
+      "fileName": "1792820110427_348043404565674403_5540743654312280467_6b654356fb7cd62827bd4763667c91ce.jpg",
+      "ext": ".jpg",
+      "size": 195511,
+      "hash": "f5f0a70d7bde862c16b579707ba0f39e"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_1\\1792820110436_348043404565674403_5540743654312280467_d81f4cc1c434958086e9aa0eb28b73eb.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_1/1792820110436_348043404565674403_5540743654312280467_d81f4cc1c434958086e9aa0eb28b73eb.jpg",
+      "fileName": "1792820110436_348043404565674403_5540743654312280467_d81f4cc1c434958086e9aa0eb28b73eb.jpg",
+      "ext": ".jpg",
+      "size": 218650,
+      "hash": "ee4afb54f75c98ba092cda9467947054"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_2\\1792820110445_348043404565674403_5540743654312280467_ccb30add1eb30929707da4f4a00468c8.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_2/1792820110445_348043404565674403_5540743654312280467_ccb30add1eb30929707da4f4a00468c8.jpg",
+      "fileName": "1792820110445_348043404565674403_5540743654312280467_ccb30add1eb30929707da4f4a00468c8.jpg",
+      "ext": ".jpg",
+      "size": 122975,
+      "hash": "ad248a2329b82f0c3ec687a72c47e04c"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_2\\1792820110453_348043404565674403_5540743654312280467_50e652a5e2e557c125202d5fc26f8d65.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_2/1792820110453_348043404565674403_5540743654312280467_50e652a5e2e557c125202d5fc26f8d65.jpg",
+      "fileName": "1792820110453_348043404565674403_5540743654312280467_50e652a5e2e557c125202d5fc26f8d65.jpg",
+      "ext": ".jpg",
+      "size": 116495,
+      "hash": "ca3eef3e9a315dc569b3f3b68649f097"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_2\\1792820110460_348043404565674403_5540743654312280467_5418624ca4afceabcaaab251850cc18e.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_2/1792820110460_348043404565674403_5540743654312280467_5418624ca4afceabcaaab251850cc18e.jpg",
+      "fileName": "1792820110460_348043404565674403_5540743654312280467_5418624ca4afceabcaaab251850cc18e.jpg",
+      "ext": ".jpg",
+      "size": 108997,
+      "hash": "a03726f078307819b41f3cf5457900f7"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_2\\1792820110467_348043404565674403_5540743654312280467_82edf1d14cb45dfb24d1e2ce1916ef69.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_2/1792820110467_348043404565674403_5540743654312280467_82edf1d14cb45dfb24d1e2ce1916ef69.jpg",
+      "fileName": "1792820110467_348043404565674403_5540743654312280467_82edf1d14cb45dfb24d1e2ce1916ef69.jpg",
+      "ext": ".jpg",
+      "size": 113165,
+      "hash": "bf5aeeda1550b37c236f27c61e2a1084"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_2\\1792820110473_348043404565674403_5540743654312280467_3a3081589e6bfdabe7074f44cfa60952.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_2/1792820110473_348043404565674403_5540743654312280467_3a3081589e6bfdabe7074f44cfa60952.jpg",
+      "fileName": "1792820110473_348043404565674403_5540743654312280467_3a3081589e6bfdabe7074f44cfa60952.jpg",
+      "ext": ".jpg",
+      "size": 127802,
+      "hash": "8e157c545fdc18326894f9559fe2ae3a"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_3\\1792820110478_348043404565674403_5540743654312280467_335f45cf786f89b8ba96b49fbd8d3870.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_3/1792820110478_348043404565674403_5540743654312280467_335f45cf786f89b8ba96b49fbd8d3870.jpg",
+      "fileName": "1792820110478_348043404565674403_5540743654312280467_335f45cf786f89b8ba96b49fbd8d3870.jpg",
+      "ext": ".jpg",
+      "size": 94623,
+      "hash": "61ac933bd1e1bf574b7f0a13b7ccdbfa"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_3\\1792820110483_348043404565674403_5540743654312280467_7f4440d0d7eefc369eb4a99ec5136337.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_3/1792820110483_348043404565674403_5540743654312280467_7f4440d0d7eefc369eb4a99ec5136337.jpg",
+      "fileName": "1792820110483_348043404565674403_5540743654312280467_7f4440d0d7eefc369eb4a99ec5136337.jpg",
+      "ext": ".jpg",
+      "size": 89491,
+      "hash": "44ae033d863cc345aa82eab2898bd5e0"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_3\\1792820110488_348043404565674403_5540743654312280467_86f15887141e5800f15c98f5d03d83ce.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_3/1792820110488_348043404565674403_5540743654312280467_86f15887141e5800f15c98f5d03d83ce.jpg",
+      "fileName": "1792820110488_348043404565674403_5540743654312280467_86f15887141e5800f15c98f5d03d83ce.jpg",
+      "ext": ".jpg",
+      "size": 88932,
+      "hash": "f404175c4cc69338e53cddd3491ffb8c"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_3\\1792820110492_348043404565674403_5540743654312280467_03e530b7922878b737bfe3f57ef4b4e2.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_3/1792820110492_348043404565674403_5540743654312280467_03e530b7922878b737bfe3f57ef4b4e2.jpg",
+      "fileName": "1792820110492_348043404565674403_5540743654312280467_03e530b7922878b737bfe3f57ef4b4e2.jpg",
+      "ext": ".jpg",
+      "size": 86972,
+      "hash": "9474cc105cd1743b5b3aa91da1c79d5c"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_3\\1792820110496_348043404565674403_5540743654312280467_9370d3e86a914be1e9a266f185488b03.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_3/1792820110496_348043404565674403_5540743654312280467_9370d3e86a914be1e9a266f185488b03.jpg",
+      "fileName": "1792820110496_348043404565674403_5540743654312280467_9370d3e86a914be1e9a266f185488b03.jpg",
+      "ext": ".jpg",
+      "size": 95555,
+      "hash": "e5e60efae100c9a3ff384ce03a2c9bb4"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_4\\1792820110501_348043404565674403_5540743654312280467_7a089c4cc0c6d2d5d2891854a4b09cfe.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_4/1792820110501_348043404565674403_5540743654312280467_7a089c4cc0c6d2d5d2891854a4b09cfe.jpg",
+      "fileName": "1792820110501_348043404565674403_5540743654312280467_7a089c4cc0c6d2d5d2891854a4b09cfe.jpg",
+      "ext": ".jpg",
+      "size": 354132,
+      "hash": "b91af05ea9603656e1eeb39d91b9259d"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_4\\1792820110505_348043404565674403_5540743654312280467_0b4c68ced8d53f25c489b297202c7630.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_4/1792820110505_348043404565674403_5540743654312280467_0b4c68ced8d53f25c489b297202c7630.jpg",
+      "fileName": "1792820110505_348043404565674403_5540743654312280467_0b4c68ced8d53f25c489b297202c7630.jpg",
+      "ext": ".jpg",
+      "size": 363998,
+      "hash": "eb54c26a164d279802d958cbe2f64f8a"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_5\\1792820110510_348043404565674403_5540743654312280467_60c2bc6710923317d683aaab8f888b3a.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_5/1792820110510_348043404565674403_5540743654312280467_60c2bc6710923317d683aaab8f888b3a.jpg",
+      "fileName": "1792820110510_348043404565674403_5540743654312280467_60c2bc6710923317d683aaab8f888b3a.jpg",
+      "ext": ".jpg",
+      "size": 170404,
+      "hash": "31b77ad4a854c17e5958a58ddbcc7a82"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_5\\1792820110514_348043404565674403_5540743654312280467_26c24135457608fbd85695278a826c12.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_5/1792820110514_348043404565674403_5540743654312280467_26c24135457608fbd85695278a826c12.jpg",
+      "fileName": "1792820110514_348043404565674403_5540743654312280467_26c24135457608fbd85695278a826c12.jpg",
+      "ext": ".jpg",
+      "size": 106699,
+      "hash": "991f0bc39871be3482846fa9b5779fb5"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_5\\1792820110518_348043404565674403_5540743654312280467_5767406aa3c74d4c9fca43e9d006ea2e.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_5/1792820110518_348043404565674403_5540743654312280467_5767406aa3c74d4c9fca43e9d006ea2e.jpg",
+      "fileName": "1792820110518_348043404565674403_5540743654312280467_5767406aa3c74d4c9fca43e9d006ea2e.jpg",
+      "ext": ".jpg",
+      "size": 111321,
+      "hash": "8f1490db9865339250a56646f3eb9e1a"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_5\\1792820110523_348043404565674403_5540743654312280467_626bd99e3e1fafb8005f790c52fce02c.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_5/1792820110523_348043404565674403_5540743654312280467_626bd99e3e1fafb8005f790c52fce02c.jpg",
+      "fileName": "1792820110523_348043404565674403_5540743654312280467_626bd99e3e1fafb8005f790c52fce02c.jpg",
+      "ext": ".jpg",
+      "size": 130027,
+      "hash": "9fae1292d57ef2f39e76d9425f95ad88"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_6\\1792820110527_348043404565674403_5540743654312280467_070ff4a5ce1caccac789ac2629f47069.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_6/1792820110527_348043404565674403_5540743654312280467_070ff4a5ce1caccac789ac2629f47069.jpg",
+      "fileName": "1792820110527_348043404565674403_5540743654312280467_070ff4a5ce1caccac789ac2629f47069.jpg",
+      "ext": ".jpg",
+      "size": 349117,
+      "hash": "25a70ffa8e5d8760ee0bb48801467e71"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_6\\1792820110532_348043404565674403_5540743654312280467_f78b15efbd876db0f5986acc11fb0d0f.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_6/1792820110532_348043404565674403_5540743654312280467_f78b15efbd876db0f5986acc11fb0d0f.jpg",
+      "fileName": "1792820110532_348043404565674403_5540743654312280467_f78b15efbd876db0f5986acc11fb0d0f.jpg",
+      "ext": ".jpg",
+      "size": 359867,
+      "hash": "b14d1302bb3a60c7f4e372393a8ba54b"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_6\\1792820110536_348043404565674403_5540743654312280467_7e80ee5a7acc53eef910b468a3d097dd.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_6/1792820110536_348043404565674403_5540743654312280467_7e80ee5a7acc53eef910b468a3d097dd.jpg",
+      "fileName": "1792820110536_348043404565674403_5540743654312280467_7e80ee5a7acc53eef910b468a3d097dd.jpg",
+      "ext": ".jpg",
+      "size": 267094,
+      "hash": "dc378659a29d9c0182859c2fb5f22e06"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_7\\1792820110541_348043404565674403_5540743654312280467_0ff56e671fc2e75f2426cf3fd8c418eb.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_7/1792820110541_348043404565674403_5540743654312280467_0ff56e671fc2e75f2426cf3fd8c418eb.jpg",
+      "fileName": "1792820110541_348043404565674403_5540743654312280467_0ff56e671fc2e75f2426cf3fd8c418eb.jpg",
+      "ext": ".jpg",
+      "size": 115487,
+      "hash": "b792681952c20a1cc28f67648fb9bc6f"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-croptop\\ao_7\\1792820110545_348043404565674403_5540743654312280467_449dc6d63a3a78a81bd63f9c100a7a29.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-croptop/ao_7/1792820110545_348043404565674403_5540743654312280467_449dc6d63a3a78a81bd63f9c100a7a29.jpg",
+      "fileName": "1792820110545_348043404565674403_5540743654312280467_449dc6d63a3a78a81bd63f9c100a7a29.jpg",
+      "ext": ".jpg",
+      "size": 89272,
+      "hash": "4d838bcaaf4096c5f05a7bdc8a05c711"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_1\\1792820469908_348043404565674403_5540743654312280467_cb09a23f373395e1abc783b532f18d9c.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_1/1792820469908_348043404565674403_5540743654312280467_cb09a23f373395e1abc783b532f18d9c.jpg",
+      "fileName": "1792820469908_348043404565674403_5540743654312280467_cb09a23f373395e1abc783b532f18d9c.jpg",
+      "ext": ".jpg",
+      "size": 99283,
+      "hash": "068eb013bfb81c31d847ff0639d85638"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_2\\1792820469928_348043404565674403_5540743654312280467_7dd4811d9d474c1723e85a95b6ae3327.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_2/1792820469928_348043404565674403_5540743654312280467_7dd4811d9d474c1723e85a95b6ae3327.jpg",
+      "fileName": "1792820469928_348043404565674403_5540743654312280467_7dd4811d9d474c1723e85a95b6ae3327.jpg",
+      "ext": ".jpg",
+      "size": 123368,
+      "hash": "c041bceef484c791aff89dcb81acea54"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_3\\1792820469941_348043404565674403_5540743654312280467_01e75f5f4be2598b1828ddd4d18943c3.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_3/1792820469941_348043404565674403_5540743654312280467_01e75f5f4be2598b1828ddd4d18943c3.jpg",
+      "fileName": "1792820469941_348043404565674403_5540743654312280467_01e75f5f4be2598b1828ddd4d18943c3.jpg",
+      "ext": ".jpg",
+      "size": 125132,
+      "hash": "711f6e156436ace1afbfab651ec29e00"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_4\\1792820469952_348043404565674403_5540743654312280467_bde1e2739611c68c65bb94904a3dcfa9.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_4/1792820469952_348043404565674403_5540743654312280467_bde1e2739611c68c65bb94904a3dcfa9.jpg",
+      "fileName": "1792820469952_348043404565674403_5540743654312280467_bde1e2739611c68c65bb94904a3dcfa9.jpg",
+      "ext": ".jpg",
+      "size": 88533,
+      "hash": "11733180deb905d12e665015d08078bb"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_4\\1792820469961_348043404565674403_5540743654312280467_7dcf2a10872bfc68e1dc6cc860a4c370.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_4/1792820469961_348043404565674403_5540743654312280467_7dcf2a10872bfc68e1dc6cc860a4c370.jpg",
+      "fileName": "1792820469961_348043404565674403_5540743654312280467_7dcf2a10872bfc68e1dc6cc860a4c370.jpg",
+      "ext": ".jpg",
+      "size": 98478,
+      "hash": "d74619c6e43adca23887823a33fffdab"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_4\\1792820469970_348043404565674403_5540743654312280467_c22ebdede2adfbaa26dcbf707486d5e4.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_4/1792820469970_348043404565674403_5540743654312280467_c22ebdede2adfbaa26dcbf707486d5e4.jpg",
+      "fileName": "1792820469970_348043404565674403_5540743654312280467_c22ebdede2adfbaa26dcbf707486d5e4.jpg",
+      "ext": ".jpg",
+      "size": 66519,
+      "hash": "faff6e4c073053b73bc145995ab13ea0"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_5\\1792820469978_348043404565674403_5540743654312280467_6ba76783b5c040647f694edaf89fae41.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_5/1792820469978_348043404565674403_5540743654312280467_6ba76783b5c040647f694edaf89fae41.jpg",
+      "fileName": "1792820469978_348043404565674403_5540743654312280467_6ba76783b5c040647f694edaf89fae41.jpg",
+      "ext": ".jpg",
+      "size": 70651,
+      "hash": "a89f945b9165c5aa33fcc3d9ba47ffa7"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_5\\1792820469985_348043404565674403_5540743654312280467_aecd143566908ff39c03db15235c18cd.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_5/1792820469985_348043404565674403_5540743654312280467_aecd143566908ff39c03db15235c18cd.jpg",
+      "fileName": "1792820469985_348043404565674403_5540743654312280467_aecd143566908ff39c03db15235c18cd.jpg",
+      "ext": ".jpg",
+      "size": 87304,
+      "hash": "35e6ecbb3e8c11f986726e4e48785451"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_5\\1792820469992_348043404565674403_5540743654312280467_ad91d7d971ec1657b90b9f8da0876379.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_5/1792820469992_348043404565674403_5540743654312280467_ad91d7d971ec1657b90b9f8da0876379.jpg",
+      "fileName": "1792820469992_348043404565674403_5540743654312280467_ad91d7d971ec1657b90b9f8da0876379.jpg",
+      "ext": ".jpg",
+      "size": 49293,
+      "hash": "0f2aab7f674cb400c3b5b874598c66a6"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_6\\1792820469997_348043404565674403_5540743654312280467_cc11fdc7a6c8dd977a25a2d10b324e9b.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_6/1792820469997_348043404565674403_5540743654312280467_cc11fdc7a6c8dd977a25a2d10b324e9b.jpg",
+      "fileName": "1792820469997_348043404565674403_5540743654312280467_cc11fdc7a6c8dd977a25a2d10b324e9b.jpg",
+      "ext": ".jpg",
+      "size": 141475,
+      "hash": "0697dcf26952ce1fbd76e99dd3cff525"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_6\\1792820470002_348043404565674403_5540743654312280467_73a790d41bd11f58f9ae8d3cb01a3421.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_6/1792820470002_348043404565674403_5540743654312280467_73a790d41bd11f58f9ae8d3cb01a3421.jpg",
+      "fileName": "1792820470002_348043404565674403_5540743654312280467_73a790d41bd11f58f9ae8d3cb01a3421.jpg",
+      "ext": ".jpg",
+      "size": 171752,
+      "hash": "311dcf812111b3ef4903cab525aebbfb"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_6\\1792820470007_348043404565674403_5540743654312280467_fa8f904dfb00ed2cc962ed96adb924d1.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_6/1792820470007_348043404565674403_5540743654312280467_fa8f904dfb00ed2cc962ed96adb924d1.jpg",
+      "fileName": "1792820470007_348043404565674403_5540743654312280467_fa8f904dfb00ed2cc962ed96adb924d1.jpg",
+      "ext": ".jpg",
+      "size": 192008,
+      "hash": "c29d79a0b5e5cb6e7ec2df46a099ab4d"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_7\\1792820470012_348043404565674403_5540743654312280467_0d75552a7aa87b2942a91a5a5b3a99a4.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_7/1792820470012_348043404565674403_5540743654312280467_0d75552a7aa87b2942a91a5a5b3a99a4.jpg",
+      "fileName": "1792820470012_348043404565674403_5540743654312280467_0d75552a7aa87b2942a91a5a5b3a99a4.jpg",
+      "ext": ".jpg",
+      "size": 213525,
+      "hash": "afc046155486c9d99f289529fea4a557"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_7\\1792820470016_348043404565674403_5540743654312280467_c977c4d6e05e6b9883e4f3b41381ab53.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_7/1792820470016_348043404565674403_5540743654312280467_c977c4d6e05e6b9883e4f3b41381ab53.jpg",
+      "fileName": "1792820470016_348043404565674403_5540743654312280467_c977c4d6e05e6b9883e4f3b41381ab53.jpg",
+      "ext": ".jpg",
+      "size": 155409,
+      "hash": "51304fdc4238d2460d680fc573ad27e9"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_7\\1792820470020_348043404565674403_5540743654312280467_ee28a79f5450a89e836fb0c7b30f13bb.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_7/1792820470020_348043404565674403_5540743654312280467_ee28a79f5450a89e836fb0c7b30f13bb.jpg",
+      "fileName": "1792820470020_348043404565674403_5540743654312280467_ee28a79f5450a89e836fb0c7b30f13bb.jpg",
+      "ext": ".jpg",
+      "size": 239886,
+      "hash": "98952d73dfb2e3e9eacdcb538a6351f5"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hai-day\\ao_7\\1792820470025_348043404565674403_5540743654312280467_40b62f26f105569c3f9344c297eb358c.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hai-day/ao_7/1792820470025_348043404565674403_5540743654312280467_40b62f26f105569c3f9344c297eb358c.jpg",
+      "fileName": "1792820470025_348043404565674403_5540743654312280467_40b62f26f105569c3f9344c297eb358c.jpg",
+      "ext": ".jpg",
+      "size": 233822,
+      "hash": "b34f607f66ee2b21d92299ad713447a0"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_1\\1792820760960_348043404565674403_5540743654312280467_29c6ae9b663a6432e8c126881ccd76a2.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_1/1792820760960_348043404565674403_5540743654312280467_29c6ae9b663a6432e8c126881ccd76a2.jpg",
+      "fileName": "1792820760960_348043404565674403_5540743654312280467_29c6ae9b663a6432e8c126881ccd76a2.jpg",
+      "ext": ".jpg",
+      "size": 216442,
+      "hash": "ed714acc7c467551bf8ddc70342140e3"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_1\\1792820760989_348043404565674403_5540743654312280467_0292e29194d06455fa15467c7c190bc9.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_1/1792820760989_348043404565674403_5540743654312280467_0292e29194d06455fa15467c7c190bc9.jpg",
+      "fileName": "1792820760989_348043404565674403_5540743654312280467_0292e29194d06455fa15467c7c190bc9.jpg",
+      "ext": ".jpg",
+      "size": 311208,
+      "hash": "79d819ff1d2df30b04cc5e0054ef1db4"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_1\\1792820761002_348043404565674403_5540743654312280467_9b927da3cc2240a81592dff899cc013d.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_1/1792820761002_348043404565674403_5540743654312280467_9b927da3cc2240a81592dff899cc013d.jpg",
+      "fileName": "1792820761002_348043404565674403_5540743654312280467_9b927da3cc2240a81592dff899cc013d.jpg",
+      "ext": ".jpg",
+      "size": 293830,
+      "hash": "00edc61dedf4fe5bedc04ba58d77b242"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_2\\1792820761012_348043404565674403_5540743654312280467_31fe72965f9c732597f8af29ac5fbdb0.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_2/1792820761012_348043404565674403_5540743654312280467_31fe72965f9c732597f8af29ac5fbdb0.jpg",
+      "fileName": "1792820761012_348043404565674403_5540743654312280467_31fe72965f9c732597f8af29ac5fbdb0.jpg",
+      "ext": ".jpg",
+      "size": 150560,
+      "hash": "dcd2fc0cc6e291dfb044b67ec3731a4b"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_3\\1792820761021_348043404565674403_5540743654312280467_2e816847736f71dd928a89bad164aa9a.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_3/1792820761021_348043404565674403_5540743654312280467_2e816847736f71dd928a89bad164aa9a.jpg",
+      "fileName": "1792820761021_348043404565674403_5540743654312280467_2e816847736f71dd928a89bad164aa9a.jpg",
+      "ext": ".jpg",
+      "size": 217289,
+      "hash": "a4a85c0357eeae3b0985322f454fb4a9"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_4\\1792820761029_348043404565674403_5540743654312280467_16a87ca4206db8f597ba2ebd3bdae00d.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_4/1792820761029_348043404565674403_5540743654312280467_16a87ca4206db8f597ba2ebd3bdae00d.jpg",
+      "fileName": "1792820761029_348043404565674403_5540743654312280467_16a87ca4206db8f597ba2ebd3bdae00d.jpg",
+      "ext": ".jpg",
+      "size": 226602,
+      "hash": "49a5050639ade181d0934c5285a93125"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_5\\1792820761036_348043404565674403_5540743654312280467_6a5f74e85a0a53c4c1f359f8de04f7b7.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_5/1792820761036_348043404565674403_5540743654312280467_6a5f74e85a0a53c4c1f359f8de04f7b7.jpg",
+      "fileName": "1792820761036_348043404565674403_5540743654312280467_6a5f74e85a0a53c4c1f359f8de04f7b7.jpg",
+      "ext": ".jpg",
+      "size": 152555,
+      "hash": "3ee6051ab7364120af02a1e5b0e6aa8a"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_6\\1792820761043_348043404565674403_5540743654312280467_ca1522eb06f98450dbfc989dd342fd3b.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_6/1792820761043_348043404565674403_5540743654312280467_ca1522eb06f98450dbfc989dd342fd3b.jpg",
+      "fileName": "1792820761043_348043404565674403_5540743654312280467_ca1522eb06f98450dbfc989dd342fd3b.jpg",
+      "ext": ".jpg",
+      "size": 154861,
+      "hash": "ba97eded9e63b423d96ae62c5a1e288b"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_7\\1792820761048_348043404565674403_5540743654312280467_721bfd90038bdf5631358faf0b841fcc.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_7/1792820761048_348043404565674403_5540743654312280467_721bfd90038bdf5631358faf0b841fcc.jpg",
+      "fileName": "1792820761048_348043404565674403_5540743654312280467_721bfd90038bdf5631358faf0b841fcc.jpg",
+      "ext": ".jpg",
+      "size": 223151,
+      "hash": "cd2770ffa8e5b3c828b0c1f8a4e7db51"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_7\\1792820761054_348043404565674403_5540743654312280467_5328d48399e0ef6592806bd91a448a2e.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_7/1792820761054_348043404565674403_5540743654312280467_5328d48399e0ef6592806bd91a448a2e.jpg",
+      "fileName": "1792820761054_348043404565674403_5540743654312280467_5328d48399e0ef6592806bd91a448a2e.jpg",
+      "ext": ".jpg",
+      "size": 158350,
+      "hash": "020be2a95c32e5d50d4e2e8ebc93c982"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_8\\1792820761059_348043404565674403_5540743654312280467_a99a6adf5f5ff5ac53779fcd093be00b.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_8/1792820761059_348043404565674403_5540743654312280467_a99a6adf5f5ff5ac53779fcd093be00b.jpg",
+      "fileName": "1792820761059_348043404565674403_5540743654312280467_a99a6adf5f5ff5ac53779fcd093be00b.jpg",
+      "ext": ".jpg",
+      "size": 154368,
+      "hash": "7ed7f0028a998ce138074cf79fc2face"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_9\\1792820761064_348043404565674403_5540743654312280467_6e1f57617f6086fcd5f5e731641a8900.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_9/1792820761064_348043404565674403_5540743654312280467_6e1f57617f6086fcd5f5e731641a8900.jpg",
+      "fileName": "1792820761064_348043404565674403_5540743654312280467_6e1f57617f6086fcd5f5e731641a8900.jpg",
+      "ext": ".jpg",
+      "size": 230535,
+      "hash": "5cc76b680981a6caf0580ed1920c7d92"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-hoodie\\ao_9\\1792820761069_348043404565674403_5540743654312280467_4c6f7f73b9417ae4934e7d7f5938f7fa.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-hoodie/ao_9/1792820761069_348043404565674403_5540743654312280467_4c6f7f73b9417ae4934e7d7f5938f7fa.jpg",
+      "fileName": "1792820761069_348043404565674403_5540743654312280467_4c6f7f73b9417ae4934e7d7f5938f7fa.jpg",
+      "ext": ".jpg",
+      "size": 205475,
+      "hash": "f7a00db46e7da4678fb66ad1dd00c09a"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-len\\ao_1\\1792821039411_348043404565674403_5540743654312280467_c43cfde84572416252311ad299f7f484.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-len/ao_1/1792821039411_348043404565674403_5540743654312280467_c43cfde84572416252311ad299f7f484.jpg",
+      "fileName": "1792821039411_348043404565674403_5540743654312280467_c43cfde84572416252311ad299f7f484.jpg",
+      "ext": ".jpg",
+      "size": 153023,
+      "hash": "111d84cea31dce7f1fbe29fc7b5f90e4"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-len\\ao_1\\1792821039433_348043404565674403_5540743654312280467_d014b9adaf837e13c2fb4681e851f29b.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-len/ao_1/1792821039433_348043404565674403_5540743654312280467_d014b9adaf837e13c2fb4681e851f29b.jpg",
+      "fileName": "1792821039433_348043404565674403_5540743654312280467_d014b9adaf837e13c2fb4681e851f29b.jpg",
+      "ext": ".jpg",
+      "size": 121241,
+      "hash": "b9fe0c7663386fe75126a9518f05836e"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-len\\ao_2\\1792821039468_348043404565674403_5540743654312280467_6e85a2ade8bc532675275698b6521c74.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-len/ao_2/1792821039468_348043404565674403_5540743654312280467_6e85a2ade8bc532675275698b6521c74.jpg",
+      "fileName": "1792821039468_348043404565674403_5540743654312280467_6e85a2ade8bc532675275698b6521c74.jpg",
+      "ext": ".jpg",
+      "size": 134158,
+      "hash": "053195306609dfd36fc1efb39e0cff4a"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-len\\ao_2\\1792821039477_348043404565674403_5540743654312280467_58e39a2782d927e1bba53614378f691a.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-len/ao_2/1792821039477_348043404565674403_5540743654312280467_58e39a2782d927e1bba53614378f691a.jpg",
+      "fileName": "1792821039477_348043404565674403_5540743654312280467_58e39a2782d927e1bba53614378f691a.jpg",
+      "ext": ".jpg",
+      "size": 144309,
+      "hash": "d6f82876879d8417f019dfa5478908ca"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-len\\ao_2\\1792821039485_348043404565674403_5540743654312280467_c64f6e2000c45877429962a630f703b2.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-len/ao_2/1792821039485_348043404565674403_5540743654312280467_c64f6e2000c45877429962a630f703b2.jpg",
+      "fileName": "1792821039485_348043404565674403_5540743654312280467_c64f6e2000c45877429962a630f703b2.jpg",
+      "ext": ".jpg",
+      "size": 236203,
+      "hash": "496c71c3c38b2485c65ba4b010158551"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-len\\ao_3\\1792821039447_348043404565674403_5540743654312280467_e0d6999c834318c6c68fba1330bc0a0e.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-len/ao_3/1792821039447_348043404565674403_5540743654312280467_e0d6999c834318c6c68fba1330bc0a0e.jpg",
+      "fileName": "1792821039447_348043404565674403_5540743654312280467_e0d6999c834318c6c68fba1330bc0a0e.jpg",
+      "ext": ".jpg",
+      "size": 141832,
+      "hash": "88b1c7723e7a48765eced23897fb9573"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-len\\ao_3\\1792821039458_348043404565674403_5540743654312280467_43e6d1b2715ea1e0c83229e1ff0935a2.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-len/ao_3/1792821039458_348043404565674403_5540743654312280467_43e6d1b2715ea1e0c83229e1ff0935a2.jpg",
+      "fileName": "1792821039458_348043404565674403_5540743654312280467_43e6d1b2715ea1e0c83229e1ff0935a2.jpg",
+      "ext": ".jpg",
+      "size": 172165,
+      "hash": "dd313b58e417f9eaf505eef103789b47"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-len\\ao_4\\1792821039493_348043404565674403_5540743654312280467_3fe38ef2c9f912d24ec4369d119f928a.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-len/ao_4/1792821039493_348043404565674403_5540743654312280467_3fe38ef2c9f912d24ec4369d119f928a.jpg",
+      "fileName": "1792821039493_348043404565674403_5540743654312280467_3fe38ef2c9f912d24ec4369d119f928a.jpg",
+      "ext": ".jpg",
+      "size": 366271,
+      "hash": "7beb230a811acd39c4c59c44fd9add0b"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-len\\ao_4\\1792821039501_348043404565674403_5540743654312280467_6e829f3f3d78b9e0931b9805c833edc2.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-len/ao_4/1792821039501_348043404565674403_5540743654312280467_6e829f3f3d78b9e0931b9805c833edc2.jpg",
+      "fileName": "1792821039501_348043404565674403_5540743654312280467_6e829f3f3d78b9e0931b9805c833edc2.jpg",
+      "ext": ".jpg",
+      "size": 358818,
+      "hash": "c6a4ea416463946fd65a0774c2d151a1"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-len\\ao_4\\1792821039507_348043404565674403_5540743654312280467_a2d847f34d8d750c65e5d00239af13d9.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-len/ao_4/1792821039507_348043404565674403_5540743654312280467_a2d847f34d8d750c65e5d00239af13d9.jpg",
+      "fileName": "1792821039507_348043404565674403_5540743654312280467_a2d847f34d8d750c65e5d00239af13d9.jpg",
+      "ext": ".jpg",
+      "size": 414062,
+      "hash": "be1790349a9576e89e405f8d4dc9a923"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_1\\1792821547946_348043404565674403_5540743654312280467_4cb54a07c5d9f47c2e7ae73db4377bbb.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_1/1792821547946_348043404565674403_5540743654312280467_4cb54a07c5d9f47c2e7ae73db4377bbb.jpg",
+      "fileName": "1792821547946_348043404565674403_5540743654312280467_4cb54a07c5d9f47c2e7ae73db4377bbb.jpg",
+      "ext": ".jpg",
+      "size": 304929,
+      "hash": "6fb8cc47cc162b5f76d9d803633e8f79"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_1\\1792821547967_348043404565674403_5540743654312280467_17a4be893850a7f80438eb4625904dfe.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_1/1792821547967_348043404565674403_5540743654312280467_17a4be893850a7f80438eb4625904dfe.jpg",
+      "fileName": "1792821547967_348043404565674403_5540743654312280467_17a4be893850a7f80438eb4625904dfe.jpg",
+      "ext": ".jpg",
+      "size": 227372,
+      "hash": "57a6b6f5bed4ecaaaa8d4db684d73de8"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_1\\1792821547979_348043404565674403_5540743654312280467_2d603872849fd4cdab255952246440a1.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_1/1792821547979_348043404565674403_5540743654312280467_2d603872849fd4cdab255952246440a1.jpg",
+      "fileName": "1792821547979_348043404565674403_5540743654312280467_2d603872849fd4cdab255952246440a1.jpg",
+      "ext": ".jpg",
+      "size": 302932,
+      "hash": "619d84d19c1b269e3c62a0771563e255"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_10\\1792821548152_348043404565674403_5540743654312280467_d85c1bcd178e80a990390f355e164cf1.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_10/1792821548152_348043404565674403_5540743654312280467_d85c1bcd178e80a990390f355e164cf1.jpg",
+      "fileName": "1792821548152_348043404565674403_5540743654312280467_d85c1bcd178e80a990390f355e164cf1.jpg",
+      "ext": ".jpg",
+      "size": 164798,
+      "hash": "3f587392f8d7d5c9473974c895ef0941"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_10\\1792821548156_348043404565674403_5540743654312280467_e920d4914b14d0080bb7fe5e4b0b38de.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_10/1792821548156_348043404565674403_5540743654312280467_e920d4914b14d0080bb7fe5e4b0b38de.jpg",
+      "fileName": "1792821548156_348043404565674403_5540743654312280467_e920d4914b14d0080bb7fe5e4b0b38de.jpg",
+      "ext": ".jpg",
+      "size": 268170,
+      "hash": "a77e8d4f4ec44fd92200fa484b1948d8"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_10\\1792821548161_348043404565674403_5540743654312280467_8dfe4097316ae0af6e8ff06da2a0101d.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_10/1792821548161_348043404565674403_5540743654312280467_8dfe4097316ae0af6e8ff06da2a0101d.jpg",
+      "fileName": "1792821548161_348043404565674403_5540743654312280467_8dfe4097316ae0af6e8ff06da2a0101d.jpg",
+      "ext": ".jpg",
+      "size": 339484,
+      "hash": "68f6b1530a9a0d1494e04fa686b4561d"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_11\\1792821548165_348043404565674403_5540743654312280467_e81e8259c33b28bd838d9dfb11da075a.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_11/1792821548165_348043404565674403_5540743654312280467_e81e8259c33b28bd838d9dfb11da075a.jpg",
+      "fileName": "1792821548165_348043404565674403_5540743654312280467_e81e8259c33b28bd838d9dfb11da075a.jpg",
+      "ext": ".jpg",
+      "size": 364299,
+      "hash": "5d64de9c4d189fbba3f1ed71c1addafa"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_11\\1792821548170_348043404565674403_5540743654312280467_29f518853fc3326e405dabc39b0c075d.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_11/1792821548170_348043404565674403_5540743654312280467_29f518853fc3326e405dabc39b0c075d.jpg",
+      "fileName": "1792821548170_348043404565674403_5540743654312280467_29f518853fc3326e405dabc39b0c075d.jpg",
+      "ext": ".jpg",
+      "size": 246201,
+      "hash": "93416456b7c64d394403fa2c8ace1dce"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_11\\1792821548174_348043404565674403_5540743654312280467_9baff777394dfaa60fee26e3b0d31cde.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_11/1792821548174_348043404565674403_5540743654312280467_9baff777394dfaa60fee26e3b0d31cde.jpg",
+      "fileName": "1792821548174_348043404565674403_5540743654312280467_9baff777394dfaa60fee26e3b0d31cde.jpg",
+      "ext": ".jpg",
+      "size": 366419,
+      "hash": "6953879cbe6bd485dacbbdd23778576a"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_12\\1792821548179_348043404565674403_5540743654312280467_0c51d17f219af0218782359f49d92eed.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_12/1792821548179_348043404565674403_5540743654312280467_0c51d17f219af0218782359f49d92eed.jpg",
+      "fileName": "1792821548179_348043404565674403_5540743654312280467_0c51d17f219af0218782359f49d92eed.jpg",
+      "ext": ".jpg",
+      "size": 185624,
+      "hash": "80d89431d102f2609c767eb4e39ed3c5"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_12\\1792821548183_348043404565674403_5540743654312280467_ba8288f2c8b65ca6364a7b0c3345d59c.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_12/1792821548183_348043404565674403_5540743654312280467_ba8288f2c8b65ca6364a7b0c3345d59c.jpg",
+      "fileName": "1792821548183_348043404565674403_5540743654312280467_ba8288f2c8b65ca6364a7b0c3345d59c.jpg",
+      "ext": ".jpg",
+      "size": 238054,
+      "hash": "b09a1aee98a2cb6689b5c3a65f6de8a2"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_12\\1792821548188_348043404565674403_5540743654312280467_32fad4eb1ee082d41b567683ce55324c.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_12/1792821548188_348043404565674403_5540743654312280467_32fad4eb1ee082d41b567683ce55324c.jpg",
+      "fileName": "1792821548188_348043404565674403_5540743654312280467_32fad4eb1ee082d41b567683ce55324c.jpg",
+      "ext": ".jpg",
+      "size": 260169,
+      "hash": "8abd6bbce6bf1cbf35fcbbc4af076138"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_12\\1792821548192_348043404565674403_5540743654312280467_4ce5ba26a7c8ed1ee4f31f0976fd909e.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_12/1792821548192_348043404565674403_5540743654312280467_4ce5ba26a7c8ed1ee4f31f0976fd909e.jpg",
+      "fileName": "1792821548192_348043404565674403_5540743654312280467_4ce5ba26a7c8ed1ee4f31f0976fd909e.jpg",
+      "ext": ".jpg",
+      "size": 311073,
+      "hash": "5f1bbdcd8292aa4fd4df6beffbc64674"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_13\\1792821548196_348043404565674403_5540743654312280467_8ec117027f0517a99cede4dce876a027.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_13/1792821548196_348043404565674403_5540743654312280467_8ec117027f0517a99cede4dce876a027.jpg",
+      "fileName": "1792821548196_348043404565674403_5540743654312280467_8ec117027f0517a99cede4dce876a027.jpg",
+      "ext": ".jpg",
+      "size": 251572,
+      "hash": "b342daf81e6da865c2a1fd8a5f63770c"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_2\\1792821547991_348043404565674403_5540743654312280467_cf573cfa5fd22b90500bb5ff3339821b.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_2/1792821547991_348043404565674403_5540743654312280467_cf573cfa5fd22b90500bb5ff3339821b.jpg",
+      "fileName": "1792821547991_348043404565674403_5540743654312280467_cf573cfa5fd22b90500bb5ff3339821b.jpg",
+      "ext": ".jpg",
+      "size": 294961,
+      "hash": "0e382bdb116260ad9ee6ae83ea7ae665"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_2\\1792821548000_348043404565674403_5540743654312280467_9fc390567740a750c89d4b10e2283541.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_2/1792821548000_348043404565674403_5540743654312280467_9fc390567740a750c89d4b10e2283541.jpg",
+      "fileName": "1792821548000_348043404565674403_5540743654312280467_9fc390567740a750c89d4b10e2283541.jpg",
+      "ext": ".jpg",
+      "size": 326391,
+      "hash": "9c3513007e681f3a2c39f31c4bfedc66"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_2\\1792821548008_348043404565674403_5540743654312280467_4ff98bb4b12f9d826325df11a9a98dac.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_2/1792821548008_348043404565674403_5540743654312280467_4ff98bb4b12f9d826325df11a9a98dac.jpg",
+      "fileName": "1792821548008_348043404565674403_5540743654312280467_4ff98bb4b12f9d826325df11a9a98dac.jpg",
+      "ext": ".jpg",
+      "size": 298982,
+      "hash": "7c09aa289ece2309dfac610ca45432cc"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_2\\1792821548017_348043404565674403_5540743654312280467_f599e3a252eb431564a6c559e156247e.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_2/1792821548017_348043404565674403_5540743654312280467_f599e3a252eb431564a6c559e156247e.jpg",
+      "fileName": "1792821548017_348043404565674403_5540743654312280467_f599e3a252eb431564a6c559e156247e.jpg",
+      "ext": ".jpg",
+      "size": 335034,
+      "hash": "63bd24e4e27daecb713f2793e46fb7f8"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_3\\1792821548024_348043404565674403_5540743654312280467_d27148caee2b780e5ee4b0a4d91598b8.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_3/1792821548024_348043404565674403_5540743654312280467_d27148caee2b780e5ee4b0a4d91598b8.jpg",
+      "fileName": "1792821548024_348043404565674403_5540743654312280467_d27148caee2b780e5ee4b0a4d91598b8.jpg",
+      "ext": ".jpg",
+      "size": 274618,
+      "hash": "77d7dfce37f187000aadab612a7299a2"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_3\\1792821548032_348043404565674403_5540743654312280467_677c557fd16a71b324c0f64e5c9093dd.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_3/1792821548032_348043404565674403_5540743654312280467_677c557fd16a71b324c0f64e5c9093dd.jpg",
+      "fileName": "1792821548032_348043404565674403_5540743654312280467_677c557fd16a71b324c0f64e5c9093dd.jpg",
+      "ext": ".jpg",
+      "size": 256574,
+      "hash": "55689c2af055ec2cfb9c305e4d0a5fa1"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_3\\1792821548038_348043404565674403_5540743654312280467_71c26a0c9dec3b2fe7e57e39a2bffeb5.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_3/1792821548038_348043404565674403_5540743654312280467_71c26a0c9dec3b2fe7e57e39a2bffeb5.jpg",
+      "fileName": "1792821548038_348043404565674403_5540743654312280467_71c26a0c9dec3b2fe7e57e39a2bffeb5.jpg",
+      "ext": ".jpg",
+      "size": 321666,
+      "hash": "2e50f8b31114a849584aa90e617b8cc1"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_4\\1792821548043_348043404565674403_5540743654312280467_a545d52f3c033c758b5325aa5b6a295f.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_4/1792821548043_348043404565674403_5540743654312280467_a545d52f3c033c758b5325aa5b6a295f.jpg",
+      "fileName": "1792821548043_348043404565674403_5540743654312280467_a545d52f3c033c758b5325aa5b6a295f.jpg",
+      "ext": ".jpg",
+      "size": 254127,
+      "hash": "def92e442146cd53077d9bc1379b3d60"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_4\\1792821548049_348043404565674403_5540743654312280467_edcf97f589455d0930c575c81e61108a.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_4/1792821548049_348043404565674403_5540743654312280467_edcf97f589455d0930c575c81e61108a.jpg",
+      "fileName": "1792821548049_348043404565674403_5540743654312280467_edcf97f589455d0930c575c81e61108a.jpg",
+      "ext": ".jpg",
+      "size": 225628,
+      "hash": "4547ceaeb470905fd6914ea7256e6e28"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_4\\1792821548054_348043404565674403_5540743654312280467_f0181d15490ab23d2318e1d571d9c05e.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_4/1792821548054_348043404565674403_5540743654312280467_f0181d15490ab23d2318e1d571d9c05e.jpg",
+      "fileName": "1792821548054_348043404565674403_5540743654312280467_f0181d15490ab23d2318e1d571d9c05e.jpg",
+      "ext": ".jpg",
+      "size": 230338,
+      "hash": "347e0ed7c73b82a3284862603266f89d"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_4\\1792821548059_348043404565674403_5540743654312280467_2437e84dff0ebd86ddd61cf51593cdca.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_4/1792821548059_348043404565674403_5540743654312280467_2437e84dff0ebd86ddd61cf51593cdca.jpg",
+      "fileName": "1792821548059_348043404565674403_5540743654312280467_2437e84dff0ebd86ddd61cf51593cdca.jpg",
+      "ext": ".jpg",
+      "size": 258358,
+      "hash": "22990ea9170bd5392ab1e76f477f75b7"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_5\\1792821548063_348043404565674403_5540743654312280467_529480272474ef67d48572265fe2325a.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_5/1792821548063_348043404565674403_5540743654312280467_529480272474ef67d48572265fe2325a.jpg",
+      "fileName": "1792821548063_348043404565674403_5540743654312280467_529480272474ef67d48572265fe2325a.jpg",
+      "ext": ".jpg",
+      "size": 226629,
+      "hash": "261a6b130c002f42ca4e73d367621dd4"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_5\\1792821548068_348043404565674403_5540743654312280467_06ac3d30fe0bae0ffcb1ff17f484d864.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_5/1792821548068_348043404565674403_5540743654312280467_06ac3d30fe0bae0ffcb1ff17f484d864.jpg",
+      "fileName": "1792821548068_348043404565674403_5540743654312280467_06ac3d30fe0bae0ffcb1ff17f484d864.jpg",
+      "ext": ".jpg",
+      "size": 222964,
+      "hash": "c10fe687a1037a24d9f6455bc30c9b97"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_6\\1792821548072_348043404565674403_5540743654312280467_4191e02810a07573aef93e9d5dca6cc8.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_6/1792821548072_348043404565674403_5540743654312280467_4191e02810a07573aef93e9d5dca6cc8.jpg",
+      "fileName": "1792821548072_348043404565674403_5540743654312280467_4191e02810a07573aef93e9d5dca6cc8.jpg",
+      "ext": ".jpg",
+      "size": 445528,
+      "hash": "5800505bfce4e012cb2d2ec64e7ca1bb"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_6\\1792821548076_348043404565674403_5540743654312280467_41aa218fed22b5b0f62a3c989af8beda.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_6/1792821548076_348043404565674403_5540743654312280467_41aa218fed22b5b0f62a3c989af8beda.jpg",
+      "fileName": "1792821548076_348043404565674403_5540743654312280467_41aa218fed22b5b0f62a3c989af8beda.jpg",
+      "ext": ".jpg",
+      "size": 453777,
+      "hash": "00bf17262434332c2b154c02fa3e9295"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_6\\1792821548081_348043404565674403_5540743654312280467_7795e9d798973a77aa626f6ce0dd1066.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_6/1792821548081_348043404565674403_5540743654312280467_7795e9d798973a77aa626f6ce0dd1066.jpg",
+      "fileName": "1792821548081_348043404565674403_5540743654312280467_7795e9d798973a77aa626f6ce0dd1066.jpg",
+      "ext": ".jpg",
+      "size": 447979,
+      "hash": "4179ae9326533098e8a62381484f1f25"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_7\\1792821548090_348043404565674403_5540743654312280467_8877caba52110196f2908aa1820cfd52.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_7/1792821548090_348043404565674403_5540743654312280467_8877caba52110196f2908aa1820cfd52.jpg",
+      "fileName": "1792821548090_348043404565674403_5540743654312280467_8877caba52110196f2908aa1820cfd52.jpg",
+      "ext": ".jpg",
+      "size": 290752,
+      "hash": "77be5a251e51bd47866f570dfafba25f"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_7\\1792821548095_348043404565674403_5540743654312280467_50715dbca1949d22202954e22fbc697a.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_7/1792821548095_348043404565674403_5540743654312280467_50715dbca1949d22202954e22fbc697a.jpg",
+      "fileName": "1792821548095_348043404565674403_5540743654312280467_50715dbca1949d22202954e22fbc697a.jpg",
+      "ext": ".jpg",
+      "size": 254231,
+      "hash": "7ec4c01d0225a20fb18e86694284c9e9"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_7\\1792821548099_348043404565674403_5540743654312280467_9716ddaa85340d77133084a5c96bbb69.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_7/1792821548099_348043404565674403_5540743654312280467_9716ddaa85340d77133084a5c96bbb69.jpg",
+      "fileName": "1792821548099_348043404565674403_5540743654312280467_9716ddaa85340d77133084a5c96bbb69.jpg",
+      "ext": ".jpg",
+      "size": 290022,
+      "hash": "e5604e10cc4d2478b601961c77169f71"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_7\\1792821548104_348043404565674403_5540743654312280467_54e6837a3eb43b6a553e1b21408210ff.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_7/1792821548104_348043404565674403_5540743654312280467_54e6837a3eb43b6a553e1b21408210ff.jpg",
+      "fileName": "1792821548104_348043404565674403_5540743654312280467_54e6837a3eb43b6a553e1b21408210ff.jpg",
+      "ext": ".jpg",
+      "size": 269036,
+      "hash": "bf4961705612cf568db9140e5c9a4d1f"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_8\\1792821548108_348043404565674403_5540743654312280467_b0dbfd04785e789e857374fc6a48e3c4.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_8/1792821548108_348043404565674403_5540743654312280467_b0dbfd04785e789e857374fc6a48e3c4.jpg",
+      "fileName": "1792821548108_348043404565674403_5540743654312280467_b0dbfd04785e789e857374fc6a48e3c4.jpg",
+      "ext": ".jpg",
+      "size": 163089,
+      "hash": "4abf0dcbb81ccef84a9ca7e640bdcdbd"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_8\\1792821548113_348043404565674403_5540743654312280467_cbae18538c9c80ad9366c690a626bfa6.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_8/1792821548113_348043404565674403_5540743654312280467_cbae18538c9c80ad9366c690a626bfa6.jpg",
+      "fileName": "1792821548113_348043404565674403_5540743654312280467_cbae18538c9c80ad9366c690a626bfa6.jpg",
+      "ext": ".jpg",
+      "size": 146581,
+      "hash": "3a0a294eb295e50f7e983868ae74b30b"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_8\\1792821548117_348043404565674403_5540743654312280467_c8674f204de43843259928b29de9ee75.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_8/1792821548117_348043404565674403_5540743654312280467_c8674f204de43843259928b29de9ee75.jpg",
+      "fileName": "1792821548117_348043404565674403_5540743654312280467_c8674f204de43843259928b29de9ee75.jpg",
+      "ext": ".jpg",
+      "size": 168803,
+      "hash": "91c0d29c6b5eb9af91ec45977131403b"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_8\\1792821548121_348043404565674403_5540743654312280467_3272bfd89ca067ff1cfece53966ad887.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_8/1792821548121_348043404565674403_5540743654312280467_3272bfd89ca067ff1cfece53966ad887.jpg",
+      "fileName": "1792821548121_348043404565674403_5540743654312280467_3272bfd89ca067ff1cfece53966ad887.jpg",
+      "ext": ".jpg",
+      "size": 153752,
+      "hash": "34db2f0b1fc016e89f798d47bca73dbe"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_8\\1792821548126_348043404565674403_5540743654312280467_f0c487720c693bc76fad556c218b3217.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_8/1792821548126_348043404565674403_5540743654312280467_f0c487720c693bc76fad556c218b3217.jpg",
+      "fileName": "1792821548126_348043404565674403_5540743654312280467_f0c487720c693bc76fad556c218b3217.jpg",
+      "ext": ".jpg",
+      "size": 159812,
+      "hash": "5b0da27356e8784a9459e31c3c7d29f5"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_8\\1792821548130_348043404565674403_5540743654312280467_2cb7f31f90b9019c39215588cfe5e5ea.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_8/1792821548130_348043404565674403_5540743654312280467_2cb7f31f90b9019c39215588cfe5e5ea.jpg",
+      "fileName": "1792821548130_348043404565674403_5540743654312280467_2cb7f31f90b9019c39215588cfe5e5ea.jpg",
+      "ext": ".jpg",
+      "size": 143470,
+      "hash": "21434a65fff972fad77a71548ebfdcc6"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_8\\1792821548134_348043404565674403_5540743654312280467_88c571d6c7020b4b3684cd20fa2dc4a0.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_8/1792821548134_348043404565674403_5540743654312280467_88c571d6c7020b4b3684cd20fa2dc4a0.jpg",
+      "fileName": "1792821548134_348043404565674403_5540743654312280467_88c571d6c7020b4b3684cd20fa2dc4a0.jpg",
+      "ext": ".jpg",
+      "size": 169115,
+      "hash": "63b03e1506dbe888f918a3ddd73ed341"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_9\\1792821548139_348043404565674403_5540743654312280467_714ee220ecf84d91fbf1cb668732c435.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_9/1792821548139_348043404565674403_5540743654312280467_714ee220ecf84d91fbf1cb668732c435.jpg",
+      "fileName": "1792821548139_348043404565674403_5540743654312280467_714ee220ecf84d91fbf1cb668732c435.jpg",
+      "ext": ".jpg",
+      "size": 259319,
+      "hash": "d31d2cb91951feb2e863f51b1b47a52b"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_9\\1792821548143_348043404565674403_5540743654312280467_34dc19977ccccb8b80d9fb9934a0bfa1.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_9/1792821548143_348043404565674403_5540743654312280467_34dc19977ccccb8b80d9fb9934a0bfa1.jpg",
+      "fileName": "1792821548143_348043404565674403_5540743654312280467_34dc19977ccccb8b80d9fb9934a0bfa1.jpg",
+      "ext": ".jpg",
+      "size": 257786,
+      "hash": "b66a87e19487a0bd3d9ea5b386bb4fed"
+    },
+    {
+      "categoryFolder": "ao",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\ao\\ao-thun\\ao_9\\1792821548148_348043404565674403_5540743654312280467_b1cf1ac9b5d4789d28ea39bf01d386c8.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/ao/ao-thun/ao_9/1792821548148_348043404565674403_5540743654312280467_b1cf1ac9b5d4789d28ea39bf01d386c8.jpg",
+      "fileName": "1792821548148_348043404565674403_5540743654312280467_b1cf1ac9b5d4789d28ea39bf01d386c8.jpg",
+      "ext": ".jpg",
+      "size": 240061,
+      "hash": "6e992e7cdcaa8588af5791a76bad7127"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_1\\1792824170356_348043404565674403_5540743654312280467_5909c50dfc07946bb4538fc2543032ec.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_1/1792824170356_348043404565674403_5540743654312280467_5909c50dfc07946bb4538fc2543032ec.jpg",
+      "fileName": "1792824170356_348043404565674403_5540743654312280467_5909c50dfc07946bb4538fc2543032ec.jpg",
+      "ext": ".jpg",
+      "size": 85929,
+      "hash": "b277504dd0d94d06345c3ac3642e8b0e"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_1\\1792824170379_348043404565674403_5540743654312280467_ea4b93f04289335bd2991c000ac4b0bc.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_1/1792824170379_348043404565674403_5540743654312280467_ea4b93f04289335bd2991c000ac4b0bc.jpg",
+      "fileName": "1792824170379_348043404565674403_5540743654312280467_ea4b93f04289335bd2991c000ac4b0bc.jpg",
+      "ext": ".jpg",
+      "size": 149181,
+      "hash": "1757e51b9f16a00664a2b98b6c878451"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_2\\1792824170393_348043404565674403_5540743654312280467_e4ee3af6c3a1a61a7b8688bde5add4d3.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_2/1792824170393_348043404565674403_5540743654312280467_e4ee3af6c3a1a61a7b8688bde5add4d3.jpg",
+      "fileName": "1792824170393_348043404565674403_5540743654312280467_e4ee3af6c3a1a61a7b8688bde5add4d3.jpg",
+      "ext": ".jpg",
+      "size": 199899,
+      "hash": "a30191be019f933092e3571ec6c553c0"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_3\\1792824170403_348043404565674403_5540743654312280467_cb20c7261c92bc47c8239bdaec040158.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_3/1792824170403_348043404565674403_5540743654312280467_cb20c7261c92bc47c8239bdaec040158.jpg",
+      "fileName": "1792824170403_348043404565674403_5540743654312280467_cb20c7261c92bc47c8239bdaec040158.jpg",
+      "ext": ".jpg",
+      "size": 315289,
+      "hash": "a2313b4aceddc03bb62ec116404d9ad1"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_3\\1792824170413_348043404565674403_5540743654312280467_3c303afe6662949f2dcac3c187ba9e30.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_3/1792824170413_348043404565674403_5540743654312280467_3c303afe6662949f2dcac3c187ba9e30.jpg",
+      "fileName": "1792824170413_348043404565674403_5540743654312280467_3c303afe6662949f2dcac3c187ba9e30.jpg",
+      "ext": ".jpg",
+      "size": 311545,
+      "hash": "3fd758a266cd89daf0192c73182c5884"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_3\\1792824170423_348043404565674403_5540743654312280467_c4c5967edd0abeddd399ec9d8f38e555.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_3/1792824170423_348043404565674403_5540743654312280467_c4c5967edd0abeddd399ec9d8f38e555.jpg",
+      "fileName": "1792824170423_348043404565674403_5540743654312280467_c4c5967edd0abeddd399ec9d8f38e555.jpg",
+      "ext": ".jpg",
+      "size": 287669,
+      "hash": "d50910b351ebbeee55d7ac7e82519125"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_3\\1792824170431_348043404565674403_5540743654312280467_4a081b020a3f5a4c0ab76d2c8288693f.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_3/1792824170431_348043404565674403_5540743654312280467_4a081b020a3f5a4c0ab76d2c8288693f.jpg",
+      "fileName": "1792824170431_348043404565674403_5540743654312280467_4a081b020a3f5a4c0ab76d2c8288693f.jpg",
+      "ext": ".jpg",
+      "size": 269028,
+      "hash": "cb5152a9f882bd03d6aaed505a4da07a"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_3\\1792824170439_348043404565674403_5540743654312280467_e0d7852e028cfd1727fb43a4965d80fd.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_3/1792824170439_348043404565674403_5540743654312280467_e0d7852e028cfd1727fb43a4965d80fd.jpg",
+      "fileName": "1792824170439_348043404565674403_5540743654312280467_e0d7852e028cfd1727fb43a4965d80fd.jpg",
+      "ext": ".jpg",
+      "size": 248513,
+      "hash": "eb152af29cd0d1c4981164676a855c85"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_4\\1792824170446_348043404565674403_5540743654312280467_be3d8c419c9751bbc95e3d28b46b2fa7.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_4/1792824170446_348043404565674403_5540743654312280467_be3d8c419c9751bbc95e3d28b46b2fa7.jpg",
+      "fileName": "1792824170446_348043404565674403_5540743654312280467_be3d8c419c9751bbc95e3d28b46b2fa7.jpg",
+      "ext": ".jpg",
+      "size": 65969,
+      "hash": "e9c5ce52b92e804e2480c88ca44072a1"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_5\\1792824170452_348043404565674403_5540743654312280467_8db29092503d480cdc06b76f37fc1398.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_5/1792824170452_348043404565674403_5540743654312280467_8db29092503d480cdc06b76f37fc1398.jpg",
+      "fileName": "1792824170452_348043404565674403_5540743654312280467_8db29092503d480cdc06b76f37fc1398.jpg",
+      "ext": ".jpg",
+      "size": 205854,
+      "hash": "cdec7ae7f9a8f4fcae019ec90e3b5a43"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_5\\1792824170457_348043404565674403_5540743654312280467_f1c59c18cd8eec2119c688ac31089c6d.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_5/1792824170457_348043404565674403_5540743654312280467_f1c59c18cd8eec2119c688ac31089c6d.jpg",
+      "fileName": "1792824170457_348043404565674403_5540743654312280467_f1c59c18cd8eec2119c688ac31089c6d.jpg",
+      "ext": ".jpg",
+      "size": 195288,
+      "hash": "5914bab35275f5592bbb10db2f41838d"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_6\\1792824170462_348043404565674403_5540743654312280467_d91e78b96a301f85108c820eace5d0a7.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_6/1792824170462_348043404565674403_5540743654312280467_d91e78b96a301f85108c820eace5d0a7.jpg",
+      "fileName": "1792824170462_348043404565674403_5540743654312280467_d91e78b96a301f85108c820eace5d0a7.jpg",
+      "ext": ".jpg",
+      "size": 84786,
+      "hash": "654a032eeadd7c1efdbd78632cac152d"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_6\\1792824170466_348043404565674403_5540743654312280467_a8a4057f3e2399e287a457d079256924.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_6/1792824170466_348043404565674403_5540743654312280467_a8a4057f3e2399e287a457d079256924.jpg",
+      "fileName": "1792824170466_348043404565674403_5540743654312280467_a8a4057f3e2399e287a457d079256924.jpg",
+      "ext": ".jpg",
+      "size": 95831,
+      "hash": "4c67659c665005144de01f47281201fd"
+    },
+    {
+      "categoryFolder": "quan",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\quan\\quan_6\\1792824170471_348043404565674403_5540743654312280467_9b787940d20a03ac6ac24a97a2970efe.jpg",
+      "relPath": "/images/san-pham/quan-ao-nu/quan/quan_6/1792824170471_348043404565674403_5540743654312280467_9b787940d20a03ac6ac24a97a2970efe.jpg",
+      "fileName": "1792824170471_348043404565674403_5540743654312280467_9b787940d20a03ac6ac24a97a2970efe.jpg",
+      "ext": ".jpg",
+      "size": 101206,
+      "hash": "25cdf1804b2278d9dcd3993db7c85c6f"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_01.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_01.webp",
+      "fileName": "vay_01.webp",
+      "ext": ".webp",
+      "size": 282710,
+      "hash": "6f206783db6929a51295792b1956836d"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_02.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_02.webp",
+      "fileName": "vay_02.webp",
+      "ext": ".webp",
+      "size": 147246,
+      "hash": "cb3183acfe233755ecd9f918b73f2e56"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_03.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_03.webp",
+      "fileName": "vay_03.webp",
+      "ext": ".webp",
+      "size": 139122,
+      "hash": "e21c5cb7f2b0bc95c3fc3f98c60b2b1f"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_04.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_04.webp",
+      "fileName": "vay_04.webp",
+      "ext": ".webp",
+      "size": 80186,
+      "hash": "a80362c945229b3124dad3c2a4b29eb2"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_05.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_05.webp",
+      "fileName": "vay_05.webp",
+      "ext": ".webp",
+      "size": 105758,
+      "hash": "042fe36cd1249c42dce2e4d26d4e0c44"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_06.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_06.webp",
+      "fileName": "vay_06.webp",
+      "ext": ".webp",
+      "size": 214804,
+      "hash": "9881ab2569cd8d984f86e103dbf4884a"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_07.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_07.webp",
+      "fileName": "vay_07.webp",
+      "ext": ".webp",
+      "size": 87798,
+      "hash": "072941504b508665acd24acc82e83edf"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_08.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_08.webp",
+      "fileName": "vay_08.webp",
+      "ext": ".webp",
+      "size": 117506,
+      "hash": "74d48d8fee37f9da8de6b0dd46f6d893"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_09.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_09.webp",
+      "fileName": "vay_09.webp",
+      "ext": ".webp",
+      "size": 172842,
+      "hash": "9b9939b96979ec585a8afac11e91cc5c"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_10.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_10.webp",
+      "fileName": "vay_10.webp",
+      "ext": ".webp",
+      "size": 110918,
+      "hash": "b4749e2d7f34582c902c1a97102ad771"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_11.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_11.webp",
+      "fileName": "vay_11.webp",
+      "ext": ".webp",
+      "size": 103390,
+      "hash": "46b305430d56aac0970412edcb0b6045"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_12.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_12.webp",
+      "fileName": "vay_12.webp",
+      "ext": ".webp",
+      "size": 78854,
+      "hash": "966e24a03e442f96dfaab1501687ed12"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_13.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_13.webp",
+      "fileName": "vay_13.webp",
+      "ext": ".webp",
+      "size": 40388,
+      "hash": "f7a3e36ffd6d1f615bd025f86fb39add"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_14.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_14.webp",
+      "fileName": "vay_14.webp",
+      "ext": ".webp",
+      "size": 67364,
+      "hash": "945472ce96b49f9d3d9c0bb23960e435"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_15.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_15.webp",
+      "fileName": "vay_15.webp",
+      "ext": ".webp",
+      "size": 47752,
+      "hash": "4e3d13cb5db6859e34d74487ff81bf84"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_16.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_16.webp",
+      "fileName": "vay_16.webp",
+      "ext": ".webp",
+      "size": 70058,
+      "hash": "9c48a29173b3bff330381d6a2119deda"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_17.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_17.webp",
+      "fileName": "vay_17.webp",
+      "ext": ".webp",
+      "size": 94732,
+      "hash": "a8908ae91a0becaf721c667e68eb7e9a"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_18.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_18.webp",
+      "fileName": "vay_18.webp",
+      "ext": ".webp",
+      "size": 165420,
+      "hash": "2d6a817883b33bc77646fd3c8de3685c"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_19.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_19.webp",
+      "fileName": "vay_19.webp",
+      "ext": ".webp",
+      "size": 91134,
+      "hash": "ac5595933e13ce1f17e3c6b91830c219"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_20.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_20.webp",
+      "fileName": "vay_20.webp",
+      "ext": ".webp",
+      "size": 109996,
+      "hash": "d7ec43bf1acd28462c757e1793b82cbe"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_21.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_21.webp",
+      "fileName": "vay_21.webp",
+      "ext": ".webp",
+      "size": 69746,
+      "hash": "c73f7cb94e62fcace3f57c6297f4f5ee"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_22.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_22.webp",
+      "fileName": "vay_22.webp",
+      "ext": ".webp",
+      "size": 85950,
+      "hash": "2fabed3aee1d669de66fe744f546a64f"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_23.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_23.webp",
+      "fileName": "vay_23.webp",
+      "ext": ".webp",
+      "size": 51988,
+      "hash": "bfcdaabb89bd214287e6af03a751a3e8"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_24.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_24.webp",
+      "fileName": "vay_24.webp",
+      "ext": ".webp",
+      "size": 116358,
+      "hash": "a5e8b2f5dded49037e89d85bf10bc500"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_25.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_25.webp",
+      "fileName": "vay_25.webp",
+      "ext": ".webp",
+      "size": 65162,
+      "hash": "0ef8540d66d449330cc5b3ae9e8d3dc2"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_26.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_26.webp",
+      "fileName": "vay_26.webp",
+      "ext": ".webp",
+      "size": 127750,
+      "hash": "f69e6e2a875a2a35385f06a096021125"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_27.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_27.webp",
+      "fileName": "vay_27.webp",
+      "ext": ".webp",
+      "size": 118472,
+      "hash": "871998e7ee74102a00d4c8e67868528f"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_28.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_28.webp",
+      "fileName": "vay_28.webp",
+      "ext": ".webp",
+      "size": 95840,
+      "hash": "6156ac9e48d761f947537c3a6bbad387"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_29.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_29.webp",
+      "fileName": "vay_29.webp",
+      "ext": ".webp",
+      "size": 76386,
+      "hash": "b02c9e4d428b66fc2bc53ff14319700d"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_30.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_30.webp",
+      "fileName": "vay_30.webp",
+      "ext": ".webp",
+      "size": 248262,
+      "hash": "0b01193ad7c906148a54265c93e3020a"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_32.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_32.webp",
+      "fileName": "vay_32.webp",
+      "ext": ".webp",
+      "size": 58902,
+      "hash": "d0979bdf54748d8ca662f7672af2df25"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_33.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_33.webp",
+      "fileName": "vay_33.webp",
+      "ext": ".webp",
+      "size": 63372,
+      "hash": "1fe71a2ba7efd346aab3eb19a149ce89"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_34.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_34.webp",
+      "fileName": "vay_34.webp",
+      "ext": ".webp",
+      "size": 135116,
+      "hash": "770292eed52b81e5b0713ac01e9c1502"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_35.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_35.webp",
+      "fileName": "vay_35.webp",
+      "ext": ".webp",
+      "size": 145846,
+      "hash": "c064618d826b0d939b01d26f5da1bbfa"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_36.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_36.webp",
+      "fileName": "vay_36.webp",
+      "ext": ".webp",
+      "size": 94738,
+      "hash": "3da1fb6eb2090226b9b19e99b79c803e"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_37.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_37.webp",
+      "fileName": "vay_37.webp",
+      "ext": ".webp",
+      "size": 111862,
+      "hash": "b0f1d343fcae61e5c607893062eba0ee"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_38.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_38.webp",
+      "fileName": "vay_38.webp",
+      "ext": ".webp",
+      "size": 117392,
+      "hash": "c451bf8b26567468274dfbd567698140"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_39.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_39.webp",
+      "fileName": "vay_39.webp",
+      "ext": ".webp",
+      "size": 125426,
+      "hash": "a85917b03b29c95d88057cf8a369276a"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_40.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_40.webp",
+      "fileName": "vay_40.webp",
+      "ext": ".webp",
+      "size": 188174,
+      "hash": "b941e7cd64939649db94542f00fac48d"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_41.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_41.webp",
+      "fileName": "vay_41.webp",
+      "ext": ".webp",
+      "size": 104778,
+      "hash": "a9e2842a0a943185fa064220cb2ac35b"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_42.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_42.webp",
+      "fileName": "vay_42.webp",
+      "ext": ".webp",
+      "size": 213568,
+      "hash": "3e03b1d146126506e5e9f9e85d8c2288"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_43.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_43.webp",
+      "fileName": "vay_43.webp",
+      "ext": ".webp",
+      "size": 263008,
+      "hash": "1abee3291f20ee4b72cf59f20d633005"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_44.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_44.webp",
+      "fileName": "vay_44.webp",
+      "ext": ".webp",
+      "size": 253522,
+      "hash": "653a746dd36b354867f797e046577e48"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_45.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_45.webp",
+      "fileName": "vay_45.webp",
+      "ext": ".webp",
+      "size": 76474,
+      "hash": "c77a2a774522af9c93ab55d35228867c"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_46.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_46.webp",
+      "fileName": "vay_46.webp",
+      "ext": ".webp",
+      "size": 160250,
+      "hash": "7365d57bbc5316441b3be30a78adc857"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_47.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_47.webp",
+      "fileName": "vay_47.webp",
+      "ext": ".webp",
+      "size": 96966,
+      "hash": "f9c0012f6e05331d13dfca20fe888df7"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_48.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_48.webp",
+      "fileName": "vay_48.webp",
+      "ext": ".webp",
+      "size": 232808,
+      "hash": "002357b58e0fba3f7fdadb700b7206fc"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_49.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_49.webp",
+      "fileName": "vay_49.webp",
+      "ext": ".webp",
+      "size": 245652,
+      "hash": "176df09d493607d608d33f8fdfd2e07c"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_50.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_50.webp",
+      "fileName": "vay_50.webp",
+      "ext": ".webp",
+      "size": 203552,
+      "hash": "65f8aae8173f641977ee32bd7fc010d6"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_51.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_51.webp",
+      "fileName": "vay_51.webp",
+      "ext": ".webp",
+      "size": 114780,
+      "hash": "a7daf85e923e8f7497c15316e85d5f21"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_52.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_52.webp",
+      "fileName": "vay_52.webp",
+      "ext": ".webp",
+      "size": 184004,
+      "hash": "13f042e95ec1ea811b27af73cd5ef956"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_63.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_63.webp",
+      "fileName": "vay_63.webp",
+      "ext": ".webp",
+      "size": 449338,
+      "hash": "fe58822409904e3ffe15e07d2e20d029"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_64.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_64.webp",
+      "fileName": "vay_64.webp",
+      "ext": ".webp",
+      "size": 570240,
+      "hash": "df8ef62765b46c698e9db7784aac1ea2"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_65.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_65.webp",
+      "fileName": "vay_65.webp",
+      "ext": ".webp",
+      "size": 281610,
+      "hash": "8e47a455aa999404a60936ba736f1242"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_66.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_66.webp",
+      "fileName": "vay_66.webp",
+      "ext": ".webp",
+      "size": 489374,
+      "hash": "eee6f3ce9e846a95fa1a81e036fb0217"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_67.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_67.webp",
+      "fileName": "vay_67.webp",
+      "ext": ".webp",
+      "size": 304448,
+      "hash": "c0bf5fb647f45216574ac31f4ca8246e"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_68.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_68.webp",
+      "fileName": "vay_68.webp",
+      "ext": ".webp",
+      "size": 473226,
+      "hash": "c9e68733a25c36d89585df8c6dac0091"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_69.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_69.webp",
+      "fileName": "vay_69.webp",
+      "ext": ".webp",
+      "size": 349476,
+      "hash": "ecdf8888dbee085b2e5bb144d2c8fd87"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_70.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_70.webp",
+      "fileName": "vay_70.webp",
+      "ext": ".webp",
+      "size": 532020,
+      "hash": "aba490a7a3d17db4ad6f08293c59eac0"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_71.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_71.webp",
+      "fileName": "vay_71.webp",
+      "ext": ".webp",
+      "size": 324596,
+      "hash": "652bda935941cae87fc3c541cde37063"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\vay_72.webp",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/vay_72.webp",
+      "fileName": "vay_72.webp",
+      "ext": ".webp",
+      "size": 481166,
+      "hash": "f05e0feb90cb1f70725259d1143887a5"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\váy_corset_gothic_ren_hoa_văn_victorian.png",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_ren_hoa_văn_victorian.png",
+      "fileName": "váy_corset_gothic_ren_hoa_văn_victorian.png",
+      "ext": ".png",
+      "size": 2249661,
+      "hash": "8494b5a0332b6672b7646e57243694bb"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+      "fileName": "váy_corset_gothic_đen_ngà_cầu_kỳ.png",
+      "ext": ".png",
+      "size": 1897026,
+      "hash": "d4777d22d68bad4bbc5426a358e48c66"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+      "fileName": "váy_corset_gothic_đen_trắng_nhiều_tầng.png",
+      "ext": ".png",
+      "size": 1868633,
+      "hash": "d2c378db1170cd6d8e27cb13f8c47c37"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+      "fileName": "váy_corset_kẻ_đỏ_đen_cổ_điển.png",
+      "ext": ".png",
+      "size": 1720108,
+      "hash": "9969d0347b866ffe20ef6ca99db36906"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+      "fileName": "váy_dạ_hội_corset_đen_trắng_ren_hoa.png",
+      "ext": ".png",
+      "size": 1866023,
+      "hash": "69cc0b6c137e9c97c8ac638e7c4011d3"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+      "fileName": "váy_gothic_lolita_cổ_yếm_ren_đen_ivory.png",
+      "ext": ".png",
+      "size": 1690825,
+      "hash": "9b8f0e771f91dda32bd2d5ab38046ac6"
+    },
+    {
+      "categoryFolder": "vay",
+      "fullPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+      "relPath": "/images/san-pham/quan-ao-nu/vay/váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+      "fileName": "váy_gothic_ren_hoa_đen_trắng_thanh_lịch.png",
+      "ext": ".png",
+      "size": 1740329,
+      "hash": "135df25e482ac0225dcf5ba65209bf62"
+    }
+  ]
+}

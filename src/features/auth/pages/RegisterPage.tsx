@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { MockRepo } from '@/mocks/repository';
+import { apiClient } from '@/services/apiClient';
 import { useToast } from '@/components/ui/toast';
 import { Eye, EyeOff, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 import { BrandLogo } from '@/components/common/BrandLogo';
@@ -19,30 +20,94 @@ export const RegisterPage: React.FC = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleRegister = (e: React.FormEvent) => {
+  const VIETNAMESE_PHONE_REGEX = /^(0|\+84)(3|5|7|8|9)[0-9]{8}$/;
+  const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs: Record<string, string> = {};
-    if (!name.trim()) errs.name = 'Vui lòng nhập họ và tên của bạn';
-    if (!email.trim() || !email.includes('@')) errs.email = 'Vui lòng nhập email hợp lệ';
-    if (!phone.trim()) errs.phone = 'Vui lòng nhập số điện thoại';
-    if (!password.trim() || password.length < 6) errs.password = 'Mật khẩu cần tối thiểu 6 ký tự';
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim().toLowerCase();
+    const trimmedPhone = phone.trim().replace(/\s+/g, '');
+
+    if (!trimmedName) {
+      errs.name = 'Vui lòng nhập họ và tên của bạn';
+    }
+    if (!trimmedEmail || !EMAIL_REGEX.test(trimmedEmail)) {
+      errs.email = 'Vui lòng nhập email hợp lệ (ví dụ: nam@example.com)';
+    }
+    if (!trimmedPhone || !VIETNAMESE_PHONE_REGEX.test(trimmedPhone)) {
+      errs.phone = 'Số điện thoại không hợp lệ (hỗ trợ 03, 05, 07, 08, 09 gồm 10 chữ số)';
+    }
+    if (!password.trim() || password.length < 6) {
+      errs.password = 'Mật khẩu cần tối thiểu 6 ký tự';
+    }
     setErrors(errs);
 
     if (Object.keys(errs).length === 0) {
       setIsLoading(true);
-      const res = MockRepo.register({
-        name,
-        email,
-        phone,
-        password,
-      });
-      setIsLoading(false);
 
-      if (res.success && res.user) {
-        success('Đăng ký tài khoản thành công', `Chào mừng ${res.user.name} đến với SMARTBUY AI!`);
-        navigate('/');
-      } else {
-        toastError('Đăng ký không thành công', res.message || 'Email này đã tồn tại trong hệ thống');
+      try {
+        // 1. Đăng ký trực tiếp với Java Spring Boot Backend
+        const backendRes = await apiClient.register({
+          name: trimmedName,
+          email: trimmedEmail,
+          phone: trimmedPhone,
+          password,
+        });
+
+        if (backendRes.success && backendRes.data?.user) {
+          const u = backendRes.data.user;
+          MockRepo.setCurrentUser({
+            id: u.id || `user-${Date.now()}`,
+            name: u.name,
+            email: u.email,
+            phone: u.phone,
+            role: 'customer',
+            avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
+            createdAt: new Date().toISOString(),
+          });
+          try {
+            sessionStorage.removeItem('sb_intro_seen');
+          } catch {
+            // ignore
+          }
+          setIsLoading(false);
+          success('Đăng ký tài khoản thành công', `Chào mừng ${u.name} đến với SMARTBUY AI!`);
+          navigate('/');
+          return;
+        }
+
+        // Nếu máy chủ backend từ chối (trùng email hoặc trùng số điện thoại)
+        if (backendRes.message && backendRes.message !== 'Không thể kết nối đến máy chủ đăng ký') {
+          setIsLoading(false);
+          toastError('Đăng ký không thành công', backendRes.message);
+          return;
+        }
+
+        // 2. Fallback offline nếu backend chưa khởi động
+        const localRes = MockRepo.register({
+          name: trimmedName,
+          email: trimmedEmail,
+          phone: trimmedPhone,
+          password,
+        });
+        setIsLoading(false);
+
+        if (localRes.success && localRes.user) {
+          try {
+            sessionStorage.removeItem('sb_intro_seen');
+          } catch {
+            // ignore
+          }
+          success('Đăng ký tài khoản thành công', `Chào mừng ${localRes.user.name} đến với SMARTBUY AI!`);
+          navigate('/');
+        } else {
+          toastError('Đăng ký không thành công', localRes.message || 'Email này đã tồn tại trong hệ thống');
+        }
+      } catch (err: any) {
+        setIsLoading(false);
+        toastError('Lỗi đăng ký', err?.message || 'Không thể kết nối đến máy chủ đăng ký');
       }
     }
   };
