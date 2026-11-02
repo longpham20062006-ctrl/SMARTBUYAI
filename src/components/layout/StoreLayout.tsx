@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, Navigate } from 'react-router-dom';
 import { SiteHeader } from './SiteHeader';
 import { SiteFooter } from './SiteFooter';
 import { QuickViewModal } from '@/components/common/QuickViewModal';
@@ -17,6 +17,7 @@ import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 export const StoreLayout: React.FC = () => {
   useRepoSubscription(['auth']);
   const currentUser = MockRepo.getCurrentUser();
+
   const [quickViewData, setQuickViewData] = useState<{ product: Product; initialImageIndex?: number } | null>(null);
   const [comparedProducts, setComparedProducts] = useState<Product[]>([]);
 
@@ -62,6 +63,13 @@ export const StoreLayout: React.FC = () => {
       window.removeEventListener('toggle_compare' as any, handleToggleCompare);
     };
   }, []);
+
+  // PHÂN QUYỀN ADMIN ĐỘC LẬP (Tuân thủ React Rules of Hooks: Kiểm tra sau khi gọi toàn bộ Hooks):
+  // Nếu tài khoản là ADMIN, chuyển ngay về Dashboard, tuyệt đối không hiển thị
+  // giao diện bán hàng, quần áo, giỏ hàng hay chatbot tư vấn của khách.
+  if (currentUser?.role === 'admin') {
+    return <Navigate to="/admin/dashboard" replace />;
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-brand-ivory text-brand-charcoal overflow-x-clip w-full">

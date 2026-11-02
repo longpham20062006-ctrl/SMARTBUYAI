@@ -25,10 +25,7 @@ import { HeroFashionGallery } from '@/components/home/HeroFashionGallery';
 import { usePerformance } from '@/context/PerformanceContext';
 import { resetGlobalScroll } from '@/components/common/ScrollToTop';
 
-// Lazy-load Three.js 3D effects to prevent blocking initial homepage render
-const GalaxyIntro = React.lazy(() =>
-  import('@/components/effects/GalaxyIntro').then((m) => ({ default: m.GalaxyIntro }))
-);
+// Lazy-load Three.js ambient effect in Hero section
 const AmbientGalaxy = React.lazy(() =>
   import('@/components/effects/AmbientGalaxy').then((m) => ({ default: m.AmbientGalaxy }))
 );
@@ -90,37 +87,23 @@ export const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { isSaver } = usePerformance();
 
-  // Trang chủ công khai: Luôn hiển thị cho khách và người dùng, không tự động chuyển hướng
+  // Trang chủ công khai: Luôn hiển thị cho khách và người dùng
   useEffect(() => {
     safeSessionStorage.removeItem('sb_logging_out');
-  }, []);
-
-  // Galaxy 3D Cinematic Reveal: CHỈ CHẠY NGAY SAU KHI CUSTOMER ĐĂNG NHẬP THÀNH CÔNG (cờ sb_play_intro === '1')
-  // Tuyệt đối KHÔNG chạy khi người dùng mới mở website, KHÔNG chạy lặp lại khi tải lại trang (reload)
-  const [showIntro, setShowIntro] = useState(() => {
-    if (typeof window === 'undefined') return false;
+    // Nếu phiên đăng nhập có yêu cầu chạy Intro 3D và chưa xem, chuyển ngay đến /intro
+    const shouldPlay = safeSessionStorage.getItem('sb_intro_active') === '1';
+    const isSeen = safeSessionStorage.getItem('sb_intro_seen') === '1';
     const user = MockRepo.getCurrentUser();
-    if (!user || user.role !== 'customer') return false;
-
-    const shouldPlay = safeSessionStorage.getItem('sb_play_intro') === '1';
-    return shouldPlay;
-  });
-
-  const handleIntroComplete = React.useCallback(() => {
-    setShowIntro(false);
-    safeSessionStorage.removeItem('sb_play_intro');
-    safeSessionStorage.setItem('sb_intro_seen', '1');
-    resetGlobalScroll();
-    const postIntroRedirect = safeSessionStorage.getItem('sb_post_intro_redirect');
-    if (postIntroRedirect && postIntroRedirect !== '/') {
-      safeSessionStorage.removeItem('sb_post_intro_redirect');
-      navigate(postIntroRedirect, { replace: true });
-    } else {
-      navigate('/', { replace: true });
+    if (shouldPlay && !isSeen && user?.role === 'customer') {
+      navigate('/intro', { replace: true });
     }
   }, [navigate]);
 
-  const handleReplayIntro = React.useCallback(() => setShowIntro(true), []);
+  const handleReplayIntro = React.useCallback(() => {
+    safeSessionStorage.setItem('sb_intro_active', '1');
+    safeSessionStorage.removeItem('sb_intro_seen');
+    navigate('/intro');
+  }, [navigate]);
 
   // Sản phẩm thật từ Catalog SMARTBUY AI (Lấy đúng 6 sản phẩm HOT theo yêu cầu)
   const hotProducts = productService.getHotProducts(6);
@@ -180,15 +163,6 @@ export const HomePage: React.FC = () => {
 
   return (
     <>
-      {/* ============================================================ */}
-      {/* GALAXY 3D CINEMATIC INTRO (CHỈ DÀNH CHO CUSTOMER ĐĂNG NHẬP)  */}
-      {/* ============================================================ */}
-      {showIntro && !isSaver && (
-        <React.Suspense fallback={null}>
-          <GalaxyIntro forcePlay={true} onComplete={handleIntroComplete} />
-        </React.Suspense>
-      )}
-
       {/* Telemetry Debug Panel (Chỉ hiển thị khi URL có ?debugGalaxy=1) */}
       <GalaxyDebugPanel onReplayIntro={handleReplayIntro} />
 
@@ -224,7 +198,7 @@ export const HomePage: React.FC = () => {
 
                   <button
                     type="button"
-                    onClick={() => setShowIntro(true)}
+                    onClick={handleReplayIntro}
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 active:scale-95 text-[#22D3EE] text-[11px] font-bold tracking-wider uppercase border border-[#22D3EE]/30 transition-all cursor-pointer group shadow-xs"
                     title="Xem lại hiệu ứng vũ trụ Galaxy 3D"
                   >

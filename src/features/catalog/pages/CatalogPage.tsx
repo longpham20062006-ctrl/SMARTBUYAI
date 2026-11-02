@@ -106,7 +106,7 @@ export const CatalogPage: React.FC = () => {
   const [canScrollRight, setCanScrollRight] = useState(true);
 
   // Auto Scroll thông minh: cuộn về đầu danh sách sản phẩm khi người dùng chọn danh mục/bộ lọc
-  const performAutoScrollToTop = useCallback(() => {
+  const performAutoScrollToTop = useCallback((force = false) => {
     if (typeof window === 'undefined') return;
     requestAnimationFrame(() => {
       if (catalogTopAnchorRef.current) {
@@ -118,8 +118,8 @@ export const CatalogPage: React.FC = () => {
         const anchorTop = catalogTopAnchorRef.current.getBoundingClientRect().top + window.scrollY;
         const targetY = Math.max(0, anchorTop - totalStickyOffset);
 
-        // Chỉ cuộn lên nếu vị trí hiện tại đang ở bên dưới mục tiêu
-        if (window.scrollY > targetY + 20) {
+        // Cuộn về đầu vùng sản phẩm nếu được yêu cầu bắt buộc (chuyển danh mục/giới tính) hoặc nếu đang cuộn sâu bên dưới
+        if (force || window.scrollY > targetY + 20) {
           window.scrollTo({
             top: targetY,
             behavior: 'instant',
@@ -195,15 +195,36 @@ export const CatalogPage: React.FC = () => {
     }
   }, [searchParams]);
 
-  // Reset scroll position and auto load count when core filter params change
+  const prevFilterRef = useRef({
+    cat: categoryParam,
+    season: seasonParam,
+    gender: genderParam,
+  });
+
+  // Reset scroll position and auto load count when core filter params change (Nam/Nữ/Danh mục)
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
+    // Không can thiệp nếu đang khôi phục lịch sử duyệt bằng nút Back (POP)
+    if (navigationType === 'POP') {
       return;
     }
-    setAutoLoadCount(0);
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  }, [categoryParam, seasonParam, genderParam]);
+
+    const changed =
+      prevFilterRef.current.cat !== categoryParam ||
+      prevFilterRef.current.gender !== genderParam ||
+      prevFilterRef.current.season !== seasonParam;
+
+    prevFilterRef.current = {
+      cat: categoryParam,
+      season: seasonParam,
+      gender: genderParam,
+    };
+
+    // Chỉ cuộn khi người dùng thực sự thay đổi danh mục hoặc giới tính, không cuộn khi vừa vào trang/refresh
+    if (changed) {
+      setAutoLoadCount(0);
+      performAutoScrollToTop(true);
+    }
+  }, [categoryParam, seasonParam, genderParam, navigationType, performAutoScrollToTop]);
 
   // Param update helper
   const updateParam = (key: string, value: string | null) => {

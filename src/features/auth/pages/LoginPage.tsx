@@ -7,6 +7,7 @@ import { Eye, EyeOff, Sparkles, ArrowRight, BookOpen, Ruler, AlertCircle, Shield
 import { BrandLogo } from '@/components/common/BrandLogo';
 import { LuxuryParticlesCanvas } from '@/components/effects/LuxuryParticlesCanvas';
 import { User } from '@/types';
+import { safeSessionStorage } from '@/lib/storage';
 
 // Danh sách hình ảnh thời trang cao cấp đã kiểm tra có sẵn trong dự án (public/images/anh_trangchu/)
 const EDITORIAL_SLIDES = [
@@ -92,7 +93,7 @@ export const LoginPage: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // 1. Xác thực trực tiếp với Java Spring Boot REST API
+      // 1. Xác thực tài khoản: Thử qua Java Spring Boot REST API trước
       const backendRes = await apiClient.login({ email: trimmedEmail, password });
 
       let authenticatedUser: User | null = null;
@@ -112,13 +113,10 @@ export const LoginPage: React.FC = () => {
             : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80'),
           createdAt: new Date().toISOString(),
         };
-
-        MockRepo.setCurrentUser(authenticatedUser);
-        // Đồng bộ toàn bộ giá bán và biến thể thật từ Backend cho phiên đăng nhập mới
-        await apiClient.syncWithBackend();
       } else {
-        // 2. Fallback nếu backend đang ngoại tuyến: Xác thực theo Database Người Dùng Cục Bộ
-        const localRes = MockRepo.login(trimmedEmail, password);
+        // 2. Fallback nếu backend ngoại tuyến hoặc mock: Kiểm tra thông tin tài khoản hợp lệ
+        // Lưu ý: Dùng validateCredentials để KHÔNG phát sự kiện 'auth' quá sớm gây unmount LoginPage
+        const localRes = MockRepo.validateCredentials(trimmedEmail, password);
         if (localRes.success && localRes.user) {
           authenticatedUser = localRes.user;
           authenticatedRole = localRes.user.role === 'admin' ? 'admin' : 'customer';
@@ -138,39 +136,36 @@ export const LoginPage: React.FC = () => {
         return;
       }
 
-      // TRẠNG THÁI 3: ĐĂNG NHẬP ADMIN (Vào thẳng Dashboard quản trị, tuyệt đối KHÔNG chạy Intro 3D, KHÔNG sang trang sản phẩm)
+      // 3. THIẾT LẬP TRẠNG THÁI INTRO TRƯỚC TIÊN (Chống race condition với AuthGuard)
       if (authenticatedRole === 'admin') {
-        try {
-          sessionStorage.setItem('sb_intro_seen', '1');
-          sessionStorage.removeItem('sb_post_intro_redirect');
-        } catch {
-          // ignore
-        }
+        safeSessionStorage.setItem('sb_intro_seen', '1');
+        safeSessionStorage.removeItem('sb_intro_active');
+        safeSessionStorage.removeItem('sb_play_intro');
+        safeSessionStorage.removeItem('sb_post_intro_redirect');
+      } else {
+        // Customer: Kích hoạt cờ sb_intro_active trong safeSessionStorage TRƯỚC KHI notify auth
+        safeSessionStorage.setItem('sb_intro_active', '1');
+        safeSessionStorage.setItem('sb_intro_user', authenticatedUser.email);
+        safeSessionStorage.removeItem('sb_intro_seen');
+        safeSessionStorage.removeItem('sb_post_intro_redirect');
+      }
+
+      // 4. CẬP NHẬT TRẠNG THÁI ĐĂNG NHẬP DÙNG CHUNG (Phát sự kiện auth an toàn sau khi đã có cờ)
+      MockRepo.setCurrentUser(authenticatedUser);
+
+      // 5. ĐỒNG BỘ DỮ LIỆU SẢN PHẨM Ở CHẾ ĐỘ NỀN (KHÔNG CHỜ, KHÔNG GÂY TRỄ ĐIỀU HƯỚNG)
+      if (backendRes?.success) {
+        apiClient.syncWithBackend().catch(() => {});
+      }
+
+      // 6. ĐIỀU HƯỚNG DỨT KHOÁT ĐẾN ĐÍCH
+      if (authenticatedRole === 'admin') {
         success('Xác thực quyền Quản trị viên (Admin) thành công', 'Chuyển thẳng đến Bảng Quản Trị Hệ Thống...');
         navigate('/admin/dashboard', { replace: true });
-        return;
+      } else {
+        success('Đăng nhập thành công', `Chào mừng ${authenticatedUser.name} trở lại với SMARTBUY AI!`);
+        navigate('/intro', { replace: true });
       }
-
-      // TRẠNG THÁI 2: ĐĂNG NHẬP CUSTOMER
-      // Kích hoạt cờ sb_play_intro để chạy Intro 3D duy nhất ngay sau khi đăng nhập thành công
-      try {
-        sessionStorage.setItem('sb_play_intro', '1');
-        sessionStorage.removeItem('sb_intro_seen');
-      } catch {
-        // ignore
-      }
-      success('Đăng nhập thành công', `Chào mừng ${authenticatedUser.name} trở lại với SMARTBUY AI!`);
-
-      // Nếu khách hàng trước đó bấm vào link sản phẩm hoặc trang khác, lưu lại để chuyển đến sau Intro 3D
-      const destination = targetPath && !targetPath.startsWith('/admin') ? targetPath : '/';
-      if (destination !== '/') {
-        try {
-          sessionStorage.setItem('sb_post_intro_redirect', destination);
-        } catch {
-          // ignore
-        }
-      }
-      navigate('/', { replace: true });
     } catch (err: any) {
       setIsLoading(false);
       const msg = err?.message || 'Có lỗi xảy ra trong quá trình xác thực';
@@ -181,7 +176,7 @@ export const LoginPage: React.FC = () => {
 
   return (
     <div className="w-full max-w-6xl mx-auto rounded-3xl border border-white/10 bg-[#0C0C12]/90 backdrop-blur-2xl shadow-2xl shadow-purple-950/30 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[640px] relative select-none">
-      
+
       {/* Background Micro Particles Animation */}
       <LuxuryParticlesCanvas className="z-0 opacity-70" />
 
@@ -189,23 +184,21 @@ export const LoginPage: React.FC = () => {
       {/* CỘT TRÁI (55–60%): CINEMATIC HIGH-FASHION VISUAL & KEN BURNS MOTION       */}
       {/* ========================================================================= */}
       <div className="relative hidden lg:flex lg:col-span-7 flex-col justify-between p-10 overflow-hidden bg-black z-10 border-r border-white/10">
-        
+
         {/* Layer hình ảnh chuyển động Ken Burns & Crossfade */}
         {EDITORIAL_SLIDES.map((slide, idx) => {
           const isActive = idx === currentSlideIndex;
           return (
             <div
               key={idx}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-              }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                }`}
             >
               <img
                 src={slide.image}
                 alt={slide.title}
-                className={`w-full h-full object-cover object-center filter brightness-[0.78] contrast-[1.08] transition-transform duration-[6000ms] ease-out ${
-                  isActive ? 'scale-105' : 'scale-100'
-                }`}
+                className={`w-full h-full object-cover object-center filter brightness-[0.78] contrast-[1.08] transition-transform duration-[6000ms] ease-out ${isActive ? 'scale-105' : 'scale-100'
+                  }`}
                 loading={idx === 0 ? 'eager' : 'lazy'}
               />
               {/* Lớp gradient thời trang cao cấp */}
@@ -250,9 +243,8 @@ export const LoginPage: React.FC = () => {
                 key={i}
                 type="button"
                 onClick={() => setCurrentSlideIndex(i)}
-                className={`h-1 rounded-full transition-all duration-500 cursor-pointer ${
-                  i === currentSlideIndex ? 'w-10 bg-[#8B5CF6] shadow-sm shadow-[#8B5CF6]/50' : 'w-3 bg-white/25 hover:bg-white/50'
-                }`}
+                className={`h-1 rounded-full transition-all duration-500 cursor-pointer ${i === currentSlideIndex ? 'w-10 bg-[#8B5CF6] shadow-sm shadow-[#8B5CF6]/50' : 'w-3 bg-white/25 hover:bg-white/50'
+                  }`}
                 aria-label={`Chuyển đến slide ${i + 1}`}
               />
             ))}
@@ -282,7 +274,7 @@ export const LoginPage: React.FC = () => {
       {/* CỘT PHẢI (40–45%): KHUNG ĐĂNG NHẬP HIỆN ĐẠI (GLASSMORPHISM CAO CẤP)      */}
       {/* ========================================================================= */}
       <div className="lg:col-span-5 p-7 sm:p-10 lg:p-12 flex flex-col justify-between space-y-6 relative z-10 bg-[#0F0F16]/95 lg:bg-transparent">
-        
+
         {/* Top Header Card */}
         <div>
           <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
@@ -392,11 +384,10 @@ export const LoginPage: React.FC = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className={`w-full mt-2 h-12 flex items-center justify-center gap-2 text-xs uppercase font-extrabold tracking-wider rounded-2xl text-white transition-all shadow-lg cursor-pointer ${
-                isLoading
+              className={`w-full mt-2 h-12 flex items-center justify-center gap-2 text-xs uppercase font-extrabold tracking-wider rounded-2xl text-white transition-all shadow-lg cursor-pointer ${isLoading
                   ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed opacity-75'
                   : 'bg-gradient-to-r from-[#8B5CF6] via-[#7C3AED] to-[#6366F1] hover:from-[#9061F9] hover:to-[#6D28D9] shadow-[#8B5CF6]/30 hover:shadow-[#8B5CF6]/45 active:scale-[0.99]'
-              }`}
+                }`}
             >
               {isLoading ? (
                 <>

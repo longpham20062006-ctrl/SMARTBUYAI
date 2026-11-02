@@ -54,6 +54,13 @@ async function runTests() {
     await page.fill('input[type="password"]', TEST_CREDS.customer.password);
     await page.click('button[type="submit"]');
     await page.waitForTimeout(1000);
+    if (page.url().includes('/intro')) {
+      const skipBtn = page.locator('button:has-text("Bỏ qua Intro")');
+      if (await skipBtn.isVisible()) {
+        await skipBtn.click();
+        await page.waitForTimeout(800);
+      }
+    }
     report(true, 'Customer logged in successfully');
 
     // -------------------------------------------------------------

@@ -140,11 +140,12 @@ export const SiteHeader: React.FC = () => {
   };
 
   // Xác định chính xác duy nhất 1 tab active theo route thực tế:
-  const getActiveTab = (): 'home' | 'nam' | 'nu' | 'unisex' | 'phu-kien' | 'collections' | 'trending' | 'about' | 'size-guide' | 'try-on' | null => {
+  const getActiveTab = (): 'home' | 'nam' | 'nu' | 'unisex' | 'phu-kien' | 'collections' | 'trending' | 'about' | 'size-guide' | 'try-on' | 'ai-stylist' | null => {
     if (currentPath === '/') return 'home';
     if (currentPath === '/about') return 'about';
     if (currentPath === '/size-guide') return 'size-guide';
     if (currentPath === '/try-on' || currentPath.startsWith('/virtual-try-on')) return 'try-on';
+    if (currentPath.startsWith('/ai-stylist')) return 'ai-stylist';
     if (currentPath.startsWith('/collections')) return 'collections';
     if (currentPath.startsWith('/products')) {
       if (currentGender === 'nam') return 'nam';
@@ -518,6 +519,21 @@ export const SiteHeader: React.FC = () => {
                   <Bot className="w-3.5 h-3.5" />
                   <span>Chatbot AI</span>
                 </button>
+
+                {/* AI Stylist */}
+                <Link
+                  to="/ai-stylist"
+                  className={cn(
+                    'flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all duration-150 select-none cursor-pointer',
+                    activeTab === 'ai-stylist'
+                      ? 'bg-[#7C3AED] text-white shadow-xs'
+                      : 'text-[#7C3AED] bg-[#F3E8FF] hover:bg-[#7C3AED] hover:text-white'
+                  )}
+                  title="Mở Trợ lý AI Stylist tư vấn phong cách"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
+                  <span>AI Stylist</span>
+                </Link>
 
                 {/* Thử đồ AI */}
                 <Link

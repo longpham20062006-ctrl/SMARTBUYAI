@@ -20,6 +20,7 @@ const ComparePage = lazy(() => import('@/features/compare/pages/ComparePage').th
 const AIStylistPage = lazy(() => import('@/features/ai-stylist/pages/AIStylistPage').then((m) => ({ default: m.AIStylistPage })));
 const LoginPage = lazy(() => import('@/features/auth/pages/LoginPage').then((m) => ({ default: m.LoginPage })));
 const RegisterPage = lazy(() => import('@/features/auth/pages/RegisterPage').then((m) => ({ default: m.RegisterPage })));
+const IntroPage = lazy(() => import('@/features/intro/pages/IntroPage').then((m) => ({ default: m.IntroPage })));
 const AccountPage = lazy(() => import('@/features/account/pages/AccountPage').then((m) => ({ default: m.AccountPage })));
 const AboutPage = lazy(() => import('@/features/info/pages/AboutPage').then((m) => ({ default: m.AboutPage })));
 const SizeGuidePage = lazy(() => import('@/features/info/pages/SizeGuidePage').then((m) => ({ default: m.SizeGuidePage })));
@@ -70,7 +71,17 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // 2. Phân hệ Cửa hàng & Khách hàng (Customer Store Layout)
+  // 2. Màn hình Intro 3D vũ trụ dành riêng cho CUSTOMER ngay sau khi đăng nhập mới
+  {
+    path: '/intro',
+    element: (
+      <AuthGuard allowedRoles={['customer']}>
+        {load(IntroPage)}
+      </AuthGuard>
+    ),
+  },
+
+  // 3. Phân hệ Cửa hàng & Khách hàng (Customer Store Layout)
   {
     path: '/',
     element: <StoreLayout />,
@@ -80,22 +91,22 @@ export const router = createBrowserRouter([
       // Customer Shop & Danh mục: Cho phép khách vãng lai và thành viên xem danh sách sản phẩm
       { path: 'products', element: load(CatalogPage) },
       { path: 'shop', element: load(CatalogPage) },
-      { path: 'products/:slug', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(ProductDetailPage)}</AuthGuard> },
+      { path: 'products/:slug', element: <AuthGuard allowedRoles={['customer']}>{load(ProductDetailPage)}</AuthGuard> },
       { path: 'collections', element: load(CollectionsPage) },
       { path: 'collections/:slug', element: load(CollectionDetailPage) },
-      { path: 'cart', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(CartPage)}</AuthGuard> },
-      { path: 'checkout', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(CheckoutPage)}</AuthGuard> },
-      { path: 'wishlist', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(FavoritesPage)}</AuthGuard> },
-      { path: 'favorites', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(FavoritesPage)}</AuthGuard> },
-      { path: 'orders', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(OrdersPage)}</AuthGuard> },
-      { path: 'orders/:id', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(OrderDetailPage)}</AuthGuard> },
-      { path: 'compare', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(ComparePage)}</AuthGuard> },
-      { path: 'ai-stylist', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(AIStylistPage)}</AuthGuard> },
-      { path: 'try-on', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(VirtualTryOnPage)}</AuthGuard> },
-      { path: 'ai-tryon', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(VirtualTryOnPage)}</AuthGuard> },
-      { path: 'virtual-try-on', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(VirtualTryOnPage)}</AuthGuard> },
-      { path: 'account', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(AccountPage)}</AuthGuard> },
-      { path: 'profile', element: <AuthGuard allowedRoles={['customer', 'admin']}>{load(AccountPage)}</AuthGuard> },
+      { path: 'cart', element: <AuthGuard allowedRoles={['customer']}>{load(CartPage)}</AuthGuard> },
+      { path: 'checkout', element: <AuthGuard allowedRoles={['customer']}>{load(CheckoutPage)}</AuthGuard> },
+      { path: 'wishlist', element: <AuthGuard allowedRoles={['customer']}>{load(FavoritesPage)}</AuthGuard> },
+      { path: 'favorites', element: <AuthGuard allowedRoles={['customer']}>{load(FavoritesPage)}</AuthGuard> },
+      { path: 'orders', element: <AuthGuard allowedRoles={['customer']}>{load(OrdersPage)}</AuthGuard> },
+      { path: 'orders/:id', element: <AuthGuard allowedRoles={['customer']}>{load(OrderDetailPage)}</AuthGuard> },
+      { path: 'compare', element: <AuthGuard allowedRoles={['customer']}>{load(ComparePage)}</AuthGuard> },
+      { path: 'ai-stylist', element: <AuthGuard allowedRoles={['customer']}>{load(AIStylistPage)}</AuthGuard> },
+      { path: 'try-on', element: <AuthGuard allowedRoles={['customer']}>{load(VirtualTryOnPage)}</AuthGuard> },
+      { path: 'ai-tryon', element: <AuthGuard allowedRoles={['customer']}>{load(VirtualTryOnPage)}</AuthGuard> },
+      { path: 'virtual-try-on', element: <AuthGuard allowedRoles={['customer']}>{load(VirtualTryOnPage)}</AuthGuard> },
+      { path: 'account', element: <AuthGuard allowedRoles={['customer']}>{load(AccountPage)}</AuthGuard> },
+      { path: 'profile', element: <AuthGuard allowedRoles={['customer']}>{load(AccountPage)}</AuthGuard> },
 
       // Các trang thông tin hỗ trợ
       { path: 'about', element: load(AboutPage) },

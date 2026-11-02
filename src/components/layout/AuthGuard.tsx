@@ -23,7 +23,13 @@ export const AuthGuard: React.FC<AuthGuardProps> = ({
   // If page is for unauthenticated visitors only (e.g., /login or /register)
   if (publicOnly && currentUser) {
     if (currentUser.role === 'admin') {
-      return <Navigate to="/admin" replace />;
+      return <Navigate to="/admin/dashboard" replace />;
+    }
+    // CUSTOMER: Kiểm tra nếu có phiên Intro 3D đang chờ chạy
+    const isIntroActive = safeSessionStorage.getItem('sb_intro_active') === '1';
+    const isIntroSeen = safeSessionStorage.getItem('sb_intro_seen') === '1';
+    if (isIntroActive && !isIntroSeen) {
+      return <Navigate to="/intro" replace />;
     }
     const searchParams = new URLSearchParams(location.search);
     const redirectUrl = searchParams.get('redirect');
@@ -44,6 +50,10 @@ export const AuthGuard: React.FC<AuthGuardProps> = ({
     // Customer attempting to enter Admin area
     if (currentUser.role === 'customer' && allowedRoles.includes('admin')) {
       return <Navigate to="/403" replace />;
+    }
+    // Admin attempting to enter Customer-only area
+    if (currentUser.role === 'admin') {
+      return <Navigate to="/admin/dashboard" replace />;
     }
     return <Navigate to="/" replace />;
   }

@@ -614,7 +614,7 @@ export const MockRepo = {
     }
   },
 
-  login: (email: string, password?: string): { success: boolean; user?: User; message?: string } => {
+  validateCredentials: (email: string, password?: string): { success: boolean; user?: User; message?: string } => {
     const users = MockRepo.getAllUsers();
     const cleanEmail = email.trim().toLowerCase();
     const cleanPassword = (password || '').trim();
@@ -637,11 +637,20 @@ export const MockRepo = {
       return { success: false, message: 'Email hoặc mật khẩu không chính xác' };
     }
 
+    return { success: true, user: matched };
+  },
+
+  login: (email: string, password?: string): { success: boolean; user?: User; message?: string } => {
+    const res = MockRepo.validateCredentials(email, password);
+    if (!res.success || !res.user) {
+      return res;
+    }
+
     // Lưu vào sessionStorage cho phiên làm việc hiện tại, xóa khỏi localStorage
-    safeSessionStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(matched));
+    safeSessionStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(res.user));
     safeStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
     notifyChange('auth');
-    return { success: true, user: matched };
+    return { success: true, user: res.user };
   },
 
   register: (userData: { name: string; email: string; phone?: string; password?: string }): { success: boolean; user?: User; message?: string } => {
@@ -686,18 +695,14 @@ export const MockRepo = {
   logout: () => {
     safeSessionStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
     safeStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
-    if (typeof window !== 'undefined') {
-      try {
-        sessionStorage.removeItem('sb_token');
-        localStorage.removeItem('sb_token');
-        sessionStorage.removeItem('sb_play_intro');
-        sessionStorage.removeItem('sb_intro_seen');
-        sessionStorage.removeItem('sb_post_intro_redirect');
-        sessionStorage.setItem('sb_logging_out', '1');
-      } catch {
-        // ignore
-      }
-    }
+    safeSessionStorage.removeItem('sb_token');
+    safeSessionStorage.removeItem('sb_intro_active');
+    safeSessionStorage.removeItem('sb_intro_user');
+    safeSessionStorage.removeItem('sb_play_intro');
+    safeSessionStorage.removeItem('sb_intro_seen');
+    safeSessionStorage.removeItem('sb_post_intro_redirect');
+    safeSessionStorage.setItem('sb_logging_out', '1');
+    safeStorage.removeItem('sb_token');
     notifyChange('auth');
   },
 

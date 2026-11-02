@@ -36,10 +36,31 @@ export const AIStylistPage: React.FC = () => {
   ]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  // Cuộn nội bộ trong container tin nhắn, TUYỆT ĐỐI không dùng scrollIntoView() vì sẽ kéo cả window xuống Footer
+  const scrollToBottom = useCallback(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTo({
+        top: messagesContainerRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, []);
+
+  // Đảm bảo khi mới vào trang AI Stylist, trang luôn bắt đầu từ đỉnh (y = 0)
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    scrollToBottom();
+  }, [messages, isLoading, scrollToBottom]);
 
   const handleSendMessage = useCallback(async (text: string) => {
     if (!text.trim() || isLoading) return;
@@ -64,10 +85,6 @@ export const AIStylistPage: React.FC = () => {
       setIsLoading(false);
     }
   }, [isLoading]);
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages, isLoading]);
 
   const initialPromptProcessed = useRef(false);
   useEffect(() => {
@@ -119,7 +136,11 @@ export const AIStylistPage: React.FC = () => {
         {/* Khung chat */}
         <div className="bg-brand-surface rounded-2xl border border-brand-border shadow-xs flex flex-col min-h-[580px] overflow-hidden">
           {/* Messages list */}
-          <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-6 bg-brand-subtle/40">
+          <div
+            ref={messagesContainerRef}
+            data-testid="ai-stylist-chat-container"
+            className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-6 bg-brand-subtle/40 max-h-[650px]"
+          >
             {messages.map((msg) => (
               <div
                 key={msg.id}
