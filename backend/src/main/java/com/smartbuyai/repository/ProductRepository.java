@@ -20,11 +20,15 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String>,
     @Query("SELECT p FROM ProductEntity p WHERE p.isActive = true " +
            "AND SIZE(p.images) > 0 " +
            "AND p.price > 0 " +
-           "AND (:gender IS NULL OR LOWER(p.gender) = LOWER(:gender)) " +
+           "AND (:gender IS NULL OR LOWER(p.gender) = LOWER(:gender) OR p.gender = 'unisex') " +
            "AND (:categorySlug IS NULL OR p.categorySlug = :categorySlug " +
            "     OR (:categorySlug = 'ao' AND p.categorySlug LIKE 'ao%') " +
-           "     OR (:categorySlug = 'quan' AND p.categorySlug LIKE 'quan%') " +
-           "     OR (:categorySlug = 'vay' AND (p.categorySlug LIKE 'vay%' OR p.categorySlug LIKE 'dam%' OR p.categorySlug LIKE 'chan-vay%'))) " +
+           "     OR ((:categorySlug = 'so-mi' OR :categorySlug = 'ao-so-mi' OR :categorySlug = 'so-mi-polo') AND (p.categorySlug LIKE '%so-mi%' OR p.categorySlug LIKE '%polo%')) " +
+           "     OR ((:categorySlug = 'quan' OR :categorySlug = 'quan-dai' OR :categorySlug = 'quan-jeans' OR :categorySlug = 'quan-cargo-parachute') AND p.categorySlug LIKE 'quan%') " +
+           "     OR ((:categorySlug = 'vay' OR :categorySlug = 'chan-vay') AND (p.categorySlug LIKE '%vay%' OR p.categorySlug LIKE '%dam%')) " +
+           "     OR ((:categorySlug = 'hoodie' OR :categorySlug = 'ao-hoodie') AND p.categorySlug LIKE '%hoodie%') " +
+           "     OR ((:categorySlug = 'ao-khoac' OR :categorySlug = 'khoac') AND p.categorySlug LIKE '%khoac%') " +
+           "     OR (:categorySlug = 'phu-kien' AND p.categorySlug LIKE '%phu-kien%')) " +
            "AND (:query IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :query, '%')) " +
            "     OR LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', :query, '%')) " +
            "     OR LOWER(p.material) LIKE LOWER(CONCAT('%', :query, '%'))) " +

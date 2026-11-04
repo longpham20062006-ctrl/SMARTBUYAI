@@ -253,6 +253,19 @@ export interface AIStylistFilterCriteria {
   fit?: string;
 }
 
+export interface OutfitBreakdown {
+  top?: Product;
+  bottom?: Product;
+  accessory?: Product;
+  totalPrice?: number;
+  maxBudget?: number;
+  withinBudget?: boolean;
+  isWithinBudget?: boolean;
+  style?: string;
+  occasion?: string;
+  stylingRationale?: string;
+}
+
 export interface AIStylistMessage {
   id: string;
   sender: 'user' | 'stylist';
@@ -260,8 +273,13 @@ export interface AIStylistMessage {
   timestamp: string;
   parsedCriteria?: AIStylistFilterCriteria;
   recommendedProducts?: Product[];
+  outfitBreakdown?: OutfitBreakdown;
   explanation?: string;
   quickReplies?: string[];
+  provider?: string;
+  requiresAuth?: boolean;
+  isError?: boolean;
+  retryPrompt?: string;
 }
 
 // Inventory & Logs

@@ -148,4 +148,27 @@ public class ProductDto {
     public void setImages(List<String> images) { this.images = images; }
     public List<VariantDto> getVariants() { return variants; }
     public void setVariants(List<VariantDto> variants) { this.variants = variants; }
+
+    public List<String> getSizes() {
+        if (variants == null || variants.isEmpty()) return List.of("S", "M", "L", "XL");
+        return variants.stream()
+                .map(VariantDto::getSize)
+                .filter(s -> s != null && !s.isBlank())
+                .distinct()
+                .toList();
+    }
+
+    public List<String> getColors() {
+        if (variants == null || variants.isEmpty()) return List.of("Đen", "Trắng");
+        return variants.stream()
+                .map(v -> v.getColor() != null ? v.getColor().getName() : null)
+                .filter(c -> c != null && !c.isBlank())
+                .distinct()
+                .toList();
+    }
+
+    public String getColor() {
+        List<String> colors = getColors();
+        return !colors.isEmpty() ? colors.get(0) : "Đen";
+    }
 }

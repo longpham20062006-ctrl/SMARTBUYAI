@@ -3,6 +3,27 @@ setlocal
 cd /d "%~dp0"
 set "PYTHONUTF8=1"
 set "HF_HOME=%CD%\models_cache"
+
+rem Tu dong nhan dien lien ket neu da co san
+if not exist .venv (
+  if exist "D:\shyn\SMARTBUYAI-main\gpu-server-FASHN-8GB\.venv" (
+    echo [Tu dong ket noi] Phat hien .venv san co, dang tao lien ket nhanh...
+    mklink /J .venv "D:\shyn\SMARTBUYAI-main\gpu-server-FASHN-8GB\.venv"
+  )
+)
+if not exist weights (
+  if exist "D:\shyn\SMARTBUYAI-main\gpu-server-FASHN-8GB\weights" (
+    echo [Tu dong ket noi] Phat hien model weights san co, dang tao lien ket nhanh...
+    mklink /J weights "D:\shyn\SMARTBUYAI-main\gpu-server-FASHN-8GB\weights"
+  )
+)
+if not exist models_cache (
+  if exist "D:\shyn\SMARTBUYAI-main\gpu-server-FASHN-8GB\models_cache" (
+    echo [Tu dong ket noi] Phat hien models_cache san co, dang tao lien ket nhanh...
+    mklink /J models_cache "D:\shyn\SMARTBUYAI-main\gpu-server-FASHN-8GB\models_cache"
+  )
+)
+
 echo [1/7] Kiem tra Python 3.11 ...
 py -3.11 --version || (echo Can Python 3.11 x64 tu python.org & pause & exit /b 1)
 if not exist .venv (py -3.11 -m venv .venv || (pause & exit /b 1))
