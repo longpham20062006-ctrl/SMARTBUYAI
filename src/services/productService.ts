@@ -1,7 +1,16 @@
 import { MockRepo } from '@/mocks/repository';
 import { Product } from '@/types';
 import { CATEGORY_DEFINITIONS } from '@/constants/categories';
-import { isProductEligibleForPublicDisplay, hasValidProductImage } from '@/lib/imageValidator';
+import { isProductEligibleForPublicDisplay } from '@/lib/imageValidator';
+
+const removeVietnameseDiacritics = (str: string): string => {
+  return str
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D')
+    .toLowerCase();
+};
 
 export interface ProductFilterOptions {
   gender?: string; // 'nam' | 'nu' | 'unisex' | 'all'
@@ -46,17 +55,28 @@ export const productService = {
 
     if (!filters) return list;
 
-    // Search query
+    // Search query: Tiếng Việt có dấu và không dấu
     if (filters.searchQuery?.trim()) {
       const q = filters.searchQuery.toLowerCase().trim();
-      list = list.filter(
-        (p) =>
-          (p.name && p.name.toLowerCase().includes(q)) ||
-          (p.brand && p.brand.toLowerCase().includes(q)) ||
-          (p.material && p.material.toLowerCase().includes(q)) ||
-          (p.style && p.style.toLowerCase().includes(q)) ||
-          (p.shortDescription && p.shortDescription.toLowerCase().includes(q))
-      );
+      const qNoTone = removeVietnameseDiacritics(q);
+      list = list.filter((p) => {
+        const fullText = [
+          p.name,
+          p.brand,
+          p.material,
+          p.style,
+          p.shortDescription,
+          p.categorySlug,
+          CATEGORY_DEFINITIONS[p.categorySlug]?.name,
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .toLowerCase();
+
+        if (fullText.includes(q)) return true;
+        const fullTextNoTone = removeVietnameseDiacritics(fullText);
+        return fullTextNoTone.includes(qNoTone);
+      });
     }
 
     // Gender: Strict separation between Nam and Nữ per Requirement 3
@@ -187,6 +207,10 @@ export const productService = {
     return product;
   },
 
+  getById: (id: string): Product | undefined => {
+    return productService.getRawByIdOrSlug(id);
+  },
+
   getRawByIdOrSlug: (idOrSlug: string): Product | undefined => {
     return MockRepo.getProducts().find(
       (p) => p.id.toLowerCase() === idOrSlug.toLowerCase() || p.slug.toLowerCase() === idOrSlug.toLowerCase()
@@ -205,14 +229,38 @@ export const productService = {
 
   getHotProducts: (limit: number = 8): Product[] => {
     const all = MockRepo.getProducts().filter((p) => isProductEligibleForPublicDisplay(p));
-    const hotList = all.filter((p) => p.badge === 'HOT' || p.badge === 'DROP' || p.badge === 'TRENDING' || p.isFeatured || (p as any).isHot);
-    if (hotList.length >= limit) {
-      return hotList.slice(0, limit);
+    
+    // Ưu tiên 8 sản phẩm HOT đa dạng danh mục chuẩn Gen Z:
+    // 1. Váy nữ, 2. Đầm dự tiệc, 3. Áo croptop, 4. Áo sơ mi nam, 5. Hoodie, 6. Áo khoác, 7. Quần dài/cargo, 8. Phụ kiện
+    const DIVERSE_HOT_IDS = [
+      'W-DRESS-001',        // Váy nữ thiết kế dáng xòe
+      'W-DRESS-GOTHIC-005', // Đầm dạ hội dự tiệc cao cấp
+      'W-CROPTOP-001',      // Áo croptop nữ Y2K
+      'SHIRT-001',          // Áo sơ mi nam dài tay lụa
+      'HOODIE-001',         // Áo hoodie nỉ bông streetwear
+      'JACKET-002',         // Áo khoác bomber streetwear
+      'PANTS-003',          // Quần cargo túi hộp tác chiến
+      'ACC-027',            // Phụ kiện: Túi clutch dự tiệc tối giản
+    ];
+
+    const curatedHot = DIVERSE_HOT_IDS.map((id) => all.find((p) => p.id === id)).filter(Boolean) as Product[];
+    if (curatedHot.length >= limit) {
+      return curatedHot.slice(0, limit);
     }
+
+    const hotList = all.filter((p) => p.badge === 'HOT' || p.badge === 'DROP' || p.badge === 'TRENDING' || p.isFeatured || (p as any).isHot);
+    const combined = [...curatedHot, ...hotList];
+    const uniqueMap = new Map<string, Product>();
+    combined.forEach((p) => uniqueMap.set(p.id, p));
+
+    if (uniqueMap.size >= limit) {
+      return Array.from(uniqueMap.values()).slice(0, limit);
+    }
+
     const remaining = all
-      .filter((p) => !hotList.some((h) => h.id === p.id))
+      .filter((p) => !uniqueMap.has(p.id))
       .sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0));
-    return [...hotList, ...remaining].slice(0, limit);
+    return [...Array.from(uniqueMap.values()), ...remaining].slice(0, limit);
   },
 
   getNewArrivals: (limit: number = 8): Product[] => {

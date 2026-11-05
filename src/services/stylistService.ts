@@ -153,9 +153,147 @@ export function parseStylistPrompt(input: string): {
   };
 }
 
-function runLocalFallback(userMessage: string): AIStylistMessage {
-  const { criteria, detectedText } = parseStylistPrompt(userMessage);
+function runLocalFallback(
+  userMessage: string,
+  history: Array<{ sender: 'user' | 'stylist'; text: string }> = []
+): AIStylistMessage {
+  const text = userMessage.toLowerCase().trim();
   const allProducts = productService.getAll();
+  const formatVND = (v: number) => new Intl.NumberFormat('vi-VN').format(v) + ' ₫';
+
+  // Lấy lịch sử hội thoại trước đó
+  const historyText = history.map((h) => h.text.toLowerCase()).join(' ');
+  const lastBotMessage = [...history].reverse().find((h) => h.sender === 'stylist')?.text || '';
+
+  // 1. Chuyển đổi chủ đề sang váy/đầm nữ ("tôi muốn xem váy nữ", "váy nữ", "đầm nữ")
+  if (
+    text.includes('váy nữ') ||
+    text.includes('đầm nữ') ||
+    (text.includes('váy') && text.includes('nữ')) ||
+    (text.includes('đầm') && text.includes('nữ'))
+  ) {
+    const dresses = allProducts.filter(
+      (p) =>
+        p.gender === 'nu' &&
+        (p.categorySlug === 'vay' ||
+          p.categorySlug === 'chan-vay' ||
+          (p.name || '').toLowerCase().includes('váy') ||
+          (p.name || '').toLowerCase().includes('đầm'))
+    );
+    const recommended = dresses.slice(0, 4);
+    return {
+      id: `msg_${Date.now()}`,
+      sender: 'stylist',
+      text: `Dạ em chuyển ngay sang các mẫu đầm và váy nữ xinh xắn cho bạn đây ạ! Dưới đây là những thiết kế đầm nữ dáng xòe, chữ A và đầm dạ hội đang được các bạn Gen Z cực kỳ yêu thích:`,
+      timestamp: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+      recommendedProducts: recommended,
+      quickReplies: ['Váy dự tiệc nhẹ nhàng', 'Đầm xòe hoa nhí', 'Có màu đen không?', 'Mẫu thứ hai còn size L không?'],
+      provider: 'smartbuy-assistant',
+    };
+  }
+
+  // 2. Câu hỏi nối tiếp về màu sắc ("có màu đen không?", "có màu trắng không?")
+  if (text.includes('màu đen') || text.includes('màu trắng') || text.includes('có màu') || text.includes('màu khác')) {
+    const requestedColor = text.includes('đen') ? 'den' : text.includes('trắng') ? 'trang' : text.includes('xám') ? 'xam' : text.includes('hồng') ? 'pink' : '';
+    const colorLabel = text.includes('đen') ? 'Đen' : text.includes('trắng') ? 'Trắng' : 'nhiều màu sắc';
+
+    const matched = allProducts
+      .filter((p) => Array.isArray(p.colors) && p.colors.some((c) => c.slug === requestedColor || (c.name || '').toLowerCase().includes(requestedColor)))
+      .slice(0, 4);
+
+    return {
+      id: `msg_${Date.now()}`,
+      sender: 'stylist',
+      text: `Dạ có ạ! Cửa hàng có các thiết kế phiên bản màu ${colorLabel} cực kỳ tôn dáng và dễ phối đồ. Bạn có thể xem ngay các mẫu có sẵn màu ${colorLabel} dưới đây:`,
+      timestamp: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+      recommendedProducts: matched.length > 0 ? matched : allProducts.slice(0, 3),
+      quickReplies: ['Mẫu thứ hai còn size L không?', 'Phối thêm phụ kiện', 'Xem bảng size chuẩn'],
+      provider: 'smartbuy-assistant',
+    };
+  }
+
+  // 3. Câu hỏi nối tiếp về size ("mẫu thứ hai còn size L không?", "còn size l không?", "có size m không?")
+  if (
+    text.includes('size l') ||
+    text.includes('size m') ||
+    text.includes('size s') ||
+    text.includes('size xl') ||
+    text.includes('còn size')
+  ) {
+    const sizeWanted = text.includes('size l') ? 'L' : text.includes('size m') ? 'M' : text.includes('size s') ? 'S' : text.includes('size xl') ? 'XL' : 'M';
+    const isSecond = text.includes('thứ hai') || text.includes('thứ 2') || text.includes('mẫu 2');
+    const candidates = allProducts.filter((p) => Array.isArray(p.sizes) && p.sizes.includes(sizeWanted as any));
+    const target = isSecond && candidates.length > 1 ? candidates[1] : candidates[0];
+
+    return {
+      id: `msg_${Date.now()}`,
+      sender: 'stylist',
+      text: target
+        ? `Dạ mẫu "${target.name}" hiện tại vẫn CÒN size ${sizeWanted} trong kho (form rộng thoải mái chuẩn Gen Z) bạn nhé! Bạn có thể thêm ngay vào giỏ hàng hoặc bấm "Thử đồ AI" để xem trước phom dáng khi mặc lên người ạ.`
+        : `Dạ hiện tại size ${sizeWanted} của mẫu này đang có sẵn trong kho SMARTBUY AI với số lượng vừa đủ. Bạn có thể đặt sớm để nhận ưu đãi nhé!`,
+      timestamp: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+      recommendedProducts: target ? [target] : candidates.slice(0, 2),
+      quickReplies: ['Tư vấn thêm size theo cân nặng', 'Có màu đen không?', 'Thêm vào giỏ hàng'],
+      provider: 'smartbuy-assistant',
+    };
+  }
+
+  // 4. Nhớ ngữ cảnh câu trả lời nối tiếp ("cho nam", "nam", "đồ nam") khi câu trước đang hỏi về tiệc
+  if (
+    (text === 'cho nam' || text === 'nam' || text === 'đồ nam' || text.includes('cho bạn nam')) &&
+    (historyText.includes('tiệc') || lastBotMessage.includes('tiệc'))
+  ) {
+    const malePartyTops = allProducts.filter(
+      (p) =>
+        p.gender === 'nam' &&
+        (p.categorySlug === 'so-mi' ||
+          p.categorySlug === 'ao-polo' ||
+          (p.name || '').toLowerCase().includes('sơ mi') ||
+          (p.name || '').toLowerCase().includes('polo'))
+    );
+    const malePartyPants = allProducts.filter(
+      (p) =>
+        p.gender === 'nam' &&
+        (p.categorySlug === 'quan-jeans' ||
+          p.categorySlug === 'quan' ||
+          (p.name || '').toLowerCase().includes('tây') ||
+          (p.name || '').toLowerCase().includes('kaki') ||
+          (p.name || '').toLowerCase().includes('suông'))
+    );
+
+    const top = malePartyTops[0];
+    const bottom = malePartyPants[0];
+    const recommended = [top, bottom].filter(Boolean) as Product[];
+
+    return {
+      id: `msg_${Date.now()}`,
+      sender: 'stylist',
+      text: `Dạ vâng! Với các buổi tiệc dành cho bạn nam, SMARTBUY AI gợi ý bạn set đồ lịch sự nhưng vẫn trẻ trung, năng động:\n\n• Áo: Sơ mi cộc tay hoặc Polo dệt kim phom Regular/Oversized sang trọng.\n• Quần: Quần tây xếp ly hoặc quần kaki suông ống đứng hack dáng.\n\nDưới đây là những mẫu nổi bật chuẩn tiệc cưới, sinh nhật cho nam giới:`,
+      timestamp: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+      recommendedProducts: recommended,
+      quickReplies: ['Có màu đen không?', 'Mẫu thứ hai còn size L không?', 'Ngân sách dưới 400k'],
+      provider: 'smartbuy-assistant',
+    };
+  }
+
+  // 5. Câu hỏi chung chung về dịp dự tiệc ("Tôi muốn đồ đi dự tiệc")
+  if (text.includes('dự tiệc') || text.includes('di tiec') || text.includes('tiệc cưới') || text.includes('party')) {
+    const samplePartyItems = allProducts
+      .filter((p) => (p.name || '').toLowerCase().includes('sơ mi') || (p.name || '').toLowerCase().includes('váy') || (p.name || '').toLowerCase().includes('đầm'))
+      .slice(0, 3);
+
+    return {
+      id: `msg_${Date.now()}`,
+      sender: 'stylist',
+      text: `Được chứ ạ! Nếu bạn đang tìm đồ đi dự tiệc, mình có thể gợi ý phong cách lịch sự hoặc trẻ trung, hiện đại.\n\n• Bạn có thể cân nhắc sơ mi kết hợp quần tây hoặc blazer phối cùng quần ống suông để tạo vẻ ngoài đĩnh đạc, sang trọng.\n• Nếu là đồ nữ, các mẫu đầm dạ hội/váy ren thanh lịch sẽ giúp bạn nổi bật trong mọi bữa tiệc.\n\nBạn chuẩn bị đi tiệc cưới, sinh nhật hay tiệc công ty? Bạn thích phong cách lịch sự hay trẻ trung để mình gợi ý set đồ chuẩn gu nhất nhé!`,
+      timestamp: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+      recommendedProducts: samplePartyItems,
+      quickReplies: ['Cho nam', 'Cho nữ', 'Tiệc cưới bạn tôi', 'Tiệc sinh nhật cùng bạn bè'],
+      provider: 'smartbuy-assistant',
+    };
+  }
+
+  const { criteria, detectedText } = parseStylistPrompt(userMessage);
 
   const isOutfitRequest =
     userMessage.toLowerCase().includes('phối') ||
@@ -167,8 +305,6 @@ function runLocalFallback(userMessage: string): AIStylistMessage {
   let recommended: Product[] = [];
   let explanation = '';
   let outfitBreakdown: OutfitBreakdown | undefined = undefined;
-
-  const formatVND = (v: number) => new Intl.NumberFormat('vi-VN').format(v) + ' ₫';
 
   if (isOutfitRequest) {
     const topCandidates = allProducts.filter(
@@ -189,7 +325,7 @@ function runLocalFallback(userMessage: string): AIStylistMessage {
     const accCandidates = allProducts.filter((p) => p.categorySlug === 'phu-kien');
     const accessory = accCandidates[Math.floor(Math.random() * Math.min(6, accCandidates.length))] || accCandidates[0];
 
-    const outfitItems = [top, bottom, accessory].filter(Boolean);
+    const outfitItems = [top, bottom, accessory].filter(Boolean) as Product[];
     const totalFitPrice = outfitItems.reduce((sum, item) => sum + (item?.price || 0), 0);
 
     recommended = outfitItems;
@@ -214,7 +350,7 @@ function runLocalFallback(userMessage: string): AIStylistMessage {
       if (totalFitPrice <= criteria.maxBudget) {
         explanation = `🔥 Đã phối xong set OUTFIT chuẩn gu (${detectedText})!\n\n• Gồm: 1 Áo (${top?.name || ''}) + 1 Quần (${bottom?.name || ''}) + 1 Phụ kiện (${accessory?.name || ''}).\n• Tổng giá trọn bộ: ${formatVND(totalFitPrice)} (Vừa vặn trong ngân sách ${formatVND(criteria.maxBudget)} của bạn!). Bạn có thể bấm Thử đồ AI hoặc thêm từng món vào giỏ hàng ngay:`;
       } else {
-        explanation = `⚡ Set OUTFIT đề xuất có tổng giá ${formatVND(totalFitPrice)}, vượt nhẹ ngân sách ${formatVND(criteria.maxBudget)} của bạn.\n• Gợi ý: Bạn có thể chọn các mẫu áo thun basic từ 89k hoặc bỏ bớt phụ kiện để tối ưu chi tiêu sinh viên!`;
+        explanation = `⚡ Set OUTFIT đề xuất có tổng giá ${formatVND(totalFitPrice)}, vượt nhẹ ngân sách ${formatVND(criteria.maxBudget)} của bạn.\n• Gợi ý: Bạn có thể chọn các mẫu áo thun basic học sinh sinh viên hoặc bỏ bớt phụ kiện để tối ưu chi tiêu!`;
       }
     } else {
       explanation = `🔥 Đã phối xong bộ OUTFIT (${detectedText}) trọn bộ Áo + Quần + Phụ kiện tổng ${formatVND(totalFitPrice)} cực chất cho bạn:`;
@@ -248,19 +384,15 @@ function runLocalFallback(userMessage: string): AIStylistMessage {
     outfitBreakdown,
     explanation: detectedText,
     provider: 'smartbuy-local-fallback',
-    quickReplies: criteria.occasion === 'Dự tiệc'
-      ? [
-          'Tiệc cưới bạn tôi',
-          'Tiệc sinh nhật cùng bạn bè',
-          'Đầm dự tiệc nữ',
-          'Set sơ mi + quần âu nam',
-        ]
-      : [
-          'Phối đồ streetwear nam đi chơi dưới 400k',
-          'Outfit baby tee + chân váy xếp ly đi cafe',
-          'Set đồ unisex phong cách Korean Casual',
-          'Cái thứ hai còn size M không?',
-        ],
+    quickReplies:
+      criteria.occasion === 'Dự tiệc'
+        ? ['Tiệc cưới bạn tôi', 'Tiệc sinh nhật cùng bạn bè', 'Đầm dự tiệc nữ', 'Set sơ mi + quần âu nam']
+        : [
+            'Phối đồ streetwear nam đi chơi dưới 400k',
+            'Outfit baby tee + chân váy xếp ly đi cafe',
+            'Set đồ unisex phong cách Korean Casual',
+            'Cái thứ hai còn size M không?',
+          ],
   };
 }
 
@@ -316,7 +448,7 @@ export const stylistService = {
       };
     } catch (err) {
       console.warn('[StylistService] Backend chat failed, falling back to local engine:', err);
-      return runLocalFallback(userMessage);
+      return runLocalFallback(userMessage, history);
     }
   },
 

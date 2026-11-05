@@ -21,7 +21,7 @@ import { FINAL_GENZ_CATALOGUE } from './genzCatalogBuilder';
 import { isValidImagePath } from '@/lib/imageValidator';
 import { safeSessionStorage } from '@/lib/storage';
 
-const SCHEMA_VERSION = 'v16.2-clean-image-audit-and-price-fix-20261031';
+const SCHEMA_VERSION = 'v25.0-hot-products-diverse-lookbook-20261106';
 const STORAGE_KEYS = {
   SCHEMA: 'sb_schema_version',
   PRODUCTS: 'sb_products',

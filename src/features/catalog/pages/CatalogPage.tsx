@@ -16,6 +16,7 @@ import { formatPrice } from '@/lib/utils';
 import { BackButton } from '@/components/common/BackButton';
 import {
   SlidersHorizontal,
+  Search,
   Heart,
   X,
   RotateCcw,
@@ -89,9 +90,11 @@ export const CatalogPage: React.FC = () => {
   // Left Filter Accordion Open/Closed States
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
     category: true,
+    subcategory: true,
     price: true,
     color: true,
     size: true,
+    sort: true,
   });
 
   const toggleSection = (section: string) => {
@@ -407,14 +410,15 @@ export const CatalogPage: React.FC = () => {
     }).length;
   }, [allCatalogProducts, genderParam]);
 
-  // Nhóm Cấp 2 đang hoạt động (Tất cả, Áo, Quần, Váy, Áo khoác, Đồ bộ, Đồ đôi)
-  const currentActiveGroup = useMemo<'all' | 'ao' | 'ao-khoac' | 'quan' | 'vay' | 'do-bo' | 'do-doi' | 'khac'>(() => {
+  // Nhóm Cấp 2 đang hoạt động (Tất cả, Áo, Quần, Váy, Áo khoác, Đồ bộ, Phụ kiện, Đồ đôi)
+  const currentActiveGroup = useMemo<'all' | 'ao' | 'ao-khoac' | 'quan' | 'vay' | 'do-bo' | 'phu-kien' | 'do-doi' | 'khac'>(() => {
     if (categoryParam === 'all') return 'all';
     if (categoryParam === 'ao') return 'ao';
     if (categoryParam === 'ao-khoac') return 'ao-khoac';
     if (categoryParam === 'quan') return 'quan';
     if (categoryParam === 'vay' || categoryParam === 'chan-vay' || categoryParam === 'dam') return 'vay';
     if (categoryParam === 'do-bo') return 'do-bo';
+    if (categoryParam === 'phu-kien') return 'phu-kien';
     if (categoryParam === 'do-doi') return 'do-doi';
     const meta = CATEGORY_DEFINITIONS[categoryParam];
     if (meta?.parentGroup === 'ao') return 'ao';
@@ -422,6 +426,7 @@ export const CatalogPage: React.FC = () => {
     if (meta?.parentGroup === 'quan') return 'quan';
     if (meta?.parentGroup === 'vay' || meta?.parentGroup === 'chan-vay-dam') return 'vay';
     if (meta?.parentGroup === 'do-bo') return 'do-bo';
+    if (meta?.parentGroup === 'phu-kien') return 'phu-kien';
     return 'all';
   }, [categoryParam]);
 
@@ -476,6 +481,21 @@ export const CatalogPage: React.FC = () => {
   }, [allCatalogProducts, genderParam]);
 
   const coupleCount = COUPLE_SETS.length;
+
+  const accessoryCount = useMemo(() => {
+    return allCatalogProducts.filter((p) => {
+      if (genderParam === 'nam' && p.gender !== 'nam') return false;
+      if (genderParam === 'nu' && p.gender !== 'nu') return false;
+      if (genderParam === 'unisex' && p.gender !== 'unisex') return false;
+      const meta = CATEGORY_DEFINITIONS[p.categorySlug];
+      return meta?.parentGroup === 'phu-kien' || p.categorySlug === 'phu-kien';
+    }).length;
+  }, [allCatalogProducts, genderParam]);
+
+  const activeGroup = useMemo(() => {
+    if (currentActiveGroup === 'all') return null;
+    return groupedCategories.find((g) => g.groupKey === currentActiveGroup) || null;
+  }, [groupedCategories, currentActiveGroup]);
 
   // Danh sách màu sắc thực tế được xác minh từ các sản phẩm đang hiển thị
   const availableColors = useMemo(() => {
@@ -556,6 +576,18 @@ export const CatalogPage: React.FC = () => {
       return [
         { id: 'do-bo-all', label: `Tất cả đồ bộ (${doBoCount})`, filter: { category: 'do-bo' } },
         ...doBoCats.map((c) => ({
+          id: c.slug,
+          label: `${c.name} (${c.itemCount})`,
+          filter: { category: c.slug },
+        })),
+      ];
+    }
+
+    if (currentActiveGroup === 'phu-kien') {
+      const accessoryCats = activeCategories.filter((c) => CATEGORY_DEFINITIONS[c.slug]?.parentGroup === 'phu-kien');
+      return [
+        { id: 'phu-kien-all', label: `Tất cả phụ kiện (${accessoryCount})`, filter: { category: 'phu-kien' } },
+        ...accessoryCats.map((c) => ({
           id: c.slug,
           label: `${c.name} (${c.itemCount})`,
           filter: { category: c.slug },
@@ -841,9 +873,21 @@ export const CatalogPage: React.FC = () => {
       title: 'TẤT CẢ SẢN PHẨM SMARTBUY',
       breadcrumb: 'Tất cả Drops',
       categoryName: 'Streetwear',
-      description: 'Khám phá hơn 130+ mẫu thiết kế Streetwear bốn mùa, Unisex, Y2K và Local Brand độc quyền với mức giá học sinh sinh viên từ 79.000₫ – 449.000₫.',
+      description: `Khám phá hơn ${allCatalogProducts.length}+ mẫu thiết kế Streetwear bốn mùa, Unisex, Y2K và Local Brand độc quyền với mức giá học sinh sinh viên từ 39.000₫ – 525.000₫.`,
     };
-  }, [categoryParam, seasonParam, genderParam]);
+  }, [
+    categoryParam,
+    seasonParam,
+    genderParam,
+    allCatalogProducts,
+    shirtCount,
+    jacketCount,
+    pantCount,
+    vayCount,
+    doBoCount,
+    coupleCount,
+    totalScopedProductsCount,
+  ]);
 
   const handleOpenQuickView = (product: Product, initialImageIndex: number = 0) => {
     window.dispatchEvent(new CustomEvent('open_quick_view', { detail: { product, initialImageIndex } }));
@@ -926,9 +970,9 @@ export const CatalogPage: React.FC = () => {
 
       {/* 2. Loại sản phẩm */}
       <div className="pt-3">
-        {renderSectionHeader('Loại sản phẩm', 'category', categoryParam !== 'all' ? 1 : 0)}
+        {renderSectionHeader('Loại sản phẩm', 'category', currentActiveGroup !== 'all' ? 1 : 0)}
         {openSections.category && (
-          <div className="space-y-2.5 pt-1.5 max-h-72 overflow-y-auto scrollbar-thin pr-1 animate-fade-in">
+          <div className="space-y-1.5 pt-1.5 animate-fade-in">
             <button
               type="button"
               onClick={() => updateParam('category', 'all')}
@@ -942,48 +986,79 @@ export const CatalogPage: React.FC = () => {
               <span className="text-[11px] text-[#71717A]">({totalScopedProductsCount})</span>
             </button>
 
-            {groupedCategories.map((group, groupIdx) => (
-              <div key={group.groupKey || `group-${groupIdx}`} className="space-y-1">
-                {/* Tiêu đề Cấp 2: Nhóm Lớn (Áo, Quần, Váy...) */}
+            {groupedCategories.map((group, groupIdx) => {
+              const isGroupActive = currentActiveGroup === group.groupKey;
+              return (
                 <button
+                  key={group.groupKey || `group-${groupIdx}`}
                   type="button"
                   onClick={() => updateParam('category', group.groupKey)}
-                  className={`w-full text-left flex items-center justify-between px-2.5 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-md cursor-pointer transition-colors ${
-                    categoryParam === group.groupKey
-                      ? 'bg-[#8B5CF6] text-white shadow-2xs'
+                  className={`w-full text-left flex items-center justify-between px-2.5 py-2 text-xs font-bold rounded-lg cursor-pointer transition-all ${
+                    isGroupActive
+                      ? 'bg-[#8B5CF6] text-white shadow-xs font-extrabold'
                       : 'text-[#18181B] bg-[#F2F3F5] hover:bg-[#E4E4E7]'
                   }`}
                   title={`Xem tất cả sản phẩm thuộc nhóm ${group.groupName}`}
                 >
                   <span>{group.groupName}</span>
-                  <span className={`text-[10px] font-semibold ${categoryParam === group.groupKey ? 'text-purple-100' : 'text-[#71717A]'}`}>
+                  <span className={`text-[10px] font-semibold ${isGroupActive ? 'text-purple-100' : 'text-[#71717A]'}`}>
                     ({group.totalCount})
                   </span>
                 </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
 
-                {/* Danh sách Cấp 3: Loại sản phẩm */}
-                <div className="space-y-0.5 pl-1.5">
-                  {group.categories.map((cat, catIdx) => (
-                    <button
-                      key={cat.id || cat.slug || `cat-${catIdx}`}
-                      type="button"
-                      onClick={() => updateParam('category', cat.slug)}
-                      className={`w-full text-left py-1 px-2 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${
-                        categoryParam === cat.slug
-                          ? 'font-bold text-[#7C3AED] bg-[#F3E8FF] border-l-2 border-[#8B5CF6]'
-                          : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F2F3F5]'
-                      }`}
-                    >
-                      <span className="flex items-center gap-1.5 text-xs">
-                        <span className="text-[10px] text-[#A1A1AA]">•</span>
-                        <span>{cat.name}</span>
-                      </span>
-                      <span className="text-[11px] text-[#71717A]">({cat.itemCount})</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ))}
+      {/* 2.5 Danh mục con (Chỉ hiển thị danh mục con tương ứng với nhóm đã chọn) */}
+      <div className="pt-3">
+        {renderSectionHeader(
+          activeGroup ? `Danh mục con (${activeGroup.groupName})` : 'Danh mục con',
+          'subcategory',
+          activeGroup && categoryParam !== activeGroup.groupKey ? 1 : 0
+        )}
+        {openSections.subcategory && (
+          <div className="space-y-1 pt-1.5 max-h-56 overflow-y-auto scrollbar-thin pr-1 animate-fade-in">
+            {activeGroup ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() => updateParam('category', activeGroup.groupKey)}
+                  className={`w-full text-left py-1.5 px-2.5 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${
+                    categoryParam === activeGroup.groupKey
+                      ? 'font-bold text-[#7C3AED] bg-[#F3E8FF] border-l-2 border-[#8B5CF6]'
+                      : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F2F3F5]'
+                  }`}
+                >
+                  <span className="text-xs font-semibold">Tất cả {activeGroup.groupName}</span>
+                  <span className="text-[11px] text-[#71717A]">({activeGroup.totalCount})</span>
+                </button>
+
+                {activeGroup.categories.map((cat, catIdx) => (
+                  <button
+                    key={cat.id || cat.slug || `cat-${catIdx}`}
+                    type="button"
+                    onClick={() => updateParam('category', cat.slug)}
+                    className={`w-full text-left py-1.5 px-2.5 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${
+                      categoryParam === cat.slug
+                        ? 'font-bold text-[#7C3AED] bg-[#F3E8FF] border-l-2 border-[#8B5CF6]'
+                        : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F2F3F5]'
+                    }`}
+                  >
+                    <span className="flex items-center gap-1.5 text-xs">
+                      <span className="text-[10px] text-[#A1A1AA]">•</span>
+                      <span>{cat.name}</span>
+                    </span>
+                    <span className="text-[11px] text-[#71717A]">({cat.itemCount})</span>
+                  </button>
+                ))}
+              </>
+            ) : (
+              <p className="text-[11px] text-[#A1A1AA] italic py-2 px-2 text-center bg-[#FAFAFA] rounded-lg border border-dashed border-[#E4E4E7]">
+                Chọn một Loại sản phẩm ở trên để xem danh mục con
+              </p>
+            )}
           </div>
         )}
       </div>
@@ -1088,16 +1163,49 @@ export const CatalogPage: React.FC = () => {
         </div>
       )}
 
-      {/* Nút xóa bộ lọc */}
+      {/* 6. Sắp xếp */}
+      <div className="pt-3">
+        {renderSectionHeader('Sắp xếp', 'sort', sortParam !== 'newest' ? 1 : 0)}
+        {openSections.sort && (
+          <div className="space-y-1.5 pt-1.5 animate-fade-in">
+            {[
+              { label: 'Mới nhất (Latest Drop)', val: 'newest' },
+              { label: 'Giá: Thấp → Cao', val: 'price-asc' },
+              { label: 'Giá: Cao → Thấp', val: 'price-desc' },
+              { label: 'Đánh giá tốt nhất', val: 'rating-desc' },
+              { label: 'Tên sản phẩm: A → Z', val: 'name-asc' },
+            ].map((s) => {
+              const isSelected = sortParam === s.val;
+              return (
+                <button
+                  key={s.val}
+                  type="button"
+                  onClick={() => updateParam('sort', s.val)}
+                  className={`w-full text-left py-1.5 px-2 rounded-md transition-colors flex items-center justify-between cursor-pointer ${
+                    isSelected
+                      ? 'font-bold text-[#7C3AED] bg-[#F3E8FF]'
+                      : 'text-[#71717A] hover:text-[#18181B]'
+                  }`}
+                >
+                  <span>{s.label}</span>
+                  {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6]" />}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* Nút XÓA BỘ LỌC */}
       <div className="pt-4">
         <Button
           variant="outline"
           size="sm"
           onClick={clearAllFilters}
-          className="w-full text-xs font-semibold rounded-xl"
+          className="w-full text-xs font-bold uppercase tracking-wider rounded-xl py-2.5 border-[#E4E4E7] hover:border-[#8B5CF6] hover:text-[#8B5CF6] hover:bg-[#F3E8FF]/40 cursor-pointer shadow-2xs transition-all"
         >
           <RotateCcw className="w-3.5 h-3.5 mr-1.5" />
-          Đặt lại bộ lọc
+          XÓA BỘ LỌC
         </Button>
       </div>
     </div>
@@ -1174,9 +1282,13 @@ export const CatalogPage: React.FC = () => {
             <span>
               {genderParam === 'nu'
                 ? "GEN Z WOMEN'S ESSENTIALS"
+                : genderParam === 'nam'
+                ? "GEN Z MEN'S ESSENTIALS"
                 : genderParam === 'unisex'
                 ? "GEN Z UNISEX ESSENTIALS"
-                : "GEN Z MEN'S ESSENTIALS"}
+                : categoryParam === 'phu-kien'
+                ? "GEN Z ACCESSORIES ESSENTIALS"
+                : "GEN Z FASHION ESSENTIALS"}
             </span>
           </div>
 
@@ -1388,10 +1500,10 @@ export const CatalogPage: React.FC = () => {
                   <button
                     key={pill.id}
                     onClick={() => handlePillClick(pill)}
-                    className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all cursor-pointer active:scale-95 ${
+                    className={`shrink-0 px-4 py-2 rounded-full text-xs sm:text-[13px] font-bold tracking-tight transition-all cursor-pointer active:scale-95 ${
                       isActive
-                        ? 'bg-[#8B5CF6] text-white shadow-subtle ring-1 ring-[#8B5CF6]'
-                        : 'bg-[#F2F3F5] border border-[#E4E4E7] text-[#18181B] hover:border-[#8B5CF6] hover:bg-[#F3E8FF]/40'
+                        ? 'bg-[#8B5CF6] text-white shadow-sm ring-2 ring-[#7C3AED]/40'
+                        : 'bg-[#F2F3F5] border border-[#E4E4E7] text-[#18181B] hover:border-[#8B5CF6] hover:bg-[#F3E8FF]/50'
                     }`}
                   >
                     {pill.label}
@@ -1426,6 +1538,39 @@ export const CatalogPage: React.FC = () => {
 
       {/* 3: BỐ CỤC 3 VÙNG / 2 VÙNG LINH HOẠT [BỘ LỌC 240px | CATALOG TỰ CO GIÃN | AI STYLIST 290px] */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        {/* THANH TÌM KIẾM SẢN PHẨM (PHẦN 3) — Chiều cao 48-52px, bo góc 20px, font 14-16px, icon & clear button */}
+        <div className="mb-6 max-w-2xl mx-auto w-full px-1">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+            className="relative w-full"
+          >
+            <div className="relative flex items-center w-full">
+              <Search className="absolute left-4 w-5 h-5 text-[#8B5CF6] pointer-events-none" />
+              <input
+                type="text"
+                value={searchParam}
+                onChange={(e) => updateParam('q', e.target.value.trim() ? e.target.value : null)}
+                placeholder="Tìm kiếm áo thun, polo, sơ mi, hoodie, váy, quần jeans..."
+                className="w-full pl-12 pr-12 h-12 sm:h-[50px] text-sm sm:text-base bg-white hover:bg-[#F9FAFB] focus:bg-white text-[#18181B] rounded-2xl border border-[#E4E4E7] focus:border-[#8B5CF6] focus:ring-4 focus:ring-[#8B5CF6]/15 transition-all outline-none placeholder:text-[#A1A1AA] shadow-xs"
+              />
+              {searchParam && (
+                <button
+                  type="button"
+                  data-testid="clear-search-button"
+                  onClick={() => updateParam('q', null)}
+                  className="absolute right-3.5 p-1.5 text-[#71717A] hover:text-[#18181B] rounded-full hover:bg-black/5 cursor-pointer transition-colors"
+                  title="Xóa tìm kiếm"
+                  aria-label="Xóa từ khóa tìm kiếm"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </form>
+        </div>
+
         {/* Toolbar: Mobile trigger + Active chips + Sort + AI Stylist toggle */}
         <div className="flex flex-wrap items-center justify-between pb-4 border-b border-[#E4E4E7] mb-6 gap-3">
           {/* Mobile buttons */}

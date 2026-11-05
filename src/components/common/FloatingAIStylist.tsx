@@ -338,11 +338,11 @@ export const FloatingAIStylist: React.FC = () => {
               </div>
             ))}
 
-            {/* AI Typing Loading Indicator */}
+            {/* AI Typing Loading Indicator — Thông báo nhẹ nhàng theo Master Prompt V23 */}
             {isLoading && (
               <div className="flex items-center gap-2 text-xs text-[#8B5CF6] bg-white p-3 rounded-2xl border border-[#E4E4E7] w-fit shadow-xs animate-pulse">
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                <span className="font-semibold text-[11px]">AI Stylist đang suy nghĩ và kiểm tra kho...</span>
+                <span className="font-semibold text-[11px]">SMARTBUY AI đang tìm mẫu phù hợp với bạn...</span>
               </div>
             )}
           </div>

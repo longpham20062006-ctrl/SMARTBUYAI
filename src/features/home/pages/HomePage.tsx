@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { productService } from '@/services/productService';
 import { MockRepo } from '@/mocks/repository';
 import { HomeProductCard } from '@/components/common/HomeProductCard';
@@ -10,7 +10,6 @@ import {
   ArrowRight,
   Flame,
   Zap,
-  Tag,
   Layers,
   Heart,
   Cpu,
@@ -25,6 +24,7 @@ import { HeroFashionGallery } from '@/components/home/HeroFashionGallery';
 import { usePerformance } from '@/context/PerformanceContext';
 import { resetGlobalScroll } from '@/components/common/ScrollToTop';
 import { useToast } from '@/components/ui/toast';
+import { isProductEligibleForPublicDisplay } from '@/lib/imageValidator';
 
 // Lazy-load Three.js ambient effect in Hero section
 const AmbientGalaxy = React.lazy(() =>
@@ -43,46 +43,6 @@ const HOME_IMAGES = {
   womenLookbook: '/images/anh_trangchu/68818615-3bdd-4a63-bf3f-cc3bb5bde4aa.png',
 };
 
-// TOÀN BỘ 4 LOOK THỜI TRANG ĐƯỢC HIỂN THỊ ĐẦY ĐỦ TRÊN TRANG CHỦ
-const EDITORIAL_LOOKS = [
-  {
-    id: 'look-1',
-    src: HOME_IMAGES.heroStreetwear,
-    title: 'STREETWEAR GRAPHIC HOODIE',
-    category: 'Nam • Streetwear',
-    badge: 'LOOK 01 // DROP 2026',
-    desc: 'Phom rộng thoải mái, phong cách đường phố tự do và phóng khoáng.',
-    link: '/shop?gender=nam',
-  },
-  {
-    id: 'look-2',
-    src: HOME_IMAGES.menStreetwear,
-    title: 'URBAN MINIMALIST SHIRT',
-    category: 'Nam • Casual Night',
-    badge: 'LOOK 02 // NIGHT CASUAL',
-    desc: 'Sơ mi cộc tay đen tối giản phối quần suông sáng màu loang wash cá tính.',
-    link: '/shop?gender=nam',
-  },
-  {
-    id: 'look-3',
-    src: HOME_IMAGES.womenOutdoor,
-    title: 'CYBERPUNK CORSET DRESS',
-    category: 'Nữ • Gen Z Chic',
-    badge: 'LOOK 03 // OUTDOOR CHIC',
-    desc: 'Đầm corset chiết eo tôn dáng, phối tùng voan xòe bồng bềnh dạo phố.',
-    link: '/shop?gender=nu',
-  },
-  {
-    id: 'look-4',
-    src: HOME_IMAGES.womenLookbook,
-    title: 'PASTEL TUTU COCKTAIL DRESS',
-    category: 'Nữ • Lookbook Luxury',
-    badge: 'LOOK 04 // EDITORIAL',
-    desc: 'Đầm xòe phối corset hồng pastel ngọt ngào, tạo dấu ấn sang trọng.',
-    link: '/shop?gender=nu',
-  },
-];
-
 export const HomePage: React.FC = () => {
   useRepoSubscription(['products', 'auth']);
   const navigate = useNavigate();
@@ -92,8 +52,15 @@ export const HomePage: React.FC = () => {
 
   const handleProtectedAction = (targetPath: string) => {
     if (!currentUser) {
-      safeSessionStorage.setItem('sb_login_notice', 'Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!');
-      toast('Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!', 'Trải nghiệm mua sắm cùng SMARTBUY AI', 'info');
+      safeSessionStorage.setItem(
+        'sb_login_notice',
+        'Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!'
+      );
+      toast(
+        'Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!',
+        'Trải nghiệm mua sắm cùng SMARTBUY AI',
+        'info'
+      );
       navigate(`/login?redirect=${encodeURIComponent(targetPath)}`);
     } else {
       resetGlobalScroll();
@@ -119,194 +86,298 @@ export const HomePage: React.FC = () => {
     navigate('/intro');
   }, [navigate]);
 
-  // Sản phẩm thật từ Catalog SMARTBUY AI (Lấy đúng 6 sản phẩm HOT theo yêu cầu)
-  const hotProducts = productService.getHotProducts(6);
-  const menHighlights = productService.getAll({ gender: 'nam' }).slice(0, 4);
-  const womenHighlights = productService.getAll({ gender: 'nu' }).slice(0, 4);
+  // Sản phẩm thật từ Catalog SMARTBUY AI (Lấy đúng 8 sản phẩm HOT đa dạng danh mục cho khu vực nổi bật)
+  const hotProducts = productService.getHotProducts(8);
 
-  // Ảnh đại diện danh mục lấy từ sản phẩm thật trong catalog
-  const aoThunFirst = productService.getAll({ categorySlug: 'ao-thun' })[0];
-  const hoodieFirst = productService.getAll({ categorySlug: 'ao-hoodie' })[0] || productService.getAll({ categorySlug: 'ao-khoac' })[0];
-  const jeansFirst = productService.getAll({ categorySlug: 'quan-jeans' })[0] || productService.getAll({ categorySlug: 'quan' })[0];
-  const nuFirst = productService.getAll({ gender: 'nu' })[0];
-  const unisexFirst = productService.getAll({ gender: 'unisex' })[0] || aoThunFirst;
+  // 4 NHÓM SẢN PHẨM HOT TƯƠNG ỨNG 4 PHONG CÁCH LOOKBOOK (100% ẢNH THẬT TRÊN ĐĨA)
+  // LOOK 01: Nam Streetwear / Graphic Hoodie / Oversized Graphic Tee / Quần Cargo Túi Hộp / Bomber
+  const look1Products = useMemo(() => {
+    const ids = ['HOODIE-001', 'TEE-002', 'PANTS-003', 'JACKET-002'];
+    const found = ids.map((id) => productService.getById(id)).filter(Boolean) as Product[];
+    if (found.length >= 4) return found.slice(0, 4);
 
-  // 5 Category Cards (Shop By Category) — Ảnh sản phẩm thật từ kho hàng
-  const categoryCards = [
-    {
-      title: 'Thời Trang Nam',
-      gender: 'nam',
-      link: '/shop?gender=nam',
-      image: menHighlights[0]?.images?.[0] || '/images/san-pham/ao-thun-nam-1.jpg',
-      count: '130+ Mẫu',
-      desc: 'Áo thun, Hoodie, Jeans, Sơ mi boxy',
-    },
-    {
-      title: 'Thời Trang Nữ',
-      gender: 'nu',
-      link: '/shop?gender=nu',
-      image: nuFirst?.images?.[0] || '/images/san-pham/vay-nu-1.jpg',
-      count: '140+ Mẫu',
-      desc: 'Váy đầm, Croptop, Baby Tee, Cardigan',
-    },
-    {
-      title: 'Thời Trang Unisex',
-      gender: 'unisex',
-      link: '/shop?gender=unisex',
-      image: unisexFirst?.images?.[0] || aoThunFirst?.images?.[0] || '/images/san-pham/ao-thun-unisex-1.jpg',
-      count: 'Oversize Fit',
-      desc: 'Phom rộng tự do, thoải mái cho cả nam & nữ',
-    },
-    {
-      title: 'Áo Hoodie & Nỉ',
-      gender: 'hoodie',
-      link: '/shop?category=ao-hoodie',
-      image: hoodieFirst?.images?.[0] || '/images/san-pham/ao-hoodie-1.jpg',
-      count: 'Chất Nỉ Bông',
-      desc: 'Dày dặn, ấm áp, phom rộng chuẩn Gen Z',
-    },
-    {
-      title: 'Quần Jeans & Kaki',
-      gender: 'jeans',
-      link: '/shop?category=quan-jeans',
-      image: jeansFirst?.images?.[0] || '/images/san-pham/quan-jeans-1.jpg',
-      count: 'Ống Suông Rộng',
-      desc: 'Hack dáng, dễ phối cùng áo thun và sơ mi',
-    },
-  ];
+    const all = MockRepo.getProducts().filter(
+      (p) => p.gender === 'nam' && (p.categorySlug === 'ao-hoodie' || p.categorySlug === 'ao-khoac' || p.categorySlug === 'ao-thun' || p.categorySlug === 'quan-dai') && isProductEligibleForPublicDisplay(p)
+    );
+    const combined = [...found, ...all];
+    const uniqueMap = new Map<string, Product>();
+    combined.forEach((p) => uniqueMap.set(p.id, p));
+    return Array.from(uniqueMap.values()).slice(0, 4);
+  }, []);
+
+  // LOOK 02: Nam Casual / Urban Minimalist Shirt & Polo / Quần Dài Tuyết Mưa
+  const look2Products = useMemo(() => {
+    const ids = ['SHIRT-001', 'POLO-001', 'PANTS-001', 'SHIRT-003'];
+    const found = ids.map((id) => productService.getById(id)).filter(Boolean) as Product[];
+    if (found.length >= 4) return found.slice(0, 4);
+
+    const all = MockRepo.getProducts().filter(
+      (p) => p.gender === 'nam' && (p.categorySlug === 'ao-so-mi' || p.categorySlug === 'ao-polo' || p.categorySlug === 'quan-dai') && isProductEligibleForPublicDisplay(p)
+    );
+    const combined = [...found, ...all];
+    const uniqueMap = new Map<string, Product>();
+    combined.forEach((p) => uniqueMap.set(p.id, p));
+    return Array.from(uniqueMap.values()).slice(0, 4);
+  }, []);
+
+  // LOOK 03: Nữ Outdoor Chic / Váy Xòe / Váy Chữ A / Váy Aesthetic Gen Z / Váy Cổ Vuông Tiểu Thư
+  const look3Products = useMemo(() => {
+    const ids = ['W-DRESS-001', 'W-DRESS-026', 'W-DRESS-012', 'W-DRESS-002'];
+    const found = ids.map((id) => productService.getById(id)).filter(Boolean) as Product[];
+    if (found.length >= 4) return found.slice(0, 4);
+
+    const all = MockRepo.getProducts().filter(
+      (p) => p.gender === 'nu' && (p.categorySlug === 'vay' || p.categorySlug === 'dam') && isProductEligibleForPublicDisplay(p)
+    );
+    const chicDresses = all.filter((p) => !p.id.includes('GOTHIC'));
+    const combined = [...found, ...chicDresses, ...all];
+    const uniqueMap = new Map<string, Product>();
+    combined.forEach((p) => uniqueMap.set(p.id, p));
+    return Array.from(uniqueMap.values()).slice(0, 4);
+  }, []);
+
+  // LOOK 04: Nữ Editorial Luxury, Đầm Dạ Hội & Váy Corset Cao Cấp & Phụ Kiện Nữ Dự Tiệc
+  const look4Products = useMemo(() => {
+    const ids = [
+      'W-DRESS-GOTHIC-005',
+      'W-DRESS-GOTHIC-001',
+      'W-DRESS-GOTHIC-007',
+      'ACC-027',
+    ];
+    const found = ids.map((id) => productService.getById(id)).filter(Boolean) as Product[];
+    if (found.length >= 4) return found.slice(0, 4);
+
+    // Fallback thông minh: Lấy các mẫu đầm dạ hội/váy corset cao cấp và phụ kiện nữ dự tiệc có ảnh thật trên đĩa
+    const all = MockRepo.getProducts().filter(
+      (p) => isProductEligibleForPublicDisplay(p) && (p.categorySlug === 'vay' || p.categorySlug === 'dam' || p.categorySlug === 'phu-kien')
+    );
+    const luxuryItems = all.filter((p) => p.id.includes('GOTHIC') || p.id === 'ACC-027' || p.badge === 'LUXURY' || p.isFeatured);
+    const combined = [...found, ...luxuryItems, ...all];
+    const uniqueMap = new Map<string, Product>();
+    combined.forEach((p) => uniqueMap.set(p.id, p));
+    return Array.from(uniqueMap.values()).slice(0, 4);
+  }, []);
+
+  // 4 KHU VỰC PHONG CÁCH XEN KẼ (Z-PATTERN) THEO CHIỀU DỌC TRANG CHỦ
+  const lookSections = useMemo(
+    () => [
+      {
+        id: 'look-1',
+        lookNumber: 'LOOK 01',
+        badge: 'LOOK 01 // STREETWEAR DROP',
+        title: 'STREETWEAR GRAPHIC HOODIE',
+        genderTag: 'Nam • Cyber Streetwear',
+        desc: 'Phom rộng thoải mái, phong cách đường phố tự do và phóng khoáng kết hợp áo hoodie nỉ bông cyberpunk, áo thun oversize, quần cargo túi hộp và áo khoác bomber cá tính đậm chất Gen Z.',
+        image: HOME_IMAGES.heroStreetwear,
+        objectPosition: 'object-[center_top]',
+        imageSide: 'left' as const, // Trái: Ảnh lớn, Phải: 4 Sản phẩm HOT
+        link: '/shop?gender=nam&category=ao',
+        products: look1Products,
+      },
+      {
+        id: 'look-2',
+        lookNumber: 'LOOK 02',
+        badge: 'LOOK 02 // NIGHT CASUAL',
+        title: 'URBAN MINIMALIST SHIRT',
+        genderTag: 'Nam • Casual & Minimalist',
+        desc: 'Tinh thần tối giản đương đại với sơ mi lụa chống nhăn, áo polo dệt kim bo cổ, sơ mi cổ Cuba và quần dài ống suông tuyết mưa thanh lịch cho cả công sở lẫn dạo phố đêm.',
+        image: HOME_IMAGES.menStreetwear,
+        objectPosition: 'object-center',
+        imageSide: 'right' as const, // Trái: 4 Sản phẩm HOT, Phải: Ảnh lớn
+        link: '/shop?gender=nam&category=ao-so-mi',
+        products: look2Products,
+      },
+      {
+        id: 'look-3',
+        lookNumber: 'LOOK 03',
+        badge: 'LOOK 03 // OUTDOOR CHIC',
+        title: 'OUTDOOR CHIC DRESSES',
+        genderTag: 'Nữ • Outdoor Gen Z Chic',
+        desc: 'Bộ sưu tập váy đầm outdoor chic tôn dáng ngọt ngào: váy xòe tiểu thư, đầm chữ A kinh điển và váy aesthetic Gen Z nữ tính, giúp phái đẹp tự tin dạo phố và tỏa sáng rạng ngời.',
+        image: HOME_IMAGES.womenOutdoor,
+        objectPosition: 'object-[center_top]',
+        imageSide: 'left' as const, // Trái: Ảnh lớn, Phải: 4 Sản phẩm HOT
+        link: '/shop?gender=nu&category=vay',
+        products: look3Products,
+      },
+      {
+        id: 'look-4',
+        lookNumber: 'LOOK 04',
+        badge: 'LOOK 04 // EDITORIAL LUXURY',
+        title: 'EDITORIAL LUXURY',
+        genderTag: 'Nữ • Lookbook Luxury',
+        desc: 'Thiết kế đầm dạ hội corset cao cấp, váy ren hoa Victorian kiêu kỳ kết hợp cùng phụ kiện túi clutch dự tiệc sang trọng, tôn trọn thần thái quý phái cho những buổi dạ tiệc đặc biệt.',
+        image: HOME_IMAGES.womenLookbook,
+        objectPosition: 'object-[center_top]',
+        imageSide: 'right' as const, // Trái: 4 Sản phẩm HOT, Phải: Ảnh lớn
+        link: '/shop?gender=nu&category=vay',
+        products: look4Products,
+      },
+    ],
+    [look1Products, look2Products, look3Products, look4Products]
+  );
 
   return (
     <>
-      {/* Telemetry Debug Panel (Chỉ hiển thị khi URL có ?debugGalaxy=1) */}
       <GalaxyDebugPanel onReplayIntro={handleReplayIntro} />
 
-      <div className="bg-[#FAFAF9] space-y-16 sm:space-y-24">
+      <div className="pb-16">
         {/* ============================================================ */}
-        {/* 1. HERO BANNER — ẢNH 1: SMARTBUY AI STREETWEAR FLAGSHIP       */}
+        {/* HERO SECTION — NỀN GALAXY ĐEN TÍM & VŨ TRỤ 3D LIÊN TỤC       */}
         {/* ============================================================ */}
-        <section className="relative overflow-hidden bg-[#050510] text-white select-none">
+        <section
+          className="relative overflow-hidden pt-10 pb-14 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24 bg-[#070816] text-white select-none"
+          style={{ backgroundColor: '#070816' }}
+        >
           {/* TẦNG 2 — CONTINUOUS AMBIENT GALAXY (Hạt sao 3D chuyển động chậm liên tục ở Hero) */}
           {!isSaver ? (
-            <React.Suspense fallback={<div className="absolute inset-0 bg-[#050510]" />}>
+            <React.Suspense fallback={<div className="absolute inset-0 bg-[#070816]" />}>
               <AmbientGalaxy />
             </React.Suspense>
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-b from-[#050510] via-[#0A0D18] to-[#050510] pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#070816] via-[#0E0C24] to-[#070816] pointer-events-none" />
           )}
 
-          {/* Subtle cosmic ambient lighting */}
-          <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#8B5CF6]/15 rounded-full blur-3xl pointer-events-none z-0" />
-          <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-[#22D3EE]/10 rounded-full blur-3xl pointer-events-none z-0" />
+          {/* Subtle cosmic ambient lighting: Điểm nhấn Tím #8B5CF6 & Cyan #22D3EE */}
+          <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#8B5CF6]/20 rounded-full blur-3xl pointer-events-none z-0" />
+          <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-[#22D3EE]/15 rounded-full blur-3xl pointer-events-none z-0" />
 
-          <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 relative z-10">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-
-              {/* Cột Typography & CTA (7 cols trên Desktop) */}
+              {/* Cột trái: Văn bản định vị thương hiệu & Nút hành động */}
               <div className="lg:col-span-7 space-y-6 text-left">
-                {/* Tag Pill & 3D Intro Replay Button */}
-                <div className="flex flex-wrap items-center gap-3">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#18F4FC] text-xs font-bold tracking-wider uppercase animate-fade-in">
-                    <Sparkles className="w-3.5 h-3.5 text-[#18F4FC]" />
-                    <span>SMARTBUY AI // STREETWEAR 2026</span>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={handleReplayIntro}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 active:scale-95 text-[#22D3EE] text-[11px] font-bold tracking-wider uppercase border border-[#22D3EE]/30 transition-all cursor-pointer group shadow-xs"
-                    title="Xem lại hiệu ứng vũ trụ Galaxy 3D"
-                  >
-                    <Sparkles className="w-3.5 h-3.5 text-[#EC4899] group-hover:rotate-45 transition-transform" />
-                    <span>Xem lại 3D Intro</span>
-                  </button>
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#22D3EE] text-xs font-bold tracking-wider uppercase shadow-xs">
+                  <Zap className="w-3.5 h-3.5 text-[#22D3EE]" />
+                  <span>SMARTBUY AI // FASHION REVOLUTION 2026</span>
                 </div>
 
-                {/* Big Headline */}
-                <div className="space-y-2">
-                  <div className="text-2xl sm:text-3xl font-black tracking-widest text-[#18F4FC] uppercase font-mono">
-                    SMARTBUY AI
-                  </div>
-                  <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.05] uppercase">
-                    YOUR STYLE.<br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E4E4E7] to-[#A1A1AA]">
-                      YOUR RULES.
+                <div className="space-y-3">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-none drop-shadow-md">
+                    KHÁM PHÁ SHOP <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8B5CF6] via-[#A78BFA] to-[#22D3EE] drop-shadow-[0_0_30px_rgba(139,92,246,0.35)]">
+                      THỜI TRANG GEN Z
                     </span>
                   </h1>
+                  <p className="text-sm sm:text-base text-zinc-300 max-w-xl leading-relaxed">
+                    Đón đầu xu hướng thời trang đường phố đương đại cùng SMARTBUY AI. Trải nghiệm thử đồ ảo bằng AI trên GPU RTX 3060 và nhận tư vấn outfit thông minh từ trợ lý ảo cá nhân.
+                  </p>
                 </div>
 
-                {/* Subtitle */}
-                <p className="text-base sm:text-lg text-[#D4D4D8] leading-relaxed max-w-xl font-sans">
-                  Khám phá phong cách thời trang Gen Z theo cách riêng của bạn.
-                </p>
-
-                {/* CTAs theo Master Prompt V19 Section II.2 */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                {/* Các nút hành động chính */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
                   <Button
                     variant="accent"
                     size="lg"
                     onClick={() => handleProtectedAction('/shop')}
-                    className="w-full sm:w-auto text-xs uppercase tracking-wider font-extrabold shadow-elevated bg-[#8B5CF6] hover:bg-[#7C3AED] text-white py-4 px-8 rounded-xl cursor-pointer"
+                    className="w-full sm:w-auto text-xs uppercase tracking-wider font-extrabold bg-gradient-to-r from-[#8B5CF6] to-[#6D28D9] hover:from-[#7C3AED] hover:to-[#5B21B6] text-white py-4 px-8 rounded-full shadow-lg hover:shadow-purple-500/30 cursor-pointer hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
                   >
-                    <Zap className="w-4 h-4 mr-2" />
-                    KHÁM PHÁ THỜI TRANG
+                    <ShoppingBag className="w-4 h-4 text-white" />
+                    <span>KHÁM PHÁ SHOP THỜI TRANG</span>
                   </Button>
 
                   <a href="#san-pham-hot">
                     <Button
                       variant="secondary"
                       size="lg"
-                      className="w-full sm:w-auto text-xs uppercase tracking-wider font-bold bg-white/15 hover:bg-white/25 text-white backdrop-blur-md border border-white/25 py-4 px-7 rounded-xl cursor-pointer"
+                      className="w-full sm:w-auto text-xs uppercase tracking-wider font-bold bg-white/15 hover:bg-white/25 text-white backdrop-blur-md border border-white/25 py-3.5 px-7 rounded-full cursor-pointer hover:-translate-y-0.5 transition-all"
                     >
                       <Flame className="w-4 h-4 mr-2 text-rose-400" />
-                      XEM SẢN PHẨM HOT
+                      <span>XEM SẢN PHẨM HOT</span>
                     </Button>
                   </a>
                 </div>
 
-                {/* Brand Value Chips */}
-                <div className="pt-4 grid grid-cols-3 gap-3 border-t border-white/10 max-w-lg">
-                  <div>
-                    <div className="text-lg sm:text-xl font-black text-white">270+</div>
-                    <div className="text-[11px] text-[#A1A1AA] uppercase tracking-wider font-semibold">Mẫu thiết kế thật</div>
+                {/* Cam kết thương hiệu nhỏ */}
+                <div className="pt-4 flex items-center gap-6 text-xs text-zinc-400">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-4 h-4 text-[#8B5CF6]" />
+                    <span>100% Ảnh Thật Xưởng May</span>
                   </div>
-                  <div>
-                    <div className="text-lg sm:text-xl font-black text-[#18F4FC]">100%</div>
-                    <div className="text-[11px] text-[#A1A1AA] uppercase tracking-wider font-semibold">Cotton Heavyweight</div>
-                  </div>
-                  <div>
-                    <div className="text-lg sm:text-xl font-black text-[#8B5CF6]">AI 3D</div>
-                    <div className="text-[11px] text-[#A1A1AA] uppercase tracking-wider font-semibold">Thử đồ trực tuyến</div>
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-[#22D3EE]" />
+                    <span>Thử Đồ AI GPU RTX 3060</span>
                   </div>
                 </div>
               </div>
 
-              {/* Cột ẢNH 1 — High Fashion Editorial Banner: Hover đổi 4 ảnh mượt mà (5 cols trên Desktop) */}
-              <div className="lg:col-span-5 relative">
+              {/* Cột phải: Carousel Lookbook thời trang */}
+              <div className="lg:col-span-5 relative w-full">
                 <HeroFashionGallery />
               </div>
-
             </div>
           </div>
         </section>
 
         {/* ============================================================ */}
-        {/* MARQUEE RUNNING TICKER                                       */}
+        {/* MARQUEE TICKER BANNER                                        */}
         {/* ============================================================ */}
-        <div className="bg-[#18181B] text-[#D4D4D8] py-2.5 border-y border-[#27272A] overflow-hidden whitespace-nowrap text-xs font-semibold tracking-wider uppercase">
+        <div className="relative py-3.5 bg-[#18181B] text-white font-mono text-xs tracking-wider uppercase overflow-hidden whitespace-nowrap border-y border-white/10 select-none">
           <div className="inline-block animate-marquee">
-            <span className="text-[#18F4FC] font-bold">SMARTBUY AI</span> • ALL SEASONS GEN Z DROPS • FREESHIP ĐƠN TỪ 299K • 270+ SẢN PHẨM THẬT • VẢI 100% HEAVYWEIGHT COTTON • ĐỔI SIZE 15 NGÀY TẬN NƠI • AI TRY-ON THỬ ĐỒ TRÊN GPU RTX 3060 •&nbsp;
+            <span className="text-[#22D3EE] font-bold">SMARTBUY AI</span> • ALL SEASONS GEN Z DROPS • FREESHIP ĐƠN TỪ 299K • 308 SẢN PHẨM THẬT • VẢI 100% HEAVYWEIGHT COTTON • ĐỔI SIZE 15 NGÀY TẬN NƠI • AI TRY-ON THỬ ĐỒ TRÊN GPU RTX 3060 •&nbsp;
           </div>
           <div className="inline-block animate-marquee" aria-hidden="true">
-            <span className="text-[#18F4FC] font-bold">SMARTBUY AI</span> • ALL SEASONS GEN Z DROPS • FREESHIP ĐƠN TỪ 299K • 270+ SẢN PHẨM THẬT • VẢI 100% HEAVYWEIGHT COTTON • ĐỔI SIZE 15 NGÀY TẬN NƠI • AI TRY-ON THỬ ĐỒ TRÊN GPU RTX 3060 •&nbsp;
+            <span className="text-[#22D3EE] font-bold">SMARTBUY AI</span> • ALL SEASONS GEN Z DROPS • FREESHIP ĐƠN TỪ 299K • 308 SẢN PHẨM THẬT • VẢI 100% HEAVYWEIGHT COTTON • ĐỔI SIZE 15 NGÀY TẬN NƠI • AI TRY-ON THỬ ĐỒ TRÊN GPU RTX 3060 •&nbsp;
           </div>
         </div>
 
         {/* ============================================================ */}
-        {/* 2. SẢN PHẨM HOT — TỐI ĐA 8 SẢN PHẨM THẬT, ZERO HIỂN THỊ GIÁ  */}
+        {/* MAIN BODY CONTENT SECTIONS (KHOẢNG CÁCH DỌC THOÁNG ĐÃNG)     */}
+        {/* ============================================================ */}
+        <div className="mt-16 lg:mt-24 space-y-16 lg:space-y-24">
+
+        {/* ============================================================ */}
+        {/* 1. GIỚI THIỆU SMARTBUY AI (4 USP CARDS)                      */}
+        {/* ============================================================ */}
+        <section id="gioi-thieu-usp" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-4 p-4 sm:p-6 rounded-3xl bg-white border border-[#E4E4E7] shadow-card">
+            <div className="flex items-center gap-3 sm:gap-3.5 p-2">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#F3E8FF] text-[#7C3AED] flex items-center justify-center shrink-0">
+                <Sparkles className="w-5 h-5 text-[#8B5CF6]" />
+              </div>
+              <div className="text-left">
+                <h4 className="text-xs sm:text-sm font-bold text-[#18181B]">AI Hỗ Trợ Phối Đồ</h4>
+                <p className="text-[11px] text-[#71717A] mt-0.5 leading-snug">Gợi ý outfit đồng bộ theo phong cách cá nhân</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 sm:gap-3.5 p-2">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#F0FDFA] text-[#0D9488] flex items-center justify-center shrink-0">
+                <Layers className="w-5 h-5 text-[#0D9488]" />
+              </div>
+              <div className="text-left">
+                <h4 className="text-xs sm:text-sm font-bold text-[#18181B]">Khám Phá Phong Cách</h4>
+                <p className="text-[11px] text-[#71717A] mt-0.5 leading-snug">Streetwear, Y2K và Casual đón đầu xu hướng</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 sm:gap-3.5 p-2">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#FEF3C7] text-[#D97706] flex items-center justify-center shrink-0">
+                <Cpu className="w-5 h-5 text-[#D97706]" />
+              </div>
+              <div className="text-left">
+                <h4 className="text-xs sm:text-sm font-bold text-[#18181B]">Thử Đồ Ảo GPU</h4>
+                <p className="text-[11px] text-[#71717A] mt-0.5 leading-snug">Xem trước kết quả chuẩn phom dáng bằng AI</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 sm:gap-3.5 p-2">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#EFF6FF] text-[#2563EB] flex items-center justify-center shrink-0">
+                <Heart className="w-5 h-5 text-[#2563EB]" />
+              </div>
+              <div className="text-left">
+                <h4 className="text-xs sm:text-sm font-bold text-[#18181B]">Đổi Size 15 Ngày</h4>
+                <p className="text-[11px] text-[#71717A] mt-0.5 leading-snug">Hỗ trợ đổi size tận nơi nhanh chóng, tiện lợi</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* 2. SẢN PHẨM HOT — TỐI ĐA 6 SẢN PHẨM THẬT, ZERO HIỂN THỊ GIÁ  */}
         {/* ============================================================ */}
         <ScrollReveal animation="fade-up">
-          <section id="san-pham-hot" className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-3 border-b border-[#E4E4E7] gap-3">
+          <section id="san-pham-hot" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-3 border-b border-[#E4E4E7] gap-3 text-left">
               <div>
                 <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#DC2626] bg-rose-50 px-2.5 py-0.5 rounded-sm border border-rose-200">
                   <Flame className="w-3.5 h-3.5 text-[#DC2626]" />
@@ -329,9 +400,9 @@ export const HomePage: React.FC = () => {
               </button>
             </div>
 
-            {/* Lưới 6 sản phẩm HOT nổi bật — HomeProductCard: 0 GIÁ, NÚT XEM CHI TIẾT */}
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {hotProducts.slice(0, 6).map((product) => (
+            {/* Lưới sản phẩm HOT: Desktop 4 cột (2 hàng x 4), Tablet 2-3 cột, Phone 2 cột — HomeProductCard: 0 GIÁ, NÚT XEM CHI TIẾT */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+              {hotProducts.slice(0, 8).map((product) => (
                 <HomeProductCard
                   key={product.id}
                   product={product}
@@ -355,305 +426,130 @@ export const HomePage: React.FC = () => {
         </ScrollReveal>
 
         {/* ============================================================ */}
-        {/* BỘ SƯU TẬP 4 ẢNH THỜI TRANG TRANG CHỦ (LOOKBOOK EDITORIAL)     */}
+        {/* 3. BỘ SƯU TẬP 4 PHONG CÁCH THỜI TRANG (LOOKBOOK EDITORIAL)    */}
+        {/*    BỐ CỤC XEN KẼ TRÁI - PHẢI THEO CHIỀU DỌC TRANG CHỦ        */}
         {/* ============================================================ */}
-        <ScrollReveal animation="fade-up">
-          <section className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-3 border-b border-[#E4E4E7] gap-3">
-              <div>
-                <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#7C3AED] bg-purple-50 px-2.5 py-0.5 rounded-sm border border-purple-200">
-                  <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
-                  <span>EDITORIAL LOOKBOOK // 4 PHONG CÁCH ĐẶC TRƯNG</span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-[#18181B] uppercase mt-2">
-                  4 PHONG CÁCH TIÊU BIỂU SMARTBUY AI
-                </h2>
-                <p className="text-xs text-[#71717A] mt-0.5">
-                  Bộ sưu tập 4 outfit thực tế đại diện cho tinh thần tự do, nổi bật và khác biệt của giới trẻ hiện đại.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => handleProtectedAction('/shop')}
-                className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors whitespace-nowrap group cursor-pointer"
-              >
-                <span>Xem bộ sưu tập trong Shop</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-
-            {/* Lưới 4 Thẻ Lookbook hiển thị trọn vẹn 4 ảnh trong public/images/anh_trangchu/ */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {EDITORIAL_LOOKS.map((look) => (
-                <div
-                  key={look.id}
-                  onClick={() => handleProtectedAction(look.link)}
-                  className="group relative rounded-3xl overflow-hidden bg-[#18181B] border border-[#E4E4E7] hover:border-[#8B5CF6]/50 shadow-card hover:shadow-xl transition-all duration-300 flex flex-col justify-between select-none cursor-pointer"
-                >
-                  {/* Container ảnh chuẩn tỷ lệ 3:4 */}
-                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#27272A]">
-                    <img
-                      src={look.src}
-                      alt={look.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-106"
-                    />
-
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
-
-                    {/* Badge góc trên */}
-                    <div className="absolute top-3 left-3 z-10">
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-black/75 backdrop-blur-md text-[#18F4FC] border border-white/20">
-                        {look.badge}
-                      </span>
-                    </div>
-
-                    {/* Chú thích góc dưới trên ảnh */}
-                    <div className="absolute bottom-3 left-3 right-3 text-left text-white pointer-events-none z-10">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#18F4FC] block">
-                        {look.category}
-                      </span>
-                      <h3 className="text-sm sm:text-base font-black text-white group-hover:text-[#18F4FC] transition-colors line-clamp-1">
-                        {look.title}
-                      </h3>
-                    </div>
-                  </div>
-
-                  {/* Body ngắn bên dưới */}
-                  <div className="p-3.5 bg-white flex flex-col justify-between flex-1 gap-2.5 border-t border-[#F2F3F5] text-left">
-                    <p className="text-[11px] text-[#71717A] line-clamp-2 leading-relaxed">
-                      {look.desc}
-                    </p>
-                    <div className="pt-2 border-t border-[#F2F3F5] flex items-center justify-between text-xs font-bold text-[#8B5CF6] group-hover:text-[#7C3AED]">
-                      <span>Khám phá phong cách</span>
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        </ScrollReveal>
-
-        {/* ============================================================ */}
-        {/* 3. KHÁM PHÁ THỜI TRANG (KHU VỰC XU HƯỚNG GEN Z NỔI BẬT)      */}
-        {/* ============================================================ */}
-        <section id="kham-pha-thoi-trang" className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          {/* Header Khu vực Xu Hướng */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E4E4E7] pb-3 gap-2">
+        <section id="lookbook" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 lg:space-y-24 scroll-mt-24">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E4E4E7] pb-4 gap-3 text-left">
             <div>
-              <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#71717A] tracking-wider">
-                <Tag className="w-3.5 h-3.5 text-[#8B5CF6]" />
-                <span>TRENDING GEN Z LOOKS // KHÁM PHÁ THỜI TRANG</span>
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#7C3AED] bg-purple-50 px-2.5 py-0.5 rounded-sm border border-purple-200">
+                <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
+                <span>EDITORIAL LOOKBOOK // 4 PHONG CÁCH TIÊU BIỂU</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-[#18181B] uppercase mt-1">
-                Khám phá xu hướng thời trang
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#18181B] uppercase mt-2">
+                4 PHONG CÁCH THỜI TRANG TIÊU BIỂU
               </h2>
+              <p className="text-xs sm:text-sm text-[#71717A] mt-1 max-w-2xl">
+                Bộ sưu tập 4 outfit thực tế đại diện cho tinh thần Gen Z: Phóng khoáng, Tối giản, Năng động và Sang trọng.
+              </p>
             </div>
             <button
               type="button"
               onClick={() => handleProtectedAction('/shop')}
-              className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors group cursor-pointer"
+              className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1.5 transition-colors whitespace-nowrap group cursor-pointer"
             >
-              <span>Vào Shop mua sắm đầy đủ</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              <span>Xem tất cả trong Shop</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
-          {/* 5 Thẻ Danh Mục Thời Trang Nổi Bật */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-5">
-            {categoryCards.map((cat, idx) => (
+          {/* 4 KHU VỰC PHONG CÁCH XEN KẼ */}
+          {lookSections.map((look) => (
+            <ScrollReveal key={look.id} animation="fade-up">
               <div
-                key={idx}
-                onClick={() => handleProtectedAction(cat.link)}
-                className="group relative rounded-2xl overflow-hidden aspect-[3/4] bg-[#E4E4E7] shadow-card border border-[#E4E4E7] transition-all duration-300 hover:shadow-elevated hover:border-[#8B5CF6] cursor-pointer"
+                data-testid={`look-section-${look.id}`}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
               >
-                <img
-                  src={cat.image}
-                  alt={cat.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-
-                <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col justify-end text-left text-white space-y-1">
-                  <span className="text-[10px] font-bold tracking-wider uppercase text-[#18F4FC]">
-                    {cat.count}
-                  </span>
-                  <h3 className="text-base sm:text-lg font-black tracking-tight text-white group-hover:text-[#18F4FC] transition-colors">
-                    {cat.title}
-                  </h3>
-                  <p className="text-[11px] text-[#D4D4D8] line-clamp-1 opacity-90 hidden sm:block">
-                    {cat.desc}
-                  </p>
-
-                  <div className="pt-2">
-                    <span className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-wider text-white group-hover:translate-x-1 transition-transform">
-                      <span>Khám phá</span>
-                      <ArrowRight className="w-3 h-3 text-[#18F4FC]" />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Xu Hướng Nam: PHONG CÁCH CỦA PHÁI MẠNH */}
-          <div className="rounded-3xl bg-white border border-[#E4E4E7] p-6 sm:p-10 lg:p-12 shadow-card overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-              <div className="lg:col-span-5 relative rounded-2xl overflow-hidden aspect-[9/16] max-h-[540px] bg-[#18181B] shadow-card group">
-                <img
-                  src={HOME_IMAGES.menStreetwear}
-                  alt="Men's Streetwear Model - PHONG CÁCH CỦA PHÁI MẠNH"
-                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute top-4 left-4 bg-[#18181B]/85 backdrop-blur-md text-white text-[10px] font-extrabold uppercase px-3.5 py-1.5 rounded-full border border-white/20 shadow-subtle tracking-wider">
-                  MEN'S STREETWEAR
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 text-left text-white pointer-events-none">
-                  <div className="text-xs font-black uppercase tracking-wider text-[#18F4FC]">Street Night Drop</div>
-                  <div className="text-[11px] text-[#D4D4D8] mt-0.5">Sơ mi Cuban & Quần ống rộng loang màu</div>
-                </div>
-              </div>
-
-              <div className="lg:col-span-7 space-y-6 text-left">
-                <div className="space-y-2">
-                  <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#7C3AED] bg-[#F3E8FF] px-2.5 py-0.5 rounded-sm border border-[#DDD6FE]">
-                    <span>MEN'S STREETWEAR</span>
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-[#18181B] uppercase leading-tight">
-                    PHONG CÁCH CỦA PHÁI MẠNH
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#71717A] leading-relaxed max-w-xl">
-                    Khám phá áo thun, hoodie, sơ mi và những outfit đường phố dành cho nam giới.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {menHighlights.map((p) => (
-                    <HomeProductCard key={p.id} product={p} />
-                  ))}
-                </div>
-
-                <div>
-                  <Button
-                    variant="accent"
-                    size="lg"
-                    onClick={() => handleProtectedAction('/shop?gender=nam')}
-                    className="text-xs uppercase font-extrabold tracking-wider bg-[#18181B] hover:bg-[#27272A] text-white py-4 px-8 rounded-xl cursor-pointer"
+                {/* CỘT ẢNH ĐẠI DIỆN: 38-42% CHIỀU RỘNG (lg:col-span-5) */}
+                <div
+                  className={`w-full order-1 ${
+                    look.imageSide === 'left' ? 'lg:order-1' : 'lg:order-2'
+                  } lg:col-span-5`}
+                >
+                  <div
+                    onClick={() => handleProtectedAction(look.link)}
+                    className="group relative rounded-[20px] overflow-hidden bg-[#18181B] border border-[#E4E4E7] hover:border-[#8B5CF6]/50 shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer h-[420px] sm:h-[460px] lg:h-[480px] max-h-[500px]"
                   >
-                    KHÁM PHÁ THỜI TRANG NAM TRONG SHOP →
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
+                    <img
+                      src={look.image}
+                      alt={look.title}
+                      loading="lazy"
+                      className={`w-full h-full object-cover ${look.objectPosition} transition-transform duration-700 ease-out group-hover:scale-105`}
+                    />
+                    {/* Badge góc trên */}
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-black/75 backdrop-blur-md text-[#18F4FC] border border-white/20 shadow-xs">
+                        {look.badge}
+                      </span>
+                    </div>
 
-          {/* Xu Hướng Nữ: TỎA SÁNG THEO CÁCH RIÊNG */}
-          <div className="rounded-3xl bg-white border border-[#E4E4E7] p-6 sm:p-10 lg:p-12 shadow-card overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-              <div className="lg:col-span-7 space-y-6 text-left order-2 lg:order-1">
-                <div className="space-y-2">
-                  <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#DB2777] bg-pink-50 px-2.5 py-0.5 rounded-sm border border-pink-200">
-                    <span>WOMEN'S COLLECTION</span>
+                    {/* Gradient & Thông tin trên ảnh */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-5 left-5 right-5 text-left text-white pointer-events-none z-10">
+                      <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#18F4FC] block">
+                        {look.genderTag}
+                      </span>
+                      <h4 className="text-lg sm:text-xl font-black text-white group-hover:text-[#18F4FC] transition-colors mt-0.5">
+                        {look.title}
+                      </h4>
+                      <div className="pt-2 flex items-center gap-1.5 text-xs font-bold text-white/90">
+                        <span>Khám phá phong cách trong Shop</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-[#18F4FC] group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-[#18181B] uppercase leading-tight">
-                    TỎA SÁNG THEO CÁCH RIÊNG
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#71717A] leading-relaxed max-w-xl">
-                    Khám phá những thiết kế nữ tính, trẻ trung và phong cách thời trang dành riêng cho bạn.
-                  </p>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {womenHighlights.map((p) => (
-                    <HomeProductCard key={p.id} product={p} />
-                  ))}
-                </div>
+                {/* CỘT NỘI DUNG & SẢN PHẨM HOT: 58-62% CHIỀU RỘNG (lg:col-span-7) */}
+                <div
+                  className={`w-full order-2 ${
+                    look.imageSide === 'left' ? 'lg:order-2' : 'lg:order-1'
+                  } lg:col-span-7 space-y-4 sm:space-y-5 text-left`}
+                >
+                  <div className="space-y-1.5">
+                    <div className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase text-[#7C3AED] bg-purple-50 px-2.5 py-0.5 rounded-sm border border-purple-200">
+                      <Flame className="w-3.5 h-3.5 text-[#DC2626]" />
+                      <span>SẢN PHẨM HOT PHÙ HỢP // {look.lookNumber}</span>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-black text-[#18181B] uppercase tracking-tight">
+                      {look.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#71717A] leading-relaxed max-w-xl">
+                      {look.desc}
+                    </p>
+                  </div>
 
-                <div>
-                  <Button
-                    variant="accent"
-                    size="lg"
-                    onClick={() => handleProtectedAction('/shop?gender=nu')}
-                    className="text-xs uppercase font-extrabold tracking-wider bg-[#EC4899] hover:bg-[#DB2777] text-white py-4 px-8 rounded-xl cursor-pointer"
-                  >
-                    KHÁM PHÁ THỜI TRANG NỮ TRONG SHOP →
-                  </Button>
+                  {/* Lưới 4 sản phẩm HOT theo phong cách */}
+                  <div className="grid grid-cols-2 gap-4 lg:gap-5">
+                    {look.products.map((product) => (
+                      <HomeProductCard
+                        key={product.id}
+                        product={product}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Nút hành động khám phá */}
+                  <div className="pt-1">
+                    <button
+                      type="button"
+                      onClick={() => handleProtectedAction(look.link)}
+                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B5CF6] hover:text-[#7C3AED] group/cta cursor-pointer transition-colors"
+                    >
+                      <span>Khám phá toàn bộ sản phẩm {look.lookNumber} trong Shop</span>
+                      <ArrowRight className="w-4 h-4 group-hover/cta:translate-x-1.5 transition-transform" />
+                    </button>
+                  </div>
                 </div>
               </div>
-
-              <div className="lg:col-span-5 relative rounded-2xl overflow-hidden aspect-[3/4] max-h-[540px] bg-[#FDF2F8] shadow-card group order-1 lg:order-2">
-                <img
-                  src={HOME_IMAGES.womenOutdoor}
-                  alt="Women's Collection Model - TỎA SÁNG THEO CÁCH RIÊNG"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-[#DB2777] text-[10px] font-extrabold uppercase px-3.5 py-1.5 rounded-full border border-pink-200 shadow-subtle tracking-wider">
-                  WOMEN'S COLLECTION
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 text-left text-white pointer-events-none">
-                  <div className="text-xs font-black uppercase tracking-wider text-[#F472B6]">Floral Corset Dress</div>
-                  <div className="text-[11px] text-[#FCE7F3] mt-0.5">Váy corset xòe tầng • Nữ tính & Duyên dáng</div>
-                </div>
-              </div>
-            </div>
-          </div>
+            </ScrollReveal>
+          ))}
         </section>
 
         {/* ============================================================ */}
-        {/* 4. GIỚI THIỆU NGẮN VỀ SMARTBUY AI (BRAND MANIFESTO & CAM KẾT) */}
+        {/* 4. GIỚI THIỆU THƯƠNG HIỆU SMARTBUY AI & CÔNG NGHỆ THỜI TRANG */}
         {/* ============================================================ */}
-        <section id="gioi-thieu" className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 pb-12 scroll-mt-24 space-y-8">
-          {/* 4 Giá Trị Cốt Lõi (USP) */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-3xl bg-white border border-[#E4E4E7] shadow-card">
-            <div className="flex items-center gap-3.5 p-2">
-              <div className="w-11 h-11 rounded-2xl bg-[#F3E8FF] text-[#7C3AED] flex items-center justify-center shrink-0">
-                <Sparkles className="w-5 h-5 text-[#8B5CF6]" />
-              </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-bold text-[#18181B]">AI Hỗ Trợ Phối Đồ</h4>
-                <p className="text-[11px] text-[#71717A] mt-0.5 leading-snug">Gợi ý outfit đồng bộ theo phong cách cá nhân</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3.5 p-2">
-              <div className="w-11 h-11 rounded-2xl bg-[#F0FDFA] text-[#0D9488] flex items-center justify-center shrink-0">
-                <Layers className="w-5 h-5 text-[#0D9488]" />
-              </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-bold text-[#18181B]">Khám Phá Phong Cách</h4>
-                <p className="text-[11px] text-[#71717A] mt-0.5 leading-snug">Streetwear, Y2K và Korean Casual đón đầu xu hướng</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3.5 p-2">
-              <div className="w-11 h-11 rounded-2xl bg-[#FEF3C7] text-[#D97706] flex items-center justify-center shrink-0">
-                <Cpu className="w-5 h-5 text-[#D97706]" />
-              </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-bold text-[#18181B]">Thử Đồ Ảo GPU</h4>
-                <p className="text-[11px] text-[#71717A] mt-0.5 leading-snug">Xem trước kết quả chuẩn phom dáng trước khi đặt</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3.5 p-2">
-              <div className="w-11 h-11 rounded-2xl bg-[#EFF6FF] text-[#2563EB] flex items-center justify-center shrink-0">
-                <Heart className="w-5 h-5 text-[#2563EB]" />
-              </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-bold text-[#18181B]">Đổi Size 15 Ngày</h4>
-                <p className="text-[11px] text-[#71717A] mt-0.5 leading-snug">Hỗ trợ đổi size tận nơi nhanh chóng, tiện lợi</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Giới thiệu Thương hiệu */}
+        <section id="ve-thuong-hieu" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 scroll-mt-24">
           <div className="bg-white rounded-3xl border border-[#E4E4E7] p-8 sm:p-12 lg:p-16 shadow-card text-left">
             <div className="max-w-3xl space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B5CF6]/10 text-[#7C3AED] text-xs font-bold uppercase tracking-wider">
@@ -727,6 +623,7 @@ export const HomePage: React.FC = () => {
           </div>
         </section>
       </div>
-    </>
-  );
+    </div>
+  </>
+);
 };

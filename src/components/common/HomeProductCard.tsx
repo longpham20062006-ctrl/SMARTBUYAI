@@ -35,13 +35,15 @@ export const HomeProductCard: React.FC<HomeProductCardProps> = ({
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [imgIndex, setImgIndex] = useState(0);
 
   if (!product || !isProductEligibleForPublicDisplay(product)) return null;
 
   const images = getValidProductImages(product);
   if (images.length === 0) return null;
 
-  const displayImage = images[0] || '';
+  const rawImage = images[imgIndex] || images[0] || '';
+  const displayImage = rawImage ? encodeURI(decodeURI(rawImage)) : '';
 
   const handleCardClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -80,10 +82,10 @@ export const HomeProductCard: React.FC<HomeProductCardProps> = ({
       <div
         data-testid="home-product-card"
         onClick={handleCardClick}
-        className="group flex flex-col h-full bg-white rounded-2xl sm:rounded-3xl border border-[#E4E4E7] hover:border-[#8B5CF6]/50 shadow-xs hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer relative select-none transform-gpu hover:-translate-y-1"
+        className="group flex flex-col h-full bg-white rounded-[20px] border border-[#E4E4E7] hover:border-[#8B5CF6]/50 shadow-xs hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer relative select-none transform-gpu hover:-translate-y-1"
       >
-        {/* Container ảnh chuẩn tỷ lệ 3:4 */}
-        <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#F2F3F5]">
+        {/* Container ảnh tỷ lệ 4:5 vừa vặn, không chiếm quá nhiều diện tích màn hình */}
+        <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#F2F3F5] max-h-[280px]">
           {!imageLoaded && (
             <div className="absolute inset-0 bg-[#F2F3F5] animate-pulse" />
           )}
@@ -95,19 +97,23 @@ export const HomeProductCard: React.FC<HomeProductCardProps> = ({
             decoding="async"
             onLoad={() => setImageLoaded(true)}
             onError={() => {
-              setImgError(true);
-              setImageLoaded(true);
+              if (images.length > imgIndex + 1) {
+                setImgIndex(imgIndex + 1);
+              } else {
+                setImgError(true);
+                setImageLoaded(true);
+              }
             }}
-            className={`w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-106 ${
+            className={`w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105 ${
               imageLoaded ? 'opacity-100' : 'opacity-85'
             }`}
           />
 
-          {/* Badge nổi bật góc trên bên trái */}
+          {/* Badge nổi bật góc trên bên trái nhỏ gọn, tinh tế */}
           {effectiveBadge && (
-            <div className="absolute top-3 left-3 pointer-events-none z-10">
+            <div className="absolute top-2.5 left-2.5 pointer-events-none z-10">
               <span
-                className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider shadow-sm ${
+                className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-wider shadow-sm ${
                   effectiveBadge === 'HOT'
                     ? 'bg-gradient-to-r from-red-600 to-rose-500 text-white'
                     : effectiveBadge === 'SET NGUYÊN BỘ'
@@ -115,44 +121,40 @@ export const HomeProductCard: React.FC<HomeProductCardProps> = ({
                       : 'bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white'
                 }`}
               >
-                {effectiveBadge === 'HOT' && <Flame className="w-3 h-3 text-amber-300" />}
-                {effectiveBadge === 'NEW DROP' && <Sparkles className="w-3 h-3 text-cyan-300" />}
+                {effectiveBadge === 'HOT' && <Flame className="w-2.5 h-2.5 text-amber-300" />}
+                {effectiveBadge === 'NEW DROP' && <Sparkles className="w-2.5 h-2.5 text-cyan-300" />}
                 <span>{effectiveBadge}</span>
               </span>
             </div>
           )}
 
           {/* Subtle gradient vignette at bottom of image */}
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
 
-        {/* Card Body — TUYỆT ĐỐI KHÔNG HIỂN THỊ GIÁ THEO MASTER PROMPT V19 */}
-        <div className="p-3.5 sm:p-4 flex flex-col flex-1 justify-between gap-3 bg-white">
+        {/* Card Body — TUYỆT ĐỐI KHÔNG HIỂN THỊ GIÁ THEO MASTER PROMPT V19 & V23 */}
+        <div className="p-3 sm:p-3.5 flex flex-col flex-1 justify-between gap-2.5 bg-white">
           <div className="space-y-1 text-left">
             {/* Brand label */}
-            <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest text-[#8B5CF6]">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#8B5CF6]">
               {product.brand || 'SMARTBUY AI'}
             </span>
 
-            {/* Product Title (2 dòng) */}
+            {/* Product Title (2 dòng, hiển thị đầy đủ không cụt) */}
             <h3
-              className="text-xs sm:text-sm font-bold text-[#18181B] group-hover:text-[#8B5CF6] transition-colors line-clamp-2 leading-snug min-h-[2.5rem]"
+              className="text-xs sm:text-[13px] font-bold text-[#18181B] group-hover:text-[#8B5CF6] transition-colors line-clamp-2 leading-snug min-h-[2.35rem]"
               title={product.name}
             >
               {product.name}
             </h3>
           </div>
 
-          {/* Action Row: Nút "Xem chi tiết" nổi bật, dễ thao tác trên mobile */}
-          <div className="pt-2 border-t border-[#F2F3F5] flex items-center justify-between">
-            <span className="text-[11px] font-medium text-[#71717A] hidden sm:inline">
-              Chi tiết thiết kế
-            </span>
-
+          {/* Action Row: Nút "XEM CHI TIẾT" được căn chỉnh thẳng hàng, thẩm mỹ cao */}
+          <div className="pt-2 border-t border-[#F2F3F5] mt-auto">
             <button
               type="button"
               onClick={handleCardClick}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 sm:py-1.5 rounded-xl bg-[#18181B] group-hover:bg-[#8B5CF6] active:scale-95 text-white text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-xs"
+              className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#18181B] group-hover:bg-[#8B5CF6] active:scale-95 text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-xs"
               aria-label={`Xem chi tiết sản phẩm ${product.name}`}
             >
               <span>Xem chi tiết</span>

@@ -292,7 +292,7 @@ export const AIStylistPage: React.FC = () => {
                   <Bot className="w-4 h-4 animate-spin" />
                 </div>
                 <div className="bg-brand-surface border border-brand-border px-4 py-2.5 rounded-xl shadow-xs">
-                  <span>AI Stylist đang suy nghĩ, rà soát kho và tính toán ngân sách...</span>
+                  <span>SMARTBUY AI đang tìm mẫu phù hợp với bạn...</span>
                 </div>
               </div>
             )}

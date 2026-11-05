@@ -26,6 +26,7 @@ import { PerformanceToggle } from '@/components/common/PerformanceToggle';
 import { GENZ_COLLECTIONS, GENZ_CATEGORIES } from '@/mocks/genzCategories';
 import { useToast } from '@/components/ui/toast';
 import { safeSessionStorage } from '@/lib/storage';
+import { resetGlobalScroll } from '@/components/common/ScrollToTop';
 
 export const SiteHeader: React.FC = () => {
   useRepoSubscription(['cart', 'auth']);
@@ -40,6 +41,8 @@ export const SiteHeader: React.FC = () => {
       safeSessionStorage.setItem('sb_login_notice', 'Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!');
       toast('Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!', 'Trải nghiệm mua sắm cùng SMARTBUY AI', 'info');
       navigate('/login?redirect=%2Fshop');
+    } else {
+      resetGlobalScroll();
     }
   };
 
@@ -159,7 +162,7 @@ export const SiteHeader: React.FC = () => {
     if (currentPath === '/try-on' || currentPath.startsWith('/virtual-try-on')) return 'try-on';
     if (currentPath.startsWith('/ai-stylist')) return 'ai-stylist';
     if (currentPath.startsWith('/collections')) return 'collections';
-    if (currentPath.startsWith('/products')) {
+    if (currentPath.startsWith('/products') || currentPath.startsWith('/shop')) {
       if (currentGender === 'nam') return 'nam';
       if (currentGender === 'nu') return 'nu';
       if (currentGender === 'unisex') return 'unisex';
@@ -241,10 +244,10 @@ export const SiteHeader: React.FC = () => {
                 onClick={handleHomeClick}
                 className={({ isActive }) =>
                   cn(
-                    'text-xs uppercase font-extrabold tracking-wider transition-colors py-1 border-b-2',
+                    'h-10 px-4 rounded-xl text-xs sm:text-[13px] uppercase font-extrabold tracking-wider transition-all select-none flex items-center justify-center cursor-pointer',
                     isActive
-                      ? 'text-[#8B5CF6] border-[#8B5CF6]'
-                      : 'text-zinc-700 hover:text-[#8B5CF6] border-transparent'
+                      ? 'bg-[#8B5CF6] text-white shadow-sm ring-2 ring-[#7C3AED]/40'
+                      : 'text-zinc-700 hover:text-[#8B5CF6] hover:bg-[#F3E8FF]/60'
                   )
                 }
               >
@@ -254,57 +257,43 @@ export const SiteHeader: React.FC = () => {
               <a
                 href="#san-pham-hot"
                 onClick={handleHotClick}
-                className="text-xs uppercase font-extrabold tracking-wider text-zinc-700 hover:text-[#8B5CF6] transition-colors py-1 border-b-2 border-transparent hover:border-[#8B5CF6] flex items-center gap-1.5"
+                className="h-10 px-4 rounded-xl text-xs sm:text-[13px] uppercase font-extrabold tracking-wider text-zinc-700 hover:text-[#8B5CF6] hover:bg-[#F3E8FF]/60 transition-all select-none flex items-center gap-1.5 cursor-pointer"
               >
                 <span>Sản phẩm HOT</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
               </a>
 
-              <NavLink
-                to="/shop"
-                onClick={handleShopClick}
-                className={({ isActive }) =>
-                  cn(
-                    'text-xs uppercase font-extrabold tracking-wider transition-colors py-1 border-b-2',
-                    isActive
-                      ? 'text-[#8B5CF6] border-[#8B5CF6]'
-                      : 'text-zinc-700 hover:text-[#8B5CF6] border-transparent'
-                  )
-                }
-              >
-                Shop
-              </NavLink>
-
-              {/* KHÁM PHÁ THỜI TRANG */}
+              {/* GỘP SHOP & KHÁM PHÁ THỜI TRANG THÀNH 1 MỤC DUY NHẤT */}
               <Link
                 to="/shop"
                 onClick={handleShopClick}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] hover:from-[#7C3AED] hover:to-[#6D28D9] text-white text-xs font-black uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95"
+                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-[#8B5CF6] via-[#7C3AED] to-[#6D28D9] hover:opacity-95 text-white text-xs sm:text-[13px] font-black uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-95 hover:-translate-y-0.5 cursor-pointer"
+                title="Khám phá toàn bộ cửa hàng SMARTBUY AI"
               >
-                <Sparkles className="w-3.5 h-3.5 text-cyan-200" />
-                <span>Khám phá thời trang</span>
+                <Sparkles className="w-4 h-4 text-cyan-200" />
+                <span>Khám phá shop thời trang</span>
               </Link>
             </div>
           ) : (
             <div className="hidden lg:flex flex-1 max-w-xl mx-4">
               <form onSubmit={handleSearchSubmit} className="relative w-full">
                 <div className="relative flex items-center w-full">
-                  <Search className="absolute left-3.5 w-4 h-4 text-[#71717A] pointer-events-none" />
+                  <Search className="absolute left-4 w-4 h-4 text-[#71717A] pointer-events-none" />
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Tìm áo thun, hoodie, váy, quần jeans..."
-                    className="w-full pl-10 pr-10 py-2.5 text-xs sm:text-sm bg-[#F4F4F5] hover:bg-[#EFEFEF] focus:bg-white text-[#18181B] rounded-full border border-transparent focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/20 transition-all outline-none placeholder:text-[#A1A1AA]"
+                    className="w-full pl-11 pr-11 py-2.5 h-12 text-sm sm:text-[15px] bg-[#F4F4F5] hover:bg-[#EFEFEF] focus:bg-white text-[#18181B] rounded-2xl border border-transparent focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/20 transition-all outline-none placeholder:text-[#A1A1AA]"
                   />
                   {searchQuery && (
                     <button
                       type="button"
                       onClick={() => setSearchQuery('')}
-                      className="absolute right-3 p-1 text-[#71717A] hover:text-[#18181B] rounded-full hover:bg-black/5 cursor-pointer"
+                      className="absolute right-3.5 p-1 text-[#71717A] hover:text-[#18181B] rounded-full hover:bg-black/5 cursor-pointer"
                       title="Xóa tìm kiếm"
                     >
-                      <X className="w-3.5 h-3.5" />
+                      <X className="w-4 h-4" />
                     </button>
                   )}
                 </div>
@@ -465,18 +454,6 @@ export const SiteHeader: React.FC = () => {
               <PerformanceToggle compact />
             </div>
 
-            {/* Lối vào Shop nhanh cho Customer theo Master Prompt V19 */}
-            {currentUser && (
-              <Link
-                to="/shop"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-[#18181B] bg-[#F4F4F5] hover:bg-[#8B5CF6] hover:text-white transition-all shadow-2xs"
-                title="Khám phá toàn bộ cửa hàng SMARTBUY"
-              >
-                <ShoppingBag className="w-3.5 h-3.5" />
-                <span>Shop</span>
-              </Link>
-            )}
-
             {/* Wishlist Link — CHỈ HIỂN THỊ KHI ĐÃ ĐĂNG NHẬP (CUSTOMER) */}
             {currentUser && (
               <Link
@@ -508,71 +485,116 @@ export const SiteHeader: React.FC = () => {
           </div>
         </div>
 
-        {/* TẦNG 2: NAVIGATION MENU DÀNH RIÊNG CHO SHOP (Desktop) — 6 MỤC CHUẨN SECTION 1 */}
+        {/* TẦNG 2: NAVIGATION MENU DÀNH RIÊNG CHO SHOP (Desktop) — 3 NHÓM CHUẨN SECTION 2 */}
         {!isHomePage && (
-          <div className="hidden lg:block border-t border-[#F2F3F5] bg-white">
+          <div className="hidden lg:block border-t border-[#F2F3F5] bg-white shadow-2xs">
             <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-              <nav data-testid="category-nav" className="flex items-center justify-center gap-2.5 py-2">
-                <Link to="/shop?gender=nam" className={getTabClass(activeTab === 'nam')}>
-                  Nam
-                </Link>
-                <Link to="/shop?gender=nu" className={getTabClass(activeTab === 'nu')}>
-                  Nữ
-                </Link>
-                <Link to="/shop?category=phu-kien" className={getTabClass(activeTab === 'phu-kien')}>
-                  Phụ kiện
-                </Link>
+              <nav data-testid="category-nav" className="flex items-center justify-center gap-2 sm:gap-3 py-2 h-14">
+                {/* NHÓM 1 (Mua sắm): NAM | NỮ | PHỤ KIỆN */}
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <Link
+                    to="/shop?gender=nam"
+                    onClick={() => resetGlobalScroll()}
+                    className={cn(
+                      'inline-flex items-center justify-center h-11 px-4 sm:px-5 rounded-xl text-sm sm:text-[15px] font-bold tracking-wide transition-all select-none cursor-pointer',
+                      activeTab === 'nam'
+                        ? 'bg-[#8B5CF6] text-white shadow-sm ring-2 ring-[#7C3AED]/40 font-extrabold'
+                        : 'text-zinc-700 hover:text-[#8B5CF6] hover:bg-[#F3E8FF]/60'
+                    )}
+                  >
+                    Nam
+                  </Link>
+                  <Link
+                    to="/shop?gender=nu"
+                    onClick={() => resetGlobalScroll()}
+                    className={cn(
+                      'inline-flex items-center justify-center h-11 px-4 sm:px-5 rounded-xl text-sm sm:text-[15px] font-bold tracking-wide transition-all select-none cursor-pointer',
+                      activeTab === 'nu'
+                        ? 'bg-[#8B5CF6] text-white shadow-sm ring-2 ring-[#7C3AED]/40 font-extrabold'
+                        : 'text-zinc-700 hover:text-[#8B5CF6] hover:bg-[#F3E8FF]/60'
+                    )}
+                  >
+                    Nữ
+                  </Link>
+                  <Link
+                    to="/shop?category=phu-kien"
+                    onClick={() => resetGlobalScroll()}
+                    className={cn(
+                      'inline-flex items-center justify-center h-11 px-4 sm:px-5 rounded-xl text-sm sm:text-[15px] font-bold tracking-wide transition-all select-none cursor-pointer',
+                      activeTab === 'phu-kien'
+                        ? 'bg-[#8B5CF6] text-white shadow-sm ring-2 ring-[#7C3AED]/40 font-extrabold'
+                        : 'text-zinc-700 hover:text-[#8B5CF6] hover:bg-[#F3E8FF]/60'
+                    )}
+                  >
+                    Phụ kiện
+                  </Link>
+                </div>
 
-                {/* Chatbot AI */}
-                <button
-                  type="button"
-                  onClick={() => window.dispatchEvent(new CustomEvent('open_ai_stylist'))}
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs uppercase tracking-wider font-bold text-[#7C3AED] bg-[#F3E8FF] hover:bg-[#8B5CF6] hover:text-white transition-all cursor-pointer shadow-2xs"
-                  title="Mở Trợ lý Chatbot AI tư vấn thời trang"
-                >
-                  <Bot className="w-3.5 h-3.5" />
-                  <span>Chatbot AI</span>
-                </button>
+                {/* Vạch ngăn cách mờ */}
+                <div className="w-px h-6 bg-zinc-200 mx-2 shrink-0" aria-hidden="true" />
 
-                {/* AI Stylist */}
-                <Link
-                  to="/ai-stylist"
-                  className={cn(
-                    'flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all duration-150 select-none cursor-pointer',
-                    activeTab === 'ai-stylist'
-                      ? 'bg-[#7C3AED] text-white shadow-xs'
-                      : 'text-[#7C3AED] bg-[#F3E8FF] hover:bg-[#7C3AED] hover:text-white'
-                  )}
-                  title="Mở Trợ lý AI Stylist tư vấn phong cách"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
-                  <span>AI Stylist</span>
-                </Link>
+                {/* NHÓM 2 (Chức năng AI): CHATBOT AI | AI STYLIST | THỬ ĐỒ AI */}
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <button
+                    type="button"
+                    onClick={() => window.dispatchEvent(new CustomEvent('open_ai_stylist'))}
+                    className="inline-flex items-center justify-center gap-2 h-11 px-4 sm:px-5 rounded-xl text-sm sm:text-[15px] font-bold text-[#7C3AED] bg-[#F3E8FF] hover:bg-[#8B5CF6] hover:text-white transition-all cursor-pointer shadow-2xs group"
+                    title="Mở Trợ lý Chatbot AI tư vấn thời trang"
+                  >
+                    <Bot className="w-4 h-4 text-[#7C3AED] group-hover:text-white transition-colors" />
+                    <span>Chatbot AI</span>
+                  </button>
 
-                {/* Thử đồ AI */}
-                <Link
-                  to="/try-on"
-                  className={cn(
-                    'flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all duration-150 select-none cursor-pointer',
-                    activeTab === 'try-on'
-                      ? 'bg-[#8B5CF6] text-white shadow-xs'
-                      : 'bg-zinc-900 text-white hover:bg-[#8B5CF6]'
-                  )}
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-                  <span>Thử đồ AI</span>
-                </Link>
+                  <Link
+                    to="/ai-stylist"
+                    onClick={() => resetGlobalScroll()}
+                    className={cn(
+                      'inline-flex items-center justify-center gap-2 h-11 px-4 sm:px-5 rounded-xl text-sm sm:text-[15px] font-bold transition-all select-none cursor-pointer',
+                      activeTab === 'ai-stylist'
+                        ? 'bg-[#8B5CF6] text-white shadow-sm ring-2 ring-[#7C3AED]/40 font-extrabold'
+                        : 'text-[#7C3AED] bg-[#F3E8FF]/80 hover:bg-[#8B5CF6] hover:text-white'
+                    )}
+                    title="Mở Trợ lý AI Stylist tư vấn phong cách"
+                  >
+                    <Sparkles className="w-4 h-4 text-cyan-400" />
+                    <span>AI Stylist</span>
+                  </Link>
 
-                {/* Bảng size */}
-                <button
-                  type="button"
-                  onClick={() => window.dispatchEvent(new CustomEvent('open_size_guide'))}
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs uppercase tracking-wider font-bold text-[#52525B] hover:text-[#18181B] hover:bg-[#F4F4F5] transition-all cursor-pointer"
-                  title="Tra cứu bảng kích thước chuẩn"
-                >
-                  <Ruler className="w-3.5 h-3.5 text-zinc-500" />
-                  <span>Bảng size</span>
-                </button>
+                  <Link
+                    to="/try-on"
+                    onClick={() => resetGlobalScroll()}
+                    className={cn(
+                      'inline-flex items-center justify-center gap-2 h-11 px-4 sm:px-5 rounded-xl text-sm sm:text-[15px] font-bold transition-all select-none cursor-pointer',
+                      activeTab === 'try-on'
+                        ? 'bg-[#8B5CF6] text-white shadow-sm ring-2 ring-[#7C3AED]/40 font-extrabold'
+                        : 'bg-zinc-900 text-white hover:bg-[#8B5CF6]'
+                    )}
+                  >
+                    <Sparkles className="w-4 h-4 text-cyan-300" />
+                    <span>Thử đồ AI</span>
+                  </Link>
+                </div>
+
+                {/* Vạch ngăn cách mờ */}
+                <div className="w-px h-6 bg-zinc-200 mx-2 shrink-0" aria-hidden="true" />
+
+                {/* NHÓM 3 (Tiện ích): BẢNG SIZE */}
+                <div className="flex items-center">
+                  <button
+                    type="button"
+                    onClick={() => window.dispatchEvent(new CustomEvent('open_size_guide'))}
+                    className={cn(
+                      'inline-flex items-center justify-center gap-2 h-11 px-4 sm:px-5 rounded-xl text-sm sm:text-[15px] font-bold transition-all cursor-pointer',
+                      activeTab === 'size-guide'
+                        ? 'bg-[#8B5CF6] text-white shadow-sm ring-2 ring-[#7C3AED]/40 font-extrabold'
+                        : 'text-[#52525B] hover:text-[#18181B] hover:bg-[#F4F4F5]'
+                    )}
+                    title="Tra cứu bảng kích thước chuẩn"
+                  >
+                    <Ruler className="w-4 h-4 text-zinc-500" />
+                    <span>Bảng size</span>
+                  </button>
+                </div>
               </nav>
             </div>
           </div>
@@ -685,27 +707,18 @@ export const SiteHeader: React.FC = () => {
               </div>
               <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
             </a>
+            {/* Gộp Shop & Khám phá thời trang thành 1 mục duy nhất */}
             <Link
               to="/shop"
               onClick={(e) => {
                 setIsMobileMenuOpen(false);
                 handleShopClick(e);
               }}
-              className="block px-3.5 py-2.5 rounded-xl font-bold hover:bg-[#F2F3F5] text-[#18181B] transition-colors text-xs uppercase tracking-wider"
-            >
-              Shop
-            </Link>
-            <Link
-              to="/shop"
-              onClick={(e) => {
-                setIsMobileMenuOpen(false);
-                handleShopClick(e);
-              }}
-              className="flex items-center justify-between px-3.5 py-2.5 rounded-xl font-black bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white text-xs uppercase tracking-wider shadow-xs hover:shadow-md transition-all"
+              className="flex items-center justify-between px-3.5 py-3 rounded-xl font-black bg-gradient-to-r from-[#8B5CF6] via-[#7C3AED] to-[#6D28D9] text-white text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-98"
             >
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-cyan-200" />
-                <span>Khám phá thời trang</span>
+                <span>Khám phá shop thời trang</span>
               </div>
               <ArrowRight className="w-4 h-4" />
             </Link>
