@@ -51,7 +51,7 @@ export const AdminUsersPage: React.FC = () => {
           <tbody className="divide-y divide-brand-border/40">
             {users.map((u) => {
               const orderCount = orders.filter((o) => o.userId === u.id).length;
-              const isCurrent = currentUser.id === u.id;
+              const isCurrent = currentUser?.id === u.id;
               return (
                 <tr key={u.id} className="hover:bg-brand-sand/20 transition-colors">
                   <td className="p-3.5">

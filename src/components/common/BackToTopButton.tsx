@@ -33,9 +33,9 @@ export const BackToTopButton: React.FC = () => {
       title="Cuộn lên đầu trang"
       aria-label="Cuộn lên đầu trang"
       className={cn(
-        'fixed bottom-20 right-6 lg:bottom-8 lg:right-8 z-30 w-11 h-11 rounded-full bg-white shadow-modal border border-[#E4E4E7]',
+        'fixed bottom-20 right-6 z-30 w-10 h-10 rounded-full bg-white shadow-card border border-[#ECEAE7]',
         'text-[#18181B] hover:bg-[#18181B] hover:text-white hover:border-[#18181B]',
-        'flex items-center justify-center transition-all duration-300 animate-fade-in cursor-pointer group active:scale-95'
+        'flex items-center justify-center transition-all duration-200 animate-fade-in cursor-pointer group active:scale-95'
       )}
     >
       <ArrowUp className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />

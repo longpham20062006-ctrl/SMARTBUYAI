@@ -1,0 +1,86 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        fashion: {
+          bg: '#F7F7F6',
+          surface: '#FFFFFF',
+          primary: '#18181B',
+          secondary: '#78716C',
+          border: '#ECEAE7',
+          hover: '#F0EFED',
+          muted: '#A8A29E',
+          ai: '#7C3AED',
+          'ai-light': '#F3E8FF',
+          success: '#166534',
+          error: '#B91C1C',
+        },
+        brand: {
+          bg: '#F7F7F6',
+          subtle: '#F0EFED',
+          surface: '#FFFFFF',
+          primary: '#18181B',
+          'primary-hover': '#27272A',
+          accent: '#7C3AED',
+          'accent-hover': '#6D28D9',
+          'accent-light': '#F3E8FF',
+          text: '#18181B',
+          'text-secondary': '#78716C',
+          border: '#ECEAE7',
+          success: '#166534',
+          error: '#B91C1C',
+          warning: '#D97706',
+
+          // Compatibility aliases
+          ivory: '#F7F7F6',
+          paper: '#FFFFFF',
+          charcoal: '#18181B',
+          secondary: '#78716C',
+          muted: '#A8A29E',
+          forest: '#18181B',
+          'forest-hover': '#27272A',
+          'forest-light': '#F3E8FF',
+          sage: '#F0EFED',
+          sand: '#F0EFED',
+          terracotta: '#7C3AED',
+          'terracotta-light': '#F3E8FF',
+          champagne: '#F3E8FF',
+          neon: '#7C3AED',
+          'neon-hover': '#6D28D9',
+          pink: '#7C3AED',
+          'pink-hover': '#6D28D9',
+          lime: '#F3E8FF',
+        }
+      },
+      fontFamily: {
+        sans: ['"Be Vietnam Pro"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Space Grotesk"', '"Be Vietnam Pro"', 'sans-serif'],
+        editorial: ['"Be Vietnam Pro"', 'Inter', 'sans-serif'],
+      },
+      borderRadius: {
+        'brand-sm': '4px',
+        'brand': '8px',
+        'brand-lg': '12px',
+        'brand-xl': '16px',
+        'brand-2xl': '20px',
+      },
+      boxShadow: {
+        'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.03)',
+        'card': '0 2px 8px -2px rgba(24, 24, 27, 0.04)',
+        'card-hover': '0 10px 20px -5px rgba(24, 24, 27, 0.06)',
+        'elevated': '0 12px 28px -6px rgba(24, 24, 27, 0.08)',
+        'drawer': '0 10px 35px -4px rgba(0, 0, 0, 0.15)',
+        'modal': '0 20px 45px -10px rgba(0, 0, 0, 0.2)',
+      },
+      maxWidth: {
+        'container': '1400px',
+      },
+    },
+  },
+  plugins: [],
+}

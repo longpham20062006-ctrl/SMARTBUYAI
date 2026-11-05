@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Product, ColorOption } from '@/types';
 import { formatPrice } from '@/lib/utils';
 import { ColorSwatch } from '@/components/common/ColorSwatch';
-import { Eye, ArrowRightLeft, Heart, Sparkles } from 'lucide-react';
+import { Eye, ArrowRightLeft, Heart, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useToast } from '@/components/ui/toast';
 
 interface ProductCardProps {
@@ -11,6 +11,7 @@ interface ProductCardProps {
   onQuickView?: (product: Product) => void;
   onToggleCompare?: (product: Product) => void;
   isCompared?: boolean;
+  hidePrice?: boolean;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -18,32 +19,51 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onQuickView,
   onToggleCompare,
   isCompared = false,
+  hidePrice = false,
 }) => {
-  const [selectedColor, setSelectedColor] = useState<ColorOption>(product.colors[0] || { name: 'Đen', hex: '#111', slug: 'den' });
-  const [isHovered, setIsHovered] = useState(false);
+  const [selectedColor, setSelectedColor] = useState<ColorOption>(
+    product.colors[0] || { name: 'Mặc định', hex: '#111', slug: 'default' }
+  );
   const [isLiked, setIsLiked] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
-  const [isSwitchingColor, setIsSwitchingColor] = useState(false);
   const { toast } = useToast();
 
   const matchedVariant = product.variants.find((v) => v.color.slug === selectedColor.slug);
   const colorImage = selectedColor.image || matchedVariant?.image;
-  const primaryImage = colorImage || product.images[0] || 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80';
-  const secondaryImage = selectedColor.images?.[1] || product.images[1] || primaryImage;
+  const primaryImage =
+    colorImage || product.images[0] || 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80';
   const currentImage = imgError
     ? 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80'
     : primaryImage;
 
   const currentPrice = matchedVariant?.price || product.price;
   const originalPrice = matchedVariant?.originalPrice || product.originalPrice;
+  const discountPercent =
+    originalPrice && originalPrice > currentPrice
+      ? Math.round(((originalPrice - currentPrice) / originalPrice) * 100)
+      : 0;
 
   const handleSelectColor = (color: ColorOption) => {
-    if (color.slug !== selectedColor.slug) {
-      setIsSwitchingColor(true);
-      setSelectedColor(color);
-      setTimeout(() => setIsSwitchingColor(false), 200);
-    }
+    setSelectedColor(color);
+  };
+
+  const handlePrevColor = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (product.colors.length <= 1) return;
+    const currentIndex = product.colors.findIndex((c) => c.slug === selectedColor.slug);
+    const prevIndex = (currentIndex - 1 + product.colors.length) % product.colors.length;
+    setSelectedColor(product.colors[prevIndex]);
+  };
+
+  const handleNextColor = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (product.colors.length <= 1) return;
+    const currentIndex = product.colors.findIndex((c) => c.slug === selectedColor.slug);
+    const nextIndex = (currentIndex + 1) % product.colors.length;
+    setSelectedColor(product.colors[nextIndex]);
   };
 
   const handleLike = (e: React.MouseEvent) => {
@@ -70,18 +90,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <div
-      className={`group flex flex-col h-full bg-white rounded-2xl border border-[#E4E4E7] hover:border-[#DDD6FE] hover:shadow-card-hover transition-all duration-300 relative ${
-        isHovered ? 'z-20' : 'z-0'
-      }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Container ảnh tỷ lệ chuẩn 3:4 */}
-      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-t-2xl bg-[#F2F3F5]">
-        {!imageLoaded && (
-          <div className="absolute inset-0 bg-[#F2F3F5] animate-pulse" />
-        )}
+    <div className="group flex flex-col h-full bg-white rounded-xl border border-[#ECEAE7] hover:border-[#18181B] hover:shadow-card-hover transition-all duration-200 relative overflow-hidden">
+      {/* 3:4 Aspect Ratio Container */}
+      <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#F0EFED]">
+        {!imageLoaded && <div className="absolute inset-0 bg-[#F0EFED] animate-pulse" />}
         <Link to={`/products/${product.slug}`} className="block w-full h-full">
           <img
             src={currentImage}
@@ -92,169 +104,177 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               setImgError(true);
               setImageLoaded(true);
             }}
-            className={`w-full h-full object-cover object-center transition-all duration-200 ease-out group-hover:scale-105 ${
-              imageLoaded && !isSwitchingColor ? 'opacity-100 scale-100' : 'opacity-80 scale-[0.99]'
+            className={`w-full h-full object-cover object-top transition-transform duration-300 ease-out group-hover:scale-[1.03] ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
           />
         </Link>
 
-        {/* Badge góc trên bên trái */}
-        {product.badge && (
-          <div className="absolute top-2.5 left-2.5 pointer-events-none z-10">
-            <span
-              className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider shadow-subtle ${
-                product.badge === 'NEW' || product.badge === 'Mới'
-                  ? 'bg-[#8B5CF6] text-white'
-                  : product.badge === 'DROP' || product.badge === 'HOT'
-                  ? 'bg-[#18181B] text-white'
-                  : product.badge === 'UNISEX'
-                  ? 'bg-[#F3E8FF] text-[#7C3AED] border border-[#DDD6FE]'
-                  : 'bg-white text-[#18181B] border border-[#E4E4E7]'
-              }`}
+        {/* Color navigation chevrons for multi-color products */}
+        {product.colors.length > 1 && (
+          <>
+            <button
+              onClick={handlePrevColor}
+              className="absolute left-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white/85 hover:bg-white text-[#18181B] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-xs cursor-pointer"
+              title="Màu trước"
+              aria-label="Màu trước"
             >
-              {product.badge === 'Mới' ? 'NEW' : product.badge === 'Tuyển chọn' ? 'TRENDING' : product.badge}
-            </span>
-          </div>
+              <ChevronLeft className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={handleNextColor}
+              className="absolute right-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white/85 hover:bg-white text-[#18181B] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-xs cursor-pointer"
+              title="Màu kế tiếp"
+              aria-label="Màu kế tiếp"
+            >
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+          </>
         )}
 
-        {/* Action icons góc trên bên phải */}
-        <div className="absolute top-2.5 right-2.5 flex flex-col gap-1.5 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200 z-10">
+        {/* Badges: HOT / NEW / SALE - Modern Monochrome V4.2 */}
+        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 pointer-events-none z-10">
+          {discountPercent > 0 && (
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#FEE2E2] text-[#B91C1C]">
+              -{discountPercent}%
+            </span>
+          )}
+          {product.badge && product.badge !== 'SALE' && (
+            <span
+              className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
+                product.badge === 'HOT' || product.badge === 'DROP'
+                  ? 'bg-[#18181B] text-white'
+                  : product.badge === 'NEW' || product.badge === 'Mới'
+                  ? 'bg-[#F0EFED] text-[#18181B] border border-[#ECEAE7]'
+                  : 'bg-[#18181B] text-white'
+              }`}
+            >
+              {product.badge === 'Mới' ? 'NEW' : product.badge}
+            </span>
+          )}
+        </div>
+
+        {/* Priority Actions: Wishlist (Heart) always visible/accessible, QuickView & Compare on hover */}
+        <div className="absolute top-2.5 right-2.5 flex flex-col gap-1.5 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-150 z-10">
           <button
             onClick={handleLike}
             title={isLiked ? 'Bỏ thích' : 'Yêu thích'}
-            className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-xs text-[#18181B] hover:text-[#8B5CF6] flex items-center justify-center shadow-subtle hover:scale-110 active:scale-95 transition-all cursor-pointer"
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/95 backdrop-blur-xs text-[#18181B] hover:text-[#B91C1C] flex items-center justify-center shadow-subtle hover:scale-105 active:scale-95 transition-all cursor-pointer"
             aria-label={isLiked ? 'Bỏ thích' : 'Thêm vào yêu thích'}
           >
-            <Heart className={`w-4 h-4 ${isLiked ? 'fill-[#8B5CF6] text-[#8B5CF6]' : ''}`} />
+            <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isLiked ? 'fill-[#B91C1C] text-[#B91C1C]' : ''}`} />
           </button>
-
-          {onToggleCompare && (
-            <button
-              onClick={handleCompare}
-              title={isCompared ? 'Bỏ khỏi so sánh' : 'So sánh sản phẩm'}
-              className={`w-8 h-8 rounded-full bg-white/95 backdrop-blur-xs flex items-center justify-center shadow-subtle hover:scale-110 active:scale-95 transition-all cursor-pointer ${
-                isCompared ? 'bg-[#18181B] text-[#8B5CF6]' : 'text-[#18181B] hover:text-[#8B5CF6]'
-              }`}
-              aria-label="So sánh sản phẩm"
-            >
-              <ArrowRightLeft className="w-3.5 h-3.5" />
-            </button>
-          )}
 
           {onQuickView && (
             <button
               onClick={handleQuickView}
               title="Xem nhanh"
-              className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-xs text-[#18181B] hover:text-[#8B5CF6] flex items-center justify-center shadow-subtle hover:scale-110 active:scale-95 transition-all cursor-pointer"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/95 backdrop-blur-xs text-[#18181B] hover:text-[#18181B] flex items-center justify-center shadow-subtle hover:scale-105 active:scale-95 transition-all cursor-pointer"
               aria-label="Xem nhanh sản phẩm"
             >
               <Eye className="w-3.5 h-3.5" />
             </button>
           )}
 
-          <Link
-            to={`/virtual-try-on?productId=${product.id}&slug=${product.slug}&color=${selectedColor.slug}&image=${encodeURIComponent(primaryImage)}`}
-            title="✨ Thử đồ bằng AI"
-            className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-xs text-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white flex items-center justify-center shadow-subtle hover:scale-110 active:scale-95 transition-all cursor-pointer"
-            aria-label="Thử đồ bằng AI"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        {/* Hover buttons trượt lên ở desktop */}
-        <div className="absolute bottom-2.5 inset-x-2.5 hidden sm:grid grid-cols-2 gap-1.5 transform translate-y-12 group-hover:translate-y-0 transition-transform duration-300 z-10">
-          {onQuickView && (
+          {onToggleCompare && (
             <button
-              onClick={handleQuickView}
-              className="flex items-center justify-center py-2 bg-[#18181B]/95 hover:bg-[#27272A] text-white text-[11px] font-semibold uppercase tracking-wider rounded-xl shadow-subtle cursor-pointer active:scale-98 transition-all"
+              onClick={handleCompare}
+              title={isCompared ? 'Bỏ khỏi so sánh' : 'So sánh sản phẩm'}
+              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/95 backdrop-blur-xs flex items-center justify-center shadow-subtle hover:scale-105 active:scale-95 transition-all cursor-pointer ${
+                isCompared ? 'bg-[#18181B] text-white' : 'text-[#18181B] hover:text-[#18181B]'
+              }`}
+              aria-label="So sánh sản phẩm"
             >
-              Xem nhanh
+              <ArrowRightLeft className="w-3.5 h-3.5" />
             </button>
           )}
+        </div>
+
+        {/* Hover action "Xem chi tiết" trượt lên ở desktop */}
+        <div className="absolute bottom-2.5 inset-x-2.5 hidden sm:block transform translate-y-12 group-hover:translate-y-0 transition-transform duration-200 z-10">
           <Link
-            to={`/virtual-try-on?productId=${product.id}&slug=${product.slug}&color=${selectedColor.slug}&image=${encodeURIComponent(primaryImage)}`}
-            onClick={(e) => e.stopPropagation()}
-            className={`flex items-center justify-center gap-1 py-2 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white text-[11px] font-semibold uppercase tracking-wider rounded-xl shadow-subtle cursor-pointer active:scale-98 transition-all ${
-              !onQuickView ? 'col-span-2' : ''
-            }`}
+            to={`/products/${product.slug}`}
+            className="w-full flex items-center justify-center gap-1.5 py-2 px-3 bg-[#18181B] hover:bg-[#27272A] text-white text-[11px] font-semibold tracking-wider uppercase rounded-lg shadow-subtle transition-colors"
           >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Thử đồ AI</span>
+            <span>Xem chi tiết</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </div>
 
       {/* Thông tin sản phẩm */}
-      <div className="p-3.5 flex flex-col flex-1 justify-between gap-2.5 bg-white rounded-b-2xl">
+      <div className="p-3 sm:p-3.5 flex flex-col flex-1 justify-between gap-2 bg-white">
         <div>
-          {/* Tên sản phẩm cố định 2 dòng */}
+          {/* Phân loại / thương hiệu */}
+          <div className="text-[11px] text-[#78716C] truncate uppercase tracking-wider font-medium">
+            {product.categorySlug || product.brand}
+          </div>
+
+          {/* Tên sản phẩm */}
           <Link
             to={`/products/${product.slug}`}
-            className="block text-xs sm:text-sm font-bold text-[#18181B] hover:text-[#8B5CF6] transition-colors line-clamp-2 leading-snug min-h-[2.5rem]"
+            className="block text-xs sm:text-sm font-semibold text-[#18181B] hover:text-[#78716C] transition-colors line-clamp-1 mt-0.5"
             title={product.name}
           >
             {product.name}
           </Link>
 
-          {/* Thông tin Size có sẵn */}
-          {product.sizes && product.sizes.length > 0 && (
-            <div className="flex items-center gap-1 mt-1.5 flex-wrap">
-              <span className="text-[10px] text-[#A1A1AA] uppercase font-medium">Size:</span>
-              {product.sizes.slice(0, 5).map((s) => (
-                <span
-                  key={s}
-                  className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#F2F3F5] text-[#52525B]"
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
+          {/* Mô tả ngắn nếu có */}
+          {product.shortDescription && (
+            <p className="text-[11px] text-[#78716C] line-clamp-1 mt-0.5 font-normal">
+              {product.shortDescription}
+            </p>
           )}
         </div>
 
-        <div>
-          {/* Swatches màu & Tên màu được chọn */}
-          <div className="mb-2">
-            <div className="flex items-center justify-between text-[11px] text-[#71717A] mb-7">
-              <span className="font-medium truncate max-w-[150px]">
-                Màu: <strong className="text-[#18181B]">{selectedColor.name}</strong>
-              </span>
+        {/* Nút Xem chi tiết cho mobile hoặc Color Swatches & Price */}
+        {hidePrice ? (
+          <div className="pt-2 border-t border-[#ECEAE7] flex items-center justify-between">
+            <span className="text-[11px] text-[#78716C] font-medium">
+              {product.colors.length > 1 ? `${product.colors.length} màu sắc` : 'Thiết kế chuẩn'}
+            </span>
+            <Link
+              to={`/products/${product.slug}`}
+              className="text-xs font-semibold text-[#18181B] hover:text-[#78716C] inline-flex items-center gap-1 sm:hidden"
+            >
+              <span>Chi tiết</span>
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
+        ) : (
+          <div>
+            {/* Color Swatch / Variants Selection */}
+            {product.colors.length > 1 && (
+              <div className="mb-2">
+                <ColorSwatch
+                  colors={product.colors}
+                  selectedColor={selectedColor}
+                  onSelectColor={handleSelectColor}
+                  size="sm"
+                />
+              </div>
+            )}
+
+            {/* Hiển thị giá VND + Giảm giá */}
+            <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#ECEAE7]">
+              <div className="flex items-baseline gap-1.5 flex-wrap">
+                <span className="text-xs sm:text-sm font-bold text-[#18181B]">
+                  {formatPrice(currentPrice)}
+                </span>
+                {originalPrice && originalPrice > currentPrice && (
+                  <span className="text-[11px] text-[#78716C] line-through font-normal">
+                    {formatPrice(originalPrice)}
+                  </span>
+                )}
+              </div>
               {product.colors.length > 1 && (
-                <span className="text-[10px] text-[#8B5CF6] font-semibold shrink-0">
+                <span className="text-[10px] text-[#78716C] hidden sm:inline">
                   {product.colors.length} màu
                 </span>
               )}
             </div>
-            <ColorSwatch
-              colors={product.colors}
-              selectedColor={selectedColor}
-              onSelectColor={handleSelectColor}
-              size="sm"
-            />
           </div>
-
-          {/* Giá & Giảm giá */}
-          <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#F2F3F5]">
-            <div className="flex items-baseline gap-1.5 flex-wrap">
-              <span className="text-sm sm:text-base font-bold text-[#18181B]">
-                {formatPrice(currentPrice)}
-              </span>
-              {originalPrice && originalPrice > currentPrice && (
-                <span className="text-[11px] text-[#A1A1AA] line-through">
-                  {formatPrice(originalPrice)}
-                </span>
-              )}
-            </div>
-
-            {originalPrice && originalPrice > currentPrice && (
-              <span className="text-[10px] font-bold text-[#7C3AED] bg-[#F3E8FF] px-1.5 py-0.5 rounded-sm shrink-0">
-                -{Math.round(((originalPrice - currentPrice) / originalPrice) * 100)}%
-              </span>
-            )}
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

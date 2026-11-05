@@ -4,19 +4,99 @@
 
 @layer base {
   :root {
-    --bg-main: #FAFAF8;
-    --bg-subtle: #F2F3F5;
+    /* V4.0 - KOREAN MINIMAL × MODERN MONOCHROME */
+    --fashion-bg: #F7F7F6;
+    --fashion-white: #FFFFFF;
+    --fashion-black: #18181B;
+    --fashion-text: #292524;
+    --fashion-secondary: #78716C;
+    --fashion-border: #ECEAE7;
+    --fashion-hover: #F0EFED;
+
+    --fashion-ai: #7C3AED;
+    --fashion-ai-soft: #F3E8FF;
+
+    --fashion-success: #166534;
+    --fashion-danger: #B91C1C;
+
+    /* V4.2 - CATALOG MODERN MONOCHROME TOKENS */
+    --catalog-bg: #F7F7F6;
+    --catalog-surface: #FFFFFF;
+    --catalog-primary: #18181B;
+    --catalog-text: #292524;
+    --catalog-secondary: #78716C;
+    --catalog-border: #ECEAE7;
+    --catalog-hover: #F0EFED;
+
+    --catalog-ai: #7C3AED;
+    --catalog-ai-light: #F3E8FF;
+    --catalog-ai-hover: #6D28D9;
+
+    --catalog-sale: #B91C1C;
+    --catalog-success: #166534;
+
+    /* V4.3 - ACCOUNT MODERN MONOCHROME TOKENS */
+    --account-bg: #F7F7F6;
+    --account-surface: #FFFFFF;
+    --account-heading: #18181B;
+    --account-text: #292524;
+    --account-secondary: #78716C;
+    --account-border: #ECEAE7;
+    --account-hover: #F0EFED;
+
+    --account-ai: #7C3AED;
+    --account-ai-light: #F3E8FF;
+
+    --account-success: #166534;
+    --account-error: #B91C1C;
+
+    /* V4.4 - PRODUCT DETAIL MODERN MONOCHROME TOKENS */
+    --product-bg: #F7F7F6;
+    --product-surface: #FFFFFF;
+    --product-primary: #18181B;
+    --product-text: #292524;
+    --product-secondary: #78716C;
+    --product-border: #ECEAE7;
+    --product-hover: #F0EFED;
+
+    --product-ai: #7C3AED;
+    --product-ai-light: #F3E8FF;
+    --product-ai-hover: #6D28D9;
+
+    --product-sale: #B91C1C;
+    --product-success: #166534;
+
+    /* V4.5 - VIRTUAL TRY-ON MODERN MONOCHROME TOKENS */
+    --tryon-bg: #F7F7F6;
+    --tryon-surface: #FFFFFF;
+    --tryon-heading: #18181B;
+    --tryon-text: #292524;
+    --tryon-secondary: #78716C;
+    --tryon-border: #ECEAE7;
+    --tryon-hover: #F0EFED;
+
+    --tryon-ai: #7C3AED;
+    --tryon-ai-hover: #6D28D9;
+    --tryon-ai-light: #F3E8FF;
+    --tryon-ai-border: #DDD6FE;
+
+    --tryon-success: #166534;
+    --tryon-error: #B91C1C;
+
+    /* Legacy mapping for full compatibility */
+    --bg-main: #F7F7F6;
+    --bg-subtle: #F0EFED;
     --bg-surface: #FFFFFF;
     --text-primary: #18181B;
-    --text-secondary: #71717A;
+    --text-secondary: #78716C;
     --color-primary: #18181B;
-    --color-primary-hover: #303036;
-    --color-accent: #8B5CF6;
-    --color-accent-hover: #7C3AED;
+    --color-primary-hover: #27272A;
+    --color-accent: #7C3AED;
+    --color-accent-hover: #6D28D9;
     --color-accent-light: #F3E8FF;
-    --color-border: #E4E4E7;
-    --color-success: #16A34A;
-    --color-error: #DC2626;
+    --color-border: #ECEAE7;
+    --color-success: #166534;
+    --color-error: #B91C1C;
     --color-warning: #D97706;
   }
 
@@ -27,31 +107,31 @@
   }
 
   body {
-    background-color: #FAFAF8;
-    color: #18181B;
+    background-color: var(--fashion-bg);
+    color: var(--fashion-text);
     font-family: 'Be Vietnam Pro', Inter, system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
   }
 
   ::selection {
-    background-color: #F3E8FF;
-    color: #7C3AED;
+    background-color: var(--fashion-ai-soft);
+    color: var(--fashion-ai);
   }
 
-  /* Custom sleek scrollbar */
+  /* Sleek minimalist scrollbar */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: #F2F3F5;
+    background: #F0EFED;
   }
   ::-webkit-scrollbar-thumb {
-    background: #D4D4D8;
+    background: #D6D3D1;
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #8B5CF6;
+    background: #A8A29E;
   }
 }
 
@@ -69,54 +149,4 @@
     font-family: 'Space Grotesk', 'Be Vietnam Pro', sans-serif;
     letter-spacing: -0.03em;
   }
-
-  /* Glass header Premium */
-  .glass-header {
-    background-color: rgba(250, 250, 248, 0.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-  }
-
-  /* Streetwear marquee */
-  @keyframes marquee {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
-  }
-  .animate-marquee {
-    display: flex;
-    width: 200%;
-    animation: marquee 30s linear infinite;
-  }
-  .animate-marquee:hover {
-    animation-play-state: paused;
-  }
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-.animate-drawer-in {
-  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

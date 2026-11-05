@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { SiteHeader } from './SiteHeader';
 import { SiteFooter } from './SiteFooter';
 import { QuickViewModal } from '@/components/common/QuickViewModal';
 import { ScrollToTop } from '@/components/common/ScrollToTop';
 import { BackToTopButton } from '@/components/common/BackToTopButton';
+import { FloatingAIStylist } from '@/components/common/FloatingAIStylist';
 import { Product } from '@/types';
 import { ArrowRightLeft, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 export const StoreLayout: React.FC = () => {
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
@@ -45,7 +45,7 @@ export const StoreLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-brand-ivory text-brand-charcoal">
+    <div className="min-h-screen flex flex-col bg-[#F7F7F6] text-[#18181B]">
       <ScrollToTop />
       <SiteHeader />
 
@@ -55,6 +55,7 @@ export const StoreLayout: React.FC = () => {
 
       <SiteFooter />
       <BackToTopButton />
+      <FloatingAIStylist />
 
       {/* Global Quick View Modal */}
       <QuickViewModal
@@ -65,17 +66,17 @@ export const StoreLayout: React.FC = () => {
 
       {/* Floating Compare Bar */}
       {comparedProducts.length > 0 && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-brand-paper shadow-drawer border border-brand-border/80 rounded-brand-xl px-5 py-3 flex items-center gap-4 animate-fade-in max-w-xl w-[90%]">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-white shadow-modal border border-[#ECEAE7] rounded-xl px-4 py-3 flex items-center gap-4 animate-fade-in max-w-lg w-[90%]">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-brand-forest-light text-brand-forest flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-full bg-[#F0EFED] text-[#18181B] flex items-center justify-center shrink-0">
               <ArrowRightLeft className="w-4 h-4" />
             </div>
             <div className="text-xs">
-              <span className="font-semibold text-brand-charcoal">
-                So sánh ({comparedProducts.length}/4 món)
+              <span className="font-bold text-[#18181B]">
+                So sánh ({comparedProducts.length}/4)
               </span>
-              <p className="text-[11px] text-brand-muted hidden sm:block">
-                Đối chiếu chất liệu, phom dáng và giá
+              <p className="text-[11px] text-[#78716C] hidden sm:block">
+                Đối chiếu chất liệu, phom dáng và chi tiết
               </p>
             </div>
           </div>
@@ -84,33 +85,18 @@ export const StoreLayout: React.FC = () => {
             {comparedProducts.map((p) => (
               <div
                 key={p.id}
-                className="relative inline-block w-9 h-12 rounded-brand-sm overflow-hidden border-2 border-white shadow-2xs"
+                className="relative inline-block w-9 h-12 rounded overflow-hidden border-2 border-white shadow-xs"
               >
                 <img src={p.images[0]} alt="" className="w-full h-full object-cover" />
                 <button
                   onClick={() => setComparedProducts((prev) => prev.filter((item) => item.id !== p.id))}
-                  className="absolute top-0 right-0 bg-black/60 text-white p-0.5 rounded-bl-sm"
+                  className="absolute top-0 right-0 bg-black/70 text-white p-0.5 rounded-bl-sm"
                   title="Bỏ món này"
                 >
                   <X className="w-2.5 h-2.5" />
                 </button>
               </div>
             ))}
-          </div>
-
-          <div className="flex items-center gap-2 shrink-0">
-            <Link to="/compare">
-              <Button size="sm" variant="primary" className="text-xs">
-                Xem bảng so sánh
-              </Button>
-            </Link>
-            <button
-              onClick={() => setComparedProducts([])}
-              className="text-xs text-brand-muted hover:text-brand-charcoal p-1"
-              title="Đóng thanh so sánh"
-            >
-              <X className="w-4 h-4" />
-            </button>
           </div>
         </div>
       )}

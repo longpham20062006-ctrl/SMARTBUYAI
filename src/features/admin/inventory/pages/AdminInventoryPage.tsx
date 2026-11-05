@@ -93,7 +93,7 @@ export const AdminInventoryPage: React.FC = () => {
       selectedVariant.id,
       newStock,
       reason,
-      currentUser.name
+      currentUser?.name || 'Admin'
     );
 
     if (res.success) {

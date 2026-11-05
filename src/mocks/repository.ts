@@ -58,7 +58,9 @@ function initDatabase() {
     localStorage.setItem(STORAGE_KEYS.COLLECTIONS, JSON.stringify(GENZ_COLLECTIONS));
     localStorage.setItem(STORAGE_KEYS.ORDERS, existingOrders || JSON.stringify(INITIAL_ORDERS));
     localStorage.setItem(STORAGE_KEYS.USERS, existingUsers || JSON.stringify(DEMO_USERS));
-    localStorage.setItem(STORAGE_KEYS.CURRENT_USER, existingCurrentUser || JSON.stringify(DEMO_USERS[0]));
+    if (existingCurrentUser) {
+      localStorage.setItem(STORAGE_KEYS.CURRENT_USER, existingCurrentUser);
+    }
     if (!localStorage.getItem(STORAGE_KEYS.CART)) {
       localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify({ items: [], subtotal: 0, shippingFee: 0, discount: 0, total: 0 }));
     }
@@ -99,7 +101,7 @@ export const MockRepo = {
 
   getProductBySlug: (slug: string): Product | undefined => {
     const products = MockRepo.getProducts();
-    return products.find((p) => p.slug === slug && p.isActive);
+    return products.find((p) => p.isActive && (p.slug === slug || p.id === slug || p.slug.toLowerCase() === slug.toLowerCase()));
   },
 
   getProductById: (id: string): Product | undefined => {
@@ -470,8 +472,20 @@ export const MockRepo = {
   },
 
   // --- USERS & AUTH ---
-  getCurrentUser: (): User => {
-    return getStored<User>(STORAGE_KEYS.CURRENT_USER, DEMO_USERS[0]);
+  getCurrentUser: (): User | null => {
+    return getStored<User | null>(STORAGE_KEYS.CURRENT_USER, null);
+  },
+
+  login: (email: string, _password?: string): User => {
+    const role = email.toLowerCase().includes('admin') ? 'admin' : 'customer';
+    return MockRepo.switchUser(role);
+  },
+
+  logout: (): void => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
+    }
+    notifyChange('auth');
   },
 
   switchUser: (role: 'customer' | 'admin'): User => {
@@ -481,8 +495,9 @@ export const MockRepo = {
     return target;
   },
 
-  updateUserProfile: (user: Partial<User>): User => {
+  updateUserProfile: (user: Partial<User>): User | null => {
     const current = MockRepo.getCurrentUser();
+    if (!current) return null;
     const updated = { ...current, ...user };
     setStored(STORAGE_KEYS.CURRENT_USER, updated);
 

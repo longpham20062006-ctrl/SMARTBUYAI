@@ -66,9 +66,9 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
                 }
               }}
               className={cn(
-                'relative rounded-full p-0.5 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-1 cursor-pointer select-none',
+                'relative rounded-full p-0.5 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#18181B] focus-visible:ring-offset-1 cursor-pointer select-none',
                 isSelected
-                  ? 'ring-2 ring-[#8B5CF6] ring-offset-2 ring-offset-white scale-105'
+                  ? 'ring-2 ring-[#18181B] ring-offset-2 ring-offset-white scale-105'
                   : 'hover:scale-110 active:scale-95'
               )}
             >

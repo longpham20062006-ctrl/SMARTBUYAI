@@ -1,40 +1,31 @@
 {
-  "name": "smartbuy-ai-fashion",
+  "name": "smartbuy-ai-fashion-monorepo",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "description": "SMARTBUY AI FASHION - Monorepo (Frontend, Backend, Database, AI Server)",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "oxlint",
-    "preview": "vite preview",
-    "images:scan": "node scripts/scan-images.cjs",
-    "products:scan": "python scripts/products-scan.py",
-    "products:analyze": "python scripts/products-analyze.py",
-    "products:audit-colors": "python scripts/products-audit.py",
-    "products:sync": "python scripts/products-sync.py",
-    "test:variants": "node scripts/test-variants.cjs"
+    "dev": "npm --prefix frontend run dev",
+    "dev:fe": "npm --prefix frontend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:be": "npm --prefix backend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:ai": "cmd /c \"cd ai-server && start_server.bat\"",
+    "build": "npm --prefix frontend run build",
+    "build:fe": "npm --prefix frontend run build",
+    "build:be": "npm --prefix backend run build",
+    "lint": "npm --prefix frontend run lint"
   },
-  "dependencies": {
-    "@tanstack/react-query": "^5.104.5",
-    "clsx": "^2.1.1",
-    "idb": "^8.0.4",
-    "lucide-react": "^1.61.0",
-    "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "react-router-dom": "^7.18.4",
-    "tailwind-merge": "^3.7.0"
-  },
-  "devDependencies": {
-    "@types/node": "^24.19.2",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0",
-    "@vitejs/plugin-react": "^6.1.2",
-    "autoprefixer": "^10.6.1",
-    "oxlint": "^1.88.0",
-    "postcss": "^8.5.31",
-    "tailwindcss": "^3.4.19",
-    "typescript": "~6.0.3",
-    "vite": "^8.3.4"
-  }
+  "keywords": [
+    "fashion",
+    "ecommerce",
+    "ai-stylist",
+    "virtual-try-on",
+    "catvton"
+  ],
+  "author": "SMARTBUY AI Team",
+  "license": "MIT"
 }

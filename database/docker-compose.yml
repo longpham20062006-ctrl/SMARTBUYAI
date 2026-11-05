@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: smartbuy_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: smartbuy
+      POSTGRES_PASSWORD: smartbuy_secret_password
+      POSTGRES_DB: smartbuy_fashion
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./schema/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+      - ./seeds/01_seed_users_and_brands.sql:/docker-entrypoint-initdb.d/02_seeds.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smartbuy -d smartbuy_fashion"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
+    driver: local
+

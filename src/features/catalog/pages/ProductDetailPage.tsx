@@ -25,7 +25,29 @@ import {
   Plus,
   Minus,
   Zap,
+  ChevronLeft,
+  ChevronRight,
+  Ruler,
+  Truck,
 } from 'lucide-react';
+
+const sanitizeDescription = (text?: string): string => {
+  if (!text) return '';
+  return text
+    .split('\n')
+    .filter((line) => {
+      const lower = line.toLowerCase();
+      return (
+        !lower.includes('thư mục nguồn:') &&
+        !lower.includes('mã parent sku:') &&
+        !lower.includes('ảnh thật từ folder') &&
+        !lower.includes('/images/san-pham/')
+      );
+    })
+    .join('\n')
+    .replace(/,\s*100%\s*ảnh\s*thật\s*từ\s*folder\s*[^.\n]+/gi, '')
+    .trim();
+};
 
 const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
   const navigate = useNavigate();
@@ -41,7 +63,7 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState<SizeCode | undefined>(() => {
     if (isAccessory || product.sizes.includes('FreeSize')) return 'FreeSize';
     const firstAvailable = product.variants.find(
-      (v) => v.color.slug === product.colors[0].slug && v.stock > 0
+      (v) => v.color.slug === product.colors[0]?.slug && v.stock > 0
     )?.size || product.sizes[0];
     return firstAvailable;
   });
@@ -50,6 +72,7 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const [activeDetailTab, setActiveDetailTab] = useState<'details' | 'care' | 'shipping'>('details');
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -67,9 +90,22 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
   const currentPrice = activeVariant?.price || product.price;
   const originalPrice = activeVariant?.originalPrice || product.originalPrice;
   const currentStock = activeVariant?.stock ?? 10;
+  const discountPercent = originalPrice && originalPrice > currentPrice
+    ? Math.round(((originalPrice - currentPrice) / originalPrice) * 100)
+    : 0;
 
   const relatedProducts = productService.getRelated(product, 4);
   const suggestedAccessories = productService.getAccessories(4);
+
+  const handlePrevImage = () => {
+    if (product.images.length <= 1) return;
+    setActiveImageIndex((prev) => (prev === 0 ? product.images.length - 1 : prev - 1));
+  };
+
+  const handleNextImage = () => {
+    if (product.images.length <= 1) return;
+    setActiveImageIndex((prev) => (prev === product.images.length - 1 ? 0 : prev + 1));
+  };
 
   const handleAddToCart = (directToCheckout: boolean = false) => {
     if (!selectedSize || !activeVariant) {
@@ -116,25 +152,25 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
   };
 
   return (
-    <div className="bg-[#FAFAF8] min-h-screen">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-12">
-        {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#71717A]">
-          <Link to="/" className="hover:text-[#18181B]">Trang chủ</Link>
-          <span>/</span>
-          <Link to={`/products?category=${product.categorySlug}`} className="hover:text-[#18181B]">
+    <div className="bg-[#F7F7F6] min-h-screen text-[#292524] pb-24 lg:pb-16">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-12">
+        {/* Breadcrumbs - Minimal Korean Style */}
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-[#78716C]">
+          <Link to="/" className="hover:text-[#18181B] transition-colors">Trang chủ</Link>
+          <span className="text-[#D4D4D8]">/</span>
+          <Link to={`/products?category=${product.categorySlug}`} className="hover:text-[#18181B] transition-colors capitalize">
             {product.categorySlug.replace(/-/g, ' ')}
           </Link>
-          <span>/</span>
-          <span className="text-[#18181B] font-bold truncate max-w-xs">{product.name}</span>
-        </div>
+          <span className="text-[#D4D4D8]">/</span>
+          <span className="text-[#18181B] font-medium truncate max-w-xs sm:max-w-md">{product.name}</span>
+        </nav>
 
-        {/* Main Product Layout (Gallery 58% / Info 42%) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          {/* Gallery ảnh lớn bên trái (7 cột) */}
+        {/* Main Product Layout (Gallery 54% / Info 46%) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+          {/* Cột Trái: Product Gallery (7 cột) */}
           <div className="lg:col-span-7 space-y-4">
-            {/* Ảnh lớn chính (Tỷ lệ 3:4) */}
-            <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-[#F2F3F5] border border-[#E4E4E7] relative group shadow-card">
+            {/* Ảnh lớn trung tâm (Tỷ lệ 3:4, max-height ~620px) */}
+            <div className="relative aspect-[3/4] max-h-[620px] w-full rounded-2xl overflow-hidden bg-[#F0EFED] border border-[#ECEAE7] group shadow-sm flex items-center justify-center">
               <img
                 src={product.images[activeImageIndex] || product.images[0]}
                 alt={product.name}
@@ -142,38 +178,71 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                   (e.currentTarget as HTMLImageElement).src =
                     'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=800&auto=format&fit=crop&q=80';
                 }}
-                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-102"
               />
-              {product.badge && (
-                <div className="absolute top-4 left-4">
-                  <Badge variant="accent">
+
+              {/* Prev/Next Chevron Navigation overlay */}
+              {product.images.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePrevImage();
+                    }}
+                    aria-label="Ảnh trước"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-[#18181B] shadow-md flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 z-10 cursor-pointer"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleNextImage();
+                    }}
+                    aria-label="Ảnh kế tiếp"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-[#18181B] shadow-md flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 z-10 cursor-pointer"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </>
+              )}
+
+              {/* Badges on Gallery: HOT, NEW, SALE */}
+              <div className="absolute top-4 left-4 flex flex-col gap-1.5 z-10 pointer-events-none">
+                {product.badge && (
+                  <Badge variant="accent" className="font-semibold">
                     {product.badge}
                   </Badge>
-                </div>
-              )}
-              {originalPrice && originalPrice > currentPrice && (
-                <div className="absolute top-4 right-4 bg-[#18181B] text-white text-[11px] font-bold px-2.5 py-1 rounded shadow-subtle">
-                  -{Math.round(((originalPrice - currentPrice) / originalPrice) * 100)}%
+                )}
+              </div>
+
+              {/* Discount Badge */}
+              {discountPercent > 0 && (
+                <div className="absolute top-4 right-4 bg-[#B91C1C] text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm z-10">
+                  -{discountPercent}%
                 </div>
               )}
             </div>
 
-            {/* Dải ảnh phụ thumbnails */}
+            {/* Dải ảnh phụ Thumbnails */}
             {product.images.length > 1 && (
-              <div className="grid grid-cols-4 gap-3">
+              <div className="grid grid-cols-4 sm:grid-cols-5 gap-3">
                 {product.images.map((img, idx) => (
                   <button
                     key={idx}
+                    type="button"
                     onClick={() => setActiveImageIndex(idx)}
                     className={`aspect-[3/4] rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
                       activeImageIndex === idx
-                        ? 'border-[#8B5CF6] ring-1 ring-[#8B5CF6] shadow-subtle'
-                        : 'border-transparent opacity-60 hover:opacity-100 bg-[#F2F3F5]'
+                        ? 'border-[#18181B] ring-1 ring-[#18181B] shadow-sm'
+                        : 'border-[#ECEAE7] opacity-70 hover:opacity-100 bg-[#F0EFED]'
                     }`}
                   >
                     <img
                       src={img}
-                      alt=""
+                      alt={`${product.name} góc ${idx + 1}`}
                       onError={(e) => {
                         (e.currentTarget as HTMLImageElement).src =
                           'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=800&auto=format&fit=crop&q=80';
@@ -186,67 +255,70 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
             )}
           </div>
 
-          {/* Thông tin sản phẩm bên phải (5 cột) - Sticky */}
-          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-20 bg-white p-6 sm:p-8 rounded-2xl border border-[#E4E4E7] shadow-card">
+          {/* Cột Phải: Thông tin sản phẩm (5 cột) - Sticky */}
+          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24 bg-white p-6 sm:p-8 rounded-2xl border border-[#ECEAE7] shadow-sm">
             <div>
-              <div className="flex items-center justify-between text-xs text-[#71717A] mb-2">
-                <span className="font-bold uppercase tracking-wider text-[#18181B] bg-[#F2F3F5] px-2.5 py-0.5 rounded border border-[#E4E4E7]">
+              {/* Thương hiệu & Mã thiết kế */}
+              <div className="flex items-center justify-between text-xs text-[#78716C] mb-2.5">
+                <span className="font-semibold uppercase tracking-wider text-[#18181B] bg-[#F0EFED] px-2.5 py-0.5 rounded border border-[#ECEAE7]">
                   {product.brand}
                 </span>
-                <span>MÃ: {activeVariant?.sku || 'SB-GENZ'}</span>
+                <span className="text-[11px]">MÃ: {activeVariant?.sku || 'SB-KN-01'}</span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#18181B] leading-tight">
+              {/* Tên sản phẩm - Korean Minimal Typography */}
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#18181B] leading-tight">
                 {product.name}
               </h1>
 
-              {/* Rating & Sold count kiểu Shopee / TikTok Shop */}
-              <div className="flex items-center gap-3 mt-2 text-xs">
-                <div className="flex items-center text-amber-500 font-bold">
+              {/* Đánh giá & Lượt bán */}
+              <div className="flex items-center gap-3 mt-2.5 text-xs">
+                <div className="flex items-center text-[#D97706] font-semibold">
                   <span>★ {product.rating ? Number(product.rating).toFixed(1) : '4.9'}</span>
-                  <span className="text-[#71717A] font-normal ml-1">({product.reviewCount || 120} đánh giá)</span>
+                  <span className="text-[#78716C] font-normal ml-1">({product.reviewCount || 128} đánh giá)</span>
                 </div>
-                <span className="text-[#E4E4E7]">|</span>
-                <div className="text-[#71717A]">
-                  Đã bán <strong className="text-[#18181B] font-bold">{product.soldCount || '1.5k'}</strong>
+                <span className="text-[#ECEAE7]">|</span>
+                <div className="text-[#78716C]">
+                  Đã bán <strong className="text-[#18181B] font-semibold">{product.soldCount || '1.2k'}</strong>
                 </div>
                 {product.badge && (
                   <>
-                    <span className="text-[#E4E4E7]">|</span>
-                    <span className="bg-[#F3E8FF] text-[#7C3AED] px-2 py-0.5 rounded font-bold text-[10px] uppercase">
+                    <span className="text-[#ECEAE7]">|</span>
+                    <span className="bg-[#F0EFED] text-[#18181B] px-2 py-0.5 rounded font-semibold text-[10px] uppercase border border-[#ECEAE7]">
                       {product.badge}
                     </span>
                   </>
                 )}
               </div>
 
-              {/* Giá sinh viên */}
-              <div className="flex items-baseline gap-3 mt-3">
-                <span className="text-3xl font-black text-[#18181B]">
+              {/* Giá sản phẩm */}
+              <div className="flex items-baseline gap-3 mt-4">
+                <span className="text-3xl font-extrabold text-[#18181B] tracking-tight">
                   {formatPrice(currentPrice)}
                 </span>
                 {originalPrice && originalPrice > currentPrice && (
-                  <span className="text-sm text-[#71717A] line-through">
+                  <span className="text-sm text-[#78716C] line-through">
                     {formatPrice(originalPrice)}
                   </span>
                 )}
-                {originalPrice && originalPrice > currentPrice && (
-                  <span className="text-[11px] text-[#DC2626] bg-[#FEF2F2] px-2 py-0.5 rounded font-bold border border-[#FEE2E2]">
-                    GIẢM {Math.round(((originalPrice - currentPrice) / originalPrice) * 100)}%
+                {discountPercent > 0 && (
+                  <span className="text-[11px] text-[#B91C1C] bg-[#FEE2E2] px-2 py-0.5 rounded font-semibold border border-[#FECACA]">
+                    GIẢM {discountPercent}%
                   </span>
                 )}
               </div>
 
-              <p className="text-xs sm:text-sm text-[#71717A] mt-3 leading-relaxed border-t border-b border-[#E4E4E7] py-3">
-                {product.shortDescription}
+              {/* Mô tả ngắn gọn */}
+              <p className="text-xs sm:text-sm text-[#78716C] mt-3.5 leading-relaxed border-t border-[#ECEAE7] pt-3.5">
+                {sanitizeDescription(product.shortDescription)}
               </p>
             </div>
 
-            {/* Chọn Màu Sắc */}
+            {/* Bộ chọn Màu Sắc */}
             {selectedColor && product.colors.length > 0 && (
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs mb-7">
-                  <span className="text-[#71717A]">
+              <div className="space-y-2.5">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="text-[#78716C]">
                     Phối màu: <strong className="text-[#18181B]">{selectedColor.name}</strong>
                   </span>
                 </div>
@@ -275,15 +347,15 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
               </div>
             )}
 
-            {/* Chọn Kích Cỡ hoặc Báo FreeSize */}
-            <div className="space-y-2">
+            {/* Bộ chọn Kích Cỡ */}
+            <div className="space-y-2.5">
               {isAccessory ? (
-                <div className="p-3 bg-[#F2F3F5] rounded-xl border border-[#E4E4E7] flex items-center justify-between">
+                <div className="p-3 bg-[#F7F7F6] rounded-xl border border-[#ECEAE7] flex items-center justify-between">
                   <div className="text-xs">
                     <span className="font-bold text-[#18181B] uppercase block">Kích thước: FREESIZE</span>
-                    <span className="text-[11px] text-[#71717A]">Phù hợp mọi phom người / điều chỉnh linh hoạt</span>
+                    <span className="text-[11px] text-[#78716C]">Thiết kế linh hoạt, phù hợp nhiều vóc dáng</span>
                   </div>
-                  <span className="text-[10px] bg-[#18181B] text-white font-bold px-2 py-0.5 rounded">
+                  <span className="text-[10px] bg-[#18181B] text-white font-semibold px-2 py-0.5 rounded">
                     ONE SIZE
                   </span>
                 </div>
@@ -298,15 +370,15 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
               )}
             </div>
 
-            {/* Tồn kho & Số lượng mua */}
+            {/* Số lượng mua & Tình trạng kho */}
             <div className="pt-2 flex items-center justify-between">
               <div className="text-xs">
-                <span className="text-[#71717A] text-[11px] uppercase block mb-1">Số lượng:</span>
-                <div className="flex items-center border border-[#E4E4E7] rounded-lg overflow-hidden bg-white">
+                <span className="text-[#78716C] text-[11px] uppercase block mb-1 font-medium">Số lượng:</span>
+                <div className="flex items-center border border-[#ECEAE7] rounded-xl overflow-hidden bg-white">
                   <button
                     type="button"
                     onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                    className="w-9 h-9 flex items-center justify-center text-[#18181B] hover:bg-[#F2F3F5] transition-colors cursor-pointer"
+                    className="w-9 h-9 flex items-center justify-center text-[#18181B] hover:bg-[#F0EFED] transition-colors cursor-pointer"
                     aria-label="Giảm số lượng"
                   >
                     <Minus className="w-3.5 h-3.5" />
@@ -318,7 +390,7 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                     type="button"
                     onClick={() => setQuantity((q) => Math.min(currentStock || 1, q + 1))}
                     disabled={quantity >= currentStock}
-                    className="w-9 h-9 flex items-center justify-center text-[#18181B] hover:bg-[#F2F3F5] disabled:opacity-30 transition-colors cursor-pointer"
+                    className="w-9 h-9 flex items-center justify-center text-[#18181B] hover:bg-[#F0EFED] disabled:opacity-30 transition-colors cursor-pointer"
                     aria-label="Tăng số lượng"
                   >
                     <Plus className="w-3.5 h-3.5" />
@@ -328,38 +400,38 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
 
               <div className="text-right text-xs">
                 {currentStock > 0 ? (
-                  <div className="text-[#16A34A] font-bold flex items-center gap-1 justify-end">
-                    <Check className="w-3.5 h-3.5 text-[#16A34A]" />
-                    <span>Còn {currentStock} món tại kho</span>
+                  <div className="text-[#166534] font-semibold flex items-center gap-1 justify-end">
+                    <Check className="w-3.5 h-3.5 text-[#166534]" />
+                    <span>Còn {currentStock} sản phẩm</span>
                   </div>
                 ) : (
-                  <span className="text-[#DC2626] font-bold">Hết hàng biến thể này</span>
+                  <span className="text-[#B91C1C] font-semibold">Tạm hết hàng</span>
                 )}
-                <span className="text-[11px] text-[#71717A] block mt-0.5">
-                  Giao nhanh trong 24–48h
+                <span className="text-[11px] text-[#78716C] block mt-0.5">
+                  Giao nhanh toàn quốc 24–48h
                 </span>
               </div>
             </div>
 
-            {/* Action CTAs */}
-            <div className="pt-4 space-y-3">
-              {/* Nút Thử đồ bằng AI */}
+            {/* Các nút hành động mua hàng & AI */}
+            <div className="pt-3 space-y-3">
+              {/* Nút Thử đồ bằng AI - Điểm nhấn tinh tế */}
               <button
                 type="button"
                 onClick={() => {
                   const chosenImg = selectedColor?.image || activeVariant?.image || product.images[activeImageIndex] || product.images[0];
                   navigate(`/virtual-try-on?productId=${product.id}&slug=${product.slug}&color=${selectedColor.slug}&image=${encodeURIComponent(chosenImg)}`);
                 }}
-                className="w-full h-11 bg-gradient-to-r from-[#F3E8FF] to-[#FAF5FF] hover:from-[#8B5CF6] hover:to-[#7C3AED] text-[#7C3AED] hover:text-white border border-[#DDD6FE] hover:border-transparent font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-subtle group"
+                className="w-full h-11 bg-[#F3E8FF] hover:bg-[#EDE9FE] text-[#7C3AED] hover:text-[#6D28D9] border border-[#DDD6FE] font-semibold text-xs rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs group"
               >
-                <Sparkles className="w-4 h-4 text-[#8B5CF6] group-hover:text-white transition-colors animate-pulse" />
-                <span>✨ Thử đồ bằng AI trên ảnh của bạn</span>
+                <Sparkles className="w-4 h-4 text-[#7C3AED] group-hover:scale-110 transition-transform" />
+                <span>Thử đồ AI trên vóc dáng của bạn</span>
               </button>
 
               <div className="grid grid-cols-2 gap-3">
                 <Button
                   variant="primary"
-                  className="h-12 text-xs font-bold uppercase tracking-wider"
+                  className="h-12 text-xs font-bold uppercase tracking-wider rounded-xl bg-[#18181B] text-white hover:bg-[#27272A]"
                   isLoading={isAdding}
                   disabled={currentStock <= 0 || !selectedSize}
                   onClick={() => handleAddToCart(false)}
@@ -369,8 +441,8 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                 </Button>
 
                 <Button
-                  variant="accent"
-                  className="h-12 text-xs font-bold uppercase tracking-wider"
+                  variant="outline"
+                  className="h-12 text-xs font-bold uppercase tracking-wider rounded-xl bg-white border-2 border-[#18181B] text-[#18181B] hover:bg-[#F0EFED]"
                   disabled={currentStock <= 0 || !selectedSize}
                   onClick={() => handleAddToCart(true)}
                 >
@@ -380,24 +452,24 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                 </Button>
               </div>
 
-              <div className="flex items-center justify-center gap-6 pt-2 text-xs text-[#71717A]">
+              <div className="flex items-center justify-center gap-6 pt-2 text-xs text-[#78716C]">
                 <button
                   type="button"
                   onClick={() => {
                     setIsLiked(!isLiked);
                     toast(!isLiked ? 'Đã thêm vào Wishlist' : 'Đã bỏ yêu thích', product.name);
                   }}
-                  className="flex items-center gap-1.5 hover:text-[#8B5CF6] transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 hover:text-[#18181B] transition-colors cursor-pointer"
                 >
-                  <Heart className={`w-4 h-4 ${isLiked ? 'fill-[#8B5CF6] text-[#8B5CF6]' : ''}`} />
-                  <span className="text-[11px]">{isLiked ? 'Đã thích' : 'Lưu Wishlist'}</span>
+                  <Heart className={`w-4 h-4 ${isLiked ? 'fill-[#B91C1C] text-[#B91C1C]' : ''}`} />
+                  <span className="text-[11px]">{isLiked ? 'Đã thích' : 'Lưu danh sách yêu thích'}</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => {
                     navigator.clipboard?.writeText(window.location.href);
-                    toast('Đã sao chép link outfit', '', 'info');
+                    toast('Đã sao chép liên kết sản phẩm', '', 'info');
                   }}
                   className="flex items-center gap-1.5 hover:text-[#18181B] transition-colors cursor-pointer"
                 >
@@ -407,108 +479,186 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
               </div>
             </div>
 
-            {/* Cam kết thương hiệu */}
-            <div className="bg-[#F2F3F5] rounded-xl p-4 space-y-2 text-xs text-[#18181B] border border-[#E4E4E7]">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#8B5CF6] shrink-0" />
-                <span>Chất lượng định lượng chuẩn — Đổi mới nếu lỗi đường may</span>
+            {/* Cam kết & Chính sách mua sắm tối giản */}
+            <div className="bg-[#F7F7F6] rounded-xl p-4 space-y-2.5 text-xs text-[#292524] border border-[#ECEAE7]">
+              <div className="flex items-center gap-2.5">
+                <ShieldCheck className="w-4 h-4 text-[#18181B] shrink-0" />
+                <span>Chất lượng cao cấp — Đổi mới tức thì nếu lỗi đường may</span>
               </div>
-              <div className="flex items-center gap-2">
-                <RotateCcw className="w-4 h-4 text-[#8B5CF6] shrink-0" />
-                <span>Đổi size linh hoạt trong 15 ngày tận nhà</span>
+              <div className="flex items-center gap-2.5">
+                <RotateCcw className="w-4 h-4 text-[#18181B] shrink-0" />
+                <span>Hỗ trợ đổi size linh hoạt trong 15 ngày tại nhà</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Leaf className="w-4 h-4 text-[#8B5CF6] shrink-0" />
-                <span>Đóng gói hộp carton tái chế, thân thiện môi trường</span>
+              <div className="flex items-center gap-2.5">
+                <Leaf className="w-4 h-4 text-[#18181B] shrink-0" />
+                <span>Đóng gói hộp giấy bảo vệ môi trường, tiêu chuẩn tối giản</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Chi tiết chất liệu, phom dáng & AI Stylist Callout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-10 border-t border-[#E4E4E7]">
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-[#18181B] uppercase">
-              Thông số thiết kế & Vải
-            </h3>
-            <p className="text-xs sm:text-sm text-[#71717A] leading-relaxed">
-              {product.description}
-            </p>
-
-            <div className="grid grid-cols-2 gap-3 pt-2 text-xs">
-              <div className="p-3.5 rounded-xl bg-white border border-[#E4E4E7] shadow-subtle">
-                <span className="text-[#71717A] block text-[10px] uppercase">Chất liệu</span>
-                <strong className="text-[#18181B] text-xs mt-0.5 block">{product.material}</strong>
-              </div>
-              <div className="p-3.5 rounded-xl bg-white border border-[#E4E4E7] shadow-subtle">
-                <span className="text-[#71717A] block text-[10px] uppercase">Phom dáng (Fit)</span>
-                <strong className="text-[#18181B] text-xs mt-0.5 block">{product.fit}</strong>
-              </div>
-              <div className="p-3.5 rounded-xl bg-white border border-[#E4E4E7] shadow-subtle">
-                <span className="text-[#71717A] block text-[10px] uppercase">Phong cách</span>
-                <strong className="text-[#18181B] text-xs mt-0.5 block">{product.style}</strong>
-              </div>
-              <div className="p-3.5 rounded-xl bg-white border border-[#E4E4E7] shadow-subtle">
-                <span className="text-[#71717A] block text-[10px] uppercase">Dịp mặc</span>
-                <strong className="text-[#18181B] text-xs mt-0.5 block">{product.occasion.join(', ')}</strong>
-              </div>
-            </div>
+        {/* Khối Tabs Chi Tiết: Thông số, Bảo quản & Gợi ý AI Stylist */}
+        <div className="pt-8 border-t border-[#ECEAE7] space-y-6">
+          <div className="flex items-center gap-2 border-b border-[#ECEAE7] pb-3">
+            <button
+              type="button"
+              onClick={() => setActiveDetailTab('details')}
+              className={`px-4 py-2 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
+                activeDetailTab === 'details'
+                  ? 'bg-[#18181B] text-white'
+                  : 'text-[#78716C] hover:text-[#18181B] hover:bg-[#F0EFED]'
+              }`}
+            >
+              Thông số thiết kế & Chất liệu
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveDetailTab('care')}
+              className={`px-4 py-2 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
+                activeDetailTab === 'care'
+                  ? 'bg-[#18181B] text-white'
+                  : 'text-[#78716C] hover:text-[#18181B] hover:bg-[#F0EFED]'
+              }`}
+            >
+              Hướng dẫn bảo quản
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveDetailTab('shipping')}
+              className={`px-4 py-2 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
+                activeDetailTab === 'shipping'
+                  ? 'bg-[#18181B] text-white'
+                  : 'text-[#78716C] hover:text-[#18181B] hover:bg-[#F0EFED]'
+              }`}
+            >
+              Chính sách giao nhận & Đổi trả
+            </button>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-[#18181B] uppercase">
-              Cách giặt & Giữ màu chuẩn Streetwear
-            </h3>
-            <div className="p-4 rounded-xl bg-white border border-[#E4E4E7] shadow-subtle space-y-2 text-xs text-[#18181B]">
-              {product.careInstructions.map((instruction, idx) => (
-                <div key={idx} className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6] mt-1.5 shrink-0" />
-                  <span>{instruction}</span>
+          {/* Tab Content 1: Details */}
+          {activeDetailTab === 'details' && (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div className="lg:col-span-7 space-y-4">
+                <h3 className="text-lg font-bold text-[#18181B]">
+                  Chi tiết thiết kế & Cảm hứng thời trang
+                </h3>
+                <p className="text-xs sm:text-sm text-[#78716C] leading-relaxed whitespace-pre-line">
+                  {sanitizeDescription(product.description)}
+                </p>
+
+                <div className="grid grid-cols-2 gap-3 pt-2 text-xs">
+                  <div className="p-3.5 rounded-xl bg-white border border-[#ECEAE7] shadow-xs">
+                    <span className="text-[#78716C] block text-[10px] uppercase font-semibold">Chất liệu</span>
+                    <strong className="text-[#18181B] text-xs mt-1 block">{product.material}</strong>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-white border border-[#ECEAE7] shadow-xs">
+                    <span className="text-[#78716C] block text-[10px] uppercase font-semibold">Phom dáng (Fit)</span>
+                    <strong className="text-[#18181B] text-xs mt-1 block">{product.fit}</strong>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-white border border-[#ECEAE7] shadow-xs">
+                    <span className="text-[#78716C] block text-[10px] uppercase font-semibold">Phong cách</span>
+                    <strong className="text-[#18181B] text-xs mt-1 block">{product.style}</strong>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-white border border-[#ECEAE7] shadow-xs">
+                    <span className="text-[#78716C] block text-[10px] uppercase font-semibold">Dịp mặc phù hợp</span>
+                    <strong className="text-[#18181B] text-xs mt-1 block">{product.occasion.join(', ')}</strong>
+                  </div>
                 </div>
-              ))}
-            </div>
-
-            {/* AI Stylist suggestion box */}
-            <div className="p-5 rounded-xl bg-[#18181B] text-white space-y-2 border border-[#27272A] shadow-card">
-              <div className="flex items-center gap-2 font-bold text-xs text-[#DDD6FE]">
-                <Sparkles className="w-4 h-4 text-[#8B5CF6]" />
-                <span>SMARTBUY AI STYLIST SUGGESTION:</span>
               </div>
-              <p className="text-xs leading-relaxed text-[#D4D4D8]">
-                Thiết kế mang phom <strong>{product.fit}</strong> đậm chất <strong>{product.style}</strong>.
-                Phối cùng một mẫu quần ống rộng Baggy hoặc Cargo Parachute và tạo điểm nhấn với dây chuyền Cuban / nón Beanie sẽ giúp outfit đạt điểm 10 trọn vẹn.
-              </p>
-              <Link
-                to={`/ai-stylist?prompt=${encodeURIComponent(`Gợi ý cách phối đồ cùng ${product.name}`)}`}
-                className="inline-flex items-center text-xs font-bold text-[#DDD6FE] hover:text-white hover:underline pt-1"
-              >
-                Hỏi AI Stylist cách phối toàn bộ outfit →
-              </Link>
+
+              {/* AI Stylist Suggestion Card - Tinh tế, hiện đại */}
+              <div className="lg:col-span-5">
+                <div className="p-6 rounded-2xl bg-[#F5F3FF] border border-[#DDD6FE] space-y-3 shadow-xs">
+                  <div className="flex items-center gap-2 font-bold text-xs text-[#7C3AED]">
+                    <Sparkles className="w-4 h-4 text-[#7C3AED]" />
+                    <span>SMARTBUY AI STYLIST GỢI Ý PHỐI OUTFIT</span>
+                  </div>
+                  <p className="text-xs leading-relaxed text-[#4C1D95]">
+                    Thiết kế mang phom <strong>{product.fit}</strong> đậm tinh thần tối giản Hàn Quốc.
+                    Phối cùng mẫu quần suông cạp cao hoặc quần túi hộp tone trung tính, điểm xuyết thêm phụ kiện nhẹ nhàng sẽ hoàn thiện trọn vẹn bản phối thời trang của bạn.
+                  </p>
+                  <div className="pt-2">
+                    <Link
+                      to={`/ai-stylist?prompt=${encodeURIComponent(`Gợi ý cách phối đồ cùng ${product.name}`)}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#7C3AED] hover:text-[#6D28D9] hover:underline"
+                    >
+                      <span>Hỏi AI Stylist cách phối toàn bộ outfit</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* Tab Content 2: Care */}
+          {activeDetailTab === 'care' && (
+            <div className="max-w-2xl space-y-4">
+              <h3 className="text-lg font-bold text-[#18181B]">
+                Hướng dẫn giặt ủi & Bảo quản phom dáng
+              </h3>
+              <p className="text-xs text-[#78716C]">
+                Để trang phục luôn giữ được màu sắc tự nhiên và độ bền form dáng, vui lòng tham khảo các lưu ý sau:
+              </p>
+              <div className="p-5 rounded-xl bg-white border border-[#ECEAE7] space-y-3 text-xs text-[#292524]">
+                {product.careInstructions.map((instruction, idx) => (
+                  <div key={idx} className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#18181B] mt-1.5 shrink-0" />
+                    <span className="leading-relaxed">{instruction}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Tab Content 3: Shipping */}
+          {activeDetailTab === 'shipping' && (
+            <div className="max-w-3xl space-y-4">
+              <h3 className="text-lg font-bold text-[#18181B]">
+                Chính sách giao nhận & Đổi trả hàng
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="p-4 rounded-xl bg-white border border-[#ECEAE7] space-y-2">
+                  <div className="flex items-center gap-2 font-semibold text-[#18181B]">
+                    <Truck className="w-4 h-4 text-[#18181B]" />
+                    <span>Giao hàng toàn quốc</span>
+                  </div>
+                  <p className="text-[#78716C] leading-relaxed">
+                    Nội thành Hà Nội & TP.HCM nhận trong 24h. Các tỉnh thành khác nhận hàng từ 2–3 ngày làm việc. Đồng kiểm trước khi nhận.
+                  </p>
+                </div>
+                <div className="p-4 rounded-xl bg-white border border-[#ECEAE7] space-y-2">
+                  <div className="flex items-center gap-2 font-semibold text-[#18181B]">
+                    <RotateCcw className="w-4 h-4 text-[#18181B]" />
+                    <span>Đổi trả trong 15 ngày</span>
+                  </div>
+                  <p className="text-[#78716C] leading-relaxed">
+                    Hỗ trợ đổi kích cỡ hoặc mẫu mã miễn phí nếu sản phẩm còn nguyên tem mác. Nhân viên giao nhận đến tận nơi lấy hàng đổi.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* GỢI Ý PHỤ KIỆN PHỐI CÙNG (COMPLETE THE FIT) */}
         {!isAccessory && suggestedAccessories.length > 0 && (
-          <div className="pt-10 border-t border-[#E4E4E7] space-y-6">
+          <div className="pt-10 border-t border-[#ECEAE7] space-y-6">
             <div className="flex items-end justify-between">
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#7C3AED] bg-[#F3E8FF] px-2.5 py-0.5 rounded-sm border border-[#DDD6FE]">
-                  COMPLETE THE FIT
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#78716C]">
+                  COMPLETE THE LOOK
                 </span>
-                <h3 className="text-2xl font-black text-[#18181B] uppercase mt-2">
-                  Gợi ý phụ kiện phối cùng outfit này
+                <h3 className="text-xl sm:text-2xl font-bold text-[#18181B] mt-1">
+                  Gợi ý phụ kiện phối cùng outfit
                 </h3>
-                <p className="text-xs text-[#71717A] mt-0.5">
-                  Thêm nón, dây chuyền hoặc túi xách để nâng tầm diện mạo streetwear của bạn.
-                </p>
               </div>
-              <Link to="/products?category=phu-kien" className="text-xs font-bold text-[#8B5CF6] hover:underline">
+              <Link to="/products?category=phu-kien" className="text-xs font-semibold text-[#18181B] hover:text-[#78716C] transition-colors">
                 Xem tất cả phụ kiện →
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
               {suggestedAccessories.map((acc) => (
                 <ProductCard key={acc.id} product={acc} />
               ))}
@@ -518,22 +668,22 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
 
         {/* Sản phẩm liên quan cùng phong cách */}
         {relatedProducts.length > 0 && (
-          <div className="pt-10 border-t border-[#E4E4E7] space-y-6">
+          <div className="pt-10 border-t border-[#ECEAE7] space-y-6">
             <div className="flex items-end justify-between">
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#71717A]">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#78716C]">
                   CÙNG PHONG CÁCH
                 </span>
-                <h3 className="text-2xl font-black text-[#18181B] uppercase mt-1">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#18181B] mt-1">
                   Có thể bạn cũng sẽ thích
                 </h3>
               </div>
-              <Link to="/products" className="text-xs font-bold text-[#8B5CF6] hover:underline">
-                Xem thêm drops khác →
+              <Link to="/products" className="text-xs font-semibold text-[#18181B] hover:text-[#78716C] transition-colors">
+                Khám phá thêm bộ sưu tập →
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
               {relatedProducts.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}
@@ -546,27 +696,30 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
           isOpen={isSizeGuideOpen}
           onClose={() => setIsSizeGuideOpen(false)}
           title="BẢNG QUY CHUẨN KÍCH CỠ (SIZE GUIDE)"
-          description={`Thông số cho ${product.name} — Phom ${product.fit}`}
+          description={`Thông số kích thước đo chuẩn cho ${product.name} — Phom ${product.fit}`}
           maxWidth="2xl"
         >
           <div className="space-y-4 text-xs font-sans">
-            <p className="text-[#71717A]">
-              Số đo quy chuẩn theo phom rộng Streetwear. Nếu thích mặc phủ rũ rộng rãi hãy chọn đúng size hoặc up 1 size:
-            </p>
+            <div className="flex items-center gap-2 text-[#78716C] bg-[#F7F7F6] p-3 rounded-lg border border-[#ECEAE7]">
+              <Ruler className="w-4 h-4 text-[#18181B] shrink-0" />
+              <span>
+                Số đo phom dáng thời trang Hàn Quốc. Nếu bạn thích mặc rộng rãi phủ rũ (oversized fit), hãy chọn đúng kích cỡ tiêu chuẩn hoặc nâng 1 size.
+              </span>
+            </div>
 
-            <div className="overflow-x-auto rounded-xl border border-[#E4E4E7]">
-              <table className="w-full text-left divide-y divide-[#E4E4E7] text-xs">
-                <thead className="bg-[#F2F3F5] font-bold text-[#18181B]">
+            <div className="overflow-x-auto rounded-xl border border-[#ECEAE7]">
+              <table className="w-full text-left divide-y divide-[#ECEAE7] text-xs">
+                <thead className="bg-[#F0EFED] font-semibold text-[#18181B]">
                   <tr>
                     <th className="p-3">Size</th>
                     <th className="p-3">Vòng ngực</th>
                     <th className="p-3">Vòng eo</th>
                     <th className="p-3">Dài áo/quần</th>
-                    <th className="p-3">Chiều cao</th>
-                    <th className="p-3">Cân nặng</th>
+                    <th className="p-3">Chiều cao gợi ý</th>
+                    <th className="p-3">Cân nặng gợi ý</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E4E4E7] bg-white">
+                <tbody className="divide-y divide-[#ECEAE7] bg-white">
                   {(product.sizeMeasurements && product.sizeMeasurements.length > 0
                     ? product.sizeMeasurements
                     : [
@@ -576,8 +729,8 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                         { size: 'XL', chest: '124 cm', waist: '88 cm', length: '76 cm', fitHeight: '1m76 - 1m86', fitWeight: '78 - 90 kg' },
                       ]
                   ).map((m: any) => (
-                    <tr key={m.size} className="hover:bg-[#F2F3F5]">
-                      <td className="p-3 font-bold text-[#18181B] bg-[#F2F3F5]">{m.size}</td>
+                    <tr key={m.size} className="hover:bg-[#F7F7F6] transition-colors">
+                      <td className="p-3 font-bold text-[#18181B] bg-[#F7F7F6]">{m.size}</td>
                       <td className="p-3">{m.chest || '—'}</td>
                       <td className="p-3">{m.waist || '—'}</td>
                       <td className="p-3">{m.length || '—'}</td>
@@ -591,27 +744,27 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
           </div>
         </Modal>
 
-        {/* Mobile Sticky Bottom Purchase Bar */}
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-[#E4E4E7] px-4 py-3 shadow-elevated">
+        {/* Mobile Sticky Bottom Purchase Bar (Offset so it doesn't overlap Chatbot) */}
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-[#ECEAE7] px-4 py-3 shadow-lg">
           <div className="flex items-center justify-between gap-3 max-w-md mx-auto">
             <div className="flex items-center gap-2.5 min-w-0">
               <img
                 src={product.images[0]}
                 alt={product.name}
-                className="w-10 h-10 object-cover rounded-lg border border-[#E4E4E7] shrink-0"
+                className="w-10 h-10 object-cover rounded-lg border border-[#ECEAE7] shrink-0"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src =
                     'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=800&auto=format&fit=crop&q=80';
                 }}
               />
               <div className="min-w-0">
-                <p className="text-xs font-bold text-[#18181B] truncate">{product.name}</p>
-                <div className="flex items-center gap-2">
+                <p className="text-xs font-semibold text-[#18181B] truncate">{product.name}</p>
+                <div className="flex items-center gap-1.5">
                   <span className="text-xs font-bold text-[#18181B]">
                     {formatPrice(currentPrice)}
                   </span>
                   {selectedSize && (
-                    <span className="text-[10px] bg-[#F3E8FF] text-[#7C3AED] px-1.5 py-0.2 rounded font-bold border border-[#DDD6FE]">
+                    <span className="text-[10px] bg-[#F0EFED] text-[#18181B] px-1.5 py-0.2 rounded font-semibold border border-[#ECEAE7]">
                       {selectedSize}
                     </span>
                   )}
@@ -620,9 +773,9 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
             </div>
 
             <Button
-              variant="accent"
+              variant="primary"
               size="sm"
-              className="shrink-0 h-10 px-4 text-xs font-bold uppercase tracking-wider"
+              className="shrink-0 h-10 px-4 text-xs font-bold uppercase tracking-wider rounded-xl bg-[#18181B] text-white hover:bg-[#27272A]"
               disabled={currentStock <= 0 || !selectedSize}
               isLoading={isAdding}
               onClick={() => handleAddToCart(false)}
@@ -644,15 +797,15 @@ export const ProductDetailPage: React.FC = () => {
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-24 text-center space-y-4">
-        <h2 className="text-2xl font-bold text-brand-primary uppercase">
+        <h2 className="text-2xl font-bold text-[#18181B] tracking-tight">
           Không tìm thấy thiết kế này
         </h2>
-        <p className="text-xs text-brand-secondary">
+        <p className="text-xs text-[#78716C]">
           Sản phẩm có thể đã ngừng mở bán hoặc đường dẫn không chính xác.
         </p>
         <Link to="/products">
-          <Button variant="accent" size="sm" className="font-bold">
-            Xem toàn bộ sản phẩm Streetwear
+          <Button variant="primary" size="sm" className="font-bold bg-[#18181B] text-white rounded-xl">
+            Xem toàn bộ bộ sưu tập
           </Button>
         </Link>
       </div>

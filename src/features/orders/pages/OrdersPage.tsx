@@ -14,7 +14,7 @@ export const OrdersPage: React.FC = () => {
   const allOrders = MockRepo.getOrders();
 
   // Chỉ lấy đơn hàng thuộc về currentUser hiện tại
-  const myOrders = allOrders.filter((o) => o.userId === currentUser.id);
+  const myOrders = currentUser ? allOrders.filter((o) => o.userId === currentUser.id) : [];
 
   const [statusFilter, setStatusFilter] = useState<string>('ALL');
 
@@ -39,6 +39,24 @@ export const OrdersPage: React.FC = () => {
         return <Badge>{status}</Badge>;
     }
   };
+
+  if (!currentUser) {
+    return (
+      <div className="max-w-4xl mx-auto px-4 py-20 text-center space-y-4">
+        <h2 className="text-2xl font-bold text-[#18181B] tracking-tight">Vui lòng đăng nhập</h2>
+        <p className="text-xs text-[#78716C] max-w-sm mx-auto">
+          Đăng nhập tài khoản để tra cứu lịch sử mua sắm và theo dõi tình trạng đơn hàng của bạn.
+        </p>
+        <div className="pt-2">
+          <Link to="/login?redirect=/orders">
+            <Button variant="primary" size="sm" className="bg-[#18181B] text-white rounded-xl font-bold">
+              Đăng nhập ngay
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">

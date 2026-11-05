@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Outlet, Link, useNavigate } from 'react-router-dom';
 import {
   Home,
@@ -28,6 +28,12 @@ export const AdminLayout: React.FC = () => {
   useRepoSubscription(['products', 'orders', 'inventory', 'auth']);
   const currentUser = MockRepo.getCurrentUser();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!currentUser || currentUser.role !== 'admin') {
+      navigate('/403', { replace: true });
+    }
+  }, [currentUser, navigate]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const { success } = useToast();
@@ -47,6 +53,10 @@ export const AdminLayout: React.FC = () => {
     { to: '/admin/users', label: 'Customers', icon: Users },
     { to: '/admin/inventory', label: 'Quản lý kho', icon: Boxes },
   ];
+
+  if (!currentUser || currentUser.role !== 'admin') {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-[#F4F4F5]/60 flex text-[#18181B] font-sans">
