@@ -17,7 +17,8 @@
     "build": "npm --prefix frontend run build",
     "build:fe": "npm --prefix frontend run build",
     "build:be": "npm --prefix backend run build",
-    "lint": "npm --prefix frontend run lint"
+    "lint": "npm --prefix frontend run lint",
+    "test:variants": "node scripts/test-variants.cjs"
   },
   "keywords": [
     "fashion",

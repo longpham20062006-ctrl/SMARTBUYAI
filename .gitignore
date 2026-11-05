@@ -12,6 +12,10 @@ node_modules
 dist
 dist-ssr
 *.local
+*test_credentials*
+*demo_credentials*
+data/*.local
+backend/data/*.local
 
 # Environment variables & API keys
 .env
@@ -21,6 +25,7 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
 .DS_Store
 Thumbs.db
@@ -66,3 +71,4 @@ ai-server/test_result.png
 
 # ECC - local AI agents and skills
 .agents/
+edge-debug-profile/

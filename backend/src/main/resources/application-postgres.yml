@@ -1,0 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: postgres
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/smartbuydb
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: postgrespassword
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update

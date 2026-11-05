@@ -1,0 +1,10 @@
+# Install after official FASHN requirements using pip install -e vendor/fashn-vton-1.5
+# Pinned versions compatible with PyTorch 2.5.1+cu121 and NumPy 1.26.x
+transformers>=4.48.0,<5.0.0
+opencv-python>=4.8.0,<4.11.0
+gradio>=5.35,<6
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+python-multipart>=0.0.9
+numpy>=1.26,<2
+pillow>=10.3,<12

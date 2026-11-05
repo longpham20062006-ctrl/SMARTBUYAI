@@ -3,12 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SMARTBUY AI — Gen Z Streetwear & Contemporary Fashion</title>
+    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>SMARTBUY AI | Gen Z Fashion & AI Virtual Try-On</title>
     <meta name="description" content="SMARTBUY AI — Cửa hàng thời trang Gen Z streetwear, Y2K, Korean casual giá học sinh sinh viên. Khám phá 120+ mẫu áo thun, baggy jeans, cargo, croptop và phụ kiện cực chất." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script>
+      // 1. Mobile Polyfills & Environment Guards
+      window.process = window.process || { env: { NODE_ENV: 'development' } };
+
+      // 2. Eruda Mobile Console Loader (Kích hoạt khi URL có ?debug=1 hoặc ?eruda=1)
+      (function() {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          if (params.get('debug') === '1' || params.get('eruda') === '1') {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/eruda';
+            script.onload = function() {
+              if (window.eruda) window.eruda.init();
+            };
+            document.head.appendChild(script);
+          }
+        } catch (e) {}
+      })();
+
+      // 3. Fallback chống màn hình trắng khi có lỗi JavaScript nghiêm trọng ở cấp trình duyệt mobile
+      window.addEventListener('error', function(event) {
+        var root = document.getElementById('root');
+        // Nếu React chưa mount được bất kỳ phần tử nào vào #root sau 2.5s thì hiển thị giao diện phục hồi
+        setTimeout(function() {
+          if (root && (!root.children || root.children.length === 0)) {
+            var errorMsg = event.message || (event.error && event.error.message) || 'Lỗi không xác định khi tải gói giao diện';
+            root.innerHTML =
+              '<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:#050510;color:#FFFFFF;font-family:system-ui,-apple-system,sans-serif;text-align:center;">' +
+                '<div style="max-width:380px;width:100%;background:#18181B;border:1px solid #3F3F46;border-radius:20px;padding:28px 20px;box-shadow:0 10px 40px rgba(0,0,0,0.5);">' +
+                  '<div style="width:48px;height:48px;margin:0 auto 16px;background:rgba(239,68,68,0.15);color:#EF4444;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;">!</div>' +
+                  '<h2 style="font-size:18px;font-weight:bold;margin:0 0 8px;color:#FFFFFF;">SMARTBUY AI</h2>' +
+                  '<p style="font-size:13px;color:#A1A1AA;line-height:1.5;margin:0 0 16px;">Phát hiện sự cố tương thích trình duyệt mobile khi khởi chạy ứng dụng.</p>' +
+                  '<div style="background:#09090B;border:1px solid #27272A;border-radius:10px;padding:12px;font-family:monospace;font-size:11px;color:#F43F5E;text-align:left;word-break:break-all;margin-bottom:20px;max-height:100px;overflow-y:auto;">' +
+                    errorMsg +
+                  '</div>' +
+                  '<div style="display:flex;flex-direction:column;gap:10px;">' +
+                    '<button onclick="window.location.reload()" style="background:#8B5CF6;color:#FFF;border:none;border-radius:12px;padding:12px 16px;font-size:13px;font-weight:bold;cursor:pointer;">Tải lại trang</button>' +
+                    '<button onclick="try{localStorage.clear();sessionStorage.clear();}catch(e){}window.location.href=\'/?intro=0\';" style="background:transparent;color:#A1A1AA;border:1px solid #3F3F46;border-radius:12px;padding:10px 16px;font-size:12px;cursor:pointer;">Xóa bộ nhớ đệm & Mở lại</button>' +
+                    '<a href="?eruda=1" style="color:#22D3EE;font-size:11px;text-decoration:none;margin-top:6px;">Mở bảng điều khiển DevTools (Eruda)</a>' +
+                  '</div>' +
+                '</div>' +
+              '</div>';
+          }
+        }, 2500);
+      });
+    </script>
   </head>
   <body class="bg-white text-black font-sans antialiased selection:bg-[#39FF14] selection:text-black min-h-screen">
     <div id="root"></div>

@@ -1,0 +1,48 @@
+package com.smartbuyai.controller;
+
+import org.springframework.security.core.Authentication;
+import com.smartbuyai.dto.TryOnRequest;
+import com.smartbuyai.dto.TryOnResponse;
+import com.smartbuyai.dto.TryOnStatusResponse;
+import com.smartbuyai.service.AiTryOnService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/v1/ai/try-on")
+@Tag(name = "AI Virtual Try-On", description = "Dịch vụ thử đồ AI ảo điều phối GPU RTX 3060")
+public class AiTryOnController {
+
+    private final AiTryOnService tryOnService;
+
+    public AiTryOnController(AiTryOnService tryOnService) {
+        this.tryOnService = tryOnService;
+    }
+
+    @PostMapping
+    @Operation(summary = "Tiếp nhận tác vụ thử đồ AI và đưa vào hàng đợi xử lý (Bắt buộc Customer đã đăng nhập)")
+    public ResponseEntity<TryOnResponse> submitTryOnJob(
+            @RequestBody TryOnRequest req,
+            Authentication auth) {
+        if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getPrincipal())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        String userId = auth.getName();
+        TryOnResponse response = tryOnService.submitTryOnJob(req, userId);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    }
+
+    @GetMapping("/{jobId}")
+    @Operation(summary = "Kiểm tra tiến độ thực thi và lấy ảnh kết quả thử đồ AI")
+    public ResponseEntity<TryOnStatusResponse> getJobStatus(@PathVariable String jobId) {
+        return ResponseEntity.ok(tryOnService.getJobStatus(jobId));
+    }
+}

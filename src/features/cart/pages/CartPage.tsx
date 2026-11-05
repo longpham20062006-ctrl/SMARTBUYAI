@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MockRepo } from '@/mocks/repository';
 import { formatPrice } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { BackButton } from '@/components/common/BackButton';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 import { useToast } from '@/components/ui/toast';
 import {
@@ -40,8 +41,11 @@ export const CartPage: React.FC = () => {
 
   if (cart.items.length === 0) {
     return (
-      <div className="bg-brand-bg min-h-[70vh] flex items-center justify-center">
-        <div className="max-w-md mx-auto px-4 py-16 text-center space-y-4">
+      <div className="bg-brand-bg min-h-[70vh] flex flex-col justify-center px-4 py-16">
+        <div className="max-w-md mx-auto w-full mb-4">
+          <BackButton to="/shop" label="Quay lại Shop" />
+        </div>
+        <div className="max-w-md mx-auto px-4 text-center space-y-4">
           <div className="w-20 h-20 rounded-full bg-brand-accent-light mx-auto flex items-center justify-center text-brand-accent">
             <ShoppingBag className="w-10 h-10 stroke-[1.5]" />
           </div>
@@ -67,13 +71,17 @@ export const CartPage: React.FC = () => {
   return (
     <div className="bg-brand-bg min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
-        {/* Title */}
-        <div>
-          <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-brand-secondary mb-2">
+        {/* Top Header Row with Back Button */}
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <BackButton to="/shop" label="Quay lại Shop" />
+          <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-brand-secondary">
             <Link to="/" className="hover:text-brand-primary">Trang chủ</Link>
             <span>/</span>
             <span className="text-brand-primary font-bold">Giỏ hàng ({cart.items.reduce((s, i) => s + i.quantity, 0)} món)</span>
           </div>
+        </div>
+
+        <div>
           <h1 className="text-3xl font-black text-brand-primary uppercase tracking-tight">
             GIỎ HÀNG CỦA BẠN
           </h1>

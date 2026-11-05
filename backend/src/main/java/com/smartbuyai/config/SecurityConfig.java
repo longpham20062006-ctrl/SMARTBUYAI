@@ -1,0 +1,81 @@
+package com.smartbuyai.config;
+
+import com.smartbuyai.security.JwtAuthenticationFilter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+@Configuration
+@EnableWebSecurity
+@EnableMethodSecurity
+public class SecurityConfig {
+
+    private final JwtAuthenticationFilter jwtFilter;
+
+    public SecurityConfig(JwtAuthenticationFilter jwtFilter) {
+        this.jwtFilter = jwtFilter;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .cors(Customizer.withDefaults())
+            .csrf(csrf -> csrf.disable())
+            .headers(headers -> headers.frameOptions(frame -> frame.disable())) // H2 Console
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .exceptionHandling(ex -> ex
+                .authenticationEntryPoint((request, response, authException) -> {
+                    response.setStatus(jakarta.servlet.http.HttpServletResponse.SC_UNAUTHORIZED);
+                    response.setContentType("application/json;charset=UTF-8");
+                    response.getWriter().write("{\"status\":401,\"error\":\"Unauthorized\",\"message\":\"Yêu cầu đăng nhập để truy cập tài nguyên này\"}");
+                })
+                .accessDeniedHandler((request, response, accessDeniedException) -> {
+                    response.setStatus(jakarta.servlet.http.HttpServletResponse.SC_FORBIDDEN);
+                    response.setContentType("application/json;charset=UTF-8");
+                    response.getWriter().write("{\"status\":403,\"error\":\"Forbidden\",\"message\":\"Tài khoản không có quyền truy cập khu vực Quản trị (Admin)\"}");
+                })
+            )
+            .authorizeHttpRequests(auth -> auth
+                // Swagger & H2
+                .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/api-docs/**", "/h2-console/**").permitAll()
+                // Auth APIs (Public)
+                .requestMatchers("/api/v1/auth/**").permitAll()
+                // Public shop preview APIs (Products & Categories - server-side sanitizes prices for unauthenticated callers)
+                .requestMatchers("/api/v1/products/**").permitAll()
+                .requestMatchers("/api/v1/categories/**").permitAll()
+                .requestMatchers("/api/v1/ai/stylist/**").permitAll()
+                // Authenticated Customer / Admin APIs (Cart, Orders/Checkout, Wishlist, AI Try-On)
+                .requestMatchers("/api/v1/cart/**").hasAnyRole("CUSTOMER", "ADMIN")
+                .requestMatchers("/api/v1/wishlist/**").hasAnyRole("CUSTOMER", "ADMIN")
+                .requestMatchers("/api/v1/orders/**").hasAnyRole("CUSTOMER", "ADMIN")
+                .requestMatchers("/api/v1/ai/try-on/**").hasAnyRole("CUSTOMER", "ADMIN")
+                // Admin exclusive APIs
+                .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+            );
+
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
+}

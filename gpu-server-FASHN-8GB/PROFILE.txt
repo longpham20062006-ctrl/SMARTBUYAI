@@ -1,0 +1,7 @@
+SmartFit AI - FASHN VTON 1.5
+Default: 8gb
+12GB: native model with GPU preprocessing, default 30 steps.
+8GB: CPU preprocessing + sequential CFG, default 20 steps.
+Both support the same UI/API/features and native 576x864 model output.
+
+This zip does NOT include model weights / official source. Run INSTALL.bat and DOWNLOAD_MODELS.bat first.
