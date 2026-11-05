@@ -142,7 +142,7 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-12">
         {/* Top bar with BackButton & Breadcrumbs */}
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <BackButton fallbackPath="/shop" label="Quay lại" />
+          <BackButton to="/shop" label="Quay lại Shop" />
           <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#71717A] overflow-x-auto py-1">
             <Link to="/" className="hover:text-[#18181B] whitespace-nowrap">Trang chủ</Link>
             <span>/</span>
@@ -321,12 +321,12 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                 {product.colors.filter((c) => c.slug !== 'chua-xac-minh' && c.slug !== 'phoi-mau').length > 1 && (
                   <div className="flex flex-wrap gap-2 pt-0.5">
                     {product.colors
-                      .filter((c) => c.slug !== 'chua-xac-minh' && c.slug !== 'phoi-mau')
-                      .map((c) => {
-                        const isSelected = selectedColor.slug === c.slug;
+                      .filter((c) => c && c.slug && c.slug !== 'chua-xac-minh' && c.slug !== 'phoi-mau')
+                      .map((c, cIdx) => {
+                        const isSelected = selectedColor?.slug === c.slug;
                         return (
                           <button
-                            key={c.slug}
+                            key={c.slug || `color-btn-${cIdx}`}
                             type="button"
                             onClick={() => {
                               setSelectedColor(c);
@@ -593,8 +593,8 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
-              {suggestedAccessories.map((acc) => (
-                <ProductCard key={acc.id} product={acc} />
+              {suggestedAccessories.map((acc, aIdx) => (
+                <ProductCard key={acc.id || `acc-${aIdx}`} product={acc} />
               ))}
             </div>
           </div>
@@ -618,8 +618,8 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
-              {relatedProducts.map((p) => (
-                <ProductCard key={p.id} product={p} />
+              {relatedProducts.map((p, pIdx) => (
+                <ProductCard key={p.id || `rel-${pIdx}`} product={p} />
               ))}
             </div>
           </div>
@@ -659,8 +659,8 @@ const ProductDetailContent: React.FC<{ product: Product }> = ({ product }) => {
                       { size: 'L', chest: '118 cm', waist: '82 cm', length: '74 cm', fitHeight: '1m72 - 1m80', fitWeight: '68 - 78 kg' },
                       { size: 'XL', chest: '124 cm', waist: '88 cm', length: '76 cm', fitHeight: '1m76 - 1m86', fitWeight: '78 - 90 kg' },
                     ]
-                  ).map((m: any) => (
-                    <tr key={m.size} className="hover:bg-[#F2F3F5]">
+                  ).map((m: any, mIdx: number) => (
+                    <tr key={m.size || `measure-${mIdx}`} className="hover:bg-[#F2F3F5]">
                       <td className="p-3 font-bold text-[#18181B] bg-[#F2F3F5]">{m.size}</td>
                       <td className="p-3">{m.chest || '—'}</td>
                       <td className="p-3">{m.waist || '—'}</td>

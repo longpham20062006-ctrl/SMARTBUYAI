@@ -24,6 +24,7 @@ import { safeSessionStorage } from '@/lib/storage';
 import { HeroFashionGallery } from '@/components/home/HeroFashionGallery';
 import { usePerformance } from '@/context/PerformanceContext';
 import { resetGlobalScroll } from '@/components/common/ScrollToTop';
+import { useToast } from '@/components/ui/toast';
 
 // Lazy-load Three.js ambient effect in Hero section
 const AmbientGalaxy = React.lazy(() =>
@@ -86,6 +87,19 @@ export const HomePage: React.FC = () => {
   useRepoSubscription(['products', 'auth']);
   const navigate = useNavigate();
   const { isSaver } = usePerformance();
+  const currentUser = MockRepo.getCurrentUser();
+  const { toast } = useToast();
+
+  const handleProtectedAction = (targetPath: string) => {
+    if (!currentUser) {
+      safeSessionStorage.setItem('sb_login_notice', 'Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!');
+      toast('Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!', 'Trải nghiệm mua sắm cùng SMARTBUY AI', 'info');
+      navigate(`/login?redirect=${encodeURIComponent(targetPath)}`);
+    } else {
+      resetGlobalScroll();
+      navigate(targetPath);
+    }
+  };
 
   // Trang chủ công khai: Luôn hiển thị cho khách và người dùng
   useEffect(() => {
@@ -227,16 +241,15 @@ export const HomePage: React.FC = () => {
 
                 {/* CTAs theo Master Prompt V19 Section II.2 */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-                  <Link to="/shop">
-                    <Button
-                      variant="accent"
-                      size="lg"
-                      className="w-full sm:w-auto text-xs uppercase tracking-wider font-extrabold shadow-elevated bg-[#8B5CF6] hover:bg-[#7C3AED] text-white py-4 px-8 rounded-xl cursor-pointer"
-                    >
-                      <Zap className="w-4 h-4 mr-2" />
-                      KHÁM PHÁ THỜI TRANG
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="accent"
+                    size="lg"
+                    onClick={() => handleProtectedAction('/shop')}
+                    className="w-full sm:w-auto text-xs uppercase tracking-wider font-extrabold shadow-elevated bg-[#8B5CF6] hover:bg-[#7C3AED] text-white py-4 px-8 rounded-xl cursor-pointer"
+                  >
+                    <Zap className="w-4 h-4 mr-2" />
+                    KHÁM PHÁ THỜI TRANG
+                  </Button>
 
                   <a href="#san-pham-hot">
                     <Button
@@ -306,13 +319,14 @@ export const HomePage: React.FC = () => {
                   Các mẫu thiết kế nổi bật nhất từ SMARTBUY AI, tập trung vào hình ảnh và chi tiết phom dáng.
                 </p>
               </div>
-              <Link
-                to="/shop"
-                className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors whitespace-nowrap group"
+              <button
+                type="button"
+                onClick={() => handleProtectedAction('/shop')}
+                className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors whitespace-nowrap group cursor-pointer"
               >
                 <span>Vào Shop xem giá & mua sắm</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </button>
             </div>
 
             {/* Lưới 6 sản phẩm HOT nổi bật — HomeProductCard: 0 GIÁ, NÚT XEM CHI TIẾT */}
@@ -327,14 +341,15 @@ export const HomePage: React.FC = () => {
 
             {/* Nút lớn dẫn vào Shopping Area */}
             <div className="mt-10 text-center">
-              <Link
-                to="/shop"
+              <button
+                type="button"
+                onClick={() => handleProtectedAction('/shop')}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-[#18181B] hover:bg-[#27272A] text-white text-xs uppercase tracking-wider font-extrabold shadow-md hover:shadow-lg transition-all group cursor-pointer"
               >
                 <ShoppingBag className="w-4 h-4 text-[#8B5CF6]" />
                 <span>Khám phá toàn bộ sản phẩm trong Shop</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </button>
             </div>
           </section>
         </ScrollReveal>
@@ -357,22 +372,23 @@ export const HomePage: React.FC = () => {
                   Bộ sưu tập 4 outfit thực tế đại diện cho tinh thần tự do, nổi bật và khác biệt của giới trẻ hiện đại.
                 </p>
               </div>
-              <Link
-                to="/shop"
-                className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors whitespace-nowrap group"
+              <button
+                type="button"
+                onClick={() => handleProtectedAction('/shop')}
+                className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors whitespace-nowrap group cursor-pointer"
               >
                 <span>Xem bộ sưu tập trong Shop</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </button>
             </div>
 
             {/* Lưới 4 Thẻ Lookbook hiển thị trọn vẹn 4 ảnh trong public/images/anh_trangchu/ */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {EDITORIAL_LOOKS.map((look) => (
-                <Link
+                <div
                   key={look.id}
-                  to={look.link}
-                  className="group relative rounded-3xl overflow-hidden bg-[#18181B] border border-[#E4E4E7] hover:border-[#8B5CF6]/50 shadow-card hover:shadow-xl transition-all duration-300 flex flex-col justify-between select-none"
+                  onClick={() => handleProtectedAction(look.link)}
+                  className="group relative rounded-3xl overflow-hidden bg-[#18181B] border border-[#E4E4E7] hover:border-[#8B5CF6]/50 shadow-card hover:shadow-xl transition-all duration-300 flex flex-col justify-between select-none cursor-pointer"
                 >
                   {/* Container ảnh chuẩn tỷ lệ 3:4 */}
                   <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#27272A]">
@@ -414,7 +430,7 @@ export const HomePage: React.FC = () => {
                       <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </section>
@@ -435,22 +451,23 @@ export const HomePage: React.FC = () => {
                 Khám phá xu hướng thời trang
               </h2>
             </div>
-            <Link
-              to="/shop"
-              className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors group"
+            <button
+              type="button"
+              onClick={() => handleProtectedAction('/shop')}
+              className="text-xs font-bold text-[#8B5CF6] hover:text-[#7C3AED] flex items-center gap-1 transition-colors group cursor-pointer"
             >
               <span>Vào Shop mua sắm đầy đủ</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </button>
           </div>
 
           {/* 5 Thẻ Danh Mục Thời Trang Nổi Bật */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-5">
             {categoryCards.map((cat, idx) => (
-              <Link
+              <div
                 key={idx}
-                to={cat.link}
-                className="group relative rounded-2xl overflow-hidden aspect-[3/4] bg-[#E4E4E7] shadow-card border border-[#E4E4E7] transition-all duration-300 hover:shadow-elevated hover:border-[#8B5CF6]"
+                onClick={() => handleProtectedAction(cat.link)}
+                className="group relative rounded-2xl overflow-hidden aspect-[3/4] bg-[#E4E4E7] shadow-card border border-[#E4E4E7] transition-all duration-300 hover:shadow-elevated hover:border-[#8B5CF6] cursor-pointer"
               >
                 <img
                   src={cat.image}
@@ -478,7 +495,7 @@ export const HomePage: React.FC = () => {
                     </span>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
 
@@ -522,15 +539,14 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 <div>
-                  <Link to="/shop?gender=nam">
-                    <Button
-                      variant="accent"
-                      size="lg"
-                      className="text-xs uppercase font-extrabold tracking-wider bg-[#18181B] hover:bg-[#27272A] text-white py-4 px-8 rounded-xl cursor-pointer"
-                    >
-                      KHÁM PHÁ THỜI TRANG NAM TRONG SHOP →
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="accent"
+                    size="lg"
+                    onClick={() => handleProtectedAction('/shop?gender=nam')}
+                    className="text-xs uppercase font-extrabold tracking-wider bg-[#18181B] hover:bg-[#27272A] text-white py-4 px-8 rounded-xl cursor-pointer"
+                  >
+                    KHÁM PHÁ THỜI TRANG NAM TRONG SHOP →
+                  </Button>
                 </div>
               </div>
             </div>
@@ -559,15 +575,14 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 <div>
-                  <Link to="/shop?gender=nu">
-                    <Button
-                      variant="accent"
-                      size="lg"
-                      className="text-xs uppercase font-extrabold tracking-wider bg-[#EC4899] hover:bg-[#DB2777] text-white py-4 px-8 rounded-xl cursor-pointer"
-                    >
-                      KHÁM PHÁ THỜI TRANG NỮ TRONG SHOP →
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="accent"
+                    size="lg"
+                    onClick={() => handleProtectedAction('/shop?gender=nu')}
+                    className="text-xs uppercase font-extrabold tracking-wider bg-[#EC4899] hover:bg-[#DB2777] text-white py-4 px-8 rounded-xl cursor-pointer"
+                  >
+                    KHÁM PHÁ THỜI TRANG NỮ TRONG SHOP →
+                  </Button>
                 </div>
               </div>
 
@@ -688,27 +703,25 @@ export const HomePage: React.FC = () => {
               </div>
 
               <div className="pt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                <Link to="/shop">
-                  <Button
-                    variant="accent"
-                    size="lg"
-                    className="w-full sm:w-auto text-xs uppercase font-black tracking-wider bg-[#8B5CF6] hover:bg-[#7C3AED] text-white py-4 px-8 rounded-xl shadow-elevated cursor-pointer"
-                  >
-                    <ShoppingBag className="w-4 h-4 mr-2" />
-                    VÀO SHOP MUA SẮM NGAY
-                  </Button>
-                </Link>
+                <Button
+                  variant="accent"
+                  size="lg"
+                  onClick={() => handleProtectedAction('/shop')}
+                  className="w-full sm:w-auto text-xs uppercase font-black tracking-wider bg-[#8B5CF6] hover:bg-[#7C3AED] text-white py-4 px-8 rounded-xl shadow-elevated cursor-pointer"
+                >
+                  <ShoppingBag className="w-4 h-4 mr-2" />
+                  VÀO SHOP MUA SẮM NGAY
+                </Button>
 
-                <Link to="/try-on">
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    className="w-full sm:w-auto text-xs uppercase font-bold bg-[#F4F4F5] hover:bg-[#E4E4E7] text-[#18181B] py-4 px-7 rounded-xl cursor-pointer"
-                  >
-                    <Sparkles className="w-4 h-4 mr-2 text-[#8B5CF6]" />
-                    THỬ ĐỒ AI NGAY →
-                  </Button>
-                </Link>
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  onClick={() => handleProtectedAction('/try-on')}
+                  className="w-full sm:w-auto text-xs uppercase font-bold bg-[#F4F4F5] hover:bg-[#E4E4E7] text-[#18181B] py-4 px-7 rounded-xl cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4 mr-2 text-[#8B5CF6]" />
+                  THỬ ĐỒ AI NGAY →
+                </Button>
               </div>
             </div>
           </div>

@@ -43,7 +43,7 @@ export const CartPage: React.FC = () => {
     return (
       <div className="bg-brand-bg min-h-[70vh] flex flex-col justify-center px-4 py-16">
         <div className="max-w-md mx-auto w-full mb-4">
-          <BackButton fallbackPath="/shop" label="Quay lại" />
+          <BackButton to="/shop" label="Quay lại Shop" />
         </div>
         <div className="max-w-md mx-auto px-4 text-center space-y-4">
           <div className="w-20 h-20 rounded-full bg-brand-accent-light mx-auto flex items-center justify-center text-brand-accent">
@@ -73,7 +73,7 @@ export const CartPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
         {/* Top Header Row with Back Button */}
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <BackButton fallbackPath="/shop" label="Quay lại" />
+          <BackButton to="/shop" label="Quay lại Shop" />
           <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-brand-secondary">
             <Link to="/" className="hover:text-brand-primary">Trang chủ</Link>
             <span>/</span>

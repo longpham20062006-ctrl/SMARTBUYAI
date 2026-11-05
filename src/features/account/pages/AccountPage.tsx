@@ -259,7 +259,7 @@ export const AccountPage: React.FC = () => {
     <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
       {/* Top Header Row with Back Button */}
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <BackButton fallbackPath="/shop" label="Quay lại" />
+        <BackButton to="/shop" label="Quay lại Shop" />
         <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs uppercase tracking-wider text-[#71717A]">
           <Link to="/" className="hover:text-[#18181B]">Trang chủ</Link>
           <span>/</span>

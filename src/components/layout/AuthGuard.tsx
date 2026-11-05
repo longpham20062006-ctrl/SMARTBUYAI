@@ -31,16 +31,12 @@ export const AuthGuard: React.FC<AuthGuardProps> = ({
     if (isIntroActive && !isIntroSeen) {
       return <Navigate to="/intro" replace />;
     }
-    const searchParams = new URLSearchParams(location.search);
-    const redirectUrl = searchParams.get('redirect');
-    return <Navigate to={redirectUrl ? decodeURIComponent(redirectUrl) : '/'} replace />;
+    return <Navigate to="/" replace />;
   }
 
   // If user is not logged in and page is protected
   if (!currentUser && !publicOnly) {
-    if (safeSessionStorage.getItem('sb_logging_out')) {
-      return <Navigate to="/" replace />;
-    }
+    safeSessionStorage.setItem('sb_login_notice', 'Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!');
     const redirectUrl = encodeURIComponent(location.pathname + location.search);
     return <Navigate to={`/login?redirect=${redirectUrl}`} replace />;
   }

@@ -282,7 +282,7 @@ export function ProductTryOn() {
 
         {/* Top Bar with BackButton & Breadcrumb */}
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <BackButton fallbackPath="/shop" label="Quay lại" />
+          <BackButton to="/shop" label="Quay lại Shop" />
 
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs uppercase tracking-wider text-[#71717A]">
             <Link to="/" className="hover:text-[#8B5CF6] transition-colors">Trang chủ</Link>

@@ -6,6 +6,7 @@ import { ProductCard } from '@/components/common/ProductCard';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Flame } from 'lucide-react';
 import { GENZ_COLLECTIONS } from '@/mocks/genzCategories';
+import { BackButton } from '@/components/common/BackButton';
 
 export const CollectionDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -44,13 +45,9 @@ export const CollectionDetailPage: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
         <div className="absolute inset-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-10 text-white space-y-3">
-          <Link
-            to="/collections"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/80 hover:text-white transition-colors"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Quay lại danh sách bộ sưu tập</span>
-          </Link>
+          <div className="mb-2">
+            <BackButton to="/shop" label="Quay lại Shop" />
+          </div>
 
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-bold uppercase text-brand-accent-light w-fit border border-white/10">
             <Flame className="w-3.5 h-3.5 text-brand-accent" />

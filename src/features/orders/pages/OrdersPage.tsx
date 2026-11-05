@@ -47,7 +47,7 @@ export const OrdersPage: React.FC = () => {
     <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
       {/* Top Bar with Back Button & Breadcrumbs */}
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <BackButton fallbackPath="/shop" label="Quay lại" />
+        <BackButton to="/shop" label="Quay lại Shop" />
         <div className="flex items-center gap-2 text-xs text-brand-muted">
           <Link to="/" className="hover:text-brand-charcoal">Trang chủ</Link>
           <span>/</span>

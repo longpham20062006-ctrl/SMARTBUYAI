@@ -6,6 +6,7 @@ import { getValidProductImages, isProductEligibleForPublicDisplay } from '@/lib/
 import { MockRepo } from '@/mocks/repository';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 import { useToast } from '@/components/ui/toast';
+import { safeSessionStorage } from '@/lib/storage';
 
 interface HomeProductCardProps {
   product: Product;
@@ -47,7 +48,8 @@ export const HomeProductCard: React.FC<HomeProductCardProps> = ({
     e.stopPropagation();
 
     if (isGuest) {
-      toast('Vui lòng đăng nhập để tiếp tục mua sắm.', 'Chuyển sang trang đăng nhập...', 'info');
+      safeSessionStorage.setItem('sb_login_notice', 'Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!');
+      toast('Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!', 'Trải nghiệm mua sắm cùng SMARTBUY AI', 'info');
       navigate(`/login?redirect=${encodeURIComponent('/products/' + product.slug)}`);
     } else {
       // Customer hoặc Admin: Điều hướng sang trang Product Detail trong Shopping Area

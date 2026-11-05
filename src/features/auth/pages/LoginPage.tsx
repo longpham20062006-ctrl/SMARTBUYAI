@@ -44,7 +44,7 @@ export const LoginPage: React.FC = () => {
 
   const searchParams = new URLSearchParams(location.search);
   const redirectUrl = searchParams.get('redirect');
-  const targetPath = redirectUrl ? decodeURIComponent(redirectUrl) : null;
+  const hasNotice = Boolean(redirectUrl || safeSessionStorage.getItem('sb_login_notice'));
 
   // Luồng đăng nhập thủ công: Tuyệt đối KHÔNG điền sẵn tài khoản/mật khẩu
   const [email, setEmail] = useState('');
@@ -142,12 +142,14 @@ export const LoginPage: React.FC = () => {
         safeSessionStorage.removeItem('sb_intro_active');
         safeSessionStorage.removeItem('sb_play_intro');
         safeSessionStorage.removeItem('sb_post_intro_redirect');
+        safeSessionStorage.removeItem('sb_login_notice');
       } else {
         // Customer: Kích hoạt cờ sb_intro_active trong safeSessionStorage TRƯỚC KHI notify auth
         safeSessionStorage.setItem('sb_intro_active', '1');
         safeSessionStorage.setItem('sb_intro_user', authenticatedUser.email);
         safeSessionStorage.removeItem('sb_intro_seen');
         safeSessionStorage.removeItem('sb_post_intro_redirect');
+        safeSessionStorage.removeItem('sb_login_notice');
       }
 
       // 4. CẬP NHẬT TRẠNG THÁI ĐĂNG NHẬP DÙNG CHUNG (Phát sự kiện auth an toàn sau khi đã có cờ)
@@ -295,10 +297,12 @@ export const LoginPage: React.FC = () => {
           </div>
 
           {/* Thông báo thân thiện khi khách được yêu cầu đăng nhập */}
-          {redirectUrl && (
-            <div className="mt-4 p-3 rounded-2xl bg-purple-950/40 border border-[#8B5CF6]/50 text-purple-200 text-xs flex items-center gap-2.5 animate-fade-in shadow-xs">
+          {hasNotice && (
+            <div className="mt-4 p-3.5 rounded-2xl bg-purple-950/50 border border-[#8B5CF6]/50 text-purple-200 text-xs flex items-center gap-2.5 animate-fade-in shadow-xs">
               <Sparkles className="w-4 h-4 shrink-0 text-[#22D3EE]" />
-              <span className="font-semibold text-white">Vui lòng đăng nhập để tiếp tục mua sắm.</span>
+              <span className="font-semibold text-white">
+                Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!
+              </span>
             </div>
           )}
 

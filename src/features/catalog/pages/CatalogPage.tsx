@@ -484,11 +484,16 @@ export const CatalogPage: React.FC = () => {
       if (genderParam === 'nam' && p.gender !== 'nam') return;
       if (genderParam === 'nu' && p.gender !== 'nu') return;
       if (genderParam === 'unisex' && p.gender !== 'unisex') return;
+      if (!Array.isArray(p.colors)) return;
       p.colors.forEach((c) => {
-        if (!map.has(c.slug)) {
-          map.set(c.slug, { slug: c.slug, name: c.name, hex: c.hex, count: 0 });
+        if (!c || typeof c !== 'object') return;
+        const slug = typeof c.slug === 'string' ? c.slug.trim() : '';
+        const name = typeof c.name === 'string' ? c.name.trim() : slug;
+        if (!slug) return;
+        if (!map.has(slug)) {
+          map.set(slug, { slug, name: name || slug, hex: c.hex || '#18181B', count: 0 });
         }
-        map.get(c.slug)!.count++;
+        map.get(slug)!.count++;
       });
     });
     return Array.from(map.values()).sort((a, b) => b.count - a.count);
@@ -937,8 +942,8 @@ export const CatalogPage: React.FC = () => {
               <span className="text-[11px] text-[#71717A]">({totalScopedProductsCount})</span>
             </button>
 
-            {groupedCategories.map((group) => (
-              <div key={group.groupKey} className="space-y-1">
+            {groupedCategories.map((group, groupIdx) => (
+              <div key={group.groupKey || `group-${groupIdx}`} className="space-y-1">
                 {/* Tiêu đề Cấp 2: Nhóm Lớn (Áo, Quần, Váy...) */}
                 <button
                   type="button"
@@ -958,9 +963,9 @@ export const CatalogPage: React.FC = () => {
 
                 {/* Danh sách Cấp 3: Loại sản phẩm */}
                 <div className="space-y-0.5 pl-1.5">
-                  {group.categories.map((cat) => (
+                  {group.categories.map((cat, catIdx) => (
                     <button
-                      key={cat.id}
+                      key={cat.id || cat.slug || `cat-${catIdx}`}
                       type="button"
                       onClick={() => updateParam('category', cat.slug)}
                       className={`w-full text-left py-1 px-2 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${
@@ -1056,11 +1061,11 @@ export const CatalogPage: React.FC = () => {
           {renderSectionHeader('Màu sắc', 'color', selectedColors.length)}
           {openSections.color && (
             <div className="flex flex-wrap gap-1.5 pt-2 animate-fade-in max-h-48 overflow-y-auto scrollbar-thin pr-1">
-              {availableColors.map((c) => {
+              {availableColors.map((c, colorIdx) => {
                 const isSelected = selectedColors.includes(c.slug);
                 return (
                   <button
-                    key={c.slug}
+                    key={c.slug || `color-${colorIdx}`}
                     type="button"
                     onClick={() => toggleArrayParam('color', c.slug)}
                     className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium border transition-all cursor-pointer ${
@@ -1105,7 +1110,7 @@ export const CatalogPage: React.FC = () => {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Top Row: Nút Quay Lại & Breadcrumb */}
           <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-            <BackButton fallbackPath="/" label="Quay lại" />
+            <BackButton to="/" label="Về Trang chủ" />
 
             {/* Breadcrumb nhỏ tương tác */}
             <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#71717A] overflow-x-auto py-1">

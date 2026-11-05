@@ -701,7 +701,7 @@ export const MockRepo = {
     safeSessionStorage.removeItem('sb_play_intro');
     safeSessionStorage.removeItem('sb_intro_seen');
     safeSessionStorage.removeItem('sb_post_intro_redirect');
-    safeSessionStorage.setItem('sb_logging_out', '1');
+    safeSessionStorage.removeItem('sb_logging_out');
     safeStorage.removeItem('sb_token');
     notifyChange('auth');
   },

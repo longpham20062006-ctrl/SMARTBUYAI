@@ -88,12 +88,14 @@ export const router = createBrowserRouter([
     children: [
       // Trang chủ công khai: BẤT KỲ AI CŨNG CÓ THỂ XEM
       { index: true, element: load(HomePage) },
-      // Customer Shop & Danh mục: Cho phép khách vãng lai và thành viên xem danh sách sản phẩm
-      { path: 'products', element: load(CatalogPage) },
-      { path: 'shop', element: load(CatalogPage) },
+
+      // Phân hệ Shopping Area dành riêng cho Customer đã đăng nhập:
+      // Khách chưa đăng nhập truy cập sẽ được chuyển hướng sang /login kèm thông báo thân thiện
+      { path: 'products', element: <AuthGuard allowedRoles={['customer']}>{load(CatalogPage)}</AuthGuard> },
+      { path: 'shop', element: <AuthGuard allowedRoles={['customer']}>{load(CatalogPage)}</AuthGuard> },
       { path: 'products/:slug', element: <AuthGuard allowedRoles={['customer']}>{load(ProductDetailPage)}</AuthGuard> },
-      { path: 'collections', element: load(CollectionsPage) },
-      { path: 'collections/:slug', element: load(CollectionDetailPage) },
+      { path: 'collections', element: <AuthGuard allowedRoles={['customer']}>{load(CollectionsPage)}</AuthGuard> },
+      { path: 'collections/:slug', element: <AuthGuard allowedRoles={['customer']}>{load(CollectionDetailPage)}</AuthGuard> },
       { path: 'cart', element: <AuthGuard allowedRoles={['customer']}>{load(CartPage)}</AuthGuard> },
       { path: 'checkout', element: <AuthGuard allowedRoles={['customer']}>{load(CheckoutPage)}</AuthGuard> },
       { path: 'wishlist', element: <AuthGuard allowedRoles={['customer']}>{load(FavoritesPage)}</AuthGuard> },

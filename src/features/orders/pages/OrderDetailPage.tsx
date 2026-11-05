@@ -47,7 +47,7 @@ export const OrderDetailPage: React.FC = () => {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-brand-border/60 pb-6">
         <div className="space-y-3">
-          <BackButton fallbackPath="/orders" label="Quay lại danh sách đơn" />
+          <BackButton to="/orders" label="Danh sách đơn hàng" />
           <div className="flex items-center gap-3">
             <h1 className="font-editorial text-2xl sm:text-3xl font-semibold text-brand-charcoal">
               Đơn hàng {order.orderNumber}

@@ -48,7 +48,7 @@ export const AdminOrderDetailPage: React.FC = () => {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-brand-border/60 pb-4">
         <div className="flex items-center gap-3">
-          <BackButton fallbackPath="/admin/orders" label="Quay lại" />
+          <BackButton to="/admin/orders" label="Danh sách đơn hàng" />
           <div>
             <div className="flex items-center gap-2">
               <h1 className="font-editorial text-2xl font-semibold text-brand-charcoal">

@@ -33,7 +33,7 @@ export const FavoritesPage: React.FC = () => {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Header Row with Back Button & Breadcrumbs */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-          <BackButton fallbackPath="/shop" label="Quay lại" />
+          <BackButton to="/shop" label="Quay lại Shop" />
 
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs uppercase tracking-wider text-[#71717A]">
             <Link to="/" className="hover:text-[#8B5CF6] transition-colors">

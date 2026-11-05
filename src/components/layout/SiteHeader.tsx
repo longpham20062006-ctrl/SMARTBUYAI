@@ -24,12 +24,24 @@ import { CartDrawer } from '@/components/common/CartDrawer';
 import { BrandLogo } from '@/components/common/BrandLogo';
 import { PerformanceToggle } from '@/components/common/PerformanceToggle';
 import { GENZ_COLLECTIONS, GENZ_CATEGORIES } from '@/mocks/genzCategories';
+import { useToast } from '@/components/ui/toast';
+import { safeSessionStorage } from '@/lib/storage';
 
 export const SiteHeader: React.FC = () => {
   useRepoSubscription(['cart', 'auth']);
   const cart = MockRepo.getCart();
   const currentUser = MockRepo.getCurrentUser();
   const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleShopClick = (e: React.MouseEvent) => {
+    if (!currentUser) {
+      e.preventDefault();
+      safeSessionStorage.setItem('sb_login_notice', 'Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!');
+      toast('Đăng nhập để khám phá cửa hàng và trải nghiệm mua sắm cùng SMARTBUY AI nhé!', 'Trải nghiệm mua sắm cùng SMARTBUY AI', 'info');
+      navigate('/login?redirect=%2Fshop');
+    }
+  };
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -250,6 +262,7 @@ export const SiteHeader: React.FC = () => {
 
               <NavLink
                 to="/shop"
+                onClick={handleShopClick}
                 className={({ isActive }) =>
                   cn(
                     'text-xs uppercase font-extrabold tracking-wider transition-colors py-1 border-b-2',
@@ -265,6 +278,7 @@ export const SiteHeader: React.FC = () => {
               {/* KHÁM PHÁ THỜI TRANG */}
               <Link
                 to="/shop"
+                onClick={handleShopClick}
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] hover:from-[#7C3AED] hover:to-[#6D28D9] text-white text-xs font-black uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95"
               >
                 <Sparkles className="w-3.5 h-3.5 text-cyan-200" />
@@ -673,14 +687,20 @@ export const SiteHeader: React.FC = () => {
             </a>
             <Link
               to="/shop"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => {
+                setIsMobileMenuOpen(false);
+                handleShopClick(e);
+              }}
               className="block px-3.5 py-2.5 rounded-xl font-bold hover:bg-[#F2F3F5] text-[#18181B] transition-colors text-xs uppercase tracking-wider"
             >
               Shop
             </Link>
             <Link
               to="/shop"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => {
+                setIsMobileMenuOpen(false);
+                handleShopClick(e);
+              }}
               className="flex items-center justify-between px-3.5 py-2.5 rounded-xl font-black bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white text-xs uppercase tracking-wider shadow-xs hover:shadow-md transition-all"
             >
               <div className="flex items-center gap-2">
