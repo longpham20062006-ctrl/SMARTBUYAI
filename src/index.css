@@ -101,22 +101,16 @@
   }
 
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto !important;
-    }
   }
 
   body {
     background-color: var(--fashion-bg);
     color: var(--fashion-text);
     font-family: 'Be Vietnam Pro', Inter, system-ui, -apple-system, sans-serif;
-    overflow-x: clip;
+    overflow-x: hidden;
   }
 
   ::selection {

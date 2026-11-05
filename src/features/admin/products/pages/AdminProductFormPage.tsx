@@ -45,7 +45,9 @@ export const AdminProductFormPage: React.FC = () => {
   const [seasons, setSeasons] = useState<string[]>(existingProduct?.seasons || ['he', 'xuan-thu']);
 
   // Images
-  const [images, setImages] = useState<string[]>(existingProduct?.images || []);
+  const [images, setImages] = useState<string[]>(existingProduct?.images || [
+    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=1000&auto=format&fit=crop&q=80',
+  ]);
   const [imageUrlInput, setImageUrlInput] = useState('');
   const [isUploading, setIsUploading] = useState(false);
 

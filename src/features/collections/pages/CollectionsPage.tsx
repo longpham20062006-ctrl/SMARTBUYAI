@@ -2,17 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { GENZ_COLLECTIONS } from '@/mocks/genzCategories';
 import { ArrowRight, Sparkles } from 'lucide-react';
-import { BackButton } from '@/components/common/BackButton';
 
 export const CollectionsPage: React.FC = () => {
   return (
     <div className="bg-brand-bg min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10">
-        {/* Top Bar with BackButton */}
-        <div className="flex items-center justify-between">
-          <BackButton to="/shop" label="Quay lại Shop" />
-        </div>
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent-light text-brand-accent text-xs font-bold uppercase tracking-wider">

@@ -6,7 +6,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
-import { BackButton } from '@/components/common/BackButton';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 import { ArrowLeft, XCircle } from 'lucide-react';
 
@@ -46,8 +45,11 @@ export const OrderDetailPage: React.FC = () => {
     <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-10">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-brand-border/60 pb-6">
-        <div className="space-y-3">
-          <BackButton to="/orders" label="Danh sách đơn hàng" />
+        <div className="space-y-1">
+          <Link to="/orders" className="text-xs text-brand-forest hover:underline inline-flex items-center gap-1 mb-1">
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Quay lại lịch sử đơn</span>
+          </Link>
           <div className="flex items-center gap-3">
             <h1 className="font-editorial text-2xl sm:text-3xl font-semibold text-brand-charcoal">
               Đơn hàng {order.orderNumber}
@@ -57,8 +59,8 @@ export const OrderDetailPage: React.FC = () => {
                 order.orderStatus === 'COMPLETED'
                   ? 'success'
                   : order.orderStatus === 'CANCELLED'
-                    ? 'danger'
-                    : 'forest'
+                  ? 'danger'
+                  : 'forest'
               }
             >
               {order.orderStatus}

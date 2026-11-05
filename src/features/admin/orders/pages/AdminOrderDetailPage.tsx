@@ -7,7 +7,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
-import { BackButton } from '@/components/common/BackButton';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 import { ArrowLeft, CheckCircle, Truck, PackageCheck, XCircle } from 'lucide-react';
 
@@ -48,7 +47,12 @@ export const AdminOrderDetailPage: React.FC = () => {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-brand-border/60 pb-4">
         <div className="flex items-center gap-3">
-          <BackButton to="/admin/orders" label="Danh sách đơn hàng" />
+          <Link
+            to="/admin/orders"
+            className="p-1.5 rounded-brand hover:bg-brand-sand text-brand-secondary hover:text-brand-charcoal"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </Link>
           <div>
             <div className="flex items-center gap-2">
               <h1 className="font-editorial text-2xl font-semibold text-brand-charcoal">

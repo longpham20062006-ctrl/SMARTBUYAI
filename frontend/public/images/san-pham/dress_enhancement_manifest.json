@@ -1,0 +1,1742 @@
+{
+  "generatedAt": "2026-10-24T15:25:00Z",
+  "totalDressesScanned": 91,
+  "totalEnhanced": 91,
+  "veryLowResCount": 82,
+  "targetResolution": [
+    600,
+    800
+  ],
+  "format": "WEBP & PNG",
+  "items": [
+    {
+      "folder": "1",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\1\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/1/anh.png",
+      "originalResolution": [
+        122,
+        163
+      ],
+      "originalSizeKB": 19.2,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_1.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_1.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 20.7,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "2",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\2\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/2/anh.png",
+      "originalResolution": [
+        123,
+        163
+      ],
+      "originalSizeKB": 18.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_2.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_2.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 20.8,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "3",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\3\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/3/anh.png",
+      "originalResolution": [
+        123,
+        163
+      ],
+      "originalSizeKB": 14.7,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_3.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_3.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 17.2,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "4",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\4\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/4/anh.png",
+      "originalResolution": [
+        122,
+        163
+      ],
+      "originalSizeKB": 14.2,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_4.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_4.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 15.1,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "5",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\5\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/5/anh.png",
+      "originalResolution": [
+        123,
+        163
+      ],
+      "originalSizeKB": 10.2,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_5.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_5.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 9.9,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "6",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\6\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/6/anh.png",
+      "originalResolution": [
+        123,
+        163
+      ],
+      "originalSizeKB": 8.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_6.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_6.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 18.0,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "7",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\7\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/7/anh.png",
+      "originalResolution": [
+        122,
+        164
+      ],
+      "originalSizeKB": 13.4,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_7.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_7.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 13.1,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "8",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\8\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/8/anh.png",
+      "originalResolution": [
+        123,
+        164
+      ],
+      "originalSizeKB": 14.0,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_8.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_8.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 14.2,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "9",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\9\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/9/anh.png",
+      "originalResolution": [
+        123,
+        164
+      ],
+      "originalSizeKB": 15.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_9.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_9.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 18.1,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "10",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\10\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/10/anh.png",
+      "originalResolution": [
+        122,
+        164
+      ],
+      "originalSizeKB": 12.9,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_10.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_10.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 12.6,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "11",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\11\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/11/anh.png",
+      "originalResolution": [
+        123,
+        164
+      ],
+      "originalSizeKB": 19.4,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_11.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_11.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 20.0,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "12",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\12\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/12/anh.png",
+      "originalResolution": [
+        123,
+        164
+      ],
+      "originalSizeKB": 15.1,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_12.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_12.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 14.2,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "13",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\13\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/13/anh.png",
+      "originalResolution": [
+        122,
+        163
+      ],
+      "originalSizeKB": 11.3,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_13.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_13.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 9.7,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "14",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\14\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/14/anh.png",
+      "originalResolution": [
+        123,
+        163
+      ],
+      "originalSizeKB": 11.7,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_14.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_14.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 11.4,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "15",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\15\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/15/anh.png",
+      "originalResolution": [
+        123,
+        163
+      ],
+      "originalSizeKB": 10.6,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_15.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_15.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 10.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "16",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\16\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/16/anh.png",
+      "originalResolution": [
+        122,
+        163
+      ],
+      "originalSizeKB": 14.0,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_16.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_16.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 13.5,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "17",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\17\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/17/anh.png",
+      "originalResolution": [
+        123,
+        163
+      ],
+      "originalSizeKB": 19.9,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_17.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_17.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 21.5,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "18",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\18\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/18/anh.png",
+      "originalResolution": [
+        123,
+        163
+      ],
+      "originalSizeKB": 18.3,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_18.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_18.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 19.6,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "19",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\19\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/19/anh.png",
+      "originalResolution": [
+        122,
+        164
+      ],
+      "originalSizeKB": 14.2,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_19.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_19.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 13.7,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "20",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\20\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/20/anh.png",
+      "originalResolution": [
+        123,
+        164
+      ],
+      "originalSizeKB": 10.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_20.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_20.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 10.6,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "21",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\21\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/21/anh.png",
+      "originalResolution": [
+        123,
+        164
+      ],
+      "originalSizeKB": 10.3,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_21.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_21.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 10.1,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "22",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\22\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/22/anh.png",
+      "originalResolution": [
+        122,
+        164
+      ],
+      "originalSizeKB": 10.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_22.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_22.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 10.8,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "23",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\23\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/23/anh.png",
+      "originalResolution": [
+        123,
+        164
+      ],
+      "originalSizeKB": 9.6,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_23.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_23.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 8.9,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "24",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\24\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/24/anh.png",
+      "originalResolution": [
+        123,
+        164
+      ],
+      "originalSizeKB": 14.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_24.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_24.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 14.2,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "25",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\25\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/25/anh.png",
+      "originalResolution": [
+        122,
+        163
+      ],
+      "originalSizeKB": 10.4,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_25.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_25.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 10.7,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "26",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\26\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/26/anh.png",
+      "originalResolution": [
+        123,
+        163
+      ],
+      "originalSizeKB": 16.3,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_26.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_26.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 16.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "27",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\27\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/27/anh.png",
+      "originalResolution": [
+        123,
+        163
+      ],
+      "originalSizeKB": 16.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_27.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_27.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 16.9,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "28",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\28\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/28/anh.png",
+      "originalResolution": [
+        122,
+        163
+      ],
+      "originalSizeKB": 16.8,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_28.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_28.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 18.6,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "29",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\29\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/29/anh.png",
+      "originalResolution": [
+        123,
+        163
+      ],
+      "originalSizeKB": 11.9,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_29.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_29.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 11.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "30",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\30\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/30/anh.png",
+      "originalResolution": [
+        123,
+        163
+      ],
+      "originalSizeKB": 19.7,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_30.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_30.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 22.9,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "31",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\31\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/31/anh.png",
+      "originalResolution": [
+        122,
+        164
+      ],
+      "originalSizeKB": 13.6,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_31.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_31.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 13.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "32",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\32\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/32/anh.png",
+      "originalResolution": [
+        123,
+        164
+      ],
+      "originalSizeKB": 8.6,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_32.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_32.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 8.9,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "33",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\33\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/33/anh.png",
+      "originalResolution": [
+        123,
+        164
+      ],
+      "originalSizeKB": 14.2,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_33.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_33.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 15.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "34",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\34\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/34/anh.png",
+      "originalResolution": [
+        122,
+        164
+      ],
+      "originalSizeKB": 16.8,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_34.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_34.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 17.5,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "35",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\35\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/35/anh.png",
+      "originalResolution": [
+        123,
+        164
+      ],
+      "originalSizeKB": 18.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_35.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_35.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 20.8,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "36",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\36\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/36/anh.png",
+      "originalResolution": [
+        123,
+        164
+      ],
+      "originalSizeKB": 15.6,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_36.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_36.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 16.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "37",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\37\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/37/anh.png",
+      "originalResolution": [
+        184,
+        245
+      ],
+      "originalSizeKB": 42.3,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_37.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_37.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 28.0,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "38",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\38\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/38/anh.png",
+      "originalResolution": [
+        184,
+        245
+      ],
+      "originalSizeKB": 38.1,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_38.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_38.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 20.9,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "39",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\39\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/39/anh.png",
+      "originalResolution": [
+        184,
+        245
+      ],
+      "originalSizeKB": 34.3,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_39.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_39.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 18.8,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "40",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\40\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/40/anh.png",
+      "originalResolution": [
+        184,
+        245
+      ],
+      "originalSizeKB": 48.7,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_40.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_40.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 30.0,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "41",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\41\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/41/anh.png",
+      "originalResolution": [
+        184,
+        245
+      ],
+      "originalSizeKB": 43.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_41.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_41.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 30.6,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "42",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\42\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/42/anh.png",
+      "originalResolution": [
+        184,
+        245
+      ],
+      "originalSizeKB": 47.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_42.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_42.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 30.0,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "43",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\43\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/43/anh.png",
+      "originalResolution": [
+        184,
+        245
+      ],
+      "originalSizeKB": 55.1,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_43.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_43.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 36.9,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "44",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\44\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/44/anh.png",
+      "originalResolution": [
+        184,
+        245
+      ],
+      "originalSizeKB": 50.9,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_44.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_44.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 35.1,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "45",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\45\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/45/anh.png",
+      "originalResolution": [
+        184,
+        245
+      ],
+      "originalSizeKB": 31.0,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_45.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_45.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 17.8,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "46",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\46\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/46/anh.png",
+      "originalResolution": [
+        184,
+        245
+      ],
+      "originalSizeKB": 43.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_46.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_46.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 28.7,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "47",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\47\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/47/anh.png",
+      "originalResolution": [
+        184,
+        245
+      ],
+      "originalSizeKB": 31.6,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_47.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_47.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 16.1,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "48",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\48\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/48/anh.png",
+      "originalResolution": [
+        184,
+        245
+      ],
+      "originalSizeKB": 44.8,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_48.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_48.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 28.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "49",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\49\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/49/anh.png",
+      "originalResolution": [
+        184,
+        246
+      ],
+      "originalSizeKB": 51.6,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_49.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_49.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 36.6,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "50",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\50\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/50/anh.png",
+      "originalResolution": [
+        184,
+        246
+      ],
+      "originalSizeKB": 44.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_50.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_50.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 29.4,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "51",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\51\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/51/anh.png",
+      "originalResolution": [
+        184,
+        246
+      ],
+      "originalSizeKB": 36.2,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_51.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_51.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 21.2,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "52",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\52\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/52/anh.png",
+      "originalResolution": [
+        184,
+        246
+      ],
+      "originalSizeKB": 47.8,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_52.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_52.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 34.2,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "53",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\53\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/53/anh.png",
+      "originalResolution": [
+        333,
+        504
+      ],
+      "originalSizeKB": 141.2,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_53.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_53.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 60.7,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "54",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\54\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/54/anh.png",
+      "originalResolution": [
+        333,
+        504
+      ],
+      "originalSizeKB": 128.8,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_54.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_54.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 53.8,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "55",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\55\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/55/anh.png",
+      "originalResolution": [
+        333,
+        504
+      ],
+      "originalSizeKB": 124.2,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_55.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_55.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 55.8,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "56",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\56\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/56/anh.png",
+      "originalResolution": [
+        333,
+        504
+      ],
+      "originalSizeKB": 139.4,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_56.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_56.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 59.7,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "57",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\57\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/57/anh.png",
+      "originalResolution": [
+        333,
+        504
+      ],
+      "originalSizeKB": 136.6,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_57.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_57.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 57.2,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "58",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\58\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/58/anh.png",
+      "originalResolution": [
+        333,
+        504
+      ],
+      "originalSizeKB": 133.3,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_58.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_58.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 57.5,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "59",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\59\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/59/anh.png",
+      "originalResolution": [
+        333,
+        505
+      ],
+      "originalSizeKB": 138.4,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_59.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_59.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 58.9,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "60",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\60\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/60/anh.png",
+      "originalResolution": [
+        333,
+        505
+      ],
+      "originalSizeKB": 137.7,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_60.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_60.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 58.0,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "61",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\61\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/61/anh.png",
+      "originalResolution": [
+        333,
+        505
+      ],
+      "originalSizeKB": 143.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_61.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_61.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 63.0,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "62",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\62\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/62/anh.png",
+      "originalResolution": [
+        147,
+        201
+      ],
+      "originalSizeKB": 25.8,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_62.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_62.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 25.4,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "63",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\63\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/63/anh.png",
+      "originalResolution": [
+        147,
+        201
+      ],
+      "originalSizeKB": 30.2,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_63.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_63.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 29.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "64",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\64\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/64/anh.png",
+      "originalResolution": [
+        147,
+        201
+      ],
+      "originalSizeKB": 42.9,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_64.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_64.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 47.5,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "65",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\65\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/65/anh.png",
+      "originalResolution": [
+        147,
+        201
+      ],
+      "originalSizeKB": 22.8,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_65.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_65.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 20.9,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "66",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\66\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/66/anh.png",
+      "originalResolution": [
+        148,
+        201
+      ],
+      "originalSizeKB": 32.3,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_66.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_66.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 31.1,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "67",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\67\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/67/anh.png",
+      "originalResolution": [
+        147,
+        197
+      ],
+      "originalSizeKB": 25.7,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_67.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_67.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 25.4,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "68",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\68\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/68/anh.png",
+      "originalResolution": [
+        147,
+        197
+      ],
+      "originalSizeKB": 30.3,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_68.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_68.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 28.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "69",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\69\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/69/anh.png",
+      "originalResolution": [
+        147,
+        197
+      ],
+      "originalSizeKB": 23.9,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_69.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_69.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 22.4,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "70",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\70\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/70/anh.png",
+      "originalResolution": [
+        147,
+        197
+      ],
+      "originalSizeKB": 36.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_70.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_70.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 34.0,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "71",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\71\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/71/anh.png",
+      "originalResolution": [
+        148,
+        197
+      ],
+      "originalSizeKB": 25.1,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_71.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_71.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 24.0,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "72",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\72\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/72/anh.png",
+      "originalResolution": [
+        147,
+        192
+      ],
+      "originalSizeKB": 31.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_72.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_72.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 30.6,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "73",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\73\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/73/anh.png",
+      "originalResolution": [
+        147,
+        192
+      ],
+      "originalSizeKB": 23.0,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_73.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_73.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 22.7,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "74",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\74\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/74/anh.png",
+      "originalResolution": [
+        147,
+        192
+      ],
+      "originalSizeKB": 32.8,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_74.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_74.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 32.1,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "75",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\75\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/75/anh.png",
+      "originalResolution": [
+        147,
+        192
+      ],
+      "originalSizeKB": 28.3,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_75.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_75.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 28.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "76",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\76\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/76/anh.png",
+      "originalResolution": [
+        148,
+        192
+      ],
+      "originalSizeKB": 26.5,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_76.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_76.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 25.8,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "77",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\77\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/77/anh.png",
+      "originalResolution": [
+        147,
+        190
+      ],
+      "originalSizeKB": 25.0,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_77.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_77.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 26.9,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "78",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\78\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/78/anh.png",
+      "originalResolution": [
+        147,
+        190
+      ],
+      "originalSizeKB": 30.7,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_78.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_78.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 29.8,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "79",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\79\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/79/anh.png",
+      "originalResolution": [
+        147,
+        190
+      ],
+      "originalSizeKB": 18.6,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_79.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_79.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 18.0,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "80",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\80\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/80/anh.png",
+      "originalResolution": [
+        147,
+        190
+      ],
+      "originalSizeKB": 31.4,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_80.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_80.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 31.4,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "81",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\81\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/81/anh.png",
+      "originalResolution": [
+        148,
+        190
+      ],
+      "originalSizeKB": 17.8,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_81.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_81.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 17.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "82",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\82\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/82/anh.png",
+      "originalResolution": [
+        147,
+        166
+      ],
+      "originalSizeKB": 29.7,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_82.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_82.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 33.6,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "83",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\83\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/83/anh.png",
+      "originalResolution": [
+        147,
+        166
+      ],
+      "originalSizeKB": 16.9,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_83.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_83.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 18.0,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "84",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\84\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/84/anh.png",
+      "originalResolution": [
+        147,
+        166
+      ],
+      "originalSizeKB": 26.4,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_84.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_84.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 30.0,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "85",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\85\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/85/anh.png",
+      "originalResolution": [
+        147,
+        166
+      ],
+      "originalSizeKB": 15.6,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_85.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_85.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 16.7,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "86",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\86\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/86/anh.png",
+      "originalResolution": [
+        148,
+        166
+      ],
+      "originalSizeKB": 20.4,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_86.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_86.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 20.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "87",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\87\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/87/anh.png",
+      "originalResolution": [
+        147,
+        158
+      ],
+      "originalSizeKB": 12.4,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_87.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_87.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 14.3,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "88",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\88\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/88/anh.png",
+      "originalResolution": [
+        147,
+        158
+      ],
+      "originalSizeKB": 28.2,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_88.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_88.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 34.5,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "89",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\89\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/89/anh.png",
+      "originalResolution": [
+        147,
+        158
+      ],
+      "originalSizeKB": 28.3,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_89.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_89.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 31.9,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "90",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\90\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/90/anh.png",
+      "originalResolution": [
+        147,
+        158
+      ],
+      "originalSizeKB": 23.9,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_90.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_90.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 27.9,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    },
+    {
+      "folder": "91",
+      "originalFile": "anh.png",
+      "originalPath": "D:\\SMARTBUYAI\\public\\images\\san-pham\\quan-ao-nu\\vay\\91\\anh.png",
+      "originalWebPath": "/images/san-pham/quan-ao-nu/vay/91/anh.png",
+      "originalResolution": [
+        148,
+        158
+      ],
+      "originalSizeKB": 28.9,
+      "optimizedWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_91.webp",
+      "optimizedPngWebPath": "/images/san-pham/quan-ao-nu/vay_optimized/vay_91.png",
+      "optimizedResolution": [
+        600,
+        800
+      ],
+      "optimizedSizeKB": 34.1,
+      "method": "LANCZOS + UnsharpMask(r=1.2, p=115, t=3) + Contrast(1.04) + Sharpness(1.10)"
+    }
+  ]
+}

@@ -1,16 +1,6 @@
 import { MockRepo } from '@/mocks/repository';
 import { Product } from '@/types';
 import { CATEGORY_DEFINITIONS } from '@/constants/categories';
-import { isProductEligibleForPublicDisplay } from '@/lib/imageValidator';
-
-const removeVietnameseDiacritics = (str: string): string => {
-  return str
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/đ/g, 'd')
-    .replace(/Đ/g, 'D')
-    .toLowerCase();
-};
 
 export interface ProductFilterOptions {
   gender?: string; // 'nam' | 'nu' | 'unisex' | 'all'
@@ -29,7 +19,6 @@ export interface ProductFilterOptions {
   inStockOnly?: boolean;
   searchQuery?: string;
   sort?: 'newest' | 'price-asc' | 'price-desc' | 'name-asc' | 'rating-desc';
-  includeUnavailableImages?: boolean; // Cho phép Admin truy vấn cả sản phẩm thiếu ảnh
 }
 
 export interface ShopTheLookOutfit {
@@ -44,45 +33,42 @@ export interface ShopTheLookOutfit {
 
 export const productService = {
   getAll: (filters?: ProductFilterOptions): Product[] => {
-    // Chỉ lấy sản phẩm có ảnh hợp lệ trên website công khai, trừ khi được yêu cầu rõ ràng (Admin)
-    let list = MockRepo.getProducts().filter((p) => {
-      if (!p.isActive) return false;
-      if (!filters?.includeUnavailableImages && !isProductEligibleForPublicDisplay(p)) {
-        return false;
-      }
-      return true;
-    });
+    let list = MockRepo.getProducts().filter((p) => p.isActive);
 
     if (!filters) return list;
 
-    // Search query: Tiếng Việt có dấu và không dấu
+    // Search query
     if (filters.searchQuery?.trim()) {
       const q = filters.searchQuery.toLowerCase().trim();
-      const qNoTone = removeVietnameseDiacritics(q);
-      list = list.filter((p) => {
-        const fullText = [
-          p.name,
-          p.brand,
-          p.material,
-          p.style,
-          p.shortDescription,
-          p.categorySlug,
-          CATEGORY_DEFINITIONS[p.categorySlug]?.name,
-        ]
-          .filter(Boolean)
-          .join(' ')
-          .toLowerCase();
-
-        if (fullText.includes(q)) return true;
-        const fullTextNoTone = removeVietnameseDiacritics(fullText);
-        return fullTextNoTone.includes(qNoTone);
-      });
+      list = list.filter(
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          p.brand.toLowerCase().includes(q) ||
+          p.material.toLowerCase().includes(q) ||
+          p.style.toLowerCase().includes(q) ||
+          p.shortDescription.toLowerCase().includes(q)
+      );
     }
 
-    // Gender: Strict separation between Nam and Nữ per Requirement 3
+    // Gender
     if (filters.gender && filters.gender !== 'all') {
       const targetGender = filters.gender.toLowerCase();
-      list = list.filter((p) => p.gender === targetGender);
+      if (targetGender === 'unisex') {
+        list = list.filter((p) => p.gender === 'unisex');
+      } else {
+        list = list.filter((p) => {
+          if (p.gender === targetGender) return true;
+          if (p.gender === 'unisex') {
+            // Guard: when browsing Men's fashion, strictly exclude female-specific items
+            if (targetGender === 'nam') {
+              const femaleCategories = ['chan-vay', 'chan-vay-dam', 'ao-croptop-tank', 'dam'];
+              if (femaleCategories.includes(p.categorySlug)) return false;
+            }
+            return true;
+          }
+          return false;
+        });
+      }
     }
 
     // Category & Parent Group matching
@@ -112,27 +98,27 @@ export const productService = {
 
     // Colors
     if (filters.colors && filters.colors.length > 0) {
-      list = list.filter((p) => Array.isArray(p.colors) && p.colors.some((c) => filters.colors!.includes(c.slug)));
+      list = list.filter((p) => p.colors.some((c) => filters.colors!.includes(c.slug)));
     }
 
     // Sizes
     if (filters.sizes && filters.sizes.length > 0) {
-      list = list.filter((p) => Array.isArray(p.sizes) && p.sizes.some((s) => filters.sizes!.includes(s)));
+      list = list.filter((p) => p.sizes.some((s) => filters.sizes!.includes(s)));
     }
 
     // Fits
     if (filters.fits && filters.fits.length > 0) {
-      list = list.filter((p) => p.fit && filters.fits!.some((f) => p.fit.toLowerCase().includes(f.toLowerCase())));
+      list = list.filter((p) => filters.fits!.some((f) => p.fit.toLowerCase().includes(f.toLowerCase())));
     }
 
     // Styles
     if (filters.styles && filters.styles.length > 0) {
-      list = list.filter((p) => p.style && filters.styles!.some((s) => p.style.toLowerCase().includes(s.toLowerCase())));
+      list = list.filter((p) => filters.styles!.some((s) => p.style.toLowerCase().includes(s.toLowerCase())));
     }
 
     // Materials
     if (filters.materials && filters.materials.length > 0) {
-      list = list.filter((p) => p.material && filters.materials!.some((m) => p.material.toLowerCase().includes(m.toLowerCase())));
+      list = list.filter((p) => filters.materials!.some((m) => p.material.toLowerCase().includes(m.toLowerCase())));
     }
 
     // Seasons (Bốn mùa thời trang)
@@ -158,12 +144,12 @@ export const productService = {
 
     // Occasions
     if (filters.occasions && filters.occasions.length > 0) {
-      list = list.filter((p) => Array.isArray(p.occasion) && p.occasion.some((o) => filters.occasions!.includes(o)));
+      list = list.filter((p) => p.occasion.some((o) => filters.occasions!.includes(o)));
     }
 
     // In Stock Only
     if (filters.inStockOnly) {
-      list = list.filter((p) => Array.isArray(p.variants) && p.variants.some((v) => v.stock > 0));
+      list = list.filter((p) => p.variants.some((v) => v.stock > 0));
     }
 
     // Sorting
@@ -200,79 +186,25 @@ export const productService = {
   },
 
   getBySlug: (slug: string): Product | undefined => {
-    const product = MockRepo.getProductBySlug(slug);
-    if (!product || !isProductEligibleForPublicDisplay(product)) {
-      return undefined;
-    }
-    return product;
-  },
-
-  getById: (id: string): Product | undefined => {
-    return productService.getRawByIdOrSlug(id);
-  },
-
-  getRawByIdOrSlug: (idOrSlug: string): Product | undefined => {
-    return MockRepo.getProducts().find(
-      (p) => p.id.toLowerCase() === idOrSlug.toLowerCase() || p.slug.toLowerCase() === idOrSlug.toLowerCase()
-    );
-  },
-
-  getAllForAdmin: (): Product[] => {
-    return MockRepo.getProducts();
+    return MockRepo.getProductBySlug(slug);
   },
 
   getRelated: (product: Product, limit: number = 4): Product[] => {
     return MockRepo.getProducts()
-      .filter((p) => p.id !== product.id && isProductEligibleForPublicDisplay(p) && (p.categorySlug === product.categorySlug || p.brand === product.brand))
+      .filter((p) => p.id !== product.id && p.isActive && (p.categorySlug === product.categorySlug || p.brand === product.brand))
       .slice(0, limit);
-  },
-
-  getHotProducts: (limit: number = 8): Product[] => {
-    const all = MockRepo.getProducts().filter((p) => isProductEligibleForPublicDisplay(p));
-    
-    // Ưu tiên 8 sản phẩm HOT đa dạng danh mục chuẩn Gen Z:
-    // 1. Váy nữ, 2. Đầm dự tiệc, 3. Áo croptop, 4. Áo sơ mi nam, 5. Hoodie, 6. Áo khoác, 7. Quần dài/cargo, 8. Phụ kiện
-    const DIVERSE_HOT_IDS = [
-      'W-DRESS-001',        // Váy nữ thiết kế dáng xòe
-      'W-DRESS-GOTHIC-005', // Đầm dạ hội dự tiệc cao cấp
-      'W-CROPTOP-001',      // Áo croptop nữ Y2K
-      'SHIRT-001',          // Áo sơ mi nam dài tay lụa
-      'HOODIE-001',         // Áo hoodie nỉ bông streetwear
-      'JACKET-002',         // Áo khoác bomber streetwear
-      'PANTS-003',          // Quần cargo túi hộp tác chiến
-      'ACC-027',            // Phụ kiện: Túi clutch dự tiệc tối giản
-    ];
-
-    const curatedHot = DIVERSE_HOT_IDS.map((id) => all.find((p) => p.id === id)).filter(Boolean) as Product[];
-    if (curatedHot.length >= limit) {
-      return curatedHot.slice(0, limit);
-    }
-
-    const hotList = all.filter((p) => p.badge === 'HOT' || p.badge === 'DROP' || p.badge === 'TRENDING' || p.isFeatured || (p as any).isHot);
-    const combined = [...curatedHot, ...hotList];
-    const uniqueMap = new Map<string, Product>();
-    combined.forEach((p) => uniqueMap.set(p.id, p));
-
-    if (uniqueMap.size >= limit) {
-      return Array.from(uniqueMap.values()).slice(0, limit);
-    }
-
-    const remaining = all
-      .filter((p) => !uniqueMap.has(p.id))
-      .sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0));
-    return [...Array.from(uniqueMap.values()), ...remaining].slice(0, limit);
   },
 
   getNewArrivals: (limit: number = 8): Product[] => {
     return MockRepo.getProducts()
-      .filter((p) => isProductEligibleForPublicDisplay(p) && (p.isNewArrival || p.badge === 'Mới' || p.badge === 'NEW' || p.badge === 'DROP'))
+      .filter((p) => p.isActive && (p.isNewArrival || p.badge === 'Mới' || p.badge === 'NEW' || p.badge === 'DROP'))
       .slice(0, limit);
   },
 
   getBestSellers: (limit: number = 8): Product[] => {
     return MockRepo.getProducts()
-      .filter((p) => isProductEligibleForPublicDisplay(p))
-      .sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0))
+      .filter((p) => p.isActive)
+      .sort((a, b) => b.reviewCount - a.reviewCount)
       .slice(0, limit);
   },
 
@@ -280,10 +212,10 @@ export const productService = {
     return MockRepo.getProducts()
       .filter(
         (p) =>
-          isProductEligibleForPublicDisplay(p) &&
-          (['ao-thun', 'ao-croptop', 'ao-hai-day', 'ao-polo', 'vay', 'quan-short'].includes(p.categorySlug) ||
-            p.material?.toLowerCase().includes('cotton') ||
-            p.shortDescription?.toLowerCase().includes('mát'))
+          p.isActive &&
+          (['ao-thun', 'ao-croptop-tank', 'so-mi-polo', 'chan-vay'].includes(p.categorySlug) ||
+            p.material.toLowerCase().includes('cotton') ||
+            p.shortDescription.toLowerCase().includes('mát'))
       )
       .slice(0, limit);
   },
@@ -292,75 +224,73 @@ export const productService = {
     return MockRepo.getProducts()
       .filter(
         (p) =>
-          isProductEligibleForPublicDisplay(p) &&
-          (['ao-hoodie', 'ao-khoac', 'ao-cardigan', 'ao-len', 'quan', 'quan-dai'].includes(p.categorySlug) ||
-            p.material?.toLowerCase().includes('nỉ') ||
-            p.material?.toLowerCase().includes('len') ||
-            p.shortDescription?.toLowerCase().includes('ấm'))
+          p.isActive &&
+          (['hoodie-sweater', 'ao-khoac', 'quan-cargo-parachute'].includes(p.categorySlug) ||
+            p.material.toLowerCase().includes('nỉ') ||
+            p.shortDescription.toLowerCase().includes('ấm'))
       )
       .slice(0, limit);
   },
 
   getFeatured: (limit: number = 6): Product[] => {
     return MockRepo.getProducts()
-      .filter((p) => isProductEligibleForPublicDisplay(p) && p.isFeatured)
+      .filter((p) => p.isActive && p.isFeatured)
       .slice(0, limit);
   },
 
   getAccessories: (limit: number = 8): Product[] => {
     return MockRepo.getProducts()
-      .filter((p) => isProductEligibleForPublicDisplay(p) && p.categorySlug === 'phu-kien')
+      .filter((p) => p.isActive && p.categorySlug === 'phu-kien')
       .slice(0, limit);
   },
 
   // PHẦN 11: SHOP THE LOOK OUTFITS
   getShopTheLookOutfits: (): ShopTheLookOutfit[] => {
-    const all = MockRepo.getProducts().filter((p) => isProductEligibleForPublicDisplay(p));
-    if (all.length === 0) return [];
-    const tops = all.filter((p) => ['ao-thun', 'ao-hoodie', 'ao-polo', 'ao-so-mi', 'ao-croptop', 'ao-cardigan'].includes(p.categorySlug));
-    const bottoms = all.filter((p) => ['quan', 'quan-dai', 'quan-short', 'vay'].includes(p.categorySlug));
+    const all = MockRepo.getProducts().filter((p) => p.isActive);
+    const tops = all.filter((p) => ['ao-thun', 'hoodie-sweater', 'so-mi-polo'].includes(p.categorySlug));
+    const bottoms = all.filter((p) => ['quan-jeans', 'quan-cargo-parachute', 'chan-vay'].includes(p.categorySlug));
+    const accessories = all.filter((p) => p.categorySlug === 'phu-kien');
 
     return [
       {
         id: 'look-1',
         title: 'Cyber Streetwear Matrix Fit',
         style: 'Streetwear / Cyber',
-        tagline: 'Set áo graphic oversize kết hợp quần ống rộng wash cá tính',
+        tagline: 'Set áo thun graphic oversize kết hợp quần jeans baggy wash và vòng cổ bạc layer',
         lookImage: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1000&auto=format&fit=crop&q=80',
         items: [
           tops[0] || all[0],
-          bottoms[0] || all[1] || all[0],
-          tops[1] || all[2] || all[0],
-        ].filter(Boolean) as Product[],
+          bottoms[0] || all[1],
+          accessories[0] || all[2],
+        ].filter(Boolean),
         discountPercent: 10,
       },
       {
         id: 'look-2',
         title: 'Korean Campus Warm Cozy',
         style: 'Korean Casual / Winter',
-        tagline: 'Hoodie nỉ bông trùm đầu phối cùng quần form rộng ấm áp chuẩn phong cách Hàn Quốc',
+        tagline: 'Hoodie nỉ bông trùm đầu phối cùng quần cargo túi hộp và mũ beanie ấm áp',
         lookImage: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=1000&auto=format&fit=crop&q=80',
         items: [
-          tops.find((p) => p.categorySlug === 'ao-hoodie' || p.categorySlug === 'ao-len') || tops[1] || all[1],
-          bottoms.find((p) => p.categorySlug === 'quan-dai' || p.categorySlug === 'quan') || bottoms[1] || all[2],
-          tops[2] || all[3] || all[0],
-        ].filter(Boolean) as Product[],
+          tops.find((p) => p.categorySlug === 'hoodie-sweater') || tops[1] || all[3],
+          bottoms.find((p) => p.categorySlug === 'quan-cargo-parachute') || bottoms[1] || all[4],
+          accessories[1] || all[5],
+        ].filter(Boolean),
         discountPercent: 12,
       },
       {
         id: 'look-3',
         title: 'Y2K Retro Vintage Summer',
         style: 'Y2K Girl Aesthetic',
-        tagline: 'Baby tee / Croptop in họa tiết retro ôm dáng phối chân váy xếp ly xinh xắn',
+        tagline: 'Baby tee in họa tiết retro ôm dáng phối chân váy xếp ly và túi kẹp nách',
         lookImage: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1000&auto=format&fit=crop&q=80',
         items: [
-          all.find((p) => p.categorySlug === 'ao-croptop' || p.categorySlug === 'ao-hai-day') || tops[2] || all[0],
-          all.find((p) => p.categorySlug === 'vay') || bottoms[2] || all[1],
-          tops[0] || all[2] || all[0],
-        ].filter(Boolean) as Product[],
+          all.find((p) => p.categorySlug === 'ao-croptop-tank' || p.categorySlug === 'ao-thun') || tops[2],
+          all.find((p) => p.categorySlug === 'chan-vay') || bottoms[2],
+          accessories[2] || accessories[0],
+        ].filter(Boolean),
         discountPercent: 15,
       },
     ];
   },
 };
-

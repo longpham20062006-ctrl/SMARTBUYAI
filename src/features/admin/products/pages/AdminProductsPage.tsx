@@ -21,23 +21,16 @@ import {
   X,
   Palette,
   Calendar,
-  ImageOff,
 } from 'lucide-react';
-import { hasValidProductImage } from '@/lib/imageValidator';
 
 export const AdminProductsPage: React.FC = () => {
   useRepoSubscription(['products']);
   const products = MockRepo.getProducts();
   const { success, info } = useToast();
 
-  const totalProducts = products.length; // 308
-  const validProductsCount = products.filter(hasValidProductImage).length; // 278
-  const missingProductsCount = products.filter((p) => !hasValidProductImage(p)).length; // 30
-
   const [search, setSearch] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('ALL');
   const [seasonFilter, setSeasonFilter] = useState('ALL');
-  const [imageStatusFilter, setImageStatusFilter] = useState<'ALL' | 'VALID' | 'MISSING'>('ALL');
   const [filterNeedsReview, setFilterNeedsReview] = useState(false);
   const [productToDelete, setProductToDelete] = useState<{ id: string; name: string } | null>(null);
   const [showDuplicateModal, setShowDuplicateModal] = useState(false);
@@ -59,13 +52,7 @@ export const AdminProductsPage: React.FC = () => {
       (p.season && p.season.includes(seasonFilter));
 
     const matchReview = !filterNeedsReview || p.needsReview === true;
-
-    const matchImageStatus =
-      imageStatusFilter === 'ALL' ||
-      (imageStatusFilter === 'VALID' && hasValidProductImage(p)) ||
-      (imageStatusFilter === 'MISSING' && !hasValidProductImage(p));
-
-    return matchSearch && matchCat && matchSeason && matchReview && matchImageStatus;
+    return matchSearch && matchCat && matchSeason && matchReview;
   });
 
   const handleToggleActive = (productId: string) => {
@@ -137,36 +124,36 @@ export const AdminProductsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Thẻ thống kê kiểm toán ảnh & danh mục chuẩn Shopee / TikTok */}
+      {/* Thẻ thống kê chuẩn Shopee / TikTok */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
         <div className="p-4 bg-white rounded-xl border border-[#E4E4E7] shadow-2xs">
-          <span className="text-[11px] font-bold uppercase text-[#71717A] tracking-wider block">Tổng mẫu sản phẩm</span>
-          <span className="text-2xl font-black text-[#18181B] mt-1 block">{totalProducts}</span>
-          <span className="text-[10px] text-zinc-500 font-medium">Bảo toàn 100% trong Database</span>
+          <span className="text-[11px] font-bold uppercase text-[#71717A] tracking-wider block">Mẫu sản phẩm (Parent)</span>
+          <span className="text-2xl font-black text-[#18181B] mt-1 block">{products.length}</span>
+          <span className="text-[10px] text-emerald-600 font-medium">1 mẫu = 1 thẻ duy nhất</span>
         </div>
 
-        <div className="p-4 bg-white rounded-xl border border-emerald-200 bg-emerald-50/20 shadow-2xs">
-          <span className="text-[11px] font-bold uppercase text-emerald-700 tracking-wider block">Đủ điều kiện hiển thị</span>
-          <span className="text-2xl font-black text-emerald-600 mt-1 block">
-            {validProductsCount}
+        <div className="p-4 bg-white rounded-xl border border-[#E4E4E7] shadow-2xs">
+          <span className="text-[11px] font-bold uppercase text-[#71717A] tracking-wider block">Nhóm gộp biến thể</span>
+          <span className="text-2xl font-black text-[#8B5CF6] mt-1 block">
+            {duplicateReportData.summary.confirmedMergedGroupsCount}
           </span>
-          <span className="text-[10px] text-emerald-600 font-medium">Có ảnh thật (Hiển thị khách)</span>
-        </div>
-
-        <div className="p-4 bg-white rounded-xl border border-amber-200 bg-amber-50/20 shadow-2xs">
-          <span className="text-[11px] font-bold uppercase text-amber-700 tracking-wider block">Thiếu ảnh sản phẩm</span>
-          <span className="text-2xl font-black text-amber-600 mt-1 block">
-            {missingProductsCount}
-          </span>
-          <span className="text-[10px] text-amber-600 font-medium">Chưa đủ ĐK (Ẩn công khai)</span>
+          <span className="text-[10px] text-[#71717A]">Đã chuẩn hóa màu/size</span>
         </div>
 
         <div className="p-4 bg-white rounded-xl border border-[#E4E4E7] shadow-2xs">
           <span className="text-[11px] font-bold uppercase text-[#71717A] tracking-wider block">Kho ảnh thật đã quét</span>
           <span className="text-2xl font-black text-[#0284C7] mt-1 block">
-            606
+            {duplicateReportData.summary.totalScannedImages}
           </span>
           <span className="text-[10px] text-sky-600">public/images/san-pham</span>
+        </div>
+
+        <div className="p-4 bg-white rounded-xl border border-[#E4E4E7] shadow-2xs">
+          <span className="text-[11px] font-bold uppercase text-[#71717A] tracking-wider block">Cần xác nhận gộp</span>
+          <span className="text-2xl font-black text-amber-500 mt-1 block">
+            {pendingCandidates.length}
+          </span>
+          <span className="text-[10px] text-amber-600 font-medium">Chờ duyệt thủ công</span>
         </div>
       </div>
 
@@ -184,20 +171,6 @@ export const AdminProductsPage: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
-          {/* Lọc Trạng thái ảnh */}
-          <div className="flex items-center gap-1.5">
-            <span className="text-xs text-brand-secondary">Ảnh SP:</span>
-            <select
-              value={imageStatusFilter}
-              onChange={(e) => setImageStatusFilter(e.target.value as any)}
-              className="text-xs bg-white border border-brand-border rounded-lg px-2.5 py-1.5 text-brand-charcoal focus:outline-none"
-            >
-              <option value="ALL">Tất cả ({totalProducts})</option>
-              <option value="VALID">Đủ ảnh hợp lệ ({validProductsCount})</option>
-              <option value="MISSING">Thiếu ảnh ({missingProductsCount})</option>
-            </select>
-          </div>
-
           {/* Lọc Mùa */}
           <div className="flex items-center gap-1.5">
             <span className="text-xs text-brand-secondary">Mùa:</span>
@@ -248,55 +221,32 @@ export const AdminProductsPage: React.FC = () => {
             {filtered.map((product) => {
               const totalStock = product.variants.reduce((sum, v) => sum + v.stock, 0);
               const formattedRating = product.rating ? Number(product.rating).toFixed(1) : '4.9';
-              const hasValidImg = hasValidProductImage(product);
 
               return (
                 <tr key={product.id} className="hover:bg-brand-sand/20 transition-colors">
                   {/* Mã Parent & Thiết kế */}
                   <td className="p-3.5 max-w-xs">
                     <div className="flex items-center gap-3">
-                      {hasValidImg ? (
-                        <img
-                          src={product.images[0]}
-                          alt=""
-                          className="w-12 aspect-[3/4] rounded-brand-sm object-cover bg-brand-sand shrink-0 border border-brand-border/30"
-                        />
-                      ) : (
-                        <div
-                          className="w-12 aspect-[3/4] rounded-brand-sm bg-amber-50 border border-amber-200 flex flex-col items-center justify-center text-amber-600 shrink-0 text-center p-1"
-                          title="Chưa có ảnh sản phẩm thực tế trên đĩa"
-                        >
-                          <ImageOff className="w-4 h-4 text-amber-500" />
-                          <span className="text-[8px] font-bold mt-1 text-amber-700 leading-none">Thiếu ảnh</span>
-                        </div>
-                      )}
+                      <img
+                        src={product.images[0]}
+                        alt=""
+                        className="w-12 aspect-[3/4] rounded-brand-sm object-cover bg-brand-sand shrink-0 border border-brand-border/30"
+                      />
                       <div className="space-y-0.5 min-w-0">
                         <div className="flex items-center gap-1.5 flex-wrap">
                           <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 bg-[#F2F3F5] text-[#18181B] rounded border border-[#E4E4E7]">
                             {product.id}
                           </span>
-                          {hasValidImg ? (
-                            <Link
-                              to={`/products/${product.slug}`}
-                              target="_blank"
-                              className="font-semibold text-brand-charcoal hover:text-brand-forest line-clamp-1 inline-flex items-center gap-1"
-                              title="Xem trên trang khách"
-                            >
-                              <span>{product.name}</span>
-                              <ExternalLink className="w-3 h-3 text-brand-muted shrink-0" />
-                            </Link>
-                          ) : (
-                            <span className="font-semibold text-zinc-600 line-clamp-1" title="Chưa mở bán công khai vì thiếu ảnh">
-                              {product.name}
-                            </span>
-                          )}
+                          <Link
+                            to={`/products/${product.slug}`}
+                            target="_blank"
+                            className="font-semibold text-brand-charcoal hover:text-brand-forest line-clamp-1 inline-flex items-center gap-1"
+                            title="Xem trên trang khách"
+                          >
+                            <span>{product.name}</span>
+                            <ExternalLink className="w-3 h-3 text-brand-muted shrink-0" />
+                          </Link>
                         </div>
-                        {!hasValidImg && (
-                          <div className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
-                            <AlertTriangle className="w-2.5 h-2.5 text-amber-600" />
-                            <span>Thiếu ảnh sản phẩm (Chưa đủ ĐK hiển thị)</span>
-                          </div>
-                        )}
                         <div className="text-[11px] text-brand-muted flex items-center gap-2">
                           <span>{product.brand}</span>
                           <span>•</span>
@@ -309,9 +259,9 @@ export const AdminProductsPage: React.FC = () => {
                   {/* Màu sắc có thật */}
                   <td className="p-3.5">
                     <div className="flex items-center gap-1.5">
-                      {product.colors.map((c, cIdx) => (
+                      {product.colors.map((c) => (
                         <span
-                          key={`${c.slug}-${cIdx}`}
+                          key={c.slug}
                           title={`${c.name} (${c.slug})`}
                           className="w-4 h-4 rounded-full border border-black/20 shadow-2xs inline-block"
                           style={{ backgroundColor: c.hex }}
@@ -368,40 +318,27 @@ export const AdminProductsPage: React.FC = () => {
 
                   {/* Trạng thái ẩn/hiện */}
                   <td className="p-3.5 text-center">
-                    {!hasValidImg ? (
-                      <div className="flex flex-col items-center gap-1">
-                        <span
-                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-300"
-                          title="Sản phẩm chưa có ảnh thực tế trên đĩa — tự động ẩn khỏi khách mua sắm"
-                        >
-                          <EyeOff className="w-3 h-3 text-amber-600" />
-                          <span>Thiếu ảnh SP</span>
-                        </span>
-                        <span className="text-[9px] text-amber-600 font-medium">Ẩn công khai</span>
-                      </div>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => handleToggleActive(product.id)}
-                        className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold cursor-pointer transition-colors ${
-                          product.isActive
-                            ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
-                            : 'bg-brand-sand text-brand-muted'
-                        }`}
-                      >
-                        {product.isActive ? (
-                          <>
-                            <Eye className="w-3 h-3 text-emerald-600" />
-                            <span>Hiển thị</span>
-                          </>
-                        ) : (
-                          <>
-                            <EyeOff className="w-3 h-3" />
-                            <span>Đã ẩn</span>
-                          </>
-                        )}
-                      </button>
-                    )}
+                    <button
+                      type="button"
+                      onClick={() => handleToggleActive(product.id)}
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold cursor-pointer transition-colors ${
+                        product.isActive
+                          ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                          : 'bg-brand-sand text-brand-muted'
+                      }`}
+                    >
+                      {product.isActive ? (
+                        <>
+                          <Eye className="w-3 h-3 text-emerald-600" />
+                          <span>Hiển thị</span>
+                        </>
+                      ) : (
+                        <>
+                          <EyeOff className="w-3 h-3" />
+                          <span>Đã ẩn</span>
+                        </>
+                      )}
+                    </button>
                   </td>
 
                   {/* Thao tác Sửa / Xóa */}
