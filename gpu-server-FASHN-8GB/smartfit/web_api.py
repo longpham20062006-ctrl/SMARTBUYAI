@@ -60,13 +60,19 @@ async def start_job(
     person: UploadFile = File(...), garment: UploadFile = File(...),
     category: str = Form("tops"), photo_type: str = Form("flat-lay"),
     steps: int = Form(30), guidance: float = Form(1.5), seed: int = Form(42),
-    segmentation_free: bool = Form(True), retry_if_flagged: bool = Form(False),
+    segmentation_free: bool | None = Form(None), retry_if_flagged: bool = Form(False),
     x_smartfit_key: str | None = Header(default=None),
 ):
     authorize(x_smartfit_key)
+    # Adaptive segmentation: one-pieces default to False to cleanly erase old dresses/tops/sleeves
+    if segmentation_free is None:
+        seg_free = False if category == "one-pieces" else True
+    else:
+        seg_free = segmentation_free
+
     opts = RequestOptions(category=category, photo_type=photo_type, steps=steps,
                           guidance=guidance, seed=seed,
-                          segmentation_free=segmentation_free,
+                          segmentation_free=seg_free,
                           retry_if_flagged=retry_if_flagged)
     try:
         opts.validate()

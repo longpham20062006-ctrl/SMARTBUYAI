@@ -37,3 +37,4 @@ if (fs.existsSync('D:\\SMARTBUYAI\\.env.smartfit.example')) {
 }
 
 console.log('Backup finished successfully to:', backupDir);
+

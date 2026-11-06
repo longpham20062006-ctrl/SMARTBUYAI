@@ -50,3 +50,4 @@ if (fs.existsSync(rootEnvSmartfit)) {
 }
 
 console.log('Sync completed successfully.');
+

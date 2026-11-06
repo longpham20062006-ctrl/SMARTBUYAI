@@ -18,6 +18,8 @@ import {
   Search,
   Check,
   AlertTriangle,
+  Sliders,
+  Flame,
 } from 'lucide-react';
 import { MockRepo } from '@/mocks/repository';
 import type { Product } from '@/types';
@@ -25,9 +27,11 @@ import { BeforeAfterSlider } from './BeforeAfterSlider';
 import {
   getCatalogueImage,
   getTryOnCategory,
+  detectCategoryFromFileName,
   requestProductTryOn,
   requestCustomGarmentTryOn,
   VtonCategory,
+  QualityMode,
 } from '../services/productTryOnApi';
 import { BackButton } from '@/components/common/BackButton';
 import { Button } from '@/components/ui/button';
@@ -50,6 +54,13 @@ export function ProductTryOn() {
   const [customGarmentFile, setCustomGarmentFile] = useState<File | null>(null);
   const [customGarmentPreview, setCustomGarmentPreview] = useState<string>('');
   const [customCategory, setCustomCategory] = useState<VtonCategory>('tops');
+
+  // Cho phép người dùng ghi đè danh mục (tops, bottoms, one-pieces) chủ động
+  const [categoryOverride, setCategoryOverride] = useState<VtonCategory | null>(null);
+
+  // Cấu hình nâng cao cho RTX 3060: Chất lượng & Chế độ xóa đồ cũ
+  const [qualityMode, setQualityMode] = useState<QualityMode>('high');
+  const [cleanReplacement, setCleanReplacement] = useState<boolean>(true);
 
   // Modal chọn sản phẩm từ catalog
   const [isCatalogModalOpen, setIsCatalogModalOpen] = useState(false);
@@ -89,9 +100,12 @@ export function ProductTryOn() {
   // Active garment image & category
   const shopGarmentImage = selectedProduct ? getCatalogueImage(selectedProduct, searchParams.get('image')) : '';
   const effectiveGarmentImage = garmentMode === 'shop' ? shopGarmentImage : customGarmentPreview;
-  const effectiveCategory = garmentMode === 'shop'
+
+  // Tự động phân loại hoặc dùng giá trị override
+  const autoDetectedCategory = garmentMode === 'shop'
     ? (selectedProduct ? getTryOnCategory(selectedProduct) : 'tops')
     : customCategory;
+  const effectiveCategory = categoryOverride || autoDetectedCategory || 'tops';
 
   const stopCamera = useCallback(() => {
     streamRef.current?.getTracks().forEach(track => track.stop());
@@ -145,6 +159,11 @@ export function ProductTryOn() {
     setCustomGarmentFile(file);
     setCustomGarmentPreview(customGarmentRef.current);
     setGarmentMode('custom');
+
+    // Tự động phân loại danh mục theo tên tệp tải lên
+    const detected = detectCategoryFromFileName(file.name);
+    setCustomCategory(detected);
+    setCategoryOverride(detected);
     clearResult();
   };
 
@@ -196,7 +215,7 @@ export function ProductTryOn() {
       setError('Vui lòng chọn sản phẩm hợp lệ từ website trước khi thử.');
       return;
     }
-    if (garmentMode === 'custom' && (!customGarmentFile || !customCategory)) {
+    if (garmentMode === 'custom' && (!customGarmentFile || !effectiveCategory)) {
       setError('Vui lòng tải ảnh trang phục và chọn danh mục phù hợp.');
       return;
     }
@@ -209,6 +228,13 @@ export function ProductTryOn() {
 
     try {
       const seed = 42 + requestCountRef.current++;
+      const options = {
+        overrideCategory: effectiveCategory,
+        qualityMode,
+        // Khi thử đầm liền / váy corset, bắt buộc tắt segmentation_free để tẩy sạch đồ cũ & tay áo cũ
+        segmentationFree: cleanReplacement ? (effectiveCategory === 'one-pieces' ? false : undefined) : true,
+      };
+
       let response: { image: Blob; warnings: string[]; seconds?: number };
 
       if (garmentMode === 'shop' && selectedProduct) {
@@ -218,15 +244,17 @@ export function ProductTryOn() {
           productImage: shopGarmentImage,
           signal: abort.signal,
           seed,
+          options,
           onProgress: setStage,
         });
       } else if (garmentMode === 'custom' && customGarmentFile) {
         response = await requestCustomGarmentTryOn({
           person,
           garment: customGarmentFile,
-          category: customCategory,
+          category: effectiveCategory,
           signal: abort.signal,
           seed,
+          options,
           onProgress: setStage,
         });
       } else {
@@ -299,33 +327,40 @@ export function ProductTryOn() {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F3E8FF] text-[#7C3AED] text-xs font-bold uppercase tracking-wider mb-2 border border-[#DDD6FE]">
                 <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
-                <span>AI VIRTUAL TRY-ON // GPU GEFORCE RTX 3060</span>
+                <span>SmartFit AI Studio • RTX 3060 Powered</span>
               </div>
-              <h1 className="text-2xl sm:text-4xl font-black text-[#18181B] uppercase tracking-tight">
-                Phòng Thử Đồ Trực Tuyến SMARTBUY AI
+              <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#18181B]">
+                Phòng Thử Đồ Ảo AI
               </h1>
-              <p className="text-xs sm:text-sm text-[#71717A] mt-1.5 max-w-2xl leading-relaxed">
-                Tải ảnh của bạn, chọn trang phục từ catalog SMARTBUY hoặc tải ảnh áo quần riêng.
-                Mô hình FASHN VTON sẽ ướm thử trang phục lên vóc dáng thực tế trong vài giây.
+              <p className="text-sm text-[#71717A] mt-1 max-w-2xl leading-relaxed">
+                Tự động tái tạo phom dáng, họa tiết và màu sắc của trang phục lên ảnh thật của bạn.
+                Hỗ trợ cả áo, quần và váy liền/đầm dạ hội với độ chuẩn xác từng chi tiết vải.
               </p>
             </div>
 
-            <div className="flex items-center gap-2 self-start lg:self-auto">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>GPU Server 7860 Sẵn Sàng</span>
-              </span>
+            {/* Trạng thái phần cứng GPU */}
+            <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-zinc-900 text-white text-xs border border-zinc-800 self-start lg:self-auto shadow-sm">
+              <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+              <div>
+                <div className="font-bold text-white flex items-center gap-1.5">
+                  <span>NVIDIA RTX 3060 CUDA</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 font-mono">ONLINE</span>
+                </div>
+                <div className="text-[11px] text-zinc-400">
+                  FASHN VTON v1.5 • Tự động khớp tỉ lệ cơ thể
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* ========================================================================= */}
-        {/* 3 CỘT CÂN ĐỐI TRÊN DESKTOP (CỘT 1: NGƯỜI DÙNG | CỘT 2: TRANG PHỤC | CỘT 3: KẾT QUẢ) */}
+        {/* KHU VỰC 3 CỘT: ẢNH NGƯỜI -> ẢNH TRANG PHỤC -> ẢNH KẾT QUẢ AI             */}
         {/* ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           {/* ============================================================ */}
-          {/* CỘT 1: ẢNH NGƯỜI DÙNG                                         */}
+          {/* CỘT 1: ẢNH CỦA BẠN                                          */}
           {/* ============================================================ */}
           <div className="bg-white rounded-3xl border border-[#E4E4E7] p-5 sm:p-6 shadow-xs flex flex-col justify-between space-y-4">
             <div>
@@ -344,12 +379,11 @@ export function ProductTryOn() {
                   <button
                     type="button"
                     onClick={() => {
-                      controller.current?.abort();
-                      clearResult();
                       setPerson(null);
                       if (personRef.current) URL.revokeObjectURL(personRef.current);
                       personRef.current = '';
                       setPersonPreview('');
+                      clearResult();
                     }}
                     className="inline-flex items-center gap-1 text-xs text-rose-600 hover:text-rose-700 font-bold cursor-pointer"
                   >
@@ -359,39 +393,38 @@ export function ProductTryOn() {
                 )}
               </div>
 
-              {/* Khung Xem Trước / Tải Lên */}
+              {/* Khung Xem Trước Ảnh Người Dùng HOẶC Webcam HOẶC Upload Box */}
               <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden bg-[#F4F4F5] border border-[#E4E4E7] flex flex-col items-center justify-center">
-                {personPreview ? (
-                  <img
-                    src={personPreview}
-                    alt="Ảnh người dùng xem trước"
-                    className="w-full h-full object-cover object-center"
-                  />
-                ) : cameraStatus === 'on' ? (
-                  <div className="relative w-full h-full bg-black flex flex-col items-center justify-center">
-                    <video
-                      ref={videoRef}
-                      playsInline
-                      muted
-                      autoPlay
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute bottom-4 inset-x-4 flex gap-2 justify-center z-10">
+                {cameraStatus === 'on' ? (
+                  <div className="relative w-full h-full bg-black">
+                    <video ref={videoRef} autoPlay playsInline muted className="w-full h-full object-cover" />
+                    <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-2 px-4">
                       <Button
-                        size="sm"
+                        type="button"
                         onClick={capture}
-                        className="bg-[#8B5CF6] hover:bg-[#7C3AED] text-white text-xs font-bold"
+                        className="bg-[#8B5CF6] hover:bg-[#7C3AED] text-white text-xs font-bold rounded-xl shadow-lg"
                       >
-                        Chụp ảnh này
+                        <Camera className="w-4 h-4 mr-1.5" /> Chụp ảnh này
                       </Button>
                       <Button
-                        size="sm"
+                        type="button"
                         variant="secondary"
                         onClick={stopCamera}
-                        className="text-xs font-bold"
+                        className="text-xs font-bold rounded-xl"
                       >
-                        Đóng camera
+                        Hủy
                       </Button>
+                    </div>
+                  </div>
+                ) : personPreview ? (
+                  <div className="relative w-full h-full">
+                    <img
+                      src={personPreview}
+                      alt="Ảnh người thử đồ"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-3 left-3 bg-black/75 backdrop-blur-md text-white text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full border border-white/20">
+                      Ảnh gốc
                     </div>
                   </div>
                 ) : (
@@ -499,6 +532,7 @@ export function ProductTryOn() {
                       customGarmentRef.current = '';
                       setCustomGarmentPreview('');
                       setGarmentMode('shop');
+                      setCategoryOverride(null);
                     }}
                     className="inline-flex items-center gap-1 text-xs text-rose-600 hover:text-rose-700 font-bold cursor-pointer"
                   >
@@ -514,8 +548,8 @@ export function ProductTryOn() {
                   type="button"
                   onClick={() => setGarmentMode('shop')}
                   className={`py-2 px-3 rounded-xl transition-all cursor-pointer ${garmentMode === 'shop'
-                      ? 'bg-white text-[#18181B] shadow-xs'
-                      : 'text-[#71717A] hover:text-[#18181B]'
+                    ? 'bg-white text-[#18181B] shadow-xs'
+                    : 'text-[#71717A] hover:text-[#18181B]'
                     }`}
                 >
                   Từ Shop SMARTBUY
@@ -524,8 +558,8 @@ export function ProductTryOn() {
                   type="button"
                   onClick={() => setGarmentMode('custom')}
                   className={`py-2 px-3 rounded-xl transition-all cursor-pointer ${garmentMode === 'custom'
-                      ? 'bg-white text-[#18181B] shadow-xs'
-                      : 'text-[#71717A] hover:text-[#18181B]'
+                    ? 'bg-white text-[#18181B] shadow-xs'
+                    : 'text-[#71717A] hover:text-[#18181B]'
                     }`}
                 >
                   Tải ảnh đồ riêng
@@ -619,29 +653,36 @@ export function ProductTryOn() {
               )}
             </div>
 
-            {/* Bộ Chọn Danh Mục Trang Phục (Áo, Quần, Váy liền) */}
-            <div className="bg-[#FAFAF9] rounded-2xl p-3.5 border border-[#E4E4E7] text-left space-y-2">
-              <span className="text-xs font-bold text-[#18181B] block">
-                Phân loại trang phục để AI xử lý chính xác:
-              </span>
+            {/* Bộ Chọn Danh Mục Trang Phục (Áo, Quần, Đầm liền) */}
+            <div className="bg-[#FAFAF9] rounded-2xl p-3.5 border border-[#E4E4E7] text-left space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-[#18181B] block">
+                  Phân loại kiểu trang phục:
+                </span>
+                <span className="text-[10px] text-[#8B5CF6] font-semibold">
+                  {effectiveCategory === 'one-pieces' ? 'Đầm liền / Váy' : effectiveCategory === 'bottoms' ? 'Quần / Chân váy' : 'Áo trên'}
+                </span>
+              </div>
 
               <div className="grid grid-cols-3 gap-2">
                 {[
                   { id: 'tops' as VtonCategory, label: 'Áo trên', desc: 'Áo thun, sơ mi, hoodie' },
                   { id: 'bottoms' as VtonCategory, label: 'Quần / Váy', desc: 'Jeans, cargo, chân váy' },
-                  { id: 'one-pieces' as VtonCategory, label: 'Đầm liền', desc: 'Váy liền, set bộ' },
+                  { id: 'one-pieces' as VtonCategory, label: 'Đầm liền', desc: 'Váy liền, corset, dạ hội' },
                 ].map((cat) => {
                   const isCatSelected = effectiveCategory === cat.id;
                   return (
                     <button
                       key={cat.id}
                       type="button"
-                      disabled={garmentMode === 'shop'}
-                      onClick={() => setCustomCategory(cat.id)}
+                      onClick={() => {
+                        setCategoryOverride(cat.id);
+                        setCustomCategory(cat.id);
+                      }}
                       className={`p-2 rounded-xl text-center border transition-all cursor-pointer ${isCatSelected
-                          ? 'bg-[#8B5CF6] text-white border-[#8B5CF6] shadow-xs'
-                          : 'bg-white text-[#71717A] border-[#E4E4E7] hover:border-[#8B5CF6]'
-                        } ${garmentMode === 'shop' ? 'opacity-90' : ''}`}
+                        ? 'bg-[#8B5CF6] text-white border-[#8B5CF6] shadow-xs'
+                        : 'bg-white text-[#71717A] border-[#E4E4E7] hover:border-[#8B5CF6]'
+                        }`}
                     >
                       <div className="text-xs font-bold">{cat.label}</div>
                       <div className={`text-[9px] mt-0.5 line-clamp-1 ${isCatSelected ? 'text-white/80' : 'text-[#A1A1AA]'}`}>
@@ -651,6 +692,16 @@ export function ProductTryOn() {
                   );
                 })}
               </div>
+
+              {/* Thông báo cho loại váy liền / corset */}
+              {effectiveCategory === 'one-pieces' && (
+                <div className="p-2 rounded-xl bg-purple-50/80 border border-purple-200/60 text-[11px] text-purple-800 flex items-start gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-purple-600 shrink-0 mt-0.5" />
+                  <span>
+                    Chế độ Đầm liền sẽ tự động tẩy sạch áo, cổ áo và tay áo cũ của người mẫu để thay thế toàn vẹn chiếc váy mới!
+                  </span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -766,6 +817,49 @@ export function ProductTryOn() {
               )}
             </div>
 
+            {/* Tùy chọn Chất lượng & Cấu hình AI RTX 3060 */}
+            <div className="bg-[#FAFAF9] rounded-2xl p-3 border border-[#E4E4E7] text-left space-y-2">
+              <div className="flex items-center justify-between text-xs font-bold text-[#18181B]">
+                <div className="flex items-center gap-1.5">
+                  <Sliders className="w-3.5 h-3.5 text-[#8B5CF6]" />
+                  <span>Cài đặt GPU RTX 3060:</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setQualityMode('standard')}
+                    className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all cursor-pointer ${qualityMode === 'standard'
+                      ? 'bg-[#8B5CF6] text-white'
+                      : 'bg-white text-[#71717A] border border-[#E4E4E7]'
+                      }`}
+                  >
+                    Tiêu chuẩn (25b)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setQualityMode('high')}
+                    className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all cursor-pointer ${qualityMode === 'high'
+                      ? 'bg-[#8B5CF6] text-white'
+                      : 'bg-white text-[#71717A] border border-[#E4E4E7]'
+                      }`}
+                  >
+                    Chi tiết cao (35b)
+                  </button>
+                </div>
+              </div>
+
+              {/* Checkbox tự động xóa đồ cũ */}
+              <label className="flex items-center gap-2 cursor-pointer text-[11px] text-[#52525B]">
+                <input
+                  type="checkbox"
+                  checked={cleanReplacement}
+                  onChange={(e) => setCleanReplacement(e.target.checked)}
+                  className="rounded border-[#D4D4D8] text-[#8B5CF6] focus:ring-[#8B5CF6]"
+                />
+                <span>Tự động tẩy sạch áo/tay cũ khi thử đầm (Tránh sót vải cũ)</span>
+              </label>
+            </div>
+
             {/* Hành Động: Thử Lại, Tải Ảnh & Nút Bấm Chính */}
             <div className="space-y-2.5">
               {imageResult ? (
@@ -818,15 +912,24 @@ export function ProductTryOn() {
         {/* Cam kết & Bảo mật ảnh thử đồ */}
         <div className="bg-white rounded-3xl border border-[#E4E4E7] p-5 sm:p-6 text-xs text-[#71717A] flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <ShieldCheck className="w-5 h-5 text-[#8B5CF6] shrink-0" />
-            <span>
-              Ảnh chân dung của bạn được truyền tải qua phiên bảo mật cục bộ tới máy chủ AI và tự động xóa sau phiên thử đồ. SMARTBUY AI cam kết bảo vệ 100% quyền riêng tư của bạn.
-            </span>
+            <div className="w-8 h-8 rounded-xl bg-[#F4F4F5] flex items-center justify-center text-[#8B5CF6] shrink-0">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="font-bold text-[#18181B]">Bảo mật hình ảnh người dùng</div>
+              <p className="text-[11px] text-[#71717A] mt-0.5">
+                Ảnh khuôn mặt và vóc dáng của bạn được xử lý cục bộ trên GPU nội bộ, không chia sẻ với bất kỳ bên thứ ba nào.
+              </p>
+            </div>
           </div>
 
-          <Link to="/size-guide" className="font-bold text-[#8B5CF6] hover:underline whitespace-nowrap">
-            Xem Bảng Size Chuẩn →
-          </Link>
+          <div className="flex items-center gap-4 text-xs font-bold text-[#8B5CF6]">
+            <span>Độ phân giải HD</span>
+            <span>•</span>
+            <span>Chuẩn màu vải 100%</span>
+            <span>•</span>
+            <span>Bảo toàn nhận dạng khuôn mặt</span>
+          </div>
         </div>
 
       </div>
@@ -883,8 +986,8 @@ export function ProductTryOn() {
                     type="button"
                     onClick={() => setModalGenderFilter(tab.id)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${modalGenderFilter === tab.id
-                        ? 'bg-[#8B5CF6] text-white shadow-xs'
-                        : 'bg-white text-[#71717A] border border-[#E4E4E7] hover:bg-[#F4F4F5]'
+                      ? 'bg-[#8B5CF6] text-white shadow-xs'
+                      : 'bg-white text-[#71717A] border border-[#E4E4E7] hover:bg-[#F4F4F5]'
                       }`}
                   >
                     {tab.label}
@@ -904,11 +1007,12 @@ export function ProductTryOn() {
                       setSelectedProduct(p);
                       setChosenId(p.id);
                       setGarmentMode('shop');
+                      setCategoryOverride(null);
                       setIsCatalogModalOpen(false);
                     }}
                     className={`rounded-2xl border p-2 cursor-pointer transition-all flex flex-col justify-between group ${isSelected
-                        ? 'border-[#8B5CF6] ring-2 ring-[#8B5CF6]/30 bg-[#F3E8FF]/20'
-                        : 'border-[#E4E4E7] hover:border-[#8B5CF6] bg-white'
+                      ? 'border-[#8B5CF6] ring-2 ring-[#8B5CF6]/30 bg-[#F3E8FF]/20'
+                      : 'border-[#E4E4E7] hover:border-[#8B5CF6] bg-white'
                       }`}
                   >
                     <div className="aspect-[3/4] rounded-xl overflow-hidden bg-[#F4F4F5] mb-2 relative">

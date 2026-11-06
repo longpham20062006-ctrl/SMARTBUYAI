@@ -22,7 +22,7 @@ class RequestOptions:
     steps: int=0
     guidance: float=1.5
     seed: int=42
-    segmentation_free: bool=True
+    segmentation_free: bool | None=None
     retry_if_flagged: bool=False
 
     def validate(self):
@@ -31,6 +31,8 @@ class RequestOptions:
         if self.steps and not 12 <= self.steps <= 50: raise ValueError('steps phai tu 12 den 50')
         if not 1.0 <= self.guidance <= 3.0: raise ValueError('guidance 1.0-3.0')
         if not 0 <= self.seed <= 2**31-1: raise ValueError('seed ngoai khoang')
+        if self.segmentation_free is None:
+            self.segmentation_free = False if self.category == 'one-pieces' else True
         return self
 
 

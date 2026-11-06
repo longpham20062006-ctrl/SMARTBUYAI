@@ -46,16 +46,25 @@ export const DEMO_MODELS: DemoModel[] = [
 // Chuyển đổi sản phẩm thật từ MockRepo thành TryOnGarment
 export function productToTryOnGarment(prod: Product): TryOnGarment {
   let category: GarmentCategoryType = 'upper_body';
-  const slug = prod.categorySlug?.toLowerCase() || '';
+  const slug = (prod.categorySlug || '').toLowerCase();
+  const name = (prod.name || '').toLowerCase();
+  const combined = `${slug} ${name} ${prod.parentGroup || ''}`;
 
-  if (slug === 'ao-khoac') {
-    category = 'outerwear';
-  } else if (slug === 'quan-jeans' || slug === 'quan-cargo-ong-rong') {
-    category = 'lower_body';
-  } else if (slug === 'chan-vay-dam') {
-    category = 'dresses';
-  } else if (slug === 'phu-kien') {
+  if (/phu[-_ ]kien|giay|dep|dép|tui|túi|non|mũ|kinh|kính|that-lung|thắt lưng/i.test(combined)) {
     category = 'accessories';
+  } else if (/chan[-_ ]?vay|chân váy|skirt/i.test(combined)) {
+    category = 'lower_body';
+  } else if (
+    /dam|đầm|dress|one[-_ ]?piece|corset|maxi|bodycon|jumpsuit|lolita|gothic/i.test(combined) ||
+    slug === 'vay' ||
+    prod.parentGroup === 'vay' ||
+    /váy/i.test(name)
+  ) {
+    category = 'dresses';
+  } else if (/ao[-_ ]khoac|khoác|jacket|blazer|cardigan|coat/i.test(combined)) {
+    category = 'outerwear';
+  } else if (/quan|quần|pants|jeans|cargo|short|trouser|trousers|jogger/i.test(combined)) {
+    category = 'lower_body';
   } else {
     category = 'upper_body';
   }

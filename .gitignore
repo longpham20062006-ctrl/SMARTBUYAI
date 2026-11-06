@@ -61,7 +61,9 @@ gpu-server-FASHN-8GB/.venv/
 gpu-server-FASHN-8GB/models_cache/
 gpu-server-FASHN-8GB/weights/
 gpu-server-FASHN-8GB/data/runs/
+gpu-server-FASHN-8GB/data/test_results/
 gpu-server-FASHN-8GB/data/history.db
+gpu-server-FASHN-8GB/data/*.db
 models_cache/
 weights/
 *_link_backup_*/

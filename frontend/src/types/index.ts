@@ -128,6 +128,7 @@ export interface Product {
   discountPercent?: number;
   folderKey?: string;
   modelFolder?: string;
+  parentGroup?: string;
   defaultColorId?: string;
   detailDescription?: string;
   status?: 'active' | 'draft' | 'archived';

@@ -39,3 +39,4 @@ const sensitivePatterns = [
 ];
 
 console.log('Done scanning.');
+

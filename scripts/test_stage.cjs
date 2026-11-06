@@ -18,3 +18,4 @@ for (const file of stagedFiles) {
 }
 
 console.log('Staged files > 20MB:', oversized);
+

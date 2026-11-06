@@ -6,15 +6,64 @@ import type { Product } from '@/types';
 
 export type VtonCategory = 'tops' | 'bottoms' | 'one-pieces';
 export type VtonPhotoType = 'model' | 'flat-lay';
+export type QualityMode = 'standard' | 'high';
 
+export interface TryOnExecutionOptions {
+  overrideCategory?: VtonCategory;
+  qualityMode?: QualityMode;
+  segmentationFree?: boolean;
+}
+
+/**
+ * Tự động phát hiện danh mục trang phục dựa trên tên, slug và parentGroup của sản phẩm.
+ * Phân biệt chính xác giữa váy liền/đầm (one-pieces) và chân váy (bottoms).
+ */
 export function getTryOnCategory(product: Product): VtonCategory | null {
   const slug = (product.categorySlug || '').toLowerCase();
   const name = (product.name || '').toLowerCase();
-  if (/phu-kien|giay|dep|tui|non|mu-|kinh|trang-suc/.test(slug)) return null;
-  if (/chan-vay|skirt/.test(slug) || /chân váy/.test(name)) return 'bottoms';
-  if (/dam|dress|vay-lien|one-piece/.test(slug) || /đầm|váy liền|dress/i.test(name)) return 'one-pieces';
-  if (slug === 'vay') return /chân váy|skirt/i.test(name) ? 'bottoms' : 'one-pieces';
-  if (/quan|pants|short|jeans|cargo|trouser/.test(slug)) return 'bottoms';
+  const parent = ((product as any).parentGroup || '').toLowerCase();
+  const combined = `${slug} ${name} ${parent}`;
+
+  if (/phu[-_ ]?kien|giay|dép|dep|tui|túi|non|mũ|kinh|kính|that[-_ ]?lung|thắt lưng|trang[-_ ]?suc/.test(combined)) {
+    return null;
+  }
+
+  // Chân váy thuộc về bottoms
+  if (/chan[-_ ]?vay|chân váy|skirt/.test(combined)) {
+    return 'bottoms';
+  }
+
+  // Đầm / Váy liền / Corset / Lolita / Gothic / Váy dạ hội thuộc về one-pieces
+  if (
+    /dam|đầm|vay-lien|váy liền|dress|one[-_ ]?piece|corset|maxi|bodycon|jumpsuit|lolita|gothic|da[-_ ]?hoi|dạ hội/.test(combined) ||
+    slug === 'vay' ||
+    parent === 'vay' ||
+    /váy/i.test(name)
+  ) {
+    return 'one-pieces';
+  }
+
+  // Quần / Quần jeans / Quần cargo / Quần short thuộc về bottoms
+  if (/quan|quần|pants|short|jeans|cargo|trouser|trousers|jogger/.test(combined)) {
+    return 'bottoms';
+  }
+
+  // Các loại áo thun, sơ mi, hoodie, khoác thuộc về tops
+  return 'tops';
+}
+
+/**
+ * Tự động phân loại danh mục khi người dùng tải ảnh trang phục cá nhân lên
+ */
+export function detectCategoryFromFileName(fileName: string): VtonCategory {
+  const name = (fileName || '').toLowerCase();
+  if (/chan[-_ ]?vay|chân[-_ ]?váy|skirt/.test(name)) return 'bottoms';
+  if (/dam|đầm|vay|váy|dress|one[-_ ]?piece|corset|maxi|bodycon|jumpsuit|lolita|gothic|da[-_ ]?hoi|dạ hội/.test(name)) {
+    return 'one-pieces';
+  }
+  if (/quan|quần|pants|short|jeans|cargo|trouser|trousers|jogger/.test(name)) {
+    return 'bottoms';
+  }
   return 'tops';
 }
 
@@ -85,14 +134,27 @@ export async function requestProductTryOn(args: {
   productImage: string;
   signal: AbortSignal;
   seed: number;
+  options?: TryOnExecutionOptions;
   onProgress: (message: string) => void;
 }): Promise<{ image: Blob; warnings: string[]; seconds?: number }> {
-  const { person, product, productImage, signal, seed, onProgress } = args;
-  const category = getTryOnCategory(product);
+  const { person, product, productImage, signal, seed, options, onProgress } = args;
+  const category = options?.overrideCategory || getTryOnCategory(product);
   if (!category) throw new Error('AI chưa hỗ trợ thử phụ kiện/giày. Hãy chọn áo, quần hoặc váy.');
   if (!/^image\/(jpeg|png|webp)$/.test(person.type) || person.size > 10 * 1024 * 1024 || person.size < 1000) {
     throw new Error('Vui lòng dùng ảnh JPG, PNG hoặc WebP dưới 10 MB.');
   }
+
+  // Tùy chỉnh bước khuếch tán và thang hướng dẫn cho RTX 3060
+  const isHighQuality = options?.qualityMode === 'high';
+  const steps = isHighQuality ? 35 : 25;
+  const guidance = isHighQuality ? 1.7 : 1.5;
+
+  // Quan trọng: Đối với đầm liền (one-pieces), bắt buộc xóa đồ cũ (segmentation_free = false)
+  // để toàn bộ áo, tay áo cũ được xóa sạch và thay bằng chiếc váy mới không bị dính áo cũ!
+  const isSegFree = options?.segmentationFree !== undefined
+    ? options.segmentationFree
+    : (category !== 'one-pieces');
+
   onProgress('Đang chuẩn bị ảnh sản phẩm...');
   const garment = await loadGarmentFromCatalogue(productImage, signal);
   const fd = new FormData();
@@ -100,16 +162,19 @@ export async function requestProductTryOn(args: {
   fd.append('garment', garment, `product-${product.id}.${garment.type.includes('png') ? 'png' : garment.type.includes('webp') ? 'webp' : 'jpg'}`);
   fd.append('category', category);
   fd.append('photo_type', getGarmentPhotoType(productImage));
+  fd.append('steps', String(steps));
+  fd.append('guidance', String(guidance));
   fd.append('seed', String(seed));
-  fd.append('segmentation_free', 'true');
+  fd.append('segmentation_free', String(isSegFree));
   fd.append('retry_if_flagged', 'false');
-  onProgress('Đang gửi ảnh tới máy tính xử lý AI...');
+
+  onProgress('Đang gửi ảnh tới máy tính xử lý AI (RTX 3060)...');
   let start: Response;
   try {
     start = await fetch(`${ROOT}/jobs`, { method: 'POST', body: fd, signal });
   } catch (err) {
     if (signal.aborted) throw err;
-    throw new Error('Không kết nối được PC xử lý AI. Kiểm tra server, VPN và cấu hình SMARTFIT_BACKEND_URL.');
+    throw new Error('Không kết nối được PC xử lý AI. Kiểm tra server, Tailscale/VPN và cấu hình SMARTFIT_BACKEND_URL.');
   }
   if (!start.ok) throw await failure(start);
   const task: { job_id?: string } = await start.json();
@@ -125,7 +190,7 @@ export async function requestProductTryOn(args: {
     const info: JobProgress = await response.json();
     if (info.status === 'failed') throw new Error(info.error || 'AI tạo ảnh thất bại.');
     if (info.status === 'completed') { completed = info; break; }
-    onProgress(info.stage || (info.status === 'queued' ? 'Đang xếp hàng chờ GPU...' : 'AI đang thay trang phục...'));
+    onProgress(info.stage || (info.status === 'queued' ? 'Đang xếp hàng chờ GPU RTX 3060...' : 'AI đang thay trang phục...'));
   }
   if (!completed) throw new Error('Đã quá thời gian chờ GPU (5 phút). Vui lòng kiểm tra PC.');
   const imageUrl = completed.result?.image_url;
@@ -146,9 +211,10 @@ export async function requestCustomGarmentTryOn(args: {
   category: VtonCategory;
   signal: AbortSignal;
   seed: number;
+  options?: TryOnExecutionOptions;
   onProgress: (message: string) => void;
 }): Promise<{ image: Blob; warnings: string[]; seconds?: number }> {
-  const { person, garment, category, signal, seed, onProgress } = args;
+  const { person, garment, category, signal, seed, options, onProgress } = args;
   if (!/^image\/(jpeg|png|webp)$/.test(person.type) || person.size > 10 * 1024 * 1024 || person.size < 1000) {
     throw new Error('Ảnh người dùng phải là JPG, PNG hoặc WebP từ 1 KB đến 10 MB.');
   }
@@ -156,14 +222,24 @@ export async function requestCustomGarmentTryOn(args: {
     throw new Error('Ảnh trang phục phải là JPG, PNG hoặc WebP từ 1 KB đến 10 MB.');
   }
 
+  const isHighQuality = options?.qualityMode === 'high';
+  const steps = isHighQuality ? 35 : 25;
+  const guidance = isHighQuality ? 1.7 : 1.5;
+
+  const isSegFree = options?.segmentationFree !== undefined
+    ? options.segmentationFree
+    : (category !== 'one-pieces');
+
   onProgress('Đang chuẩn bị ảnh người và trang phục...');
   const fd = new FormData();
   fd.append('person', person, person.name || 'person.jpg');
   fd.append('garment', garment, garment.name || 'garment.jpg');
   fd.append('category', category);
   fd.append('photo_type', 'flat-lay');
+  fd.append('steps', String(steps));
+  fd.append('guidance', String(guidance));
   fd.append('seed', String(seed));
-  fd.append('segmentation_free', 'true');
+  fd.append('segmentation_free', String(isSegFree));
   fd.append('retry_if_flagged', 'false');
 
   onProgress('Đang gửi dữ liệu tới máy chủ AI...');
