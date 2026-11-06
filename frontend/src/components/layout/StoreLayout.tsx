@@ -1,22 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link, Navigate } from 'react-router-dom';
 import { SiteHeader } from './SiteHeader';
 import { SiteFooter } from './SiteFooter';
 import { QuickViewModal } from '@/components/common/QuickViewModal';
 import { ScrollToTop } from '@/components/common/ScrollToTop';
 import { BackToTopButton } from '@/components/common/BackToTopButton';
 import { FloatingAIStylist } from '@/components/common/FloatingAIStylist';
+import { SizeGuideModal } from '@/components/common/SizeGuideModal';
+import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import { Product } from '@/types';
 import { ArrowRightLeft, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { MockRepo } from '@/mocks/repository';
+import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 
 export const StoreLayout: React.FC = () => {
-  const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
+  useRepoSubscription(['auth']);
+  const currentUser = MockRepo.getCurrentUser();
+
+  const [quickViewData, setQuickViewData] = useState<{ product: Product; initialImageIndex?: number } | null>(null);
   const [comparedProducts, setComparedProducts] = useState<Product[]>([]);
 
   // Listen to global quick view & compare events
   useEffect(() => {
-    const handleOpenQuickView = (e: CustomEvent<Product>) => {
-      setQuickViewProduct(e.detail);
+    const handleOpenQuickView = (e: CustomEvent<any>) => {
+      if (e.detail) {
+        if (e.detail.product) {
+          setQuickViewData({
+            product: e.detail.product,
+            initialImageIndex: e.detail.initialImageIndex ?? 0,
+          });
+        } else {
+          setQuickViewData({
+            product: e.detail,
+            initialImageIndex: 0,
+          });
+        }
+      }
     };
 
     const handleToggleCompare = (e: CustomEvent<Product>) => {
@@ -44,39 +64,56 @@ export const StoreLayout: React.FC = () => {
     };
   }, []);
 
+  // PHÂN QUYỀN ADMIN ĐỘC LẬP (Tuân thủ React Rules of Hooks: Kiểm tra sau khi gọi toàn bộ Hooks):
+  // Nếu tài khoản là ADMIN, chuyển ngay về Dashboard, tuyệt đối không hiển thị
+  // giao diện bán hàng, quần áo, giỏ hàng hay chatbot tư vấn của khách.
+  if (currentUser?.role === 'admin') {
+    return <Navigate to="/admin/dashboard" replace />;
+  }
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#F7F7F6] text-[#18181B]">
+    <div className="min-h-screen flex flex-col bg-brand-ivory text-brand-charcoal overflow-x-clip w-full">
       <ScrollToTop />
       <SiteHeader />
 
       <main className="flex-1">
-        <Outlet />
+        <ErrorBoundary fallbackTitle="Không thể tải nội dung trang" fallbackMessage="Đã xảy ra sự cố khi hiển thị trang này. Bạn có thể nhấn thử lại bên dưới.">
+          <Outlet />
+        </ErrorBoundary>
       </main>
 
       <SiteFooter />
       <BackToTopButton />
+
+      {/* Chatbot AI Stylist — Trợ lý thời trang trực tuyến tương tác thông minh cho mọi khách hàng */}
       <FloatingAIStylist />
 
-      {/* Global Quick View Modal */}
-      <QuickViewModal
-        product={quickViewProduct}
-        isOpen={!!quickViewProduct}
-        onClose={() => setQuickViewProduct(null)}
-      />
+      {/* Global Size Guide Modal — Tra cứu bảng size chuẩn Gen Z */}
+      <SizeGuideModal />
 
-      {/* Floating Compare Bar */}
-      {comparedProducts.length > 0 && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-white shadow-modal border border-[#ECEAE7] rounded-xl px-4 py-3 flex items-center gap-4 animate-fade-in max-w-lg w-[90%]">
+      {/* Global Quick View Modal — Customer Only */}
+      {currentUser && (
+        <QuickViewModal
+          product={quickViewData?.product || null}
+          initialImageIndex={quickViewData?.initialImageIndex || 0}
+          isOpen={!!quickViewData}
+          onClose={() => setQuickViewData(null)}
+        />
+      )}
+
+      {/* Floating Compare Bar — Customer Only */}
+      {currentUser && comparedProducts.length > 0 && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-brand-paper shadow-drawer border border-brand-border/80 rounded-brand-xl px-5 py-3 flex items-center gap-4 animate-fade-in max-w-xl w-[90%]">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-[#F0EFED] text-[#18181B] flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-full bg-brand-forest-light text-brand-forest flex items-center justify-center shrink-0">
               <ArrowRightLeft className="w-4 h-4" />
             </div>
             <div className="text-xs">
-              <span className="font-bold text-[#18181B]">
-                So sánh ({comparedProducts.length}/4)
+              <span className="font-semibold text-brand-charcoal">
+                So sánh ({comparedProducts.length}/4 món)
               </span>
-              <p className="text-[11px] text-[#78716C] hidden sm:block">
-                Đối chiếu chất liệu, phom dáng và chi tiết
+              <p className="text-[11px] text-brand-muted hidden sm:block">
+                Đối chiếu chất liệu, phom dáng và giá
               </p>
             </div>
           </div>
@@ -85,18 +122,33 @@ export const StoreLayout: React.FC = () => {
             {comparedProducts.map((p) => (
               <div
                 key={p.id}
-                className="relative inline-block w-9 h-12 rounded overflow-hidden border-2 border-white shadow-xs"
+                className="relative inline-block w-9 h-12 rounded-brand-sm overflow-hidden border-2 border-white shadow-2xs"
               >
-                <img src={p.images[0]} alt="" className="w-full h-full object-cover" />
+                <img src={p.images?.[0] || 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80'} alt="" className="w-full h-full object-cover" />
                 <button
                   onClick={() => setComparedProducts((prev) => prev.filter((item) => item.id !== p.id))}
-                  className="absolute top-0 right-0 bg-black/70 text-white p-0.5 rounded-bl-sm"
+                  className="absolute top-0 right-0 bg-black/60 text-white p-0.5 rounded-bl-sm"
                   title="Bỏ món này"
                 >
                   <X className="w-2.5 h-2.5" />
                 </button>
               </div>
             ))}
+          </div>
+
+          <div className="flex items-center gap-2 shrink-0">
+            <Link to="/compare">
+              <Button size="sm" variant="primary" className="text-xs">
+                Xem bảng so sánh
+              </Button>
+            </Link>
+            <button
+              onClick={() => setComparedProducts([])}
+              className="text-xs text-brand-muted hover:text-brand-charcoal p-1"
+              title="Đóng thanh so sánh"
+            >
+              <X className="w-4 h-4" />
+            </button>
           </div>
         </div>
       )}

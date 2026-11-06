@@ -5,14 +5,11 @@ import {
   AlertCircle,
   Loader2,
   CheckCircle2,
+  HelpCircle,
   XCircle,
   ArrowRight,
   ArrowLeft,
   RotateCcw,
-  Check,
-  ChevronDown,
-  ChevronUp,
-  Cpu,
 } from 'lucide-react';
 import { useVirtualTryOn } from '../hooks/useVirtualTryOn';
 import { UploadDropzone } from './UploadDropzone';
@@ -55,9 +52,6 @@ export const VirtualTryOnStudio: React.FC = () => {
   // Mobile step wizard: 1: Ảnh người -> 2: Chọn đồ -> 3: Xem trước & Tạo ảnh
   const [mobileStep, setMobileStep] = useState<1 | 2 | 3>(1);
 
-  // Debug panel collapsed state (Dev only)
-  const [showDevDebug, setShowDevDebug] = useState(false);
-
   const handleDownload = async (format: 'png' | 'webp') => {
     setIsDownloading(true);
     setDownloadFormat(format);
@@ -71,172 +65,95 @@ export const VirtualTryOnStudio: React.FC = () => {
     }
   };
 
-  // Tính số lượng trang phục đang được chọn
-  const selectedGarmentCount = [
-    selectedTop,
-    selectedBottom,
-    selectedOuterwear,
-    selectedDress,
-    ...selectedAccessories,
-  ].filter(Boolean).length;
-
   return (
-    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8 pb-24">
-      {/* 1. STUDIO HEADER */}
-      <div className="text-center max-w-2xl mx-auto space-y-3">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F3E8FF] border border-[#DDD6FE] text-[#7C3AED] text-xs font-semibold tracking-wide">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      {/* Tiêu đề Studio */}
+      <div className="text-center max-w-3xl mx-auto space-y-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F3E8FF] text-[#8B5CF6] text-xs font-bold uppercase tracking-wider">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>SMARTBUY AI · VIRTUAL TRY-ON STUDIO</span>
+          SMARTBUY AI · VIRTUAL TRY-ON STUDIO
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#18181B] tracking-tight font-editorial leading-tight">
-          Phòng thử đồ AI
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#18181B] tracking-tight uppercase">
+          Phòng Thử Đồ Bằng AI
         </h1>
-        <p className="text-sm sm:text-base text-[#78716C] max-w-xl mx-auto leading-relaxed">
-          Xem trước phong cách của bạn cùng SMARTBUY AI. Công nghệ AI Diffusion chân thực giúp bạn tự tin chọn outfit phù hợp nhất.
+        <p className="text-sm sm:text-base text-[#71717A]">
+          Thử áo, quần, váy và phụ kiện trực tiếp trên ảnh của bạn hoặc người mẫu với công nghệ AI Diffusion chân thực.
         </p>
       </div>
 
-      {/* 2. DISCLAIMER & GENTLE NOTICE */}
-      <div className="max-w-3xl mx-auto flex items-start gap-3 p-3.5 sm:p-4 bg-white border border-[#ECEAE7] rounded-2xl text-xs text-[#78716C] shadow-xs">
-        <div className="w-7 h-7 rounded-xl bg-[#F7F7F6] border border-[#ECEAE7] flex items-center justify-center shrink-0 mt-0.5">
-          <AlertCircle className="w-4 h-4 text-[#78716C]" />
-        </div>
-        <div className="space-y-0.5 leading-relaxed">
-          <p className="font-semibold text-[#18181B]">Lưu ý về trải nghiệm thử đồ:</p>
-          <p>
-            Hệ thống tối ưu nhất cho các mẫu áo, sơ mi và áo khoác. Hãy chọn ảnh chụp chính diện, đủ sáng và rõ dáng người để có kết quả mượt mà nhất. Ảnh tạo bởi AI mang tính minh họa trực quan phong cách.
+      {/* Cảnh báo minh họa chuẩn Section 3 */}
+      <div className="flex items-start gap-3 p-4 bg-amber-50/80 border border-amber-200 rounded-2xl text-amber-900 text-xs sm:text-sm">
+        <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+        <div className="space-y-0.5">
+          <p className="font-semibold text-amber-950">Lưu ý về tính năng Thử Đồ AI:</p>
+          <p className="text-amber-800/90 text-xs leading-relaxed">
+            Ảnh thử đồ được tạo bằng AI, chỉ mang tính minh họa. Độ vừa vặn thực tế phụ thuộc vào số đo và bảng size sản phẩm.
           </p>
         </div>
       </div>
 
-      {/* 3. STEPPER (3 BƯỚC THỬ ĐỒ TRỰC QUAN) */}
-      <div className="max-w-3xl mx-auto">
-        <div className="grid grid-cols-3 gap-2 sm:gap-4 p-1.5 bg-white border border-[#ECEAE7] rounded-2xl shadow-xs">
-          {/* Bước 1 */}
-          <button
-            type="button"
-            onClick={() => setMobileStep(1)}
-            className={`flex items-center gap-2.5 p-2 sm:p-3 rounded-xl transition-all text-left cursor-pointer ${
-              mobileStep === 1
-                ? 'bg-[#18181B] text-white'
-                : 'hover:bg-[#F7F7F6] text-[#292524]'
-            }`}
-          >
-            <div
-              className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 ${
-                mobileStep === 1
-                  ? 'bg-white text-[#18181B]'
-                  : uploadedPersonFile || selectedModel
-                  ? 'bg-[#166534] text-white'
-                  : 'bg-[#F0EFED] text-[#78716C]'
-              }`}
-            >
-              {uploadedPersonFile || selectedModel ? (
-                <Check className="w-3.5 h-3.5 stroke-[3]" />
-              ) : (
-                '1'
-              )}
-            </div>
-            <div className="min-w-0 hidden sm:block">
-              <p className="text-xs font-semibold truncate leading-tight">Bước 1: Chọn ảnh</p>
-              <p className={`text-[10px] truncate ${mobileStep === 1 ? 'text-white/80' : 'text-[#78716C]'}`}>
-                {uploadedPersonFile ? 'Ảnh cá nhân' : selectedModel?.name.split(' ')[0] || 'Người mẫu'}
-              </p>
-            </div>
-            <span className="sm:hidden text-xs font-semibold">1. Chọn ảnh</span>
-          </button>
-
-          {/* Bước 2 */}
-          <button
-            type="button"
-            onClick={() => setMobileStep(2)}
-            className={`flex items-center gap-2.5 p-2 sm:p-3 rounded-xl transition-all text-left cursor-pointer ${
-              mobileStep === 2
-                ? 'bg-[#18181B] text-white'
-                : 'hover:bg-[#F7F7F6] text-[#292524]'
-            }`}
-          >
-            <div
-              className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 ${
-                mobileStep === 2
-                  ? 'bg-white text-[#18181B]'
-                  : selectedGarmentCount > 0
-                  ? 'bg-[#166534] text-white'
-                  : 'bg-[#F0EFED] text-[#78716C]'
-              }`}
-            >
-              {selectedGarmentCount > 0 ? (
-                <Check className="w-3.5 h-3.5 stroke-[3]" />
-              ) : (
-                '2'
-              )}
-            </div>
-            <div className="min-w-0 hidden sm:block">
-              <p className="text-xs font-semibold truncate leading-tight">Bước 2: Chọn đồ</p>
-              <p className={`text-[10px] truncate ${mobileStep === 2 ? 'text-white/80' : 'text-[#78716C]'}`}>
-                {selectedGarmentCount > 0 ? `${selectedGarmentCount} món đã chọn` : 'Chưa chọn'}
-              </p>
-            </div>
-            <span className="sm:hidden text-xs font-semibold">2. Chọn đồ</span>
-          </button>
-
-          {/* Bước 3 */}
-          <button
-            type="button"
-            onClick={() => setMobileStep(3)}
-            className={`flex items-center gap-2.5 p-2 sm:p-3 rounded-xl transition-all text-left cursor-pointer ${
-              mobileStep === 3
-                ? 'bg-[#18181B] text-white'
-                : 'hover:bg-[#F7F7F6] text-[#292524]'
-            }`}
-          >
-            <div
-              className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 ${
-                mobileStep === 3
-                  ? 'bg-white text-[#18181B]'
-                  : result
-                  ? 'bg-[#166534] text-white'
-                  : 'bg-[#F0EFED] text-[#78716C]'
-              }`}
-            >
-              {result ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : '3'}
-            </div>
-            <div className="min-w-0 hidden sm:block">
-              <p className="text-xs font-semibold truncate leading-tight">Bước 3: Xem kết quả</p>
-              <p className={`text-[10px] truncate ${mobileStep === 3 ? 'text-white/80' : 'text-[#78716C]'}`}>
-                {result ? 'Đã tạo xong' : 'Tạo & so sánh'}
-              </p>
-            </div>
-            <span className="sm:hidden text-xs font-semibold">3. Kết quả</span>
-          </button>
-        </div>
+      {/* Mobile Step Wizard Tabs (Section 11) */}
+      <div className="lg:hidden flex items-center justify-between border-b border-[#E4E4E7] pb-2">
+        <button
+          type="button"
+          onClick={() => setMobileStep(1)}
+          className={`flex-1 text-center py-2 text-xs font-bold transition-all border-b-2 cursor-pointer ${
+            mobileStep === 1
+              ? 'border-[#8B5CF6] text-[#8B5CF6]'
+              : 'border-transparent text-[#71717A]'
+          }`}
+        >
+          1. Ảnh của bạn
+        </button>
+        <button
+          type="button"
+          onClick={() => setMobileStep(2)}
+          className={`flex-1 text-center py-2 text-xs font-bold transition-all border-b-2 cursor-pointer ${
+            mobileStep === 2
+              ? 'border-[#8B5CF6] text-[#8B5CF6]'
+              : 'border-transparent text-[#71717A]'
+          }`}
+        >
+          2. Chọn đồ
+        </button>
+        <button
+          type="button"
+          onClick={() => setMobileStep(3)}
+          className={`flex-1 text-center py-2 text-xs font-bold transition-all border-b-2 cursor-pointer ${
+            mobileStep === 3
+              ? 'border-[#8B5CF6] text-[#8B5CF6]'
+              : 'border-transparent text-[#71717A]'
+          }`}
+        >
+          3. Xem trước
+        </button>
       </div>
 
-      {/* 4. MAIN WORKSPACE (2 CỘT DESKTOP: 44% TRÁI / 56% PHẢI) */}
+      {/* Bố cục chính */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* CỘT TRÁI: KHU VỰC CHỌN ẢNH & CHỌN TRANG PHỤC (lg:col-span-5) */}
+        {/* CỘT TRÁI: Khu vực A (Ảnh người) & Khu vực B (Chọn đồ) */}
         <div
-          className={`lg:col-span-5 space-y-6 ${
+          className={`lg:col-span-6 xl:col-span-5 space-y-6 ${
             mobileStep === 3 ? 'hidden lg:block' : ''
           }`}
         >
-          {/* CARD BƯỚC 1: ẢNH CỦA BẠN / NGƯỜI MẪU */}
+          {/* KHU VỰC A — ẢNH NGƯỜI DÙNG */}
           <div
-            className={`bg-white p-5 sm:p-6 rounded-2xl border border-[#ECEAE7] shadow-xs space-y-4 ${
+            className={`bg-white p-6 rounded-3xl border border-[#E4E4E7] shadow-sm space-y-4 ${
               mobileStep === 2 ? 'hidden lg:block' : ''
             }`}
           >
-            <div className="flex items-center justify-between border-b border-[#ECEAE7] pb-3">
+            <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-sm sm:text-base font-bold text-[#18181B] tracking-tight">
-                  Bước 1: Chọn ảnh thử đồ
+                <h2 className="text-base font-bold text-[#18181B] uppercase tracking-wide">
+                  Khu vực A: Ảnh của bạn
                 </h2>
-                <p className="text-xs text-[#78716C] mt-0.5">
+                <p className="text-xs text-[#71717A]">
                   {uploadedPersonFile ? 'Đang dùng ảnh cá nhân tải lên' : 'Đang chọn người mẫu mẫu'}
                 </p>
               </div>
-              <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#F7F7F6] text-[#18181B] border border-[#ECEAE7]">
-                Ảnh người
+              <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#F4F4F5] text-[#18181B]">
+                Bước 1
               </span>
             </div>
 
@@ -249,35 +166,35 @@ export const VirtualTryOnStudio: React.FC = () => {
               onClearUploaded={clearUploadedImage}
             />
 
-            {/* Mobile navigation button: Chuyển sang Bước 2 */}
             <div className="lg:hidden pt-2">
               <Button
+                variant="accent"
                 onClick={() => setMobileStep(2)}
-                className="w-full text-xs font-semibold h-11 bg-[#18181B] hover:bg-[#27272A] text-white flex items-center justify-center gap-2 rounded-xl cursor-pointer"
+                className="w-full text-xs font-bold h-10 flex items-center justify-center gap-1.5"
               >
-                <span>Tiếp tục: Chọn trang phục</span>
+                <span>Tiếp tục: Chọn đồ muốn thử</span>
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
           </div>
 
-          {/* CARD BƯỚC 2: CHỌN TRANG PHỤC TỪ CỬA HÀNG */}
+          {/* KHU VỰC B — CHỌN TRANG PHỤC */}
           <div
-            className={`bg-white p-5 sm:p-6 rounded-2xl border border-[#ECEAE7] shadow-xs space-y-4 ${
+            className={`bg-white p-6 rounded-3xl border border-[#E4E4E7] shadow-sm space-y-4 ${
               mobileStep === 1 ? 'hidden lg:block' : ''
             }`}
           >
-            <div className="flex items-center justify-between border-b border-[#ECEAE7] pb-3">
+            <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-sm sm:text-base font-bold text-[#18181B] tracking-tight">
-                  Bước 2: Chọn trang phục muốn thử
+                <h2 className="text-base font-bold text-[#18181B] uppercase tracking-wide">
+                  Khu vực B: Chọn đồ muốn thử
                 </h2>
-                <p className="text-xs text-[#78716C] mt-0.5">
-                  Chọn các sản phẩm thực tế từ kho thời trang SMARTBUY AI
+                <p className="text-xs text-[#71717A]">
+                  Sản phẩm thật từ SMARTBUY AI (Hỗ trợ phối Áo + Quần + Phụ kiện)
                 </p>
               </div>
-              <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#F7F7F6] text-[#18181B] border border-[#ECEAE7]">
-                Kho sản phẩm
+              <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#F4F4F5] text-[#18181B]">
+                Bước 2
               </span>
             </div>
 
@@ -294,234 +211,219 @@ export const VirtualTryOnStudio: React.FC = () => {
               onToggleAccessory={toggleAccessory}
             />
 
-            {/* Mobile navigation buttons: Quay lại Bước 1 / Sang Bước 3 */}
             <div className="lg:hidden pt-2 flex gap-2">
               <Button
                 variant="outline"
                 onClick={() => setMobileStep(1)}
-                className="flex-1 text-xs font-medium h-11 border-[#ECEAE7] flex items-center justify-center gap-1.5 rounded-xl cursor-pointer"
+                className="flex-1 text-xs font-semibold h-10 flex items-center justify-center gap-1"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Quay lại ảnh</span>
               </Button>
               <Button
+                variant="accent"
                 onClick={() => setMobileStep(3)}
-                className="flex-1 text-xs font-semibold h-11 bg-[#18181B] hover:bg-[#27272A] text-white flex items-center justify-center gap-1.5 rounded-xl cursor-pointer"
+                className="flex-1 text-xs font-bold h-10 flex items-center justify-center gap-1"
               >
-                <span>Xem kết quả</span>
+                <span>Xem trước kết quả</span>
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
           </div>
         </div>
 
-        {/* CỘT PHẢI: KHU VỰC XEM TRƯỚC & KẾT QUẢ AI (lg:col-span-7) */}
+        {/* CỘT PHẢI: KHU VỰC C — ẢNH AI TẠO RA (7 Cột) */}
         <div
-          className={`lg:col-span-7 space-y-6 ${
+          className={`lg:col-span-6 xl:col-span-7 space-y-6 ${
             mobileStep !== 3 ? 'hidden lg:block' : ''
           }`}
         >
-          <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#ECEAE7] shadow-xs space-y-5">
-            {/* Header Cột Phải */}
-            <div className="flex items-center justify-between border-b border-[#ECEAE7] pb-3">
+          <div className="bg-white p-6 rounded-3xl border border-[#E4E4E7] shadow-sm space-y-5">
+            <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-sm sm:text-base font-bold text-[#18181B] tracking-tight flex items-center gap-2">
-                  <span>Bước 3: Xem trước & Kết quả thử đồ</span>
+                <h2 className="text-base font-bold text-[#18181B] uppercase tracking-wide flex items-center gap-2">
+                  <span>Khu vực C: Xem trước outfit của bạn</span>
                   {result && (
-                    <span className="inline-flex items-center gap-1 text-xs text-[#166534] font-medium bg-[#DCFCE7] px-2 py-0.5 rounded-full">
+                    <span className="flex items-center gap-1 text-xs text-emerald-600 font-medium">
                       <CheckCircle2 className="w-3.5 h-3.5" /> Hoàn thành
                     </span>
                   )}
                 </h2>
-                <p className="text-xs text-[#78716C] mt-0.5">
-                  {result
-                    ? 'Kéo thanh trượt để so sánh ảnh gốc và trang phục sau khi AI ghép'
-                    : 'Kiểm tra ảnh người mẫu và trang phục trước khi yêu cầu AI xử lý'}
+                <p className="text-xs text-[#71717A]">
+                  {result ? 'Kéo thanh trượt để so sánh ảnh gốc và ảnh AI đã phối đồ' : 'Xem trước người mẫu và trang phục trước khi tạo'}
                 </p>
               </div>
 
-              {/* Status Engine AI */}
-              <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#F7F7F6] border border-[#ECEAE7] text-[11px] text-[#78716C]">
-                <Cpu className="w-3.5 h-3.5 text-[#7C3AED]" />
-                <span>{providerName.includes('3060') ? 'GPU RTX 3060 AI' : providerName}</span>
+              {/* Thông tin Engine AI Backend */}
+              <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#F4F4F5] text-[11px] text-[#71717A]">
+                <HelpCircle className="w-3.5 h-3.5 text-[#8B5CF6]" />
+                <span>Engine: {providerName}</span>
                 <span
                   className={`w-2 h-2 rounded-full ${
-                    isAiConfigured ? 'bg-[#166534]' : 'bg-amber-400'
+                    isAiConfigured ? 'bg-emerald-500' : 'bg-amber-400'
                   }`}
-                  title={isAiConfigured ? 'AI Service Online' : 'AI Service Offline'}
+                  title={isAiConfigured ? 'Đã kết nối API' : 'Chưa cấu hình API'}
                 />
               </div>
             </div>
 
-            {/* KHUNG HIỂN THỊ KẾT QUẢ: BEFORE/AFTER HOẶC PREVIEW BAN ĐẦU */}
+            {/* Khung hiển thị: So sánh Trước / Sau khi có kết quả, hoặc Ảnh người mẫu ban đầu */}
             {result ? (
               <div className="space-y-4">
                 <BeforeAfterSlider
                   originalImage={result.originalPersonUrl}
                   resultImage={result.resultImageUrl}
-                  originalLabel="Ảnh trước khi thử"
-                  resultLabel="Outfit AI đã phối"
+                  originalLabel="Trước khi thử"
+                  resultLabel="Outfit AI đã tạo"
                 />
 
-                {/* HÀNH ĐỘNG KẾT QUẢ: TẢI ẢNH VÀ THỬ LẠI */}
-                <div className="p-4 bg-[#F7F7F6] rounded-xl border border-[#ECEAE7] space-y-3.5">
+                {/* Các thao tác kết quả theo Section 2 & 9 */}
+                <div className="p-4 bg-[#FAFAF8] rounded-2xl border border-[#E4E4E7] space-y-3">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-semibold text-[#18181B]">Lưu ảnh outfit về thiết bị:</span>
-                    <span className="text-[11px] text-[#78716C]">Độ phân giải cao · Tự động watermark</span>
+                    <span className="font-semibold text-[#18181B]">Lưu ảnh kết quả về thiết bị:</span>
+                    <span className="text-[#71717A]">Tên file: SMARTBUY-AI-TRYON-*.png</span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     <Button
                       onClick={() => handleDownload('png')}
                       disabled={isDownloading}
-                      className="bg-[#18181B] hover:bg-[#27272A] text-white font-semibold text-xs h-10 rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                      className="bg-[#8B5CF6] hover:bg-[#7C3AED] text-white font-semibold text-xs h-10 rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-xs"
                     >
                       {isDownloading && downloadFormat === 'png' ? (
                         <Loader2 className="w-4 h-4 animate-spin" />
                       ) : (
                         <Download className="w-4 h-4" />
                       )}
-                      <span>Tải ảnh PNG (Chất lượng cao)</span>
+                      <span>Tải ảnh PNG (Gốc)</span>
                     </Button>
 
                     <Button
                       onClick={() => handleDownload('webp')}
                       disabled={isDownloading}
                       variant="outline"
-                      className="bg-white hover:bg-[#F0EFED] text-[#18181B] font-semibold text-xs h-10 rounded-xl flex items-center justify-center gap-2 border border-[#ECEAE7] cursor-pointer"
+                      className="bg-white hover:bg-[#F4F4F5] text-[#18181B] font-semibold text-xs h-10 rounded-xl flex items-center justify-center gap-2 border border-[#E4E4E7] cursor-pointer"
                     >
                       {isDownloading && downloadFormat === 'webp' ? (
                         <Loader2 className="w-4 h-4 animate-spin" />
                       ) : (
                         <Download className="w-4 h-4" />
                       )}
-                      <span>Tải ảnh WebP (Tiết kiệm dung lượng)</span>
+                      <span>Tải WebP (Nhẹ)</span>
                     </Button>
                   </div>
 
                   {downloadError && (
-                    <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-[#B91C1C] text-xs flex items-start gap-2">
-                      <AlertCircle className="w-4 h-4 text-[#B91C1C] shrink-0 mt-0.5" />
+                    <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs flex items-start gap-2">
+                      <AlertCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
                       <span>{downloadError}</span>
                     </div>
                   )}
 
-                  <div className="pt-2 flex justify-between items-center text-xs border-t border-[#ECEAE7]">
+                  <div className="pt-2 flex justify-between items-center text-xs">
                     <button
                       type="button"
                       onClick={() => setMobileStep(2)}
-                      className="text-[#7C3AED] hover:underline font-semibold flex items-center gap-1 cursor-pointer"
+                      className="text-[#8B5CF6] hover:underline font-semibold"
                     >
-                      <ArrowLeft className="w-3.5 h-3.5" />
-                      <span>Đổi trang phục khác</span>
+                      ← Thay trang phục khác
                     </button>
                     <button
                       type="button"
                       onClick={executeTryOn}
-                      className="flex items-center gap-1.5 text-[#78716C] hover:text-[#18181B] font-medium cursor-pointer"
+                      className="flex items-center gap-1 text-[#71717A] hover:text-[#18181B]"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
-                      <span>Thử lại outfit này</span>
+                      <span>Thử lại</span>
                     </button>
                   </div>
                 </div>
               </div>
             ) : (
-              /* KHI CHƯA CÓ KẾT QUẢ: KHUNG XEM TRƯỚC ẢNH VÀ NÚT TẠO ẢNH */
+              /* Khi chưa có ảnh kết quả: Khung xem trước người mẫu */
               <div className="space-y-4">
-                <div className="relative aspect-[3/4] max-h-[580px] w-full rounded-2xl overflow-hidden border border-[#ECEAE7] bg-[#F7F7F6] mx-auto flex items-center justify-center">
+                <div className="relative aspect-[3/4] max-h-[560px] w-full rounded-2xl overflow-hidden border border-[#E4E4E7] bg-gray-50 mx-auto">
                   <img
                     src={currentPersonImage}
                     alt="Người mẫu xem trước"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover"
                   />
-
-                  {/* Gradient overlay & thông tin trang phục đang chọn */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5 sm:p-6 text-white space-y-1.5">
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider w-fit border border-white/20">
-                      <Sparkles className="w-3 h-3 text-[#DDD6FE]" />
-                      <span>Sẵn sàng thử đồ</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-6 text-white space-y-1">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#8B5CF6] text-white text-[10px] font-bold uppercase tracking-wider w-fit">
+                      <Sparkles className="w-3 h-3" /> Sẵn sàng thử đồ
                     </div>
-                    <p className="text-base sm:text-lg font-bold tracking-tight">
+                    <p className="text-lg font-bold">
                       {uploadedPersonFile ? 'Ảnh của bạn đã sẵn sàng' : selectedModel?.name}
                     </p>
-                    <p className="text-xs text-white/80 leading-snug">
+                    <p className="text-xs text-white/80">
                       Đã chọn:{' '}
-                      <span className="text-white font-medium">
-                        {[
-                          selectedTop?.name,
-                          selectedOuterwear?.name,
-                          selectedBottom?.name,
-                          selectedDress?.name,
-                          ...selectedAccessories.map((a) => a.name),
-                        ]
-                          .filter(Boolean)
-                          .join(' + ') || 'Chưa chọn trang phục (Nhấp Bước 2 để chọn)'}
-                      </span>
+                      {[
+                        selectedTop?.name,
+                        selectedBottom?.name,
+                        selectedOuterwear?.name,
+                        selectedDress?.name,
+                        ...selectedAccessories.map((a) => a.name),
+                      ]
+                        .filter(Boolean)
+                        .join(' + ') || 'Chưa chọn trang phục'}
                     </p>
                   </div>
                 </div>
 
-                {/* NÚT KÍCH HOẠT TẠO ẢNH THỬ ĐỒ BẰNG AI */}
+                {/* Nút Tạo ảnh thử đồ chính */}
                 <div className="space-y-2.5">
                   {status === 'processing' ? (
-                    <div className="space-y-2 bg-[#F7F7F6] p-4 rounded-xl border border-[#ECEAE7]">
+                    <div className="space-y-2">
                       <Button
                         disabled
-                        className="w-full h-12 bg-[#18181B] text-white font-semibold flex items-center justify-center gap-2 rounded-xl"
+                        className="w-full h-12 bg-[#8B5CF6] text-white font-bold flex items-center justify-center gap-2 rounded-xl"
                       >
-                        <Loader2 className="w-5 h-5 animate-spin text-[#7C3AED]" />
-                        <span>AI đang phân tích và xử lý khuếch tán trang phục...</span>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span>AI đang phân tích và tạo ảnh outfit...</span>
                       </Button>
-                      <div className="flex items-center justify-between text-xs text-[#78716C] px-1">
-                        <span>Thời gian ước tính: 5–15 giây</span>
-                        <button
-                          type="button"
-                          onClick={cancelProcessing}
-                          className="text-[#B91C1C] hover:underline cursor-pointer"
-                        >
-                          Hủy xử lý
-                        </button>
-                      </div>
+                      <button
+                        type="button"
+                        onClick={cancelProcessing}
+                        className="w-full text-center text-xs text-red-600 hover:underline py-1"
+                      >
+                        Hủy yêu cầu xử lý
+                      </button>
                     </div>
                   ) : (
                     <Button
                       onClick={executeTryOn}
-                      className="w-full h-12 bg-[#18181B] hover:bg-[#27272A] text-white font-bold text-sm tracking-wide uppercase rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full h-12 bg-[#18181B] hover:bg-[#303036] text-white font-bold text-sm tracking-wide uppercase rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      <Sparkles className="w-4 h-4 text-[#DDD6FE] animate-pulse" />
+                      <Sparkles className="w-4 h-4 text-[#8B5CF6] animate-pulse" />
                       <span>Tạo ảnh thử đồ bằng AI</span>
                     </Button>
                   )}
 
-                  {/* THÔNG BÁO LỖI HOẶC CHƯA CẤU HÌNH */}
+                  {/* Thông báo lỗi hoặc Trạng thái chưa kết nối AI thật theo Section 7 */}
                   {errorMessage && (
-                    <div className="p-3.5 bg-red-50 text-[#B91C1C] text-xs rounded-xl border border-red-200 space-y-1.5">
+                    <div className="p-3.5 bg-red-50 text-red-700 text-xs rounded-xl border border-red-200 space-y-1">
                       <div className="flex items-center gap-1.5 font-bold">
-                        <XCircle className="w-4 h-4 text-[#B91C1C] shrink-0" />
-                        <span>{status === 'unconfigured' ? 'Chưa kết nối dịch vụ AI' : 'Thông báo từ máy chủ AI'}</span>
+                        <XCircle className="w-4 h-4 text-red-600" />
+                        <span>{status === 'unconfigured' ? 'Chưa kết nối dịch vụ AI' : 'Lỗi xử lý'}</span>
                       </div>
-                      <p className="text-[11px] leading-relaxed text-red-900">{errorMessage}</p>
+                      <p className="text-[11px] leading-relaxed text-red-800">{errorMessage}</p>
                       {status === 'unconfigured' && (
-                        <div className="mt-2 pt-2 border-t border-red-200/60 text-[10px] text-red-700 space-y-0.5">
-                          <p>• Mô hình AI: Hỗ trợ CatVTON / IDM-VTON / Fashn Serverless Endpoint.</p>
-                          <p>
-                            • Biến môi trường: <code className="bg-red-100 px-1 py-0.5 rounded font-mono">VITE_TRYON_API_ENDPOINT</code>
-                          </p>
+                        <div className="mt-2 pt-2 border-t border-red-200/60 text-[10px] text-red-600 space-y-0.5">
+                          <p>• Mô hình AI: Hỗ trợ IDM-VTON / Fashn / Kling Serverless Endpoint.</p>
+                          <p>• Biến môi trường cần thiết: <code className="bg-red-100 px-1 py-0.5 rounded font-mono">VITE_TRYON_API_ENDPOINT</code></p>
                         </div>
                       )}
                     </div>
                   )}
 
-                  {/* Nút quay lại trên Mobile */}
                   <div className="lg:hidden pt-2">
                     <Button
                       variant="outline"
                       onClick={() => setMobileStep(2)}
-                      className="w-full text-xs font-medium h-11 border-[#ECEAE7] flex items-center justify-center gap-1 rounded-xl cursor-pointer"
+                      className="w-full text-xs font-semibold h-10 flex items-center justify-center gap-1"
                     >
                       <ArrowLeft className="w-4 h-4" />
-                      <span>Đổi trang phục khác</span>
+                      <span>Đổi trang phục</span>
                     </Button>
                   </div>
                 </div>
@@ -531,77 +433,142 @@ export const VirtualTryOnStudio: React.FC = () => {
         </div>
       </div>
 
-      {/* 5. THÔNG SỐ KỸ THUẬT (DÀNH CHO NHÀ PHÁT TRIỂN - GỌN GÀNG, MẶC ĐỊNH THU GỌN) */}
+      {/* KHU VỰC KIỂM TRA CHO NHÀ PHÁT TRIỂN (DEVELOPER DEBUG PANEL - DEV ONLY) */}
       {import.meta.env.DEV && (
-        <div className="border border-[#ECEAE7] bg-white rounded-2xl overflow-hidden text-xs">
-          <button
-            type="button"
-            onClick={() => setShowDevDebug(!showDevDebug)}
-            className="w-full p-3 px-4 flex items-center justify-between text-[#78716C] hover:text-[#18181B] hover:bg-[#F7F7F6] transition-colors cursor-pointer"
-          >
-            <div className="flex items-center gap-2 font-mono text-[11px]">
-              <Cpu className="w-4 h-4 text-[#7C3AED]" />
-              <span className="font-semibold text-[#18181B]">Developer Debug & GPU Pipeline</span>
-              <span className="px-1.5 py-0.2 bg-[#F0EFED] text-[#78716C] rounded text-[10px]">
-                DEV MODE ONLY
+        <div className="mt-8 p-6 bg-slate-900 border border-slate-700 rounded-3xl text-slate-200 shadow-xl space-y-4">
+          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+              <h3 className="text-sm font-bold uppercase tracking-wider text-white">
+                Developer Debug: Kiểm tra luồng dữ liệu & Model AI Thật
+              </h3>
+            </div>
+            <span className="text-[11px] font-mono bg-slate-800 text-slate-400 px-2 py-0.5 rounded">
+              DEV MODE ONLY
+            </span>
+          </div>
+
+          {/* Bảng thông số kỹ thuật tác vụ */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
+            <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/60">
+              <span className="text-slate-400 text-[10px] block">Sản phẩm đang chọn:</span>
+              <span className="font-semibold text-emerald-300 truncate block">
+                {selectedTop?.name || 'Chưa chọn áo'}
+              </span>
+              <span className="text-[10px] text-slate-400">ID: {selectedTop?.id || 'N/A'}</span>
+            </div>
+
+            <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/60">
+              <span className="text-slate-400 text-[10px] block">Mã Job / Tác vụ GPU:</span>
+              <span className="font-semibold text-indigo-300 truncate block">
+                {result?.debugInfo?.jobId || (status === 'processing' ? 'Đang khởi tạo...' : 'Chưa có')}
+              </span>
+              <span className="text-[10px] text-slate-400">Req: {result?.debugInfo?.requestId || 'N/A'}</span>
+            </div>
+
+            <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/60">
+              <span className="text-slate-400 text-[10px] block">Mô hình AI Inference:</span>
+              <span className="font-semibold text-amber-300 truncate block">
+                {result?.debugInfo?.modelName || 'CatVTON-SD15-FP16 (RTX 3060)'}
+              </span>
+              <span className="text-[10px] text-slate-400">SCHP Human Parser + Rembg</span>
+            </div>
+
+            <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/60">
+              <span className="text-slate-400 text-[10px] block">Trạng thái Inference:</span>
+              <span className={`font-semibold capitalize block ${
+                status === 'completed' ? 'text-emerald-400' :
+                status === 'processing' ? 'text-amber-400 animate-pulse' :
+                status === 'failed' ? 'text-red-400' : 'text-slate-400'
+              }`}>
+                {status}
+              </span>
+              <span className="text-[10px] text-slate-400">
+                {result ? `${result.processingDurationMs}ms` : 'Sẵn sàng'}
               </span>
             </div>
-            {showDevDebug ? (
-              <ChevronUp className="w-4 h-4" />
-            ) : (
-              <ChevronDown className="w-4 h-4" />
-            )}
-          </button>
+          </div>
 
-          {showDevDebug && (
-            <div className="p-4 bg-slate-900 border-t border-slate-800 text-slate-200 space-y-3 font-mono">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-[11px]">
-                <div className="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/60">
-                  <span className="text-slate-400 text-[10px] block">Món đồ đang chọn:</span>
-                  <span className="font-semibold text-emerald-300 truncate block">
-                    {selectedTop?.name || selectedOuterwear?.name || 'Chưa chọn áo'}
-                  </span>
-                  <span className="text-[10px] text-slate-400">ID: {selectedTop?.id || selectedOuterwear?.id || 'N/A'}</span>
-                </div>
-
-                <div className="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/60">
-                  <span className="text-slate-400 text-[10px] block">Mã Job / Tác vụ:</span>
-                  <span className="font-semibold text-indigo-300 truncate block">
-                    {result?.debugInfo?.jobId || (status === 'processing' ? 'Đang tạo...' : 'Chưa có')}
-                  </span>
-                  <span className="text-[10px] text-slate-400">Req: {result?.debugInfo?.requestId || 'N/A'}</span>
-                </div>
-
-                <div className="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/60">
-                  <span className="text-slate-400 text-[10px] block">Model AI Inference:</span>
-                  <span className="font-semibold text-amber-300 truncate block">
-                    {result?.debugInfo?.modelName || 'CatVTON-SD15-FP16 (RTX 3060)'}
-                  </span>
-                  <span className="text-[10px] text-slate-400">SCHP Parser + Rembg</span>
-                </div>
-
-                <div className="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/60">
-                  <span className="text-slate-400 text-[10px] block">Trạng thái:</span>
-                  <span
-                    className={`font-semibold capitalize block ${
-                      status === 'completed'
-                        ? 'text-emerald-400'
-                        : status === 'processing'
-                        ? 'text-amber-400 animate-pulse'
-                        : status === 'failed'
-                        ? 'text-red-400'
-                        : 'text-slate-400'
-                    }`}
-                  >
-                    {status}
-                  </span>
-                  <span className="text-[10px] text-slate-400">
-                    {result ? `${result.processingDurationMs}ms` : 'Sẵn sàng'}
-                  </span>
-                </div>
+          {/* Lưới so sánh 4 ảnh nguồn: Người gốc | Áo chọn | Áo gửi lên backend | Ảnh kết quả */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+            {/* 1. Ảnh người gốc */}
+            <div className="space-y-1.5">
+              <div className="text-[11px] font-semibold text-slate-300 flex items-center justify-between">
+                <span>1. Ảnh người gốc</span>
+              </div>
+              <div className="aspect-[3/4] bg-slate-950 rounded-xl overflow-hidden border border-slate-700 flex items-center justify-center">
+                {currentPersonImage ? (
+                  <img
+                    src={currentPersonImage}
+                    alt="Người gốc"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-xs text-slate-500">Chưa có ảnh</span>
+                )}
               </div>
             </div>
-          )}
+
+            {/* 2. Áo đang chọn */}
+            <div className="space-y-1.5">
+              <div className="text-[11px] font-semibold text-slate-300 flex items-center justify-between">
+                <span>2. Áo đang chọn (Frontend)</span>
+              </div>
+              <div className="aspect-[3/4] bg-slate-950 rounded-xl overflow-hidden border border-slate-700 flex items-center justify-center">
+                {selectedTop?.imageUrl ? (
+                  <img
+                    src={selectedTop.imageUrl}
+                    alt="Áo chọn"
+                    className="w-full h-full object-contain p-2"
+                  />
+                ) : (
+                  <span className="text-xs text-slate-500">Chưa chọn áo</span>
+                )}
+              </div>
+            </div>
+
+            {/* 3. Áo thực tế gửi lên backend */}
+            <div className="space-y-1.5">
+              <div className="text-[11px] font-semibold text-slate-300 flex items-center justify-between">
+                <span>3. Áo thực tế gửi lên GPU</span>
+              </div>
+              <div className="aspect-[3/4] bg-slate-950 rounded-xl overflow-hidden border border-slate-700 flex items-center justify-center">
+                {result?.debugInfo?.backendGarmentUrl ? (
+                  <img
+                    src={result.debugInfo.backendGarmentUrl}
+                    alt="Áo backend"
+                    className="w-full h-full object-contain p-2"
+                  />
+                ) : selectedTop?.imageUrl ? (
+                  <img
+                    src={selectedTop.imageUrl}
+                    alt="Áo chuẩn bị gửi"
+                    className="w-full h-full object-contain p-2 opacity-70"
+                  />
+                ) : (
+                  <span className="text-xs text-slate-500">Chưa có tác vụ</span>
+                )}
+              </div>
+            </div>
+
+            {/* 4. Ảnh kết quả */}
+            <div className="space-y-1.5">
+              <div className="text-[11px] font-semibold text-slate-300 flex items-center justify-between">
+                <span>4. Ảnh kết quả AI</span>
+              </div>
+              <div className="aspect-[3/4] bg-slate-950 rounded-xl overflow-hidden border border-slate-700 flex items-center justify-center">
+                {result?.resultImageUrl ? (
+                  <img
+                    src={result.resultImageUrl}
+                    alt="Kết quả AI"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-xs text-slate-500">Chưa có kết quả</span>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

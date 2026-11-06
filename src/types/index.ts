@@ -59,6 +59,7 @@ export interface ColorOption {
   slug: string;
   image?: string;
   images?: string[];
+  originalImage?: string;
 }
 
 export type SizeCode = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'FreeSize' | 'Tiêu chuẩn' | string;
@@ -96,6 +97,15 @@ export interface Product {
   brand: string;
   price: number;
   originalPrice?: number;
+  costPrice?: number;
+  suggestedPrice?: number;
+  approvedPrice?: number;
+  profitMargin?: number;
+  priceStatus?: 'approved' | 'pending';
+  subCategoryPending?: boolean;
+  needsClassification?: boolean;
+  isSetItem?: boolean;
+  setDetails?: any;
   shortDescription: string;
   description: string;
   material: string; // ví dụ: "100% Cotton hữu cơ Supima", "Vải Lanh Linen tự nhiên thoáng khí"
@@ -243,6 +253,19 @@ export interface AIStylistFilterCriteria {
   fit?: string;
 }
 
+export interface OutfitBreakdown {
+  top?: Product;
+  bottom?: Product;
+  accessory?: Product;
+  totalPrice?: number;
+  maxBudget?: number;
+  withinBudget?: boolean;
+  isWithinBudget?: boolean;
+  style?: string;
+  occasion?: string;
+  stylingRationale?: string;
+}
+
 export interface AIStylistMessage {
   id: string;
   sender: 'user' | 'stylist';
@@ -250,8 +273,13 @@ export interface AIStylistMessage {
   timestamp: string;
   parsedCriteria?: AIStylistFilterCriteria;
   recommendedProducts?: Product[];
+  outfitBreakdown?: OutfitBreakdown;
   explanation?: string;
   quickReplies?: string[];
+  provider?: string;
+  requiresAuth?: boolean;
+  isError?: boolean;
+  retryPrompt?: string;
 }
 
 // Inventory & Logs
@@ -269,3 +297,41 @@ export interface StockMovement {
   createdAt: string;
   createdBy: string;
 }
+
+// Bảng giá độc lập cho từng sản phẩm
+export interface ProductPriceRecord {
+  productId: string;
+  productName: string;
+  categorySlug: string;
+  currentPrice: number;
+  costPrice: number;
+  suggestedPrice: number;
+  approvedPrice: number;
+  originalPrice: number;
+  profitMargin: number;
+  status: 'approved' | 'pending';
+  updatedAt: string;
+}
+
+// Tính năng Đồ đôi / Couple Outfits
+export interface CoupleSet {
+  id: string;
+  name: string;
+  slug: string;
+  maleProductId: string;
+  femaleProductId: string;
+  maleProductName: string;
+  femaleProductName: string;
+  maleProduct?: Product;
+  femaleProduct?: Product;
+  selectedMaleVariant?: ProductVariant;
+  selectedFemaleVariant?: ProductVariant;
+  bundlePrice: number;
+  originalPrice: number;
+  discountPercent?: number;
+  status: 'active' | 'draft' | 'archived';
+  images: string[];
+  verified: boolean;
+  description: string;
+}
+

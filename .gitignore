@@ -8,9 +8,13 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Dependencies & Build Outputs
-node_modules
-dist
-dist-ssr
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+dist-ssr/
+target/
+**/target/
 *.local
 *test_credentials*
 *demo_credentials*
@@ -21,6 +25,7 @@ backend/data/*.local
 .env
 .env.*
 !.env.example
+!.env.smartfit.example
 
 # Editor directories and files
 .vscode/*
@@ -46,11 +51,20 @@ ai-server.rar
 # Python & AI Server Virtual Environment & Caches
 ai-server/.venv/
 .venv/
+**/.venv/
 __pycache__/
 **/__pycache__/
 *.py[cod]
 *$py.class
 *.so
+gpu-server-FASHN-8GB/.venv/
+gpu-server-FASHN-8GB/models_cache/
+gpu-server-FASHN-8GB/weights/
+gpu-server-FASHN-8GB/data/runs/
+gpu-server-FASHN-8GB/data/history.db
+models_cache/
+weights/
+*_link_backup_*/
 
 # AI Server Model Checkpoints & Large Weights (>100MB)
 ai-server/checkpoints/
@@ -69,6 +83,20 @@ ai-server/outputs/*
 ai-server/test_garments/
 ai-server/test_result.png
 
-# ECC - local AI agents and skills
-.agents/
+# Test & Debug artifacts
+test-results/
+playwright-report/
 edge-debug-profile/
+.system_generated/
+*.tsbuildinfo
+
+# Database binary runtime
+backend/data/*.mv.db
+backend/data/*.trace.db
+*.mv.db
+*.trace.db
+
+# Temporary scratch scripts
+scripts/check_python.cjs
+scripts/check_tailscale.cjs
+scripts/test_endpoints.cjs

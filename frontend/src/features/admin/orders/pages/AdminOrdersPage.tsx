@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { MockRepo } from '@/mocks/repository';
 import { OrderStatus } from '@/types';
 import { formatPrice, formatDate } from '@/lib/utils';
@@ -7,12 +7,15 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/components/ui/toast';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
+import { apiClient } from '@/services/apiClient';
 import {
   Search,
   Eye,
   CheckCircle,
   Truck,
   PackageCheck,
+  RefreshCw,
+  Loader2,
 } from 'lucide-react';
 
 export const AdminOrdersPage: React.FC = () => {
@@ -20,8 +23,97 @@ export const AdminOrdersPage: React.FC = () => {
   const orders = MockRepo.getOrders();
   const { success, error } = useToast();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialStatus = searchParams.get('status') || 'ALL';
+
   const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState('ALL');
+  const [statusFilter, setStatusFilter] = useState(initialStatus);
+  const [isSyncing, setIsSyncing] = useState(false);
+
+  const handleSyncOrders = async () => {
+    setIsSyncing(true);
+    try {
+      const backendOrders = await apiClient.getAdminOrders();
+      if (Array.isArray(backendOrders) && backendOrders.length > 0) {
+        const existing = MockRepo.getOrders();
+        const existingNumbers = new Set(existing.map((o) => o.orderNumber));
+        let addedCount = 0;
+        backendOrders.forEach((bo: any) => {
+          if (!existingNumbers.has(bo.orderNumber)) {
+            existing.unshift({
+              id: bo.id || `order-${Date.now()}`,
+              orderNumber: bo.orderNumber || `SB-${Date.now()}`,
+              userId: bo.userId || 'user-customer-1',
+              customerName: bo.customerName || 'Khách hàng',
+              customerEmail: bo.customerEmail || 'khachhang@smartbuy.vn',
+              shippingAddress: {
+                fullName: bo.customerName || 'Khách hàng',
+                phone: bo.customerPhone || '0901234567',
+                email: bo.customerEmail || 'khachhang@smartbuy.vn',
+                province: 'TP. Hồ Chí Minh',
+                district: 'Quận 1',
+                ward: 'Bến Nghé',
+                street: bo.shippingAddress || 'Địa chỉ giao hàng',
+              },
+              items: Array.isArray(bo.items) ? bo.items.map((it: any) => ({
+                variantId: it.variantId || 'var-1',
+                productId: it.productId || 'prod-1',
+                productName: it.productName || 'Sản phẩm SMARTBUY',
+                brand: it.brand || 'SMARTBUY AI',
+                image: it.image || '/images/anh_trangchu/0fb1b05f-e815-4159-8fe5-abe2c079b9e1.png',
+                color: { name: it.colorName || 'Đen', hex: '#111', slug: 'den' },
+                size: it.size || 'M',
+                price: it.price || 299000,
+                quantity: it.quantity || 1,
+              })) : [],
+              subtotal: bo.subtotal || bo.totalAmount || 0,
+              shippingFee: bo.shippingFee || 0,
+              totalAmount: bo.totalAmount || 0,
+              paymentMethod: bo.paymentMethod || 'COD',
+              paymentStatus: bo.paymentStatus || 'PENDING',
+              orderStatus: (bo.status || bo.orderStatus || 'PENDING') as OrderStatus,
+              statusHistory: [
+                {
+                  status: (bo.status || bo.orderStatus || 'PENDING') as OrderStatus,
+                  timestamp: bo.createdAt || new Date().toISOString(),
+                  note: 'Đơn hàng đồng bộ từ Backend Database',
+                },
+              ],
+              createdAt: bo.createdAt || new Date().toISOString(),
+              updatedAt: bo.updatedAt || bo.createdAt || new Date().toISOString(),
+            });
+            existingNumbers.add(bo.orderNumber);
+            addedCount++;
+          }
+        });
+        if (addedCount > 0) {
+          localStorage.setItem('sb_orders', JSON.stringify(existing));
+          window.dispatchEvent(new CustomEvent('smartbuy_repository_change', { detail: { topic: 'orders' } }));
+          success('Đồng bộ thành công', `Đã cập nhật ${addedCount} đơn hàng mới từ database.`);
+        } else {
+          success('Dữ liệu mới nhất', 'Toàn bộ đơn hàng đã đồng bộ với hệ thống.');
+        }
+      } else {
+        success('Dữ liệu mới nhất', 'Danh sách đơn hàng đã đồng bộ với hệ thống.');
+      }
+    } catch (e: any) {
+      error('Lỗi đồng bộ đơn hàng', e?.message || 'Không thể kết nối API quản trị');
+    } finally {
+      setIsSyncing(false);
+    }
+  };
+
+  useEffect(() => {
+    // Tự động kiểm tra đơn hàng mới từ backend khi admin mở trang
+    void handleSyncOrders();
+  }, []);
+
+  useEffect(() => {
+    const s = searchParams.get('status');
+    if (s) {
+      setStatusFilter(s);
+    }
+  }, [searchParams]);
 
   const filtered = orders.filter((o) => {
     const matchSearch =
@@ -70,6 +162,17 @@ export const AdminOrdersPage: React.FC = () => {
             Tổng cộng <strong>{orders.length}</strong> đơn hàng trong toàn bộ hệ thống.
           </p>
         </div>
+
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleSyncOrders}
+          disabled={isSyncing}
+          className="rounded-xl text-xs font-bold flex items-center gap-2 border-brand-border text-brand-charcoal hover:bg-brand-sand cursor-pointer self-start sm:self-auto"
+        >
+          <RefreshCw className={`w-3.5 h-3.5 text-[#8B5CF6] ${isSyncing ? 'animate-spin' : ''}`} />
+          <span>{isSyncing ? 'Đang đồng bộ...' : 'Làm mới đơn hàng'}</span>
+        </Button>
       </div>
 
       {/* Toolbar lọc */}

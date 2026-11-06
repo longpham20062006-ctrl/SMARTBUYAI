@@ -12,7 +12,7 @@ import uvicorn
 from ipaddress import ip_address, ip_network
 
 def _allowed_demo_bind(host: str) -> bool:
-    if host in ("127.0.0.1", "localhost", "::1"):
+    if host in ("127.0.0.1", "localhost", "::1", "0.0.0.0"):
         return True
     try:
         address = ip_address(host)

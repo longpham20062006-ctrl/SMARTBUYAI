@@ -5,6 +5,7 @@ import { OrderStatus } from '@/types';
 import { formatPrice, formatDate } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { BackButton } from '@/components/common/BackButton';
 import { useRepoSubscription } from '@/hooks/useRepoSubscription';
 import { ClipboardList, ArrowRight } from 'lucide-react';
 
@@ -14,7 +15,9 @@ export const OrdersPage: React.FC = () => {
   const allOrders = MockRepo.getOrders();
 
   // Chỉ lấy đơn hàng thuộc về currentUser hiện tại
-  const myOrders = currentUser ? allOrders.filter((o) => o.userId === currentUser.id) : [];
+  const myOrders = allOrders.filter(
+    (o) => currentUser && (o.userId === currentUser.id || o.customerEmail.toLowerCase() === currentUser.email.toLowerCase())
+  );
 
   const [statusFilter, setStatusFilter] = useState<string>('ALL');
 
@@ -40,33 +43,19 @@ export const OrdersPage: React.FC = () => {
     }
   };
 
-  if (!currentUser) {
-    return (
-      <div className="max-w-4xl mx-auto px-4 py-20 text-center space-y-4">
-        <h2 className="text-2xl font-bold text-[#18181B] tracking-tight">Vui lòng đăng nhập</h2>
-        <p className="text-xs text-[#78716C] max-w-sm mx-auto">
-          Đăng nhập tài khoản để tra cứu lịch sử mua sắm và theo dõi tình trạng đơn hàng của bạn.
-        </p>
-        <div className="pt-2">
-          <Link to="/login?redirect=/orders">
-            <Button variant="primary" size="sm" className="bg-[#18181B] text-white rounded-xl font-bold">
-              Đăng nhập ngay
-            </Button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
-      {/* Title */}
-      <div>
-        <div className="flex items-center gap-2 text-xs text-brand-muted mb-2">
+      {/* Top Bar with Back Button & Breadcrumbs */}
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <BackButton to="/shop" label="Quay lại Shop" />
+        <div className="flex items-center gap-2 text-xs text-brand-muted">
           <Link to="/" className="hover:text-brand-charcoal">Trang chủ</Link>
           <span>/</span>
           <span className="text-brand-charcoal font-medium">Lịch sử đơn hàng</span>
         </div>
+      </div>
+
+      <div>
         <h1 className="font-editorial text-3xl font-semibold text-brand-charcoal">
           Đơn hàng của bạn
         </h1>
@@ -88,11 +77,10 @@ export const OrdersPage: React.FC = () => {
             key={tab.id}
             type="button"
             onClick={() => setStatusFilter(tab.id)}
-            className={`px-4 py-2 rounded-brand font-medium whitespace-nowrap transition-colors cursor-pointer ${
-              statusFilter === tab.id
+            className={`px-4 py-2 rounded-brand font-medium whitespace-nowrap transition-colors cursor-pointer ${statusFilter === tab.id
                 ? 'bg-brand-forest text-brand-ivory font-semibold'
                 : 'text-brand-secondary hover:text-brand-charcoal hover:bg-brand-sand/60'
-            }`}
+              }`}
           >
             {tab.label}
           </button>

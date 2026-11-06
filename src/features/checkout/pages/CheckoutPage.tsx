@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { MockRepo } from '@/mocks/repository';
+import { apiClient } from '@/services/apiClient';
 import { formatPrice } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -54,7 +55,7 @@ export const CheckoutPage: React.FC = () => {
     e.preventDefault();
     if (validateStep1()) {
       setStep(2);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
   };
 
@@ -82,7 +83,7 @@ export const CheckoutPage: React.FC = () => {
       }));
 
       const res = MockRepo.createOrder({
-        userId: currentUser?.id || 'guest',
+        userId: currentUser?.id || 'user-customer-1',
         customerName: fullName,
         customerEmail: email,
         shippingAddress: {
@@ -103,13 +104,33 @@ export const CheckoutPage: React.FC = () => {
         paymentStatus: paymentMethod === 'COD' ? 'PENDING' : 'PAID',
       });
 
+      // Đồng bộ đơn hàng vào Spring Boot Backend & H2 Database
+      apiClient.createOrder({
+        customerName: fullName,
+        customerEmail: email,
+        customerPhone: phone,
+        shippingAddress: `${street}, ${ward}, ${district}, ${province}`,
+        paymentMethod: paymentMethod,
+        note: note || undefined,
+        items: cart.items.map((i) => ({
+          productId: i.productId,
+          variantId: i.id,
+          size: i.size,
+          colorName: i.color.name,
+          quantity: i.quantity,
+        })),
+      }).catch((err) => {
+        // Fallback ghi nhận nhẹ nhàng nếu backend ở chế độ offline
+        console.warn('Backend order synchronization notice:', err);
+      });
+
       setIsSubmitting(false);
 
       if (res.success && res.order) {
         setCreatedOrderNumber(res.order.orderNumber);
         setStep(3);
         success('Đặt hàng thành công!', `Mã đơn hàng của bạn: ${res.order.orderNumber}`);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       } else {
         error('Không thể hoàn tất đơn hàng', res.message);
       }

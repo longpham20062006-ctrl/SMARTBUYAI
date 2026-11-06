@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => {
     server: {
       host: '0.0.0.0', // Cho phép điện thoại, laptop khác trong mạng LAN truy cập (192.168.1.139)
       port: 5173,
+      allowedHosts: true,
       watch: {
         ignored: ['**/ai-server/**', '**/.venv/**', '**/backend/**', '**/database/**', '**/target/**', '**/data/**'],
       },

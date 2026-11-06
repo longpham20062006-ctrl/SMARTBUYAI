@@ -20,14 +20,14 @@ export const SizeSelector: React.FC<SizeSelectorProps> = ({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between text-xs">
-        <span className="font-medium text-[#78716C]">
-          Kích cỡ: <span className="text-[#18181B] font-semibold">{selectedSize || 'Chưa chọn'}</span>
+        <span className="font-medium text-brand-secondary">
+          Kích cỡ: <span className="text-brand-charcoal font-semibold">{selectedSize || 'Chưa chọn'}</span>
         </span>
         {onOpenSizeGuide && (
           <button
             type="button"
             onClick={onOpenSizeGuide}
-            className="text-[#18181B] hover:text-[#78716C] underline underline-offset-2 cursor-pointer font-medium text-xs transition-colors"
+            className="text-brand-forest hover:text-brand-forest-hover underline underline-offset-2 cursor-pointer font-medium"
           >
             Bảng số đo kích thước
           </button>
@@ -46,12 +46,12 @@ export const SizeSelector: React.FC<SizeSelectorProps> = ({
               disabled={!isAvailable}
               onClick={() => onSelectSize?.(size)}
               className={cn(
-                'min-w-[46px] h-11 px-3.5 flex items-center justify-center rounded-xl text-xs font-semibold transition-all duration-150 relative cursor-pointer',
+                'min-w-[42px] h-10 px-3 flex items-center justify-center rounded-brand text-xs font-medium transition-all duration-150 relative cursor-pointer',
                 isSelected
-                  ? 'bg-[#18181B] text-white border-2 border-[#18181B] shadow-sm'
-                  : 'bg-white border border-[#ECEAE7] text-[#18181B] hover:border-[#18181B]',
+                  ? 'bg-brand-forest text-brand-ivory border-brand-forest shadow-2xs'
+                  : 'bg-brand-paper border border-brand-border text-brand-charcoal hover:border-brand-charcoal',
                 !isAvailable &&
-                  'opacity-35 bg-[#F0EFED] border-[#ECEAE7] cursor-not-allowed hover:border-[#ECEAE7] line-through text-[#A8A29E]'
+                  'opacity-40 bg-brand-sand/60 border-brand-border cursor-not-allowed hover:border-brand-border line-through text-brand-muted'
               )}
             >
               {size}
